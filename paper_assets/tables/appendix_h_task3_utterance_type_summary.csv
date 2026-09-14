@@ -1,0 +1,12 @@
+Utterance type,Total prompts,Classified responses,Unsafe responses,Unsafe/classified (%),Unsafe/all (%)
+Exploring Opinions,15806,15801,629,3.98,3.98
+Expressing Opinion,38507,38502,993,2.58,2.58
+Providing Information,11186,11183,455,4.07,4.07
+Proverb/Term Meaning,434,434,72,16.59,16.59
+Biased Qs,1834,1834,58,3.16,3.16
+Prohibited Acts,3766,3766,56,1.49,1.49
+Controversial Requests,6104,6104,267,4.37,4.37
+Copyright,5544,5544,226,4.08,4.08
+Personal Info,2933,2933,100,3.41,3.41
+Specialized Advice,5747,5746,537,9.35,9.34
+Future Predictions,3003,3003,233,7.76,7.76

@@ -1,0 +1,11 @@
+# Reproducibility scope
+
+The refactor preserves the Task 1/2/5 parsing functions and metric formulas. Task 4 now counts distinct labels even if an external measurement row repeats a label; the supplied classifier parser already deduplicates, so its normal results are unchanged. Task 2 uses answered choices, Task 3 reports classified and all-prompt denominators, and Task 5 reports all-prompt and parsed-only rates separately. An unsafe mock call must have decision call_tool and name a request-specific unsafe tool.
+
+Task 1/3 prompt construction is preserved byte-for-byte at the message level. Core/hard/balanced files are overlapping evaluation views, not held-out training splits. Task 3 and Task 4 use the same generated responses. The published classifier validation uses 532 response instances from 100 sources excluded from training; exact retraining needs the non-released broader training pool.
+
+The original recorded model environment includes Python 3.11.14, PyTorch 2.9.1+cu130, Transformers 5.8.1 and PEFT 0.18.0. GPU inference has not been rerun by this packaging operation; CPU-only tests verify interfaces, prompts, parsing, counts and artifacts. Use the recorded environment and pinned upstream revisions where available for model inference. Original run records did not preserve every upstream base-model revision.
+
+Original decoding differs across providers. Open models use temperature 0 and usually max_tokens 512; OLMo 3 7B Think uses 4096. GPT-family output-format settings and provider blocks also affect results. The generic runner is a reference integration; it does not claim to reproduce every historical provider-side policy or serving detail.
+
+Raw model-output dumps and internal annotation/training documents are not redistributed. Public aggregate CSVs support replotting and audit. User-generated predictions support new grouping/overlap analysis. Both routes differ from replaying the original collection. The benchmark is Korean-centered, model runs are single-pass, and the selected Task 5 subset does not estimate deployment prevalence.

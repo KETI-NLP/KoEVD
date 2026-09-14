@@ -1,0 +1,7 @@
+﻿Severity band,Source n,Effective model judgments,Model-mean unsafe judgment rate (%)
+Benign,1043,11472,14.3
+Low,2629,28917,25.4
+Moderate,3017,33183,58.1
+High,2552,28066,84.2
+Extreme,4189,46059,80.7
+HD/borderline,122,1342,27.9

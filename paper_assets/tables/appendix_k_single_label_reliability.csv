@@ -1,0 +1,5 @@
+﻿field,units,categories,all_3_exact,pairwise_exact,fleiss_kappa,krippendorff_alpha,all_same_n,two_vs_one_n,all_diff_n
+Topic,800,22,0.76,0.8329,0.8238,0.8238,608,175,17
+Utterance type,800,11,0.765,0.8429,0.8133,0.8134,612,187,1
+Explicitness,800,3,0.9012,0.9342,0.8895,0.8895,721,79,0
+"Severity band, nominal",800,6,0.74,0.8187,0.7715,0.7716,592,189,19

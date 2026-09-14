@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "koevd-eval"
+version = "0.1.0"
+description = "Reference evaluation and analysis for KoEVD"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dependencies = []
+
+[project.optional-dependencies]
+hub = ["huggingface-hub>=0.34"]
+analysis = ["numpy>=1.26", "pandas>=2.2", "matplotlib>=3.8", "seaborn>=0.13"]
+classifiers = ["torch>=2.4", "transformers>=5.8.1", "peft>=0.18", "accelerate>=1.0", "sentencepiece", "huggingface-hub>=0.34"]
+serve = ["fastapi>=0.110", "uvicorn>=0.27"]
+
+[project.scripts]
+koevd-prepare = "koevd_eval.prepare_tasks:main"
+koevd-run = "koevd_eval.run_openai_compatible:main"
+koevd-score = "koevd_eval.score:main"
+koevd-classify = "koevd_eval.classify_responses:main"
+koevd-download = "koevd_eval.hub:main"
+koevd-analyze = "koevd_eval.analysis:main"
+
+[tool.setuptools]
+license-files = ["LICENSE", "LICENSES/*.md", "NOTICE.md"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

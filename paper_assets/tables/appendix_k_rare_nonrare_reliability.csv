@@ -1,0 +1,9 @@
+﻿field,subset,units,all_3_exact,pairwise_exact,fleiss_kappa,krippendorff_alpha
+Topic,Rare,124,0.5,0.6532,0.6245,0.6255
+Topic,Non-rare,676,0.8077,0.8659,0.858,0.8581
+Utterance type,Rare,124,0.8871,0.9247,0.9089,0.9092
+Utterance type,Non-rare,676,0.7426,0.8279,0.7939,0.794
+Explicitness,Rare,124,0.8065,0.871,0.7651,0.7658
+Explicitness,Non-rare,676,0.9186,0.9458,0.9095,0.9096
+Severity band,Rare,124,0.5484,0.6801,0.5401,0.5413
+Severity band,Non-rare,676,0.7751,0.8442,0.8034,0.8035

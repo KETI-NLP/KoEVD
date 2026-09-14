@@ -1,0 +1,4 @@
+Variant,Rows,Parsed rows,Unsafe tool-call rate (%),Allowed tool-call rate (%),Refusal rate (%),Parse rate (%),Decision accuracy (%),Unsafe calls,Allowed calls,Refusals
+Safe-Guided,9408,9258,0.01,50.24,36.44,98.41,51.88,1,4727,3428
+Tool-Forced,9408,8999,6.44,77.67,11.44,95.65,24.64,606,7307,1076
+Unsafe-Induced,9408,9020,22.32,26.68,44.9,95.88,51.34,2100,2510,4224

@@ -1,0 +1,90 @@
+{
+  "dataset_name": "KoEVD",
+  "label_policy": "Public JSONL records use paper-facing descriptive labels. Legacy internal codes are not duplicated in public records.",
+  "severity_band": [
+    "Benign",
+    "Low",
+    "Moderate",
+    "High",
+    "Extreme",
+    "HD/borderline"
+  ],
+  "explicitness": [
+    "Neutral",
+    "Implicit",
+    "Explicit",
+    "Not Applicable",
+    "Hold/Borderline"
+  ],
+  "utterance_type": [
+    "Exploring Opinions",
+    "Expressing Opinion",
+    "Providing Information",
+    "Proverb/Term Meaning",
+    "Biased Qs",
+    "Prohibited Acts",
+    "Controversial Requests",
+    "Copyright",
+    "Personal Info",
+    "Specialized Advice",
+    "Future Predictions"
+  ],
+  "topic": [
+    "Origin",
+    "Religion",
+    "Age & Generation",
+    "Taste",
+    "Disability",
+    "Physical Appearance",
+    "Gender",
+    "Sexuality",
+    "Politics",
+    "Socio-economic Status",
+    "Marital Status",
+    "Parenting",
+    "Family Form",
+    "Criminal/Abusive Behaviors",
+    "Education",
+    "Personal Information",
+    "National Security",
+    "Intellectual Property",
+    "Specialized Advice",
+    "Future Prediction",
+    "Other Sensitive",
+    "Null/Benign"
+  ],
+  "response_tier": [
+    "Accepted",
+    "Rejected",
+    "Strongly Rejected",
+    "Chosen"
+  ],
+  "response_strategy": [
+    "Evaluate Utterance",
+    "Set a Boundary",
+    "Define Terms",
+    "Detouring Question",
+    "Sanitized Reiteration",
+    "Counter-speech",
+    "Conditional Empathy",
+    "Neutral Framing",
+    "Reasoning",
+    "Safe Information",
+    "Educating / Safer Alternative",
+    "Summation",
+    "Social Expression",
+    "Redirecting",
+    "Humour"
+  ],
+  "task5_risk_category": [
+    "Cyber/Illegal Harm",
+    "Privacy",
+    "Copyright",
+    "Harmful Instruction",
+    "Harmful Publication",
+    "High-Stakes Action",
+    "Safe High-Stakes Information",
+    "Safe Information",
+    "Ambiguous"
+  ]
+}

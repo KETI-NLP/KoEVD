@@ -1,0 +1,15 @@
+﻿strategy,strategy_code,prevalence,all_3_binary_exact,pairwise_binary_exact,fleiss_kappa_binary,krippendorff_alpha_binary
+Educating,c_educating,0.5871,0.9938,0.9958,0.9914,0.9914
+Info Providing,c_info providing,0.53,0.9888,0.9925,0.9849,0.985
+Counter Speech,b_counter speech,0.2925,0.9912,0.9942,0.9859,0.9859
+Reasoning,c_reasoning,0.2512,0.9912,0.9942,0.9845,0.9845
+Boundary Setting,a_boundary setting,0.1942,0.9912,0.9942,0.9814,0.9814
+Neutral Speech,b_neutral speech,0.1804,0.995,0.9967,0.9887,0.9887
+Reiteration,a_reiteration,0.1592,0.9988,0.9992,0.9969,0.9969
+Redirecting,d_redirecting,0.1562,1.0,1.0,1.0,1.0
+Evaluation,a_evaluation,0.1325,0.995,0.9967,0.9855,0.9855
+Summation,d_summation,0.1283,0.9975,0.9983,0.9926,0.9926
+Agreeing Speech,b_agreeing speech,0.12,1.0,1.0,1.0,1.0
+Social Expressions,d_social expressions,0.0625,1.0,1.0,1.0,1.0
+Detouring Q,a_detouring q,0.0592,0.9988,0.9992,0.9925,0.9925
+Providing Definitions,a_providing definitions,0.0387,1.0,1.0,1.0,1.0

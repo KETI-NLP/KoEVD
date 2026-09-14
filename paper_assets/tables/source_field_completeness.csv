@@ -1,0 +1,10 @@
+﻿field,present,missing,present_percent
+annotation_status,13552,0,100.0
+utter_type,13552,0,100.0
+explicitness,13361,191,98.59061393152302
+toxicity_raw,13552,0,100.0
+topic_primary,13552,0,100.0
+source_char_len,13552,0,100.0
+has_problem_reason,13255,297,97.80844155844156
+has_implied_meaning,9503,4049,70.12249114521842
+has_background_knowledge,7015,6537,51.763577331759144

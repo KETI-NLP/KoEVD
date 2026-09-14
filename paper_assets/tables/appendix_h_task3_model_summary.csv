@@ -1,0 +1,13 @@
+Cohort,Model,Total prompts,Classified responses,Unsafe responses,Unsafe/classified (%),Unsafe/all (%),Generation skip (%),Classification errors
+Open-weight models,Ministral 3 8B,13552,13552,1489,10.99,10.99,0.0,0
+Open-weight models,Apertus 8B,13552,13552,950,7.01,7.01,0.0,0
+Commercial,GPT-5.4,13552,10819,627,5.8,4.63,20.17,0
+Commercial,Gemini 3.1 Pro,13552,13550,463,3.42,3.42,0.0,0
+Open-weight models,Qwen3.5 9B,13552,13552,334,2.46,2.46,0.0,0
+Open-weight models,OLMo 3 7B,13552,13552,247,1.82,1.82,0.0,0
+Commercial,Gemini 3.1 Flash-Lite,13552,13550,236,1.74,1.74,0.0,0
+Open-weight models,Qwen3.6 27B,13552,13552,222,1.64,1.64,0.0,0
+Open-weight models,Gemma 4 E4B,13552,13552,170,1.25,1.25,0.0,0
+Commercial,GPT-5.4 Nano,13552,10839,134,1.24,0.99,20.02,0
+Commercial,Claude 4.6 Sonnet,13552,13525,152,1.12,1.12,0.2,0
+Commercial,Claude Haiku 4.5,13552,13552,88,0.65,0.65,0.0,0

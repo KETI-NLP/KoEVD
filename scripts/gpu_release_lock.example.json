@@ -1,0 +1,7 @@
+{
+  "dataset": {"repo_id": "HF_NAMESPACE/KoEVD", "revision": null},
+  "assistant": {"repo_id": "HF_NAMESPACE/KoEVD-assistant-safety", "revision": null},
+  "strategy": {"repo_id": "HF_NAMESPACE/KoEVD-response-strategy", "revision": null},
+  "assistant_base": {"repo_id": "Qwen/Qwen3.5-0.8B", "revision": null},
+  "strategy_base": {"repo_id": "Qwen/Qwen3-8B", "revision": null}
+}

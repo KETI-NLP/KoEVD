@@ -1,0 +1,20 @@
+{
+  "appendix_f_task1_full_severity_summary.csv": "paper/tables/appendix_f_task1_full_severity_summary.csv",
+  "appendix_f_task1_balanced_severity_summary.csv": "paper/tables/appendix_f_task1_balanced_severity_summary.csv",
+  "appendix_g_task2_metadata_accuracy_summary.csv": "paper/tables/appendix_g_task2_metadata_accuracy_summary.csv",
+  "appendix_h_task3_model_summary.csv": "paper/tables/appendix_h_task3_model_summary.csv",
+  "appendix_h_task3_utterance_type_summary.csv": "paper/tables/appendix_h_task3_utterance_type_summary.csv",
+  "appendix_i_task4_model_strategy_clusters.csv": "paper/tables/appendix_i_task4_model_strategy_clusters.csv",
+  "appendix_j_task5_variant_summary.csv": "paper/tables/appendix_j_task5_variant_summary.csv",
+  "appendix_j_task5_utterance_variant_summary.csv": "paper/tables/appendix_j_task5_utterance_variant_summary.csv",
+  "appendix_k_single_label_reliability.csv": "paper/tables/appendix_k_single_label_reliability.csv",
+  "appendix_k_multilabel_reliability.csv": "paper/tables/appendix_k_multilabel_reliability.csv",
+  "appendix_k_response_strategy_per_label_reliability.csv": "paper/tables/appendix_k_response_strategy_per_label_reliability.csv",
+  "appendix_k_rare_nonrare_reliability.csv": "paper/tables/appendix_k_rare_nonrare_reliability.csv",
+  "response_strategy_pair_cooccurrence_matrix.csv": "survey/appendix_dataset_statistics_2026_05/tables/response_strategy_pair_cooccurrence_matrix.csv",
+  "response_strategy_count_distribution_accepted.csv": "survey/appendix_dataset_statistics_2026_05/tables/response_strategy_count_distribution_accepted.csv",
+  "response_tier_counts.csv": "survey/appendix_dataset_statistics_2026_05/tables/response_tier_counts.csv",
+  "source_field_completeness.csv": "survey/appendix_dataset_statistics_2026_05/tables/source_field_completeness.csv",
+  "task3_task5_overlap_verified.json": "camera-ready rebuttal verification / task3_task5_overlap_verified.json",
+  "task3_task5_overlap_verified.csv": "camera-ready rebuttal verification / task3_task5_overlap_verified.csv"
+}

@@ -1,0 +1,22 @@
+﻿Axis,Value,Parsed/answered items,Accuracy on answered items (%)
+Severity band,Benign,25027,74.4
+Severity band,Extreme,100523,70.4
+Severity band,HD/borderline,2928,72.1
+Severity band,High,61236,71.2
+Severity band,Low,63089,74.2
+Severity band,Moderate,72399,74.1
+Explicitness,Explicit,157802,72.1
+Explicitness,Implicit,141630,72.5
+Explicitness,Missing/unspecified,4583,71.6
+Explicitness,Neutral,21187,74.9
+Utterance type,Biased Qs,6286,75.3
+Utterance type,Controversial Requests,20922,70.1
+Utterance type,Copyright,19008,72.2
+Utterance type,Exploring Opinions,54186,73.7
+Utterance type,Expressing Opinion,131999,72.9
+Utterance type,Future Predictions,10296,73.0
+Utterance type,Personal Info,10056,68.0
+Utterance type,Prohibited Acts,12912,70.1
+Utterance type,Proverb/Term Meaning,1488,63.1
+Utterance type,Providing Information,38350,71.0
+Utterance type,Specialized Advice,19699,75.2

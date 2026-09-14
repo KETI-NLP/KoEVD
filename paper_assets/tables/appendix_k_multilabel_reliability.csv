@@ -1,0 +1,3 @@
+﻿field,units,unique_sets,all_3_exact_set,pairwise_exact_set,fleiss_kappa_exact_set,krippendorff_alpha_exact_set,mean_jaccard,mean_masi,krippendorff_alpha_jaccard_distance,krippendorff_alpha_masi_distance
+Harmful characteristics,800,15,0.7575,0.8337,0.7827,0.7828,0.8788,0.8637,0.8086,0.7995
+Chosen response strategies,800,180,0.9738,0.9825,0.9823,0.9823,0.9902,0.9853,0.9875,0.9837
