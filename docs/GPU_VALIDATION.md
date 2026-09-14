@@ -1,6 +1,6 @@
 # Validation on a GPU node
 
-The release has passed CPU packaging/data checks. Actual classifier inference remains unverified until a GPU report is collected. Use a pinned public commit for the first remote smoke test, fix any failures, then run a larger evaluation. A smoke-test pass does not reproduce the paper's reported F1.
+The release passed CPU checks and actual B200 GPU/CLI validation. See [measured results and limits](GPU_VALIDATION_RESULTS.md). Use a pinned public commit for the first remote smoke test, fix any failures, then run a larger evaluation. A smoke-test pass does not reproduce the paper's reported F1.
 
 ## Install and pin artifacts
 
@@ -15,6 +15,29 @@ git rev-parse HEAD
 Record the Git commit with the result bundle. The included `gpu_release_lock.json` pins the published dataset, adapters and two upstream base models to full 40-character commit SHAs. Use it unchanged for the first test. For a different release, use `scripts/gpu_release_lock.example.json` and explicitly fill every revision. No `main` or floating tag is accepted. The base-model commits selected for this test describe this run; they cannot retroactively recover missing revisions from the original experiment.
 
 The script downloads the dataset, both adapters and both base models into the standard Hugging Face cache. Reserve storage for those complete repositories. It runs one classifier at a time on the first visible CUDA GPU, without CPU offloading or quantization. The GPU must hold the 8B model, adapter and inference activations; actual peak allocation is reported. Start with four sources and batch size two; BF16 is the default. Unsupported BF16 hardware requires an explicit `--dtype float16`, recorded as a different test condition. Set `CUDA_VISIBLE_DEVICES` before starting to choose a GPU.
+
+## Prefetch and offline use
+
+Run snapshot prefetch with network access and the same Hub version before taking a node offline. Older caches may have complete weights but lack tree metadata needed by a newer Hub version.
+
+```python
+import json
+from huggingface_hub import snapshot_download
+
+with open("gpu_release_lock.json", encoding="utf-8") as f:
+    lock = json.load(f)
+paths = {}
+for name, item in lock.items():
+    paths[name] = snapshot_download(
+        repo_id=item["repo_id"], revision=item["revision"],
+        repo_type="dataset" if name == "dataset" else "model",
+        ignore_patterns=["review_fp16/*"] if name == "strategy" else None,
+    )
+with open("artifact_paths.json", "w", encoding="utf-8") as f:
+    json.dump(paths, f, indent=2)
+```
+
+For `koevd-classify`, pass the corresponding adapter/base paths as `--adapter-path` and `--base-model-name-or-path`, then add `--local-files-only`. That CLI path passed with `HF_HUB_OFFLINE=1` on B200. Its automatic dtype/device settings are separate from the smoke script's explicit `--dtype` selection.
 
 ## Run
 

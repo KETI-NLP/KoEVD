@@ -7,7 +7,7 @@
 | HF KoEVD-assistant-safety | Qwen3.5-0.8B LoRA adapter, tokenizer, recorded validation |
 | HF KoEVD-response-strategy | original FP32 Qwen3-8B adapter; review_fp16/ holds the earlier compact submission |
 
-The publisher is **KETI-NLP**. HF release `v0.1.0` is pinned by `gpu_release_lock.json`; it also records the upstream base-model revisions selected for the new GPU smoke test. These are not retroactive claims about the original experiments. Each repository has a SHA-256 manifest excluding itself and `.git`. GPU inference verification is pending.
+The publisher is **KETI-NLP**. HF release `v0.1.0` is pinned by `gpu_release_lock.json`; it also records the upstream base-model revisions selected for the new GPU smoke test. These are not retroactive claims about the original experiments. Each repository has a SHA-256 manifest excluding itself and `.git`. B200 GPU inference and offline CLI validation passed; see [the measured scope](GPU_VALIDATION_RESULTS.md). The original `v0.1.0` tags and inference revisions remain unchanged.
 
 | Artifact | Immutable HF commit |
 |---|---|

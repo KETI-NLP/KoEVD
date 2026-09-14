@@ -1,0 +1,217 @@
+{
+  "status": "passed_in_tested_B200_environment",
+  "date_utc": "2026-09-14",
+  "code_commit": "9aa38fa6d811fc61e26496d05e70abca17ec11f9",
+  "evidence_archive_sha256": "9e781bdf8004697abcb9d93399c63e5869f84cfe630b0e0f04add0e366f73150",
+  "independent_reanalysis": {
+    "status": "passed",
+    "archive_sha256": "9e781bdf8004697abcb9d93399c63e5869f84cfe630b0e0f04add0e366f73150",
+    "inner_checksums_verified": 177,
+    "source_files_equal": 18,
+    "script_and_lock_equal": true,
+    "raw_output_reparsed": true,
+    "stored_metrics_recomputed_equal": true,
+    "single_batch_and_cross_batch_equal": true,
+    "cli_rows": 14,
+    "cli_classified": 12,
+    "scope": "independent_reanalysis_of_received_outputs_not_a_new_GPU_run"
+  },
+  "gpu": "NVIDIA B200",
+  "driver": "580.178.04",
+  "os": "Ubuntu 22.04.5",
+  "python": "3.11.14",
+  "packages": {
+    "torch": "2.9.1+cu130",
+    "transformers": "5.8.1",
+    "peft": "0.18.0",
+    "accelerate": "1.15.0",
+    "huggingface-hub": "1.31.0",
+    "datasets": "5.0.1",
+    "koevd-eval": "0.1.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.2",
+    "seaborn": "0.13.2"
+  },
+  "cuda_build": "13.0",
+  "requested_dtype": "bfloat16",
+  "observed_parameter_dtypes": [
+    "bfloat16",
+    "float32"
+  ],
+  "parameter_device": "cuda:0",
+  "offload": false,
+  "quantization": false,
+  "lock": {
+    "assistant_base": {
+      "repo_id": "Qwen/Qwen3.5-0.8B",
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17"
+    },
+    "strategy_base": {
+      "repo_id": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    "dataset": {
+      "repo_id": "KETI-NLP/KoEVD",
+      "revision": "f5920837769bea77e072c8e033e5ad9cbff4d45d"
+    },
+    "assistant": {
+      "repo_id": "KETI-NLP/KoEVD-assistant-safety",
+      "revision": "e821f2a0d8809bafe0cbf1b6ee0ac8350d2554b3"
+    },
+    "strategy": {
+      "repo_id": "KETI-NLP/KoEVD-response-strategy",
+      "revision": "846df8d29758b956c420e0f4dd17ced8630a9b81"
+    }
+  },
+  "runs": {
+    "baseline_online_smoke_4": {
+      "status": "passed",
+      "batch_size": 2,
+      "classifiers": {
+        "assistant": {
+          "status": "passed",
+          "cases": 12,
+          "single_parsed": 12,
+          "batch_parsed": 12,
+          "single_batch_differences": [],
+          "denominator_check": true,
+          "load_seconds": 10.124147429130971,
+          "total_seconds": 14.484661741182208,
+          "peak_allocated_bytes": 1649041920,
+          "parameter_dtypes": [
+            "torch.bfloat16",
+            "torch.float32"
+          ]
+        },
+        "strategy": {
+          "status": "passed",
+          "cases": 12,
+          "single_parsed": 12,
+          "batch_parsed": 12,
+          "single_batch_differences": [],
+          "denominator_check": true,
+          "load_seconds": 6.563557280227542,
+          "total_seconds": 28.324807532131672,
+          "peak_allocated_bytes": 18879329280,
+          "parameter_dtypes": [
+            "torch.bfloat16",
+            "torch.float32"
+          ]
+        }
+      }
+    },
+    "expanded_smoke_32": {
+      "status": "passed",
+      "batch_size": 2,
+      "classifiers": {
+        "assistant": {
+          "status": "passed",
+          "cases": 96,
+          "single_parsed": 96,
+          "batch_parsed": 96,
+          "single_batch_differences": [],
+          "denominator_check": true,
+          "load_seconds": 10.09178321622312,
+          "total_seconds": 34.02294085500762,
+          "peak_allocated_bytes": 1649521152,
+          "parameter_dtypes": [
+            "torch.bfloat16",
+            "torch.float32"
+          ]
+        },
+        "strategy": {
+          "status": "passed",
+          "cases": 96,
+          "single_parsed": 96,
+          "batch_parsed": 96,
+          "single_batch_differences": [],
+          "denominator_check": true,
+          "load_seconds": 6.613334170076996,
+          "total_seconds": 102.31133106909692,
+          "peak_allocated_bytes": 18880377856,
+          "parameter_dtypes": [
+            "torch.bfloat16",
+            "torch.float32"
+          ]
+        }
+      }
+    },
+    "batch4_comparison": {
+      "status": "passed",
+      "batch_size": 4,
+      "classifiers": {
+        "assistant": {
+          "status": "passed",
+          "cases": 96,
+          "single_parsed": 96,
+          "batch_parsed": 96,
+          "single_batch_differences": [],
+          "denominator_check": true,
+          "load_seconds": 8.11895535606891,
+          "total_seconds": 23.931868514046073,
+          "peak_allocated_bytes": 1766137856,
+          "parameter_dtypes": [
+            "torch.bfloat16",
+            "torch.float32"
+          ]
+        },
+        "strategy": {
+          "status": "passed",
+          "cases": 96,
+          "single_parsed": 96,
+          "batch_parsed": 96,
+          "single_batch_differences": [],
+          "denominator_check": true,
+          "load_seconds": 4.372694091871381,
+          "total_seconds": 79.8689899193123,
+          "peak_allocated_bytes": 18879329280,
+          "parameter_dtypes": [
+            "torch.bfloat16",
+            "torch.float32"
+          ]
+        }
+      }
+    }
+  },
+  "initial_failure": "Offline snapshot metadata missing after a Hub version change; resolved with same pinned commits and online metadata access.",
+  "not_verified": [
+    "original held-out F1",
+    "full benchmark performance",
+    "koevd-run generation endpoint",
+    "other GPUs or precision modes",
+    "minimum required VRAM"
+  ],
+  "cli": {
+    "task3": {
+      "status": "PASS",
+      "input_count": 14,
+      "classified": 12,
+      "excluded": 2,
+      "all_prompt_denominator": 14,
+      "order_and_unique_ids": "PASS",
+      "local_files_only": true,
+      "HF_HUB_OFFLINE": true,
+      "batch_size": 2,
+      "dtype_requested": "auto (wrapper selects BF16 on CUDA)",
+      "device_map_requested": "auto; only one GPU visible",
+      "code_modified": false,
+      "input_origin": "existing_public_candidates_not_new_generation"
+    },
+    "task4": {
+      "status": "PASS",
+      "input_count": 14,
+      "classified": 12,
+      "excluded": 2,
+      "all_prompt_denominator": 14,
+      "order_and_unique_ids": "PASS",
+      "local_files_only": true,
+      "HF_HUB_OFFLINE": true,
+      "batch_size": 2,
+      "dtype_requested": "auto (wrapper selects BF16 on CUDA)",
+      "device_map_requested": "auto; only one GPU visible",
+      "code_modified": false,
+      "input_origin": "existing_public_candidates_not_new_generation"
+    }
+  }
+}
