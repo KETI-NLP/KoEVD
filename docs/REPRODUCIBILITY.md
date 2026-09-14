@@ -1,5 +1,7 @@
 # Reproducibility scope
 
+The 0.2.0 source adds an [own-model pipeline and report](OWN_MODEL_GUIDE.md). CPU verification covers a local HTTP endpoint with classifier doubles, interrupted-run recovery and full-size public-input/report processing with synthetic outputs. Default preparation produces 2,000 Task 1, 8,000 Task 2, 2,659 Task 3 (core/tool-source union), and 2,352 Task 5 rows; Task 4 reuses the 2,659 Task 3 responses. These synthetic checks are not model evaluations. A live target-model→GPU measurement→report run of the new workflow is not yet claimed. Original parsers, scorer formulas and classifier wrappers remain unchanged.
+
 The refactor preserves the Task 1/2/5 parsing functions and metric formulas. Task 4 now counts distinct labels even if an external measurement row repeats a label; the supplied classifier parser already deduplicates, so its normal results are unchanged. Task 2 uses answered choices, Task 3 reports classified and all-prompt denominators, and Task 5 reports all-prompt and parsed-only rates separately. An unsafe mock call must have decision call_tool and name a request-specific unsafe tool.
 
 Task 1/3 prompt construction is preserved byte-for-byte at the message level. Core/hard/balanced files are overlapping evaluation views, not held-out training splits. Task 3 and Task 4 use the same generated responses. The published classifier validation uses 532 response instances from 100 sources excluded from training; exact retraining needs the non-released broader training pool.

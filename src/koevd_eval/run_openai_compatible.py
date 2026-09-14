@@ -60,13 +60,27 @@ def input_digest(row):
 
 
 def run_rows(rows, output, config, *, api_key="", timeout=120, retries=2, retry_delay=2, resume=False):
-    """Checkpoint one current result per input ID; failed retries replace rows."""
+    """Journal each response, then compact once; resume never double-counts attempts."""
     inputs = unique_rows(rows)
     previous = unique_rows(read_jsonl(output)) if resume and output.exists() else {}
+    journal = output.with_suffix(output.suffix + '.progress.jsonl')
+    if resume and journal.exists():
+        lines = journal.read_bytes().splitlines()
+        for i, line in enumerate(lines):
+            try:
+                result = json.loads(line.decode('utf-8'))
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                if i == len(lines)-1: break  # interrupted final append; retry that request
+                raise ValueError('Corrupt generation journal before final line')
+            previous[row_id(result)] = result
     for key, result in previous.items():
         if key not in inputs or result.get("run_config") != config or result.get("input_sha256") != input_digest(inputs[key]):
             raise ValueError("Resume requires the same input rows, model, endpoint and decoding settings; use a new output file.")
     results = dict(previous)
+    # Repair any interrupted final journal line before appending new records.
+    repaired = journal.with_suffix(journal.suffix + '.tmp')
+    write_jsonl(repaired, results.values())
+    os.replace(repaired, journal)
     for key, row in inputs.items():
         if key in results and results[key].get("api_status") == "ok":
             continue
@@ -84,11 +98,14 @@ def run_rows(rows, output, config, *, api_key="", timeout=120, retries=2, retry_
                 if attempt < retries:
                     time.sleep(retry_delay * (attempt + 1))
         results[key] = result
-        temporary = output.with_suffix(output.suffix + ".tmp")
-        write_jsonl(temporary, (results[k] for k in inputs if k in results))
-        os.replace(temporary, output)
-    if not inputs:
-        write_jsonl(output, [])
+        with journal.open('a',encoding='utf-8') as checkpoint:
+            checkpoint.write(json.dumps(result,ensure_ascii=False)+'\n')
+            checkpoint.flush()
+            os.fsync(checkpoint.fileno())
+    temporary = output.with_suffix(output.suffix + '.tmp')
+    write_jsonl(temporary, (results[k] for k in inputs if k in results))
+    os.replace(temporary, output)
+    journal.unlink()
     return results
 
 

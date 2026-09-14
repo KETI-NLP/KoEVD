@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "koevd-eval"
-version = "0.1.0"
+version = "0.2.0"
 description = "Reference evaluation and analysis for KoEVD"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,6 +24,7 @@ koevd-score = "koevd_eval.score:main"
 koevd-classify = "koevd_eval.classify_responses:main"
 koevd-download = "koevd_eval.hub:main"
 koevd-analyze = "koevd_eval.analysis:main"
+koevd-pipeline = "koevd_eval.pipeline:main"
 
 [tool.setuptools]
 license-files = ["LICENSE", "LICENSES/*.md", "NOTICE.md"]

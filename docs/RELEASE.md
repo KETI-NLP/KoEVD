@@ -1,5 +1,7 @@
 # Repository map
 
+Current source package: **0.2.0**, with the own-model pipeline and diagnostic reports. The downloadable `v0.1.0` release assets and GPU-tested tag are preserved; install the current source for new pipeline features. See [the guide](OWN_MODEL_GUIDE.md) for scope and verification.
+
 | Repository | Contents |
 |---|---|
 | GitHub KoEVD | evaluation package, classifier wrappers, tests, analysis, aggregate paper tables |

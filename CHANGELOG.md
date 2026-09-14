@@ -1,3 +1,12 @@
+# 0.2.0 own-model analysis pipeline
+
+- Prepare, generate, classify and report Task 1–5 with `koevd-pipeline`; preserve source joins, all framings and failed rows.
+- Generate HTML/Markdown/JSON/CSV diagnostics, metadata contrasts with coverage/source thresholds, strategy distributions, error cases and exact-input model comparisons.
+- Task 3 source union supports Task 5 transitions and explicitly labels split membership.
+- Durable response journals replace repeated full-file rewrites; resume compacts one result per sample and detects changed configurations.
+- CPU tests cover real local HTTP integration with classifier doubles, missing/stale outputs, interrupted resume and report invariants. No new live target-model/GPU run is claimed.
+- Correct package `__version__` to match distribution metadata. Prior classifier wrappers, parsers and scorer formulas are unchanged; the `v0.1.0` tag/assets remain immutable.
+
 # 0.1.0 publication preparation
 
 - Installable src package and separate parsers/metrics, preserving old score imports.

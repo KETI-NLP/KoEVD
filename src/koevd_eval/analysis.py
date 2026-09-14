@@ -100,8 +100,20 @@ def main():
     stats=sub.add_parser('stats'); stats.add_argument('--corpus',required=True)
     groups=sub.add_parser('groups'); groups.add_argument('--task',type=int,choices=range(1,6),required=True); groups.add_argument('--input',nargs='+',required=True); groups.add_argument('--group-by',nargs='+',required=True)
     overlap=sub.add_parser('overlap'); overlap.add_argument('--task3',nargs='+',required=True); overlap.add_argument('--task5',nargs='+',required=True)
+    report=sub.add_parser('report',help='Own-model diagnostic report (JSON, CSV, Markdown, HTML)')
+    for task in range(1,6): report.add_argument(f'--task{task}',nargs='+')
+    report.add_argument('--output-dir',required=True)
+    report.add_argument('--min-sources',type=int,default=20)
+    report.add_argument('--min-coverage',type=float,default=.9)
+    report.add_argument('--max-cases',type=int,default=10)
     for command in [stats,groups,overlap]: command.add_argument('--output',required=True)
     a=p.parse_args()
+    if a.command=='report':
+        from .profile import write_report
+        inputs={t:getattr(a,f'task{t}') for t in range(1,6) if getattr(a,f'task{t}')}
+        if not inputs: p.error('Supply at least one --taskN prediction/measurement file')
+        write_report(inputs,a.output_dir,a.min_sources,a.min_coverage,a.max_cases)
+        print(Path(a.output_dir).resolve()); return
     if a.command=='stats': result=corpus_stats(read_jsonl(a.corpus))
     elif a.command=='groups': result=grouped_metrics([row for f in a.input for row in read_jsonl(f)],a.task,a.group_by)
     else: result=matched_analysis(a.task3,a.task5)

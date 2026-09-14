@@ -4,6 +4,8 @@ Reference software for **KoEVD: A Korean Benchmark for Metadata-Conditioned Mult
 
 **GPU status:** Both classifiers and offline classify→score passed on NVIDIA B200 with the published code unchanged. See [tested conditions and results](docs/GPU_VALIDATION_RESULTS.md); this is an operational smoke test, not held-out F1 reproduction.
 
+**Evaluate your own model:** The current 0.2.0 source adds `koevd-pipeline` (prepare → generate → classify → report) and `koevd-analyze report`. See the [complete own-model guide](docs/OWN_MODEL_GUIDE.md) for per-task, metadata, strategy and source-matched weakness/strength diagnosis. These new orchestration/report features have CPU integration tests; the earlier B200 result applies to the unchanged classifier wrappers, not a new live end-to-end run.
+
 ## Install
 
 Start from a clone in a fresh environment (Linux shell example):
@@ -15,7 +17,7 @@ python3.11 -m venv .venv
 source .venv/bin/activate
 ```
 
-For the exact code exercised on B200, check out `9aa38fa6d811fc61e26496d05e70abca17ec11f9` before installation. Newer documentation on `main` describes that unchanged runtime. Install the components needed for your use:
+For the exact code exercised on B200, check out `9aa38fa6d811fc61e26496d05e70abca17ec11f9` before installation. To use the new own-model pipeline, install the current source on `main` and record its commit; the pipeline is not in the old `v0.1.0` tag. Install the components needed for your use:
 
 ```bash
 python -m pip install -e .
@@ -77,6 +79,8 @@ For revision-pinned offline inference, also download the two base-model commits 
 The classifier requires successful nonempty generations (`api_status: ok`), preserving failed generation rows in the denominator. Use `--local-files-only` with a local base-model path for offline inference.
 
 ## Analyze
+
+For a complete report from your own results, follow [OWN_MODEL_GUIDE.md](docs/OWN_MODEL_GUIDE.md). The commands below are also available as individual analysis operations. `analysis/plot_paper_tables.py` plots the supplied paper aggregates; use the new report's `groups.csv` and `strategies.csv` for your own model's figures.
 
 ```bash
 koevd-analyze stats --corpus downloads/KoEVD/full_eval/koevd_full_eval.jsonl --output generated/corpus_stats.json
