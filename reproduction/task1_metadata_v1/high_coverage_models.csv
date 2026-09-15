@@ -1,0 +1,12 @@
+﻿model
+apertus-8b-instruct-vllm
+gemma-4-e4b-it-vllm
+gpt-5.4
+ministral-3-8b-reasoning-vllm
+qwen3.5-9b-vllm
+qwen3.6-27b-fp8-vllm
+claude-4.6-sonnet
+olmo-3-7b-think-vllm
+claude-haiku-4-5
+gemini-3.1-flash-lite-preview
+gpt-5.4-nano

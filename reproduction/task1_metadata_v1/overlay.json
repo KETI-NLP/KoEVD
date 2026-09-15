@@ -1,0 +1,399 @@
+{
+  "version": "task1-analysis-metadata-v1",
+  "base_sha256": "47ee143a83b85d011e89128176ff70758a1d64a1af415a287841209fce973bc0",
+  "source_count": 13552,
+  "scope": "Historical Task 1 grouping only; not a replacement for canonical labels or task inputs.",
+  "provenance": {
+    "correction_script": "survey/analyze_task1_corrected_low_count_updates.py",
+    "normalized_corrections_sha256": "76410880a264cf3339ea47a1c0e7c077774fd1494dd56fcc89d25eec4fc9e5e9",
+    "historical_predictions_sha256": "981f6ea0edf4b320a41ba6a39097d77908121c25f324be8ce8f4f02b5ed04790",
+    "note": "The retained correction file contains 36 inspected sources. 35 differ from the released source labels after normalization. The historical script applies only toxicity and utter_type; other fields in the correction file are not adopted here."
+  },
+  "patches": [
+    {
+      "source_id": "single_1st_00518",
+      "before": {
+        "severity_band": "Low",
+        "utterance_type": "Prohibited Acts"
+      },
+      "after": {
+        "severity_band": "High",
+        "utterance_type": "Controversial Requests"
+      }
+    },
+    {
+      "source_id": "single_2nd_00695",
+      "before": {
+        "severity_band": "High",
+        "utterance_type": "Controversial Requests"
+      },
+      "after": {
+        "severity_band": "High",
+        "utterance_type": "Exploring Opinions"
+      }
+    },
+    {
+      "source_id": "template10_1st_00586",
+      "before": {
+        "severity_band": "Extreme",
+        "utterance_type": "Specialized Advice"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Controversial Requests"
+      }
+    },
+    {
+      "source_id": "template10_1st_03229",
+      "before": {
+        "severity_band": "HD/borderline",
+        "utterance_type": "Copyright"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Copyright"
+      }
+    },
+    {
+      "source_id": "template3_1st_01305",
+      "before": {
+        "severity_band": "HD/borderline",
+        "utterance_type": "Biased Qs"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Biased Questions"
+      }
+    },
+    {
+      "source_id": "template3_1st_02204",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Biased Qs"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Biased Questions"
+      }
+    },
+    {
+      "source_id": "single_1st_00188",
+      "before": {
+        "severity_band": "High",
+        "utterance_type": "Personal Info"
+      },
+      "after": {
+        "severity_band": "HD/borderline",
+        "utterance_type": "Controversial Requests"
+      }
+    },
+    {
+      "source_id": "single_1st_00025",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Biased Qs"
+      },
+      "after": {
+        "severity_band": "Moderate",
+        "utterance_type": "Biased Questions"
+      }
+    },
+    {
+      "source_id": "single_1st_00630",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Biased Qs"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Exploring Opinions"
+      }
+    },
+    {
+      "source_id": "single_1st_00920",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Personal Info"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Personal Info"
+      }
+    },
+    {
+      "source_id": "single_1st_01247",
+      "before": {
+        "severity_band": "Low",
+        "utterance_type": "Prohibited Acts"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Controversial Requests"
+      }
+    },
+    {
+      "source_id": "single_1st_01097",
+      "before": {
+        "severity_band": "Low",
+        "utterance_type": "Prohibited Acts"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Prohibited Acts"
+      }
+    },
+    {
+      "source_id": "single_1st_01294",
+      "before": {
+        "severity_band": "Moderate",
+        "utterance_type": "Prohibited Acts"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Controversial Requests"
+      }
+    },
+    {
+      "source_id": "single_1st_01171",
+      "before": {
+        "severity_band": "Moderate",
+        "utterance_type": "Specialized Advice"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Specialized Advice"
+      }
+    },
+    {
+      "source_id": "single_1st_01074",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Prohibited Acts"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Prohibited Acts"
+      }
+    },
+    {
+      "source_id": "single_1st_00605",
+      "before": {
+        "severity_band": "Low",
+        "utterance_type": "Future Predictions"
+      },
+      "after": {
+        "severity_band": "Moderate",
+        "utterance_type": "Exploring Opinions"
+      }
+    },
+    {
+      "source_id": "single_1st_01347",
+      "before": {
+        "severity_band": "Low",
+        "utterance_type": "Prohibited Acts"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Controversial Requests"
+      }
+    },
+    {
+      "source_id": "single_1st_01368",
+      "before": {
+        "severity_band": "High",
+        "utterance_type": "Controversial Requests"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Controversial Requests"
+      }
+    },
+    {
+      "source_id": "single_1st_01401",
+      "before": {
+        "severity_band": "High",
+        "utterance_type": "Controversial Requests"
+      },
+      "after": {
+        "severity_band": "Moderate",
+        "utterance_type": "Controversial Requests"
+      }
+    },
+    {
+      "source_id": "single_1st_01547",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Biased Qs"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Biased Questions"
+      }
+    },
+    {
+      "source_id": "single_1st_01398",
+      "before": {
+        "severity_band": "Moderate",
+        "utterance_type": "Proverb/Term Meaning"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Proverb/Term Meaning"
+      }
+    },
+    {
+      "source_id": "single_1st_01715",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Prohibited Acts"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Controversial Requests"
+      }
+    },
+    {
+      "source_id": "single_1st_01981",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Biased Qs"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Biased Questions"
+      }
+    },
+    {
+      "source_id": "single_1st_02140",
+      "before": {
+        "severity_band": "Extreme",
+        "utterance_type": "Biased Qs"
+      },
+      "after": {
+        "severity_band": "Extreme",
+        "utterance_type": "Prohibited Acts"
+      }
+    },
+    {
+      "source_id": "single_1st_02209",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Proverb/Term Meaning"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Proverb/Term Meaning"
+      }
+    },
+    {
+      "source_id": "single_1st_02233",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Proverb/Term Meaning"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Proverb/Term Meaning"
+      }
+    },
+    {
+      "source_id": "single_1st_02204",
+      "before": {
+        "severity_band": "Low",
+        "utterance_type": "Proverb/Term Meaning"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Exploring Opinions"
+      }
+    },
+    {
+      "source_id": "single_1st_02124",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Biased Qs"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Biased Questions"
+      }
+    },
+    {
+      "source_id": "single_1st_02196",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Prohibited Acts"
+      },
+      "after": {
+        "severity_band": "Benign",
+        "utterance_type": "Controversial Requests"
+      }
+    },
+    {
+      "source_id": "single_1st_02197",
+      "before": {
+        "severity_band": "High",
+        "utterance_type": "Proverb/Term Meaning"
+      },
+      "after": {
+        "severity_band": "Moderate",
+        "utterance_type": "Exploring Opinions"
+      }
+    },
+    {
+      "source_id": "single_1st_02170",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Proverb/Term Meaning"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Proverb/Term Meaning"
+      }
+    },
+    {
+      "source_id": "single_1st_02299",
+      "before": {
+        "severity_band": "Benign",
+        "utterance_type": "Proverb/Term Meaning"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Proverb/Term Meaning"
+      }
+    },
+    {
+      "source_id": "single_1st_02303",
+      "before": {
+        "severity_band": "High",
+        "utterance_type": "Proverb/Term Meaning"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Proverb/Term Meaning"
+      }
+    },
+    {
+      "source_id": "single_1st_02310",
+      "before": {
+        "severity_band": "High",
+        "utterance_type": "Proverb/Term Meaning"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Proverb/Term Meaning"
+      }
+    },
+    {
+      "source_id": "single_1st_02321",
+      "before": {
+        "severity_band": "High",
+        "utterance_type": "Proverb/Term Meaning"
+      },
+      "after": {
+        "severity_band": "Low",
+        "utterance_type": "Proverb/Term Meaning"
+      }
+    }
+  ]
+}

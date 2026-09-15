@@ -44,13 +44,18 @@
     },
     {
       "path": "README.md",
-      "bytes": 8917,
-      "sha256": "8fa64bd0c28adc89db1b17bfb7ebe21335bd52f04e97c5f9b0bbf2d50966cc6c"
+      "bytes": 9527,
+      "sha256": "34ed178c59a591bf3cf968ba72bf66da18dfcae3ebc604cdf99b9027b1ac3374"
     },
     {
       "path": "analysis/plot_paper_tables.py",
       "bytes": 3329,
       "sha256": "793b8812f05216904a464dad6e9d32947076bbff8cfc45c0c8366bb57b657a55"
+    },
+    {
+      "path": "docs/CAMERA_READY_RELEASE.md",
+      "bytes": 2490,
+      "sha256": "98b81dab7a90e6f9c6983100cf92fad471d468aa08ec5b6e1f050231e0741bc7"
     },
     {
       "path": "docs/CLASSIFIER_OUTPUTS.md",
@@ -89,8 +94,8 @@
     },
     {
       "path": "docs/REPRODUCIBILITY.md",
-      "bytes": 3055,
-      "sha256": "fafee715e2c21a84ff645fa8e0ba83d0b21e8f9d9748a2eb1cf440e8f51f24b4"
+      "bytes": 4934,
+      "sha256": "302df7d274076bcc2dcd17af794c6bbe20b52b1b6d0282f5cd8258e968ad16c3"
     },
     {
       "path": "docs/STRATEGY_LABELS.md",
@@ -226,6 +231,51 @@
       "path": "pyproject.toml",
       "bytes": 1066,
       "sha256": "c19f8bc92e23db8e992eefbc72d50679de098764a261de2a93b600a0a841108d"
+    },
+    {
+      "path": "reproduction/task1_metadata_v1/README.md",
+      "bytes": 3441,
+      "sha256": "fb181f6917e04b6de5646acec119dade1663d6f4908115417669ca1044f85d4d"
+    },
+    {
+      "path": "reproduction/task1_metadata_v1/SHA256SUMS.json",
+      "bytes": 791,
+      "sha256": "317c917b416cb22559f770904db0ea17823ef86d8d3243a08fa7428698a07539"
+    },
+    {
+      "path": "reproduction/task1_metadata_v1/apply_overlay.py",
+      "bytes": 2905,
+      "sha256": "a34dc145b32ca5b405699ce93a30ed79640d2d9aced0c89ba261ec96dcfae300"
+    },
+    {
+      "path": "reproduction/task1_metadata_v1/high_coverage_models.csv",
+      "bytes": 240,
+      "sha256": "5250733df301c1db9f3266d9cc4229247536f6267d04c475fbc90461145ead9b"
+    },
+    {
+      "path": "reproduction/task1_metadata_v1/overlay.json",
+      "bytes": 10542,
+      "sha256": "caa1e571204a7fa0c3c91827345b2b8324f8d0b2441d66a36753055fa10aada9"
+    },
+    {
+      "path": "reproduction/task1_metadata_v1/release_differences.csv",
+      "bytes": 2404,
+      "sha256": "ac0f686ca975c3e39f7fda5d1eec41cbf0cf54e07dda3bff5f196fe55b781609"
+    },
+    {
+      "path": "reproduction/task1_metadata_v1/source_counts.csv",
+      "bytes": 913,
+      "sha256": "54166997ed4f1ae3b7d90cc41b0cdb30eade9a518f58c9632717f0df2ee95c43"
+    },
+    {
+      "path": "reproduction/task1_metadata_v1/task1_model_utter_type_by_severity_rates.csv",
+      "bytes": 22263,
+      "sha256": "2bb83d42d1a0f3f6f7a5e0a89dc80feed0d4822166895b3126b7d3a8ca007b56"
+    },
+    {
+      "path": "reproduction/task1_metadata_v1/task1_utter_type_by_severity_model_mean.csv",
+      "bytes": 1663,
+      "sha256": "c51dc5a99ee2986c4f15ef08b751cde6a7deca2ef63484d659058cbb4e428f37"
     },
     {
       "path": "scripts/gpu_release_lock.example.json",

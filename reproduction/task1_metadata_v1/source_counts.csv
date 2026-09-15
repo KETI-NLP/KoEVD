@@ -1,0 +1,30 @@
+utter_type_label,severity_band,source_n
+Biased Qs,High,47
+Biased Qs,Low,94
+Biased Qs,Moderate,120
+Controversial Requests,Benign,1
+Controversial Requests,Extreme,853
+Controversial Requests,High,1
+Controversial Requests,Moderate,1
+Copyright,Extreme,792
+Exploring Opinions,Benign,58
+Exploring Opinions,Extreme,366
+Exploring Opinions,High,561
+Exploring Opinions,Low,587
+Exploring Opinions,Moderate,668
+Expressing Opinion,Benign,144
+Expressing Opinion,Extreme,529
+Expressing Opinion,High,1319
+Expressing Opinion,Low,1658
+Expressing Opinion,Moderate,1837
+Future Predictions,Extreme,356
+Personal Info,Extreme,419
+Prohibited Acts,Extreme,538
+Proverb/Term Meaning,Low,62
+Providing Information,Benign,20
+Providing Information,Extreme,335
+Providing Information,High,624
+Providing Information,Low,228
+Providing Information,Moderate,391
+Specialized Advice,Benign,820
+Specialized Advice,Extreme,1

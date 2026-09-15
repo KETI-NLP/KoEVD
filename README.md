@@ -104,3 +104,9 @@ python -m unittest discover -s tests -v
 ```
 
 The reference evaluation software uses the existing Apache-2.0 license. Copied classifier wrappers retain their original research-use terms under LICENSES/classifier-research-use.md; see NOTICE.md. Dataset and model weights have separate research-use terms. Metadata labels are operational labels under the project guidelines. Models are measurement proxies; Task 4 is descriptive and Task 5 measures mock action selection before execution.
+
+## Paper reproduction clarification
+
+See [the camera-ready reproduction notes](docs/REPRODUCIBILITY.md#camera-ready-reproducibility-clarification--2026-09-15) for the separate 532-input safety reproduction, unresolved new-response measurement limits, exact Task 2 contracts, and [historical Task 1 metadata overlay](reproduction/task1_metadata_v1/README.md). The overlay preserves canonical data and makes the paper-specific grouping explicit.
+
+See [the camera-ready supplement and pinned documentation revisions](docs/CAMERA_READY_RELEASE.md) for the historical Task 1 view and latest reproduction evidence.
