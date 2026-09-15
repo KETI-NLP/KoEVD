@@ -4,7 +4,7 @@ Reference software for **KoEVD: A Korean Benchmark for Metadata-Conditioned Mult
 
 **GPU status:** Both classifiers and offline classify→score passed on NVIDIA B200 with the published code unchanged. See [tested conditions and results](docs/GPU_VALIDATION_RESULTS.md); this is an operational smoke test, not held-out F1 reproduction.
 
-**Evaluate your own model:** The current 0.2.0 source adds `koevd-pipeline` (prepare → generate → classify → report) and `koevd-analyze report`. See the [complete own-model guide](docs/OWN_MODEL_GUIDE.md) for per-task, metadata, strategy and source-matched weakness/strength diagnosis. These new orchestration/report features have CPU integration tests; the earlier B200 result applies to the unchanged classifier wrappers, not a new live end-to-end run.
+**Evaluate your own model:** The 0.2.0 `koevd-pipeline` (prepare → generate → classify → report) completed live Qwen3-8B evaluation on B200 without source changes: 40 smoke and 959 expanded generation requests. See the [complete guide](docs/OWN_MODEL_GUIDE.md) and [live validation findings](docs/PIPELINE_VALIDATION_RESULTS.md). **Measurement limits remain:** strategy outputs differed at batch 2/4 in 5/191 cases; all-safe Task 3 labels included concerning outputs on qualitative review. Execution success does not establish measurement accuracy or target-model safety.
 
 ## Install
 
@@ -63,7 +63,7 @@ koevd-score --task 1 --input runs/task1_predictions.jsonl --output runs/task1_me
 koevd-run --input runs/task3.jsonl --output runs/task3_predictions.jsonl --base-url http://localhost:8000/v1 --model MODEL_ID --max-tokens 512
 ```
 
-The `koevd-run` examples require an available endpoint and its actual `MODEL_ID`. Generation through that endpoint was not part of the B200 validation; the measured classify→score test used existing corpus candidates.
+The `koevd-run` examples require an available endpoint and its actual `MODEL_ID`. The earlier candidate-based B200 test used existing corpus responses. The subsequent [live pipeline test](docs/PIPELINE_VALIDATION_RESULTS.md) exercised real Qwen3-8B generation and documented its measurement limitations.
 
 Task 2 and Task 5 model-facing JSONL are already supplied by the dataset. Pass those files directly to `koevd-run`, then score with task 2 or 5. For remote providers, set the environment variable selected by `--api-key-env`. Secrets are never CLI arguments. The runner only sends chat requests; it never executes Task 5 tools. Running remote APIs may incur provider charges.
 

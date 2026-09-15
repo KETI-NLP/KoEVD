@@ -2,7 +2,7 @@
 
 The evaluated model is **your model**. The two KoEVD adapters are measurement models that label its generated responses. You can use any model exposed through the supported chat endpoint contract, or import outputs from your own inference code. The pipeline creates a source-linked Task 1–5 profile, not a single safety score.
 
-This workflow is included in the 0.2.0 source package on `main`. The immutable `v0.1.0` release does not contain `koevd-pipeline` or automatic reports. Record `git rev-parse HEAD`, your target-model revision, serving configuration and decoding settings with each run. The earlier B200 validation tested the unchanged classifier wrappers, not this new complete workflow with a live target LLM.
+This workflow is included in the 0.2.0 source package. The immutable `v0.1.0` release does not contain `koevd-pipeline` or automatic reports. The live target-model pipeline was tested at commit `78509c9a62605e631500e12ace61b67cdeef5d7d`; use `git checkout --detach 78509c9a62605e631500e12ace61b67cdeef5d7d` to reproduce that source. Record `git rev-parse HEAD`, your target-model revision, serving configuration, batch size and decoding settings. [Live validation](PIPELINE_VALIDATION_RESULTS.md) found successful execution but unresolved measurement and batch-sensitivity concerns.
 
 ## What the results tell you
 
@@ -33,6 +33,12 @@ koevd-pipeline --stage prepare \
 
 Read `runs/my-model-smoke/pipeline.json` before generation. It records selected source counts, per-task row counts and input checksums. Task 2 preserves its four variants. Task 5 uses its released main source set and preserves all three framings. `--limit-sources` chooses a deterministic sorted prefix separately from the primary split and the tool set; this is an operational smoke sample, **not a representative estimate**.
 
+The measured 4-source run made 40 generation requests; the 96-source run made 959 because its primary/tool union contained 191 sources. Calculate your own total from the prepared manifest:
+
+```bash
+python -c "import json; p=json.load(open('runs/my-model-smoke/pipeline.json')); print(sum(t['rows'] for t in p['inputs'].values()))"
+```
+
 Task 3 prepares the **union** of primary-split sources and Task 5 sources so that tool transitions have matching direct generations. `metadata.evaluation_subset` records primary split and/or `task5_overlap`. Task 3's overall number is the union; for a core-only result use the `evaluation_subset=core` group. Task 4 classifies those same generated responses without a second generation call.
 
 ## Generate using your model
@@ -48,6 +54,8 @@ koevd-pipeline --stage generate --output-dir runs/my-model-smoke \
 For authenticated endpoints, set the environment variable selected by `--api-key-env` (default `OPENAI_API_KEY`). Do not put secrets into flags or run manifests. Generation incurs the endpoint's normal compute/API cost. Match decoding budgets when comparing models; 512 tokens can truncate reasoning-heavy models.
 
 Each response is durably appended to `*.progress.jsonl`. After a task completes it is compacted into a unique-row `taskN_predictions.jsonl`. Rerun the same command to resume successful requests and retry failed requests. Keep progress files after interruption. Changed input, model, endpoint or decoding settings require a new output directory. An API failure and a refusal expressed in a successful response remain different cases.
+
+The CLI announces task starts rather than per-row progress. During a long task, inspect its growing progress journal and server request logs. Preserve server finish_reason/usage logs: current prediction files retain response text but do not retain those fields. The live test found nonempty repetitive/length-limited output that still satisfied classification eligibility.
 
 ## Measure the generated responses
 
@@ -142,4 +150,4 @@ python examples/make_demo_profile.py --output-dir generated/synthetic-demo
 python -m unittest discover -s tests -v
 ```
 
-The demo uses explicitly synthetic predictions for two fictitious models; its values are not research results. Automated integration tests exercise a real local HTTP request through generation, classification CLI glue using CPU test doubles, resume, denominator handling and report generation. A new live target-model→GPU classifier→report run remains a separate GPU-node validation step. Preserve `pipeline.json`, prediction/measurement files, `report/`, environment versions and terminal logs when returning that result.
+The demo uses explicitly synthetic predictions for two fictitious models; its values are not research results. Automated integration tests exercise a real local HTTP request through generation, classification CLI glue using CPU test doubles, resume, denominator handling and report generation. The [live B200 run](PIPELINE_VALIDATION_RESULTS.md) separately verified real target-model generation, GPU measurement and reporting. Its batch differences and suspicious safety judgments remain unresolved. Preserve `pipeline.json`, prediction/measurement files, `report/`, environment versions and server/terminal logs when returning a new validation result.

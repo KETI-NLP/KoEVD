@@ -1,5 +1,7 @@
 # B200 publication-package validation — 2026-09-14
 
+Follow-up: the [2026-09-15 live target-model pipeline test](PIPELINE_VALIDATION_RESULTS.md) completed all stages but found 5/191 batch-dependent strategy outputs and concerning safety judgments. The zero-difference result below applies only to this earlier candidate sample and is not a batch-invariance guarantee.
+
 Both classifiers passed actual GPU inference with the unmodified published code at `9aa38fa6d811fc61e26496d05e70abca17ec11f9`. The test used the revisions in [gpu_release_lock.json](../gpu_release_lock.json). The 12-candidate baseline is a subset of the 96-candidate expanded sample; they are not 108 independent examples. Candidates were the first available response from each tier for the first 4 or 32 source records.
 
 For both models, single-example and batch-size-2/4 outputs had zero parsing failures, missing/duplicate IDs, raw-string differences, or final label/set differences on the tested comparisons. The actual offline classify→score CLI used the same 12 candidates plus two excluded rows: Task 3 `prompted=14`, Task 4 `generated_responses=14`, and both `classified=12`. Failed/empty generation rows retained null measurements and exclusion reasons. These were existing public candidates, not new LLM-generated benchmark responses.

@@ -19,8 +19,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 1578,
-      "sha256": "9ac43f76b7bbf2782c245db22510a6d308b91069bdfde32202a2afc8062208b2"
+      "bytes": 1709,
+      "sha256": "ceffee95c5f5b8148afcf61b2b780a6ba286045b570c48d505cf5917f89067e1"
     },
     {
       "path": "CITATION.cff",
@@ -44,8 +44,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8716,
-      "sha256": "81322cb804497251775cd7a9de683a96ec9181e7e8fb8b6434cfedc7a249d43a"
+      "bytes": 8917,
+      "sha256": "8fa64bd0c28adc89db1b17bfb7ebe21335bd52f04e97c5f9b0bbf2d50966cc6c"
     },
     {
       "path": "analysis/plot_paper_tables.py",
@@ -64,8 +64,8 @@
     },
     {
       "path": "docs/GPU_VALIDATION_RESULTS.md",
-      "bytes": 4294,
-      "sha256": "5e7604be409b13bfe8888a672543145d18a8690cc609551b7a39052282161bf0"
+      "bytes": 4610,
+      "sha256": "b583d1e28fe75503772824c3599569fba1099699bda24d51eba6a8b79f6fb593"
     },
     {
       "path": "docs/METRICS.md",
@@ -74,8 +74,13 @@
     },
     {
       "path": "docs/OWN_MODEL_GUIDE.md",
-      "bytes": 11261,
-      "sha256": "a5a324449e2e09f93f02f2b20aad4235d3bccff8a9ade0f45604f2416e4060bf"
+      "bytes": 12287,
+      "sha256": "49a1914534e4fd041e46dfba66cad0bbbc782d718f187b1e5664fbe97feaaf04"
+    },
+    {
+      "path": "docs/PIPELINE_VALIDATION_RESULTS.md",
+      "bytes": 8567,
+      "sha256": "792548cdffc3352d22d4e297ac560f690443d0d187fbe0e87d07682a0ec3c672"
     },
     {
       "path": "docs/RELEASE.md",
@@ -84,8 +89,8 @@
     },
     {
       "path": "docs/REPRODUCIBILITY.md",
-      "bytes": 2896,
-      "sha256": "ca43f9e3341e2eb76e826595e2810fa836f4bc08d70bbe1a8c32940baa4aae89"
+      "bytes": 3055,
+      "sha256": "fafee715e2c21a84ff645fa8e0ba83d0b21e8f9d9748a2eb1cf440e8f51f24b4"
     },
     {
       "path": "docs/STRATEGY_LABELS.md",
@@ -101,6 +106,11 @@
       "path": "docs/validation/b200_20260914.json",
       "bytes": 6527,
       "sha256": "e9405b39aee622f35d80bb77593697aad90cadb663181b7e93c161004d03581d"
+    },
+    {
+      "path": "docs/validation/pipeline_b200_20260915.json",
+      "bytes": 5938,
+      "sha256": "af1eb29464717f8a61d1a9d3165cf16c8e8421c445a68827281ae79f7fb82a25"
     },
     {
       "path": "examples/make_demo_profile.py",
