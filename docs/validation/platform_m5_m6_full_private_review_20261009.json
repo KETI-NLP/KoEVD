@@ -1,0 +1,153 @@
+{
+  "format": "koevd-full-private-review-storage-validation-v1",
+  "recorded_date": "2026-10-09",
+  "scope": "full actual operator-review preparation, private original/state/history restart/snapshot/restore and candidate admission; no publication/operator acceptance",
+  "preparation_check": {
+    "models": [
+      "Qwen/Qwen3-8B",
+      "Qwen/Qwen3-4B"
+    ],
+    "records": 35340,
+    "all_preparations_and_catalogs_rejected": true,
+    "frozen_execution_manifest_exact": true,
+    "publication_approved": false,
+    "output": "[private-local-path]"
+  },
+  "private_storage_check": {
+    "phase": "passed",
+    "records": 35340,
+    "snapshot": {
+      "sha256": "780995a6e048bff02fa0321aac1355b9c0cf538d06d6a5eded6360fcd36ac47b",
+      "bytes": 67154758,
+      "counts": {
+        "meta": 1,
+        "indexes": 1,
+        "artifacts": 2,
+        "submissions": 2,
+        "revisions": 2,
+        "events": 2,
+        "requests": 2
+      },
+      "policy_decisions": 0,
+      "policy_head_sha256": null,
+      "automatic_activation": false,
+      "remote_stored": false
+    },
+    "source_database_bytes": 67153920,
+    "restored_database_bytes": 67153920,
+    "restored_public_reads_503": true,
+    "originals_state_history_exact": true,
+    "elapsed_seconds": 76.09890341758728
+  },
+  "candidate_admission": {
+    "scope": "actual full restored private drafts candidate admission; no policy ratification, generation attestation, human approval or public projection",
+    "models": [
+      {
+        "model": "Qwen/Qwen3-8B",
+        "artifact_sha256": "6fd409fd69017a165deead22fab7d6f9b590837f455bd5bdff8976e8f252d4c7",
+        "metrics": 47,
+        "eligible_metric_ids": [],
+        "generation_verification": "user_reported",
+        "task3_measurement_limited": true,
+        "task4_descriptive_only": true,
+        "conditional_groups_not_ranked": true,
+        "resamples": 0,
+        "statistics_accuracy_verified": false
+      },
+      {
+        "model": "Qwen/Qwen3-4B",
+        "artifact_sha256": "40842d703496e813b0d7a8d95833ac99efa04d52f33f371a30ecd8cb1a85f608",
+        "metrics": 47,
+        "eligible_metric_ids": [],
+        "generation_verification": "user_reported",
+        "task3_measurement_limited": true,
+        "task4_descriptive_only": true,
+        "conditional_groups_not_ranked": true,
+        "resamples": 0,
+        "statistics_accuracy_verified": false
+      }
+    ],
+    "elapsed_seconds": 13.575194835662842,
+    "public_posting": false,
+    "recovery_released": false
+  },
+  "current_hf_readonly": {
+    "scope": "read-only final external-state audit; no creation/upload/billing",
+    "observed_utc": "2026-10-08T17:37:08.930687+00:00",
+    "repo_id": "KETI-NLP/KoEVD-Explorer",
+    "organization": "KETI-NLP",
+    "membership_role": "admin",
+    "plan_observations": {},
+    "plan_observation_available": false,
+    "space_exists": null,
+    "space_info_http_status": 404,
+    "authenticated_repo_found": false,
+    "created": false,
+    "uploaded": false,
+    "paid_resource_activated": false
+  },
+  "node_container_cli": {
+    "scope": "read-only current container CLI inventory",
+    "docker": null,
+    "podman": null,
+    "nerdctl": null,
+    "installed_or_started": false
+  },
+  "windows_container_cli": {
+    "docker": false,
+    "podman": false,
+    "nerdctl": false
+  },
+  "source_package_modified": false,
+  "candidate_modified": false,
+  "full_cpu_suite_rerun": false,
+  "last_current_cpu_evidence": "docs/validation/platform_rc_audit_20261009.json",
+  "raw_inputs_outputs_modified": false,
+  "generation_level_promoted": false,
+  "operator_review_completed": false,
+  "rights_approved": false,
+  "policy_ratified": false,
+  "recovery_released": false,
+  "actual_cloud_verified": false,
+  "container_verified": false,
+  "hosted_space_verified": false,
+  "public_posting": false,
+  "blocking_audit": {
+    "previous_goal_turn": "progress",
+    "condition": "remaining mandatory externally provisioned runtime/hosted identity/storage and operator/public-reference approvals are unavailable; existing local implementation and full actual validation cannot supply those proofs",
+    "consecutive_turns": [
+      {
+        "iteration": "v54",
+        "evidence": "docs/validation/platform_m4_m5_full_two_actual_20261009.json"
+      },
+      {
+        "iteration": "v55",
+        "evidence": "docs/validation/platform_rc_audit_20261009.json"
+      },
+      {
+        "iteration": "v56",
+        "evidence": "this receipt and read-only provider/runtime inventory"
+      }
+    ],
+    "local_actions_completed": [
+      "Full two-model generation/replay/local+HTTP+CLI+browser validation",
+      "Current294CPU checks and CI/source/documentation repair",
+      "Full actual operator review preparations; unapproved actual catalog and receipts rejected",
+      "Actual35340-record local private originals/state/history reopen and snapshot restore;47metric candidate checks per model"
+    ],
+    "remaining_authorized_independent_required_action_identified": false,
+    "ready_for_blocked_transition": true
+  },
+  "evidence_paths": [
+    "generated/full-operator-review-preparation-20261009-v56/evidence.json",
+    "generated/full-private-store-validation-20261009-v56/evidence.json",
+    "generated/full-private-store-validation-20261009-v56/candidate-admission-evidence.json"
+  ],
+  "external_requests_pending": [
+    "KETI-NLP organization plan/Space provisioning",
+    "Approved existing private Bucket for real cloud check",
+    "Scope/rights approval for actual full raw baselines and independent operator acceptance"
+  ],
+  "goal_complete": false,
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

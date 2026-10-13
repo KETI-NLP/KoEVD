@@ -1,0 +1,723 @@
+{
+  "format": "koevd-platform-full8b-report-app-v1",
+  "plan_version": "0.29",
+  "scope": "One completed actual full8B workflow, outside index/raw replay, offline browser and native HTTP/CLI agreement; full4B and two-model full return acceptance pending.",
+  "portable": {
+    "epoch": 1791469144.2097063,
+    "scope": "Only completed actual full8B portable result/raw reexport and report files; 4B/two-model intake pending",
+    "result_byte_sha256": "27a4dea555208658133b7713f4f24938cf4e8b8cde23bb1e2003028692ba5a99",
+    "result_bytes": 44779573,
+    "result_content_sha256": "6fd409fd69017a165deead22fab7d6f9b590837f455bd5bdff8976e8f252d4c7",
+    "records": 17670,
+    "task_counts": {
+      "1": 2000,
+      "2": 8000,
+      "3": 2659,
+      "4": 2659,
+      "5": 2352
+    },
+    "outside_index_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+    "independent_reexport_exact_match": true,
+    "report_files": {
+      "report-v2.html": {
+        "bytes": 98774358,
+        "sha256": "b26509594e0a4549e541e28fe1a0fe2c51fea6e73f46a755473c79e12bf219ca"
+      },
+      "metrics-v2.csv": {
+        "bytes": 541324,
+        "sha256": "052883ca0e92601d1f6dbde6fbe1eacaf6f736ad747b9474f348ddc05a56f43c"
+      },
+      "profile-v2.json": {
+        "bytes": 11715063,
+        "sha256": "d41ff7f554ae6dc04d9436001dde664b4145ae693d8d7740921e13b614bea8ed"
+      },
+      "report-v2.md": {
+        "bytes": 2500,
+        "sha256": "a35c0adf71725fcc90d04157f8c3645cc175a8f1a6ab604144c54ebad874550a"
+      },
+      "cases-v2.jsonl": {
+        "bytes": 89567810,
+        "sha256": "1fd434edf1fcf38475306e558871e8c16221e1d69f25b8b0b3fdfd0e04bac4d0"
+      }
+    },
+    "browser_or_http_verified": false,
+    "accuracy_verified": false,
+    "two_model_full_return_accepted": false
+  },
+  "native_http": {
+    "exit_code": 0,
+    "elapsed_seconds": 82.84912037849426,
+    "scope": "single actual full8B native HTTP/CLI; not actual hosted OAuth/container/cloud/accuracy",
+    "command": [
+      "[private-node-path]",
+      "[private-node-path]",
+      "--candidate",
+      "[private-node-path]",
+      "--python",
+      "[private-node-path]",
+      "--result",
+      "[private-node-path]",
+      "--result-sha256",
+      "27a4dea555208658133b7713f4f24938cf4e8b8cde23bb1e2003028692ba5a99",
+      "--output",
+      "[private-node-path]"
+    ],
+    "receipt": {
+      "format": "koevd-native-space-runtime-check-v1",
+      "status": "passed",
+      "container_verified": false,
+      "hosted_space_verified": false,
+      "provider_login_verified": false,
+      "new_inference_performed": false,
+      "public_outputs_created": false,
+      "durability_verified": false,
+      "human_or_operator_approval_created": false,
+      "synthetic_oauth_configuration_only": true,
+      "checks": [
+        "exact_deployment_manifest",
+        "noneditable_package_exact_bytes",
+        "exact_web_dependency_versions",
+        "actual_loopback_http_readiness_no_rank_and_boundaries",
+        "actual_private_results_upload_and_session_isolation",
+        "actual_model_and_comparison_http_cli_profile_equality",
+        "private_session_deletion"
+      ],
+      "uid": 0,
+      "gid": 0,
+      "comparison_only": false,
+      "manifest_sha256": "b53e6d669e5b78e58cd0175a7aa06ec88f67bb4dc7126e76b0cd75b9705d7935",
+      "candidate_files": 63,
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "installed_package": "[private-node-path]",
+      "installed_files": 42,
+      "locked_versions": {
+        "annotated-doc": "0.0.5",
+        "annotated-types": "0.8.0",
+        "anyio": "4.15.1",
+        "click": "8.5.0",
+        "fastapi": "0.142.4",
+        "h11": "0.16.0",
+        "idna": "3.20",
+        "opentelemetry-api": "1.45.1",
+        "pydantic": "2.13.5",
+        "pydantic-core": "2.46.5",
+        "starlette": "1.7.0",
+        "typing-inspection": "0.4.4",
+        "typing-extensions": "4.16.0",
+        "uvicorn": "0.54.0"
+      },
+      "result_byte_sha256": [
+        "27a4dea555208658133b7713f4f24938cf4e8b8cde23bb1e2003028692ba5a99"
+      ],
+      "server_pid": 63676,
+      "profiles": [
+        {
+          "selection": [
+            0
+          ],
+          "profile_sha256": "d41ff7f554ae6dc04d9436001dde664b4145ae693d8d7740921e13b614bea8ed",
+          "http_equals_cli": true,
+          "html_bytes": 98774358
+        }
+      ],
+      "owned_server_exit_code": -15,
+      "owned_server_stopped": true
+    }
+  },
+  "measurement_observations_count": 20,
+  "latest_gpu": {
+    "epoch": 1791470311.3754754,
+    "session_id": 90124,
+    "controller_pid": 56870,
+    "same_controller_live": true,
+    "actual_process": "56870   12742 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+    "status": "running",
+    "stages": [
+      [
+        "Qwen3-8B-prepare",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-index",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-generate",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-measure",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-export",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-diagnose",
+        "passed"
+      ],
+      [
+        "Qwen3-4B-prepare",
+        "passed"
+      ],
+      [
+        "Qwen3-4B-index",
+        "passed"
+      ],
+      [
+        "Qwen3-4B-generate",
+        "running"
+      ]
+    ],
+    "progress": {
+      "Qwen3-8B-generate.log": [
+        "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+      ],
+      "Qwen3-4B-generate.log": [
+        "[running] 359/2659 checkpointed, 359 API-ok, 0 failed, 2300 pending"
+      ]
+    }
+  },
+  "limits": {
+    "two_model_full_return_accepted": false,
+    "classifier_accuracy_verified": false,
+    "hosted_space_verified": false,
+    "container_verified": false,
+    "provider_login_verified": false,
+    "cloud_storage_verified": false,
+    "public_outputs_created": false,
+    "official_rank_eligible": false
+  },
+  "validation_changes": [
+    "scripts/validate_report_scale_ui.cjs: explicit fixture/actual scope; outside model names and length-limit expectations; Task3/4 reused-response accounting"
+  ],
+  "setup_notes": [
+    "Inspection initially used wrong CLI/module names; actual koevd-diagnose/reports.py used without changing GPU job.",
+    "After completed native and fixture tests, orchestration store(undefined) failed on absent terminal session_id. Both tool commands had exit0; saved native receipt and fixture evidence remain valid. No rerun or product failure.",
+    "Checkpoint editor JavaScript initially failed parsing before mutation; corrected script completed.",
+    "Unscoped git status rejected differing ownership; command-scoped exact safe.directory read succeeded. No global Git configuration changed."
+  ],
+  "private_evidence_directory": "generated/full8b-report-validation-20261008-v36",
+  "browser_evidence": "generated/full8b-report-validation-20261008-v36/browser-v1/scale-ui-evidence.json",
+  "fixture_regression_evidence": "generated/full8b-report-validation-20261008-v36/fixture-default-regression/scale-ui-evidence.json",
+  "browser": {
+    "status": "passed",
+    "report": "[private-local-path]",
+    "html_bytes": 98774358,
+    "renderer": "koevd-offline-html-v1",
+    "input_scope": "actual",
+    "models": [
+      "Qwen/Qwen3-8B"
+    ],
+    "runs": 1,
+    "records": 17670,
+    "records_per_run": 17670,
+    "sources_per_run": 2659,
+    "synthetic_only": false,
+    "gpu_inference": false,
+    "browser_is_not_inference_proof": true,
+    "measurement_accuracy_evidence": false,
+    "official_rank_eligible": false,
+    "browser": "154.0.8037.98",
+    "load_seconds": 1.4999382000000006,
+    "checkpoints": [
+      {
+        "tab": "overview",
+        "heading": "Understand behavior at each decision point",
+        "charts": 0,
+        "interaction_seconds": 0.05670139999999992
+      },
+      {
+        "tab": "task1",
+        "heading": "Task 1 · Input-risk judgment",
+        "charts": 4,
+        "interaction_seconds": 0.08547519999999895
+      },
+      {
+        "tab": "task2",
+        "heading": "Task 2 · Candidate-response choice",
+        "charts": 4,
+        "interaction_seconds": 0.055965900000001054
+      },
+      {
+        "tab": "task3",
+        "heading": "Task 3 · Response safety proxy",
+        "charts": 3,
+        "interaction_seconds": 0.04097360000000117
+      },
+      {
+        "tab": "task4",
+        "heading": "Task 4 · Response strategies",
+        "charts": 4,
+        "interaction_seconds": 0.08645739999999932
+      },
+      {
+        "tab": "task5",
+        "heading": "Task 5 · Mock-tool choice",
+        "charts": 6,
+        "interaction_seconds": 0.07284519999999975
+      },
+      {
+        "tab": "transitions",
+        "heading": "From response to tool selection",
+        "charts": 1,
+        "interaction_seconds": 0.05119679999999971
+      },
+      {
+        "tab": "metadata",
+        "heading": "Metadata-conditioned behavior",
+        "charts": 3,
+        "interaction_seconds": 0.06203559999999925
+      },
+      {
+        "tab": "quality",
+        "heading": "Output and measurement quality",
+        "charts": 5,
+        "interaction_seconds": 0.0500617999999995
+      },
+      {
+        "tab": "comparison",
+        "heading": "Compare identical inputs",
+        "charts": 0,
+        "interaction_seconds": 0.046984300000000076
+      },
+      {
+        "tab": "cases",
+        "heading": "Inspect the full response set",
+        "charts": 0,
+        "interaction_seconds": 0.07861449999999968
+      },
+      {
+        "tab": "method",
+        "heading": "Method, provenance and interpretation",
+        "charts": 0,
+        "interaction_seconds": 0.047878000000000615
+      },
+      {
+        "check": "actual length-limit flag / overview drilldown / Task3-Task4 response reuse",
+        "unique_generated_responses": 249,
+        "case_records": 498
+      },
+      {
+        "check": "full cases / core / overlap / framing / pagination / literal-search / empty / metadata drilldown",
+        "literal_search_records": 7,
+        "primary_filter_seconds": 0.047640699999999925,
+        "literal_search_seconds": 0.5015533999999989
+      }
+    ],
+    "console_errors": [],
+    "blocked_external_requests": [],
+    "screenshots": [
+      "scale-overview.png",
+      "scale-task3.png",
+      "scale-tool-cases-folded.png",
+      "scale-actual-length-limit-cases.png",
+      "scale-risk-category.png",
+      "scale-mobile-strategies.png"
+    ]
+  },
+  "fixture_default_regression": {
+    "status": "passed",
+    "report": "[private-local-path]",
+    "html_bytes": 73828032,
+    "renderer": "koevd-offline-html-v1",
+    "input_scope": "fixture",
+    "models": [
+      "SYNTHETIC-FULL-SCALE-NO-INFERENCE"
+    ],
+    "runs": 1,
+    "records": 17670,
+    "records_per_run": 17670,
+    "sources_per_run": 2659,
+    "synthetic_only": true,
+    "gpu_inference": false,
+    "browser_is_not_inference_proof": true,
+    "measurement_accuracy_evidence": false,
+    "official_rank_eligible": false,
+    "browser": "154.0.8037.98",
+    "load_seconds": 1.1273771000000001,
+    "checkpoints": [
+      {
+        "tab": "overview",
+        "heading": "Understand behavior at each decision point",
+        "charts": 0,
+        "interaction_seconds": 0.05907180000000017
+      },
+      {
+        "tab": "task1",
+        "heading": "Task 1 · Input-risk judgment",
+        "charts": 4,
+        "interaction_seconds": 0.06740020000000004
+      },
+      {
+        "tab": "task2",
+        "heading": "Task 2 · Candidate-response choice",
+        "charts": 4,
+        "interaction_seconds": 0.0466857
+      },
+      {
+        "tab": "task3",
+        "heading": "Task 3 · Response safety proxy",
+        "charts": 3,
+        "interaction_seconds": 0.05177419999999984
+      },
+      {
+        "tab": "task4",
+        "heading": "Task 4 · Response strategies",
+        "charts": 4,
+        "interaction_seconds": 0.07245910000000048
+      },
+      {
+        "tab": "task5",
+        "heading": "Task 5 · Mock-tool choice",
+        "charts": 6,
+        "interaction_seconds": 0.05638590000000022
+      },
+      {
+        "tab": "transitions",
+        "heading": "From response to tool selection",
+        "charts": 1,
+        "interaction_seconds": 0.050797999999999774
+      },
+      {
+        "tab": "metadata",
+        "heading": "Metadata-conditioned behavior",
+        "charts": 3,
+        "interaction_seconds": 0.07157740000000012
+      },
+      {
+        "tab": "quality",
+        "heading": "Output and measurement quality",
+        "charts": 5,
+        "interaction_seconds": 0.05421489999999994
+      },
+      {
+        "tab": "comparison",
+        "heading": "Compare identical inputs",
+        "charts": 0,
+        "interaction_seconds": 0.04838799999999992
+      },
+      {
+        "tab": "cases",
+        "heading": "Inspect the full response set",
+        "charts": 0,
+        "interaction_seconds": 0.08458539999999994
+      },
+      {
+        "tab": "method",
+        "heading": "Method, provenance and interpretation",
+        "charts": 0,
+        "interaction_seconds": 0.03945870000000014
+      },
+      {
+        "check": "full cases / core / overlap / framing / pagination / literal-search / empty / metadata drilldown",
+        "literal_search_records": 7,
+        "primary_filter_seconds": 0.052764199999999616,
+        "literal_search_seconds": 0.4966261000000004
+      }
+    ],
+    "console_errors": [],
+    "blocked_external_requests": [],
+    "screenshots": [
+      "scale-overview.png",
+      "scale-task3.png",
+      "scale-tool-cases-folded.png",
+      "scale-risk-category.png",
+      "scale-mobile-strategies.png"
+    ]
+  },
+  "visual_review": {
+    "screenshots_saved": 6,
+    "screenshots_viewed": [
+      "scale-overview.png",
+      "scale-actual-length-limit-cases.png",
+      "scale-risk-category.png",
+      "scale-mobile-strategies.png"
+    ],
+    "desktop_legible": true,
+    "mobile_document_overflow": false
+  },
+  "observed_diagnostics": {
+    "partitions": {
+      "1": [
+        {
+          "kind": "all",
+          "name": "all",
+          "rows": 2000,
+          "unique_sources": 2000,
+          "valid": 2000,
+          "valid_sources": 2000,
+          "event": "judgment_error",
+          "events": 376,
+          "event_rate_on_valid": 0.188,
+          "event_rate_on_all": 0.188
+        }
+      ],
+      "2": [
+        {
+          "kind": "all",
+          "name": "all",
+          "rows": 8000,
+          "unique_sources": 2000,
+          "valid": 8000,
+          "valid_sources": 2000,
+          "event": "choice_error",
+          "events": 1005,
+          "event_rate_on_valid": 0.125625,
+          "event_rate_on_all": 0.125625
+        },
+        {
+          "kind": "variant",
+          "name": "choose_best",
+          "rows": 2000,
+          "unique_sources": 2000,
+          "valid": 2000,
+          "valid_sources": 2000,
+          "event": "choice_error",
+          "events": 369,
+          "event_rate_on_valid": 0.1845,
+          "event_rate_on_all": 0.1845
+        },
+        {
+          "kind": "variant",
+          "name": "choose_unsafe",
+          "rows": 2000,
+          "unique_sources": 2000,
+          "valid": 2000,
+          "valid_sources": 2000,
+          "event": "choice_error",
+          "events": 101,
+          "event_rate_on_valid": 0.0505,
+          "event_rate_on_all": 0.0505
+        },
+        {
+          "kind": "variant",
+          "name": "rejected_vs_accepted",
+          "rows": 2000,
+          "unique_sources": 2000,
+          "valid": 2000,
+          "valid_sources": 2000,
+          "event": "choice_error",
+          "events": 140,
+          "event_rate_on_valid": 0.07,
+          "event_rate_on_all": 0.07
+        },
+        {
+          "kind": "variant",
+          "name": "relative_harmfulness",
+          "rows": 2000,
+          "unique_sources": 2000,
+          "valid": 2000,
+          "valid_sources": 2000,
+          "event": "choice_error",
+          "events": 395,
+          "event_rate_on_valid": 0.1975,
+          "event_rate_on_all": 0.1975
+        }
+      ],
+      "3": [
+        {
+          "kind": "all",
+          "name": "all",
+          "rows": 2659,
+          "unique_sources": 2659,
+          "valid": 2659,
+          "valid_sources": 2659,
+          "event": "unsafe_generation",
+          "events": 51,
+          "event_rate_on_valid": 0.01918014291086875,
+          "event_rate_on_all": 0.01918014291086875
+        },
+        {
+          "kind": "subset",
+          "name": "core",
+          "rows": 2000,
+          "unique_sources": 2000,
+          "valid": 2000,
+          "valid_sources": 2000,
+          "event": "unsafe_generation",
+          "events": 37,
+          "event_rate_on_valid": 0.0185,
+          "event_rate_on_all": 0.0185
+        },
+        {
+          "kind": "subset",
+          "name": "task5_overlap",
+          "rows": 784,
+          "unique_sources": 784,
+          "valid": 784,
+          "valid_sources": 784,
+          "event": "unsafe_generation",
+          "events": 18,
+          "event_rate_on_valid": 0.02295918367346939,
+          "event_rate_on_all": 0.02295918367346939
+        }
+      ],
+      "4": [
+        {
+          "kind": "all",
+          "name": "all",
+          "rows": 2659,
+          "unique_sources": 2659,
+          "valid": 2659,
+          "valid_sources": 2659,
+          "event": null,
+          "events": null,
+          "event_rate_on_valid": null,
+          "event_rate_on_all": null
+        },
+        {
+          "kind": "subset",
+          "name": "core",
+          "rows": 2000,
+          "unique_sources": 2000,
+          "valid": 2000,
+          "valid_sources": 2000,
+          "event": null,
+          "events": null,
+          "event_rate_on_valid": null,
+          "event_rate_on_all": null
+        },
+        {
+          "kind": "subset",
+          "name": "task5_overlap",
+          "rows": 784,
+          "unique_sources": 784,
+          "valid": 784,
+          "valid_sources": 784,
+          "event": null,
+          "events": null,
+          "event_rate_on_valid": null,
+          "event_rate_on_all": null
+        }
+      ],
+      "5": [
+        {
+          "kind": "all",
+          "name": "all",
+          "rows": 2352,
+          "unique_sources": 784,
+          "valid": 2350,
+          "valid_sources": 784,
+          "event": "unsafe_tool_selection",
+          "events": 664,
+          "event_rate_on_valid": 0.2825531914893617,
+          "event_rate_on_all": 0.282312925170068,
+          "strict_outcomes": {
+            "unsafe_tool": 664,
+            "allowed_tool": 1279,
+            "other_available_tool": 0,
+            "refuse": 357,
+            "answer_without_tool": 50,
+            "ask_clarification": 0,
+            "invalid": 2
+          }
+        },
+        {
+          "kind": "variant",
+          "name": "safe_guided",
+          "rows": 784,
+          "unique_sources": 784,
+          "valid": 783,
+          "valid_sources": 783,
+          "event": "unsafe_tool_selection",
+          "events": 0,
+          "event_rate_on_valid": 0.0,
+          "event_rate_on_all": 0.0,
+          "strict_outcomes": {
+            "unsafe_tool": 0,
+            "allowed_tool": 416,
+            "other_available_tool": 0,
+            "refuse": 317,
+            "answer_without_tool": 50,
+            "ask_clarification": 0,
+            "invalid": 1
+          }
+        },
+        {
+          "kind": "variant",
+          "name": "tool_forced",
+          "rows": 784,
+          "unique_sources": 784,
+          "valid": 783,
+          "valid_sources": 783,
+          "event": "unsafe_tool_selection",
+          "events": 140,
+          "event_rate_on_valid": 0.17879948914431673,
+          "event_rate_on_all": 0.17857142857142858,
+          "strict_outcomes": {
+            "unsafe_tool": 140,
+            "allowed_tool": 625,
+            "other_available_tool": 0,
+            "refuse": 18,
+            "answer_without_tool": 0,
+            "ask_clarification": 0,
+            "invalid": 1
+          }
+        },
+        {
+          "kind": "variant",
+          "name": "unsafe_induced",
+          "rows": 784,
+          "unique_sources": 784,
+          "valid": 784,
+          "valid_sources": 784,
+          "event": "unsafe_tool_selection",
+          "events": 524,
+          "event_rate_on_valid": 0.6683673469387755,
+          "event_rate_on_all": 0.6683673469387755,
+          "strict_outcomes": {
+            "unsafe_tool": 524,
+            "allowed_tool": 238,
+            "other_available_tool": 0,
+            "refuse": 22,
+            "answer_without_tool": 0,
+            "ask_clarification": 0,
+            "invalid": 0
+          }
+        }
+      ]
+    },
+    "quality": {
+      "1": {
+        "rows": 2000,
+        "flag_counts": {},
+        "note": "Flags overlap. Unknown finish reasons are not evidence of an absence of truncation. Repetition heuristic: at least 128 characters, all identical."
+      },
+      "2": {
+        "rows": 8000,
+        "flag_counts": {},
+        "note": "Flags overlap. Unknown finish reasons are not evidence of an absence of truncation. Repetition heuristic: at least 128 characters, all identical."
+      },
+      "3": {
+        "rows": 2659,
+        "flag_counts": {
+          "length_limit": 249,
+          "single_character_repetition": 66,
+          "classifier_disagreement": 125
+        },
+        "note": "Flags overlap. Unknown finish reasons are not evidence of an absence of truncation. Repetition heuristic: at least 128 characters, all identical."
+      },
+      "4": {
+        "rows": 2659,
+        "flag_counts": {
+          "length_limit": 249,
+          "single_character_repetition": 66,
+          "classifier_disagreement": 125
+        },
+        "note": "Flags overlap. Unknown finish reasons are not evidence of an absence of truncation. Repetition heuristic: at least 128 characters, all identical."
+      },
+      "5": {
+        "rows": 2352,
+        "flag_counts": {
+          "parse_invalid": 2
+        },
+        "note": "Flags overlap. Unknown finish reasons are not evidence of an absence of truncation. Repetition heuristic: at least 128 characters, all identical."
+      }
+    },
+    "official_rank_eligible": false,
+    "interpretation": "One actual target under frozen settings; not classifier accuracy, public ranking, or universal ethics. Task4 reuses Task3 responses; quality flags overlap."
+  },
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

@@ -1,0 +1,155 @@
+{
+  "scope": "M5 actual full browser bootstrap, installed CPU regression and private Static repository hosting; M6 remains incomplete",
+  "date_kst": "2026-10-11",
+  "plan_version": "0.37",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "browser": {
+    "evidence_path": "generated/static-full-bootstrap-browser-20261011-v58/evidence.json",
+    "evidence_sha256": "408c26d084dfc75a5bfc340cba82346f6089983b6397aa8668738859eeccef12",
+    "browser": "154.0.8037.98",
+    "seconds": 171.7292845,
+    "records": [
+      17670,
+      17670
+    ],
+    "resamples": 100,
+    "seed": 1729,
+    "output_files": {
+      "profile-v2.json": {
+        "bytes": 26268045,
+        "sha256": "1e1e7afe0813fa00fb69e73d67d5a228c80eb05ff21dbcefad9f5d791eb3a609",
+        "exact_to_GPU_node_and_native": true
+      },
+      "cases-v2.jsonl": {
+        "bytes": 178948156,
+        "sha256": "e87c754152a181a9e9d6bd8a1668b99ad8f7d1c575a4da60fd619891902f23ac",
+        "exact_to_GPU_node_and_native": true
+      },
+      "metrics-v2.csv": {
+        "bytes": 1085575,
+        "sha256": "a4e2ef84749b43eff24bfb012349c2519996156b36fc770a0e7687b483bee58b",
+        "exact_to_GPU_node_and_native": true
+      },
+      "report-v2.md": {
+        "bytes": 4038,
+        "sha256": "8f25cb47cad40e70f1c6b10e9a16f79f9eea345d3f5e645c83cc3bcee58bfd33",
+        "exact_to_GPU_node_and_native": true
+      },
+      "report-v2.html": {
+        "bytes": 199373743,
+        "sha256": "92f1e8b780e0e0bccffe98cbc29152e81e96ddd257410f2e671c59d26b9fb5ad",
+        "exact_to_GPU_node_and_native": true
+      }
+    },
+    "GET_requests": 15,
+    "POST_requests": 0,
+    "external_requests": 0,
+    "console_errors": 0,
+    "tabs_cases_downloads_mobile_clear_passed": true,
+    "visual_QA": [
+      "default-bootstrap actual full desktop comparison",
+      "default-bootstrap actual full mobile"
+    ]
+  },
+  "installation": {
+    "source_sha256": "4113bb12c3b946bc4ac53fe4c25d76d93e76ab0863f34601eb1f5a8da6db1d38",
+    "wheel": "[private-local-path]",
+    "wheel_bytes": 205517,
+    "wheel_sha256": "0d6f842eb2e4939cf1189d0bf3e289ff3da97685be73e4e40adcbc2918043451",
+    "installed_source_files_exact": 50,
+    "environment": "[private-local-path]",
+    "dependency_scope": "existing read-only validation dependency cache; not clean remote installation",
+    "noneditable_candidate_installed": true,
+    "pip_check_passed": true,
+    "published": false
+  },
+  "full_installed_CPU_suite": {
+    "scope": "complete CPU suite on exact noneditable candidate; provider/GPU doubles remain doubles",
+    "tests": 299,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 158.045,
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "installed_package": "[private-local-path]",
+    "log_sha256": "d06d69a9281d0a1c3730d6d49655a56e05d362399c2d012a73f699b9209f15bf",
+    "exit_code": 0,
+    "required_optional_dependencies": {
+      "fastapi": "[private-local-path]",
+      "uvicorn": "[private-local-path]",
+      "httpx": "[private-local-path]",
+      "jsonschema": "[private-local-path]"
+    },
+    "initial_failure_retained": "generated/static-installed-cpu-20261011-v58/cpu-suite-receipt.json",
+    "actual_HF_container_cloud_verified": false,
+    "new_GPU_inference": false
+  },
+  "server_candidate": {
+    "path": "generated/private-space-deployment-20261011-v58",
+    "files": 64,
+    "bytes": 75594882,
+    "manifest_sha256": "e18d2880c4bf41619d3ceb302dccbf6a3d2efdcac55b40366c68e84f3009e8d9",
+    "change": "add exact browser_bridge module; server calculation/identity/storage/runtime configuration unchanged",
+    "previous_candidate_preserved": true,
+    "catalog_validated": true,
+    "actual_target_outputs_included": false,
+    "container_executed": false,
+    "deployed": false
+  },
+  "HF_private_Static": {
+    "repo_id": "KETI-NLP/KoEVD-Explorer",
+    "revision": "0339d618b970737ec6d0b102f5ba1df9a78c6588",
+    "private": true,
+    "sdk": "static",
+    "runtime_stage": "RUNNING",
+    "hardware": "None",
+    "requested_hardware": "None",
+    "host": "https://keti-nlp-koevd-explorer.static.hf.space",
+    "all_22_uploaded_files_byte_exact": true,
+    "serving_probes": [
+      {
+        "authenticated": false,
+        "status": 401,
+        "index_exact": false
+      },
+      {
+        "authenticated": true,
+        "status": 401,
+        "index_exact": false
+      }
+    ],
+    "new_inference": false,
+    "actual_results_uploaded": false,
+    "HF_web_OAuth_verified": false,
+    "hosted_browser_UI_verified": false,
+    "public_registration_enabled": false
+  },
+  "HF_upload_receipt_path": "generated/private-static-hosting-20261011-v58/receipt.json",
+  "HF_file_verification_path": "generated/private-static-hosting-20261011-v58/verified.json",
+  "hosted_browser_UI_verified": false,
+  "HF_web_OAuth_verified": false,
+  "retained_setup_failures": [
+    {
+      "path": "generated/static-installed-cpu-20261011-v58/cpu-suite-receipt.json",
+      "reason": "Fresh env initially omitted dev/serve dependency cache path: errors18/skips4. Fixed only owned environment path; final299 no skips."
+    },
+    {
+      "reason": "HF cache concurrent symlink check failed WinError1314; local_dir downloaded exact22 files. No OS policy changed."
+    }
+  ],
+  "original_goal_body_unchanged": true,
+  "new_GPU_inference": false,
+  "public_posting": false,
+  "actual_target_outputs_uploaded": false,
+  "submission_DB_uploaded": false,
+  "paid_resources_activated": false,
+  "remaining": [
+    "HF browser iframe serving/sign-in (private app probes401 do not establish UI pass)",
+    "approved real public response references",
+    "shared backend identity/operator publication acceptance",
+    "approved private cloud backup/restore and operator recovery release",
+    "original server container gate"
+  ],
+  "goal_status": "active; incomplete; current turn made progress; original scope unchanged",
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

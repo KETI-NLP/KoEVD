@@ -1,0 +1,103 @@
+{
+  "format": "koevd-platform-acceptance-v1",
+  "plan_version": "0.46",
+  "status": "partial_release_candidate",
+  "observed_utc": "2026-10-12T05:39:49.975788+00:00",
+  "source_HEAD": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "local_process_lifecycle": {
+    "path": "generated/managed-lifecycle-actual96-20261012-v69b/evidence.json",
+    "sha256": "54276ade1ce5a0ad819b8900fa18fa892582c5588648a94574ec913e45ed6bc9",
+    "status": "passed",
+    "scope": "local_CPU_real_owned_server_worker_HTTP_lifecycle",
+    "observed_utc": "2026-10-12T05:31:52.977566+00:00",
+    "seconds": 24.719,
+    "records": [
+      48,
+      48
+    ],
+    "original_byte_sha256": [
+      "787e3c87ef4929f232dffb800fd143397e80f63137bd397411dcef7d42997adb",
+      "7d16beb22381beb8f259c1859ec640bd68419ee1cf5ef2f1b5a9ef9a7c35dcf7"
+    ],
+    "HF_and_OAuth_are_explicit_test_doubles": true,
+    "actual_HF_login_or_container": false,
+    "test_only_loopback_binding_and_watchdog": true,
+    "external_network_connections_refused_in_children": true,
+    "first_backup_plus_worker_cycles": 3,
+    "last_verified_sequence": 3,
+    "changes_pending": false,
+    "originals_and_histories_equal_after_pinned_restore": true,
+    "restored_public_read_and_submission_mutation_blocked": true,
+    "restore_worker_not_started": true,
+    "credential_environment_separation_proven_in_real_children": true,
+    "all_owned_children_terminal": true,
+    "new_inference": false,
+    "real_Bucket_write": false,
+    "official_rank_or_recovery_approval": false
+  },
+  "scoped_CPU_tests": {
+    "path": "generated/managed-lifecycle-tests-20261012-v69/tests.log",
+    "sha256": "543747619e0a84418b426fb906e041872cbea1630b7bace7ca15c1212e6e59d7",
+    "count": 18,
+    "seconds": 2.987,
+    "exit_code": 0,
+    "new_tests": 3,
+    "full336_rerun_claimed": false
+  },
+  "source_core50_still_exact_to_prior_full328_install": true,
+  "prior_installed_full_suite": {
+    "path": "generated/managed-runtime-20261012-v67/complete-install-receipt.json",
+    "sha256": "da65275236f26bbff4efdc1138759ee57be5551d96bc7d0f222903f1bf04f584"
+  },
+  "changes": [
+    "Restored deployment notice explicitly says backup worker is stopped",
+    "Managed SIGTERM handler unwinds through cleanup and restores previous handler",
+    "Restored server uses an owned Popen handle and always reaps its child",
+    "Explicit local-only real-process HF/OAuth double integration scenario"
+  ],
+  "boundary": "Windows local owned processes and direct signal-handler injection; actual Linux/HF SIGTERM delivery, managed container and real token connection are unverified.",
+  "managed_candidate": {
+    "path": "generated/managed-space-candidate-20261012-v69",
+    "payload_files": 68,
+    "manifest_sha256": "04d0d573e3a139c9822e077878d41c50b2619eca306ebf5a1996383b9ba30607",
+    "uploaded": false,
+    "activated": false
+  },
+  "bounded_trial_proposal": {
+    "path": "generated/managed-space-bounded-trial-20261012-v69",
+    "sha256": "d35bb281e618401df36bb4f19b2c194e10ae915540e5fda537ac147d04718e3d",
+    "payload_files": 70,
+    "manifest_sha256": "c432727a257819cc19951318025aef475182eb0106b7dfb982dfcb0b205544bb",
+    "snapshots_at_most": 3,
+    "snapshot_byte_bound": 25165824,
+    "approved": false,
+    "activated": false
+  },
+  "credential_state": {
+    "user_confirmed_Bucket_scoped_token_and_Secret_registration": true,
+    "secret_name": "KOEVD_BACKUP_TOKEN",
+    "secret_values_read_or_logged": false,
+    "runtime_token_scope_or_connection_verified": false
+  },
+  "read_only_HF_observation_this_turn": {
+    "Space": "KETI-NLP/KoEVD-Platform-Dev",
+    "revision": "5504a5e57e173c96b17272ee0e4c1608e859759c",
+    "private": true,
+    "sdk": "docker",
+    "stage": "RUNNING",
+    "hardware": "cpu-basic",
+    "Public_Static_revision": "dbf81077126375b0a9bba55436d0c1df5825efc3",
+    "Secret_values_read": false
+  },
+  "prior_checker_failure_preserved": {
+    "path": "generated/managed-lifecycle-actual96-20261012-v69/failure.json",
+    "reason": "HTTPX client context reopened after readiness polling",
+    "all_owned_children_terminal": true
+  },
+  "new_HF_upload_or_Bucket_write": false,
+  "new_GPU_inference": false,
+  "public_or_production_changes": false,
+  "classifier_accuracy_resolved": false,
+  "official_rank_or_recovery_approval_granted": false,
+  "goal_status": "active"
+}

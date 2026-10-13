@@ -1,0 +1,133 @@
+{
+  "plan_version": "0.51",
+  "status": "actual_bounds_restart_refusal_passed_two_draft_recovery_incomplete",
+  "previous_goal_turn": "progress: current UI failure behavior and fresh installed candidates",
+  "approved_scope": "Existing private CPU Space; two existing models48+48 records and2 new private drafts/history; initial1+worker2 snapshots, total24MiB; restart refusal and pinned restore then current v75 default; no continuous/public/paid change",
+  "private_CPU_trial_revision": "0c2329247e1a40118a4bfc38b0078567f3418494",
+  "actual_Secret_backup_read_and_write": true,
+  "Secret_values_read_or_printed": false,
+  "count_bound_passed_this_trial": true,
+  "byte_bound_passed_this_trial": true,
+  "new_snapshot_objects": 3,
+  "new_snapshot_bytes": 302021,
+  "finite_worker_completed": true,
+  "subsequent_initialization_refusal_code": "initialization_inventory_mismatch",
+  "no_atomic_remote_lock_or_RPO_claim": true,
+  "actual_HF_restart_event_log_proven": false,
+  "native_HF_login_and_saved_drafts_observed": [
+    "65153bb7",
+    "e6c35f9c"
+  ],
+  "current_two_drafts_in_snapshot": false,
+  "new_4B_history_missing_from_all_three_snapshots": true,
+  "4B_before_original_history_download_completed": false,
+  "boundary_download_status": 503,
+  "cached_UI_not_treated_as_fresh_server_read": true,
+  "selected_snapshot_sha256": "2b615719ea511fe8b3bd7a14c6d945f2d9bffd04a6edfb1f8d5c5da14f9e66e6",
+  "selection_reason": "Independent source original and native before-download history match, not key/time/size order",
+  "restored_current_records": 48,
+  "restored_model": "Qwen3-8B",
+  "restored_8B_original_and_history_bytes_exact": true,
+  "native_HF_relogin_after_restore": true,
+  "restored_public_UI_unavailable_and_metric_selector_disabled": true,
+  "restored_native_new_save_refused": true,
+  "restored_worker_not_started": true,
+  "old_4B_snapshot_not_substituted_for_missing_current_history": true,
+  "default_return_revision": "f65a8b1065b934e649e545043c4ac89b18c2d4a5",
+  "default_stage": "RUNNING",
+  "hardware": "cpu-basic",
+  "default_exact_files": 66,
+  "current_UI_fixes_now_in_private_app": true,
+  "Bucket_objects_preserved": 9,
+  "Bucket_total_bytes": 67986088,
+  "continuous_backup_active": false,
+  "public_Static_unchanged": true,
+  "paid_resources_changed": false,
+  "local_tests": {
+    "count": 26,
+    "seconds": 5.35,
+    "exit_code": 0,
+    "scope": "Current local launcher/materializer; explicit CPU providers"
+  },
+  "local_positive_process": {
+    "seconds": 27.453,
+    "baseline_objects": 6,
+    "new_objects": 3,
+    "HF_OAuth": "Explicit doubles, metadata-only baseline files",
+    "two_model_records": [
+      48,
+      48
+    ],
+    "before_final_root_diagnostic_refinement": true
+  },
+  "evidence": [
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/deployment.json",
+      "bytes": 1981,
+      "sha256": "01fcec71319884e7907004feb73ec39fbcbe16ee88207435745e739428aa025a"
+    },
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/live-observation.json",
+      "bytes": 2635,
+      "sha256": "2b025086ab96880f0030a4f11946878d86aed3f344798c04233824a0f77acb2e"
+    },
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/snapshots-verified.json",
+      "bytes": 1420,
+      "sha256": "1dcf13884f0af92ae1a0ea9ab255177ad9e74defaa87a584e14c890e7c97bd23"
+    },
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/restore-deployment.json",
+      "bytes": 775,
+      "sha256": "212648f56ac99168bf8231ecff27f0aba25c90ffe6c033a3d0eba686aad46ed7"
+    },
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/default-deployment.json",
+      "bytes": 1442,
+      "sha256": "b381dc7b02cdc9e43b02fd636f1319d3bd5d0fbaa6a90a729a6c6b9f0a873a86"
+    },
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/default-exact-bytes.json",
+      "bytes": 11770,
+      "sha256": "54f4a4bd31990e02638b7b6cd5e0c5cf5df4a58626c56b64a7679a075a20197e"
+    },
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/cached-two-drafts-at-boundary-dom.txt",
+      "bytes": 6777,
+      "sha256": "ba37b2649454fd306e9fa3e91d281c2a786dfeca913afae55b3efb1117c2b5e7"
+    },
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/restored-save-refused-dom.txt",
+      "bytes": 6451,
+      "sha256": "1ecd995d65599619496355b6d331c225fee7cecdbb1d2fed54f04f5c19d6f383"
+    },
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/restored-public-unavailable.png",
+      "bytes": 113626,
+      "sha256": "0baa098f5c9349b06164361e5771e7e78633691983eaa15c74ec50633da6b32d"
+    },
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/default-profile.png",
+      "bytes": 99497,
+      "sha256": "01d5f1cb5bf6af302db8b0cc7f0b27410691e79b69aa557c3f05df94a0f310a3"
+    },
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/managed-tests.log",
+      "bytes": 4991,
+      "sha256": "7b29696ba7dd81260a0dd83bab5c47cc5c492a99e4b0a3fbcdd25f0953745096"
+    },
+    {
+      "path": "generated/managed-positive-baseline-20261012-v76/evidence.json",
+      "bytes": 1285,
+      "sha256": "d7329c6ca9306af7db93d84addca008e867dc56b978763f89e9fe58925b3b060"
+    }
+  ],
+  "next_implementation": "Quiesce domain mutations before the finite worker final snapshot; wait for accepted writes and reject later writes clearly",
+  "remaining": [
+    "Two-current-draft finite shutdown preservation",
+    "Current Docker actual full-size acceptance",
+    "Operator policy/recovery acceptance",
+    "Approved actual public raw references"
+  ],
+  "goal_status": "active"
+}

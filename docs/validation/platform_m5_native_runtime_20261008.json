@@ -1,0 +1,370 @@
+{
+  "format": "koevd-platform-native-runtime-validation-v1",
+  "recorded_at_utc": "2026-10-08T11:45:46.701332+00:00",
+  "plan_version": "0.24",
+  "scope": "native Linux CPU Docker-candidate dependency/package/HTTP check using independently accepted prefix96 results",
+  "current_package_source_changed": false,
+  "current_deployment_candidate": "generated/private-space-deployment-20261008-v22",
+  "candidate_manifest_files": 63,
+  "candidate_bytes": 75592401,
+  "candidate_and_current_package_bytes_unchanged": true,
+  "context_transfer": {
+    "bytes": 7013002,
+    "files": 64,
+    "sha256": "a7df9b8672cc6bfded96a37793336a61f3b9cafd83c2b258ffa7b6d03cd769c5"
+  },
+  "validator_sha256": "b038d0d1e1d256243e2439eb71bb3230117e7047a033efad617abd981cf7b9a0",
+  "new_context_guard_tests": {
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "exit_code": 0,
+    "seconds": 0.062,
+    "log_sha256": "05de8fc59aca26099c99541e74b73fc58aeea9728f25600a579e2fc251735915",
+    "scope": "context guard unit tests; not container/provider/GPU evidence"
+  },
+  "native_uid1000": {
+    "uid1000_runtime": {
+      "format": "koevd-native-space-runtime-check-v1",
+      "status": "passed",
+      "container_verified": false,
+      "hosted_space_verified": false,
+      "provider_login_verified": false,
+      "new_inference_performed": false,
+      "public_outputs_created": false,
+      "durability_verified": false,
+      "human_or_operator_approval_created": false,
+      "synthetic_oauth_configuration_only": true,
+      "checks": [
+        "exact_deployment_manifest",
+        "noneditable_package_exact_bytes",
+        "exact_web_dependency_versions",
+        "actual_loopback_http_readiness_no_rank_and_boundaries",
+        "actual_private_results_upload_and_session_isolation",
+        "actual_model_and_comparison_http_cli_profile_equality",
+        "private_session_deletion"
+      ],
+      "uid": 1000,
+      "gid": 1000,
+      "manifest_sha256": "b53e6d669e5b78e58cd0175a7aa06ec88f67bb4dc7126e76b0cd75b9705d7935",
+      "candidate_files": 63,
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "installed_package": "/tmp/koevd-space-native-uid1000-v24-rp_s705p/env/lib/python3.12/site-packages/koevd_eval",
+      "installed_files": 42,
+      "locked_versions": {
+        "annotated-doc": "0.0.5",
+        "annotated-types": "0.8.0",
+        "anyio": "4.15.1",
+        "click": "8.5.0",
+        "fastapi": "0.142.4",
+        "h11": "0.16.0",
+        "idna": "3.20",
+        "opentelemetry-api": "1.45.1",
+        "pydantic": "2.13.5",
+        "pydantic-core": "2.46.5",
+        "starlette": "1.7.0",
+        "typing-inspection": "0.4.4",
+        "typing-extensions": "4.16.0",
+        "uvicorn": "0.54.0"
+      },
+      "result_byte_sha256": [
+        "c99ce411f96752b888d733cb470c99dead8a6f06633ade0b355464e052a35eaf",
+        "c1b1a67b2d95e5da29f5ee65d4c955b8849adb07c79e2879377845f7ea8ac639"
+      ],
+      "server_pid": 58660,
+      "profiles": [
+        {
+          "selection": [
+            0
+          ],
+          "profile_sha256": "08c26a70f82f2502ac87c196480a2f1b16cd4958f00ca53c812ecb2287b48c47",
+          "http_equals_cli": true,
+          "html_bytes": 10817718
+        },
+        {
+          "selection": [
+            1
+          ],
+          "profile_sha256": "ce8e39f194c60f8955fe7b03ad15dfddb7aef58536cc65a2c02f21a703b6ab71",
+          "http_equals_cli": true,
+          "html_bytes": 10834402
+        },
+        {
+          "selection": [
+            0,
+            1
+          ],
+          "profile_sha256": "f8b323734b5fa7a7bb15a2b101cc976565f8816eb6c54136797681ee35e5f7fd",
+          "http_equals_cli": true,
+          "html_bytes": 21886483
+        }
+      ],
+      "owned_server_exit_code": -15,
+      "owned_server_stopped": true
+    },
+    "uid1000_process": {
+      "status": "passed",
+      "pid": 58656,
+      "started_epoch": 1791459710.0869012,
+      "child_uid": 1000,
+      "child_gid": 1000,
+      "working_directory": "/tmp/koevd-space-native-uid1000-v24-rp_s705p",
+      "shared_NFS_permissions_unchanged": true,
+      "no_system_user_or_service_created": true,
+      "exit_code": 0,
+      "finished_epoch": 1791459732.8277426
+    },
+    "same_three_profiles_as_uid0": true,
+    "context_unchanged": true,
+    "validator_sha256": "b038d0d1e1d256243e2439eb71bb3230117e7047a033efad617abd981cf7b9a0",
+    "work_mode": "0o700",
+    "output_mode": "0o700",
+    "work_uid": 1000,
+    "output_uid": 1000,
+    "original_gpu_workspace_mode_unchanged": "0o700",
+    "prior_NFS_uid1000_failure": {
+      "status": "failed",
+      "child_not_launched": true,
+      "error": "PermissionError EACCES when executing child interpreter through restricted NFS ancestors",
+      "paths": {
+        "/mnt/nfs5/nlp/workspace/KoEVD_platform_validation_20261008/incoming/space_native_uid1000_v24": {
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o700"
+        },
+        "/mnt/nfs5/nlp/workspace/KoEVD_platform_validation_20261008/incoming": {
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755"
+        },
+        "/mnt/nfs5/nlp/workspace/KoEVD_platform_validation_20261008": {
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o700"
+        },
+        "/mnt/nfs5/nlp/workspace": {
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755"
+        },
+        "/mnt/nfs5/nlp": {
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755"
+        },
+        "/mnt/nfs5": {
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755"
+        },
+        "/mnt": {
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755"
+        },
+        "/": {
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o755"
+        }
+      }
+    },
+    "no_system_account_service_or_container_created": true
+  },
+  "native_uid0": {
+    "runtime_v4": {
+      "format": "koevd-native-space-runtime-check-v1",
+      "status": "passed",
+      "container_verified": false,
+      "hosted_space_verified": false,
+      "provider_login_verified": false,
+      "new_inference_performed": false,
+      "public_outputs_created": false,
+      "durability_verified": false,
+      "human_or_operator_approval_created": false,
+      "synthetic_oauth_configuration_only": true,
+      "checks": [
+        "exact_deployment_manifest",
+        "noneditable_package_exact_bytes",
+        "exact_web_dependency_versions",
+        "actual_loopback_http_readiness_no_rank_and_boundaries",
+        "actual_private_results_upload_and_session_isolation",
+        "actual_model_and_comparison_http_cli_profile_equality",
+        "private_session_deletion"
+      ],
+      "manifest_sha256": "b53e6d669e5b78e58cd0175a7aa06ec88f67bb4dc7126e76b0cd75b9705d7935",
+      "candidate_files": 63,
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "installed_package": "[private-node-path]",
+      "installed_files": 42,
+      "locked_versions": {
+        "annotated-doc": "0.0.5",
+        "annotated-types": "0.8.0",
+        "anyio": "4.15.1",
+        "click": "8.5.0",
+        "fastapi": "0.142.4",
+        "h11": "0.16.0",
+        "idna": "3.20",
+        "opentelemetry-api": "1.45.1",
+        "pydantic": "2.13.5",
+        "pydantic-core": "2.46.5",
+        "starlette": "1.7.0",
+        "typing-inspection": "0.4.4",
+        "typing-extensions": "4.16.0",
+        "uvicorn": "0.54.0"
+      },
+      "result_byte_sha256": [
+        "c99ce411f96752b888d733cb470c99dead8a6f06633ade0b355464e052a35eaf",
+        "c1b1a67b2d95e5da29f5ee65d4c955b8849adb07c79e2879377845f7ea8ac639"
+      ],
+      "server_pid": 58549,
+      "profiles": [
+        {
+          "selection": [
+            0
+          ],
+          "profile_sha256": "08c26a70f82f2502ac87c196480a2f1b16cd4958f00ca53c812ecb2287b48c47",
+          "http_equals_cli": true,
+          "html_bytes": 10817718
+        },
+        {
+          "selection": [
+            1
+          ],
+          "profile_sha256": "ce8e39f194c60f8955fe7b03ad15dfddb7aef58536cc65a2c02f21a703b6ab71",
+          "http_equals_cli": true,
+          "html_bytes": 10834402
+        },
+        {
+          "selection": [
+            0,
+            1
+          ],
+          "profile_sha256": "f8b323734b5fa7a7bb15a2b101cc976565f8816eb6c54136797681ee35e5f7fd",
+          "http_equals_cli": true,
+          "html_bytes": 21886483
+        }
+      ],
+      "owned_server_exit_code": -15,
+      "owned_server_stopped": true
+    },
+    "runtime_v4_process": {
+      "status": "passed",
+      "pid": 58546,
+      "started_epoch": 1791459466.8648713,
+      "exit_code": 0,
+      "finished_epoch": 1791459501.4547522,
+      "output_mode": "0o700"
+    },
+    "runtime_v3_process": {
+      "status": "passed",
+      "pid": 58476,
+      "started_epoch": 1791459364.2241776,
+      "exit_code": 0,
+      "finished_epoch": 1791459403.1754131
+    },
+    "installer_initial": {
+      "status": "failed",
+      "started_epoch": 1791459245.6861472,
+      "pid": 58355,
+      "container_verified": false,
+      "hosted_space_verified": false,
+      "stages": [
+        "outside_context_zip_sha_and_safe_extraction",
+        {
+          "name": "exact_web_lock_install",
+          "exit_code": 0
+        },
+        {
+          "name": "candidate_source_install",
+          "exit_code": 0
+        },
+        {
+          "name": "pip_check",
+          "exit_code": 0
+        },
+        {
+          "name": "actual_native_http_and_cli",
+          "exit_code": 1
+        }
+      ],
+      "python": "Python 3.12.3",
+      "failure_type": "RuntimeError",
+      "failure": "runtime check failed",
+      "finished_epoch": 1791459264.306554
+    },
+    "actual_uid": 0,
+    "native_platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "context_unchanged_after_runtime": true,
+    "context_manifest_sha256": "b53e6d669e5b78e58cd0175a7aa06ec88f67bb4dc7126e76b0cd75b9705d7935",
+    "validator_sha256": "d4b22cffb31c3090658ec17622f3fb042ba790c889995d7defac1b26a7e5dfdc",
+    "private_work_mode": "0o700",
+    "private_output_mode": "0o700",
+    "container_engine_inventory": {
+      "docker": null,
+      "podman": null,
+      "nerdctl": null
+    },
+    "userns_probe_observed_previous": {
+      "argv": [
+        "unshare",
+        "--user",
+        "--map-root-user",
+        "sh",
+        "-c",
+        "id -u"
+      ],
+      "returncode": 1,
+      "stderr": "unshare: unshare failed: Operation not permitted\n"
+    },
+    "real_hf_network_auth_performed": false
+  },
+  "input_scope": {
+    "models": [
+      "Qwen/Qwen3-8B",
+      "Qwen/Qwen3-4B"
+    ],
+    "portable_records_per_model": 1150,
+    "prefix_primary_sources": 96,
+    "task3_union_sources": 191,
+    "full_standard_result": false
+  },
+  "full_gpu_live_observation": {
+    "observed_epoch": 1791459771.8099697,
+    "session_id": 90124,
+    "controller_pid": 56870,
+    "running": true,
+    "final_prediction_rows": {
+      "1": 2000,
+      "2": 8000,
+      "3": null,
+      "5": null
+    },
+    "latest_task3_checkpointed": 701,
+    "latest_task3_api_ok": 701,
+    "latest_task3_failed": 0,
+    "task3_expected": 2659,
+    "all_two_model_full_results_accepted": false
+  },
+  "remaining_gates": [
+    "actual Docker image build/runtime; native UID1000 is not container evidence",
+    "HF organization plan/Space provisioning/actual OAuth/iframe",
+    "actual approved private cloud storage and operational recovery",
+    "independent human/operator references, generation receipt and publication permissions",
+    "same running full-core-v1 completion, independent replay intake and full app/CLI comparison"
+  ],
+  "goal_complete": false,
+  "published_or_paid_resources_activated": false,
+  "evidence_files": {
+    "generated/native-space-node-20261008-v24/final-evidence.json": "4a18c32523c5f5c59a967e1a6d3a2914b96e9b67faa22226363c0e5e4913cd72",
+    "generated/native-space-node-20261008-v24/full-live-final-observation.json": "24f81d845b902392869ab47c8f643ba41be6d24e335260aaf3fc9d01532ebafc",
+    "generated/native-space-node-20261008-v24/native-final-evidence-v24.json": "adc379a8d4bc8963a179e671490b8103d315566e5a58493b5692f0a4d52c0ca9",
+    "generated/native-space-node-20261008-v24/runtime-v1.log": "54e339313ce5dcbf287a0b07679ac159a54b56cb18041bfbc0796274796793e0",
+    "generated/native-space-node-20261008-v24/runtime-v2.log": "0b762e11a28fcf84e5a557a6ab5cda8c020c6da7e2de35b5d573de1227bc25c2",
+    "generated/native-space-node-20261008-v24/v1-failure-note.json": "3d981ed41a21b79e8a0bff055b1f57310e08d2f037ef2766f1b3a56ae850190a",
+    "generated/native-space-node-20261008-v24/v2-failure-note.json": "0def2326d8b6a113574c33903e8f34e151432de75c58497645f9b749e9616840"
+  },
+  "native_file_comparison_scope": "42 files in installed koevd_eval namespace; no classifier import/inference in this check",
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

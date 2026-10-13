@@ -1,0 +1,126 @@
+{
+  "format": "koevd-public-static-publication-validation-v1",
+  "date_kst": "2026-10-12",
+  "plan_version": "0.42",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "scope": "User-approved public analysis preview; independent M6 registration and official ranking not completed",
+  "current_turn": "progress: license/attribution packaging fixed, public visibility and actual anonymous full/direct + small/Hub-parent acceptance",
+  "repo_id": "KETI-NLP/KoEVD-Explorer",
+  "revision": "dbf81077126375b0a9bba55436d0c1df5825efc3",
+  "private": false,
+  "sdk": "static",
+  "runtime_stage": "RUNNING",
+  "candidate_path": "generated/static-public-space-20261012-v63",
+  "candidate_manifest_sha256": "693cb3f490a106d1561925e684fbf8924af1e3647f759c3a5619768cea5671e2",
+  "payload_files_exact": 23,
+  "repo_files_including_gitattributes": 24,
+  "changed_deployment_files": [
+    "DATA_LICENSE.md",
+    "deployment-manifest.json",
+    "index.html",
+    "README.md"
+  ],
+  "prepublication_history_commits_checked": 2,
+  "configured_secrets_or_variables": [],
+  "data_license": {
+    "file": "apps/static/DATA_LICENSE.md",
+    "sha256": "ec1f8ca18a4739e3ebc2bd86185b21290ddce0ebf2d74f752b8e44ad6d2a35b6",
+    "source_repo": "KETI-NLP/KoEVD",
+    "source_revision": "f5920837769bea77e072c8e033e5ad9cbff4d45d",
+    "scope": "Dataset research-use terms, separate from software Apache-2.0; exact pinned original"
+  },
+  "direct_browser": {
+    "records": 35340,
+    "resamples": 100,
+    "seed": 1729,
+    "seconds": 193.4116659,
+    "all_five_files_byte_exact": true,
+    "requests": 19,
+    "service_asset_redirects": 4,
+    "independent_asset_refetches": 1,
+    "POST_requests": 0,
+    "unexpected_requests": 0,
+    "errors": 0,
+    "evidence_path": "generated/public-static-full-browser-20261012-v63/evidence.json",
+    "evidence_sha256": "6420fba1e54143ce2035623cb4fed4fed54ff1c0e6129036557f20b81420f982"
+  },
+  "Hub_parent_browser": {
+    "records": [
+      48,
+      48
+    ],
+    "resamples": 100,
+    "seed": 1729,
+    "seconds": 21.264649999999996,
+    "all_five_files_byte_exact": true,
+    "mobile_layout": {
+      "innerWidth": 356,
+      "mobileMedia": true,
+      "shellDisplay": "block"
+    },
+    "page_errors": [],
+    "blocked_ancillary_GET_requests": [
+      {
+        "method": "GET",
+        "origin": "https://de5282c3ca0c.edge.sdk.awswaf.com",
+        "reason": "method_or_origin"
+      },
+      {
+        "method": "GET",
+        "origin": "https://js.stripe.com",
+        "reason": "method_or_origin"
+      }
+    ],
+    "HTTP_writes_allowed": 0,
+    "evidence_path": "generated/public-static-parent-browser-20261012-v63-stable/evidence.json",
+    "evidence_sha256": "5e870793f49fff54ee3dd34ef46c2988059f9d6050c3f8bdce7bb6c9e2e2dde7",
+    "full35340_parent_run_claimed": false
+  },
+  "visual_QA": [
+    "direct initial/privacy/license notice",
+    "direct desktop comparison and mobile",
+    "Hub parent initial/comparison",
+    "Hub parent stable mobile responsive navigation"
+  ],
+  "mobile_QA_discovery": "The first screenshot caught nested iframe width1334 before resize. Validator now waits for width356/mobile media/shell block. App engine/layout did not need a change; first evidence retained as data-flow scope.",
+  "scoped_CPU": {
+    "bridge-tests.log": {
+      "tests": 5,
+      "sha256": "6434a5baeab79542077bcca1ecd949177d0e958a94e02bba51e887e93f42ca52",
+      "path": "generated/public-static-validation-20261012-v63/bridge-tests.log"
+    },
+    "hosting-tests.log": {
+      "tests": 6,
+      "sha256": "33cdf3a4295f2df087827dbae57ab33494608c8ae3705eea46eb769f0e615606",
+      "path": "generated/public-static-validation-20261012-v63/hosting-tests.log"
+    }
+  },
+  "scoped_tests_total": 11,
+  "new_test_methods": 3,
+  "node_syntax_checks_passed": [
+    "validate_hosted_static_space_ui.cjs",
+    "validate_public_static_parent_ui.cjs"
+  ],
+  "installed_core_source_assets_unchanged_and_exact": 50,
+  "Static_engine_sources_unchanged_and_exact": 19,
+  "prior_installed_full310_scope_preserved": true,
+  "new_full_suite_claimed": false,
+  "new_GPU_inference": false,
+  "actual_target_output_baselines_published": [],
+  "user_result_bytes_uploaded": false,
+  "hardware_or_subscription_changed": false,
+  "shared_registration_verified": false,
+  "official_ranking_enabled": false,
+  "GitHub_pushed": false,
+  "goal_complete": false,
+  "remaining": [
+    "approved actual reference catalog",
+    "Static shared submission/review/versioned publication/withdrawal integration",
+    "metric policy and independent verification at the declared level",
+    "public release of the current evaluation CLI separately authorized"
+  ],
+  "source_receipts": [
+    "generated/static-publication-audit-20261012/receipt.json",
+    "generated/static-publication-transition-20261012-v63/receipt.json"
+  ]
+}

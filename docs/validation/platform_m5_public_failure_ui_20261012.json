@@ -1,0 +1,162 @@
+{
+  "plan_version": "0.50",
+  "status": "current_installed_local_public_failure_ui_passed",
+  "previous_goal_turn": "progress: actual HF read-only negative diagnostic and exact default return",
+  "changed_runtime_files": [
+    "src/koevd_eval/assets/registration.js",
+    "src/koevd_eval/assets/space.css"
+  ],
+  "other_core48_exact_to_deployed_default": true,
+  "evaluation_protocol_metrics_and_actual_GPU_results_changed": false,
+  "behavior": [
+    "Clear stale candidate cards, selected details and board before a public-list refresh",
+    "Clear selected candidate metrics before a detail fetch; render explicit unavailability on failure",
+    "Disable the empty metric selector during loading or failure; no false zero/empty success",
+    "Keep private original/history access available; retry restores candidates and diagnostic no-rank",
+    "Escape error text and wrap 160-character unbroken messages at 390px"
+  ],
+  "installed_local_UI": {
+    "checks": 10,
+    "screenshots": 8,
+    "seconds": 24.078,
+    "source_files": 50,
+    "locked_versions": 25,
+    "noneditable": true,
+    "pip_check": true,
+    "SYNTHETIC_OAuth_results_permissions": true,
+    "browser_response_doubles": [
+      503,
+      503,
+      413,
+      503
+    ],
+    "unexpected_external_requests": 0,
+    "unexpected_browser_errors": 0,
+    "owned_server_terminal": true,
+    "evidence": [
+      {
+        "path": "generated/public-refresh-runtime-20261012-v75/installed-ui-receipt.json",
+        "bytes": 8736,
+        "sha256": "f0522eb95f42f1c7d3fd03deb276f3da831e022ad878459c5cd1ea8dd2753ded"
+      },
+      {
+        "path": "generated/public-refresh-runtime-20261012-v75/ui-proof/evidence.json",
+        "bytes": 2326,
+        "sha256": "57190a721fac1607a5da60d8900eeaf2a269791e9099e8f67ce3a39b01f52150"
+      }
+    ]
+  },
+  "related_CPU_groups": [
+    {
+      "tests": 27,
+      "seconds": 8.081,
+      "exit_code": 0,
+      "log": "generated/public-refresh-runtime-20261012-v74/test_submission_web.py.log",
+      "sha256": "981803458103cab29fba03dcdf0466bc8d267c79eb37debdba2943a27d0e4a5a",
+      "scope": "v74 HTTP/service CPU checks; Python modules identical to final v75"
+    },
+    {
+      "tests": 11,
+      "seconds": 6.03,
+      "exit_code": 0,
+      "log": "generated/public-refresh-runtime-20261012-v74/test_spaces.py.log",
+      "sha256": "73c2ea5818f7eb9e63901113cb9871702349a1b25c45a92762b6f0c43a34e2ce",
+      "scope": "v74 HTTP/service CPU checks; Python modules identical to final v75"
+    }
+  ],
+  "final_full_suite_rerun_claimed": false,
+  "visual_QA": [
+    {
+      "path": "generated/public-refresh-runtime-20261012-v75/ui-proof/identity-and-private-submission.png",
+      "bytes": 72747,
+      "sha256": "452be581740189b449d6cb54b1f314c52121334fd21aac4eae9300f60dd441eb"
+    },
+    {
+      "path": "generated/public-refresh-runtime-20261012-v75/ui-proof/summary-metric-limits.png",
+      "bytes": 87970,
+      "sha256": "f3e69a2d90ed58c74eaedc8f7b46ae5ea4ce48573648e5272eb3a0a3d474ff7c"
+    },
+    {
+      "path": "generated/public-refresh-runtime-20261012-v75/ui-proof/published-metric-comparison.png",
+      "bytes": 15250,
+      "sha256": "fce2b4691b1155540f5785ecf3b30f669b426649e54e357ac3aa11ddc711aca8"
+    },
+    {
+      "path": "generated/public-refresh-runtime-20261012-v75/ui-proof/two-published-model-metrics.png",
+      "bytes": 26929,
+      "sha256": "06875da51c4da9080c0226045867094461a5581dff7d3041d6ae58e048160335"
+    },
+    {
+      "path": "generated/public-refresh-runtime-20261012-v75/ui-proof/public-recovery-unavailable.png",
+      "bytes": 76313,
+      "sha256": "064b04da6caed14c53698bf1e32367bcccf1e517d763c0b605bd0dd756010217"
+    },
+    {
+      "path": "generated/public-refresh-runtime-20261012-v75/ui-proof/mobile-public-recovery-unavailable.png",
+      "bytes": 29751,
+      "sha256": "1dbb4fa6e6a794cd22a63dd84cb10b072468ec604262d22b966687d0bee637ee"
+    },
+    {
+      "path": "generated/public-refresh-runtime-20261012-v75/ui-proof/mobile-sign-in-and-retention.png",
+      "bytes": 40706,
+      "sha256": "c3cd204a9cab233294ab54d3a35eee219dd8f1032133bf38766df09443e7ca4c"
+    },
+    {
+      "path": "generated/public-refresh-runtime-20261012-v75/ui-proof/mobile-published-metric-comparison.png",
+      "bytes": 33980,
+      "sha256": "e44d6ad0117844ca7ab4b0e8c973da390c27914667a804c0d82ac420ec8d7db6"
+    }
+  ],
+  "candidates": [
+    {
+      "path": "generated/private-space-public-failure-candidate-20261012-v75",
+      "payload_files": 65,
+      "manifest": {
+        "path": "generated/private-space-public-failure-candidate-20261012-v75/deployment-manifest.json",
+        "bytes": 11125,
+        "sha256": "afe14f69312828ab94c7f28bd8cd18d04b33a8883b87335c2d1131d817725d99"
+      },
+      "current_core50_exact": true,
+      "uploaded_or_activated": false
+    },
+    {
+      "path": "generated/managed-space-public-failure-candidate-20261012-v75",
+      "payload_files": 68,
+      "manifest": {
+        "path": "generated/managed-space-public-failure-candidate-20261012-v75/deployment-manifest.json",
+        "bytes": 11706,
+        "sha256": "8b63b4b53cb26d064bad14af23cdb196077ba4049380cfdc80e58c98fe6c0b59"
+      },
+      "current_core50_exact": true,
+      "uploaded_or_activated": false
+    }
+  ],
+  "new_HF_deployment": false,
+  "new_cloud_result_or_snapshot_upload": false,
+  "last_confirmed_private_Space_revision": "f160663af378e777616be89374a20b6c38b57938",
+  "current_source_UI_differs_from_that_deployment": true,
+  "continuous_backup_active": false,
+  "actual_HF_positive_managed_lifecycle": false,
+  "previous_snapshot_count_bound_passed": false,
+  "remaining": [
+    "Actual positive managed bootstrap/restart lifecycle",
+    "Current Docker actual full-size acceptance",
+    "Operator policy/recovery acceptance",
+    "Approved actual public raw references"
+  ],
+  "goal_status": "active",
+  "actual_server_absence": {
+    "observed_actual_Uvicorn_PIDs": [
+      70936,
+      41684
+    ],
+    "both_absent": true,
+    "termination_needed_after_driver_cleanup": false,
+    "initial_sandbox_CIM_query_denied": true,
+    "reviewed_query_succeeded": true,
+    "evidence": {
+      "path": "generated/public-refresh-runtime-20261012-v75/actual-server-cleanup.json",
+      "sha256": "e172d8c4561cb41dfe688947713c843528cf0f20935c3d280a87a66be2247fbd"
+    }
+  }
+}

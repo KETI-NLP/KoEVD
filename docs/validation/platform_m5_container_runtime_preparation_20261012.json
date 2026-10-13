@@ -1,0 +1,139 @@
+{
+  "plan_version": "0.53",
+  "status": "current_full_native_five_files_passed_Docker_execution_pending",
+  "previous_goal_turn": "progress: finite final capture code and local acceptance",
+  "local_owned_existing_server": {
+    "status": "passed",
+    "scope": "current_installed_local_loopback_full_two_actual_results_existing_server_branch",
+    "seconds": 252.344,
+    "checker_exit_code": 0,
+    "owned_server_terminal": true,
+    "owned_server_exit_code": 1,
+    "container_verified": false,
+    "actual_HF_or_OAuth_verified": false,
+    "new_inference": false,
+    "current_existing_result_records": [
+      17670,
+      17670
+    ],
+    "profiles_checked": 1,
+    "downloads_checked": 5
+  },
+  "related_CPU_guards": {
+    "count": 12,
+    "seconds": 0.111,
+    "errors": 0,
+    "skips": 0
+  },
+  "unchanged_current_installed_core_files": 50,
+  "last_whole_suite": {
+    "count": 352,
+    "plan_version": "0.52",
+    "scope": "before new script/guard additions"
+  },
+  "actual_local_full_records": [
+    17670,
+    17670
+  ],
+  "combined_comparison_only": true,
+  "individual_reports_new_validation": false,
+  "downloads": {
+    "profile": {
+      "bytes": 26268045,
+      "sha256": "1e1e7afe0813fa00fb69e73d67d5a228c80eb05ff21dbcefad9f5d791eb3a609",
+      "http_equals_cli_bytes": true
+    },
+    "html": {
+      "bytes": 199373743,
+      "sha256": "92f1e8b780e0e0bccffe98cbc29152e81e96ddd257410f2e671c59d26b9fb5ad",
+      "http_equals_cli_bytes": true
+    },
+    "cases": {
+      "bytes": 178948156,
+      "sha256": "e87c754152a181a9e9d6bd8a1668b99ad8f7d1c575a4da60fd619891902f23ac",
+      "http_equals_cli_bytes": true
+    },
+    "csv": {
+      "bytes": 1085575,
+      "sha256": "a4e2ef84749b43eff24bfb012349c2519996156b36fc770a0e7687b483bee58b",
+      "http_equals_cli_bytes": true
+    },
+    "markdown": {
+      "bytes": 4038,
+      "sha256": "8f25cb47cad40e70f1c6b10e9a16f79f9eea345d3f5e645c83cc3bcee58bfd33",
+      "http_equals_cli_bytes": true
+    }
+  },
+  "new_container_driver_requires_exact_image_ID_default_CMD_UID1000_offline_and_owned_cleanup": true,
+  "default_context_archive": {
+    "path": "generated/KoEVD_default_container_context_20261012_v79.zip",
+    "sha256": "7e9095ef3a635ec8ceb1c5b7723cd75bf1b6e7a65208eb66f7a3eb4cb194d300",
+    "files": 66,
+    "actual_target_responses_or_credentials": false,
+    "includes_licensed_benchmark_indexes": true
+  },
+  "actual_container_tools_available": 0,
+  "actual_container_or_HF_execution": false,
+  "actual_new_inference_or_HF_transmissions": 0,
+  "new_HF_trial_approval_pending": true,
+  "continuous_backup_active": false,
+  "goal_status": "active",
+  "remaining": [
+    "actual HF two current drafts shutdown preservation and fixed restore",
+    "current Docker local image and HF full-size acceptance",
+    "operator recovery/policy acceptance",
+    "public actual-reference authorization"
+  ],
+  "evidence": [
+    {
+      "path": "generated/container-runtime-preparation-20261012-v79/guard-tests-final.log",
+      "bytes": 2092,
+      "sha256": "4c024b92d4690e5bb874e3112eb0f37fc3f4c4927e3700fb21b1c91bf5d6866e"
+    },
+    {
+      "path": "generated/container-runtime-preparation-20261012-v79/container-tool-inventory.json",
+      "bytes": 152,
+      "sha256": "a855aa8119943dd22335b2c1101106f7e4336250c028144b96c6ed58314e2daa"
+    },
+    {
+      "path": "generated/container-runtime-preparation-20261012-v79/full-local-external-server/driver-receipt.json",
+      "bytes": 461,
+      "sha256": "ea844e30c254c9c7a280f15514e85d94e6342533b4010c596c34a15b5b15cdd0"
+    },
+    {
+      "path": "generated/container-runtime-preparation-20261012-v79/full-local-external-server/http/receipt.json",
+      "bytes": 3124,
+      "sha256": "3b9dc21d8ab06025179ed9e84f28c03c271a0ac2a013c1d4a6264bf86795accd"
+    },
+    {
+      "path": "generated/private-space-finite-capture-candidate-20261012-v78/deployment-manifest.json",
+      "bytes": 11125,
+      "sha256": "fd5259678a78ef2f8209300d13b5d3856f46eaf33d8c42bb6220d0c2e34c3996"
+    },
+    {
+      "path": "scripts/validate_space_native_runtime.py",
+      "bytes": 17918,
+      "sha256": "255590720ddab01c04711585968cef10a2666269cfb614deb8758c3340f603a7"
+    },
+    {
+      "path": "scripts/validate_space_container_runtime.py",
+      "bytes": 12739,
+      "sha256": "29c24a1e035d93b26e992c0050fd2bcd7b66e397953644c457222d5e8b1857e3"
+    },
+    {
+      "path": "tests/test_space_container_runtime.py",
+      "bytes": 4479,
+      "sha256": "933067e9eb469af8fd6dc158c06f8fe1e7b3713a8ccb24c9c4cd604ca5c68998"
+    },
+    {
+      "path": "tests/test_space_native_runtime.py",
+      "bytes": 3990,
+      "sha256": "95d6951f6a6b9745afbd1f152f1cef538c46b9318ddf8fb0b8fa417a08098772"
+    },
+    {
+      "path": "docs/CONTAINER_RUNTIME_ACCEPTANCE.md",
+      "bytes": 7900,
+      "sha256": "dea1e03f1e2f99fc7a535ef7f66efe51f8945fdc38adaa9dc65160b62571fcdc"
+    }
+  ]
+}

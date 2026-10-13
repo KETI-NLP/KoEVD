@@ -1,0 +1,1299 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "koevd-results-v1"
+    },
+    "artifact_kind": {
+      "const": "full_records"
+    },
+    "run": {
+      "$ref": "#/$defs/run"
+    },
+    "protocol_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_index_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "publication": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "const": "local"
+        },
+        "response_scope": {
+          "const": "included"
+        }
+      },
+      "required": [
+        "status",
+        "response_scope"
+      ],
+      "additionalProperties": false
+    },
+    "records": {
+      "type": "array",
+      "maxItems": 100000,
+      "items": {
+        "$ref": "#/$defs/record"
+      }
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_kind",
+    "run",
+    "protocol_sha256",
+    "input_index_sha256",
+    "publication",
+    "records",
+    "content_sha256"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KoEVD portable full results v1",
+  "$comment": "Shape validation only. Executable validation must separately verify trusted expected IDs, hashes, measurement bindings, consistency and byte limits.",
+  "$defs": {
+    "run": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "code_revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 256,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "migration": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 256,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "model": {
+          "$ref": "#/$defs/model"
+        },
+        "generation": {
+          "$ref": "#/$defs/generation"
+        },
+        "measurements": {
+          "type": "object",
+          "properties": {
+            "3": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/evidence"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "4": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/evidence"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "3",
+            "4"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "created_at",
+        "code_revision",
+        "migration",
+        "model",
+        "generation",
+        "measurements"
+      ],
+      "additionalProperties": false
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 1024,
+          "minLength": 1
+        },
+        "revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "chat_template": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dtype": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "quantization": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "thinking": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verification": {
+          "const": "user_reported"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "chat_template",
+        "dtype",
+        "quantization",
+        "thinking",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "generation": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_tokens": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "seed": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "engine_version": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "extra_body": {
+          "type": "object",
+          "properties": {
+            "seed": {
+              "type": "integer"
+            },
+            "top_k": {
+              "type": "integer"
+            },
+            "top_p": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "min_p": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "repetition_penalty": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "frequency_penalty": {
+              "type": "number"
+            },
+            "presence_penalty": {
+              "type": "number"
+            },
+            "stop": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "chat_template_kwargs": {
+              "type": "object",
+              "properties": {
+                "enable_thinking": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "enable_thinking"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "temperature",
+        "max_tokens",
+        "seed",
+        "engine_version"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "batch_size": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "adapter": {
+          "anyOf": [
+            {
+              "type": "object",
+              "minProperties": 1,
+              "propertyNames": {
+                "pattern": "^[^/\\\\:]+$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "base": {
+          "anyOf": [
+            {
+              "type": "object",
+              "minProperties": 1,
+              "propertyNames": {
+                "pattern": "^[^/\\\\:]+$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "precision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "input_truncation": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verification": {
+          "const": "user_reported"
+        },
+        "accuracy_status": {
+          "const": "measurement_limited"
+        },
+        "conditions": {
+          "$ref": "#/$defs/measurement_conditions"
+        }
+      },
+      "required": [
+        "batch_size",
+        "adapter",
+        "base",
+        "revision",
+        "precision",
+        "input_truncation",
+        "verification",
+        "accuracy_status"
+      ],
+      "additionalProperties": false
+    },
+    "record": {
+      "type": "object",
+      "properties": {
+        "task": {
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "sample_id": {
+          "type": "string",
+          "maxLength": 4096,
+          "minLength": 1
+        },
+        "source_id": {
+          "type": "string",
+          "maxLength": 4096,
+          "minLength": 1
+        },
+        "variant": {
+          "type": "string",
+          "maxLength": 4096,
+          "minLength": 1
+        },
+        "input_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "response": {
+          "$ref": "#/$defs/response"
+        },
+        "measurement": {
+          "$ref": "#/$defs/measurement"
+        }
+      },
+      "required": [
+        "task",
+        "sample_id",
+        "source_id",
+        "variant",
+        "input_sha256",
+        "response",
+        "measurement"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "task": {
+                "const": 3
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "measurement": {
+                "properties": {
+                  "value": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/safety"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "task": {
+                "const": 4
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "measurement": {
+                "properties": {
+                  "value": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/strategy"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "task": {
+                "enum": [
+                  1,
+                  2,
+                  5
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "measurement": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "response_sha256": {
+                    "type": "null"
+                  },
+                  "input_sha256": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "maxLength": 1048576
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "error"
+          ]
+        },
+        "finish_reason": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "usage": {
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "request_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "response_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "server_model": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4096
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reasoning_content": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "refusal": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "execution": {
+          "$ref": "#/$defs/execution"
+        }
+      },
+      "required": [
+        "text",
+        "sha256",
+        "status",
+        "finish_reason",
+        "usage",
+        "request_id"
+      ],
+      "additionalProperties": false
+    },
+    "measurement": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/safety"
+            },
+            {
+              "$ref": "#/$defs/strategy"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "reported",
+            "unmeasured",
+            "not_applicable"
+          ]
+        },
+        "response_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "input_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "status",
+        "response_sha256",
+        "input_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "safety": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "enum": [
+            "safe",
+            "unsafe",
+            null
+          ]
+        },
+        "is_safe": {
+          "type": "boolean"
+        },
+        "raw_output": {
+          "type": "string",
+          "maxLength": 1048576
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "strategy": {
+      "type": "object",
+      "properties": {
+        "strategies": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "a_boundary setting",
+              "a_detouring q",
+              "a_evaluation",
+              "a_providing definitions",
+              "a_reiteration",
+              "b_agreeing speech",
+              "b_counter speech",
+              "b_neutral speech",
+              "c_educating",
+              "c_info providing",
+              "c_reasoning",
+              "d_redirecting",
+              "d_social expressions",
+              "d_summation",
+              "e_humour",
+              "unsafe"
+            ]
+          },
+          "maxItems": 16,
+          "uniqueItems": true
+        },
+        "is_unsafe": {
+          "type": "boolean"
+        },
+        "raw_output": {
+          "type": "string",
+          "maxLength": 1048576
+        }
+      },
+      "required": [
+        "strategies"
+      ],
+      "additionalProperties": false
+    },
+    "attempt": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "ordinal": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "started_at": {
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "error",
+            "interrupted_unknown"
+          ]
+        },
+        "finished_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "latency_seconds": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "error_kind": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "http_status": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 599
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "client_controls": {
+          "type": "object",
+          "properties": {
+            "workers": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 64
+            },
+            "timeout_seconds": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "retries": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "retry_delay_seconds": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "workers",
+            "timeout_seconds",
+            "retries",
+            "retry_delay_seconds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "ordinal",
+        "started_at",
+        "status",
+        "finished_at",
+        "latency_seconds",
+        "error_kind",
+        "http_status"
+      ],
+      "additionalProperties": false
+    },
+    "execution": {
+      "type": "object",
+      "properties": {
+        "run_id": {
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        },
+        "selection_policy": {
+          "const": "first_accepted_api_response"
+        },
+        "selected_attempt_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "attempts": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "$ref": "#/$defs/attempt"
+          }
+        },
+        "parameter_status": {
+          "const": "requested_unverified"
+        }
+      },
+      "required": [
+        "run_id",
+        "selection_policy",
+        "selected_attempt_id",
+        "attempts",
+        "parameter_status"
+      ],
+      "additionalProperties": false
+    },
+    "measurement_conditions": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": "koevd-measurement-conditions-v1"
+        },
+        "requested_dtype": {
+          "enum": [
+            "auto",
+            "float16",
+            "bfloat16",
+            "float32",
+            null
+          ]
+        },
+        "input_order": {
+          "enum": [
+            "original",
+            "reverse",
+            null
+          ]
+        },
+        "inference_mode": {
+          "enum": [
+            "batch",
+            "single",
+            null
+          ]
+        },
+        "requested_max_new_tokens": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observation": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "trace_version": {
+                  "const": "koevd-measurement-trace-v1"
+                },
+                "trace_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "runtime": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "parameter_dtype_elements": {
+                          "type": "object",
+                          "minProperties": 1,
+                          "maxProperties": 32,
+                          "propertyNames": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                          },
+                          "additionalProperties": {
+                            "type": "integer",
+                            "minimum": 1
+                          }
+                        },
+                        "model_config_max_position_embeddings": {
+                          "anyOf": [
+                            {
+                              "type": "integer",
+                              "minimum": 1
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "tokenizer_class": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 256
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "tokenizer_model_max_length": {
+                          "anyOf": [
+                            {
+                              "type": "integer",
+                              "minimum": 1
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "tokenizer_padding_side": {
+                          "enum": [
+                            "left",
+                            "right",
+                            null
+                          ]
+                        },
+                        "package_versions": {
+                          "type": "object",
+                          "properties": {
+                            "torch": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 256
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "transformers": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 256
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "peft": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 256
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "accelerate": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 256
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "torch",
+                            "transformers",
+                            "peft",
+                            "accelerate"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "parameter_dtype_elements",
+                        "model_config_max_position_embeddings",
+                        "tokenizer_class",
+                        "tokenizer_model_max_length",
+                        "tokenizer_padding_side",
+                        "package_versions"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "generate_options": {
+                  "type": "array",
+                  "maxItems": 16,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "max_new_tokens": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "do_sample": {
+                        "type": "boolean"
+                      },
+                      "pad_token_id": {
+                        "anyOf": [
+                          {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "eos_token_id": {
+                        "anyOf": [
+                          {
+                            "anyOf": [
+                              {
+                                "type": "integer",
+                                "minimum": 0
+                              },
+                              {
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 64,
+                                "items": {
+                                  "type": "integer",
+                                  "minimum": 0
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "max_new_tokens",
+                      "do_sample",
+                      "pad_token_id",
+                      "eos_token_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "counts": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100000
+                    },
+                    "observed": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100000
+                    },
+                    "not_applicable": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100000
+                    },
+                    "token_parity_mismatch": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100000
+                    },
+                    "context_exceeded": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100000
+                    },
+                    "context_unknown": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100000
+                    },
+                    "budget_without_eos": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100000
+                    },
+                    "budget_unknown": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100000
+                    }
+                  },
+                  "required": [
+                    "total",
+                    "observed",
+                    "not_applicable",
+                    "token_parity_mismatch",
+                    "context_exceeded",
+                    "context_unknown",
+                    "budget_without_eos",
+                    "budget_unknown"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "trace_version",
+                "trace_sha256",
+                "runtime",
+                "generate_options",
+                "counts"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "requested_dtype",
+        "input_order",
+        "inference_mode",
+        "requested_max_new_tokens",
+        "observation"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

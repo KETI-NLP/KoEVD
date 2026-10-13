@@ -1,0 +1,78 @@
+{
+  "checkpoint": "platform_m4_conditions_cpu_20261008",
+  "scope": "CPU glue with synthetic responses and fake classifier tensors; no weights or human gold",
+  "tests": {
+    "count": 131,
+    "passed": true,
+    "command": "python -X utf8 -m unittest discover -s tests -v",
+    "exit_code": 0,
+    "seconds": 44.47491360013373,
+    "log_sha256": "94ad3f4390afa512c479dad8f9cb3a59871df72d1ad6fe679f23bda3edcd945d",
+    "installed_package": true,
+    "gpu_inference_verified": false
+  },
+  "new_condition_tests": 10,
+  "source_files": {
+    "src/koevd_eval/measurement_conditions.py": {
+      "sha256": "0b9b278cb4f4da2d73c170cf03ed0d4104b600f4c0cf04166ffa68cf9d72d536",
+      "installed_matches": true
+    },
+    "src/koevd_eval/measurement_trace.py": {
+      "sha256": "dd9a0ff213459bd6160ab672ed202aa66b4b3ab959b4fc52e4c873d1aa555d9b",
+      "installed_matches": true
+    },
+    "src/koevd_eval/results.py": {
+      "sha256": "3ba906a5b062f74ed106b4033b81ff7c6535ff852889e25ec5567431ffb43b0f",
+      "installed_matches": true
+    },
+    "src/koevd_eval/diagnostics.py": {
+      "sha256": "983c50f5fd5e8a9348106fc3b61669371a32fc393eea69b1365114b7baf3d0a0",
+      "installed_matches": true
+    }
+  },
+  "wheel": {
+    "path": "generated/conditions-wheel-20261008/koevd_eval-0.2.0-py3-none-any.whl",
+    "bytes": 147610,
+    "sha256": "47cca8e3d8009dc6d1aafe2e8a145d1f165e6c2d9a121f3929ea4c51723ef0ed"
+  },
+  "cli": {
+    "evidence": "generated/conditions-cli-20261008/commands.json",
+    "commands": 5,
+    "exit_code": 0,
+    "records_per_run": 12,
+    "runs": 2,
+    "comparison_restrictions_tasks": [
+      3,
+      4
+    ]
+  },
+  "ui": {
+    "evidence": "generated/conditions-ui-20261008/evidence.json",
+    "checks": 4,
+    "console_errors": 0,
+    "external_requests": 0,
+    "mobile_width": 390,
+    "visually_inspected": [
+      "comparison-desktop.png",
+      "method-mobile.png"
+    ]
+  },
+  "compatibility": {
+    "old_evidence_accepted": true,
+    "old_strict_readers_may_reject_new_extension": true,
+    "unknown_defaults_inferred": false,
+    "scores_denominators_labels_preserved": true
+  },
+  "limitations": [
+    "Compact uploaded observations remain self-reported; full sidecars require a separate audit.",
+    "Parameter storage dtype and EOS budget heuristics do not authenticate computation or accuracy.",
+    "Actual two-target GPU evidence, return acceptance and human adjudication remain pending.",
+    "M5 actual baseline/container/deployment and M6 submissions/persistence/leaderboard remain pending."
+  ],
+  "actual_gpu_inference": false,
+  "human_adjudication": false,
+  "m4_complete": false,
+  "whole_goal_complete": false,
+  "public_push": false,
+  "official_rank_eligible": false
+}

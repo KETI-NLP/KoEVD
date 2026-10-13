@@ -1,0 +1,345 @@
+{
+  "milestone": "M3_offline_report_complete",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "working_tree": "local uncommitted development; not pushed",
+  "test_scope": "non-editable installed CPU package; no PYTHONPATH; Node parity executed",
+  "tests_passed": 78,
+  "test_seconds": 16.64,
+  "wheel_sha256": "9d32979dc68b3979b3d17c32cf4d7e90e379c952a4d4168df25ec115df0d8b96",
+  "wheel_bytes": 114778,
+  "wheel_scope": "transient development install; public package version/tag unchanged",
+  "renderer": "koevd-offline-html-v1",
+  "scoring_changed": false,
+  "python_javascript_filter_parity": true,
+  "offline_document_only_browser_gate": true,
+  "demo_ui": {
+    "status": "passed",
+    "report": "generated/offline-report-installed-final-20261008/report-v2.html",
+    "renderer": "koevd-offline-html-v1",
+    "synthetic_only": true,
+    "gpu_inference": false,
+    "browser": "154.0.8037.98",
+    "checkpoints": [
+      {
+        "tab": "overview",
+        "heading": "Understand behavior at each decision point",
+        "charts": 0
+      },
+      {
+        "tab": "task1",
+        "heading": "Task 1 · Input-risk judgment",
+        "charts": 4
+      },
+      {
+        "tab": "task2",
+        "heading": "Task 2 · Candidate-response choice",
+        "charts": 4
+      },
+      {
+        "tab": "task3",
+        "heading": "Task 3 · Response safety proxy",
+        "charts": 3
+      },
+      {
+        "tab": "task4",
+        "heading": "Task 4 · Response strategies",
+        "charts": 4
+      },
+      {
+        "tab": "task5",
+        "heading": "Task 5 · Mock-tool choice",
+        "charts": 6
+      },
+      {
+        "tab": "transitions",
+        "heading": "From response to tool selection",
+        "charts": 1
+      },
+      {
+        "tab": "metadata",
+        "heading": "Metadata-conditioned behavior",
+        "charts": 3
+      },
+      {
+        "tab": "quality",
+        "heading": "Output and measurement quality",
+        "charts": 5
+      },
+      {
+        "tab": "comparison",
+        "heading": "Compare identical inputs",
+        "charts": 1
+      },
+      {
+        "tab": "cases",
+        "heading": "Inspect the full response set",
+        "charts": 0
+      },
+      {
+        "tab": "method",
+        "heading": "Method, provenance and interpretation",
+        "charts": 0
+      },
+      {
+        "check": "keyboard chart drilldown",
+        "records": 10
+      },
+      {
+        "check": "literal search / source / side-by-side drilldown",
+        "source": "synthetic-040",
+        "records": 10
+      },
+      {
+        "check": "paired event filter and Task 4 no rank",
+        "left_event_only": 3
+      },
+      {
+        "check": "task/metadata/scope selectors"
+      },
+      {
+        "check": "safe response to unsafe tool drilldown",
+        "records": 6
+      },
+      {
+        "check": "whole chart row pointer drilldown, including unpainted gaps"
+      },
+      {
+        "check": "offline SVG / analysis download preserves data"
+      },
+      {
+        "check": "mobile layout and keyboard tab navigation"
+      },
+      {
+        "check": "browser adversarial text inert / entirely unmeasured Task 3 N/A"
+      }
+    ],
+    "console_errors": [],
+    "blocked_external_requests": [],
+    "screenshots": [
+      "desktop-overview.png",
+      "desktop-task1.png",
+      "desktop-task2.png",
+      "desktop-task3.png",
+      "desktop-task4.png",
+      "desktop-task5.png",
+      "desktop-transitions.png",
+      "desktop-metadata.png",
+      "desktop-quality.png",
+      "desktop-comparison.png",
+      "desktop-cases.png",
+      "desktop-method.png",
+      "cases-korean-expanded.png",
+      "comparison-one-input.png",
+      "strategy-cooccurrence.png",
+      "strategy-metadata.png",
+      "mobile-overview.png",
+      "mobile-task4.png",
+      "mobile-comparison.png",
+      "mobile-cases.png",
+      "security-task3-unmeasured.png",
+      "security-literal-text.png"
+    ],
+    "charts_per_run": [
+      157,
+      157
+    ]
+  },
+  "full_scale_engine": {
+    "fixture_only": true,
+    "gpu_inference": false,
+    "measurement_accuracy_evidence": false,
+    "trusted_index_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+    "sources": 2659,
+    "records": 17670,
+    "task_counts": {
+      "1": 2000,
+      "2": 8000,
+      "3": 2659,
+      "4": 2659,
+      "5": 2352
+    },
+    "task3_partitions": {
+      "all:all": {
+        "rows": 2659,
+        "unique_sources": 2659,
+        "valid": 2587
+      },
+      "subset:core": {
+        "rows": 2000,
+        "unique_sources": 2000,
+        "valid": 1947
+      },
+      "subset:task5_overlap": {
+        "rows": 784,
+        "unique_sources": 784,
+        "valid": 762
+      }
+    },
+    "charts": 157,
+    "bootstrap_resamples": 100,
+    "assembly_seconds": 7.999028800055385,
+    "analysis_seconds": 42.343296700157225,
+    "writing_seconds": 4.909182999981567,
+    "official_rank_eligible": false,
+    "html_visual_qa": false
+  },
+  "full_scale_ui": {
+    "status": "passed",
+    "report": "generated/offline-report-full-scale-final-20261008/report-v2.html",
+    "html_bytes": 73828032,
+    "renderer": "koevd-offline-html-v1",
+    "records": 17670,
+    "sources": 2659,
+    "synthetic_only": true,
+    "gpu_inference": false,
+    "measurement_accuracy_evidence": false,
+    "official_rank_eligible": false,
+    "browser": "154.0.8037.98",
+    "load_seconds": 0.9738578999999999,
+    "checkpoints": [
+      {
+        "tab": "overview",
+        "heading": "Understand behavior at each decision point",
+        "charts": 0,
+        "interaction_seconds": 0.045992400000000086
+      },
+      {
+        "tab": "task1",
+        "heading": "Task 1 · Input-risk judgment",
+        "charts": 4,
+        "interaction_seconds": 0.0913158999999996
+      },
+      {
+        "tab": "task2",
+        "heading": "Task 2 · Candidate-response choice",
+        "charts": 4,
+        "interaction_seconds": 0.0619983000000002
+      },
+      {
+        "tab": "task3",
+        "heading": "Task 3 · Response safety proxy",
+        "charts": 3,
+        "interaction_seconds": 0.04124510000000009
+      },
+      {
+        "tab": "task4",
+        "heading": "Task 4 · Response strategies",
+        "charts": 4,
+        "interaction_seconds": 0.09944690000000037
+      },
+      {
+        "tab": "task5",
+        "heading": "Task 5 · Mock-tool choice",
+        "charts": 6,
+        "interaction_seconds": 0.08133120000000008
+      },
+      {
+        "tab": "transitions",
+        "heading": "From response to tool selection",
+        "charts": 1,
+        "interaction_seconds": 0.054589600000000245
+      },
+      {
+        "tab": "metadata",
+        "heading": "Metadata-conditioned behavior",
+        "charts": 3,
+        "interaction_seconds": 0.07025179999999955
+      },
+      {
+        "tab": "quality",
+        "heading": "Output and measurement quality",
+        "charts": 5,
+        "interaction_seconds": 0.06892320000000018
+      },
+      {
+        "tab": "comparison",
+        "heading": "Compare identical inputs",
+        "charts": 0,
+        "interaction_seconds": 0.05341530000000057
+      },
+      {
+        "tab": "cases",
+        "heading": "Inspect the full response set",
+        "charts": 0,
+        "interaction_seconds": 0.13588709999999993
+      },
+      {
+        "tab": "method",
+        "heading": "Method, provenance and interpretation",
+        "charts": 0,
+        "interaction_seconds": 0.06456580000000031
+      },
+      {
+        "check": "full cases / core / overlap / framing / pagination / literal-search / empty / metadata drilldown",
+        "literal_search_records": 7,
+        "primary_filter_seconds": 0.04049049999999988,
+        "literal_search_seconds": 0.5827510000000002
+      }
+    ],
+    "console_errors": [],
+    "blocked_external_requests": [],
+    "screenshots": [
+      "scale-overview.png",
+      "scale-task3.png",
+      "scale-tool-cases-folded.png",
+      "scale-risk-category.png",
+      "scale-mobile-strategies.png"
+    ]
+  },
+  "full_scale_note": "Artificial responses on pinned real prepared inputs; final HTML rerender preserves profile JSON hash. Engine scale evidence precedes final pointer-area-only renderer fix; final UI includes fix.",
+  "visual_qa": {
+    "reviewed": true,
+    "scope": "Headless Chrome screenshots of all primary task/chart/metadata/quality/case/comparison/method views across iterations; final selected desktop/mobile/security/full-input views reviewed. CUA app browser unavailable due sandbox setup/kernel failure; no user browser session inspected."
+  },
+  "source_sha256": {
+    "src/koevd_eval/diagnostics.py": "5e90b30321d19d59fd63d2604bca26b373df85db3ddbca714acb6fb24995540f",
+    "src/koevd_eval/reports.py": "c8826063fc75d7c2486f7dd13d3b320dd151332b5e998ddb0276cf3c012de6f9",
+    "src/koevd_eval/assets/report.css": "5720469e58dc18affd68855b26bcd5110ce4849e5f673763bd7c362956b012c9",
+    "src/koevd_eval/assets/report.js": "4f2e92fdf2c98be35228f5087b3fd578f03b25e58f9f53e3152ce57777eaa300",
+    "tests/test_reports.py": "8d96ade25073a5e75af994444fe7d7b597ced9764df0675d551e5acd64244424",
+    "examples/make_demo_diagnostics.py": "119a2a2cfbc1f999dc7c52b1a9a185ecbd881ad070411184197a06ffdaeb5f0d",
+    "scripts/validate_report_ui.cjs": "d0e6fde0a81707e97c0f947aa1914116aec5c167089079c49170a6bbc28a143a",
+    "scripts/validate_report_scale_ui.cjs": "599f3223aa4904042fcd3a32e361e8cf07270a09e451b2dd4a16807970e5f53e",
+    "pyproject.toml": "cf57cb6182aa321149554b2bc5ebf9ea5f45ff7dcbcb2f8f2778322b508b4451"
+  },
+  "demo_artifact_sha256": {
+    "cases-v2.jsonl": "fd60c9100caa4eb962bbbb7c677d7a09ebdba9f9490c0471d5a77128b0c9827c",
+    "metrics-v2.csv": "b6ae143ebe6aa3885f460d90f30daa30d22491a5be501f080ae926ba05ce27d0",
+    "profile-v2.json": "5c478fd8a884ca862a30c4922162f5c3b70f5054071d91ace526eaadc649b744",
+    "report-v2.html": "4ef3b9d6a0f226690ccc8cce29ecb554fd69256270c018516efce28528411e2b",
+    "report-v2.md": "e9eda98b38e120e0468810749d22eae220bd5b3ec9dbd3716656d2cf6a3c42eb"
+  },
+  "security_artifact_sha256": {
+    "cases-v2.jsonl": "7ff9fa42ce396ac441fe9cd04ef4344308dd712f6fc61afdc1201416eb8cb2b5",
+    "metrics-v2.csv": "bf3243f8a64dad01c36ba1f3db26a572b2ba1fa6bb9cea90550968308113083e",
+    "profile-v2.json": "3e7f9a393fe4efa6575e564c06441ff8cfdbeb13e0454cf3a5592366f40be30b",
+    "report-v2.html": "ef40e6f8b735abea9da53fc5d8e6cd11abf582ee9555d3502b8da83d514dbb4e",
+    "report-v2.md": "eff71b92536c42badaea6e260f379e599273552e66b4b93d250a49597055ef03"
+  },
+  "full_scale_artifact_sha256": {
+    "cases-v2.jsonl": "09cfeed5cce7bfb01f391061be5b4be59a70e619a71215094c4f602a3f104a84",
+    "metrics-v2.csv": "9c44494a904f49635c695c51daa8a710a736a15559b00433516bb4b044962ab1",
+    "profile-v2.json": "acd32f437c8bbdc0f4c064108623697e46f98f1f73e9576f633b548704191b91",
+    "report-v2.html": "4903da99b1bfbc60536d7650ef68f2113283d8d145c5b8559995281eefbcc87b",
+    "report-v2.md": "e3ac1d7ca6b51b0a30da29aeb17151bbc7136984e6cfd86579c22d9368720015",
+    "scale-evidence.json": "f392a5502dfb511012e9feb0468af35c24f4f6bcc5de6d68df48e8213dfa90d6",
+    "SYNTHETIC_ONLY.txt": "352f542470c24ed99371cd2909e979e850ce537f28fb4344d5fddf36f887f24a"
+  },
+  "ui_evidence_sha256": "026719242720ec352df639981832323e6a406bd04e90fb7219f1e7f5a56efc55",
+  "scale_ui_evidence_sha256": "453e92fc27fb24a4b3e736954a7c8ac7f8bbe6f4e11a2a0c386bfdd5e0766c12",
+  "evidence_directories": [
+    "generated/offline-report-ui-candidate-20261008",
+    "generated/offline-report-scale-ui-final-20261008"
+  ],
+  "m3_complete": true,
+  "gpu_inference": false,
+  "measurement_accuracy_evidence": false,
+  "published": false,
+  "whole_goal_complete": false,
+  "remaining": [
+    "M4 two actual target-model GPU integration and measurement audit",
+    "M5 Spaces upload/session isolation/trusted server comparison",
+    "M6 immutable persistence/submission/moderation/withdrawal/metric-specific admission",
+    "release/deployment candidate"
+  ]
+}

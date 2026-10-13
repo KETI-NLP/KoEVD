@@ -1,0 +1,225 @@
+{
+  "scope": "two_actual_target_prefix4_gpu_pipeline_and_local_app_numeric_acceptance",
+  "observed_utc": "2026-10-08T08:02:13.373265+00:00",
+  "status": "passed_with_explicit_scope_limits",
+  "node": "GPU_NODE",
+  "node_root": "[private-node-path]",
+  "source_checkpoint": {
+    "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+    "source_files": 131,
+    "zip_sha256": "0cbccf73f3a363dde8aae50df9cc7a1be5b514d03285fec478551c2cf8c1bdf2",
+    "controller_sha256": "f986f582a32baab914f5c0ef196afacff0cddb76a8b1a23be77b4fc8166e902f"
+  },
+  "gpu_selection": {
+    "requested_uuid": "GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b",
+    "cuda_visible_devices": "2",
+    "cuda_device_order": "PCI_BUS_ID",
+    "observed_cuda_uuid": "795fabdc-a541-1b0f-aa66-b7efab297b4b"
+  },
+  "compiler_override": {
+    "path": "/usr/local/cuda-13.0/bin/ptxas",
+    "sha256": "daba837a68265cae38c832d13399b61dab811891de9b8914defddef143b849f2",
+    "version_output": "ptxas: NVIDIA (R) Ptx optimizing assembler\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Aug_20_01:55:12_PM_PDT_2025\nCuda compilation tools, release 13.0, V13.0.88\nBuild cuda_13.0.r13.0/compiler.36424714_0\n"
+  },
+  "terminal_execution": {
+    "session": 31006,
+    "exit_code": 0,
+    "attempt": "smoke-v3",
+    "stages_passed": 13,
+    "sources_per_prefix": 4
+  },
+  "targets": [
+    {
+      "model": {
+        "id": "Qwen/Qwen3-4B",
+        "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+        "chat_template": "tokenizer_config.json sha256:d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "dtype": "bfloat16",
+        "quantization": "none",
+        "thinking": "off",
+        "verification": "user_reported"
+      },
+      "path": "smoke-v3/Qwen3-4B/results.json",
+      "artifact_sha256": "eda11f61bc320f4760decf369a472572febb7e4bdb3d9f670d05eb7d4c1c1147",
+      "records": 48,
+      "task_rows": {
+        "1": 4,
+        "2": 16,
+        "3": 8,
+        "4": 8,
+        "5": 12
+      },
+      "independent_reexport_exact_match": true
+    },
+    {
+      "model": {
+        "id": "Qwen/Qwen3-8B",
+        "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+        "chat_template": "tokenizer_config.json sha256:d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "dtype": "bfloat16",
+        "quantization": "none",
+        "thinking": "off",
+        "verification": "user_reported"
+      },
+      "path": "smoke-v3/Qwen3-8B/results.json",
+      "artifact_sha256": "9eb9e8353c4e33c3000f80c6aa02a41a85cc8eb045cf3d625e0657289c06c86c",
+      "records": 48,
+      "task_rows": {
+        "1": 4,
+        "2": 16,
+        "3": 8,
+        "4": 8,
+        "5": 12
+      },
+      "independent_reexport_exact_match": true
+    }
+  ],
+  "generation": [
+    {
+      "model": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+      "generation": {
+        "1": {
+          "expected": 4,
+          "actual": 4,
+          "api_failures": 0,
+          "prediction_sha256": "cac6cb46538c7155ab0e019679e0a2bfa58855210697aed47bdfc742289ea3fe"
+        },
+        "2": {
+          "expected": 16,
+          "actual": 16,
+          "api_failures": 0,
+          "prediction_sha256": "548a7b1faa70ca0fc77eb0d5584b253b32b0e8b6bfeba8f8d888b268bb92e3b0"
+        },
+        "3": {
+          "expected": 8,
+          "actual": 8,
+          "api_failures": 0,
+          "prediction_sha256": "fb20789b304a29cad92539bf5b01fc15100e80584068386ee5b53db251d67c51"
+        },
+        "5": {
+          "expected": 12,
+          "actual": 12,
+          "api_failures": 0,
+          "prediction_sha256": "95825f32a6dd7046a1dbde1017b5c439233779e3af3e85dd95dc4614e5e1d329"
+        }
+      },
+      "status": "stopped_owned_child",
+      "exit_code": 0
+    },
+    {
+      "model": "Qwen/Qwen3-4B",
+      "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "generation": {
+        "1": {
+          "expected": 4,
+          "actual": 4,
+          "api_failures": 0,
+          "prediction_sha256": "b6ba6b8968de95099d4f6f5b7cc4cd5e32c04deff7c18e51028f38bbeb0f2f29"
+        },
+        "2": {
+          "expected": 16,
+          "actual": 16,
+          "api_failures": 0,
+          "prediction_sha256": "4511cc4ea06af883488acd099942b4d5bc0b80ddb693e88b942a0c9ddda5ef76"
+        },
+        "3": {
+          "expected": 8,
+          "actual": 8,
+          "api_failures": 0,
+          "prediction_sha256": "14a8ce719bf621e7ebe6058f3f3b059f4dd5b1f61e53a540611a34f431e6d911"
+        },
+        "5": {
+          "expected": 12,
+          "actual": 12,
+          "api_failures": 0,
+          "prediction_sha256": "a05360712959fefb8fd297f67a017ffbc51e2ba86d6a980d0199d214750f4b40"
+        }
+      },
+      "status": "stopped_owned_child",
+      "exit_code": 0
+    }
+  ],
+  "return_bundle": {
+    "path": "generated/KoEVD_platform_smoke_20261008_v3.zip",
+    "sha256": "8e5ac01fe4f597c1edf662f6fd301793816c72cbdbf0cba1fbce9dd04e480bf5",
+    "bytes": 1276163,
+    "manifest_files": 88,
+    "intake_receipt": "generated/gpu-smoke-intake-20261008-v4/intake-receipt.json",
+    "trusted_index": "generated/private-space-deployment-20261008-v14/operator-data/prefix-4-index.json",
+    "trusted_index_sha256": "952c89fda0b410e636ee8892435b9bcb70757c7bb4fd5d30c14cadce41862485",
+    "independent_reexport_exact_match": true,
+    "archive_code_executed": false
+  },
+  "numeric_acceptance": {
+    "node_local_json_equal": true,
+    "app_local_json_equal": true,
+    "expected_profile_sha256": "14c7b851c5516ad5981f6bb49f363fb9006624b029611a9ae5aa161872fbd547",
+    "app_profile_sha256": "14c7b851c5516ad5981f6bb49f363fb9006624b029611a9ae5aa161872fbd547",
+    "evidence": "generated/gpu-smoke-space-ui-20261008/evidence.json",
+    "checks": [
+      "Downloaded app profile exactly equals independent CLI profile, including all task denominators and paired analyses",
+      "Supplied Korean response case is retained as literal text; measurement warning and paired UI are visible",
+      "Separate browser sessions/download ACL; desktop/mobile overflow; session deletion and token-free URLs"
+    ],
+    "screenshots": [
+      "two-private-uploads.png",
+      "task3-measurement-limit.png",
+      "two-run-comparison.png",
+      "supplied-response-case.png",
+      "mobile-report.png"
+    ],
+    "visual_inspection": [
+      "two-run-comparison.png",
+      "supplied-response-case.png",
+      "mobile-report.png"
+    ],
+    "browser_errors": [],
+    "external_requests": [],
+    "owned_local_server_stopped": true
+  },
+  "intake_cpu_tests": {
+    "file": "tests/test_gpu_results_intake.py",
+    "count": 7,
+    "seconds": 5.337,
+    "exit_code": 0,
+    "synthetic_only": true
+  },
+  "preserved_attempts": [
+    {
+      "attempt": "smoke",
+      "session": 97489,
+      "exit_code": 1,
+      "cause": "vLLM NVML integer conversion of UUID mask before generation"
+    },
+    {
+      "attempt": "smoke-v2",
+      "session": 70736,
+      "exit_code": 1,
+      "cause": "Bundled PTXAS12.8 unsupported sm_103a during warmup before generation"
+    }
+  ],
+  "expanded": {
+    "attempt": "expanded-v3",
+    "session": 66554,
+    "sources_per_prefix": 96,
+    "status": "started_not_yet_accepted"
+  },
+  "not_verified": [
+    "full_core_performance",
+    "measurement_condition_variants",
+    "classifier_accuracy",
+    "human_adjudication",
+    "independent_human_operator_receipt_acceptance",
+    "ratified_official_rank",
+    "remote_persistent_storage",
+    "actual_hf_oauth",
+    "container_build",
+    "live_space"
+  ],
+  "public_posting": false,
+  "official_rank_eligible": false,
+  "cross_family_validation": false,
+  "goal_complete": false,
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

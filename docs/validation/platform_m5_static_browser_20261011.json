@@ -1,0 +1,269 @@
+{
+  "scope": "M5 optional browser Python Static candidate; preserves M6 and original RC requirements",
+  "recorded_date_kst": "2026-10-11",
+  "plan_version": "0.36",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "source_state": "uncommitted local candidate; prior dirty changes preserved",
+  "applicable_AGENTS_found": [],
+  "previous_goal_turn_classification": "progress: actual existing organization Static SDK inspection changed next available implementation",
+  "resumed_blocked_audit_turn": 1,
+  "current_turn_classification": "progress: implementation and actual full browser evidence",
+  "engine": "unchanged common results/diagnostics/scorers/reports Python; not JS scoring or trusted uploaded aggregates",
+  "runtime": {
+    "version": "0.29.3",
+    "files": {
+      "pyodide.js": {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js",
+        "sha256": "718d40f1c015dd25ec724cc8fc4e2325d6a45a92ae225121ff6953f224a16f72",
+        "bytes": 18597
+      },
+      "pyodide.asm.js": {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.asm.js",
+        "sha256": "1263f02b5b26099b96112378156f242dd98b39a8201ba7765e5fe3d455c5ce91",
+        "bytes": 1074322
+      },
+      "pyodide.asm.wasm": {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.asm.wasm",
+        "sha256": "e2f4ee75b325e35eb31bfb8c613d4dd5098f5502c156a97847686875b5025480",
+        "bytes": 8647684
+      },
+      "python_stdlib.zip": {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.29.3/full/python_stdlib.zip",
+        "sha256": "4298b6ee445cb724c3973437da47789752b9e6ff4e26619026b283ec801fc46b",
+        "bytes": 2423989
+      },
+      "pyodide-lock.json": {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide-lock.json",
+        "sha256": "3256ffc76388de0e37f4b34d42ab484268d1afc675179ff97b2a5bb14f84ccac",
+        "bytes": 120010
+      },
+      "LICENSE": {
+        "url": "https://raw.githubusercontent.com/pyodide/pyodide/0.29.3/LICENSE",
+        "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+        "bytes": 16725
+      },
+      "PYTHON-LICENSE": {
+        "url": "https://raw.githubusercontent.com/python/cpython/v3.13.2/LICENSE",
+        "sha256": "78b12c3a81360b357002334f0e70ea0e92eebf7a9b358805c03c48484945f3bb",
+        "bytes": 13809
+      }
+    },
+    "scope": "runtime integrity, not deployment or analysis evidence"
+  },
+  "browser_checks": {
+    "demo": {
+      "evidence_path": "generated/static-browser-20261011-v57-csp/evidence.json",
+      "evidence_sha256": "43d48db9655b8776faba224e5e9c67929b34fbdba49cf8ca37d266750ab43dae",
+      "browser": "154.0.8037.98",
+      "seconds": 6.8759562999999995,
+      "profile_exact": true,
+      "all_five_files_byte_exact": true,
+      "outputs": {
+        "profile-v2.json": {
+          "bytes": 6487719,
+          "sha256": "7d092e8d00119859558db1728af872305760ed1ac401f0928d4f14e4130d20fe",
+          "exact": true
+        },
+        "cases-v2.jsonl": {
+          "bytes": 1378727,
+          "sha256": "fd60c9100caa4eb962bbbb7c677d7a09ebdba9f9490c0471d5a77128b0c9827c",
+          "exact": true
+        },
+        "metrics-v2.csv": {
+          "bytes": 256139,
+          "sha256": "b6ae143ebe6aa3885f460d90f30daa30d22491a5be501f080ae926ba05ce27d0",
+          "exact": true
+        },
+        "report-v2.md": {
+          "bytes": 3805,
+          "sha256": "e9eda98b38e120e0468810749d22eae220bd5b3ec9dbd3716656d2cf6a3c42eb",
+          "exact": true
+        },
+        "report-v2.html": {
+          "bytes": 4823292,
+          "sha256": "e67f71f9a43d73414464548e360833effa66c2deb73f46802967d4a53c367d3a",
+          "exact": true
+        }
+      },
+      "static_GET_requests": 14,
+      "external_requests": 0,
+      "POST_requests": 0,
+      "console_errors": 0,
+      "tabs_response_downloads_mobile_clear_passed": true
+    },
+    "adversarial": {
+      "evidence_path": "generated/static-adversarial-browser-20261011-v57/evidence.json",
+      "evidence_sha256": "51761e578cb4022ff5f1a363f5d61cd39140f4d6628a52b71b49c10455fb7ab2",
+      "browser": "154.0.8037.98",
+      "seconds": 4.562598900000001,
+      "profile_exact": true,
+      "all_five_files_byte_exact": true,
+      "outputs": {
+        "profile-v2.json": {
+          "bytes": 6461904,
+          "sha256": "b85fa7d3238359d4de1400311c351d0e6b920569fd79a9a44a8f69be4a21604b",
+          "exact": true
+        },
+        "cases-v2.jsonl": {
+          "bytes": 1520655,
+          "sha256": "7ff9fa42ce396ac441fe9cd04ef4344308dd712f6fc61afdc1201416eb8cb2b5",
+          "exact": true
+        },
+        "metrics-v2.csv": {
+          "bytes": 413865,
+          "sha256": "0cd030469d101642bd8cc183a4742313fbc60e3c141d1aa15d532b55dc59d9ab",
+          "exact": true
+        },
+        "report-v2.md": {
+          "bytes": 4094,
+          "sha256": "eff71b92536c42badaea6e260f379e599273552e66b4b93d250a49597055ef03",
+          "exact": true
+        },
+        "report-v2.html": {
+          "bytes": 5013204,
+          "sha256": "3b526ee66bde18c3310badf55708cb3578fd675fa78e5b2c8c5b5b58628dabb4",
+          "exact": true
+        }
+      },
+      "static_GET_requests": 13,
+      "external_requests": 0,
+      "POST_requests": 0,
+      "console_errors": 0,
+      "tabs_response_downloads_mobile_clear_passed": true
+    },
+    "actual_full": {
+      "evidence_path": "generated/static-full-browser-20261011-v57/evidence.json",
+      "evidence_sha256": "884dbaee7ec2c4dbea27d012055f0820e29f27f11792405327c730d4d44379df",
+      "browser": "154.0.8037.98",
+      "seconds": 101.48995760000001,
+      "profile_exact": true,
+      "all_five_files_byte_exact": true,
+      "outputs": {
+        "profile-v2.json": {
+          "bytes": 26156974,
+          "sha256": "e52e2d8818e33de853aac1c815b8a477ea13528ecff5c9ce1398dcf802411c8d",
+          "exact": true
+        },
+        "cases-v2.jsonl": {
+          "bytes": 178948156,
+          "sha256": "e87c754152a181a9e9d6bd8a1668b99ad8f7d1c575a4da60fd619891902f23ac",
+          "exact": true
+        },
+        "metrics-v2.csv": {
+          "bytes": 986994,
+          "sha256": "b2734efaf40f517b7b8da9577f63e26f59642e8225a0aebbbeaf2cdef8499711",
+          "exact": true
+        },
+        "report-v2.md": {
+          "bytes": 4038,
+          "sha256": "8f25cb47cad40e70f1c6b10e9a16f79f9eea345d3f5e645c83cc3bcee58bfd33",
+          "exact": true
+        },
+        "report-v2.html": {
+          "bytes": 199262672,
+          "sha256": "b28ef1786e349e88688c430a3129fbd30de2e4378b0f15216d005cb92d3a3b07",
+          "exact": true
+        }
+      },
+      "static_GET_requests": 15,
+      "external_requests": 0,
+      "POST_requests": 0,
+      "console_errors": 0,
+      "tabs_response_downloads_mobile_clear_passed": true
+    }
+  },
+  "statistical_scope": {
+    "demo": {
+      "records_each": 580,
+      "resamples": 100,
+      "seed": 1729
+    },
+    "adversarial": {
+      "records_each": 580,
+      "resamples": 20,
+      "seed": 1729,
+      "entire_task3_unmeasured": true
+    },
+    "actual_full": {
+      "records_each": 17670,
+      "resamples": 0,
+      "seed": 1729,
+      "confidence_intervals": "disabled; not bootstrap accuracy evidence",
+      "target_models": [
+        "Qwen/Qwen3-8B",
+        "Qwen/Qwen3-4B"
+      ],
+      "tasks_each": [
+        2000,
+        8000,
+        2659,
+        2659,
+        2352
+      ]
+    }
+  },
+  "cpu_regression": {
+    "patterns": [
+      "test_browser_bridge.py",
+      "test_results.py",
+      "test_diagnostics.py",
+      "test_reports.py",
+      "test_protocols.py",
+      "test_gpu_source_bundle.py"
+    ],
+    "tests": 49,
+    "seconds": 22.197,
+    "exit_code": 0,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "log_path": "generated/static-regression-20261011-v57.log",
+    "log_sha256": "6e638bae3f9eafc90894b1fda36721fac675c730b163085bdb2b4d86dfde92fa",
+    "runtime": "existing CPU interpreter with source PYTHONPATH; not a new installed-wheel/full299-suite pass"
+  },
+  "candidate": {
+    "path": "generated/static-development-space-20261011-v57",
+    "manifest_sha256": "972b7d46ce194b6e24000e276eb726bb25c0744ef0e844e493aa8b91231458dd",
+    "files": 21,
+    "bytes": 87352934,
+    "engine_source_files": 19,
+    "all_manifest_bytes_current": true,
+    "actual_target_outputs_included": false,
+    "credentials_DB_roles_included": false,
+    "indexes": 3,
+    "baselines": 0,
+    "shared_registration_backend": "not_configured",
+    "official_rank_eligible": false,
+    "deployed": false
+  },
+  "setup_failures_preserved": [
+    {
+      "scope": "first runtime license URL404; partial download not eligible",
+      "path": "generated/static-runtime-0.29.3-20261011-v57"
+    },
+    {
+      "scope": "first browser outputs/profile correct but iframe CSP blocked code-owned report rendering; fixed hashes in fresh candidate",
+      "path": "generated/static-browser-20261011-v57/failure.json"
+    }
+  ],
+  "visual_QA": [
+    "actual full desktop comparison/cases",
+    "synthetic desktop comparison/mobile"
+  ],
+  "original_goal_body_unchanged": true,
+  "existing_server_storage_code_preserved": true,
+  "new_inference": false,
+  "cloud_write": false,
+  "HF_space_created": false,
+  "public_push": false,
+  "billing": false,
+  "remaining": [
+    "actual chosen hosting/HF iframe serving",
+    "approved actual public raw references",
+    "actual HF web identity and shared registration backend acceptance",
+    "approved existing private Bucket cloud backup/restore",
+    "independent operator/policy/recovery approval",
+    "original server container gate remains unverified"
+  ],
+  "goal_status": "active; incomplete; scope not reduced to Static-only analysis"
+}

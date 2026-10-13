@@ -1,0 +1,97 @@
+{
+  "plan_version": "0.55",
+  "status": "new_full_hosted_transfer_prepared_actual_preflight_only",
+  "previous_goal_turn": "progress: actual bounded finite shutdown/restoration accepted and latest default returned",
+  "goal_status_read_from_tool": "active",
+  "full_objective_preserved": true,
+  "current_installed_core50_unchanged": true,
+  "new_host_side_script_not_in_deployed_image": true,
+  "CPU_guard_tests": {
+    "count": 6,
+    "seconds": 0.276,
+    "errors": 0,
+    "skips": 0
+  },
+  "actual_HF_preflight_seconds": 2.078,
+  "actual_HF_app_limits": {
+    "upload_bytes": 134217728,
+    "max_uploads": 4,
+    "ttl_seconds": 7200,
+    "bootstrap_resamples": 100,
+    "bootstrap_seed": 1729
+  },
+  "actual_preflight_before_unused_success_flag_naming_refinement": true,
+  "actual_result_body_uploads_or_jobs": 0,
+  "plan": {
+    "proposal_only": true,
+    "new_scope_approved": false,
+    "goal_status": "active",
+    "target": "KETI-NLP/KoEVD-Platform-Dev",
+    "pinned_revision": "8e692c88d412d6305879473e3e8e74d46bb7dd2c",
+    "private": true,
+    "hardware": "cpu-basic",
+    "single_replica": true,
+    "input_records": [
+      17670,
+      17670
+    ],
+    "input_body_bytes": 89396889,
+    "input_upload_attempts": 2,
+    "analysis_sessions": 2,
+    "analysis_jobs": 1,
+    "comparison_only": true,
+    "native_five_output_bytes": 405679557,
+    "max_download_report_body_bytes": 536870912,
+    "own_analysis_session_cleanup_only": true,
+    "saved_submission_or_Bucket_write": false,
+    "repo_restart_visibility_Secret_or_paid_change": false,
+    "new_GPU_inference": false,
+    "prior_small_trial_approval_not_reused": true,
+    "preflight_data_body_transmissions": 0,
+    "code": "scripts/validate_hosted_private_analysis.py",
+    "guide": "docs/HOSTED_FULL_ANALYSIS_ACCEPTANCE.md"
+  },
+  "actual_full_hosted_transfer_verified": false,
+  "actual_user_OAuth_in_this_preflight": false,
+  "actual_local_Docker_image_inspect_or_UI_full_visual_verified": false,
+  "continuous_backup_active": false,
+  "public_or_paid_change": false,
+  "whole_goal_completed": false,
+  "remaining": [
+    "human approval/execution of exact full private result transfer",
+    "independent generation/policy/recovery review",
+    "exact public raw-reference rights and selected UI/container acceptance"
+  ],
+  "evidence": [
+    {
+      "path": "generated/full-hosted-acceptance-preparation-20261012-v84/proposal.json",
+      "bytes": 947,
+      "sha256": "52ffa6da2870be9e6d8c00dd29428af57f90166a76d0113321d2788da87911de"
+    },
+    {
+      "path": "generated/full-hosted-acceptance-preparation-20261012-v84/preflight/receipt.json",
+      "bytes": 2533,
+      "sha256": "e14e01adf6c638261d73688fc44a4d3d25132035bf6de626446fde757629440b"
+    },
+    {
+      "path": "generated/full-hosted-acceptance-preparation-20261012-v84/guard-tests-frozen.log",
+      "bytes": 1247,
+      "sha256": "7ed3f50bff43206e00e4c2c1d13043a33e77bcd150fd86fbc00811d263c0cbf2"
+    },
+    {
+      "path": "scripts/validate_hosted_private_analysis.py",
+      "bytes": 14721,
+      "sha256": "3b45b8d08862d7a9ffbb54dc7e365c8c05dbf6af91c60f827e8fb6698e8755e8"
+    },
+    {
+      "path": "tests/test_hosted_private_analysis.py",
+      "bytes": 6919,
+      "sha256": "44e6beee67e6deb67f0c41f4d7eb27cb6abe020003d103a5285d06ab7b9f0ecb"
+    },
+    {
+      "path": "docs/HOSTED_FULL_ANALYSIS_ACCEPTANCE.md",
+      "bytes": 5738,
+      "sha256": "4e35d3b8dc6f29b2d2b1965b52d14d1a158964fbaef42345d41ca5ffa8d0d04a"
+    }
+  ]
+}

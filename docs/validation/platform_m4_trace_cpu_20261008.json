@@ -1,0 +1,70 @@
+{
+  "milestone": "M4 measurement tracing/source delivery CPU, partial",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "working_tree": "uncommitted local candidate",
+  "tests_passed": 121,
+  "new_trace_tests": 15,
+  "new_source_bundle_tests": 5,
+  "test_seconds": 39.029,
+  "test_command": "generated/contract-install-venv/Scripts/python.exe -X utf8 -m unittest discover -s tests -v",
+  "test_exit_code": 0,
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "wheel_path": "generated/trace-final-wheel-20261008/koevd_eval-0.2.0-py3-none-any.whl",
+  "wheel_sha256": "3c5dc23be42a3ba1a82a2e596c868ba0ef7b41e3e46d2cdeadd2f71cc7996b2f",
+  "wheel_bytes": 143280,
+  "installed_source_matches": {
+    "koevd_eval.measurement_trace": true,
+    "koevd_eval.classify_responses": true,
+    "koevd_eval.pipeline": true,
+    "koevd_eval.results": true
+  },
+  "source_sha256": {
+    "src/koevd_eval/measurement_trace.py": "dab73ad1d27c8b621628571e8d1197dfb85e82fdf5661ad04a6ea5e5390891b2",
+    "src/koevd_eval/classify_responses.py": "8c572626242e74226c7bfcd96da593f3ee224dcd37410ff177d9ada465f70686",
+    "src/koevd_eval/pipeline.py": "848a8e3fd7fcc22751d71b14cc0de232e3d800b1cd68d591e29b007be90297e9",
+    "src/koevd_eval/results.py": "537f76f1adb9fa808895b08a0a82c95f6142e450d3dc574d51cf12c445204957",
+    "tests/test_measurement_trace.py": "038fc142bf699c9edcbe224b5e7e000a88c4ed8176245fdf3a8a461cef647522",
+    "scripts/gpu_source_bundle.py": "38f3f53eeaeab1d5f5fea403e0c1b83eedc35b17d9bfc39597201ee0392d6abd",
+    "tests/test_gpu_source_bundle.py": "e013edc0ceb40f65b6d0f191f0420ce755d44a7d6f1cdf5ddf09d2cae6a9fbf2",
+    "configs/validation/platform-gpu-candidate-v1.json": "ba76f799d674cfdeb732c38269fc60cec5a0d11ca0be2254c4be39ad89d46569"
+  },
+  "preparation_identity": "b3bb72a02a0b676afe67c8182345254d397f0da89be374963c9ff0fd8d23fbb8",
+  "registered_input_index_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+  "implemented": [
+    "Opt-in unchanged generate observation",
+    "masked token/single-template parity/hash accounting",
+    "observed eligible call order and preserved output order",
+    "reported parameter dtype elements",
+    "failure sidecar and no-replace write",
+    "pipeline/export trace checks",
+    "bounded source-only ZIP integrity verifier",
+    "pinned two-target candidate lock and GPU-node request"
+  ],
+  "candidate_targets": [
+    {
+      "id": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    {
+      "id": "Qwen/Qwen3-4B",
+      "revision": "1cfa9a7208912126459214e8b04321603b3df60c"
+    }
+  ],
+  "test_scope": "CPU fake tensors/models, including unchanged released wrapper methods. Not actual inference.",
+  "known_limitations": [
+    "Actual two-target GPU execution not started",
+    "Observation overhead must be audited on GPU",
+    "Detailed order/mode/token traces remain separate from portable results-v1; portable compatibility cannot fully describe them yet",
+    "Reported traces do not authenticate model weights or generation",
+    "Human adjudication and complete GPU-return automated acceptance still pending",
+    "Source ZIP does not contain generated data/weights, so node must obtain pinned artifacts",
+    "Existing Starlette TestClient httpx deprecation warning observed"
+  ],
+  "gpu_inference": false,
+  "human_annotation_occurred": false,
+  "measurement_accuracy_established": false,
+  "m4_complete": false,
+  "whole_goal_complete": false,
+  "published": false,
+  "official_rank_eligible": false
+}

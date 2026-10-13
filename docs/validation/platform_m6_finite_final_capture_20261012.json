@@ -1,0 +1,155 @@
+{
+  "plan_version": "0.52",
+  "status": "local_finite_final_capture_passed_actual_HF_retest_pending",
+  "current_core_source_files": 50,
+  "noneditable_install": true,
+  "locked_runtime_versions": 25,
+  "full_CPU_tests": {
+    "count": 352,
+    "seconds": 146.942,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "local_lifecycle": {
+    "status": "passed",
+    "scope": "local_CPU_real_owned_server_worker_HTTP_lifecycle",
+    "observed_utc": "2026-10-12T09:41:44.095162+00:00",
+    "seconds": 29.344,
+    "records": [
+      48,
+      48
+    ],
+    "original_byte_sha256": [
+      "787e3c87ef4929f232dffb800fd143397e80f63137bd397411dcef7d42997adb",
+      "7d16beb22381beb8f259c1859ec640bd68419ee1cf5ef2f1b5a9ef9a7c35dcf7"
+    ],
+    "HF_and_OAuth_are_explicit_test_doubles": true,
+    "actual_HF_login_or_container": false,
+    "test_only_loopback_binding_and_watchdog": true,
+    "external_network_connections_refused_in_children": true,
+    "first_backup_plus_worker_cycles": 3,
+    "last_verified_sequence": 3,
+    "initialization_baseline_count": 9,
+    "baseline_objects_are_metadata_only_local_doubles": true,
+    "new_snapshot_objects": 3,
+    "changes_pending": false,
+    "originals_and_histories_equal_after_pinned_restore": true,
+    "restored_public_read_and_submission_mutation_blocked": true,
+    "restore_worker_not_started": true,
+    "fresh_host_restart_refused_before_new_store_children_or_upload": true,
+    "actual_HTTP_producer_terminal_before_final_SQLite_capture": true,
+    "late_write_after_shutdown_connection_refused": true,
+    "credential_environment_separation_proven_in_real_children": true,
+    "all_owned_children_terminal": true,
+    "new_inference": false,
+    "real_Bucket_write": false,
+    "official_rank_or_recovery_approval": false
+  },
+  "finite_protocol": "worker ready -> stop and reap owned HTTP server -> exact stdin release -> final SQLite capture -> drain worker output",
+  "continuous_worker_behavior_changed": false,
+  "snapshot_or_database_format_changed": false,
+  "unacknowledged_inflight_work_may_abort": true,
+  "grace_seconds_before_force_kill": 5,
+  "unexpected_crash_or_periodic_RPO_guarantee": false,
+  "Windows_atomic_replace": {
+    "winerror_only": [
+      5,
+      32,
+      33
+    ],
+    "attempts": 6,
+    "maximum_wait_seconds": 0.62,
+    "persistent_or_other_errors_propagate": true,
+    "old_status_not_deleted_or_truncated": true,
+    "observed_WinError5_root_cause_determined": false
+  },
+  "retained_failed_runs": [
+    "v77 missing dev jsonschema:350 tests/error1/skip1",
+    "v77 complete dev dependencies:350 tests/WinError5 error1/skip0",
+    "v78 manual digest typo rejected before process or output creation"
+  ],
+  "default_candidate_payload_files": 65,
+  "managed_candidate_payload_files": 68,
+  "configured_proposal_payload_files": 70,
+  "actual_HF_new_writes_or_deployments_this_iteration": 0,
+  "prior_approved_trial_completed_permission_not_reused": true,
+  "last_actual_dev_revision": "f65a8b1065b934e649e545043c4ac89b18c2d4a5",
+  "actual_old_4B_history_loss_resolved": false,
+  "continuous_backup_active": false,
+  "public_or_paid_changes": false,
+  "goal_status": "active",
+  "remaining": [
+    "actual HF two current drafts shutdown preservation and fixed restore",
+    "current Docker full-size acceptance",
+    "operator recovery/policy acceptance",
+    "public actual-reference authorization"
+  ],
+  "evidence": [
+    {
+      "path": "generated/finite-capture-runtime-20261012-v78/full-tests.log",
+      "bytes": 62681,
+      "sha256": "0965ea310c8847ea8c256466b2d573e47c8e8187c0a0ca13a8c9f65004d88978"
+    },
+    {
+      "path": "generated/finite-capture-runtime-20261012-v78/current-install-receipt.json",
+      "bytes": 8493,
+      "sha256": "571f8b44c533bd2ec08ed03c8d028f6dccd01823188715125543c87cbb6e790d"
+    },
+    {
+      "path": "generated/finite-capture-runtime-20261012-v78/candidate.json",
+      "bytes": 344,
+      "sha256": "1ebf604071414af1ca43fa9d832e7bed49e24d0da8b045e6cac81186a0584a5b"
+    },
+    {
+      "path": "generated/finite-capture-runtime-20261012-v78/lifecycle-v2/evidence.json",
+      "bytes": 1412,
+      "sha256": "ae5a65378049d2ba877f18c2070f014f16a794c0c49edc3a015b3a111099fe32"
+    },
+    {
+      "path": "generated/finite-capture-runtime-20261012-v78/lifecycle-v2/initialize/final-capture-producer-stopped.json",
+      "bytes": 82,
+      "sha256": "1e4059a17a49ba076c47b143fa63437f7c7d68ed04e30b244cc4efc73f3e3a8a"
+    },
+    {
+      "path": "generated/finite-capture-trial-proposal-20261012-v78/proposal.json",
+      "bytes": 2461,
+      "sha256": "0183a2b69d84d30ef7597e167622f82cca167936ac3a2a8c400828f04f9f5675"
+    },
+    {
+      "path": "generated/private-space-finite-capture-candidate-20261012-v78/deployment-manifest.json",
+      "bytes": 11125,
+      "sha256": "fd5259678a78ef2f8209300d13b5d3856f46eaf33d8c42bb6220d0c2e34c3996"
+    },
+    {
+      "path": "generated/managed-finite-capture-candidate-20261012-v78/deployment-manifest.json",
+      "bytes": 11706,
+      "sha256": "a91d1207332119112fcd4add47bb97ffcc304ef61f4f7c78e6c7a83aacfde817"
+    },
+    {
+      "path": "generated/finite-capture-trial-proposal-20261012-v78/candidate/deployment-manifest.json",
+      "bytes": 12117,
+      "sha256": "de549bb714333e98b0c8b6bc764f472d97883f0dbaca8ca6a77496128ecd13f7"
+    },
+    {
+      "path": "generated/finite-final-capture-20261012-v77/runner-atomic-tests.log",
+      "bytes": 2617,
+      "sha256": "846c7e9bde1c0f136590b03ced03c597e3a414e11e37d17b1a65c12c816c961c"
+    },
+    {
+      "path": "generated/finite-capture-runtime-20261012-v77/full-tests.log",
+      "bytes": 63091,
+      "sha256": "7a3397d6946b9eb9834419d19fe0f001d6fe9c74e5f7f7c9d283f6a26dd187a2"
+    },
+    {
+      "path": "generated/finite-capture-runtime-20261012-v77/full-tests-final.log",
+      "bytes": 64736,
+      "sha256": "bf139894a0fc23b61bee6bd5d18be06c114a75d90579f4ee5c48548c5288c3f5"
+    },
+    {
+      "path": "generated/finite-capture-runtime-20261012-v78/lifecycle.log",
+      "bytes": 869,
+      "sha256": "a101472d7fd9282bdf848a1e70da51f6767afdfa388dfe0705dc496aa5aea1c2"
+    }
+  ]
+}

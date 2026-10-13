@@ -1,0 +1,87 @@
+{
+  "scope": "m6_local_operator_receipt_cpu_candidate",
+  "observed_utc": "2026-10-08T07:25:28.580087+00:00",
+  "installed_suite": {
+    "scope": "installed_cpu_suite_not_gpu_or_hf_login",
+    "exit_code": 0,
+    "test_count": 203,
+    "test_seconds": 66.27,
+    "skipped_lines": 0,
+    "elapsed_seconds": 66.95299999997951,
+    "installed_modules": {
+      "generation_receipts": {
+        "path": "[private-local-path]",
+        "sha256": "b07ecd164418c49907fbc212bc876182728ddf3b7270f0b629cc909242c65479"
+      },
+      "submissions": {
+        "path": "[private-local-path]",
+        "sha256": "259a32947e16a43c6761c8dbde7fe33bca02fe87236aa28465d7b2e52d5fdf87"
+      },
+      "spaces": {
+        "path": "[private-local-path]",
+        "sha256": "669ba646b4be974ad725394fb377421a087cca620c3800fc27ec07c906b8513e"
+      },
+      "pipeline": {
+        "path": "[private-local-path]",
+        "sha256": "848a8e3fd7fcc22751d71b14cc0de232e3d800b1cd68d591e29b007be90297e9"
+      },
+      "results": {
+        "path": "[private-local-path]",
+        "sha256": "3ba906a5b062f74ed106b4033b81ff7c6535ff852889e25ec5567431ffb43b0f"
+      },
+      "diagnostics": {
+        "path": "[private-local-path]",
+        "sha256": "983c50f5fd5e8a9348106fc3b61669371a32fc393eea69b1365114b7baf3d0a0"
+      },
+      "measurement_trace": {
+        "path": "[private-local-path]",
+        "sha256": "dd9a0ff213459bd6160ab672ed202aa66b4b3ab959b4fc52e4c873d1aa555d9b"
+      },
+      "oauth": {
+        "path": "[private-local-path]",
+        "sha256": "f0e460e489a6cadf88c6ba311818213ab5df0eef20d137a8f92dab177722ff44"
+      },
+      "submission_web": {
+        "path": "[private-local-path]",
+        "sha256": "57755250da40b3b3c990f2f87854bdab28403ae957449784faee80ab91982900"
+      }
+    },
+    "dependencies_inherited_from": "[private-local-path]",
+    "wheel": {
+      "path": "[private-local-path]",
+      "bytes": 178938,
+      "sha256": "a0e5d025b0f1f38be6c33517888f938eb3ab651b84f6e1b803c889d88dbf4090"
+    },
+    "log": "[private-local-path]"
+  },
+  "source_regression": {
+    "new_receipt_tests": 8,
+    "new_receipt_seconds": 3.473,
+    "related_submission_oauth_admission_tests": 58,
+    "related_seconds": 22.048,
+    "artifact_lock_tests": 2,
+    "artifact_lock_seconds": 0.035
+  },
+  "deployment_candidate": {
+    "path": "generated\\private-space-deployment-20261008-v14",
+    "manifest_sha256": "258007cd8e8195b82648634ee64370e71b15cdfc1906c18e178792326b172535",
+    "manifest_files": 59,
+    "bytes": 75511360,
+    "all_manifest_files_verified": true,
+    "uploaded": false,
+    "space_created": false
+  },
+  "preserved_failed_install_attempt": {
+    "log": "generated/generation-receipt-installed-tests-20261008-v1.log",
+    "reason": "Dependency .pth exposed old same-version package; pip initially skipped new installation. Import path check failed; 196 old-package tests had 2 errors. Not latest candidate evidence."
+  },
+  "limitations": [
+    "Synthetic receipts only; no actual GPU or independent human review claimed.",
+    "Receipt validator stores trusted local operator assertions, not cryptographic inference proof; evidence files must be reviewed independently.",
+    "Official policy remains candidate, all official ranks disabled.",
+    "Inherited dependency path is explicit; no independent dependency reinstall claimed.",
+    "Actual HF OAuth/container/Space and remote durability unverified.",
+    "GPU source checkpoint remains separate frozen v0.12 bundle; serving installation passed, artifact v3 still running at last observation."
+  ],
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

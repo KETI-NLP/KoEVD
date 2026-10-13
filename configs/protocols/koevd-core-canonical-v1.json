@@ -1,0 +1,91 @@
+{
+  "schema_version": "koevd-protocol-v1",
+  "id": "koevd-core-canonical-v1",
+  "status": "release_candidate",
+  "dataset": {
+    "repo": "KETI-NLP/KoEVD",
+    "revision": "f5920837769bea77e072c8e033e5ad9cbff4d45d",
+    "files": {
+      "full_eval/koevd_full_eval.jsonl": "47ee143a83b85d011e89128176ff70758a1d64a1af415a287841209fce973bc0",
+      "benchmark_splits/core.jsonl": "e0ea5b80a93c71ee8b9e9f9be075583992efe98438943024769d5c48093518d9",
+      "tasks/task2_candidate_response_safety_choice/full_eval/choose_best.jsonl": "6830015e559a48014ffd9fd61d5100bca0f61707036e6b2bba6c960b00432ab7",
+      "tasks/task2_candidate_response_safety_choice/full_eval/choose_unsafe.jsonl": "1086c2da1d8d4a4a7fa04b63e9e8c1c0af343244f2c0443d8d3c37b8f63897fd",
+      "tasks/task2_candidate_response_safety_choice/full_eval/rejected_vs_accepted.jsonl": "b8f23737bcc20f6ac661a5e4f335d31b8ff43af4de14bf108203a1c8863393e0",
+      "tasks/task2_candidate_response_safety_choice/full_eval/relative_harmfulness.jsonl": "c0957bb1da3de78cde9aeb2dae3ecc71b2dff73e497b609645e805477f38b20b",
+      "tasks/task5_tool_action_choice_safety/main/safe_guided.jsonl": "eb258a00c7e7c07de14a8d9dd17ec9111afa5674c65377102c92172e45f1e664",
+      "tasks/task5_tool_action_choice_safety/main/tool_forced.jsonl": "65bc0e1f80b10e36d0b2f9bb8107d2f399196751e6aebef9b9e4932c45d8184d",
+      "tasks/task5_tool_action_choice_safety/main/unsafe_induced.jsonl": "a8a703e1b10d98b195bc910ceddbdbf76dd6fa7f76feb9632d0c31017293cb0c"
+    }
+  },
+  "selection": {
+    "split": "core",
+    "limit_sources": null
+  },
+  "preparation_sha256": "b3bb72a02a0b676afe67c8182345254d397f0da89be374963c9ff0fd8d23fbb8",
+  "expected_inputs": {
+    "1": {
+      "rows": 2000,
+      "sha256": "086bbdf92199dd43a7eebc54e935df3abf1c857ee511b5cd3fe0522cb5652c0e"
+    },
+    "2": {
+      "rows": 8000,
+      "sha256": "f5d0396463013b58e06773f84cd1b1d938fdd2194f440d73f02bf25f37d9e79d"
+    },
+    "3": {
+      "rows": 2659,
+      "sha256": "c7fa047a23708d9cac5cd2c63c1f8169b030f851a8392fe8ebeaf3e94c94f116"
+    },
+    "4": {
+      "rows": 2659,
+      "sha256": "c7fa047a23708d9cac5cd2c63c1f8169b030f851a8392fe8ebeaf3e94c94f116"
+    },
+    "5": {
+      "rows": 2352,
+      "sha256": "adc3845266dc9bb2d3257c0c7f2de689b42650b78b165315ecc4e1b75904cdcd"
+    }
+  },
+  "decoding_policy": {
+    "temperature": 0.0,
+    "max_tokens": 1024,
+    "seed": null
+  },
+  "measurement_policy": {
+    "3": {
+      "adapter": {
+        "repo": "KETI-NLP/KoEVD-assistant-safety",
+        "revision": "e821f2a0d8809bafe0cbf1b6ee0ac8350d2554b3"
+      },
+      "base": {
+        "repo": "Qwen/Qwen3.5-0.8B",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17"
+      },
+      "accuracy_status": "measurement_limited",
+      "official_ranking": false
+    },
+    "4": {
+      "adapter": {
+        "repo": "KETI-NLP/KoEVD-response-strategy",
+        "revision": "846df8d29758b956c420e0f4dd17ced8630a9b81"
+      },
+      "base": {
+        "repo": "Qwen/Qwen3-8B",
+        "revision": "b968826d9c46dd6066d109eabc6255188de91218"
+      },
+      "accuracy_status": "measurement_limited",
+      "official_ranking": false
+    }
+  },
+  "scoring": {
+    "historical": "koevd-0.2.0",
+    "diagnostic": "strict-profile-v1"
+  },
+  "metadata_view": "canonical-prepared",
+  "denominators": {
+    "task1": "all expected core prompts; parsed judgments separately",
+    "task2": "all expected core prompts per four variants; answered choices separately",
+    "task3": "primary core and core/tool source union separately; all prompts and classified responses",
+    "task4": "same task3 generations; multi-label descriptive inclusion, not quality rank",
+    "task5": "all tool sources per three framings; strict valid choices and historical parses separately"
+  },
+  "content_sha256": "501401566487a29fa7252372621c8239a5c7388e90312c7c3dbe920dcd7020a0"
+}

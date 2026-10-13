@@ -1,0 +1,160 @@
+{
+  "version": "v0.23",
+  "scope": "CPU registered full-input/source/model-file/token preflight + actual full GPU job started; partial not completed",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "related_cpu_suite": {
+    "scope": "unchanged installed v22 core + full-controller/token/index/private replay intake CPU checks; synthetic fixtures not inference",
+    "tests": 22,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 13.109,
+    "exit_code": 0,
+    "log_sha256": "9a24620caf682fb5017efba3f0aa9b4e204191613dbcf315f8f410a3951f23ae",
+    "scripts": {
+      "scripts/validate_gpu_pipeline.py": "519669d426d54c55efa3c77482b1fef32c6c6d2ecd5c50247a15953227798907",
+      "scripts/check_gpu_input_budget.py": "5e04914be3ec91e0b3e2d6ad96e1d33909031abe233c8490b958cfd5a2bd2e39",
+      "scripts/build_gpu_results_bundle.py": "b6380f7c8dca9af3b6e6940bebe8ceed3b89946b0201aac44b0bcfb81b4cec4f",
+      "scripts/accept_gpu_results_bundle.py": "7ac94c5bba6ac74e64633fbbf2a0b359868ef43535e89cd03a3fac2138d69b03"
+    }
+  },
+  "package_python_source_changed": false,
+  "unchanged_package_last_full_suite": "docs/validation/platform_m6_backups_cpu_20261008.json",
+  "current_entire_suite_rerun": false,
+  "deployment_candidate_unchanged": "generated/private-space-deployment-20261008-v22",
+  "preflight_evidence": "generated/full-standard-node-20261008-v23/preflight-v4-status.json",
+  "invalid_or_failed_evidence_preserved": [
+    "generated/full-standard-node-20261008-v23/preflight-status.json",
+    "generated/full-standard-node-20261008-v23/preflight-v2-status.json",
+    "generated/full-standard-node-20261008-v23/preflight-v3-invalid-token-count.json"
+  ],
+  "failure_resolution": [
+    "Registry rejected HF cache symlink escaping dataset root; materialized the9 independently pinned files without weakening the rule.",
+    "New venv direct .pth did not process the older measurement dependency .pth; explicitly referenced the read-only dependency directories.",
+    "Transformers5.8.1 BatchEncoding len2 counted keys; invalidated that budget result and added strict actual input_ids counting."
+  ],
+  "source_zip_used": {
+    "path": "generated/KoEVD_platform_source_full_standard_preflight_20261008_v2.zip",
+    "sha256": "bea8f1f0ca8f4fa5de17bf5b5cae8caec67e0d5493b553a3c202339c5321b39a",
+    "source_files": 184
+  },
+  "wheel_used": {
+    "path": "generated/backups-wheel-20261008-v22/koevd_eval-0.2.0-py3-none-any.whl",
+    "sha256": "4ed38631f61a9df8407a43249de0c746bf01763242abd5038304fe6a013868b4"
+  },
+  "source_installed_python_files_per_env": 40,
+  "artifact_files_rehashed": 97,
+  "dataset_materialized_pinned_files": 9,
+  "full_index_content_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+  "full_index_byte_sha256_on_linux": "771f066331e901c06ba960707add109143d75df6b1f603cf4da3439197c6b1b5",
+  "task_counts": {
+    "1": 2000,
+    "2": 8000,
+    "3": 2659,
+    "4": 2659,
+    "5": 2352
+  },
+  "primary_sources": 2000,
+  "tool_sources": 784,
+  "task3_union": 2659,
+  "primary_tool_overlap": 125,
+  "expected_generation_requests_per_model": 15011,
+  "portable_records_per_model": 17670,
+  "token_budget": {
+    "format": "koevd-local-prompt-budget-v1",
+    "scope": "CPU local tokenizer; no model/classifier inference",
+    "index_content_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+    "context_window": 16384,
+    "max_output_tokens": 1024,
+    "thinking": false,
+    "task_prompt_budgets": {
+      "1": {
+        "rows": 2000,
+        "max_prompt_tokens": 231,
+        "over_budget_rows": 0
+      },
+      "2": {
+        "rows": 8000,
+        "max_prompt_tokens": 1592,
+        "over_budget_rows": 0
+      },
+      "3": {
+        "rows": 2659,
+        "max_prompt_tokens": 192,
+        "over_budget_rows": 0
+      },
+      "5": {
+        "rows": 2352,
+        "max_prompt_tokens": 1797,
+        "over_budget_rows": 0
+      }
+    },
+    "all_fit_context": true,
+    "generation_verified": false,
+    "classifier_accuracy_verified": false,
+    "transformers_version": "5.8.1",
+    "tokenizer_file_sha256": {
+      "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    }
+  },
+  "target_configs_and_vocabularies_equal": true,
+  "dependency_versions": {
+    "transformers": "5.8.1",
+    "torch": "2.9.1+cu130"
+  },
+  "actual_execution": {
+    "scope": "authoritative live process/stage observation; partial progress not completed output",
+    "observed_at_epoch": 1791457990.5929284,
+    "session": 90124,
+    "controller_pid": 56870,
+    "controller_ps": "56870     421 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+    "controller_live_confirmed": true,
+    "status": "running",
+    "commands": [
+      {
+        "name": "Qwen3-8B-prepare",
+        "status": "passed",
+        "exit_code": 0
+      },
+      {
+        "name": "Qwen3-8B-index",
+        "status": "passed",
+        "exit_code": 0
+      },
+      {
+        "name": "Qwen3-8B-generate",
+        "status": "running",
+        "exit_code": null
+      }
+    ],
+    "targets": [
+      {
+        "model": "Qwen/Qwen3-8B",
+        "status": "healthy",
+        "pid": 56951
+      }
+    ],
+    "progress": {
+      "Qwen3-8B": {
+        "1": {
+          "written_prediction_rows": 2000,
+          "api_non_ok": 0
+        }
+      },
+      "Qwen3-4B": {}
+    },
+    "full_standard_complete": false,
+    "published": false
+  },
+  "actual_full_standard_baseline_completed": false,
+  "independent_full_return_accepted": false,
+  "new_classifier_accuracy_verified": false,
+  "human_review_or_operator_acceptance": false,
+  "actual_cloud_storage": false,
+  "actual_hf_login_or_container_verified": false,
+  "published": false,
+  "goal_complete": false,
+  "next_action": "Poll the SAME session90124 and actual controller PID56870/argv/logs. After terminal pass, bounded raw replay intake against outside canonical index/registry, rebuild reports and verify local app/CLI agreement. Do not restart on observation timeout.",
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

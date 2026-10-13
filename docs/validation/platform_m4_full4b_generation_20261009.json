@@ -1,0 +1,1676 @@
+{
+  "format": "koevd-platform-full4b-generation-v1",
+  "plan_version": "0.32",
+  "date": "2026-10-09",
+  "previous_turn_classification": "verified_wait",
+  "this_turn_classification": "progress",
+  "generation_check": {
+    "owned_generation_server_stopped": true,
+    "owned_server_pid": 62528,
+    "owned_server_exit_code": 0,
+    "generation_counts": {
+      "1": {
+        "expected": 2000,
+        "actual": 2000,
+        "api_failures": 0,
+        "prediction_sha256": "93a5326fc16d3311b665ed2a6879473be497bf55293ba7bd6ebb5f7fbf31cfd1"
+      },
+      "2": {
+        "expected": 8000,
+        "actual": 8000,
+        "api_failures": 0,
+        "prediction_sha256": "f0f54fafb46ffbbf436964b598a8f30ec2b5be06f0d869d874bf7f8756844b59"
+      },
+      "3": {
+        "expected": 2659,
+        "actual": 2659,
+        "api_failures": 0,
+        "prediction_sha256": "1e598b2b7a3fb142b4bbd009aa0e5f1acc589fe69e097f2cad509c6533ac01ba"
+      },
+      "5": {
+        "expected": 2352,
+        "actual": 2352,
+        "api_failures": 0,
+        "prediction_sha256": "d1ff5a772f128a9ad3086f22b6a39e0c5eab826f96ec03877b1c46e4a7b81342"
+      }
+    },
+    "generation_requests": 15011,
+    "format": "koevd-full4b-generation-coverage-v1",
+    "epoch": 1791477876.6284606,
+    "scope": "Completed actual full4B generation coverage only; measurement started, not completed export/analysis/two-model return/accuracy.",
+    "outside_index_byte_sha256": "771f066331e901c06ba960707add109143d75df6b1f603cf4da3439197c6b1b5",
+    "outside_index_content_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+    "controller_pid": 56870,
+    "same_controller_live": true,
+    "actual_process": "56870 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+    "tasks": {
+      "1": {
+        "rows": 2000,
+        "unique_sample_ids": 2000,
+        "unique_sources": 2000,
+        "external_inputs_match": true,
+        "missing": 0,
+        "duplicate_sample_ids": 0,
+        "api_non_ok": 0,
+        "empty_responses": 0,
+        "prediction_sha256": "93a5326fc16d3311b665ed2a6879473be497bf55293ba7bd6ebb5f7fbf31cfd1",
+        "finish_reasons": {
+          "stop": 2000
+        }
+      },
+      "2": {
+        "rows": 8000,
+        "unique_sample_ids": 8000,
+        "unique_sources": 2000,
+        "external_inputs_match": true,
+        "missing": 0,
+        "duplicate_sample_ids": 0,
+        "api_non_ok": 0,
+        "empty_responses": 0,
+        "prediction_sha256": "f0f54fafb46ffbbf436964b598a8f30ec2b5be06f0d869d874bf7f8756844b59",
+        "finish_reasons": {
+          "stop": 8000
+        },
+        "variants": {
+          "choose_best": 2000,
+          "choose_unsafe": 2000,
+          "rejected_vs_accepted": 2000,
+          "relative_harmfulness": 2000
+        }
+      },
+      "3": {
+        "rows": 2659,
+        "unique_sample_ids": 2659,
+        "unique_sources": 2659,
+        "external_inputs_match": true,
+        "missing": 0,
+        "duplicate_sample_ids": 0,
+        "api_non_ok": 0,
+        "empty_responses": 0,
+        "prediction_sha256": "1e598b2b7a3fb142b4bbd009aa0e5f1acc589fe69e097f2cad509c6533ac01ba",
+        "finish_reasons": {
+          "stop": 2446,
+          "length": 213
+        }
+      },
+      "5": {
+        "rows": 2352,
+        "unique_sample_ids": 2352,
+        "unique_sources": 784,
+        "external_inputs_match": true,
+        "missing": 0,
+        "duplicate_sample_ids": 0,
+        "api_non_ok": 0,
+        "empty_responses": 0,
+        "prediction_sha256": "d1ff5a772f128a9ad3086f22b6a39e0c5eab826f96ec03877b1c46e4a7b81342",
+        "finish_reasons": {
+          "stop": 2352
+        },
+        "framings": {
+          "safe_guided": 784,
+          "tool_forced": 784,
+          "unsafe_induced": 784
+        }
+      }
+    },
+    "stages": [
+      [
+        "Qwen3-8B-prepare",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-index",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-generate",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-measure",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-export",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-diagnose",
+        "passed"
+      ],
+      [
+        "Qwen3-4B-prepare",
+        "passed"
+      ],
+      [
+        "Qwen3-4B-index",
+        "passed"
+      ],
+      [
+        "Qwen3-4B-generate",
+        "passed"
+      ],
+      [
+        "Qwen3-4B-measure",
+        "running"
+      ]
+    ],
+    "gpu_restarted": false,
+    "classifier_accuracy_verified": false,
+    "full_return_accepted": false
+  },
+  "measurement_observation": {
+    "epoch": 1791477878.1179132,
+    "session_id": 90124,
+    "controller_pid": 56870,
+    "same_controller_live": true,
+    "actual_process": "56870   20309 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+    "controller_status": "running",
+    "stages": [
+      [
+        "Qwen3-8B-prepare",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-index",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-generate",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-measure",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-export",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-diagnose",
+        "passed"
+      ],
+      [
+        "Qwen3-4B-prepare",
+        "passed"
+      ],
+      [
+        "Qwen3-4B-index",
+        "passed"
+      ],
+      [
+        "Qwen3-4B-generate",
+        "passed"
+      ],
+      [
+        "Qwen3-4B-measure",
+        "running"
+      ]
+    ],
+    "direct_child_processes": [
+      "66716      65 [private-node-path] [private-node-path] --stage classify --output-dir [private-node-path] --safety-adapter [private-node-path] --safety-base [private-node-path] --strategy-adapter [private-node-path] --strategy-base [private-node-path] --batch-size 2 --classifier-dtype bfloat16 --trace-measurements"
+    ],
+    "measurement_log_observations": {
+      "Qwen3-8B-measure.log": {
+        "bytes": 3609,
+        "recent_counter_lines": [
+          "Loading weights:  87%|████████▋ | 347/399 [00:02<00:00, 158.25it/s]",
+          "Loading weights:  94%|█████████▎| 374/399 [00:02<00:00, 174.61it/s]",
+          "Loading weights: 100%|██████████| 399/399 [00:02<00:00, 150.92it/s]"
+        ],
+        "traceback_seen_in_tail": false
+      },
+      "Qwen3-4B-measure.log": {
+        "bytes": 1129,
+        "recent_counter_lines": [
+          "Loading weights:  14%|█▍        | 45/320 [00:00<00:00, 445.54it/s]",
+          "Loading weights:  69%|██████▉   | 220/320 [00:00<00:00, 1199.43it/s]",
+          "Loading weights: 100%|██████████| 320/320 [00:00<00:00, 1210.15it/s]"
+        ],
+        "traceback_seen_in_tail": false
+      }
+    },
+    "final_measurement_files": {
+      "Qwen3-8B": {
+        "3": {
+          "exists": true,
+          "rows": 2659
+        },
+        "4": {
+          "exists": true,
+          "rows": 2659
+        }
+      },
+      "Qwen3-4B": {
+        "3": {
+          "exists": false,
+          "rows": null
+        },
+        "4": {
+          "exists": false,
+          "rows": null
+        }
+      }
+    }
+  },
+  "observations": [
+    {
+      "epoch": 1791476652.0376158,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19083 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 919/2352 checkpointed, 919 API-ok, 0 failed, 1433 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791476714.085008,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19145 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1005/2352 checkpointed, 1005 API-ok, 0 failed, 1347 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791476759.0335116,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19190 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1069/2352 checkpointed, 1069 API-ok, 0 failed, 1283 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791476802.6479056,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19233 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1120/2352 checkpointed, 1120 API-ok, 0 failed, 1232 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791476846.2764819,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19277 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1171/2352 checkpointed, 1171 API-ok, 0 failed, 1181 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791476890.0752075,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19321 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1227/2352 checkpointed, 1227 API-ok, 0 failed, 1125 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791476935.9074361,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19367 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1286/2352 checkpointed, 1286 API-ok, 0 failed, 1066 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791476979.85733,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19410 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1333/2352 checkpointed, 1333 API-ok, 0 failed, 1019 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477032.7101107,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19463 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1391/2352 checkpointed, 1391 API-ok, 0 failed, 961 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477078.7379656,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19509 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1441/2352 checkpointed, 1441 API-ok, 0 failed, 911 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477123.4143548,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19554 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1498/2352 checkpointed, 1498 API-ok, 0 failed, 854 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477169.4936547,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19600 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1560/2352 checkpointed, 1560 API-ok, 0 failed, 792 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477212.8217528,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19643 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1615/2352 checkpointed, 1615 API-ok, 0 failed, 737 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477258.1394768,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19689 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1676/2352 checkpointed, 1676 API-ok, 0 failed, 676 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477303.531844,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19734 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1736/2352 checkpointed, 1736 API-ok, 0 failed, 616 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477348.9521368,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19780 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1799/2352 checkpointed, 1799 API-ok, 0 failed, 553 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477396.2499049,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19827 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1869/2352 checkpointed, 1869 API-ok, 0 failed, 483 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477442.0140162,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19873 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1927/2352 checkpointed, 1927 API-ok, 0 failed, 425 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477488.3310966,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19919 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 1983/2352 checkpointed, 1983 API-ok, 0 failed, 369 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477531.8926983,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   19963 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 2035/2352 checkpointed, 2035 API-ok, 0 failed, 317 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477575.8808806,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   20007 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 2089/2352 checkpointed, 2089 API-ok, 0 failed, 263 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477619.6440504,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   20050 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 2141/2352 checkpointed, 2141 API-ok, 0 failed, 211 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477663.5531616,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   20094 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 2185/2352 checkpointed, 2185 API-ok, 0 failed, 167 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477709.5042908,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   20140 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 2235/2352 checkpointed, 2235 API-ok, 0 failed, 117 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477771.5089822,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   20202 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 2307/2352 checkpointed, 2307 API-ok, 0 failed, 45 pending"
+        ]
+      }
+    },
+    {
+      "epoch": 1791477831.1929235,
+      "session_id": 90124,
+      "controller_pid": 56870,
+      "same_controller_live": true,
+      "actual_process": "56870   20262 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+      "status": "running",
+      "stages": [
+        [
+          "Qwen3-8B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-measure",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-export",
+          "passed"
+        ],
+        [
+          "Qwen3-8B-diagnose",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-prepare",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-index",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-generate",
+          "passed"
+        ],
+        [
+          "Qwen3-4B-measure",
+          "running"
+        ]
+      ],
+      "progress": {
+        "Qwen3-8B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ],
+        "Qwen3-4B-generate.log": [
+          "[running] 2352/2352 checkpointed, 2352 API-ok, 0 failed, 0 pending"
+        ]
+      }
+    }
+  ],
+  "scope": "Actual full4B generation coverage, outside inputs/frame counts, own generation-server cleanup and actual measurement child start only. Not completed4B measurement/export/analysis or full two-model intake.",
+  "private_evidence_directory": "generated/full4b-generation-20261009-v52",
+  "classifier_accuracy_verified": false,
+  "full_return_accepted": false,
+  "public_push_performed": false,
+  "product_source_changed": false,
+  "gpu_conditions_changed": false,
+  "goal_status": "active",
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

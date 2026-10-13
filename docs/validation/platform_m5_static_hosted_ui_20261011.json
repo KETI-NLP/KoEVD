@@ -1,0 +1,435 @@
+{
+  "scope": "M5 actual private HF direct Static app + internal report iframe; preserves shared M6 and original RC gates",
+  "date_kst": "2026-10-11",
+  "plan_version": "0.38",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "previous_turn_classification": "progress: full browser bootstrap, exact installed299 CPU and private Static creation/byte verification",
+  "current_turn_classification": "progress: secure hosted validator, owner-access preflight and actual full HF analysis",
+  "HF_state": {
+    "repo_id": "KETI-NLP/KoEVD-Explorer",
+    "revision": "0339d618b970737ec6d0b102f5ba1df9a78c6588",
+    "private": true,
+    "sdk": "static",
+    "runtime_stage": "RUNNING",
+    "hardware": "None",
+    "new_deployment": false,
+    "visibility_changed": false
+  },
+  "hosted_evidence_path": "generated/static-HF-full-bootstrap-browser-20261011-v59-audit/evidence.json",
+  "hosted_evidence_sha256": "4bb992563dda65633958331f24ddacd5685124e09a569aa03ae98161da444a3b",
+  "hosted_browser": {
+    "scope": "Actual private HF Static direct app analysis; not Hub parent iframe/submitter OAuth/storage/publication",
+    "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+    "revision": "0339d618b970737ec6d0b102f5ba1df9a78c6588",
+    "browser": "154.0.8037.98",
+    "seconds": 176.2410523,
+    "resamples": 100,
+    "seed": 1729,
+    "profile_exact": true,
+    "all_five_files_byte_exact": true,
+    "outputs": {
+      "profile-v2.json": {
+        "bytes": 26268045,
+        "sha256": "1e1e7afe0813fa00fb69e73d67d5a228c80eb05ff21dbcefad9f5d791eb3a609"
+      },
+      "cases-v2.jsonl": {
+        "bytes": 178948156,
+        "sha256": "e87c754152a181a9e9d6bd8a1668b99ad8f7d1c575a4da60fd619891902f23ac"
+      },
+      "metrics-v2.csv": {
+        "bytes": 1085575,
+        "sha256": "a4e2ef84749b43eff24bfb012349c2519996156b36fc770a0e7687b483bee58b"
+      },
+      "report-v2.md": {
+        "bytes": 4038,
+        "sha256": "8f25cb47cad40e70f1c6b10e9a16f79f9eea345d3f5e645c83cc3bcee58bfd33"
+      },
+      "report-v2.html": {
+        "bytes": 199373743,
+        "sha256": "92f1e8b780e0e0bccffe98cbc29152e81e96ddd257410f2e671c59d26b9fb5ad"
+      }
+    },
+    "requests": [
+      {
+        "method": "GET",
+        "asset": "index.html",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "style.css",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "app.js",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "config.json",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "worker.js",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "runtime/pyodide.js",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "config.json",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "runtime/pyodide-lock.json",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "runtime/python_stdlib.zip",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "runtime/pyodide.asm.wasm",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "runtime/pyodide.asm.js",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "runtime/pyodide.asm.wasm",
+        "origin": "https://us.aws.cdn.hf.co",
+        "query_present": true,
+        "redirected": true,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "engine.zip",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "data/index-0.json",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "data/index-0.json",
+        "origin": "https://us.aws.cdn.hf.co",
+        "query_present": true,
+        "redirected": true,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "data/index-1.json",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "asset": "data/index-2.json",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "query_present": false,
+        "redirected": false,
+        "bodyBytes": 0
+      }
+    ],
+    "responses": [
+      {
+        "asset": "index.html",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 2960,
+        "sha256": "2750b10ec2e630baee40797d2890697d4206c25ee4d7c444c6aa783c5a657701",
+        "normalized_sha256": "0b1d1bb240107eeb0948a513d7f536ffbd172dd6bdec9b064ea3bbdd4bd371a4",
+        "provider_variables_injection": true,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "style.css",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 1352,
+        "sha256": "061e7c161af90e08ab87629373624a968ec57c714a76fba47c2c26a6c95892fc",
+        "normalized_sha256": "061e7c161af90e08ab87629373624a968ec57c714a76fba47c2c26a6c95892fc",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "app.js",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 3592,
+        "sha256": "c3d2b4fd9a536d74a3b8b491102d95142bf52cf70ea1e7b6117147c53a627f29",
+        "normalized_sha256": "c3d2b4fd9a536d74a3b8b491102d95142bf52cf70ea1e7b6117147c53a627f29",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "config.json",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 1115,
+        "sha256": "e73ce02790abebae48ea811effbdfec0ebaa1672587087f12b61ffaedf5aa2ac",
+        "normalized_sha256": "e73ce02790abebae48ea811effbdfec0ebaa1672587087f12b61ffaedf5aa2ac",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "worker.js",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 2587,
+        "sha256": "d75b10390be1f3ebcfa5c45707fec7448e0ad13a6fa8e9c485aba05b1bbb365c",
+        "normalized_sha256": "d75b10390be1f3ebcfa5c45707fec7448e0ad13a6fa8e9c485aba05b1bbb365c",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "runtime/pyodide.js",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 18597,
+        "sha256": "718d40f1c015dd25ec724cc8fc4e2325d6a45a92ae225121ff6953f224a16f72",
+        "normalized_sha256": "718d40f1c015dd25ec724cc8fc4e2325d6a45a92ae225121ff6953f224a16f72",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "config.json",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 1115,
+        "sha256": "e73ce02790abebae48ea811effbdfec0ebaa1672587087f12b61ffaedf5aa2ac",
+        "normalized_sha256": "e73ce02790abebae48ea811effbdfec0ebaa1672587087f12b61ffaedf5aa2ac",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "runtime/pyodide.asm.js",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 1074322,
+        "sha256": "1263f02b5b26099b96112378156f242dd98b39a8201ba7765e5fe3d455c5ce91",
+        "normalized_sha256": "1263f02b5b26099b96112378156f242dd98b39a8201ba7765e5fe3d455c5ce91",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "runtime/pyodide-lock.json",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 120010,
+        "sha256": "3256ffc76388de0e37f4b34d42ab484268d1afc675179ff97b2a5bb14f84ccac",
+        "normalized_sha256": "3256ffc76388de0e37f4b34d42ab484268d1afc675179ff97b2a5bb14f84ccac",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "runtime/python_stdlib.zip",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 2423989,
+        "sha256": "4298b6ee445cb724c3973437da47789752b9e6ff4e26619026b283ec801fc46b",
+        "normalized_sha256": "4298b6ee445cb724c3973437da47789752b9e6ff4e26619026b283ec801fc46b",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "runtime/pyodide.asm.wasm",
+        "origin": "https://us.aws.cdn.hf.co",
+        "status": 200,
+        "bytes": 8647684,
+        "sha256": "e2f4ee75b325e35eb31bfb8c613d4dd5098f5502c156a97847686875b5025480",
+        "normalized_sha256": "e2f4ee75b325e35eb31bfb8c613d4dd5098f5502c156a97847686875b5025480",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "engine.zip",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 81712,
+        "sha256": "71f904efebeb8ec13fc03756208ed53479bd1b34e8a1f02ba59675166a5a1506",
+        "normalized_sha256": "71f904efebeb8ec13fc03756208ed53479bd1b34e8a1f02ba59675166a5a1506",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "data/index-1.json",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 232077,
+        "sha256": "952c89fda0b410e636ee8892435b9bcb70757c7bb4fd5d30c14cadce41862485",
+        "normalized_sha256": "952c89fda0b410e636ee8892435b9bcb70757c7bb4fd5d30c14cadce41862485",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "data/index-2.json",
+        "origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "status": 200,
+        "bytes": 5152405,
+        "sha256": "87e5e24b9bc0b2f5bff281fc79e47661f08fada17c2954bd3917cced56f63ec1",
+        "normalized_sha256": "87e5e24b9bc0b2f5bff281fc79e47661f08fada17c2954bd3917cced56f63ec1",
+        "provider_variables_injection": false,
+        "verification": "browser_response_body"
+      },
+      {
+        "asset": "data/index-0.json",
+        "origin": "https://us.aws.cdn.hf.co",
+        "status": 200,
+        "bytes": 69541861,
+        "sha256": "9faa482f15bba0a1f9746e1726b13eb00ee60619381fd9383d55b7ca0cd4ec34",
+        "normalized_sha256": "9faa482f15bba0a1f9746e1726b13eb00ee60619381fd9383d55b7ca0cd4ec34",
+        "provider_variables_injection": false,
+        "verification": "independent_asset_refetch_after_inspector_eviction"
+      }
+    ],
+    "service_asset_redirects": [
+      {
+        "asset": "runtime/pyodide.asm.wasm",
+        "status": 302,
+        "from_origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "to_origin": "https://us.aws.cdn.hf.co",
+        "signed_query_present": true
+      },
+      {
+        "asset": "data/index-0.json",
+        "status": 302,
+        "from_origin": "https://keti-nlp-koevd-explorer.static.hf.space",
+        "to_origin": "https://us.aws.cdn.hf.co",
+        "signed_query_present": true
+      }
+    ],
+    "independent_asset_refetches": [
+      {
+        "asset": "data/index-0.json",
+        "origin": "https://us.aws.cdn.hf.co",
+        "method": "GET",
+        "bodyBytes": 0,
+        "status": 200,
+        "bytes": 69541861
+      }
+    ],
+    "unexpected_external": [],
+    "errors": [],
+    "cleared": true,
+    "credential_persisted": false,
+    "actual_result_transmitted": false,
+    "shared_registration_verified": false,
+    "submitter_OAuth_verified": false
+  },
+  "records_each": 17670,
+  "records_total": 35340,
+  "original_results_byte_sha256": {
+    "Qwen3-8B": "27a4dea555208658133b7713f4f24938cf4e8b8cde23bb1e2003028692ba5a99",
+    "Qwen3-4B": "d136bf925164a6604e99da65f8e604541f0236a69d2bfe6479c9549daf293cf1"
+  },
+  "same_common_engine_and_native_outputs": true,
+  "installed_core_files_still_exact": 50,
+  "CPU_scope": {
+    "prior_complete_suite": {
+      "tests": 299,
+      "receipt": "docs/validation/platform_m5_static_hosting_20261011.json"
+    },
+    "new_boundary_tests": 3,
+    "new_tests_log_sha256": "27bb30218ca5006d3b3ce728110d7f6fe2f397539d614aff762f0bce9af3d053",
+    "new_tests_log_path": "generated/static-hosting-boundary-20261011-v59.log",
+    "full302_suite_run_claimed": false,
+    "new_node_syntax_check_passed": true,
+    "generic_CLI_real_preflight_passed": true
+  },
+  "validation_source_sha256": {
+    "scripts/validate_hosted_static_space_ui.cjs": "d97e6e0dd81c2c74f4e37a4ad070d18c91feeed6da3c59852ebce040a98b3a22",
+    "scripts/validate_private_static_hosting.py": "06828c34ba38b64f6ef327b2cff3a647909d6d2f54fe6fca5d98cd0310cfd475",
+    "scripts/validate_static_inventory.py": "2a524d8f76e00137805f38115e0eaa7acf3719a1a2860d18f3947ad4d6021bb4",
+    "tests/test_private_static_hosting.py": "53337507f778192135c17d1d81f2c7422c7dc4f2bb8abe0073a2d7bff61486f6"
+  },
+  "retained_failures": [
+    {
+      "path": "generated/static-HF-full-bootstrap-browser-20261011-v59/failure.json",
+      "scope": "analysis/downloads/UI passed; first network verifier rejected legitimate HF CDN302"
+    },
+    {
+      "path": "generated/static-HF-full-bootstrap-browser-20261011-v59-final/failure.json",
+      "scope": "analysis/downloads/UI passed; Chrome inspector evicted69MB response; original evidence retained"
+    }
+  ],
+  "partial_output_parity": "generated/static-HF-partial-output-parity-20261011-v59.json",
+  "visual_QA": [
+    "actual hosted full desktop comparison/cases",
+    "actual hosted full mobile"
+  ],
+  "HF_Hub_parent_page_verified": false,
+  "KoEVD_submitter_OAuth_verified": false,
+  "shared_registration_cloud_operator_verified": false,
+  "actual_public_references_approved": false,
+  "new_GPU_inference": false,
+  "actual_target_outputs_uploaded": false,
+  "new_Space_or_visibility_change": false,
+  "public_posting": false,
+  "billing": false,
+  "original_goal_body_unchanged": true,
+  "remaining": [
+    "HF Hub parent page/submitter web identity acceptance",
+    "approved public real response references",
+    "independent operator publication/policy/recovery acceptance",
+    "approved private cloud backup/restore",
+    "original server container gate"
+  ],
+  "goal_status": "active; incomplete; original M0-M6 scope unchanged"
+}

@@ -1,0 +1,24 @@
+{
+  "scope": "M1 CPU input/format/registry/install verification; no GPU or public deploy",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "python": "3.12.14",
+  "jsonschema": "4.26.0",
+  "tests": {
+    "passed": 43,
+    "seconds": 5.824,
+    "installed_package": true
+  },
+  "source_sha256": {
+    "src/koevd_eval/results.py": "c1f31f22c78c387de0ab9f136e8289c40add5a9da1a7af3303d1826321104811",
+    "src/koevd_eval/protocols.py": "f33ccded1e2cb804802892be8ba64fb49d2a4fb87aeac40217bfdc2d5c78ad21",
+    "pyproject.toml": "f6598fe2da0cd4e4374ba365941ace2fa61d6857918c3514bbe5581d4bb1920c",
+    "src/koevd_eval/schemas/results-v1.schema.json": "08d9a0c7c1b8e6254e4f53b3f796a344256fe41cf193e49a8868e9296f77a908",
+    "src/koevd_eval/schemas/index-v1.schema.json": "0128b083e704e32ecb6652a40639d4854b4a406ae8d5a22c274f3d66a384a654",
+    "src/koevd_eval/schemas/protocol-v1.schema.json": "ef58d7f69b951580b05fec3c31f4d3110b4f0d31951bfc0021dc15636ea1fabc",
+    "configs/protocols/koevd-core-canonical-v1.json": "3cefbddfb574ade4f5be9a92e92298b0951c969cbb5bf764a576e919eb610078",
+    "tests/test_results.py": "214a3c21d74eade9a6398c3ffe4c17d46ef0ae48a58c5a7c8370150d4946741f",
+    "tests/test_protocols.py": "7fefa0c7ccc59c5722613a343d6fd34151658364e4086164785b21b59c730254"
+  },
+  "gpu_integration": "not_performed",
+  "publication": "not_performed"
+}

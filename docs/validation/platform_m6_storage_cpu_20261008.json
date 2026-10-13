@@ -1,0 +1,99 @@
+{
+  "checkpoint": "platform_m6_storage_cpu_20261008",
+  "scope": "Local SQLite and operator identity assertions, synthetic results; no OAuth or external publication",
+  "source_files": {
+    "src/koevd_eval/storage.py": {
+      "sha256": "e955a267ccc91a5cb67386971907d7cf53542c6774de0cbabdeb7bf42e07ac75",
+      "installed_matches": true
+    },
+    "src/koevd_eval/submissions.py": {
+      "sha256": "87df4508da6c4b4024afa8bba497cc225290b9e51e6a5bb3b945bc595add2ddb",
+      "installed_matches": true
+    }
+  },
+  "tests": {
+    "count": 151,
+    "new_submission_tests": 20,
+    "command": "python -X utf8 -m unittest discover -s tests -v",
+    "exit_code": 0,
+    "seconds": 50.81183769996278,
+    "log": "generated/submissions-validation-20261008/installed-tests-attempt-2.log",
+    "log_sha256": "5f4fb81747710925d3ca1e03640e8bfb948bfaa7b67a7f6ca146200c3e218e81",
+    "installed_package": true,
+    "previous_attempt": "Execution handle and OS process missing; incomplete log preserved, not counted as a pass",
+    "gpu_inference_verified": false
+  },
+  "wheel": {
+    "path": "generated/submissions-wheel-20261008/koevd_eval-0.2.0-py3-none-any.whl",
+    "bytes": 158124,
+    "sha256": "e7a66fd69d3cae1debce56742f42fed1d4ba7ecc61be9c2568ce3a33b2733694"
+  },
+  "cli": {
+    "evidence": "generated/submissions-cli-20261008/evidence.json",
+    "commands": 19,
+    "all_expected_statuses": true,
+    "backup_restored_withdrawal": true
+  },
+  "full_scale": {
+    "scope": "Full pinned core input index with artificial responses/labels; CPU SQLite persistence only",
+    "records": 17670,
+    "task_counts": {
+      "1": 2000,
+      "2": 8000,
+      "3": 2659,
+      "4": 2659,
+      "5": 2352
+    },
+    "sources": 2659,
+    "task3_valid": 2587,
+    "artifact_sha256": "63db29fb8d4a8d04f41c29e6cefb835f20b788de8be2ef2d1eb3d1c28fee49d7",
+    "input_index_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+    "create_seconds": 3.233883200213313,
+    "summary_seconds": 19.91672069998458,
+    "total_seconds": 28.912559899967164,
+    "database_bytes": 9629696,
+    "database_counts": {
+      "artifacts": 1,
+      "submissions": 1,
+      "revisions": 1,
+      "events": 6,
+      "requests": 6
+    },
+    "sqlite_version": "3.53.1",
+    "journal_mode": "delete",
+    "integrity_check": "ok",
+    "original_preserved_after_restart": true,
+    "withdrawal_preserved_after_restart": true,
+    "official_rank_eligible": false,
+    "actual_gpu_inference": false,
+    "oauth_verified": false,
+    "external_publication": false
+  },
+  "implemented": [
+    "Canonical immutable originals and linked revisions",
+    "Atomic artifact/revision/event/state/idempotency transaction",
+    "Distinct review and publication axes",
+    "Operator-configured role boundaries and independent review",
+    "Explicit summary/response scope and no automatic publication",
+    "Earlier public revision remains while new head is reviewed",
+    "Withdrawal suppresses public lookup and in-flight CPU summary after recheck",
+    "Private originals/events retained across restart and consistent backup",
+    "Thread/separate-process concurrency and abrupt rollback",
+    "Database quota and content/projection integrity checks"
+  ],
+  "not_implemented": [
+    "Actual OAuth/server-authenticated HTTP registration and moderation UI",
+    "Remote durable backend and recovery synchronization",
+    "Metric-specific official eligibility and sorting",
+    "Verified actual target-model references, two-target GPU evidence and container/live deployment acceptance"
+  ],
+  "sqlite_version": "3.53.1",
+  "journal_mode": "delete",
+  "m6_complete": false,
+  "whole_goal_complete": false,
+  "official_rank_eligible": false,
+  "external_publication": false,
+  "actual_gpu_inference": false,
+  "oauth_verified": false,
+  "ui_changes": false
+}

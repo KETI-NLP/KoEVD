@@ -1,0 +1,85 @@
+{
+  "plan_version": "0.48",
+  "status": "local_readonly_diagnostic_passed_live_switch_approval_pending",
+  "scope": "Initialization inventory diagnostic; no new inference or full-suite rerun",
+  "changes": [
+    "Distinct sanitized initialization_inventory_mismatch refusal",
+    "Read-only --check-initialization-baseline; equality never initializes storage or uploads",
+    "Shared independent input/private Bucket validation before storage initialization"
+  ],
+  "tests": {
+    "count": 25,
+    "seconds": 5.652,
+    "exit_code": 0,
+    "log": "generated/managed-readonly-probe-20261012-v72/readonly-tests.log",
+    "sha256": "ee5fb6dbea0b30bfb96c2f1452a4215c84b0319ac3417e7f35f100a6e4858683",
+    "providers": "explicit CPU HF doubles"
+  },
+  "prior_process_test": {
+    "plan_version": "0.47",
+    "seconds": 27.969,
+    "HF_OAuth": "explicit local doubles",
+    "current_process_test_rerun": false
+  },
+  "core50_exact_to_default": true,
+  "prepared_candidate": {
+    "observed_utc": "2026-10-12T07:15:19.589069+00:00",
+    "proposal_only": true,
+    "new_live_approval_received": false,
+    "source_uploaded": false,
+    "target": "KETI-NLP/KoEVD-Platform-Dev",
+    "parent_revision": "8d50fbe9a05c152cb4e3365bea01c52ec0f78419",
+    "private": true,
+    "hardware": "cpu-basic",
+    "runtime_stage": "RUNNING",
+    "Bucket": "KETI-NLP/KoEVD-Platform-Backups-Dev",
+    "before_objects": [
+      {
+        "path": "koevd-snapshots/1000c7fbb44a656fcb893f46720129b6b44960c096f4ec91a4258fbbe69bffc6.zip",
+        "bytes": 66540
+      },
+      {
+        "path": "koevd-snapshots/1fcce53a94fa555902f58d8a1022883dca70091074c8832140183519788c3ef6.zip",
+        "bytes": 66540
+      },
+      {
+        "path": "koevd-snapshots/3282e15a1b89a1b5ce7003faa21827448fe92bfbb8d9368fdf0b027a0b239bd8.zip",
+        "bytes": 66540
+      },
+      {
+        "path": "koevd-snapshots/780995a6e048bff02fa0321aac1355b9c0cf538d06d6a5eded6360fcd36ac47b.zip",
+        "bytes": 67154758
+      },
+      {
+        "path": "koevd-snapshots/7eb23cfcc04339491accc1b7416fa2ada1430f8c16448e908a3d388368c51ef7.zip",
+        "bytes": 66540
+      },
+      {
+        "path": "koevd-snapshots/b1ea22082e5c630c18ca8dbb5f5a2e0aaf8d099c11df79708f070851ed077ebe.zip",
+        "bytes": 263149
+      }
+    ],
+    "maximum_new_snapshot_writes": 0,
+    "maximum_new_result_uploads": 0,
+    "Secret_values_read": false,
+    "continuous_backup": false,
+    "public_Static_changed": false,
+    "candidate": "generated/managed-readonly-probe-20261012-v72/candidate",
+    "payload_files": 70,
+    "candidate_manifest_sha256": "aadaf392f5ca8ac4d6fc12c5d6008ce1e2fd59a46a0cf6f751f0024373df5c3d",
+    "Docker_cmd": "--check-initialization-baseline",
+    "expected_code": "initialization_inventory_mismatch",
+    "after_probe": "Return exact default v67b payload; preserve Bucket and Secret",
+    "scope_limitation": "Negative inventory guard and Secret read access only; positive bootstrap/restart remain incomplete"
+  },
+  "live_guard_validation": false,
+  "live_positive_bootstrap_restart": false,
+  "new_Bucket_writes": 0,
+  "new_result_uploads": 0,
+  "new_Space_deployment": false,
+  "prior_trial_count_bound_passed": false,
+  "prior_trial_snapshots": 5,
+  "prior_trial_bytes": 529309,
+  "continuous_backup": false,
+  "goal_status": "active"
+}

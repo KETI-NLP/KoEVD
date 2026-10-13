@@ -1,0 +1,103 @@
+{
+  "plan_version": "0.59",
+  "status": "actual_b200_local_Docker_three_analyses_fifteen_downloads_accepted",
+  "host": "CPU_VALIDATION_NODE",
+  "initial_approved_payload_bytes": 97438709,
+  "two_original_JSONs_transferred_once": true,
+  "one_image_built": true,
+  "image_id": "sha256:65e251a1e3852be671fcb88000302dd0173b9feb638f0a7a2faa99362b3fca24",
+  "container_id": "41394535bd646bd4165aa491351ac594ff98f25258cb634232141a8a35652393",
+  "container_run_seconds": 277.752,
+  "records": [
+    17670,
+    17670
+  ],
+  "selections": [
+    [
+      0
+    ],
+    [
+      1
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "download_files_checked": 15,
+  "report_bytes_checked": 806504041,
+  "all_HTTP_CLI_bytes_exact": true,
+  "comparison_also_matches_prior_local_and_actual_HF_files": true,
+  "default_CMD": "python launch.py",
+  "uid_gid": "1000:1000",
+  "network": "none",
+  "published_ports": 0,
+  "owned_container_terminal": true,
+  "container_exit_code": 0,
+  "owned_container_removed": true,
+  "Python": "3.12.15 (main, Oct  6 2026, 02:02:22) [GCC 14.2.0]",
+  "installed_analysis_package_files_checked": 43,
+  "guard_tests": {
+    "count": 7,
+    "seconds": 0.029,
+    "errors": 0
+  },
+  "preserved_failures": [
+    "Auto-review initially rejected sensitive transfer; exact scope then explicitly approved",
+    "First context extraction bound64MiB rejected accepted75,622,604-byte context before image build",
+    "First image inspection Go template failed on omitted Entrypoint before container creation",
+    "Initial Windows CPU guards had2 sandbox Temp cleanup PermissionErrors; normal-permission run passed7"
+  ],
+  "production_core50_or_deployed_app_changed": false,
+  "new_GPU_inference": false,
+  "HF_repo_Secret_backup_public_or_paid_changes": false,
+  "whole_goal_completed": false,
+  "evidence": [
+    {
+      "path": "generated/b200-container-live-v92/return-fixed/extracted/runtime-fixed/receipt.json",
+      "bytes": 5145,
+      "sha256": "e78063260b339ef3a19ef43fdfe92a6a17588def831a31349b6ae5e434077f51"
+    },
+    {
+      "path": "generated/b200-container-live-v92/return-fixed/extracted/runtime-fixed/disposable/output/http/receipt.json",
+      "bytes": 5213,
+      "sha256": "582764a950c4e8dcf319f90c38cff111d3423257855c3e2e0e51555fceb067b4"
+    },
+    {
+      "path": "generated/b200-container-live-v92/return-fixed/extracted/state-fixed.json",
+      "bytes": 337,
+      "sha256": "e6fa6a811677f0528d3e75609b3443e1aeab2e4222e33eccbd150124f9b2380e"
+    },
+    {
+      "path": "generated/b200-container-live-v92/return-fixed/bundle-fixed.json",
+      "bytes": 279,
+      "sha256": "e753699998e09571df90221673e75a97d1265c7779fff80e2ce1359c1c4ac926"
+    },
+    {
+      "path": "generated/b200-container-live-v92/prebuild-failure-and-repair.json",
+      "bytes": 556,
+      "sha256": "f2c34adb9c8e08a3e653800a316ddec73123a165706fb77d306f6adda53d7849"
+    },
+    {
+      "path": "generated/b200-container-live-v92/return-1/extracted/runtime/receipt.json",
+      "bytes": 788,
+      "sha256": "c16e8d3886ad9cbdb073d664b077c4d60fc72136274d150d8b9555474cf57d24"
+    },
+    {
+      "path": "generated/b200-container-live-v92/image-inspect-field-diagnosis.json",
+      "bytes": 912,
+      "sha256": "4a0c7b545c81a547c5fc120ce1768ef3501a169076a71f358b4c3e14efae7393"
+    },
+    {
+      "path": "generated/b200-container-live-v92/inspect-guard-tests.log",
+      "bytes": 110,
+      "sha256": "98ff75207054a203dd4b120265057ebce35bd206fb905f4b300526b7c88d4882"
+    },
+    {
+      "path": "scripts/validate_space_container_runtime.py",
+      "bytes": 13918,
+      "sha256": "4c9c09e7e0a6ac2764599897741fd51796ff1e0f8e0da8e415a5da64a229e4c6"
+    }
+  ],
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

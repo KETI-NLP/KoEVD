@@ -1,0 +1,81 @@
+{
+  "milestone": "M6 metric-specific policy CPU candidate only",
+  "date": "2026-10-08",
+  "policy_version": "koevd-rank-admission-v1",
+  "policy_status": "candidate",
+  "installed_tests": {
+    "count": 167,
+    "unittest_seconds": 55.254,
+    "evidence": "generated/admission-validation-20261008/installed-test-evidence.json",
+    "log": "generated/admission-validation-20261008/installed-tests.log",
+    "execution_scope": "CPU including explicitly synthetic policy ratification/GPU receipts in fixtures; not real GPU or ratification",
+    "exit_code": 0,
+    "seconds": 55.876515000127256,
+    "command": [
+      "[private-local-path]",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "module_checks": {
+      "eligibility": {
+        "installed": "[private-local-path]",
+        "sha256": "c375febaa6a80b6dd4bb3e60d2d116d042adc09de9dcad0fff928ab882f72c9b"
+      },
+      "submissions": {
+        "installed": "[private-local-path]",
+        "sha256": "7b8020b6d0b90b725a67a1734313f528a5f3c2c673ceef88b8b989e290e52dd3"
+      }
+    }
+  },
+  "installed_cli": {
+    "commands": 19,
+    "evidence": "generated/admission-cli-20261008/evidence.json",
+    "public_summary_admission": "candidate; no eligible metrics; console command 8"
+  },
+  "full_scale": {
+    "scope": "independent full pinned index + synthetic responses, CPU policy only; no real GPU, ratification or publication",
+    "records": 17670,
+    "metrics": 47,
+    "task3_partitions": {
+      "all": 2659,
+      "core": 2000,
+      "task5_overlap": 784
+    },
+    "task_counts": {
+      "1": 2000,
+      "2": 8000,
+      "3": 2659,
+      "4": 2659,
+      "5": 2352
+    },
+    "policy_status": "candidate",
+    "eligible_metric_ids": [],
+    "seconds": 4.861154900165275,
+    "artifact_sha256": "63db29fb8d4a8d04f41c29e6cefb835f20b788de8be2ef2d1eb3d1c28fee49d7",
+    "input_index_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+    "policy_sha256": "b3f6107e3efd1bdf0c2fab7a3f03da62c538253b2cc5875d9c24ee4afbce6210"
+  },
+  "wheel": {
+    "path": "generated/admission-wheel-20261008/koevd_eval-0.2.0-py3-none-any.whl",
+    "bytes": 162739,
+    "sha256": "a6a298d40a44a3b7980a7d7f7e869d0d2f5d9254fe9e0c888ef7e145ef88c51f"
+  },
+  "not_verified": [
+    "actual two-target GPU generation",
+    "real operator reproduction receipt",
+    "policy ratification",
+    "human classifier accuracy",
+    "authenticated web submissions or leaderboard",
+    "remote durability",
+    "container/live deployment"
+  ],
+  "public_push": false,
+  "goal_complete": false,
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

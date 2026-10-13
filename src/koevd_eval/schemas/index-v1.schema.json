@@ -1,0 +1,662 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "koevd-input-index-v1"
+    },
+    "protocol": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "dataset": {
+              "type": "object",
+              "properties": {
+                "repo": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 4096,
+                      "minLength": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "revision": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 4096,
+                      "minLength": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "files": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                }
+              },
+              "required": [
+                "repo",
+                "revision",
+                "files"
+              ],
+              "additionalProperties": false
+            },
+            "split": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "limit_sources": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kind": {
+              "enum": [
+                "smoke",
+                "custom"
+              ]
+            },
+            "metadata_view": {
+              "const": "canonical-prepared"
+            },
+            "scoring": {
+              "type": "object",
+              "properties": {
+                "historical": {
+                  "const": "koevd-0.2.0"
+                },
+                "diagnostic": {
+                  "const": "strict-profile-v1"
+                }
+              },
+              "required": [
+                "historical",
+                "diagnostic"
+              ],
+              "additionalProperties": false
+            },
+            "preparation_code_revision": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 256,
+                  "minLength": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "dataset",
+            "split",
+            "limit_sources",
+            "kind",
+            "metadata_view",
+            "scoring",
+            "preparation_code_revision"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "dataset": {
+              "type": "object",
+              "properties": {
+                "repo": {
+                  "type": "string",
+                  "maxLength": 4096,
+                  "minLength": 1
+                },
+                "revision": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{40}$"
+                },
+                "files": {
+                  "type": "object",
+                  "minProperties": 1,
+                  "additionalProperties": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                }
+              },
+              "required": [
+                "repo",
+                "revision",
+                "files"
+              ],
+              "additionalProperties": false
+            },
+            "selection": {
+              "type": "object",
+              "properties": {
+                "split": {
+                  "const": "core"
+                },
+                "limit_sources": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "split",
+                "limit_sources"
+              ],
+              "additionalProperties": false
+            },
+            "preparation_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "decoding_policy": {
+              "type": "object",
+              "properties": {
+                "temperature": {
+                  "const": 0.0
+                },
+                "max_tokens": {
+                  "const": 1024
+                },
+                "seed": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "temperature",
+                "max_tokens",
+                "seed"
+              ],
+              "additionalProperties": false
+            },
+            "measurement_policy": {
+              "type": "object",
+              "properties": {
+                "3": {
+                  "type": "object",
+                  "properties": {
+                    "adapter": {
+                      "type": "object",
+                      "properties": {
+                        "repo": {
+                          "type": "string",
+                          "maxLength": 4096,
+                          "minLength": 1
+                        },
+                        "revision": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{40}$"
+                        }
+                      },
+                      "required": [
+                        "repo",
+                        "revision"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "base": {
+                      "type": "object",
+                      "properties": {
+                        "repo": {
+                          "type": "string",
+                          "maxLength": 4096,
+                          "minLength": 1
+                        },
+                        "revision": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{40}$"
+                        }
+                      },
+                      "required": [
+                        "repo",
+                        "revision"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "accuracy_status": {
+                      "const": "measurement_limited"
+                    },
+                    "official_ranking": {
+                      "const": false
+                    }
+                  },
+                  "required": [
+                    "adapter",
+                    "base",
+                    "accuracy_status",
+                    "official_ranking"
+                  ],
+                  "additionalProperties": false
+                },
+                "4": {
+                  "type": "object",
+                  "properties": {
+                    "adapter": {
+                      "type": "object",
+                      "properties": {
+                        "repo": {
+                          "type": "string",
+                          "maxLength": 4096,
+                          "minLength": 1
+                        },
+                        "revision": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{40}$"
+                        }
+                      },
+                      "required": [
+                        "repo",
+                        "revision"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "base": {
+                      "type": "object",
+                      "properties": {
+                        "repo": {
+                          "type": "string",
+                          "maxLength": 4096,
+                          "minLength": 1
+                        },
+                        "revision": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{40}$"
+                        }
+                      },
+                      "required": [
+                        "repo",
+                        "revision"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "accuracy_status": {
+                      "const": "measurement_limited"
+                    },
+                    "official_ranking": {
+                      "const": false
+                    }
+                  },
+                  "required": [
+                    "adapter",
+                    "base",
+                    "accuracy_status",
+                    "official_ranking"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "3",
+                "4"
+              ],
+              "additionalProperties": false
+            },
+            "scoring": {
+              "type": "object",
+              "properties": {
+                "historical": {
+                  "const": "koevd-0.2.0"
+                },
+                "diagnostic": {
+                  "const": "strict-profile-v1"
+                }
+              },
+              "required": [
+                "historical",
+                "diagnostic"
+              ],
+              "additionalProperties": false
+            },
+            "metadata_view": {
+              "const": "canonical-prepared"
+            },
+            "denominators": {
+              "type": "object",
+              "properties": {
+                "task1": {
+                  "type": "string",
+                  "maxLength": 4096,
+                  "minLength": 1
+                },
+                "task2": {
+                  "type": "string",
+                  "maxLength": 4096,
+                  "minLength": 1
+                },
+                "task3": {
+                  "type": "string",
+                  "maxLength": 4096,
+                  "minLength": 1
+                },
+                "task4": {
+                  "type": "string",
+                  "maxLength": 4096,
+                  "minLength": 1
+                },
+                "task5": {
+                  "type": "string",
+                  "maxLength": 4096,
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "task1",
+                "task2",
+                "task3",
+                "task4",
+                "task5"
+              ],
+              "additionalProperties": false
+            },
+            "kind": {
+              "const": "standard"
+            },
+            "definition_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "id",
+            "dataset",
+            "selection",
+            "preparation_sha256",
+            "decoding_policy",
+            "measurement_policy",
+            "scoring",
+            "metadata_view",
+            "denominators",
+            "kind",
+            "definition_sha256"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "1": {
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 100000,
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "input_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "row": {
+                "type": "object",
+                "required": [
+                  "sample_id",
+                  "task",
+                  "messages",
+                  "metadata",
+                  "gold"
+                ],
+                "properties": {
+                  "sample_id": {
+                    "type": "string",
+                    "maxLength": 4096,
+                    "minLength": 1
+                  },
+                  "task": {
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1
+                  },
+                  "messages": {
+                    "type": "array"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "required": [
+              "input_sha256",
+              "row"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "2": {
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 100000,
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "input_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "row": {
+                "type": "object",
+                "required": [
+                  "sample_id",
+                  "task",
+                  "messages",
+                  "metadata",
+                  "gold"
+                ],
+                "properties": {
+                  "sample_id": {
+                    "type": "string",
+                    "maxLength": 4096,
+                    "minLength": 1
+                  },
+                  "task": {
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1
+                  },
+                  "messages": {
+                    "type": "array"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "required": [
+              "input_sha256",
+              "row"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "3": {
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 100000,
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "input_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "row": {
+                "type": "object",
+                "required": [
+                  "sample_id",
+                  "task",
+                  "messages",
+                  "metadata",
+                  "gold"
+                ],
+                "properties": {
+                  "sample_id": {
+                    "type": "string",
+                    "maxLength": 4096,
+                    "minLength": 1
+                  },
+                  "task": {
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1
+                  },
+                  "messages": {
+                    "type": "array"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "required": [
+              "input_sha256",
+              "row"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "4": {
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 100000,
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "input_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "row": {
+                "type": "object",
+                "required": [
+                  "sample_id",
+                  "task",
+                  "messages",
+                  "metadata",
+                  "gold"
+                ],
+                "properties": {
+                  "sample_id": {
+                    "type": "string",
+                    "maxLength": 4096,
+                    "minLength": 1
+                  },
+                  "task": {
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1
+                  },
+                  "messages": {
+                    "type": "array"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "required": [
+              "input_sha256",
+              "row"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "5": {
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 100000,
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "input_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "row": {
+                "type": "object",
+                "required": [
+                  "sample_id",
+                  "task",
+                  "messages",
+                  "metadata",
+                  "gold"
+                ],
+                "properties": {
+                  "sample_id": {
+                    "type": "string",
+                    "maxLength": 4096,
+                    "minLength": 1
+                  },
+                  "task": {
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1
+                  },
+                  "messages": {
+                    "type": "array"
+                  },
+                  "metadata": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "required": [
+              "input_sha256",
+              "row"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "additionalProperties": false
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "protocol",
+    "inputs",
+    "content_sha256"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KoEVD trusted prepared-input index v1",
+  "$comment": "Never take this index from an uploader as an official registry index. Runtime checks exact prepared row digests and Task 3/4 reuse."
+}

@@ -1,0 +1,158 @@
+{
+  "format": "koevd-platform-full8b-generation-v1",
+  "plan_version": "0.28",
+  "scope": "Completed actual full8B generation coverage and outside input match; measurement started, two-model full pipeline and independent return intake incomplete.",
+  "generation_check": {
+    "scope": "Completed actual full8B generation coverage only; not completed measurement/two-model run/intake",
+    "epoch": 1791467428.3073542,
+    "controller_pid": 56870,
+    "same_controller_live": true,
+    "outside_index_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+    "task5": {
+      "rows": 2352,
+      "unique_sample_ids": 2352,
+      "sources": 784,
+      "framings": {
+        "safe_guided": 784,
+        "tool_forced": 784,
+        "unsafe_induced": 784
+      },
+      "external_inputs_match": true,
+      "api_non_ok": 0,
+      "prediction_sha256": "e711aa174a5b9b1213463d188cda992afed7d03327298819aaf233688cf668f1",
+      "finish_reasons": {
+        "stop": 2352
+      },
+      "empty_responses": 0
+    },
+    "previous_generation_sha256_unchanged": {
+      "1": "2588f83f4692ff5caae4d05b117761137fd2db64278b192f26bbc9f6c4a8fd33",
+      "2": "7e07a7ef5203d8d35300079c22fdf8edfbb62c083bc4080161c1dfb80dbdfaa9",
+      "3": "bbde288fef3fe4e04e88e2551a4917a0bcc8703a778d63b6140db341c7f1eb58"
+    },
+    "owned_generation_server_stopped": true,
+    "owned_server_pid": 56951,
+    "owned_server_exit_code": 0,
+    "stages": [
+      [
+        "Qwen3-8B-prepare",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-index",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-generate",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-measure",
+        "running"
+      ]
+    ],
+    "generation_counts": {
+      "1": {
+        "expected": 2000,
+        "actual": 2000,
+        "api_failures": 0,
+        "prediction_sha256": "2588f83f4692ff5caae4d05b117761137fd2db64278b192f26bbc9f6c4a8fd33"
+      },
+      "2": {
+        "expected": 8000,
+        "actual": 8000,
+        "api_failures": 0,
+        "prediction_sha256": "7e07a7ef5203d8d35300079c22fdf8edfbb62c083bc4080161c1dfb80dbdfaa9"
+      },
+      "3": {
+        "expected": 2659,
+        "actual": 2659,
+        "api_failures": 0,
+        "prediction_sha256": "bbde288fef3fe4e04e88e2551a4917a0bcc8703a778d63b6140db341c7f1eb58"
+      },
+      "5": {
+        "expected": 2352,
+        "actual": 2352,
+        "api_failures": 0,
+        "prediction_sha256": "e711aa174a5b9b1213463d188cda992afed7d03327298819aaf233688cf668f1"
+      }
+    },
+    "classification_accuracy_verified": false,
+    "full_return_accepted": false
+  },
+  "measurement_observation": {
+    "epoch": 1791467521.7529743,
+    "session_id": 90124,
+    "controller_pid": 56870,
+    "same_controller_live": true,
+    "actual_process": "56870    9952 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+    "controller_status": "running",
+    "stages": [
+      [
+        "Qwen3-8B-prepare",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-index",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-generate",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-measure",
+        "running"
+      ]
+    ],
+    "direct_child_processes": [
+      "61091     223 [private-node-path] [private-node-path] --stage classify --output-dir [private-node-path] --safety-adapter [private-node-path] --safety-base [private-node-path] --strategy-adapter [private-node-path] --strategy-base [private-node-path] --batch-size 2 --classifier-dtype bfloat16 --trace-measurements"
+    ],
+    "measurement_log_observations": {
+      "Qwen3-8B-measure.log": {
+        "bytes": 1278,
+        "recent_counter_lines": [
+          "Loading weights:  59%|█████▉    | 188/320 [00:00<00:00, 678.95it/s]",
+          "Loading weights:  89%|████████▉ | 286/320 [00:00<00:00, 785.49it/s]",
+          "Loading weights: 100%|██████████| 320/320 [00:00<00:00, 685.58it/s]"
+        ],
+        "traceback_seen_in_tail": false
+      }
+    },
+    "final_measurement_files": {
+      "Qwen3-8B": {
+        "3": {
+          "exists": false,
+          "rows": null
+        },
+        "4": {
+          "exists": false,
+          "rows": null
+        }
+      },
+      "Qwen3-4B": {
+        "3": {
+          "exists": false,
+          "rows": null
+        },
+        "4": {
+          "exists": false,
+          "rows": null
+        }
+      }
+    }
+  },
+  "observations_count": 25,
+  "generation_requests_completed": 15011,
+  "portable_records_expected_after_measurement": 17670,
+  "portable_export_completed": false,
+  "task3_length_limit_count_preserved": 249,
+  "measurement_accuracy_verified": false,
+  "limitations": [
+    "The 320/320 loading-weights log is not completed measurement or classified-row coverage.",
+    "Final measurement files absent: row counts remain null, not zero/safe/failure.",
+    "4B/full two-model export/report/compare/independent intake and actual full app/UI validation are incomplete.",
+    "No hosted Space, cloud write, human/operator approval, public output or billing action performed."
+  ],
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

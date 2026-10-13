@@ -1,0 +1,98 @@
+{
+  "format": "koevd-external-gate-blocked-audit-v1",
+  "observed_utc": "2026-10-11T13:14:45.922621+00:00",
+  "plan_version": "0.41",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "dirty_entries_before_audit_docs": 169,
+  "previous_goal_implementation_turn": "progress: v61 source-packaging boundary fixed and scoped7 acceptance",
+  "intervening_user_question_turn": "no progress toward acceptance: Static feasibility explanation only; no live wait",
+  "current_turn": "no progress toward missing acceptance gates: read-only revalidation and blocker bookkeeping; no new implementation or test pass",
+  "repeated_blocker_evidence": {
+    "v59": "actual submitter OAuth, approved references/operator acceptance, cloud and server container remained absent",
+    "v60": "same gates absent after public OAuth implementation; actual client-ID question pending",
+    "v61": "same gates absent after source packaging fix",
+    "v62": "same gates revalidated now; independent required implementation is already prepared"
+  },
+  "local_container_inventory": {
+    "docker": null,
+    "podman": null,
+    "nerdctl": null
+  },
+  "remote_container_probe": {
+    "host": "GPU_NODE",
+    "exit_code": 0,
+    "tool_chunk_id": "f801ad",
+    "command": "ssh -o BatchMode=yes -o ConnectTimeout=8 GPU_NODE python3 -c <read-only shutil.which inventory>",
+    "stdout": {
+      "docker": null,
+      "podman": null,
+      "nerdctl": null
+    },
+    "installed_started_or_remote_files_changed": false
+  },
+  "process_configuration_present": {
+    "OAUTH_CLIENT_ID": false,
+    "OAUTH_CLIENT_SECRET": false,
+    "KOEVD_BACKUP_BUCKET": false
+  },
+  "configuration_limits": "An absent environment variable does not prove that no app/bucket exists. No registered app client ID or approved existing private Bucket target has been supplied for this validation.",
+  "candidate_roles": {
+    "reviewers": [],
+    "admins": []
+  },
+  "candidate_baselines": [],
+  "unapproved_real_preparations": {
+    "Qwen3-8B": {
+      "reviewer": null,
+      "review_statement": null,
+      "publication_evidence": {
+        "consent": null,
+        "rights": null,
+        "evidence_path": null,
+        "evidence_sha256": null
+      }
+    },
+    "Qwen3-4B": {
+      "reviewer": null,
+      "review_statement": null,
+      "publication_evidence": {
+        "consent": null,
+        "rights": null,
+        "evidence_path": null,
+        "evidence_sha256": null
+      }
+    }
+  },
+  "preserved_current_evidence": {
+    "installed_source_assets_exact": 50,
+    "server_candidate_exact_files": 64,
+    "static_engine_exact_sources": 19,
+    "original_results_sha256": {
+      "Qwen3-8B": "27a4dea555208658133b7713f4f24938cf4e8b8cde23bb1e2003028692ba5a99",
+      "Qwen3-4B": "d136bf925164a6604e99da65f8e604541f0236a69d2bfe6479c9549daf293cf1"
+    },
+    "prior_GPU_terminal_stages": 13,
+    "prior_hosted_evidence_digest_exact": true,
+    "prior_private_storage_records": 35340,
+    "prior_candidate_official_eligible_metrics": [],
+    "receipt_sha256": {
+      "docs/validation/platform_m5_static_hosted_ui_20261011.json": "0e55ab631d9fc610afcdb617cfafc4cacb5b92ef738ee219b26b166025646c96",
+      "docs/validation/platform_m6_public_oauth_20261011.json": "b98fd67e0956a99205210543327658e1a5684ecc9721e51fbf9bb24604e42600",
+      "docs/validation/platform_rc_source_hygiene_20261011.json": "ef006c319fe8236a81c802dbf13cb4f2ef768af5676b13ed7231cfa42008c29c",
+      "docs/validation/platform_m5_m6_full_private_review_20261009.json": "4a7807e7956afdc3ed7f54db31f4583da8fbb9c9a41e376797d42ad4416cdd8c"
+    }
+  },
+  "browser_boundary": "HF Hub initial rendering previously observed; parent file-analysis-download remains unverified. Browser extension file-URL setting question unanswered; no settings bypass or new browser pass.",
+  "impasse": "Remaining mandatory acceptance requires actual account/app, independent operator decisions, approved cloud target and/or an available container runtime. Synthetic identities, self-attestations, repeated passing tests or Static personal analysis cannot establish those conditions.",
+  "blocked_audit_passed": true,
+  "goal_status_at_start": "active",
+  "requested_goal_status": "blocked",
+  "goal_complete": false,
+  "original_scope_preserved": true,
+  "new_tests_or_GPU_jobs": false,
+  "public_push_or_production_deployment_or_billing": false,
+  "last_source_checkpoint": "generated/KoEVD_platform_source_clean_inventory_20261011_v61.zip",
+  "checkpoint_scope": "Prior v61 immutable source checkpoint; new v62 audit documents are not included. Executable core/UI/source unchanged.",
+  "next_action_guide": "docs/EXTERNAL_ACCEPTANCE_HANDOFF.md",
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

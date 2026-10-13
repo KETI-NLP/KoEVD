@@ -1,0 +1,177 @@
+{
+  "format": "koevd-platform-acceptance-v1",
+  "plan_version": "0.45",
+  "observed_utc": "2026-10-12T05:19:38.643490+00:00",
+  "status": "partial_release_candidate",
+  "source_head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "current_hosted_deployment": {
+    "path": "generated/prepared-download-hosted-20261012-v67/deployment-receipt.json",
+    "sha256": "041e6bbf5a572488cbce54ae3339e92e385f8a7aa70c9cac8b66c64d4145c2e3",
+    "revision": "5504a5e57e173c96b17272ee0e4c1608e859759c",
+    "private": true,
+    "sdk": "docker",
+    "stage": "RUNNING",
+    "hardware": "cpu-basic",
+    "files_exact": 66,
+    "public_Static_unchanged": true
+  },
+  "actual_user_browser": {
+    "path": "generated/prepared-download-hosted-20261012-v67/browser-receipt.json",
+    "sha256": "fff362378b2e296c5ec76b583e0d74a5e6d5766f198b17f765fdc5bf793134c1",
+    "records": [
+      48,
+      48
+    ],
+    "all_five_files_byte_exact": true,
+    "outputs": {
+      "cases-v2.jsonl": {
+        "bytes": 573906,
+        "sha256": "b5c03bded01f3a6e89629dd3b9161afe11fd5c9b4d70283d76efb4deda6bb11f",
+        "fresh_after_v67_update": true,
+        "native_bytes_equal": true,
+        "download_filename": "cases-v2.jsonl"
+      },
+      "metrics-v2.csv": {
+        "bytes": 273509,
+        "sha256": "7ed7323f298b2aadb585dde0f6a2931a7294ef8122da00afbfaedc5f3dae525e",
+        "fresh_after_v67_update": true,
+        "native_bytes_equal": true,
+        "download_filename": "metrics-v2.csv"
+      },
+      "report-v2.md": {
+        "bytes": 3668,
+        "sha256": "432d183326ce8394c06f1e2e7b2df01644157150ec4a52f622f1db1dba3bb717",
+        "fresh_after_v67_update": true,
+        "native_bytes_equal": true,
+        "download_filename": "report-v2.md"
+      },
+      "profile-v2.json": {
+        "bytes": 7506689,
+        "sha256": "14c7b851c5516ad5981f6bb49f363fb9006624b029611a9ae5aa161872fbd547",
+        "fresh_after_v67_update": true,
+        "native_bytes_equal": true,
+        "download_filename": "profile-v2 (1).json"
+      },
+      "report-v2.html": {
+        "bytes": 4157103,
+        "sha256": "68708c48804e72fb4badc43b9cdec1c5843f90f2baa41bef1f10b1381bd2d354",
+        "fresh_after_v67_update": true,
+        "native_bytes_equal": true,
+        "download_filename": "report-v2 (1).html"
+      }
+    },
+    "new_HF_sign_in_performed": false,
+    "draft_save_or_publication_performed": false,
+    "scope": "Fresh files saved via visible Save anchors in actual Chrome; native bytes independently compared"
+  },
+  "local_ui": {
+    "path": "generated/prepared-download-local-20261012-v67-settled/evidence.json",
+    "sha256": "af6a721c09984bb387e878a2a94055a5b73aa8ce89759a89520cd0df0c07f1f3",
+    "checks": [
+      "Downloaded app profile exactly equals independent CLI profile, including all task denominators and paired analyses",
+      "Supplied Korean response case is retained as literal text; measurement warning and paired UI are visible",
+      "All5 files from visible Save links are byte-exact to native; only one prepared file link retained",
+      "Delayed authenticated download cannot recreate a Save link after session deletion",
+      "Separate browser sessions/download ACL; desktop/mobile overflow; session deletion and token-free URLs"
+    ],
+    "pending_body_completion_before_deleted_session_assertion": true,
+    "browser_errors": 0,
+    "unexpected_external_requests": 0
+  },
+  "fresh_installed_CPU": {
+    "path": "generated/managed-runtime-20261012-v67/complete-install-receipt.json",
+    "sha256": "da65275236f26bbff4efdc1138759ee57be5551d96bc7d0f222903f1bf04f584",
+    "files_exact_rechecked": 50,
+    "runtime_versions_rechecked": 25,
+    "full_suite": {
+      "count": 328,
+      "seconds": 131.52,
+      "exit_code": 0,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    "boundary": "Full328 is prior to the new materializer5 tests; package/core files remain exact. New script tests are separate."
+  },
+  "managed_materializer_and_launch_CPU": {
+    "path": "generated/managed-materializer-20261012-v68/tests.log",
+    "sha256": "d30527332fb7756991c9e81e2f1ac63b5d9b32f5b8cbdd57b7d05194f4fc8615",
+    "count": 15,
+    "seconds": 3.021,
+    "exit_code": 0,
+    "failures": 0,
+    "errors": 0,
+    "new_materializer_tests": 5,
+    "existing_lifecycle_tests": 10,
+    "real_local_owned_subprocess_cleanup": true,
+    "SQLite_snapshot_readback_restore": true,
+    "HF_transport_in_these_tests": "explicit test double",
+    "stale_source_protocol_build_and_inherited_roles_references_rejected": true
+  },
+  "managed_deployment_candidate": {
+    "path": "generated/managed-space-candidate-20261012-v68",
+    "payload_files": 68,
+    "manifest_sha256": "ab48ff982991c0842011633d8f4397c775dd94bcbf08957b24ac283ac196e939",
+    "source_and_protocol_exact_to_current_repo": true,
+    "uploaded": false,
+    "profile_activated": false,
+    "actual_operator_config_or_credentials_included": false,
+    "structure_check": {
+      "path": "generated/managed-profile-structure-check-20261012-v67/receipt.json",
+      "sha256": "92ac4a12af6df12aaccfcf6da6d4c1583789dc8df27675aece1f40648877a44a"
+    },
+    "structure_only_not_catalog_Bucket_authentication": true
+  },
+  "source_recipes": {
+    "explicit_allowlist": [
+      "apps/spaces/Dockerfile",
+      "apps/spaces/managed.Dockerfile"
+    ],
+    "scope_tests": {
+      "path": "generated/prepared-download-local-20261012-v67/source-recipe-final-tests.log",
+      "sha256": "fed22554f608b195b91ec53acd42ee97e2ddc6073a0400e06cdba717bc49c41e"
+    },
+    "count": 8,
+    "seconds": 0.258,
+    "exit_code": 0
+  },
+  "prior_actual_GPU_and_cloud_evidence_preserved": [
+    {
+      "path": "docs/validation/platform_m4_m5_full_two_actual_20261009.json",
+      "sha256": "56a9f5bcb4d858ed3f1ebc7ff682e9ba8c48a67309249e0a6ba8055001f58e86"
+    },
+    {
+      "path": "docs/validation/platform_m6_actual_private_cloud_20261012.json",
+      "sha256": "5ef25fc48371ee5cfe6eed4ff1d7a15f5d5131199c597e12b3f5709dd9433a24"
+    }
+  ],
+  "new_inference_or_Bucket_write": false,
+  "authorization": {
+    "dedicated_token_setup_confirmed": false,
+    "user_last_response": "Will set dedicated token; then requested detailed setup instructions.",
+    "ongoing_Backup_activation_approved": false,
+    "prior_one_snapshot_approval_reused_for_continuous_upload": false
+  },
+  "historical_failures_preserved": [
+    "generated/prepared-download-local-20261012-v67/failure.json",
+    "generated/prepared-download-local-20261012-v67-final/failure.json",
+    "generated/prepared-download-local-20261012-v67/managed-launch-storage-tests.log",
+    "generated/prepared-download-local-20261012-v67/source-recipe-tests.log"
+  ],
+  "owned_local_servers_stopped_after_acceptance": [
+    39188,
+    49316
+  ],
+  "remaining": [
+    "Actual managed HF container/backup/restart/fixed restoration acceptance",
+    "Current Docker full-size acceptance",
+    "Actual approved public target references",
+    "Operator generation/policy/publication review and current recovery approval",
+    "Unpublished GitHub CI execution; production migration is separately authorized"
+  ],
+  "classifier_accuracy_resolved": false,
+  "official_rank_granted": false,
+  "remote_commit_or_RPO_guaranteed": false,
+  "production_deployed": false,
+  "goal_status": "active"
+}

@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-08",
+  "milestone": "M6 opt-in authenticated HTTP/UI CPU candidate",
+  "scope": "Synthetic OAuth provider, model outputs and permission reviewers; actual localhost HTTP/browser/restart; no real HF login/GPU/external publication",
+  "core_installed_tests": {
+    "count": 189,
+    "unittest_seconds": 61.453,
+    "receipt": "generated/submission-web-validation-20261008-v3/installed-test-evidence.json",
+    "log": "generated/submission-web-validation-20261008-v3/installed-tests.log",
+    "exit_code": 0
+  },
+  "final_module_checks": {
+    "oauth": {
+      "sha256": "f0e460e489a6cadf88c6ba311818213ab5df0eef20d137a8f92dab177722ff44",
+      "unchanged_since_189_tests": true,
+      "installed": "[private-local-path]"
+    },
+    "submission_web": {
+      "sha256": "57755250da40b3b3c990f2f87854bdab28403ae957449784faee80ab91982900",
+      "unchanged_since_189_tests": true,
+      "installed": "[private-local-path]"
+    },
+    "submissions": {
+      "sha256": "9c89ede5b44f78c084238b621dd9d1cfccad49ef0cc169385fe03a6dcce1b5fb",
+      "unchanged_since_189_tests": true,
+      "installed": "[private-local-path]"
+    },
+    "spaces": {
+      "sha256": "b84ef472c8f2e4791d7a4046352fe62cb9224dbbb909585b579849bd388f8e66",
+      "unchanged_since_189_tests": true,
+      "installed": "[private-local-path]"
+    },
+    "space_service": {
+      "sha256": "dc0985352fe549182e64be4af33ddd36d646298dac553ae3bf7940e443221507",
+      "unchanged_since_189_tests": true,
+      "installed": "[private-local-path]"
+    }
+  },
+  "final_packaged_assets_sha256": {
+    "space.js": "c935676c165c67e8bd04bee5cc60c3ac017b2357c1f4a951ba2dc55f1e414117",
+    "space.html": "8ffca598290090f3f1f658433dea3d096d516226ba18a488bf143c813274b9d0",
+    "space.css": "a08245d92f0676835dbac7def9a21e984e5e32077f8cf163e322a54858df39c9",
+    "registration.js": "76e904491412446774e3a96d160dcd691d776631942ca1c986f49f4fe5c66e0d"
+  },
+  "browser_flow": {
+    "receipt": "generated/submission-web-ui-20261008-v6/evidence.json",
+    "scope": "actual local HTTP/headless browser with SYNTHETIC OAuth identities, outputs and permissions; no real HF/GPU/external publication",
+    "checks": [
+      "localhost synthetic OAuth PKCE/cookie flow; four isolated browser identities; username text escaping",
+      "private ACL; explicit summary review/publication; metric denominators/exclusion reasons; original responses private",
+      "withdrawal removes public summary/response visibility and UI entry; private original retained",
+      "explicit response scope -> public original -> private import -> two-run shared-engine paired comparison",
+      "event history download, 390px layout, sign-out invalidates private access"
+    ],
+    "screenshots": [
+      "identity-and-private-submission.png",
+      "summary-metric-limits.png",
+      "mobile-sign-in-and-retention.png"
+    ],
+    "unexpected_external_requests": [],
+    "browser_errors": [],
+    "actual_hf_login": false,
+    "actual_gpu": false,
+    "official_ranking_enabled": false
+  },
+  "restart_and_final_layout": {
+    "receipt": "generated/submission-web-layout-20261008-v2/evidence.json",
+    "scope": "final CSS and actual local HTTP restart with SYNTHETIC identity/model/permissions; no actual HF/GPU/deployment",
+    "published_projection_restored": true,
+    "withdrawal_restored": true,
+    "new_login_same_subject_original_preserved": true,
+    "numeric_columns_do_not_wrap": true,
+    "mobile_document_no_overflow": true,
+    "browser_errors": [],
+    "external_requests": [],
+    "screenshots": [
+      "metrics-desktop.png",
+      "metrics-mobile.png"
+    ]
+  },
+  "wheel": {
+    "path": "generated/submission-web-wheel-20261008-v6/koevd_eval-0.2.0-py3-none-any.whl",
+    "sha256": "7867d2ec053e67dd10f0f836432f9fa76b12687ea5ed6a9653ca19952ff03059",
+    "bytes": 176406
+  },
+  "final_scope_note": "Full 189 tests ran on the unchanged Python core in wheel v3. Final wheels changed browser JSON-text import and CSS only; final imported core hashes equal that tested core. Four-account flow tests ran after JSON-text fix; final CSS/restart acceptance and source/installed asset hash checks ran on final wheel v6. No new full-suite execution is claimed for the CSS-only final wheel.",
+  "remaining": [
+    "actual HF OAuth application/account login and iframe verification",
+    "two actual target-model GPU integration and independent operator generation receipt",
+    "policy ratification and receipt-backed official leaderboard integration",
+    "durable remote storage and restore",
+    "container/live deployment"
+  ],
+  "external_publication": false,
+  "official_ranking_enabled": false,
+  "goal_complete": false,
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

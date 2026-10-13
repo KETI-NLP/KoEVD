@@ -1,0 +1,134 @@
+{
+  "scope": "current_publication_metric_projection_cpu_synthetic_http_ui_and_installed_package",
+  "status": "passed",
+  "observed_utc": "2026-10-08T08:24:54.994449+00:00",
+  "implementation": {
+    "service": "SubmissionService.public_leaderboard",
+    "http": "GET /api/public/leaderboard",
+    "cli": "koevd-submissions ... public-leaderboard",
+    "default_policy": "candidate",
+    "default_official_ranks": false,
+    "snapshot_recheck": [
+      "public_membership",
+      "submission_version",
+      "publication_revision_scope",
+      "active_receipt_via_event_version",
+      "operator_policy_registry_context"
+    ],
+    "limits": {
+      "entries": 50,
+      "published_raw_bytes": 134217728,
+      "exceeded": "503_no_partial_ranks"
+    },
+    "raw_responses_or_private_review_exposed": false
+  },
+  "new_service_tests": {
+    "count": 8,
+    "seconds": 3.101,
+    "exit_code": 0,
+    "synthetic_ratification_gpu_scope_only": true
+  },
+  "related_source_tests": {
+    "count": 58,
+    "seconds": 20.039,
+    "exit_code": 0
+  },
+  "full_installed_v1_tests": {
+    "scope": "fresh_noneditable_package_full_cpu_suite",
+    "exit_code": 0,
+    "tests": 221,
+    "seconds": 76.187,
+    "log": "generated\\public-leaderboard-installed-tests-20261008-v1.log",
+    "log_sha256": "ebf0fecf35dc7c3942ac4284c45f0e95cf704bb77b440bada5e958c715dd1301",
+    "module_hashes": {
+      "submissions": "8d4faba54ed0711c6a122692b493f2fd582e1b5abab9279564dae6feadb3e6ec",
+      "eligibility": "cd62440ba0dec7e53d4616a936626ec3e5e081107f8ce678e947914365abbeff",
+      "generation_receipts": "b07ecd164418c49907fbc212bc876182728ddf3b7270f0b629cc909242c65479",
+      "submission_web": "7d3bfdeb406f127fca93d5a91102635d05c4ac55e81bcb4ae598d193573ebe57",
+      "spaces": "3c9c0a16f22bd51f47de9b677b1172b30399d4d9ef8fe604b9b08d4c350b7fd6",
+      "results": "3ba906a5b062f74ed106b4033b81ff7c6535ff852889e25ec5567431ffb43b0f",
+      "diagnostics": "983c50f5fd5e8a9348106fc3b61669371a32fc393eea69b1365114b7baf3d0a0",
+      "reports": "c8826063fc75d7c2486f7dd13d3b320dd151332b5e998ddb0276cf3c012de6f9",
+      "storage": "e955a267ccc91a5cb67386971907d7cf53542c6774de0cbabdeb7bf42e07ac75",
+      "protocols": "f33ccded1e2cb804802892be8ba64fb49d2a4fb87aeac40217bfdc2d5c78ad21"
+    },
+    "synthetic_gpu_and_ratification_fixtures_not_real_evidence": true,
+    "skips": 0
+  },
+  "final_v2_package": {
+    "wheel_sha256": "d919e00eb6f578bb2f552981df6a674fc93fd94ab6ba7dce36658c8d56bc79e0",
+    "wheel_bytes": 181394,
+    "python_files_equal_full_tested_v1": 36,
+    "asset_hashes": {
+      "registration.js": "36c13c6e92546f72be216dbc9a44839efdc8572cbbadb1669b9a9e56a826bbc4",
+      "space.html": "17a972a4733cbaac73c552a21a6f4636f4fb1f9001a9b3e545250a9a8bd2ff1e",
+      "space.css": "e3df2d58ee54c4d1f5b33de79a3b430d2801cb9bb850ef00e16726fa8667d273"
+    },
+    "full_suite_rerun_claimed": false
+  },
+  "ui": {
+    "scope": "actual local HTTP/headless browser with SYNTHETIC OAuth identities, outputs and permissions; no real HF/GPU/external publication",
+    "checks": [
+      "localhost synthetic OAuth PKCE/cookie flow; four isolated browser identities; username text escaping",
+      "private ACL; explicit summary review/publication; metric denominators/exclusion reasons; original responses private",
+      "complete public metric projection includes explicit ratios/coverage/exclusions without provisional ranks",
+      "withdrawal removes public summary/response visibility and UI entry; private original retained",
+      "explicit response scope -> public original -> private import -> two-run shared-engine paired comparison",
+      "two independently reviewed fictional model candidates share a metric group, retain ratios and excluded rank markers",
+      "event history download, 390px layout, sign-out invalidates private access"
+    ],
+    "screenshots": [
+      "identity-and-private-submission.png",
+      "summary-metric-limits.png",
+      "published-metric-comparison.png",
+      "two-published-model-metrics.png",
+      "mobile-sign-in-and-retention.png",
+      "mobile-published-metric-comparison.png"
+    ],
+    "unexpected_external_requests": [],
+    "browser_errors": [],
+    "actual_hf_login": false,
+    "actual_gpu": false,
+    "official_ranking_enabled": false,
+    "evidence": "generated/public-leaderboard-ui-20261008-v2/evidence.json",
+    "visual_inspection": [
+      "two-published-model-metrics.png",
+      "mobile-published-metric-comparison.png"
+    ],
+    "owned_server_stopped": true
+  },
+  "cli_http_and_manifest": {
+    "scope": "SYNTHETIC_published_metric_cli_http_and_candidate_integrity",
+    "cli_http_exact_match": true,
+    "published_fictional_models": 2,
+    "excluded_metric_rows": 94,
+    "official_boards": 0,
+    "manifest_files": 59,
+    "manifest_bytes": 75521349,
+    "actual_hf_login": false,
+    "external_publication": false,
+    "actual_gpu_by_this_check": false,
+    "evidence": "generated/public-leaderboard-cli-20261008-v2/evidence.json"
+  },
+  "deployment_candidate": "generated/private-space-deployment-20261008-v16",
+  "deployment_uploaded": false,
+  "preserved_failures": [
+    "initial_public_board_fixture_changed_target_rejected",
+    "initial_imported_TestCase_duplicate_collection",
+    "first_CLI_wrong_index_ID_rejected"
+  ],
+  "actual_policy_ratification": false,
+  "actual_human_operator_receipt_acceptance": false,
+  "actual_hf_login": false,
+  "external_publication": false,
+  "actual_gpu_by_this_check": false,
+  "remaining": [
+    "expanded_gpu_result_intake",
+    "frozen_measurement_variants",
+    "actual_policy_decision_preservation_and_operator_configuration",
+    "independent_operator_receipt_review",
+    "remote_storage",
+    "container_live_hf"
+  ],
+  "goal_complete": false
+}

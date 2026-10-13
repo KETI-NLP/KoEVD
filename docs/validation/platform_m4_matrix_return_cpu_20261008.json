@@ -1,0 +1,165 @@
+{
+  "scope": "matrix_return_tool_cpu_and_actual_response_review_preparation",
+  "status": "passed_scoped_checks",
+  "cpu_checks": {
+    "scope": "cpu_archive_frozen_clone_and_independent_matrix_return_checks",
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 22.67200000002049,
+    "exit_code": 0,
+    "actual_gpu_inference": false,
+    "full_package_suite_rerun": false
+  },
+  "tool_sha256": {
+    "measurement_matrix_bundle.py": "fea2a3be2a8ff450758ed396ea81b1647559c45e91ee870a7832ada75624112e",
+    "accept_gpu_results_bundle.py": "1d20900d209d2b4eab0fb4d008824b9252fa66adce13c5b1f95f5c0448a06a1c",
+    "validate_frozen_measurements.py": "6fe5d60b63249441d06a872ca82f8566a8f93662f324d8a957e46bb02ad4d6c7"
+  },
+  "remote_return_tools_byte_verified": true,
+  "remote_cli_help_exit_code": 0,
+  "remote_tool_directory": "[private-node-path]",
+  "actual_response_review_queues": [
+    {
+      "label": "Qwen3-8B",
+      "artifact_sha256": "d22513a1fb00c9e91e7b1fb0d0e54da96f2d13d11c77af43fc661ba016bef6e8",
+      "audit_sha256": "f601969b2459eb700999c8489c1bf4dc52e3a016cfe4533a2b4ccf451a7f3835",
+      "selected": 100,
+      "universe_sources": 191,
+      "suspects_present": [
+        "new_template3_1st_05104",
+        "new_template3_1st_05843",
+        "new_template3_1st_13794"
+      ],
+      "suspects_missing": [],
+      "suspect_selected_sources": [
+        "new_template3_1st_05104",
+        "new_template3_1st_05843",
+        "new_template3_1st_13794"
+      ]
+    },
+    {
+      "label": "Qwen3-4B",
+      "artifact_sha256": "d1faae8d8a502b67a95852ffbb758798f7fa785ec20684b75b0e2055df831c57",
+      "audit_sha256": "e511695075fa12e35756393ff67f850caefbaeec868a8359cd57354a142533c5",
+      "selected": 100,
+      "universe_sources": 191,
+      "suspects_present": [
+        "new_template3_1st_05104",
+        "new_template3_1st_05843",
+        "new_template3_1st_13794"
+      ],
+      "suspects_missing": [],
+      "suspect_selected_sources": [
+        "new_template3_1st_05104",
+        "new_template3_1st_05843",
+        "new_template3_1st_13794"
+      ]
+    },
+    {
+      "label": "historical-b200",
+      "artifact_sha256": "66bb69a65bb705bc0ea91a03e2801313f7b36e8676216108fa6ceab734e2bddf",
+      "audit_sha256": "267ac54e372e578f20260c00b6978dd13208e6a81dc84cd8f4b84520367c949e",
+      "selected": 100,
+      "universe_sources": 191,
+      "suspects_present": [
+        "new_template3_1st_05104",
+        "new_template3_1st_05843",
+        "new_template3_1st_13794"
+      ],
+      "suspects_missing": [],
+      "suspect_selected_sources": [
+        "new_template3_1st_05104",
+        "new_template3_1st_05843",
+        "new_template3_1st_13794"
+      ]
+    }
+  ],
+  "guideline": {
+    "id": "KETI-ethics-guideline",
+    "version": "2.0-as-of-2025-12",
+    "file_sha256": "cd2eae6bd2d41cf82b63c680d8a2c5011abd82831dcd1a2cc07b33b2675ae0e6"
+  },
+  "private_queue_evidence": "generated/actual-response-audits-20261008-v1/evidence.json",
+  "human_review_completed": false,
+  "full_gpu_matrix_accepted": false,
+  "classifier_accuracy_verified": false,
+  "public_posting": false,
+  "official_rank_eligible": false,
+  "initial_failure": "New CPU fixture omitted matrix/checks directory;8 setup errors. Created fixture directory without changing production invariants, then scoped20 checks passed.",
+  "final_local_intake_checks": {
+    "scope": "final_matrix_return_intake_cpu_checks_including_mixed_fp32_realization",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 16.625,
+    "exit_code": 0,
+    "actual_gpu_inference": false,
+    "full_package_suite_rerun": false,
+    "source_sha256": {
+      "scripts/measurement_matrix_bundle.py": "24dd6c3bd50b619700f8e43b36b3ffa216746e68efd42fbc09da8a09eb92e2d0",
+      "tests/test_measurement_matrix_bundle.py": "5e076785f3028a27b761b6b41b19a8e5f0aa6ba17237c7b6d0a534827c039b11"
+    }
+  },
+  "tool_sha256_scope": "Earlier scoped CPU checkpoint and byte-verified remote v1 packer; final local accept source is recorded separately.",
+  "final_local_intake_sha256": "24dd6c3bd50b619700f8e43b36b3ffa216746e68efd42fbc09da8a09eb92e2d0",
+  "partial_gpu_observation": {
+    "scope": "Qwen3-8B completed seven conditions, Qwen3-4B still running; not final accepted matrix",
+    "evidence": "generated/measurement-matrix-return-cpu-20261008-v1/live-gpu-progress.json",
+    "safety_semantic_changes_by_variant": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "strategy_semantic_changes_by_variant": {
+      "traced-repeat-b2": 0,
+      "untraced-b2": 0,
+      "traced-b1": 5,
+      "traced-b4": 3,
+      "traced-reverse-b2": 1,
+      "traced-single": 5,
+      "traced-fp32-b2": 10
+    },
+    "jointly_valid_per_comparison": 191,
+    "fp32_requested_safety_parameter_dtype_counts": {
+      "torch.bfloat16": 752393024,
+      "torch.float32": 6389760
+    },
+    "fp32_requested_strategy_parameter_dtype_counts": {
+      "torch.float32": 8234382336
+    },
+    "safety_full_fp32_realized": false,
+    "causal_attribution_or_accuracy_verified": false
+  },
+  "actual_operator_review_preparation": {
+    "scope": "actual_gpu_operator_review_preparation_only",
+    "source_zip": "generated/KoEVD_platform_source_web_20261008.zip",
+    "models": [
+      {
+        "model": "Qwen/Qwen3-8B",
+        "preparation": "generated/actual-operator-review-preparation-20261008-v1/Qwen3-8B-review-preparation.json",
+        "sha256": "bd696bc85f3003c5baedf58c23ddb51dc833553c8817189cbf5777c31783df1d",
+        "evidence_files": 15,
+        "receipt_format_rejected_as_expected": true
+      },
+      {
+        "model": "Qwen/Qwen3-4B",
+        "preparation": "generated/actual-operator-review-preparation-20261008-v1/Qwen3-4B-review-preparation.json",
+        "sha256": "269fdac7241d1906c33742eaac0e9cc3a8d1c2927b168c0624381f419721d18a",
+        "evidence_files": 15,
+        "receipt_format_rejected_as_expected": true
+      }
+    ],
+    "independent_review_completed": false,
+    "store_mutated": false,
+    "published": false,
+    "scope_note": "Digest/path preparation and rejection of non-receipt format only, not independent operator acceptance."
+  },
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}
