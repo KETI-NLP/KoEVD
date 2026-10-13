@@ -1,3 +1,13 @@
+# 0.2.0rc1 platform public beta
+
+- Portable validated results, resumable execution and shared offline/CPU/browser analysis.
+- Full two-target GPU evidence, measurement audit, paired comparisons, metadata charts and complete case coverage.
+- Pinned private reference originals with an explicit post-analysis public display projection; metrics and denominators remain unchanged.
+- Anonymous temporary analysis beta; persistent publication, official ranking and continuous backups remain inactive.
+- Python 3.10 SQLite full/busy failure compatibility and atomic rollback; unrelated errors are preserved.
+- Current local CPU and full-reference browser validation; actual GitHub Python 3.10/3.12 CI passed after the compatibility fix.
+- Public documentation removes internal validation paths; original evidence and historical v0.1.0 remain preserved.
+
 # 0.2.0 own-model analysis pipeline
 
 - Prepare, generate, classify and report Task 1–5 with `koevd-pipeline`; preserve source joins, all framings and failed rows.

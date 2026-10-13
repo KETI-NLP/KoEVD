@@ -1,6 +1,10 @@
 # Repository map
 
-Current source package: **0.2.0**, with the own-model pipeline and diagnostic reports. The downloadable `v0.1.0` release assets and GPU-tested tag are preserved; install the current source for new pipeline features. See [the guide](OWN_MODEL_GUIDE.md) for scope and verification.
+**Public beta v0.2.0-rc.1:** new disclosure projection and private pinned reference transport passed 374 CPU checks and full actual one-upload/reference browser acceptance. See [deployment scope](PUBLIC_BETA_DEPLOYMENT.md) and [local beta evidence](validation/platform_public_beta_local_v94.json). The earlier checkpoints below retain their dated scope.
+
+The platform beta has a separate [requirement-by-requirement release checklist](PLATFORM_RELEASE_CANDIDATE.md), including actual full two-model GPU/report evidence, CPU container acceptance, hash-bound research references, private HF login/backup/fixed restore and the separate production conditions. This does not change the historical published release below.
+
+Current source package: **0.2.0rc1**, with the own-model pipeline and diagnostic reports. The downloadable `v0.1.0` release assets and GPU-tested tag are preserved; install the current source for new pipeline features. See [the guide](OWN_MODEL_GUIDE.md) for scope and verification.
 
 | Repository | Contents |
 |---|---|

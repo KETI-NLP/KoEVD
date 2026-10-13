@@ -151,3 +151,48 @@ python -m unittest discover -s tests -v
 ```
 
 The demo uses explicitly synthetic predictions for two fictitious models; its values are not research results. Automated integration tests exercise a real local HTTP request through generation, classification CLI glue using CPU test doubles, resume, denominator handling and report generation. The [live B200 run](PIPELINE_VALIDATION_RESULTS.md) separately verified real target-model generation, GPU measurement and reporting. Its batch differences and suspicious safety judgments remain unresolved. Preserve `pipeline.json`, prediction/measurement files, `report/`, environment versions and server/terminal logs when returning a new validation result.
+
+
+## Portable result JSON (local diagnostic format)
+
+The development checkout adds `koevd-results index/export/validate/report`. Follow [RESULT_FORMAT.md](RESULT_FORMAT.md) to export the existing pipeline as one JSON, validate against a separately trusted prepared-input index, and rescore with the same report engine. It retains failures and unmeasured responses. Private app upload and comparison use this same JSON. Export alone does not publish a result, verify model authenticity or register an official leaderboard result.
+
+
+## Recorded execution and bounded requests
+
+The development runner adds `koevd-doctor`, optional separate preflight, `--workers`, durable attempt/run/status files, observed response metadata and explicit extra request controls. See [RUNNER_GUIDE.md](RUNNER_GUIDE.md) for commands, retry/resume semantics and interpretation. API success is not parsed task success or a safety label.
+
+
+## Interactive offline diagnostics and paired comparison
+
+After portable export, run `koevd-diagnose --input results.json
+--trusted-index operator-index.json --output-dir diagnostics` on one command line.
+Open `diagnostics/report-v2.html` for Task 1–5 charts, metadata groups, quality
+flags, full prompt/response cases and method limitations. Repeat `--input` to
+compare two full artifacts on identical prepared inputs. The trusted index must
+be selected independently; an uploaded index is not an official source.
+See [DIAGNOSTICS_GUIDE.md](DIAGNOSTICS_GUIDE.md) for reproducible commands and
+source-cluster intervals. The HTML keeps all raw text locally and does not
+register a result. Actual Qwen3-8B and Qwen3-4B prefix96 generation, measurement,
+export and app/CLI/node parity have passed; see [the scoped evidence](validation/platform_m4_gpu_expanded_20261008.json).
+This is a custom integration subset, not full standard evaluation or classifier
+accuracy evidence. Measurement-condition auditing, independent human/operator
+review and hosted deployment remain separate requirements. Artificial
+demonstrations are not model performance evidence.
+
+
+## Private upload app and configured reference comparison
+
+The development checkout includes `koevd-space` with optional `[serve]` dependencies.
+Use [SPACES_GUIDE.md](SPACES_GUIDE.md) for the tested local upload/reference/report
+flow and operator-controlled trusted catalog. It shares `koevd-diagnose` and the
+HTML renderer, retains missing/N/A states, and separates private uploads from
+public registration. The demo references are explicitly fictional. Actual raw
+reference consent, container/Space deployment and persistent remote-submission
+gates remain incomplete. Local submission/history/withdrawal and metric
+comparison are implemented with candidate/no-rank defaults; see
+[SUBMISSIONS_GUIDE.md](SUBMISSIONS_GUIDE.md). Actual two-target prefix96 GPU
+integration has passed independently, but the classifiers remain
+`measurement_limited` and are excluded from official ranks. KETI-NLP is the
+confirmed hosting destination; organization Docker Space creation currently
+requires plan activation and has returned HTTP402. No live Space is claimed.

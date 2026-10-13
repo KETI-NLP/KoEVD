@@ -1,0 +1,94 @@
+{
+  "plan_version": "0.49",
+  "status": "actual_readonly_negative_guard_and_default_return_passed",
+  "approved_scope": "Private CPU profile temporarily replaced by read-only initialization diagnostic; preserve current originals/history and return default; no new snapshots/results/continuous/public/paid actions",
+  "probe_revision": "bbf9060e7460623a3dfcd9f385c092e7ef5b8660",
+  "actual_private_HF_runtime": true,
+  "dedicated_Secret_read_access_demonstrated": true,
+  "Secret_values_read_or_printed": false,
+  "negative_inventory_code_observed": [
+    {
+      "startup": "refused",
+      "code": "initialization_inventory_mismatch",
+      "database_root_created_by_this_attempt": false,
+      "server_or_worker_spawned_by_this_attempt": false
+    },
+    {
+      "startup": "refused",
+      "code": "initialization_inventory_mismatch",
+      "database_root_created_by_this_attempt": false,
+      "server_or_worker_spawned_by_this_attempt": false
+    }
+  ],
+  "probe_runtime_stage": "RUNTIME_ERROR",
+  "stage_interpretation": "Expected exit2 from intentionally mismatched read-only diagnostic, not a usable app",
+  "new_result_uploads": 0,
+  "new_snapshot_objects": 0,
+  "Bucket_inventory_matches_before": true,
+  "Bucket_objects_retained": 6,
+  "Bucket_total_bytes_retained": 67684067,
+  "current_own_visible_submissions_before_switch": 0,
+  "analysis_uploads_before_switch": 0,
+  "previous_four_original_history_download_pairs_reverified": true,
+  "default_revision": "f160663af378e777616be89374a20b6c38b57938",
+  "default_stage": "RUNNING",
+  "default_hardware": "cpu-basic",
+  "default_exact_files": 66,
+  "disposable_probe_paths_removed": true,
+  "public_Static_revision_unchanged": "dbf81077126375b0a9bba55436d0c1df5825efc3",
+  "continuous_backup_active": false,
+  "Secret_changed": false,
+  "paid_resources_changed": false,
+  "positive_initialization_restart_lifecycle_passed": false,
+  "remote_atomic_lock_or_RPO_claimed": false,
+  "previous_snapshot_count_bound_failure_resolved_as_acceptance": false,
+  "local_current_tests": {
+    "count": 25,
+    "seconds": 5.652,
+    "exit_code": 0,
+    "provider": "explicit HF CPU doubles"
+  },
+  "previous_local_process_scope": {
+    "plan_version": "0.47",
+    "seconds": 27.969,
+    "HF_OAuth": "local doubles"
+  },
+  "proof_root": "generated/managed-readonly-probe-20261012-v72",
+  "evidence": {
+    "generated/managed-readonly-probe-20261012-v72/deployment.json": {
+      "bytes": 1894,
+      "sha256": "757184426409a2e2369b606b74c3c0d992a43c6a3ba3046517177564aff08a26"
+    },
+    "generated/managed-readonly-probe-20261012-v72/observations/01.json": {
+      "bytes": 1873,
+      "sha256": "0efafc89123441a5c58f55e14d3b7da6a4207d8ebea7b332bd1f98df88d8c782"
+    },
+    "generated/managed-readonly-probe-20261012-v72/default-deployment.json": {
+      "bytes": 1420,
+      "sha256": "fc819db47aff416d2b2d9e7bd827d47ad07e916f5e23f640bd46b22c7f45c29a"
+    },
+    "generated/managed-readonly-probe-20261012-v72/default-exact-bytes.json": {
+      "bytes": 11770,
+      "sha256": "59119fe214ce1077a744040bf12ac1185ad27016be795c258820a0dc41359ce2"
+    },
+    "generated/managed-readonly-probe-20261012-v72/preflight-dom.txt": {
+      "bytes": 4874,
+      "sha256": "b02d220518512609adfaa8e29f6a2b3dca29eb644e47a8cf1bf3589c6157dafc"
+    },
+    "generated/managed-readonly-probe-20261012-v72/default-profile-dom.txt": {
+      "bytes": 4303,
+      "sha256": "555976feb0447bde85c4d808d328ee31c0beef19ba7399756c0c471330d37db8"
+    },
+    "generated/managed-readonly-probe-20261012-v72/default-profile.png": {
+      "bytes": 99497,
+      "sha256": "01d5f1cb5bf6af302db8b0cc7f0b27410691e79b69aa557c3f05df94a0f310a3"
+    }
+  },
+  "remaining": [
+    "Actual positive managed bootstrap/restart lifecycle",
+    "Current Docker actual full-size acceptance",
+    "Operator policy/recovery sign-off",
+    "Approved public raw references"
+  ],
+  "goal_status": "active"
+}

@@ -1,0 +1,56 @@
+/* Session credentials live only in memory. Untrusted strings are textContent. */
+(function(){'use strict';
+const state={token:null,csrf:null,catalog:null,uploads:[],busy:false,job:null,preview:null,downloadURL:null,downloadRequest:0};
+const node=id=>document.getElementById(id);
+const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
+function status(text,error=false){node('status').textContent=text;node('status').classList.toggle('error',error);}
+async function api(url,{method='GET',body=null,authenticated=true,identity=false,authCsrf=null}={}){
+  const headers={};if(authenticated&&state.token)headers.Authorization='Bearer '+state.token;
+  if(method!=='GET'&&authenticated)headers['X-Koevd-CSRF']=state.csrf||'';
+  if(body!==null)headers['Content-Type']='application/json';
+  if(identity&&method!=='GET')headers['X-Koevd-Auth-CSRF']=authCsrf||'';
+  // HF private Docker proxy access also needs its HttpOnly cookie on analysis
+  // requests. Same-origin cookies never replace the separate session token/CSRF.
+  const response=await fetch(url,{method,headers,body,credentials:'same-origin',cache:'no-store',referrerPolicy:'no-referrer'});
+  if(!response.ok){let value;try{value=await response.json();}catch{value=null;}throw new Error(value?.error?.message||'Request failed ('+response.status+').');}
+  return response;
+}
+function updateButtons(){node('upload').disabled=state.busy||!state.token||!node('result-files').files.length;node('analyze').disabled=state.busy||!state.uploads.length;node('delete-session').disabled=state.busy||!state.token;for(const b of node('uploads').querySelectorAll('button'))b.disabled=state.busy;}
+function clearPreparedDownload(){state.downloadRequest++;if(state.downloadURL)URL.revokeObjectURL(state.downloadURL);state.downloadURL=null;node('prepared-download')?.remove();}
+function clearReport(){clearPreparedDownload();node('report-section').hidden=true;node('report-preview').removeAttribute('src');if(state.preview)URL.revokeObjectURL(state.preview);state.preview=null;state.job=null;}
+function scopeName(scope){return ({synthetic_demo:'Synthetic demo',operator_custom:'Operator-configured custom inputs',standard:'Registered input protocol'})[scope]||scope;}
+function renderUploads(){const holder=node('uploads');holder.replaceChildren();if(!state.uploads.length)holder.append(el('p','No results uploaded yet.','empty'));
+  for(const run of state.uploads){const row=el('div',undefined,'run-row'),check=document.createElement('input');check.type='checkbox';check.checked=true;check.id='upload-'+run.id;check.dataset.uploadId=run.id;const detail=el('div',undefined,'run-detail'),name=el('label',run.model);name.htmlFor=check.id;detail.append(name,el('p',run.run_id+' · '+run.records+' records · '+scopeName(run.scope)),el('span','Private session','tag'),el('span','Structurally validated · identity user-reported','tag'));
+    const remove=el('button','Remove','secondary');remove.type='button';remove.addEventListener('click',async()=>{try{await api('/api/uploads/'+encodeURIComponent(run.id),{method:'DELETE'});state.uploads=state.uploads.filter(x=>x.id!==run.id);clearReport();renderUploads();status('Result removed from this session.');}catch(e){status(e.message,true);}});row.append(check,detail,remove);holder.append(row);}
+  updateButtons();}
+function renderCatalog(){const c=state.catalog;node('demo-note').hidden=!c.synthetic_demo_enabled;node('retention').textContent='Maximum '+Math.round(c.limits.upload_bytes/1024/1024)+' MiB per file · '+c.limits.max_uploads+' uploaded results · session expires after '+Math.round(c.limits.ttl_seconds/60)+' minutes. '+(c.reference_disclosure?'Your session outputs retain raw text. Configured reference text is withheld; measured labels and metrics remain available.':'Downloads retain raw text.');
+  for(const input of c.indexes)node('input-catalog').append(el('li',input.label+' · '+scopeName(input.mode)+' · '+input.expected_records+' expected records'));
+  const holder=node('baselines');holder.replaceChildren();if(!c.baselines.length)holder.append(el('p','No approved raw-response references are configured. Upload a second result to compare runs.','empty'));
+  for(const base of c.baselines){const row=el('div',undefined,'run-row'),check=document.createElement('input');check.type='checkbox';check.id='baseline-'+base.id;check.dataset.baselineId=base.id;const detail=el('div',undefined,'run-detail'),name=el('label',base.label);name.htmlFor=check.id;detail.append(name,el('p',base.model+' · '+(base.scope==='synthetic_demo'?'Fictional demonstration reference':'Operator-approved raw target outputs')));row.append(check,detail);holder.append(row);}}
+async function start(){try{state.catalog=await (await api('/api/catalog',{authenticated:false})).json();renderCatalog();const info=await (await api('/api/session',{method:'POST',authenticated:false})).json();state.token=info.session_token;state.csrf=info.csrf_token;status('Private session ready. Choose your result JSON to begin.');updateButtons();}catch(e){status(e.message,true);}}
+node('result-files').addEventListener('change',updateButtons);
+node('upload').addEventListener('click',async()=>{state.busy=true;updateButtons();try{const files=[...node('result-files').files];if(state.uploads.length+files.length>state.catalog.limits.max_uploads)throw new Error('Too many files for this session. Remove a result first.');for(const file of files){if(file.size>state.catalog.limits.upload_bytes)throw new Error('File exceeds the upload limit: '+file.name);status('Validating '+file.name+' against server-selected trusted inputs…');const run=await (await api('/api/uploads',{method:'POST',body:file})).json();state.uploads.push(run);clearReport();renderUploads();}node('result-files').value='';status('Results validated. Select the runs and references to analyze.');}catch(e){status(e.message,true);}finally{state.busy=false;updateButtons();}});
+async function download(kind){
+  // A visible Save link keeps the final download inside the user's click.
+  // Do not silently auto-click after an asynchronous authenticated request.
+  const job=state.job;if(!job)return;clearPreparedDownload();const request=state.downloadRequest;
+  const name=({html:'report-v2.html',profile:'profile-v2.json',cases:'cases-v2.jsonl',csv:'metrics-v2.csv',markdown:'report-v2.md'})[kind];
+  status('Preparing '+name+'…');const response=await api('/api/reports/'+encodeURIComponent(job)+'/'+kind),blob=await response.blob();
+  if(request!==state.downloadRequest||job!==state.job)return;
+  state.downloadURL=URL.createObjectURL(blob);const ready=el('p',undefined,'download-ready');ready.id='prepared-download';
+  const link=el('a','Save '+name);link.href=state.downloadURL;link.download=name;
+  link.addEventListener('click',()=>status('Save requested. Check your browser’s download list.'));
+  ready.append(link,el('span',state.catalog.reference_disclosure?' · Personal output text retained; reference text withheld.':' · Contains original response text.'));node('downloads').append(ready);
+  status('File ready. Use the Save link below the report buttons to download it.');
+}
+async function showReport(job){state.job=job.id;const base='/api/reports/'+encodeURIComponent(job.id)+'/';const profile=await (await api(base+'profile')).json();const response=await api(base+'html');state.preview=URL.createObjectURL(new Blob([await response.text()],{type:'text/html'}));node('report-preview').src=state.preview;node('report-summary').textContent=profile.runs.length+' analyzed run(s) · '+profile.comparisons.length+' paired comparison(s) · '+state.catalog.limits.bootstrap_resamples+' source-cluster resamples. Local and app reports use the same engine and recorded seed.';
+  const holder=node('downloads');holder.replaceChildren();for(const [kind,name] of [['html','Offline HTML'],['profile','Analysis JSON'],['cases','All cases JSONL'],['csv','Metrics CSV'],['markdown','Summary Markdown']]){const button=el('button',name,'secondary');button.type='button';button.addEventListener('click',()=>download(kind).catch(e=>status(e.message,true)));holder.append(button);}node('report-section').hidden=false;node('job-status').textContent='Analysis complete. Coverage, undefined values and measurement limits are retained.';status('Report ready. Explore the charts below or download the offline HTML.');}
+async function poll(job){try{const value=await (await api('/api/analyses/'+encodeURIComponent(job.id))).json();node('job-status').textContent='Analysis '+value.status+'.';if(value.status==='complete'){await showReport(value);state.busy=false;updateButtons();}else if(value.status==='failed'){throw new Error(value.error||'Analysis failed.');}else setTimeout(()=>poll(job),1000);}catch(e){status(e.message,true);node('job-status').textContent='Analysis stopped.';state.busy=false;updateButtons();}}
+node('analyze').addEventListener('click',async()=>{state.busy=true;updateButtons();clearReport();try{const upload_ids=[...node('uploads').querySelectorAll('input:checked')].map(n=>n.dataset.uploadId),baseline_ids=[...node('baselines').querySelectorAll('input:checked')].map(n=>n.dataset.baselineId);if(!upload_ids.length)throw new Error('Select at least one uploaded run.');const job=await (await api('/api/analyses',{method:'POST',body:JSON.stringify({upload_ids,baseline_ids})})).json();status('Analysis queued. The server will rescore and compare matching inputs.');poll(job);}catch(e){status(e.message,true);state.busy=false;updateButtons();}});
+node('delete-session').addEventListener('click',async()=>{try{await api('/api/session',{method:'DELETE'});clearReport();state.token=null;state.csrf=null;state.uploads=[];renderUploads();status('Session data deleted. Reload this page to start a new session.');updateButtons();}catch(e){status(e.message,true);}});
+window.KoEVDWorkspace={uploads:()=>state.uploads.map(r=>({...r})),
+  api:(url,options={})=>api(url,{...options,identity:true}),
+  importResult:async serialized=>{if(typeof serialized!=='string')throw new Error('Import the unchanged result JSON text.');if(state.busy)throw new Error('Wait for the active analysis operation.');state.busy=true;updateButtons();try{const run=await(await api('/api/uploads',{method:'POST',body:serialized})).json();state.uploads.push(run);clearReport();renderUploads();status('Published result added to your private analysis session. Select it with another run to compare.');return run;}finally{state.busy=false;updateButtons();}},
+  ready:()=>Boolean(state.token)&&!state.busy};
+window.addEventListener('pagehide',()=>{clearPreparedDownload();if(state.preview)URL.revokeObjectURL(state.preview);});start();
+}());

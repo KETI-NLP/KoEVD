@@ -1,0 +1,94 @@
+{
+  "format": "koevd-prepublication-RC-final-audit-v1",
+  "date": "2026-10-13",
+  "plan_version": "0.60",
+  "status": "prepublication_release_candidate_acceptance_passed",
+  "scope": "Local implementation, verified examples and release/deployment candidate; not production publication or activated leaderboard",
+  "requirement_scope": {
+    "R1": "Current installed core50, full GPU preparation/endpoint/settings and current CPU suite",
+    "R2": "Current CPU runner fault/resume tests; actual frozen full output evidence",
+    "R3": "Two actual full target generation/measurement pipelines and frozen-response audit; accuracy limitations preserved",
+    "R4": "Actual offline full reports and browser visual evidence; fictional demos separate",
+    "R5": "Actual local/browser, HF and Docker reports match independent native outputs",
+    "R6": "Actual two-model full comparison and one-upload plus authorized research reference",
+    "R7": "Current CPU security/validation plus actual session/download/deletion browser guards",
+    "R8": "CPU/synthetic publication transitions and actual HF private login/drafts; no actual public publication",
+    "R9": "CPU concurrency/restart/fault tests, full actual private content restore, bounded actual HF restore; quarantine preserved",
+    "R10": "Actual zero eligible full candidate ranks, limited metric exclusions, chosen CPU container, current release docs and source candidate"
+  },
+  "core_source_files_current_and_installed_exact": 50,
+  "full_CPU": {
+    "status": "passed",
+    "tests": 366,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 166.906,
+    "installed_core_files_exact": 50,
+    "python": "3.12.14",
+    "pip_check": true,
+    "GitHub_CI": false,
+    "new_GPU_or_HF_execution": false
+  },
+  "checked_local_document_links": 63,
+  "current_scoped_evidence_files_independently_rehashed": 26,
+  "real_research_reference_rights_confirmed_by_human": true,
+  "technical_reviewer": "Codex AI, delegated by user; not separate human attestation",
+  "default_no_rank_and_measurement_exclusions_verified": true,
+  "CI": "Workflow prepared; current local Python3.12.14 suite passed; GitHub Python3.10/3.12 execution not claimed",
+  "excluded_external_operations": [
+    "Public GitHub/HF source or actual-response push",
+    "Production Space rollout and roles/policy activation",
+    "Continuous backup, recovery-quarantine release or guaranteed RPO",
+    "Official ranking activation"
+  ],
+  "unresolved_research_limits": [
+    "Classifier accuracy unestablished",
+    "Strategy batch/order/precision sensitivity",
+    "Requested safety FP32 retains mixed parameter dtypes",
+    "Actual length-limited responses and valid/failure denominators remain visible"
+  ],
+  "evidence": [
+    {
+      "path": "docs/validation/platform_m4_m5_full_two_actual_20261009.json",
+      "bytes": 25294,
+      "sha256": "56a9f5bcb4d858ed3f1ebc7ff682e9ba8c48a67309249e0a6ba8055001f58e86"
+    },
+    {
+      "path": "docs/validation/platform_m4_delegated_generation_review_v92.json",
+      "bytes": 860,
+      "sha256": "ab4939ab4493692c3922d42735987da04b1be12a3183deb81c18175a55e86500"
+    },
+    {
+      "path": "docs/validation/platform_m5_actual_b200_container_v92.json",
+      "bytes": 3742,
+      "sha256": "8a2e2fc91857b4215e9b3c5b43e735f0072d6ea38137e79add951ed36a84a088"
+    },
+    {
+      "path": "docs/validation/platform_m5_actual_full_hosted_20261012.json",
+      "bytes": 3352,
+      "sha256": "baabebb6dc7f5719057c83b27dd025fbd5dae3db575b01d7f50d16ec05db5c56"
+    },
+    {
+      "path": "docs/validation/platform_m5_m6_team_hosted_20261012.json",
+      "bytes": 7079,
+      "sha256": "63e58335b540aa880ba67db6a8a13b782370e56fd37a07e3d7a4817bf76a7268"
+    },
+    {
+      "path": "docs/validation/platform_m5_m6_full_private_review_20261009.json",
+      "bytes": 5740,
+      "sha256": "4a7807e7956afdc3ed7f54db31f4583da8fbb9c9a41e376797d42ad4416cdd8c"
+    },
+    {
+      "path": "docs/validation/platform_m6_actual_finite_shutdown_20261012.json",
+      "bytes": 5350,
+      "sha256": "4c222d62e82aec497dfeac495023cfde52f7ce1b8643a415037bdd3b48a58b93"
+    },
+    {
+      "path": "docs/validation/platform_m5_actual_reference_v93.json",
+      "bytes": 6029,
+      "sha256": "96f59c51277124858ff350b6000fc602132eea58e63b606af34e1e46d2b6d1ef"
+    }
+  ],
+  "new_GPU_or_HF_mutation_or_paid_operation": false
+}

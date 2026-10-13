@@ -1,0 +1,776 @@
+{
+  "scope": "actual_two_target_frozen_response_seven_condition_gpu_matrix",
+  "status": "independently_accepted",
+  "terminal_exit_code": 0,
+  "controller_sha256": "6fe5d60b63249441d06a872ca82f8566a8f93662f324d8a957e46bb02ad4d6c7",
+  "remote_controller_stopped": true,
+  "gpu_uuid": "GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b",
+  "archive": "generated/KoEVD_measurement_matrix_expanded_20261008_v1.zip",
+  "archive_sha256": "695b2e25fb853726a8e37b63c2d38ff12b03484ccbc8b749f96fb56b0505b95b",
+  "archive_bytes": 27223907,
+  "manifest_files": 221,
+  "independent_intake_receipt": "generated/measurement-matrix-intake-20261008-v1/intake-receipt.json",
+  "independent_intake_receipt_sha256": "9cb6f2f46191d4d337c1a5becb1a3ee4ba06c267db7e27949b9cf826f1d5b76f",
+  "independent_raw_export_frozen_hashes_trace_comparison_exact": true,
+  "baseline": "generated/gpu-expanded-intake-20261008-v1/expanded-v3",
+  "outside_operator_index": "generated/private-space-deployment-20261008-v16/operator-data/prefix-96-index.json",
+  "comparisons": [
+    {
+      "model": "Qwen/Qwen3-8B",
+      "variant": "traced-repeat-b2",
+      "artifact_sha256": "606bed4e42244f55ed0fc9edfb213bd1a3c7a852fe627b6d656fe7263d9a76b1",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 8190735360,
+            "torch.float32": 43646976
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "variant": "untraced-b2",
+      "artifact_sha256": "88863ae464f8c67dd041415274075a5c562affcb478e7d1030ff863c2a1db938",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        }
+      },
+      "parameter_dtype_realization": {}
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "variant": "traced-b1",
+      "artifact_sha256": "2974eee84abf6abc9bbdb00ad02051ff14e4c48872cb58c9875d5bc8484a94c9",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 5,
+          "validity_changes": 0,
+          "raw_output_changes": 5,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 5
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 8190735360,
+            "torch.float32": 43646976
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "variant": "traced-b4",
+      "artifact_sha256": "d175f58e63b2b06bb55f14c1f89a8ea584b1280838a2ea8b24d7310903343486",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 3,
+          "validity_changes": 0,
+          "raw_output_changes": 3,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 3
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 8190735360,
+            "torch.float32": 43646976
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "variant": "traced-reverse-b2",
+      "artifact_sha256": "c968afbdbc74f571cc27d83340f66ca8a779b46840604f8c06c5556baa176e9a",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 1,
+          "validity_changes": 0,
+          "raw_output_changes": 1,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 1
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 8190735360,
+            "torch.float32": 43646976
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "variant": "traced-single",
+      "artifact_sha256": "178376cc546ebc362bdfc644e0124b00009886cf45998828e3916150ac003cae",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 5,
+          "validity_changes": 0,
+          "raw_output_changes": 5,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 5
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 8190735360,
+            "torch.float32": 43646976
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "variant": "traced-fp32-b2",
+      "artifact_sha256": "c9a8eeadbe49230eff46b3a663780be00f33cc16d147561b21c3b0ebf63da404",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 10,
+          "validity_changes": 0,
+          "raw_output_changes": 10,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 10
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "float32",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": false,
+          "caveat": "requested_fp32_not_fully_realized",
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "float32",
+          "parameter_dtype_elements": {
+            "torch.float32": 8234382336
+          },
+          "all_parameters_in_requested_dtype": true,
+          "fp32_request_fully_realized_in_parameters": true,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-4B",
+      "variant": "traced-repeat-b2",
+      "artifact_sha256": "6780f481e814bad8528d987e31f6540cace0df0f8f39255cc8e731ddfd4754f5",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 8190735360,
+            "torch.float32": 43646976
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-4B",
+      "variant": "untraced-b2",
+      "artifact_sha256": "d70e10352a34398bf873cbb3ce43540da7113bf318123c3b60f1d63955a2a757",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        }
+      },
+      "parameter_dtype_realization": {}
+    },
+    {
+      "model": "Qwen/Qwen3-4B",
+      "variant": "traced-b1",
+      "artifact_sha256": "9c42316cd32bc09c2bfe16f3b0c6f293fde35ed8966aacec8b9d28147da9d2cf",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 6,
+          "validity_changes": 0,
+          "raw_output_changes": 6,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 6
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 8190735360,
+            "torch.float32": 43646976
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-4B",
+      "variant": "traced-b4",
+      "artifact_sha256": "2bb814d2c86925729ed79a5dd37d51c2ca232fd960ef21d01e26c133b13f85ef",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 9,
+          "validity_changes": 0,
+          "raw_output_changes": 9,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 9
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 8190735360,
+            "torch.float32": 43646976
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-4B",
+      "variant": "traced-reverse-b2",
+      "artifact_sha256": "a4593f0cc8ce874afa196253476b2ddac2ce429ec03b00348883536526d74a74",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 2,
+          "validity_changes": 0,
+          "raw_output_changes": 2,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 2
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 8190735360,
+            "torch.float32": 43646976
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-4B",
+      "variant": "traced-single",
+      "artifact_sha256": "7c27b23d69292b2cbd4dc675e078eb3c4219bbfaa43760a733b9df315a0bc94c",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 6,
+          "validity_changes": 0,
+          "raw_output_changes": 6,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 6
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "bfloat16",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 8190735360,
+            "torch.float32": 43646976
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": null,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-4B",
+      "variant": "traced-fp32-b2",
+      "artifact_sha256": "7a600975aac3e52ac553b5fd498767cf7bb6982458399b1c1eb70cf7d0e1f9c6",
+      "counts": {
+        "3": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 0,
+          "validity_changes": 0,
+          "raw_output_changes": 0,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 0
+        },
+        "4": {
+          "total": 191,
+          "both_valid": 191,
+          "baseline_valid": 191,
+          "variant_valid": 191,
+          "semantic_changes": 9,
+          "validity_changes": 0,
+          "raw_output_changes": 9,
+          "raw_output_comparable": 191,
+          "raw_output_presence_changes": 0,
+          "measurement_value_changes": 9
+        }
+      },
+      "parameter_dtype_realization": {
+        "3": {
+          "requested_dtype": "float32",
+          "parameter_dtype_elements": {
+            "torch.bfloat16": 752393024,
+            "torch.float32": 6389760
+          },
+          "all_parameters_in_requested_dtype": false,
+          "fp32_request_fully_realized_in_parameters": false,
+          "caveat": "requested_fp32_not_fully_realized",
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        },
+        "4": {
+          "requested_dtype": "float32",
+          "parameter_dtype_elements": {
+            "torch.float32": 8234382336
+          },
+          "all_parameters_in_requested_dtype": true,
+          "fp32_request_fully_realized_in_parameters": true,
+          "caveat": null,
+          "interpretation": "Observed parameter storage only; kernel arithmetic and causal attribution are not certified."
+        }
+      }
+    }
+  ],
+  "classifier_accuracy_verified": false,
+  "human_review_completed": false,
+  "cryptographic_generation_authenticity": false,
+  "public_posting": false,
+  "official_rank_eligible": false,
+  "limitations": [
+    "Same-family custom prefix96 integration: not a representative or full standard baseline.",
+    "All safety label changes zero does not certify label correctness.",
+    "Float32-request safety parameter storage remains BF16/FP32 mixed; a full-FP32 safety comparison was not realized.",
+    "Strategy differences are observations, not a proven causal effect of batch, order or precision.",
+    "Parameter dtype does not certify kernel arithmetic."
+  ],
+  "changed_case_union": {
+    "scope": "private_unblinded_case_union_from_independently_accepted_matrix",
+    "counts": [
+      {
+        "model": "Qwen/Qwen3-8B",
+        "unique_changed_sources": 11,
+        "total_sources": 191
+      },
+      {
+        "model": "Qwen/Qwen3-4B",
+        "unique_changed_sources": 15,
+        "total_sources": 191
+      }
+    ],
+    "rows": 26,
+    "path": "generated/measurement-matrix-changed-cases-20261008-v2/changed-cases.jsonl",
+    "file_sha256": "5e353516586f1f4d53ce3bc6e40151f62d8620d0053c5627ed75f46c4923ffd3",
+    "parent_intake_receipt_sha256": "9cb6f2f46191d4d337c1a5becb1a3ee4ba06c267db7e27949b9cf826f1d5b76f",
+    "human_review_completed": false,
+    "public_posting": false,
+    "representative_prevalence_sample": false,
+    "prior_attempt": "v1 read failed under Windows cp949 before writing artifacts; source preserved, v2 reads explicitly UTF-8."
+  }
+}

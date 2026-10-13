@@ -1,6 +1,18 @@
 # KoEVD evaluation and analysis
 
+**Platform public beta: v0.2.0-rc.1.** Evaluate your own model, export portable JSON, build offline charts and compare compatible runs. The public CPU beta provides two full measured Qwen3 references with explicit raw-text disclosure limits. See [public deployment and reference scope](docs/PUBLIC_BETA_DEPLOYMENT.md).
+
+The beta does not grant official rankings or establish classifier accuracy. Personal uploads are temporary analysis sessions; persistent submission/publication is a later operating stage.
+
 Reference software for **KoEVD: A Korean Benchmark for Metadata-Conditioned Multi-Stage LLM Safety Evaluation**.
+
+**Static analysis candidate:** A browser-only option runs the same Python
+validation/analysis engine through Pyodide. Select results JSON, compare runs and
+download the offline report without sending your files to a server. See the
+[Static candidate guide](docs/STATIC_SPACES_GUIDE.md). The public
+[KoEVD Explorer preview](https://huggingface.co/spaces/KETI-NLP/KoEVD-Explorer)
+provides personal analysis. Shared submission/storage and official ranking remain
+separate, and the platform beta is released separately from the historical paper software.
 
 **GPU status:** Both classifiers and offline classifyâ†’score passed on NVIDIA B200 with the published code unchanged. See [tested conditions and results](docs/GPU_VALIDATION_RESULTS.md); this is an operational smoke test, not held-out F1 reproduction.
 
@@ -74,7 +86,7 @@ koevd-score --task 3 --input runs/task3_safety.jsonl
 koevd-score --task 4 --input runs/task3_strategies.jsonl
 ```
 
-For revision-pinned offline inference, also download the two base-model commits in `gpu_release_lock.json`, pass their local snapshots through `--base-model-name-or-path`, and use `--local-files-only`. See [the full procedure](docs/GPU_VALIDATION.md). The classify CLI currently has no dtype/device switches: it uses wrapper `auto` settings (BF16 when CUDA is available, with device mapping `auto`). The B200 run passed; non-BF16 GPUs require a separately chosen and validated wrapper configuration.
+For revision-pinned offline inference, also download the two base-model commits in `gpu_release_lock.json`, pass their local snapshots through `--base-model-name-or-path`, and use `--local-files-only`. See [the full procedure](docs/GPU_VALIDATION.md). The current classify CLI accepts `--torch-dtype auto|float16|bfloat16|float32`; without that option it keeps the wrapper's default settings. Device placement uses the wrapper's automatic mapping. `--trace-output` records the observed measurement runtime, so a requested dtype must not be assumed to describe every parameter or operation. See [measurement traces](docs/MEASUREMENT_TRACE_GUIDE.md) and [the GPU audit findings](docs/GPU_MEASUREMENT_MATRIX_RESULTS.md).
 
 The classifier requires successful nonempty generations (`api_status: ok`), preserving failed generation rows in the denominator. Use `--local-files-only` with a local base-model path for offline inference.
 
@@ -96,6 +108,40 @@ The classifier API returns a wrapper object whose `result` becomes the CLI rowâ€
 See [metric definitions](docs/METRICS.md), [reproducibility scope](docs/REPRODUCIBILITY.md), [release map](docs/RELEASE.md), and [changes from the review software](CHANGELOG.md).
 
 ## Tests and terms
+
+### Evaluation platform development checkout
+
+The local development candidate supports portable results JSON, interactive
+offline diagnostics, a private upload/comparison app, and opt-in submission
+history with metric-specific candidate comparisons. Start with
+[the own-model guide](docs/OWN_MODEL_GUIDE.md),
+[result format](docs/RESULT_FORMAT.md),
+[interactive diagnostics](docs/DIAGNOSTICS_GUIDE.md) and
+[the app guide](docs/SPACES_GUIDE.md). These additions are provided in the platform beta; shared production submission
+and official ranking are separate. The old v0.1.0 tag does not contain them.
+
+The subsequent full registered Qwen3-8B and Qwen3-4B runs completed15,011
+generation requests and17,670 portable records per model. Both raw reexports
+match the independently checked results. Node, local CLI and native HTTP analysis
+profiles agree, and the actual35,340-record comparison HTML passed browser checks.
+See [full two-model evidence](docs/validation/platform_m4_m5_full_two_actual_20261009.json)
+and [the release checklist](docs/PLATFORM_RELEASE_CANDIDATE.md) for current
+acceptance evidence and the separate production conditions. Full-size private HF
+analysis and actual b200-1 Docker analysis passed with all five report formats
+matching the independent CLI. Research-reference permission for both results is
+recorded in a [separate local candidate](docs/ACTUAL_REFERENCE_CANDIDATE.md).
+
+The earlier Qwen3-8B and Qwen3-4B pipelines passed on B300 using a custom prefix96
+integration subset, with 959 API-ok generations and 1150 exported records per
+model. Local app, CLI and node analysis profiles agree. See
+[expanded GPU evidence](docs/validation/platform_m4_gpu_expanded_20261008.json).
+This does not reproduce held-out F1 or establish classifier accuracy. Safety
+and strategy measurements remain limited and excluded from official ranks;
+Task4 frequencies are descriptive. The organization Team plan enabled the
+private CPU development Space; native HF login, private draft saving and bounded
+backup/fixed restore have been tested. Its default disk remains ephemeral and
+continuous backup is off. The initial HTTP402 attempt is historical. The shared
+production service and official ranking have not been activated.
 
 B200 GPU inference and offline CLI validation passed on the fixed 12/96-candidate samples. See [GPU validation](docs/GPU_VALIDATION.md) for a pinned-download smoke test, result collection, and the distinction from reproducing the paper's performance.
 

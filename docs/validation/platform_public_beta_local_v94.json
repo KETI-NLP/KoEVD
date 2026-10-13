@@ -1,0 +1,66 @@
+{
+  "format": "koevd-public-beta-local-validation-v1",
+  "date": "2026-10-13",
+  "version": "0.2.0rc1",
+  "CPU": {
+    "tests": 374,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 174.906,
+    "noneditable_source_files": 51,
+    "locked_runtime_versions": 25,
+    "pip_check": true
+  },
+  "actual_full_reference_comparison": {
+    "records": [
+      17670,
+      17670
+    ],
+    "one_actual_upload_one_reference": true,
+    "UI_seconds": 150.688,
+    "download_files": [
+      {
+        "name": "cases-v2.jsonl",
+        "bytes": 116256495,
+        "sha256": "eabbb642b7ef6091254583159e52c77ba5ef64adf82b7d6cf1ee439ff66ab3ab"
+      },
+      {
+        "name": "metrics-v2.csv",
+        "bytes": 1085575,
+        "sha256": "a4e2ef84749b43eff24bfb012349c2519996156b36fc770a0e7687b483bee58b"
+      },
+      {
+        "name": "profile-v2.json",
+        "bytes": 26268690,
+        "sha256": "58d68fc772681c5ec0de3e7da72ce11e7fe26f233e9bea8ce6db38fdd9b6526e"
+      },
+      {
+        "name": "report-v2.html",
+        "bytes": 137671735,
+        "sha256": "e1fca90ecd2a4553a04b291a986bf34c3e0edf469a10779f3964e0725672ef75"
+      },
+      {
+        "name": "report-v2.md",
+        "bytes": 4038,
+        "sha256": "8f25cb47cad40e70f1c6b10e9a16f79f9eea345d3f5e645c83cc3bcee58bfd33"
+      }
+    ],
+    "all_five_byte_exact_to_independent_native": true,
+    "numeric_analyses_and_all_case_validity_events_identity_flags_unchanged": true,
+    "reference_text_disclosure_policy": "koevd-public-reference-disclosure-v1",
+    "all_reference_raw_fields_withheld": true,
+    "tool_arguments_removed": true,
+    "browser_errors": 0,
+    "external_requests": 0,
+    "session_isolation_delete_and_mobile_passed": true
+  },
+  "GPU_scope": "Previously accepted two full actual generators and classifiers; no new inference or accuracy claim",
+  "HF_stage": "Private CPU staging code uploaded; runtime read-only reference Secret pending at this checkpoint",
+  "publication_and_ranking": "Anonymous temporary analysis beta; durable submissions, official ranking and continuous backups inactive",
+  "originals": "Exact original model JSONs privately stored and re-downloaded against fixed SHA-256; no raw originals in public source",
+  "initial_failures_preserved": [
+    "Metadata short_description length rejected before HF commit; fixed",
+    "HTML comparison first stopped because native reconstruction put cases in a different JSON key order; corrected ordering matched previous downloaded HTML without altering metrics or the producer"
+  ]
+}

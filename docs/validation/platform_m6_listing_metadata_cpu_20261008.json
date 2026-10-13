@@ -1,0 +1,73 @@
+{
+  "scope": "listing_metadata_and_fresh_noneditable_cpu_candidate",
+  "status": "passed_scoped_acceptance",
+  "listing_regression": {
+    "tests": 9,
+    "seconds": 3.662,
+    "scope": "CPU synthetic policy/receipts, not real ratification"
+  },
+  "full_installed_suite": {
+    "scope": "fresh_noneditable_package_full_cpu_suite",
+    "tests": 236,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 92.42199999978766,
+    "exit_code": 0,
+    "log": "generated/matrix-return-installed-tests-20261008-v18.log",
+    "log_sha256": "fe5b44ca4d8d23fe4ba4798e7edacb2051dc5b795d7f0b6e7efecff5aa11b2c5",
+    "module_hashes": {
+      "koevd_eval/analysis.py": "0853e5125087a1c18b382f83da2d672cf428b3916b9c6b2446879cf866e18594",
+      "koevd_eval/classify_responses.py": "8c572626242e74226c7bfcd96da593f3ee224dcd37410ff177d9ada465f70686",
+      "koevd_eval/common.py": "1d0a6f47f9db2a9aaea8bd17b90d123a13583ef9ccd858c38f8be5201184762d",
+      "koevd_eval/diagnostics.py": "983c50f5fd5e8a9348106fc3b61669371a32fc393eea69b1365114b7baf3d0a0",
+      "koevd_eval/eligibility.py": "cd62440ba0dec7e53d4616a936626ec3e5e081107f8ce678e947914365abbeff",
+      "koevd_eval/generation_receipts.py": "b07ecd164418c49907fbc212bc876182728ddf3b7270f0b629cc909242c65479",
+      "koevd_eval/hub.py": "016c6c3da5396b6b42fdd98d3e254acd939ccf65663c154965c26d8524d19c54",
+      "koevd_eval/measurement_audit.py": "6a9f25eabfc5cffc42081f234282f22b9bf715a1da54401b0c8f591a23cca496",
+      "koevd_eval/measurement_conditions.py": "0b9b278cb4f4da2d73c170cf03ed0d4104b600f4c0cf04166ffa68cf9d72d536",
+      "koevd_eval/measurement_trace.py": "dd9a0ff213459bd6160ab672ed202aa66b4b3ab959b4fc52e4c873d1aa555d9b",
+      "koevd_eval/metrics.py": "cb5b407b1e7f96a2af6842b4ed44c0c3ecfbfa1f14bd637045bca48580348165",
+      "koevd_eval/oauth.py": "f0e460e489a6cadf88c6ba311818213ab5df0eef20d137a8f92dab177722ff44",
+      "koevd_eval/overlap.py": "6f9e9f27740413a2f743e753734207da94d767ff3549722502870fb79b986015",
+      "koevd_eval/parsers.py": "1f20604ce09d45356fe9a571b26945c8237048d9a8df85d41431b5a8556a1bbf",
+      "koevd_eval/pipeline.py": "848a8e3fd7fcc22751d71b14cc0de232e3d800b1cd68d591e29b007be90297e9",
+      "koevd_eval/preflight.py": "328bfdb0bec99897eea2249a1cf432d6a422e001126bd547ce28b53ed8fc0b4d",
+      "koevd_eval/prepare_tasks.py": "901941ee489b7b1b99cb1af9fee3378e03668909e89f3fcde98bdab58bb5c842",
+      "koevd_eval/profile.py": "d3a091fe3b768275a66ee7f7036c0a7bd89a706971e236ebfe03d3b4149f5822",
+      "koevd_eval/protocols.py": "f33ccded1e2cb804802892be8ba64fb49d2a4fb87aeac40217bfdc2d5c78ad21",
+      "koevd_eval/reports.py": "c8826063fc75d7c2486f7dd13d3b320dd151332b5e998ddb0276cf3c012de6f9",
+      "koevd_eval/results.py": "3ba906a5b062f74ed106b4033b81ff7c6535ff852889e25ec5567431ffb43b0f",
+      "koevd_eval/run_openai_compatible.py": "3a544fa1b0fec1f1ab923dc6a947c4dd4da6e0ab7f3d9092a3eb0e8574c0068c",
+      "koevd_eval/score.py": "dec2f8e63ba843c4122629861e26214c61bc26a79ccc3e9134452158e1b5d6f6",
+      "koevd_eval/spaces.py": "3c9c0a16f22bd51f47de9b677b1172b30399d4d9ef8fe604b9b08d4c350b7fd6",
+      "koevd_eval/space_service.py": "dc0985352fe549182e64be4af33ddd36d646298dac553ae3bf7940e443221507",
+      "koevd_eval/storage.py": "e955a267ccc91a5cb67386971907d7cf53542c6774de0cbabdeb7bf42e07ac75",
+      "koevd_eval/submissions.py": "cbb7df2d576301f95daaee1b7dee4ac0337dbc90ec451028110d5caf3be63310",
+      "koevd_eval/submission_web.py": "7d3bfdeb406f127fca93d5a91102635d05c4ac55e81bcb4ae598d193573ebe57",
+      "koevd_eval/__init__.py": "f06b0c5ebeec247accce64fa1a19ed3b406dd8ef6950e2392776f11aa5a307b7"
+    },
+    "real_gpu_or_policy_approval_from_fixtures": false
+  },
+  "wheel": {
+    "path": "generated/matrix-return-wheel-20261008-v18/koevd_eval-0.2.0-py3-none-any.whl",
+    "bytes": 182069,
+    "sha256": "a0a1a7aeacc21869097597e1e0de70eff2a7885d989d6a76771038db8a53b103"
+  },
+  "candidate": {
+    "path": "generated/private-space-deployment-20261008-v18",
+    "files": 59,
+    "bytes": 75521784,
+    "all_manifest_files_verified": true,
+    "source_installed_candidate_submissions_equal": true,
+    "empty_roles_and_baselines": true
+  },
+  "sandbox_build_failure": "First pip wheel command failed in sandbox temp build-tracker before building; approved local build passed without changing old envs or downloading dependencies.",
+  "actual_policy_ratified": false,
+  "actual_operator_receipt_accepted": false,
+  "live_space_or_container_verified": false,
+  "ui_changed": false,
+  "prior_ui_evidence_scope": "v16 assets unchanged; no new browser pass claimed for v18 metadata-only change.",
+  "uploaded": false,
+  "official_rank_eligible": false
+}

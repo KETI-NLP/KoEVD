@@ -1,0 +1,28 @@
+{
+  "scope": "requested_organization_development_space_creation",
+  "observed_utc": "2026-10-08T07:02:12.647078+00:00",
+  "requested_repo": "KETI-NLP/KoEVD-Explorer",
+  "requested_private": true,
+  "requested_sdk": "docker",
+  "requested_hardware": "default_cpu_basic",
+  "creation_http_status": 402,
+  "service_reason": "Static Spaces are free for everyone, but hosting Gradio and Docker Spaces on free cpu-basic requires a Team or Enterprise plan for organization KETI-NLP.",
+  "verification": {
+    "repository_exists": false,
+    "status_code": 404
+  },
+  "paid_resources_requested": false,
+  "public_space_created": false,
+  "upload_performed": false,
+  "prepared_folder": "generated/private-space-deployment-20261008",
+  "related_tests": {
+    "count": 33,
+    "seconds": 16.21,
+    "exit_code": 0
+  },
+  "decision_pending": true,
+  "personal_account_is_pro": false,
+  "personal_docker_requires_pro": true,
+  "official_policy_url": "https://huggingface.co/docs/hub/spaces-overview",
+  "initial_personal_free_alternative_corrected": true
+}

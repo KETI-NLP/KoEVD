@@ -65,3 +65,11 @@ def parse_json_object(text: str) -> dict[str, Any] | None:
 def prediction_text(row: Mapping[str, Any]) -> str:
     value = row.get("prediction")
     return value if isinstance(value, str) else ""
+
+
+def configure_cli_stdio():
+    """CLI pipes use UTF-8 consistently, including Windows paths and Korean IDs."""
+    import sys
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, 'reconfigure'):
+            stream.reconfigure(encoding='utf-8', errors='backslashreplace')

@@ -1,0 +1,124 @@
+{
+  "plan_version": "0.54",
+  "status": "actual_private_HF_finite_shutdown_two_current_drafts_restore_accepted_default_returned",
+  "approved_scope": "Existing private CPU Space, two48+48 original records/current drafts/history, initial1+worker2 snapshots/max24MiB, 600s window, shutdown/fixed restore and latest default return",
+  "trial_revision": "8af14a93a27689ccd12d1461dbc6f8c56c7adae9",
+  "restore_revision": "0bd4fcc7d51320776700ac4042d7e0bc3e29f38b",
+  "default_revision": "8e692c88d412d6305879473e3e8e74d46bb7dd2c",
+  "before_baseline_objects": 9,
+  "new_snapshots": 3,
+  "new_snapshot_bytes": 396229,
+  "count_and_byte_bound_passed": true,
+  "source_bound_parent_log_server_stopped_before_final_capture": true,
+  "finite_worker_completed_two_cycles": true,
+  "subsequent_startup_refusal_code": "initialization_inventory_mismatch",
+  "actual_HF_host_restart_event_log_proven": false,
+  "manual_restart_requested": false,
+  "selected_snapshot_sha256": "0b80e8bed65f50e732af08e26c8aa4a7cea83e85129a349bdfcd0d31f74b79d9",
+  "selection_by_outside_original_and_history_content": true,
+  "actual_HF_native_signin_and_relogin": true,
+  "current_models": [
+    "Qwen3-8B",
+    "Qwen3-4B"
+  ],
+  "records": [
+    48,
+    48
+  ],
+  "two_current_originals_histories_before_after_native_bytes_exact": true,
+  "restored_public_UI_and_new_private_save_refused": true,
+  "recovery_quarantine_released": false,
+  "restore_backup_worker_started": false,
+  "default_stage": "RUNNING",
+  "hardware": "cpu-basic",
+  "default_files_exact": 66,
+  "current_default_core50_matches_tested_v78": true,
+  "backup_objects_preserved": 12,
+  "backup_total_bytes": 68382317,
+  "continuous_backup_active": false,
+  "Secret_values_read_or_changed": false,
+  "public_Static_or_paid_changes": false,
+  "new_GPU_inference_or_classifier_accuracy_claim": false,
+  "old_v76_late4B_history_recovered": false,
+  "old_v70_count_failure_retroactively_passed": false,
+  "this_user_authorization_consumed_and_trial_ended": true,
+  "whole_goal_completed": false,
+  "last_goal_tool_status": "blocked",
+  "manual_user_approved_work_made_progress": true,
+  "remaining": [
+    "current local Docker/HF full-size acceptance",
+    "independent operator policy/recovery review",
+    "exact public raw-reference rights"
+  ],
+  "observed_helper_limitations": [
+    "Native download-event observation timed out; actual Downloads file existed and was independently verified; no duplicate retry",
+    "First repo inventory guard omitted known HF .gitattributes; discrepancy inspected then explicit metadata allowlist used"
+  ],
+  "evidence": [
+    {
+      "path": "generated/finite-capture-live-20261012-v83/deployment.json",
+      "bytes": 2121,
+      "sha256": "3ddb0439227df396c6239f660566bd9d1da1e266ee35f644e67dd0a5c708a4cb"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/live-observation.json",
+      "bytes": 3621,
+      "sha256": "4a3d92ba800795c78b3b68e39761dab5a9ff9a896e04c4c35b1dc200c8c18e99"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/before-native-downloads.json",
+      "bytes": 1202,
+      "sha256": "f8b5528b1ccfc135fd698b88d2478bea814e161aabf81a8903652a78a657c3c7"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/trial-exact-bytes.json",
+      "bytes": 12405,
+      "sha256": "d97de72654d502b419bdc0796a072c0cc24596a7f5bfcd98cff0bf801fd61912"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/snapshots-verified.json",
+      "bytes": 1771,
+      "sha256": "4573637d80bfdd849e84d25591d9cf09d8f99e17763e57e3a4f43caa526b9b93"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/restore-deployment.json",
+      "bytes": 638,
+      "sha256": "ce8c43b6b49e89b479ca2d4ef658221119a8d2f3892b32df9cd53b1b9f33580e"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/restored-native-downloads.json",
+      "bytes": 1034,
+      "sha256": "b1628a77e72beb3c485d53ff39d9460f239daeefbc902f5fd82ec14930e5d2b9"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/restored-save-refused-dom.txt",
+      "bytes": 6511,
+      "sha256": "81c8b7a714324bc2fab795cfc743bffe586534d57b20538fff0b5d109d090ef0"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/default-deployment.json",
+      "bytes": 1941,
+      "sha256": "a5f01b3a1e5d93312d4ff3665a5bf701d164a47dccf2d8c4d24617765f4c99d1"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/default-exact-bytes.json",
+      "bytes": 11546,
+      "sha256": "c0459a1e68770d40d6936a80575138df0810f621d94b8d91a7f084e3c7bad8f0"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/default-returned-dom.txt",
+      "bytes": 4303,
+      "sha256": "555976feb0447bde85c4d808d328ee31c0beef19ba7399756c0c471330d37db8"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/default-returned.png",
+      "bytes": 77629,
+      "sha256": "baf3defe9eb0e91dfafc3f91f1b4988a7f146112bd95ac3cf99cf2d39e998dc7"
+    },
+    {
+      "path": "generated/finite-capture-live-20261012-v83/restored-save-refused.png",
+      "bytes": 479104,
+      "sha256": "b9405501a861c2f174131ee3686fb94b97578849f6e9e382dc7c6e672f6dd61c"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "format": "koevd-platform-rc-audit-v1",
+  "observed_date": "2026-10-09",
+  "previous_goal_turn": "progress: actual full two-target completion, independent replay, node/local/native HTTP equality and actual browser validation",
+  "scope": "current local RC audit, CI coverage repair and documentation; external gates not substituted",
+  "cpu": {
+    "scope": "current full CPU suite; exact installed package, current scripts and tests; doubles for provider/GPU; no actual HF login/container/cloud",
+    "tests": 294,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 149.037,
+    "installed_package": "[private-local-path]",
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "log_sha256": "652701035def5d59c4cd45643ecf02199e5990415c0dd3504f366eb372013625",
+    "exit_code": 0,
+    "temp_root": "[private-local-path]",
+    "initial_attempt": "generated/platform-rc-audit-20261009-v55/cpu-suite-receipt.json"
+  },
+  "initial_attempts": "generated/platform-rc-audit-20261009-v55/setup-failures.json",
+  "ci": {
+    "path": ".github/workflows/test.yml",
+    "python_matrix": [
+      "3.10",
+      "3.12"
+    ],
+    "node_major": "24",
+    "install": ".[dev,serve]",
+    "dependency_check": true,
+    "github_matrix_execution_verified": false,
+    "local_python": "3.12.14",
+    "local_node": "24.19.0"
+  },
+  "changes": [
+    ".github/workflows/test.yml: install serve/dev dependencies and Node24, pip check before full tests",
+    "scripts/gpu_source_bundle.py: explicitly include public CI file while excluding other hidden files",
+    "tests/test_gpu_source_bundle.py: hidden/public packaging boundary regression",
+    "README.md: current dtype/trace options and full actual two-target evidence",
+    "docs/SPACES_GUIDE.md: replace outdated missing-two-target claim",
+    "docs/PLATFORM_RELEASE_CANDIDATE.md and docs/RELEASE.md: concrete R1-R10 audit and remaining gates"
+  ],
+  "package_source_modified": false,
+  "candidate_runtime_modified": false,
+  "new_gpu_inference": false,
+  "latest_actual_evidence": "docs/validation/platform_m4_m5_full_two_actual_20261009.json",
+  "rc_complete": false,
+  "goal_complete": false,
+  "remaining": [
+    "Actual container/hosted HF/OAuth/iframe validation; KETI-NLP Space creation previously402/404",
+    "Approved existing private HF Bucket and actual provider backup/restore; no cloud writes performed",
+    "Approved actual public raw reference catalog/operator attestations and operating-policy acceptance",
+    "GitHub CI matrix has not run on unpublished local changes"
+  ],
+  "production_deployed": false,
+  "public_posting": false,
+  "paid_resources": false,
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

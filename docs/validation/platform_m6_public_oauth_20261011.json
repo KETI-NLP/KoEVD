@@ -1,0 +1,518 @@
+{
+  "format": "koevd-public-oauth-candidate-acceptance-v1",
+  "date_kst": "2026-10-11",
+  "plan_version": "0.39",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "dirty_entries_before": 166,
+  "previous_goal_turn_classification": "no progress: Static feasibility explanation and read-only documentation; no new implementation acceptance",
+  "current_turn_classification": "progress: explicit secretless public OAuth server mode, noneditable package/full310 acceptance, refreshed server candidate",
+  "implementation": {
+    "default": "confidential requires secret; no automatic missing-secret fallback",
+    "public_opt_in": "--oauth-client-type public / KOEVD_OAUTH_CLIENT_TYPE=public",
+    "public_secret_rejected": true,
+    "public_PKCE_required": true,
+    "public_token_basic_header": false,
+    "fixed_HF_endpoints_and_minimal_scopes_preserved": true,
+    "server_only_provider_tokens": true,
+    "ownership_role_consent_publication_rank_guards_preserved": true,
+    "source_sha256": {
+      "src/koevd_eval/oauth.py": "fa0167f3096cd261ee0210d016e536ecfc1d8958de01c2f9e983cbc0bc9391a9",
+      "src/koevd_eval/spaces.py": "b79e345650e0d30979606114f9bb54e4878756f367874485e5eb378cfbd3b2fe",
+      "apps/spaces/launch.py": "b459279ef6fb9dcc65234e82bc5a1e478e2f1abcdeebb72950a88cee264f5b71",
+      "tests/test_submission_web.py": "8321ef8b8649be186ad2da269cf7b7a6d45efa5ad3c4f9c4870a2ed60e39f2c1",
+      "tests/test_space_launch.py": "7da9f9d198ce043062e8538fd2b10b90d91f0fd3feb17c947e3d1d788baf012e",
+      "tests/test_oauth_client_configuration.py": "33ba5f660b9fc020c090fdd99c83d9576bed0608d2e9d62b11f41379c733ff8d"
+    }
+  },
+  "installed_CPU": {
+    "format": "koevd-public-oauth-cpu-v1",
+    "tests": 310,
+    "errors": 0,
+    "failures": 0,
+    "skips": 0,
+    "seconds": 142.62306310003623,
+    "exit_code": 0,
+    "source_mode": false,
+    "installed_core_files_exact": 50,
+    "source_files": [
+      {
+        "path": "src/koevd_eval/__init__.py",
+        "sha256": "f06b0c5ebeec247accce64fa1a19ed3b406dd8ef6950e2392776f11aa5a307b7"
+      },
+      {
+        "path": "src/koevd_eval/analysis.py",
+        "sha256": "0853e5125087a1c18b382f83da2d672cf428b3916b9c6b2446879cf866e18594"
+      },
+      {
+        "path": "src/koevd_eval/assets/registration.js",
+        "sha256": "36c13c6e92546f72be216dbc9a44839efdc8572cbbadb1669b9a9e56a826bbc4"
+      },
+      {
+        "path": "src/koevd_eval/assets/report.css",
+        "sha256": "5720469e58dc18affd68855b26bcd5110ce4849e5f673763bd7c362956b012c9"
+      },
+      {
+        "path": "src/koevd_eval/assets/report.js",
+        "sha256": "4f2e92fdf2c98be35228f5087b3fd578f03b25e58f9f53e3152ce57777eaa300"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.css",
+        "sha256": "e3df2d58ee54c4d1f5b33de79a3b430d2801cb9bb850ef00e16726fa8667d273"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.html",
+        "sha256": "17a972a4733cbaac73c552a21a6f4636f4fb1f9001a9b3e545250a9a8bd2ff1e"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.js",
+        "sha256": "c935676c165c67e8bd04bee5cc60c3ac017b2357c1f4a951ba2dc55f1e414117"
+      },
+      {
+        "path": "src/koevd_eval/backups.py",
+        "sha256": "31d12976c4734ec055f8962a87c9b1f0edb8a6f84f15a7f9ba2a896fe2622774"
+      },
+      {
+        "path": "src/koevd_eval/browser_bridge.py",
+        "sha256": "4cdb088385786cb4cad038d85806d6b25237c9a4bb922e6fd2c6aeff9df4b476"
+      },
+      {
+        "path": "src/koevd_eval/classify_responses.py",
+        "sha256": "8c572626242e74226c7bfcd96da593f3ee224dcd37410ff177d9ada465f70686"
+      },
+      {
+        "path": "src/koevd_eval/common.py",
+        "sha256": "1d0a6f47f9db2a9aaea8bd17b90d123a13583ef9ccd858c38f8be5201184762d"
+      },
+      {
+        "path": "src/koevd_eval/diagnostics.py",
+        "sha256": "983c50f5fd5e8a9348106fc3b61669371a32fc393eea69b1365114b7baf3d0a0"
+      },
+      {
+        "path": "src/koevd_eval/eligibility.py",
+        "sha256": "cd62440ba0dec7e53d4616a936626ec3e5e081107f8ce678e947914365abbeff"
+      },
+      {
+        "path": "src/koevd_eval/generation_receipts.py",
+        "sha256": "b07ecd164418c49907fbc212bc876182728ddf3b7270f0b629cc909242c65479"
+      },
+      {
+        "path": "src/koevd_eval/hub.py",
+        "sha256": "016c6c3da5396b6b42fdd98d3e254acd939ccf65663c154965c26d8524d19c54"
+      },
+      {
+        "path": "src/koevd_eval/measurement_audit.py",
+        "sha256": "6a9f25eabfc5cffc42081f234282f22b9bf715a1da54401b0c8f591a23cca496"
+      },
+      {
+        "path": "src/koevd_eval/measurement_conditions.py",
+        "sha256": "0b9b278cb4f4da2d73c170cf03ed0d4104b600f4c0cf04166ffa68cf9d72d536"
+      },
+      {
+        "path": "src/koevd_eval/measurement_trace.py",
+        "sha256": "dd9a0ff213459bd6160ab672ed202aa66b4b3ab959b4fc52e4c873d1aa555d9b"
+      },
+      {
+        "path": "src/koevd_eval/metrics.py",
+        "sha256": "cb5b407b1e7f96a2af6842b4ed44c0c3ecfbfa1f14bd637045bca48580348165"
+      },
+      {
+        "path": "src/koevd_eval/oauth.py",
+        "sha256": "fa0167f3096cd261ee0210d016e536ecfc1d8958de01c2f9e983cbc0bc9391a9"
+      },
+      {
+        "path": "src/koevd_eval/overlap.py",
+        "sha256": "6f9e9f27740413a2f743e753734207da94d767ff3549722502870fb79b986015"
+      },
+      {
+        "path": "src/koevd_eval/parsers.py",
+        "sha256": "1f20604ce09d45356fe9a571b26945c8237048d9a8df85d41431b5a8556a1bbf"
+      },
+      {
+        "path": "src/koevd_eval/pipeline.py",
+        "sha256": "848a8e3fd7fcc22751d71b14cc0de232e3d800b1cd68d591e29b007be90297e9"
+      },
+      {
+        "path": "src/koevd_eval/policy_decisions.py",
+        "sha256": "4bffb5288e4b0364bc3d6fd9cba1545254f2b4a37532819f5687a878591ea4be"
+      },
+      {
+        "path": "src/koevd_eval/preflight.py",
+        "sha256": "328bfdb0bec99897eea2249a1cf432d6a422e001126bd547ce28b53ed8fc0b4d"
+      },
+      {
+        "path": "src/koevd_eval/prepare_tasks.py",
+        "sha256": "901941ee489b7b1b99cb1af9fee3378e03668909e89f3fcde98bdab58bb5c842"
+      },
+      {
+        "path": "src/koevd_eval/profile.py",
+        "sha256": "d3a091fe3b768275a66ee7f7036c0a7bd89a706971e236ebfe03d3b4149f5822"
+      },
+      {
+        "path": "src/koevd_eval/protocols.py",
+        "sha256": "f33ccded1e2cb804802892be8ba64fb49d2a4fb87aeac40217bfdc2d5c78ad21"
+      },
+      {
+        "path": "src/koevd_eval/recovery.py",
+        "sha256": "1fc2a85d10884538ed13e718be176ad8ffdf01dbc84e3644bc52699e01f8320d"
+      },
+      {
+        "path": "src/koevd_eval/reports.py",
+        "sha256": "c8826063fc75d7c2486f7dd13d3b320dd151332b5e998ddb0276cf3c012de6f9"
+      },
+      {
+        "path": "src/koevd_eval/results.py",
+        "sha256": "3ba906a5b062f74ed106b4033b81ff7c6535ff852889e25ec5567431ffb43b0f"
+      },
+      {
+        "path": "src/koevd_eval/run_openai_compatible.py",
+        "sha256": "3a544fa1b0fec1f1ab923dc6a947c4dd4da6e0ab7f3d9092a3eb0e8574c0068c"
+      },
+      {
+        "path": "src/koevd_eval/schemas/index-v1.schema.json",
+        "sha256": "0128b083e704e32ecb6652a40639d4854b4a406ae8d5a22c274f3d66a384a654"
+      },
+      {
+        "path": "src/koevd_eval/schemas/protocol-v1.schema.json",
+        "sha256": "ef58d7f69b951580b05fec3c31f4d3110b4f0d31951bfc0021dc15636ea1fabc"
+      },
+      {
+        "path": "src/koevd_eval/schemas/results-v1.schema.json",
+        "sha256": "f50e93ad4b1e239c626b95f4077658726d85cfcc8389d590119605cb36ba9bf4"
+      },
+      {
+        "path": "src/koevd_eval/score.py",
+        "sha256": "dec2f8e63ba843c4122629861e26214c61bc26a79ccc3e9134452158e1b5d6f6"
+      },
+      {
+        "path": "src/koevd_eval/snapshots.py",
+        "sha256": "220ee8333879fea2bdcf57f09c7aa866f2d77e9a6910f0e5c4b8e2eac4536298"
+      },
+      {
+        "path": "src/koevd_eval/space_service.py",
+        "sha256": "dc0985352fe549182e64be4af33ddd36d646298dac553ae3bf7940e443221507"
+      },
+      {
+        "path": "src/koevd_eval/spaces.py",
+        "sha256": "b79e345650e0d30979606114f9bb54e4878756f367874485e5eb378cfbd3b2fe"
+      },
+      {
+        "path": "src/koevd_eval/storage.py",
+        "sha256": "e7f44eda65a3f6102c31582d84107fef7c657883c6a11c1ada1d8c85f9f253b9"
+      },
+      {
+        "path": "src/koevd_eval/submission_web.py",
+        "sha256": "7d3bfdeb406f127fca93d5a91102635d05c4ac55e81bcb4ae598d193573ebe57"
+      },
+      {
+        "path": "src/koevd_eval/submissions.py",
+        "sha256": "8a7b5c89e72355a5f0051c98f25e7009787da85025ea32f2511c1f997e8257aa"
+      },
+      {
+        "path": "src/koevd_classifiers/__init__.py",
+        "sha256": "07a84c3bebce2e90c80ca4d584a39fb6408349f9dc930deead61bd2ecec912e6"
+      },
+      {
+        "path": "src/koevd_classifiers/assistant_safe_classifier/__init__.py",
+        "sha256": "a731abc3ac3eaf10270684557f50f878f2cfc188417adcabe92e84651793b329"
+      },
+      {
+        "path": "src/koevd_classifiers/assistant_safe_classifier/model.py",
+        "sha256": "e5c9626d55025bd335ddf5f2d5497d1c5a845a7f46ae1783461fc0e1f5ba5718"
+      },
+      {
+        "path": "src/koevd_classifiers/assistant_safe_classifier/server.py",
+        "sha256": "ef723557809e8f75ec3a9ec42cfdc1f1c19b59887d9f03649987748b07001f19"
+      },
+      {
+        "path": "src/koevd_classifiers/response_strategy_classifier/__init__.py",
+        "sha256": "0ab92c89de12421e6808f87f7109ea8b23b4a625e4888127f09ed9803b62c6f2"
+      },
+      {
+        "path": "src/koevd_classifiers/response_strategy_classifier/model.py",
+        "sha256": "6021491a8657b8a9992572b0fd8fa87748c92fdd0794320b02f2a4cc93fdb50b"
+      },
+      {
+        "path": "src/koevd_classifiers/response_strategy_classifier/server.py",
+        "sha256": "985bd09d6f1169fa1c992e662b00dedc1a773e70cb8d38c09f15682f987dfb34"
+      }
+    ],
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "log_sha256": "95a3b0a5178ab5c7d9e1cebff5a91429678c28fd7583c01cc3eed7797ef60024",
+    "actual_hf_login": false,
+    "provider_network_requests": false,
+    "scope": "full CPU suite"
+  },
+  "installation": {
+    "wheel": "generated/public-oauth-package-20261011-v60/wheel/koevd_eval-0.2.0-py3-none-any.whl",
+    "wheel_bytes": 205929,
+    "wheel_sha256": "16de531ce00b74cfa087483384ed30f07015295177fa6b1f78f27f35cda07db3",
+    "environment": "generated/public-oauth-package-20261011-v60/env",
+    "installed_source_files_exact": 50,
+    "source_files": [
+      {
+        "path": "src/koevd_eval/__init__.py",
+        "sha256": "f06b0c5ebeec247accce64fa1a19ed3b406dd8ef6950e2392776f11aa5a307b7"
+      },
+      {
+        "path": "src/koevd_eval/analysis.py",
+        "sha256": "0853e5125087a1c18b382f83da2d672cf428b3916b9c6b2446879cf866e18594"
+      },
+      {
+        "path": "src/koevd_eval/assets/registration.js",
+        "sha256": "36c13c6e92546f72be216dbc9a44839efdc8572cbbadb1669b9a9e56a826bbc4"
+      },
+      {
+        "path": "src/koevd_eval/assets/report.css",
+        "sha256": "5720469e58dc18affd68855b26bcd5110ce4849e5f673763bd7c362956b012c9"
+      },
+      {
+        "path": "src/koevd_eval/assets/report.js",
+        "sha256": "4f2e92fdf2c98be35228f5087b3fd578f03b25e58f9f53e3152ce57777eaa300"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.css",
+        "sha256": "e3df2d58ee54c4d1f5b33de79a3b430d2801cb9bb850ef00e16726fa8667d273"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.html",
+        "sha256": "17a972a4733cbaac73c552a21a6f4636f4fb1f9001a9b3e545250a9a8bd2ff1e"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.js",
+        "sha256": "c935676c165c67e8bd04bee5cc60c3ac017b2357c1f4a951ba2dc55f1e414117"
+      },
+      {
+        "path": "src/koevd_eval/backups.py",
+        "sha256": "31d12976c4734ec055f8962a87c9b1f0edb8a6f84f15a7f9ba2a896fe2622774"
+      },
+      {
+        "path": "src/koevd_eval/browser_bridge.py",
+        "sha256": "4cdb088385786cb4cad038d85806d6b25237c9a4bb922e6fd2c6aeff9df4b476"
+      },
+      {
+        "path": "src/koevd_eval/classify_responses.py",
+        "sha256": "8c572626242e74226c7bfcd96da593f3ee224dcd37410ff177d9ada465f70686"
+      },
+      {
+        "path": "src/koevd_eval/common.py",
+        "sha256": "1d0a6f47f9db2a9aaea8bd17b90d123a13583ef9ccd858c38f8be5201184762d"
+      },
+      {
+        "path": "src/koevd_eval/diagnostics.py",
+        "sha256": "983c50f5fd5e8a9348106fc3b61669371a32fc393eea69b1365114b7baf3d0a0"
+      },
+      {
+        "path": "src/koevd_eval/eligibility.py",
+        "sha256": "cd62440ba0dec7e53d4616a936626ec3e5e081107f8ce678e947914365abbeff"
+      },
+      {
+        "path": "src/koevd_eval/generation_receipts.py",
+        "sha256": "b07ecd164418c49907fbc212bc876182728ddf3b7270f0b629cc909242c65479"
+      },
+      {
+        "path": "src/koevd_eval/hub.py",
+        "sha256": "016c6c3da5396b6b42fdd98d3e254acd939ccf65663c154965c26d8524d19c54"
+      },
+      {
+        "path": "src/koevd_eval/measurement_audit.py",
+        "sha256": "6a9f25eabfc5cffc42081f234282f22b9bf715a1da54401b0c8f591a23cca496"
+      },
+      {
+        "path": "src/koevd_eval/measurement_conditions.py",
+        "sha256": "0b9b278cb4f4da2d73c170cf03ed0d4104b600f4c0cf04166ffa68cf9d72d536"
+      },
+      {
+        "path": "src/koevd_eval/measurement_trace.py",
+        "sha256": "dd9a0ff213459bd6160ab672ed202aa66b4b3ab959b4fc52e4c873d1aa555d9b"
+      },
+      {
+        "path": "src/koevd_eval/metrics.py",
+        "sha256": "cb5b407b1e7f96a2af6842b4ed44c0c3ecfbfa1f14bd637045bca48580348165"
+      },
+      {
+        "path": "src/koevd_eval/oauth.py",
+        "sha256": "fa0167f3096cd261ee0210d016e536ecfc1d8958de01c2f9e983cbc0bc9391a9"
+      },
+      {
+        "path": "src/koevd_eval/overlap.py",
+        "sha256": "6f9e9f27740413a2f743e753734207da94d767ff3549722502870fb79b986015"
+      },
+      {
+        "path": "src/koevd_eval/parsers.py",
+        "sha256": "1f20604ce09d45356fe9a571b26945c8237048d9a8df85d41431b5a8556a1bbf"
+      },
+      {
+        "path": "src/koevd_eval/pipeline.py",
+        "sha256": "848a8e3fd7fcc22751d71b14cc0de232e3d800b1cd68d591e29b007be90297e9"
+      },
+      {
+        "path": "src/koevd_eval/policy_decisions.py",
+        "sha256": "4bffb5288e4b0364bc3d6fd9cba1545254f2b4a37532819f5687a878591ea4be"
+      },
+      {
+        "path": "src/koevd_eval/preflight.py",
+        "sha256": "328bfdb0bec99897eea2249a1cf432d6a422e001126bd547ce28b53ed8fc0b4d"
+      },
+      {
+        "path": "src/koevd_eval/prepare_tasks.py",
+        "sha256": "901941ee489b7b1b99cb1af9fee3378e03668909e89f3fcde98bdab58bb5c842"
+      },
+      {
+        "path": "src/koevd_eval/profile.py",
+        "sha256": "d3a091fe3b768275a66ee7f7036c0a7bd89a706971e236ebfe03d3b4149f5822"
+      },
+      {
+        "path": "src/koevd_eval/protocols.py",
+        "sha256": "f33ccded1e2cb804802892be8ba64fb49d2a4fb87aeac40217bfdc2d5c78ad21"
+      },
+      {
+        "path": "src/koevd_eval/recovery.py",
+        "sha256": "1fc2a85d10884538ed13e718be176ad8ffdf01dbc84e3644bc52699e01f8320d"
+      },
+      {
+        "path": "src/koevd_eval/reports.py",
+        "sha256": "c8826063fc75d7c2486f7dd13d3b320dd151332b5e998ddb0276cf3c012de6f9"
+      },
+      {
+        "path": "src/koevd_eval/results.py",
+        "sha256": "3ba906a5b062f74ed106b4033b81ff7c6535ff852889e25ec5567431ffb43b0f"
+      },
+      {
+        "path": "src/koevd_eval/run_openai_compatible.py",
+        "sha256": "3a544fa1b0fec1f1ab923dc6a947c4dd4da6e0ab7f3d9092a3eb0e8574c0068c"
+      },
+      {
+        "path": "src/koevd_eval/schemas/index-v1.schema.json",
+        "sha256": "0128b083e704e32ecb6652a40639d4854b4a406ae8d5a22c274f3d66a384a654"
+      },
+      {
+        "path": "src/koevd_eval/schemas/protocol-v1.schema.json",
+        "sha256": "ef58d7f69b951580b05fec3c31f4d3110b4f0d31951bfc0021dc15636ea1fabc"
+      },
+      {
+        "path": "src/koevd_eval/schemas/results-v1.schema.json",
+        "sha256": "f50e93ad4b1e239c626b95f4077658726d85cfcc8389d590119605cb36ba9bf4"
+      },
+      {
+        "path": "src/koevd_eval/score.py",
+        "sha256": "dec2f8e63ba843c4122629861e26214c61bc26a79ccc3e9134452158e1b5d6f6"
+      },
+      {
+        "path": "src/koevd_eval/snapshots.py",
+        "sha256": "220ee8333879fea2bdcf57f09c7aa866f2d77e9a6910f0e5c4b8e2eac4536298"
+      },
+      {
+        "path": "src/koevd_eval/space_service.py",
+        "sha256": "dc0985352fe549182e64be4af33ddd36d646298dac553ae3bf7940e443221507"
+      },
+      {
+        "path": "src/koevd_eval/spaces.py",
+        "sha256": "b79e345650e0d30979606114f9bb54e4878756f367874485e5eb378cfbd3b2fe"
+      },
+      {
+        "path": "src/koevd_eval/storage.py",
+        "sha256": "e7f44eda65a3f6102c31582d84107fef7c657883c6a11c1ada1d8c85f9f253b9"
+      },
+      {
+        "path": "src/koevd_eval/submission_web.py",
+        "sha256": "7d3bfdeb406f127fca93d5a91102635d05c4ac55e81bcb4ae598d193573ebe57"
+      },
+      {
+        "path": "src/koevd_eval/submissions.py",
+        "sha256": "8a7b5c89e72355a5f0051c98f25e7009787da85025ea32f2511c1f997e8257aa"
+      },
+      {
+        "path": "src/koevd_classifiers/__init__.py",
+        "sha256": "07a84c3bebce2e90c80ca4d584a39fb6408349f9dc930deead61bd2ecec912e6"
+      },
+      {
+        "path": "src/koevd_classifiers/assistant_safe_classifier/__init__.py",
+        "sha256": "a731abc3ac3eaf10270684557f50f878f2cfc188417adcabe92e84651793b329"
+      },
+      {
+        "path": "src/koevd_classifiers/assistant_safe_classifier/model.py",
+        "sha256": "e5c9626d55025bd335ddf5f2d5497d1c5a845a7f46ae1783461fc0e1f5ba5718"
+      },
+      {
+        "path": "src/koevd_classifiers/assistant_safe_classifier/server.py",
+        "sha256": "ef723557809e8f75ec3a9ec42cfdc1f1c19b59887d9f03649987748b07001f19"
+      },
+      {
+        "path": "src/koevd_classifiers/response_strategy_classifier/__init__.py",
+        "sha256": "0ab92c89de12421e6808f87f7109ea8b23b4a625e4888127f09ed9803b62c6f2"
+      },
+      {
+        "path": "src/koevd_classifiers/response_strategy_classifier/model.py",
+        "sha256": "6021491a8657b8a9992572b0fd8fa87748c92fdd0794320b02f2a4cc93fdb50b"
+      },
+      {
+        "path": "src/koevd_classifiers/response_strategy_classifier/server.py",
+        "sha256": "985bd09d6f1169fa1c992e662b00dedc1a773e70cb8d38c09f15682f987dfb34"
+      }
+    ],
+    "noneditable_candidate_installed": true,
+    "pip_check_passed": true,
+    "dependency_scope": "existing read-only validation dependency cache, not clean remote installation",
+    "published": false
+  },
+  "server_candidate": {
+    "candidate": "generated/private-space-deployment-20261011-v60",
+    "files": 64,
+    "bytes": 75596851,
+    "manifest_sha256": "5aef61897221ad2b4ebcf63036ab9cd9b3e0c819ed7255b88c76cdbc03fe7ec2",
+    "changed_files": [
+      "apps/spaces/launch.py",
+      "README.md",
+      "src/koevd_eval/oauth.py",
+      "src/koevd_eval/spaces.py"
+    ],
+    "previous_candidate_preserved": true,
+    "catalog_validated": true,
+    "roles_and_baselines_empty": true,
+    "official_rank_eligible": false,
+    "container_executed": false,
+    "deployed": false,
+    "credentials_included": false,
+    "actual_target_outputs_included": false
+  },
+  "CLI_help_passed": true,
+  "static_engine_19_sources_still_exact": true,
+  "HF_Hub_parent_observation": {
+    "url": "https://huggingface.co/spaces/KETI-NLP/KoEVD-Explorer",
+    "browser": "existing user Chrome session, extension browser3",
+    "private_Running_header_visible": true,
+    "embedded_initial_analysis_form_visible": true,
+    "visual_QA": "current CUA screenshot: initial page/form; no source UI changes",
+    "file_selection_analysis_download_acceptance": false,
+    "earlier_filechooser_timeout": true,
+    "extension_file_URL_permission_state": "unverified, manual user question pending",
+    "internal_extension_settings_navigation": "blocked by browser URL policy; no workaround or setting change",
+    "not_submitter_OAuth_evidence": true
+  },
+  "retained_failure": {
+    "receipt": "generated/public-oauth-source-related-20261011-v60/receipt.json",
+    "tests": 34,
+    "failures": 1,
+    "errors": 0,
+    "reason": "new HTTP test expected403 but existing private existence-hiding guard correctly returned404",
+    "repair": "test expects404 for other user; separately requires403 when owner attempts review; product ACL unchanged",
+    "sandbox_initial": "HTTP fixture setup failed with Windows TEMP PermissionError; not a product regression or passing run"
+  },
+  "actual_HF_submitter_login_verified": false,
+  "actual_public_reference_approval": false,
+  "actual_cloud_or_operator_acceptance": false,
+  "container_executed": false,
+  "new_GPU_inference": false,
+  "external_posting_or_deployment": false,
+  "billing": false,
+  "remaining": [
+    "actual registered OAuth app and account login",
+    "approved actual public references",
+    "independent operator generation/policy/publication/recovery acceptance",
+    "approved private cloud storage/restore",
+    "original server container acceptance",
+    "HF Hub parent file selection-analysis-download flow"
+  ],
+  "original_goal_body_unchanged": true,
+  "goal_status": "active; incomplete; original M0-M6 scope preserved"
+}

@@ -1,0 +1,152 @@
+{
+  "scope": "gpu_node_setup_pass_actual_target_execution_in_progress",
+  "observed_utc": "2026-10-08T07:33:46.197549+00:00",
+  "node": "GPU_NODE",
+  "root": "[private-node-path]",
+  "bootstrap_status": "passed",
+  "artifact_status": "passed",
+  "verified_artifacts": {
+    "assistant_base": {
+      "repo_id": "Qwen/Qwen3.5-0.8B",
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+      "bytes": 1769967351,
+      "files": 11
+    },
+    "strategy_base": {
+      "repo_id": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+      "bytes": 16397448353,
+      "files": 13
+    },
+    "dataset": {
+      "repo_id": "KETI-NLP/KoEVD",
+      "revision": "f5920837769bea77e072c8e033e5ad9cbff4d45d",
+      "bytes": 287240877,
+      "files": 40
+    },
+    "assistant": {
+      "repo_id": "KETI-NLP/KoEVD-assistant-safety",
+      "revision": "e821f2a0d8809bafe0cbf1b6ee0ac8350d2554b3",
+      "bytes": 45594236,
+      "files": 12
+    },
+    "strategy": {
+      "repo_id": "KETI-NLP/KoEVD-response-strategy",
+      "revision": "846df8d29758b956c420e0f4dd17ced8630a9b81",
+      "bytes": 284890529,
+      "files": 16
+    },
+    "target-Qwen3-8B": {
+      "repo_id": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+      "bytes": 16397448353,
+      "files": 13
+    },
+    "target-Qwen3-4B": {
+      "repo_id": "Qwen/Qwen3-4B",
+      "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "bytes": 8060913713,
+      "files": 11
+    }
+  },
+  "first_execution": {
+    "session": 97489,
+    "status": "failed",
+    "error": "Owned vLLM server exited: 1",
+    "terminal_exit": 1,
+    "preserved_root": "smoke"
+  },
+  "latest_execution": {
+    "session": 70736,
+    "status": "running",
+    "root": "smoke-v2",
+    "controller_pid": 30278,
+    "owned_server_pid": 30354,
+    "gpu_selection": {
+      "requested_uuid": "GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b",
+      "cuda_visible_devices": "2",
+      "cuda_device_order": "PCI_BUS_ID",
+      "observed_cuda_uuid": "795fabdc-a541-1b0f-aa66-b7efab297b4b"
+    },
+    "commands": [
+      {
+        "name": "Qwen3-8B-prepare",
+        "argv": [
+          "[private-node-path]",
+          "--stage",
+          "prepare",
+          "--dataset-dir",
+          "[private-node-path]",
+          "--output-dir",
+          "[private-node-path]",
+          "--split",
+          "core",
+          "--limit-sources",
+          "4"
+        ],
+        "status": "passed",
+        "exit_code": 0
+      },
+      {
+        "name": "Qwen3-8B-index",
+        "argv": [
+          "[private-node-path]",
+          "index",
+          "--run-dir",
+          "[private-node-path]",
+          "--output",
+          "[private-node-path]",
+          "--dataset-repo",
+          "KETI-NLP/KoEVD",
+          "--dataset-revision",
+          "f5920837769bea77e072c8e033e5ad9cbff4d45d"
+        ],
+        "status": "passed",
+        "exit_code": 0
+      }
+    ],
+    "targets": [
+      {
+        "model": "Qwen/Qwen3-8B",
+        "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+        "pid": 30354,
+        "argv": [
+          "[private-node-path]",
+          "serve",
+          "[private-node-path]",
+          "--served-model-name",
+          "Qwen/Qwen3-8B",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "18080",
+          "--dtype",
+          "bfloat16",
+          "--max-model-len",
+          "16384",
+          "--gpu-memory-utilization",
+          "0.25",
+          "--max-num-seqs",
+          "16",
+          "--enforce-eager"
+        ],
+        "gpu_uuid": "GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b",
+        "status": "starting"
+      }
+    ]
+  },
+  "controller_sha256": "0c71fa20f61745f8e01b94a8dbfd8df867015475520e6dc8a6550dbb85812e88",
+  "controller_tests": {
+    "count": 2,
+    "seconds": 0.133,
+    "scope": "cpu_selector_contract"
+  },
+  "limitations": [
+    "No completed two-target generation/measurement/export/report/comparison pass at this observation.",
+    "Core source remains frozen131-file checkpoint; updated controller is separately hashed.",
+    "CPU203 package suite is separate from GPU evidence; controller tests were added afterward.",
+    "No other user GPU process stopped; only owned server children are managed.",
+    "HF organization Space creation still requires external hosting decision/plan."
+  ],
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

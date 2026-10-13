@@ -1,0 +1,91 @@
+{
+  "plan_version": "0.58",
+  "status": "actual_private_CPU_full_two_result_comparison_five_downloads_accepted",
+  "approved_scope": "Two17670-record JSONs each once, one comparison job, <=512MiB five decoded outputs, own two analysis sessions cleanup only",
+  "explicit_user_approval_received": true,
+  "authorization_for_this_bounded_trial_consumed": true,
+  "seconds": 259.906,
+  "target": "KETI-NLP/KoEVD-Platform-Dev",
+  "revision": "8e692c88d412d6305879473e3e8e74d46bb7dd2c",
+  "private": true,
+  "hardware": "cpu-basic",
+  "single_replica": true,
+  "records": [
+    17670,
+    17670
+  ],
+  "upload_body_bytes_attempted": 89396889,
+  "upload_body_bytes_acknowledged": 89396889,
+  "download_report_bytes": 405679557,
+  "download_bound_bytes": 536870912,
+  "analysis_jobs_created": 1,
+  "analysis_terminal_observed": true,
+  "owned_session_cleanup_statuses": [
+    200,
+    200
+  ],
+  "five_native_files_direct_byte_exact": true,
+  "independent_local_download_hashes_rechecked": true,
+  "other_session_output_access_refused": true,
+  "current_installed_product_core50_unchanged": true,
+  "individual_analyses_two_newly_verified": false,
+  "hosted_browser_UI_or_new_app_user_OAuth_verified": false,
+  "actual_local_Docker_image_UID_CMD_verified": false,
+  "new_GPU_or_classifier_accuracy_claim": false,
+  "saved_submission_or_Bucket_snapshot_write": false,
+  "redeploy_restart_visibility_Secret_or_paid_change": false,
+  "continuous_backup_enabled": false,
+  "whole_goal_completed": false,
+  "goal_tool_last_observed_status": "blocked",
+  "explicitly_authorized_manual_work_made_progress": true,
+  "original_objective_preserved": true,
+  "outputs": {
+    "profile": {
+      "bytes": 26268045,
+      "sha256": "1e1e7afe0813fa00fb69e73d67d5a228c80eb05ff21dbcefad9f5d791eb3a609",
+      "native_bytes_exact": true
+    },
+    "cases": {
+      "bytes": 178948156,
+      "sha256": "e87c754152a181a9e9d6bd8a1668b99ad8f7d1c575a4da60fd619891902f23ac",
+      "native_bytes_exact": true
+    },
+    "csv": {
+      "bytes": 1085575,
+      "sha256": "a4e2ef84749b43eff24bfb012349c2519996156b36fc770a0e7687b483bee58b",
+      "native_bytes_exact": true
+    },
+    "markdown": {
+      "bytes": 4038,
+      "sha256": "8f25cb47cad40e70f1c6b10e9a16f79f9eea345d3f5e645c83cc3bcee58bfd33",
+      "native_bytes_exact": true
+    },
+    "html": {
+      "bytes": 199373743,
+      "sha256": "92f1e8b780e0e0bccffe98cbc29152e81e96ddd257410f2e671c59d26b9fb5ad",
+      "native_bytes_exact": true
+    }
+  },
+  "remaining": [
+    "local Docker image/UID/CMD execution",
+    "independent operator generation/policy/recovery decisions",
+    "exact raw-response publication permissions and approved references"
+  ],
+  "evidence": [
+    {
+      "path": "generated/full-hosted-live-20261012-v90/receipt.json",
+      "bytes": 3691,
+      "sha256": "8b2d54c4b2f033c93e35954a4b7e1e6bb934838b2d34588bf62f3f7ff1e85aca"
+    },
+    {
+      "path": "generated/full-hosted-live-20261012-v90/after-metadata.json",
+      "bytes": 338,
+      "sha256": "8bcdf5b87fc049cb3e04c6c94b0b6aedee24acc2d60532cbc499a4771d94903e"
+    },
+    {
+      "path": "scripts/validate_hosted_private_analysis.py",
+      "bytes": 14721,
+      "sha256": "3b45b8d08862d7a9ffbb54dc7e365c8c05dbf6af91c60f827e8fb6698e8755e8"
+    }
+  ]
+}

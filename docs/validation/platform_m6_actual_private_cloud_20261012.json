@@ -1,0 +1,75 @@
+{
+  "format": "koevd-actual-private-cloud-acceptance-v1",
+  "plan_version": "0.44",
+  "observed_utc": "2026-10-12T04:22:32.895126+00:00",
+  "scope": "One actual private cloud snapshot/readback/offline restore; not live app durability",
+  "execution_exit_code": 0,
+  "explicit_human_authorization": {
+    "received": true,
+    "action": "Create private KETI-NLP/KoEVD-Platform-Backups-Dev and transfer one exact 67,154,758-byte original/history snapshot for readback/offline restore.",
+    "initial_auto_review_rejected": true,
+    "rejected_command_executed": false,
+    "authorization_before_reissued_command": true,
+    "maximum_bytes": 73400320
+  },
+  "bucket_id": "KETI-NLP/KoEVD-Platform-Backups-Dev",
+  "private": true,
+  "organization_plan": "team",
+  "included_quota_before_trial": {
+    "display": "0 TB /3 TB",
+    "source": "Existing organization billing UI, reloaded before execution"
+  },
+  "new_subscription_or_storage_upgrade": false,
+  "new_paid_hardware": false,
+  "snapshot": {
+    "bytes": 67154758,
+    "sha256": "780995a6e048bff02fa0321aac1355b9c0cf538d06d6a5eded6360fcd36ac47b",
+    "records": 35340,
+    "models": [
+      "Qwen/Qwen3-8B",
+      "Qwen/Qwen3-4B"
+    ],
+    "public_posting": false,
+    "object_key": "koevd-snapshots/780995a6e048bff02fa0321aac1355b9c0cf538d06d6a5eded6360fcd36ac47b.zip",
+    "source_receipt": "docs/validation/platform_m5_m6_full_private_review_20261009.json"
+  },
+  "remote_readback_and_independent_fetch_verified": true,
+  "offline_restore_originals_states_histories_equal": true,
+  "independent_frozen_checkpoint_equal": true,
+  "restored_public_reads_503": true,
+  "restored_mutation_blocked": true,
+  "missing_object_failure_preserves_verified_download": true,
+  "actor_boundary": "Existing operator_local validation actor from frozen snapshot; no HF identity or real operator approval inferred.",
+  "latest_live_app_state_authenticated": false,
+  "live_app_durability_verified": false,
+  "continuous_backup_started": false,
+  "Space_secret_or_Bucket_mount_added": false,
+  "atomic_conditional_write_or_WORM": false,
+  "rpo_guaranteed_seconds": null,
+  "human_publication_policy_or_recovery_approval": false,
+  "official_rank_enabled": false,
+  "new_GPU_inference": false,
+  "package_or_server_source_modified": false,
+  "fresh_CPU_suite_rerun": false,
+  "current_bucket_files": 1,
+  "evidence": {
+    "controller": "generated/validate_private_cloud_20261012_v66.py",
+    "receipt_path": "generated/private-cloud-acceptance-20261012-v66/receipt.json",
+    "receipt_sha256": "5ffe04d51dcf951a4674cc988df0de8b21d4d3a271c033530dc5638ab4603c04",
+    "source_checkpoint_sha256": "00c5282406e5c233ab8a26439791a283d18ec88d2e0126d5d3f390f74face642",
+    "bucket_DOM_sha256": "388f769d99222191ad491cd12cbda7e2d6d1426bcf74321c36c9cd7f9ab661a9",
+    "bucket_screenshot_path": "generated/private-cloud-acceptance-20261012-v66/bucket.jpg"
+  },
+  "download_diagnostic": {
+    "path": "generated/team-download-diagnostic-20261012-v66.json",
+    "no_matching_buffered_log_lines": true,
+    "note": "No matched lines does not prove absence of requests or browser file success. Original three browser downloads remain unconfirmed."
+  },
+  "remaining": [
+    "Dedicated Bucket-only runtime credential and live app backup/restore lifecycle",
+    "Actual operator roles, permission/generation/policy review and approved public references",
+    "Current Docker full-size acceptance and three browser downloads",
+    "Public production migration/operational recovery release"
+  ],
+  "goal": "active; full original scope incomplete"
+}

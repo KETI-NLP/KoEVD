@@ -1,0 +1,247 @@
+{
+  "format": "koevd-platform-full-comparison-capacity-v1",
+  "recorded_at_utc": "2026-10-08T12:08:57.071345+00:00",
+  "plan_version": "0.25",
+  "fixture_only": true,
+  "scope": "full-input CPU fixture comparison capacity and actual native HTTP/CLI agreement; no actual full target-model inference/accuracy claim",
+  "inputs": {
+    "scope": "CPU full two-model comparison capacity fixture; no actual target outputs/inference/accuracy",
+    "full_index_content_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+    "fixture_records_per_model": 17670,
+    "archive_sha256": "a03346c52f79148902954860025b32db86edff5be0e70fb2d7884cec9f0d86fa",
+    "archive_bytes": 1935291,
+    "files": {
+      "SYNTHETIC-full-1.json": {
+        "sha256": "45e1f3f670bc4ca2340dc3f1b85c93bf45a8e5397d86145abb5e2cf6efc3dfde",
+        "bytes": 13276945
+      },
+      "SYNTHETIC-full-2.json": {
+        "sha256": "614894ea7c13c17bfff380f50643ddfecf8158fa134304abbd62c1e0692546a8",
+        "bytes": 13276945
+      }
+    },
+    "official_rank_eligible": false
+  },
+  "related_context_cli_guard_tests": {
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 0.094,
+    "exit_code": 0,
+    "log_sha256": "ba75bbab1b973a557b12380c46fe1d379a299450c07998d51e3fbf3461f51f7c",
+    "scope": "native validation context/CLI guards; not inference/container/provider evidence"
+  },
+  "node_evidence": {
+    "scope": "CPU full-input two-fixture comparison capacity and actual native HTTP/CLI agreement; not full target inference or accuracy",
+    "fixture_only": true,
+    "records_per_model": 17670,
+    "case_rows_total": 35340,
+    "case_task_counts_per_model": [
+      {
+        "1": 2000,
+        "2": 8000,
+        "3": 2659,
+        "4": 2659,
+        "5": 2352
+      },
+      {
+        "1": 2000,
+        "2": 8000,
+        "3": 2659,
+        "4": 2659,
+        "5": 2352
+      }
+    ],
+    "comparison_identical_inputs": {
+      "1": 2000,
+      "2": 8000,
+      "3": 2659,
+      "4": 2659,
+      "5": 2352
+    },
+    "initial_cli_capacity": {
+      "scope": "CPU full two-model comparison capacity fixture; no actual target outputs/inference/accuracy",
+      "fixture_only": true,
+      "new_inference_performed": false,
+      "status": "passed",
+      "started_epoch": 1791460610.411013,
+      "pid": 58961,
+      "argv": [
+        "[private-node-path]",
+        "-m",
+        "koevd_eval.diagnostics",
+        "--input",
+        "[private-node-path]",
+        "--input",
+        "[private-node-path]",
+        "--trusted-index",
+        "[private-node-path]",
+        "--output-dir",
+        "[private-node-path]",
+        "--bootstrap-resamples",
+        "100",
+        "--bootstrap-seed",
+        "1729"
+      ],
+      "analysis_pid": 58962,
+      "exit_code": 0,
+      "finished_epoch": 1791460678.7292829,
+      "output_bytes": {
+        "report-v2.html": 149176208,
+        "metrics-v2.csv": 1238837,
+        "profile-v2.json": 25786418,
+        "report-v2.md": 4037,
+        "cases-v2.jsonl": 127329308
+      },
+      "total_output_bytes": 303534808,
+      "app_report_limit_bytes": 536870912,
+      "within_report_limit": true
+    },
+    "http_process": {
+      "status": "passed",
+      "fixture_only": true,
+      "real_model_accuracy_evidence": false,
+      "new_inference_performed": false,
+      "started_epoch": 1791460892.6738174,
+      "pid": 59036,
+      "argv": [
+        "[private-node-path]",
+        "[private-node-path]",
+        "--candidate",
+        "[private-node-path]",
+        "--python",
+        "[private-node-path]",
+        "--comparison-only",
+        "--result",
+        "[private-node-path]",
+        "--result-sha256",
+        "45e1f3f670bc4ca2340dc3f1b85c93bf45a8e5397d86145abb5e2cf6efc3dfde",
+        "--result",
+        "[private-node-path]",
+        "--result-sha256",
+        "614894ea7c13c17bfff380f50643ddfecf8158fa134304abbd62c1e0692546a8",
+        "--output",
+        "[private-node-path]"
+      ],
+      "validator_pid": 59037,
+      "exit_code": 0,
+      "finished_epoch": 1791461055.7447386
+    },
+    "http_receipt": {
+      "format": "koevd-native-space-runtime-check-v1",
+      "status": "passed",
+      "container_verified": false,
+      "hosted_space_verified": false,
+      "provider_login_verified": false,
+      "new_inference_performed": false,
+      "public_outputs_created": false,
+      "durability_verified": false,
+      "human_or_operator_approval_created": false,
+      "synthetic_oauth_configuration_only": true,
+      "checks": [
+        "exact_deployment_manifest",
+        "noneditable_package_exact_bytes",
+        "exact_web_dependency_versions",
+        "actual_loopback_http_readiness_no_rank_and_boundaries",
+        "actual_private_results_upload_and_session_isolation",
+        "actual_model_and_comparison_http_cli_profile_equality",
+        "private_session_deletion"
+      ],
+      "uid": 0,
+      "gid": 0,
+      "comparison_only": true,
+      "manifest_sha256": "b53e6d669e5b78e58cd0175a7aa06ec88f67bb4dc7126e76b0cd75b9705d7935",
+      "candidate_files": 63,
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "installed_package": "[private-node-path]",
+      "installed_files": 42,
+      "locked_versions": {
+        "annotated-doc": "0.0.5",
+        "annotated-types": "0.8.0",
+        "anyio": "4.15.1",
+        "click": "8.5.0",
+        "fastapi": "0.142.4",
+        "h11": "0.16.0",
+        "idna": "3.20",
+        "opentelemetry-api": "1.45.1",
+        "pydantic": "2.13.5",
+        "pydantic-core": "2.46.5",
+        "starlette": "1.7.0",
+        "typing-inspection": "0.4.4",
+        "typing-extensions": "4.16.0",
+        "uvicorn": "0.54.0"
+      },
+      "result_byte_sha256": [
+        "45e1f3f670bc4ca2340dc3f1b85c93bf45a8e5397d86145abb5e2cf6efc3dfde",
+        "614894ea7c13c17bfff380f50643ddfecf8158fa134304abbd62c1e0692546a8"
+      ],
+      "server_pid": 59040,
+      "profiles": [
+        {
+          "selection": [
+            0,
+            1
+          ],
+          "profile_sha256": "f7c70909003e2a58d6c527e3bf59cbef9e5f9d6d504cea112d75a2eb05605f99",
+          "http_equals_cli": true,
+          "html_bytes": 149176208
+        }
+      ],
+      "owned_server_exit_code": -15,
+      "owned_server_stopped": true
+    },
+    "profile_sha256": "f7c70909003e2a58d6c527e3bf59cbef9e5f9d6d504cea112d75a2eb05605f99",
+    "helper_sha256": "cf0ed46829215c286bb0ee24b8f1ad7a31d2bc5c954e99ec790b2a6be7640b2b",
+    "within_report_limit": true,
+    "no_report_limits_changed": true,
+    "no_product_package_or_UI_changed": true,
+    "new_inference_performed": false,
+    "container_or_live_HF_or_real_login_verified": false,
+    "public_or_human_approval_created": false
+  },
+  "gpu_live_observation": {
+    "observed_epoch": 1791461152.7424095,
+    "controller_pid": 56870,
+    "session_id": 90124,
+    "actual_process": "56870    3583 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+    "status": "running",
+    "stages": [
+      {
+        "name": "Qwen3-8B-prepare",
+        "status": "passed",
+        "exit_code": 0
+      },
+      {
+        "name": "Qwen3-8B-index",
+        "status": "passed",
+        "exit_code": 0
+      },
+      {
+        "name": "Qwen3-8B-generate",
+        "status": "running"
+      }
+    ],
+    "generation_progress": {
+      "Qwen3-8B-generate.log": [
+        "[running] 1151/2659 checkpointed, 1151 API-ok, 0 failed, 1508 pending"
+      ]
+    },
+    "two_actual_full_results_complete": false,
+    "observation_scope": "verified wait of same live process; no restart"
+  },
+  "same_running_gpu_session": 90124,
+  "source_package_UI_limits_unchanged": true,
+  "container_or_live_provider_or_publication_verified": false,
+  "goal_complete": false,
+  "evidence_files": {
+    "generated/full-comparison-capacity-20261008-v25/context-tests.json": "6d538b784db40085ae9fdc34843bbd7ecd78e25a17a53666f29842ace39ee46c",
+    "generated/full-comparison-capacity-20261008-v25/context-tests.log": "ba75bbab1b973a557b12380c46fe1d379a299450c07998d51e3fbf3461f51f7c",
+    "generated/full-comparison-capacity-20261008-v25/execution.log": "eb233b09a48f8c2dfcc1d0f426b07b1df1b43b3b7ffc2c71ac316e443e82ba7b",
+    "generated/full-comparison-capacity-20261008-v25/final-evidence.json": "a12de4f27a7e18d4913d29e1b9fe8b821507b33dfaf69dcbad43789c7782bbed",
+    "generated/full-comparison-capacity-20261008-v25/gpu-live-final-observation.json": "394dbb9d7b870e164ab4b0feacf149763363005538ba57bea1597356ce3b7d71",
+    "generated/full-comparison-capacity-20261008-v25/http-execution.log": "7b14f43df8d76197d8b0725b92a57b34dcdda120e68f5f81cd3d677f4918e045",
+    "generated/full-comparison-capacity-20261008-v25/input-receipt.json": "1c0e02b7f557a56ab04303a9e9edcdc7214087aa90a5cbb2af0b05e0049ed7c2"
+  },
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

@@ -1,0 +1,140 @@
+{
+  "milestone": "M5_partial_CPU_upload_reference_app",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "working_tree": "local uncommitted/unpushed development",
+  "tests_passed": 88,
+  "test_seconds": 22.29,
+  "new_service_http_tests": 10,
+  "test_scope": "non-editable installed package; optional serve/HTTP and Node parity executed; CPU fixtures only",
+  "full_suite_wheel_sha256": "190e01005440bac7ed8e00394b11909444f601fb0ceb7bde15c679c1b4db5bb9",
+  "full_suite_wheel_bytes": 130142,
+  "final_wheel_sha256": "ee118f3986cc38df1985d838a40db98a2bba027a2ae4bfac4e992f0ba4d3a0e7",
+  "final_wheel_bytes": 130125,
+  "final_wheel_scope": "Only end-user footer text changed after full suite; final installed browser gate executed. CPU/backend code unchanged. Development version remains 0.2.0; no public tag/release.",
+  "installed_service_module": "[private-local-path]",
+  "installed_transport_module": "[private-local-path]",
+  "preparation_sha256": "b3bb72a02a0b676afe67c8182345254d397f0da89be374963c9ff0fd8d23fbb8",
+  "dependencies": {
+    "fastapi": "0.142.4",
+    "starlette": "1.7.0",
+    "uvicorn": "0.54.0",
+    "httpx": "0.28.1",
+    "pydantic": "2.13.5",
+    "anyio": "4.15.1"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "browser_evidence": {
+    "status": "passed",
+    "origin": "http://127.0.0.1:8767",
+    "browser": "154.0.8037.98",
+    "synthetic_only": true,
+    "gpu_inference": false,
+    "public_baseline": false,
+    "published": false,
+    "checkpoints": [
+      {
+        "check": "upload -> configured fictional reference -> same-engine report -> restricted comparison -> Korean cases"
+      },
+      {
+        "check": "downloaded app profile equals independently executed local CLI profile"
+      },
+      {
+        "check": "two browser contexts isolated / unauthenticated and other-session downloads denied / malicious text inert / unmeasured N/A / deletion revokes access / credentials absent from URLs"
+      }
+    ],
+    "screenshots": [
+      "space-ready.png",
+      "space-select-reference.png",
+      "space-report-preview.png",
+      "space-comparison-preview.png",
+      "space-mobile.png",
+      "space-mobile-report.png",
+      "space-literal-model-id.png",
+      "space-security-preview.png"
+    ],
+    "console_errors": [],
+    "external_requests": [],
+    "app_local_numeric_agreement": true
+  },
+  "local_app_full_profile_equal": true,
+  "local_app_html_bytes_equal": true,
+  "session_files_after_browser_deletion": 0,
+  "standard_catalog": {
+    "standard_catalog_loaded": true,
+    "public": {
+      "indexes": [
+        {
+          "id": "koevd-core",
+          "label": "KoEVD registered core inputs",
+          "mode": "standard",
+          "expected_records": 17670
+        }
+      ],
+      "baselines": [],
+      "synthetic_demo_enabled": false,
+      "public_registration_enabled": false,
+      "official_rank_eligible": false
+    },
+    "gpu_inference": false,
+    "published": false
+  },
+  "source_sha256": {
+    "src/koevd_eval/space_service.py": "9c0033fa1672a79c3e62a9cefe0ba334f19fd79bb731f8f337832578909ef422",
+    "src/koevd_eval/spaces.py": "1b0c719890e0d74975582fa31be085071ffac15573a7028ffe9bb057c56268eb",
+    "src/koevd_eval/assets/space.html": "9f9fb7954aa38350becf5f48a13884ad7d99eba35cfae457566b0224322ffe45",
+    "src/koevd_eval/assets/space.css": "d4c36c4e1c199ce3dcee9112d432daadaeb9e444885e697dd9ea36aa62b3e865",
+    "src/koevd_eval/assets/space.js": "ab00387e504f40db2634cdb7f649be11923b39ba250ce73ee822db7964cc773e",
+    "tests/test_spaces.py": "ec8ecee0ade246486af4a2590fafc6f378b2c4a8e3ed4cc109a2640cba26934e",
+    "examples/make_demo_space.py": "3784c3089bae3aadf1fe4b482fede482eefc337322704875569f616cc822e3e7",
+    "scripts/validate_space_ui.cjs": "e67e09f6b875699cb6470d195040f19841811afc9b68a16a8b4a630a6de98c5a",
+    "apps/spaces/Dockerfile": "c3a7cee78b391195668dcabbf46217ac234f543049d04b2291cfbd8a11830390",
+    "apps/spaces/requirements.lock.txt": "57486aec325c55108ae1dcf3e05ce76897bfcae6c98fba19fff79c0e565bdc53",
+    "pyproject.toml": "44f62156c5af7693cce549afbade505591d2f38f9d1173c3431fcee211f01cc1"
+  },
+  "ui_artifact_sha256": {
+    "app-profile-v2.json": "5c478fd8a884ca862a30c4922162f5c3b70f5054071d91ace526eaadc649b744",
+    "app-report-v2.html": "c3c6f90a57f3274ba62a30e38a6e5ed1af2df374c9f766940e2c02cb957713b8",
+    "space-comparison-preview.png": "380d8f5a5dd21da85cd1bd14f1b7c1c4e482f3f4d6f8e88aa46f6efeac2e4b2a",
+    "space-literal-model-id.png": "0ad51d378c5d30d690607fe36d70435267a3475be086b7295a0ad1b4b41e7402",
+    "space-mobile-report.png": "1052e0529c473b69104c958357b52fac62ab547b72acab7a80dfe8b76565ed9e",
+    "space-mobile.png": "9bf9f6a8207b9a9b852518c384f0dad92f1da5e72d459a4d5709685b9a7f9535",
+    "space-ready.png": "25b4ce739598b236ac597e2755be6308bb3f6c38776ea6afadd5d07e37898fa6",
+    "space-report-preview.png": "025b291314e666a975191650adb31b19586206968bc418489809afea5e40c678",
+    "space-security-preview.png": "cf6e12f459e50b2a4c65728e08bf4aff40eba27f570bf937e0c093b2439d564b",
+    "space-select-reference.png": "da846a5e411235431d03a55dddefdb138135416ce7f6157d703d65d99dd90bdf",
+    "space-ui-evidence.json": "39146ea739daf6904671695c2ab1d41d780db70847b642f3e598aa73d0ff892e"
+  },
+  "local_artifact_sha256": {
+    "cases-v2.jsonl": "fd60c9100caa4eb962bbbb7c677d7a09ebdba9f9490c0471d5a77128b0c9827c",
+    "metrics-v2.csv": "b6ae143ebe6aa3885f460d90f30daa30d22491a5be501f080ae926ba05ce27d0",
+    "profile-v2.json": "5c478fd8a884ca862a30c4922162f5c3b70f5054071d91ace526eaadc649b744",
+    "report-v2.html": "c3c6f90a57f3274ba62a30e38a6e5ed1af2df374c9f766940e2c02cb957713b8",
+    "report-v2.md": "e9eda98b38e120e0468810749d22eae220bd5b3ec9dbd3716656d2cf6a3c42eb"
+  },
+  "visual_qa": {
+    "reviewed": true,
+    "scope": "Desktop upload/reference/report/comparison/literal text; final mobile parent and active iframe; headless Chrome screenshots. Initial offscreen mobile iframe capture was blank; explicit tab activation/visible-heading assertion and scroll before capture produced visible content without product/scorer change."
+  },
+  "known_limitations": [
+    "No actual two-target-model GPU validation",
+    "No approved actual raw target reference bundled",
+    "Docker executable absent; container build unverified",
+    "HF embedded/live deployment unverified",
+    "Temporary single-process sessions are not persistent submissions",
+    "Starlette TestClient httpx deprecation warning (tests passed; not suppressed)",
+    "M6 OAuth/moderation/persistence/withdrawal/rank policy pending"
+  ],
+  "local_server": {
+    "process_session": 98338,
+    "server_pid": 36504,
+    "origin": "http://127.0.0.1:8767",
+    "scope": "Owned local test/preview server; no public deployment. Verify live handle before relying on it in another turn."
+  },
+  "m5_complete": false,
+  "gpu_inference": false,
+  "measurement_accuracy_evidence": false,
+  "public_baseline": false,
+  "published": false,
+  "whole_goal_complete": false,
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

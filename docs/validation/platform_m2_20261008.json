@@ -1,0 +1,36 @@
+{
+  "scope": "M2 CPU/local HTTP/install verification; no actual target inference or GPU",
+  "base_head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "tests": {
+    "passed": 56,
+    "seconds": 11.479,
+    "installed_package": true
+  },
+  "http_requests": 12,
+  "benchmark_requests": 10,
+  "probe_requests": 2,
+  "exported_records": 12,
+  "resume_extra_requests": 0,
+  "utf8_log_capture": true,
+  "gpu_integration": "not_performed",
+  "publication": "not_performed",
+  "source_sha256": {
+    "src/koevd_eval/run_openai_compatible.py": "3a544fa1b0fec1f1ab923dc6a947c4dd4da6e0ab7f3d9092a3eb0e8574c0068c",
+    "src/koevd_eval/preflight.py": "328bfdb0bec99897eea2249a1cf432d6a422e001126bd547ce28b53ed8fc0b4d",
+    "src/koevd_eval/pipeline.py": "1dd84cd44b262dfa69155f25648f86cab14a18ea716b0b4989cdb6189ddb0f9b",
+    "src/koevd_eval/common.py": "1d0a6f47f9db2a9aaea8bd17b90d123a13583ef9ccd858c38f8be5201184762d",
+    "src/koevd_eval/results.py": "745d17252f8467e1edae90affe7b878ed5f40b14c3067c82752748478917636e",
+    "src/koevd_eval/schemas/results-v1.schema.json": "6a13f6496a1c722c3729666d61ed7665d255b2af9eda74136ff411cd0cb5474c",
+    "pyproject.toml": "ab4a2c2a5d08c118074b519faab3fe0e8fab42b22606312b6d1d3ca71b41f4a1",
+    "tests/test_runner_v2.py": "e23dfeaff24bc5649306a85f9fe4709ebb0455d81ee87fc2ac3e03c178a43ca3",
+    "scripts/validate_runner_cli.py": "b7c499106ef394722394199590086d90a0ddfc75514bee987ffaf69ea05ed5be"
+  },
+  "artifact_sha256": {
+    "results.json": "ef3e41ef480a7f3cec1eda35cc058c65004b1a7b161ecb15184ceab4c52a795c",
+    "index.json": "6bc9837bb7d8d15dc548c130d9ef47b50c1ed3832eb2c711a3ba9793c5a7cbe0",
+    "doctor.json": "e960f252d4a7889f75e03826b46c1063d00746808c9a50a14e68bf52d280837d",
+    "cli-evidence.json": "d2495424ab3dd9b3a3d8404142107cff0d51110a9f8c52f1f24592d4e65d29f5",
+    "report/profile.json": "95c87c2379fd8da4ce08576b77a81fedc648b4a1ace06edfb405fc121a88d145"
+  },
+  "pinned_preparation_sha256": "b3bb72a02a0b676afe67c8182345254d397f0da89be374963c9ff0fd8d23fbb8"
+}

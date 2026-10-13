@@ -1,0 +1,152 @@
+{
+  "format": "koevd-actual-reference-local-acceptance-v1",
+  "plan_version": "0.60",
+  "date": "2026-10-13",
+  "permission": "Human rights holder explicitly confirmed research-use raw reference permission for both exact results",
+  "status": "local_actual_reference_catalog_and_one_upload_reference_UI_accepted",
+  "references": 2,
+  "records_per_reference": 17670,
+  "actual_uploaded_result_files": 1,
+  "selected_actual_reference": "qwen3-4b-full-research",
+  "total_analyzed_records": 35340,
+  "controller_seconds": 160.187,
+  "browser_seconds": 138.4151838,
+  "five_reports_byte_exact_to_independent_native": [
+    {
+      "name": "profile-v2.json",
+      "bytes": 26268045,
+      "sha256": "1e1e7afe0813fa00fb69e73d67d5a228c80eb05ff21dbcefad9f5d791eb3a609"
+    },
+    {
+      "name": "report-v2.html",
+      "bytes": 199373743,
+      "sha256": "92f1e8b780e0e0bccffe98cbc29152e81e96ddd257410f2e671c59d26b9fb5ad"
+    },
+    {
+      "name": "cases-v2.jsonl",
+      "bytes": 178948156,
+      "sha256": "e87c754152a181a9e9d6bd8a1668b99ad8f7d1c575a4da60fd619891902f23ac"
+    },
+    {
+      "name": "metrics-v2.csv",
+      "bytes": 1085575,
+      "sha256": "a4e2ef84749b43eff24bfb012349c2519996156b36fc770a0e7687b483bee58b"
+    },
+    {
+      "name": "report-v2.md",
+      "bytes": 4038,
+      "sha256": "8f25cb47cad40e70f1c6b10e9a16f79f9eea345d3f5e645c83cc3bcee58bfd33"
+    }
+  ],
+  "report_bytes": 405679557,
+  "visual_review": "Codex inspected actual selection, comparison, measurement-warning and mobile screenshots; readable, no observed overflow",
+  "session_isolation_deletion_and_delayed_download_guard": true,
+  "current_full_CPU": {
+    "status": "passed",
+    "tests": 366,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 166.906,
+    "installed_core_files_exact": 50,
+    "python": "3.12.14",
+    "pip_check": true,
+    "GitHub_CI": false,
+    "new_GPU_or_HF_execution": false
+  },
+  "current_product_core50_unchanged": true,
+  "dataset_terms": "Custom KoEVD Dataset Research Use Terms v1.0; preserved with attribution and harmful-content warning",
+  "schema_consent_marker_is_not_external_deployment_authorization": true,
+  "initial_failures": [
+    "10s startup observation was too short",
+    "Sandbox process listened but did not respond to health; root cause not established. Exact owned process stopped; terminal/port refusal preserved. Native local run passed."
+  ],
+  "new_GPU_execution": false,
+  "actual_HF_transfer_or_changes": false,
+  "GitHub_push": false,
+  "official_rank_or_continuous_backup_activation": false,
+  "production_deployed": false,
+  "classifier_accuracy_or_separate_human_attestation_established": false,
+  "evidence": [
+    {
+      "path": "generated/current-cpu-suite-v93/receipt.json",
+      "bytes": 262,
+      "sha256": "ad8da5847b307fb3430d716990547639540467a5944075946b5de12139eec1db"
+    },
+    {
+      "path": "generated/current-cpu-suite-v93/tests.log",
+      "bytes": 63930,
+      "sha256": "3a2c4629c2d8f06ace081e3fa3d3d9bccf777e44d7656fdd3869af227e9ffd79"
+    },
+    {
+      "path": "generated/actual-reference-candidate-v93/catalog.json",
+      "bytes": 2935,
+      "sha256": "000b2ebd02d7938ea479a87ce6bbb8b6cbf94c35292d250230a8960557f2f7e0"
+    },
+    {
+      "path": "generated/actual-reference-candidate-v93/catalog-load-receipt.json",
+      "bytes": 1333,
+      "sha256": "877917a4ce1588195ec6516a7beb640ccc409103bb3910b146cd2e5809698ce9"
+    },
+    {
+      "path": "generated/actual-reference-candidate-v93/Qwen3-8B-permission.json",
+      "bytes": 1458,
+      "sha256": "9d033fa6142d763a6e4e32b8da472349db122b3ce536f75fc9ae5e65d65a6251"
+    },
+    {
+      "path": "generated/actual-reference-candidate-v93/Qwen3-4B-permission.json",
+      "bytes": 1458,
+      "sha256": "d7dbad8dfd955c3e6a3dc4274c5ac21b4c93a51063f2e764ae45cb5f12c4363a"
+    },
+    {
+      "path": "generated/actual-reference-candidate-v93/DATA_RESEARCH_USE_TERMS.md",
+      "bytes": 10580,
+      "sha256": "ec1f8ca18a4739e3ebc2bd86185b21290ddce0ebf2d74f752b8e44ad6d2a35b6"
+    },
+    {
+      "path": "generated/actual-reference-browser-v93-native/receipt.json",
+      "bytes": 664,
+      "sha256": "1ac1106133023ba728978151916844f164c38c0d741f50e71be220f2b3ebddaa"
+    },
+    {
+      "path": "generated/actual-reference-browser-v93-native/browser/evidence.json",
+      "bytes": 2440,
+      "sha256": "0613643b3ee27794083a7a619303150fe200331219b9b5b0114fae4fab323d95"
+    },
+    {
+      "path": "generated/actual-reference-browser-v93/receipt.json",
+      "bytes": 598,
+      "sha256": "b3e5c49f5496ee434d7ab4f3e9138d9dfaf7f64590e998a5f9285c926706f304"
+    },
+    {
+      "path": "generated/actual-reference-browser-v93-fixed/receipt.json",
+      "bytes": 608,
+      "sha256": "97cd8982f3b834edfa234b37f8d3a448c86cc3eaf24d985ee30605b59b34641a"
+    },
+    {
+      "path": "generated/actual-reference-browser-v93-native/browser/upload-and-actual-reference.png",
+      "bytes": 69494,
+      "sha256": "ad6e537962da740861313332df1947fc9341965d560afd0646e4445fb0955380"
+    },
+    {
+      "path": "generated/actual-reference-browser-v93-native/browser/task3-measurement-limit.png",
+      "bytes": 94905,
+      "sha256": "bbd96184a7e6d51be14585928ef9c32b15032c3f65ac217f1a7549b32910afab"
+    },
+    {
+      "path": "generated/actual-reference-browser-v93-native/browser/two-run-comparison.png",
+      "bytes": 98081,
+      "sha256": "c0e2f8f861c2f6f3169788599ca6c36619e2fb5b82a0362014eab5a06f032ba6"
+    },
+    {
+      "path": "generated/actual-reference-browser-v93-native/browser/supplied-response-case.png",
+      "bytes": 87472,
+      "sha256": "d628eba0770c92be9420b6523f11b9e26adbc9569be37e3505f44f61341f0b49"
+    },
+    {
+      "path": "generated/actual-reference-browser-v93-native/browser/mobile-report.png",
+      "bytes": 42925,
+      "sha256": "20101eafbf77aa92194384d7ed98c170dcbfd7996b05d104dc421699f70dab8e"
+    }
+  ]
+}

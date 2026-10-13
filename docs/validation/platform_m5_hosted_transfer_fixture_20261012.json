@@ -1,0 +1,64 @@
+{
+  "plan_version": "0.56",
+  "status": "local_real_HTTP_transfer_branch_accepted",
+  "scope": "local_real_HTTP_transfer_branch_with_explicit_HF_access_doubles",
+  "goal_status": "active",
+  "full_objective_preserved": true,
+  "local_records": [
+    48,
+    48
+  ],
+  "outer_seconds": 13.937,
+  "driver_seconds": 3.782,
+  "input_body_bytes": 263685,
+  "five_download_bytes": 12514875,
+  "native_five_files_byte_exact": true,
+  "other_session_access_refused": true,
+  "two_owned_sessions_deleted": true,
+  "job_terminal_observed": true,
+  "actual_server_pid_equals_owned_handle": true,
+  "server_terminal_and_port_refused": true,
+  "first_wrapper_termination_failure_preserved": true,
+  "later_old_pid_absent_and_no_explicit_StopProcess": true,
+  "actual_HF_requests_or_transmissions": 0,
+  "actual_full_HF_acceptance": false,
+  "new_full_private_transfer_approved": false,
+  "prior_completed_v83_approval_not_reused": true,
+  "production_core50_unchanged": true,
+  "no_new_inference_or_accuracy_claim": true,
+  "continuous_backup_active": false,
+  "public_or_paid_change": false,
+  "whole_goal_completed": false,
+  "evidence": [
+    {
+      "path": "generated/hosted-transfer-fixture-20261012-v85-fixed/fixture-receipt.json",
+      "bytes": 2572,
+      "sha256": "050aab8120b4f488bf5c96d644a68988ba08d0eaaa6071809bd2553cd573d5f1"
+    },
+    {
+      "path": "generated/hosted-transfer-fixture-20261012-v85-fixed/driver/receipt.json",
+      "bytes": 3645,
+      "sha256": "bbdc6f79646611058590053d277c2ca613033eb35bfedbb95639154ba9f698f0"
+    },
+    {
+      "path": "generated/hosted-transfer-fixture-20261012-v85/fixture-receipt.json",
+      "bytes": 2523,
+      "sha256": "1cb4c4a91ad74c4b10ed7ab9632177254536deca6762bd98bf28b5a282388f8c"
+    },
+    {
+      "path": "generated/hosted-transfer-fixture-20261012-v85/terminal-after-tool-observation.json",
+      "bytes": 158,
+      "sha256": "49f8981e3d1ed96c11b8ddc4566e30d26875d7003b203d177b06cec3d80badc7"
+    },
+    {
+      "path": "scripts/validate_hosted_analysis_fixture.py",
+      "bytes": 10669,
+      "sha256": "09b3dbafcf684b3ff55d103f5296c74ed56b31dedff1864aaf87b5b897f0000c"
+    }
+  ],
+  "remaining": [
+    "separate human approval and actual full private HF transfer",
+    "local Docker image/UID/CMD and full-report visual acceptance",
+    "independent operator policy/recovery acceptance and public raw-reference rights"
+  ]
+}

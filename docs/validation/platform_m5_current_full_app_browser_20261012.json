@@ -1,0 +1,133 @@
+{
+  "plan_version": "0.57",
+  "status": "current_full_actual_local_HTTP_browser_five_downloads_accepted",
+  "goal_status": "active",
+  "previous_goal_turn": "progress: local transfer branch and process cleanup verified",
+  "records": [
+    17670,
+    17670
+  ],
+  "input_body_bytes": 89396889,
+  "download_output_bytes": 405679557,
+  "overall_seconds": 158.875,
+  "browser_seconds": 144.4519204,
+  "analysis_and_preview_seconds": 117.70177890000001,
+  "analysis_observation_timeout_ms": 600000,
+  "current_installed_core50_exact": true,
+  "production_core50_changed": false,
+  "analysis_only_server_no_registration_or_OAuth": true,
+  "five_saved_files": {
+    "profile-v2.json": {
+      "bytes": 26268045,
+      "sha256": "1e1e7afe0813fa00fb69e73d67d5a228c80eb05ff21dbcefad9f5d791eb3a609",
+      "native_bytes_exact": true
+    },
+    "report-v2.html": {
+      "bytes": 199373743,
+      "sha256": "92f1e8b780e0e0bccffe98cbc29152e81e96ddd257410f2e671c59d26b9fb5ad",
+      "native_bytes_exact": true
+    },
+    "cases-v2.jsonl": {
+      "bytes": 178948156,
+      "sha256": "e87c754152a181a9e9d6bd8a1668b99ad8f7d1c575a4da60fd619891902f23ac",
+      "native_bytes_exact": true
+    },
+    "metrics-v2.csv": {
+      "bytes": 1085575,
+      "sha256": "a4e2ef84749b43eff24bfb012349c2519996156b36fc770a0e7687b483bee58b",
+      "native_bytes_exact": true
+    },
+    "report-v2.md": {
+      "bytes": 4038,
+      "sha256": "8f25cb47cad40e70f1c6b10e9a16f79f9eea345d3f5e645c83cc3bcee58bfd33",
+      "native_bytes_exact": true
+    }
+  },
+  "visual_review": [
+    "two-private-uploads.png",
+    "two-run-comparison.png",
+    "task3-measurement-limit.png",
+    "supplied-response-case.png",
+    "mobile-report.png"
+  ],
+  "visual_findings": "Desktop comparison, measurement warning, Korean case and mobile layout readable; no new layout defect identified.",
+  "session_isolation_and_deletion_verified": true,
+  "delayed_download_after_deletion_link_refused": true,
+  "actual_server_PID_handle_equal_terminal_port_refused": true,
+  "observed_Windows_terminate_exit_code": 1,
+  "browser_errors": [],
+  "external_page_requests": [],
+  "server_external_socket_connections_blocked": true,
+  "actual_HF_requests_or_transfers": 0,
+  "actual_full_HF_acceptance": false,
+  "actual_Docker": false,
+  "new_GPU_inference_or_classifier_accuracy_claim": false,
+  "continuous_backup_active": false,
+  "public_or_paid_change": false,
+  "whole_goal_completed": false,
+  "new_full_private_transfer_approved": false,
+  "pending_question_not_repeated": true,
+  "remaining": [
+    "separately approved actual full hosted transfer",
+    "local Docker image/UID/CMD acceptance",
+    "independent operator policy/recovery acceptance",
+    "exact public raw-reference rights"
+  ],
+  "evidence": [
+    {
+      "path": "generated/full-browser-current-20261012-v86/receipt.json",
+      "bytes": 637,
+      "sha256": "8aff151c2b6e8f7b69de2b5eee07fbcc119a8a8c7bcdd73c5f31c408b6eb58ce"
+    },
+    {
+      "path": "generated/full-browser-current-20261012-v86/browser/evidence.json",
+      "bytes": 2668,
+      "sha256": "1727df0b0c32f6844b37ffa637eb4fac26ec2bc1367ff91dcc77dbcb0dadfb2a"
+    },
+    {
+      "path": "scripts/validate_uploaded_results_ui.cjs",
+      "bytes": 11981,
+      "sha256": "d525dbb309e1fbdc0c19704229ba11d7a6b35934d6cb2c64484277eb7a1cae0a"
+    },
+    {
+      "path": "generated/full-browser-current-20261012-v86/server.log",
+      "bytes": 203,
+      "sha256": "f322da571e26464e18d72be2de4db9373306313e82d4fd79f0b8799e0972191a"
+    },
+    {
+      "path": "generated/full-browser-current-20261012-v86/browser.log",
+      "bytes": 262,
+      "sha256": "feaf35e969b5e3e9d1dc2edbb13ebe6795bf2b763e41d5af943def22e6ea6a20"
+    },
+    {
+      "path": "generated/run_full_browser_current_20261012_v86.py",
+      "bytes": 6409,
+      "sha256": "969d10bf486f507c20c23a59917a3488f1363a295f6fe54bb35443f347d83b57"
+    },
+    {
+      "path": "generated/full-browser-current-20261012-v86/browser/two-private-uploads.png",
+      "bytes": 70092,
+      "sha256": "8a56f37a37acbaea289770578ce228ffb2df48b25c441d586af3749aef4e3191"
+    },
+    {
+      "path": "generated/full-browser-current-20261012-v86/browser/two-run-comparison.png",
+      "bytes": 98080,
+      "sha256": "648fe1098f57d27e93ff819fb9e582d8bfc11273dfe2b9044f1af0d60ccbd141"
+    },
+    {
+      "path": "generated/full-browser-current-20261012-v86/browser/task3-measurement-limit.png",
+      "bytes": 94901,
+      "sha256": "d0c76e6b29a74a4d20ef16824e99ee1d79bd0bf447e1f9b6a679129c583d1c0d"
+    },
+    {
+      "path": "generated/full-browser-current-20261012-v86/browser/supplied-response-case.png",
+      "bytes": 87468,
+      "sha256": "c5d9fecdc9ead5fc4aee14b1eee0302d6e16dda999fbae420a63f3b012fda713"
+    },
+    {
+      "path": "generated/full-browser-current-20261012-v86/browser/mobile-report.png",
+      "bytes": 42927,
+      "sha256": "dd7d6314b4616da8ecad7b6ed6392915e31599a337ec6609609f1abd401d7b61"
+    }
+  ]
+}

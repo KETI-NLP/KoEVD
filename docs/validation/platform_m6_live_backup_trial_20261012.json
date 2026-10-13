@@ -1,0 +1,144 @@
+{
+  "format": "koevd-platform-acceptance-v1",
+  "plan_version": "0.47",
+  "observed_utc": "2026-10-12T06:43:07.819316+00:00",
+  "status": "partial_acceptance_with_failed_snapshot_count_bound",
+  "source_HEAD": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "approved_trial": {
+    "path": "generated/bounded-managed-live-20261012-v70/deployment.json",
+    "sha256": "f29297b122662ea1c2e5e3f398075a63b5c85883a048406ead043da357560203",
+    "maximum_snapshots": 3,
+    "maximum_snapshot_bytes": 25165824,
+    "Space": "KETI-NLP/KoEVD-Platform-Dev",
+    "Bucket": "KETI-NLP/KoEVD-Platform-Backups-Dev",
+    "user_confirmed_Secret": true,
+    "Secret_values_read": false
+  },
+  "actual_runtime": {
+    "initial_revision": "e112fefd2d19f8f0ef49ae5a445d530c5a3b4d31",
+    "restore_revision": "890172268f5edf6775a8b5275e15fac9381984c9",
+    "final_default_revision": "8d50fbe9a05c152cb4e3365bea01c52ec0f78419",
+    "private": true,
+    "hardware": "cpu-basic"
+  },
+  "count_limit_failure": {
+    "path": "generated/bounded-managed-live-20261012-v70/after-containment-inventory.json",
+    "sha256": "dff8f9e5b64d0c0cd10e6c9021979b5834e5b72d41dba2c7f5987a9b109a3469",
+    "actual_new_snapshot_objects": 5,
+    "actual_new_snapshot_bytes": 529309,
+    "approved_count_limit_met": false,
+    "approved_byte_limit_met": true,
+    "excess_count": 2,
+    "contained_by_pausing_Space": {
+      "path": "generated/bounded-managed-live-20261012-v70/containment.json",
+      "sha256": "bbfd5da1659c577d93ff2b9bc6c5169099d2eec12587b99c726f521521820074"
+    },
+    "all_objects_preserved": true,
+    "additional_subscription_or_storage_purchase": false
+  },
+  "restart_diagnosis": {
+    "path": "generated/bounded-managed-live-20261012-v70/snapshot-state-timeline.json",
+    "sha256": "63e174aaf1c738e4fafc0b0cd26669d668e1d077a0ffa5ac432835b93f8829ed",
+    "observed_pattern": "Two empty snapshots, one with2 drafts, then two empty snapshots after finite worker completion",
+    "inference": "A fresh local store was initialized by a subsequent launcher run; consistent with HF/container restart after finite process exit",
+    "HF_restart_event_log_verified": false,
+    "prior_initialize_local_path_guard_insufficient_across_new_host_disks": true
+  },
+  "real_private_save_analysis_and_restore": {
+    "models": 2,
+    "records": [
+      48,
+      48
+    ],
+    "actual_HF_sign_in": true,
+    "private_saved_originals_and_histories": {
+      "path": "generated/bounded-managed-live-20261012-v70/preserved-originals-receipt.json",
+      "sha256": "8409f7545678c27709ac1639c1415f5b431a8c2b4b0b9ff10388b27243fe5785"
+    },
+    "analysis_profile_byte_exact_to_native": true,
+    "analysis_profile_sha256": "14c7b851c5516ad5981f6bb49f363fb9006624b029611a9ae5aa161872fbd547",
+    "pinned_snapshot_sha256": "b1ea22082e5c630c18ca8dbb5f5a2e0aaf8d099c11df79708f070851ed077ebe",
+    "snapshot_selection": "Unique exact match to independently preserved original/state/history, not key order or newest time",
+    "offline_verification": {
+      "path": "generated/bounded-managed-live-20261012-v70/pinned-restore-preparation.json",
+      "sha256": "6530aba4658fa4108c02767dd1d21376ccc3760cd3cf178f771aa5f9648cf18a"
+    },
+    "real_HF_relogin_restored_downloads": {
+      "path": "generated/bounded-managed-live-20261012-v70/real-restored-downloads.json",
+      "sha256": "fe54ac361b815b1b55eeb4db41fc67e354cbb8225d6eb7328cb01aee97971af1"
+    },
+    "all_original_and_history_bytes_exact": true,
+    "public_HTTP_503_recovery_required": {
+      "path": "generated/bounded-managed-live-20261012-v70/real-public-recovery-blocks.json",
+      "sha256": "e53f29b029e5f1faaba51cd8d2f0d48b638246c1502478b4d1d42eb70893cef8"
+    },
+    "new_submission_refused_in_actual_authenticated_UI": {
+      "path": "generated/bounded-managed-live-20261012-v70/restored-mutation-blocked-dom.txt",
+      "sha256": "8a1b2bc4e18c44f7272d36408cd0e29c195378c740a61e37dbde561659bfb79a"
+    },
+    "restore_worker_disabled": true,
+    "latest_state_authenticated": false,
+    "recovery_or_policy_approval": false,
+    "public_posting": false
+  },
+  "final_state": {
+    "path": "generated/bounded-managed-live-20261012-v70/default-profile-acceptance.json",
+    "sha256": "e2e15e6bde5452f69676e4596b488e0a3e0c978963771ebbe4710721d4e894dc",
+    "continuous_backup_active": false,
+    "Secret_preserved": true,
+    "Bucket_objects_preserved": 6,
+    "Public_Static_unchanged": true
+  },
+  "local_fix": {
+    "config_format": "koevd-managed-space-v2",
+    "operator_pinned_initialization_snapshot_inventory": true,
+    "legacy_v1_initialize_refused_existing_restore_supported": true,
+    "new_initial_snapshot_must_be_outside_baseline": true,
+    "scoped_tests": {
+      "path": "generated/managed-restart-guard-20261012-v71/tests.log",
+      "sha256": "7c422caa57ba2763057bb01fe1fe2740ca0cc4435999943a4792ad9b0261fe79",
+      "count": 22,
+      "seconds": 5.497,
+      "exit_code": 0
+    },
+    "real_owned_local_process_recreation": {
+      "path": "generated/managed-restart-guard-actual96-20261012-v71/evidence.json",
+      "sha256": "e2c66767a57e996239b9f3bd9d470c24484db2fd14b4c2a2100e8452b83df39a",
+      "seconds": 27.969,
+      "records": [
+        48,
+        48
+      ],
+      "fresh_root_refused_before_DB_children_or_new_upload": true,
+      "HF_OAuth_test_doubles": true
+    },
+    "actual_HF_guard_retest": false,
+    "atomic_remote_lock_or_malicious_owner_protection": false
+  },
+  "updated_candidate": {
+    "path": "generated/managed-space-candidate-20261012-v71",
+    "payload_files": 68,
+    "manifest_sha256": "a0ce2b0b0b8b6430561f6e0856b15db1f433dc46867d17583389f48b9b96db87",
+    "uploaded": false,
+    "activated": false
+  },
+  "failures_preserved": [
+    "Observer exited when snapshot count exceeded3",
+    "RUNNING_APP_STARTING absent from first watcher enum; reobservation confirmed actual RUNNING without restart",
+    "Offline restore first sandbox temporary-directory permission error; terminal confirmed then fresh verified path",
+    "PAUSED runtime has hardware=None/requested_hardware=cpu-basic; pre-upload guard corrected after read-only verification",
+    "Original browser tab closed; remaining same-browser login tab rebound without reselecting browser"
+  ],
+  "remaining": [
+    "Actual HF validation of the new initialization guard under a newly scoped trial",
+    "Current Docker full-size acceptance",
+    "Approved public actual references and operator review",
+    "Operational snapshot/current-checkpoint/recovery acceptance"
+  ],
+  "new_GPU_inference": false,
+  "classifier_accuracy_resolved": false,
+  "official_rank_granted": false,
+  "RPO_or_remote_commit_guaranteed": false,
+  "production_deployed": false,
+  "goal_status": "active"
+}

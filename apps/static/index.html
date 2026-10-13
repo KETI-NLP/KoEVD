@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-REPORT_SCRIPT_HASH'; worker-src 'self'; style-src 'self' 'sha256-REPORT_STYLE_HASH'; connect-src 'self'; frame-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>KoEVD 모델 분석 · Static 후보</title><link rel="stylesheet" href="style.css"></head>
+<body><main><p class="eyebrow">KoEVD EXPLORER · STATIC CANDIDATE</p><h1>내 모델의 평가 결과 분석</h1>
+<p>평가 결과 JSON을 선택하면 기존 Python 분석 엔진으로 차트와 응답 비교 리포트를 생성합니다.</p>
+<p class="notice">선택한 파일은 브라우저에서 처리되며 서버에 전송되지 않습니다. 공개 등록·영구 저장·공식 순위 기능은 연결되지 않은 개발 후보입니다.</p>
+<p>KoEVD에는 안전성 평가를 위한 유해·민감한 예시가 포함되어 있습니다. 데이터와 입력 인덱스에는 <a href="DATA_LICENSE.md">연구용 이용약관</a>이 적용됩니다. 평가·연구 목적으로 이용하며, 점수를 실제 배포 안전의 보증으로 해석하지 마세요.</p>
+<section aria-label="분석 설정"><label>결과 파일 (1–4개, 파일당 128 MiB / 전체 256 MiB)<input id="files" type="file" accept=".json,application/json" multiple></label>
+<label>공개 참조 결과<select id="reference"><option value="">참조 없이 선택한 파일만 비교</option></select></label>
+<div class="settings"><label>Bootstrap 반복 수<input id="resamples" type="number" min="0" max="10000" value="100"></label><label>분석 seed<input id="seed" type="number" value="1729"></label></div>
+<p>반복 수 0은 신뢰구간을 계산하지 않습니다. 생성 seed와 분석 seed는 별개입니다.</p>
+<button id="analyze" type="button">분석 시작</button><button id="clear" type="button">선택·분석 결과 지우기</button>
+</section><p id="status" role="status" aria-live="polite">파일을 선택하세요.</p><p id="scope"></p>
+<nav id="downloads" aria-label="분석 파일 다운로드"></nav>
+<iframe id="report" title="KoEVD 평가 분석 리포트" sandbox="allow-scripts" hidden></iframe>
+<details><summary>해석과 등록 범위</summary><p>입력·정답은 배포자가 고정한 독립 인덱스에서 복원합니다. 누락·실패·미분류는 안전한 결과로 취급하지 않습니다. Task 4는 전략 분포이며 품질 순위가 아닙니다. Task 5는 모의 도구 선택이며 실제 도구를 실행하지 않습니다. 공개 참조와 호환성이 부족한 결과는 제한 사유를 표시합니다. Hash 일치는 생성 진위나 분류 정확도를 증명하지 않습니다.</p><p>공동 리더보드 등록·철회·검토 이력은 별도 저장·검증 서비스가 필요합니다. 이 화면에서 파일을 선택하거나 리포트를 다운로드해도 공개되지 않습니다.</p></details>
+</main><script src="app.js"></script></body></html>

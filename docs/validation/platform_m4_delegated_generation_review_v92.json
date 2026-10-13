@@ -1,0 +1,21 @@
+{
+  "plan_version": "0.59",
+  "status": "user_delegated_AI_technical_review_completed",
+  "models": 2,
+  "frozen_execution_source_files": 184,
+  "execution_stages": 13,
+  "source_evidence_files_checked": 28,
+  "separate_human_attestation": false,
+  "publication_or_rank_or_roles_changed": false,
+  "classifier_accuracy_established": false,
+  "actual_GPU_reexecution_in_review": false,
+  "initial_review_helper_errors_preserved": [
+    "Returned bundle lacked per-model trusted index; used independently pinned candidate index",
+    "Review helper initially compared raw trace file hash with JSON content seal; both now checked separately"
+  ],
+  "review": {
+    "path": "generated/delegated-technical-review-v92-final/review.json",
+    "bytes": 13637,
+    "sha256": "a7c3958908b138932cdc82cb770a66fb350d58d27694539432358de52e93ce12"
+  }
+}

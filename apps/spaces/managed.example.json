@@ -1,0 +1,18 @@
+{
+  "format": "koevd-managed-space-v2",
+  "catalog": "catalog.json",
+  "protocol_registry": "../configs/protocols",
+  "web_roles": "roles.json",
+  "backup_roles": "backup-roles.json",
+  "backup_actor": "OPERATOR_SELECTED_BACKUP_ACTOR",
+  "bucket": "KETI-NLP/KoEVD-Platform-Backups-Dev",
+  "store_root": "/tmp/koevd-managed-store",
+  "backup_root": "/tmp/koevd-managed-backups",
+  "mode": "initialize",
+  "initialization_baseline_snapshot_sha256": [],
+  "restore_root": null,
+  "snapshot_sha256": null,
+  "interval_seconds": 300,
+  "cycles": 0,
+  "retained_quota_bytes": 1073741824
+}

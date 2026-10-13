@@ -8,12 +8,15 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import uuid
+from datetime import datetime, timezone
 
 from .common import read_jsonl, write_jsonl, row_id
 from .overlap import source_id
 from .prepare_tasks import prepare
 from .profile import write_report, identity
-from .run_openai_compatible import run_rows, endpoint, unique_rows
+from .run_openai_compatible import (run_rows, endpoint, unique_rows, make_config,
+                                   add_execution_arguments, load_options, print_progress)
 
 TASK2_VARIANTS = ('choose_best', 'choose_unsafe', 'rejected_vs_accepted', 'relative_harmfulness')
 TASK5_VARIANTS = ('safe_guided', 'tool_forced', 'unsafe_induced')
@@ -105,15 +108,25 @@ def verify_predictions(output, manifest, task):
     return list(predictions.values())
 
 
-def generate_run(output, manifest, *, base_url, model, api_key='', temperature=0., max_tokens=1024, retries=2, timeout=120):
-    config={'endpoint': endpoint(base_url), 'model': model, 'temperature': temperature, 'max_tokens': max_tokens}
+def generate_run(output, manifest, *, base_url, model, api_key='', temperature=0., max_tokens=1024,
+                 retries=2, timeout=120, workers=1, retry_delay=2, progress=None,
+                 extra_body=None, engine_version=None, model_provenance=None, preflight=False):
+    config=make_config(base_url,model,temperature,max_tokens,extra_body=extra_body,
+                       engine_version=engine_version,model_provenance=model_provenance)
     if 'generation' in manifest and manifest['generation'] != config:
         raise ValueError('Generation settings changed; use a new output directory')
-    manifest['generation']=config; save_json(output/'pipeline.json', manifest)
+    manifest['generation']=config
+    manifest.setdefault('generation_run',{'id':str(uuid.uuid4()),'created_at':datetime.now(timezone.utc).isoformat()})
+    save_json(output/'pipeline.json', manifest)
+    if preflight:
+        from .preflight import preflight as check
+        rows=[row for task in (1,2,3,5) for row in read_jsonl(output/f'task{task}_input.jsonl')]
+        save_json(output/'preflight.json',check(config,rows,api_key=api_key,timeout=timeout))
     for task in (1, 2, 3, 5):
         print(f'Generating Task {task}', flush=True)
         run_rows(list(read_jsonl(output/f'task{task}_input.jsonl')), output/f'task{task}_predictions.jsonl', config,
-                 api_key=api_key, timeout=timeout, retries=retries, resume=True)
+                 api_key=api_key, timeout=timeout, retries=retries, retry_delay=retry_delay, resume=True,
+                 workers=workers,progress=progress,run_id=manifest['generation_run']['id'])
 
 
 def artifact_fingerprint(directory):
@@ -124,20 +137,34 @@ def artifact_fingerprint(directory):
     return {p.name:file_sha(p) for p in [*configs,*weights]}
 
 
-def classify_run(output, manifest, safety_adapter, safety_base, strategy_adapter, strategy_base, batch_size=2):
+def classify_run(output, manifest, safety_adapter, safety_base, strategy_adapter, strategy_base, batch_size=2,
+                 *, classifier_dtype=None, input_order='original', inference_mode='batch', trace_measurements=False):
     verify_predictions(output, manifest, 3)
     measurements={}
     for task, adapter, base in ((3,safety_adapter,safety_base),(4,strategy_adapter,strategy_base)):
         if not adapter or not base: raise ValueError('Both local adapters and base-model paths are required for classification')
         print(f'Classifying Task {task}', flush=True)
         provenance={'prediction_sha256':file_sha(output/'task3_predictions.jsonl'), 'batch_size':batch_size,
-                    'adapter':artifact_fingerprint(adapter), 'base':artifact_fingerprint(base)}
+                    'adapter':artifact_fingerprint(adapter), 'base':artifact_fingerprint(base),
+                    'requested_dtype':classifier_dtype or 'auto', 'input_order':input_order,
+                    'inference_mode':inference_mode}
         path=output/f'task{task}_measured.jsonl'
+        command=[sys.executable,'-m','koevd_eval.classify_responses','--task',str(task),
+                 '--input',str(output/'task3_predictions.jsonl'),'--output',str(path),
+                 '--adapter-path',str(adapter),'--base-model-name-or-path',str(base),
+                 '--local-files-only','--batch-size',str(batch_size)]
+        if classifier_dtype is not None: command.extend(['--torch-dtype',classifier_dtype])
+        if input_order!='original': command.extend(['--input-order',input_order])
+        if inference_mode!='batch': command.extend(['--inference-mode',inference_mode])
+        trace_path=output/f'task{task}_measurement_trace.json'
+        if trace_measurements: command.extend(['--trace-output',str(trace_path)])
         # Separate processes release each classifier's GPU allocations before loading the next.
-        subprocess.run([sys.executable,'-m','koevd_eval.classify_responses','--task',str(task),
-                        '--input',str(output/'task3_predictions.jsonl'),'--output',str(path),
-                        '--adapter-path',str(adapter),'--base-model-name-or-path',str(base),
-                        '--local-files-only','--batch-size',str(batch_size)],check=True)
+        subprocess.run(command,check=True)
+        if trace_measurements:
+            from .measurement_trace import validate_trace
+            from .results import read_document
+            validate_trace(read_document(trace_path),output/'task3_predictions.jsonl',path,task)
+            provenance['trace_sha256']=file_sha(trace_path)
         measurements[str(task)]={**provenance,'output_sha256':file_sha(path)}
     manifest['measurements']=measurements; save_json(output/'pipeline.json',manifest)
 
@@ -157,19 +184,26 @@ def report_run(output, manifest, min_sources=20, min_coverage=.9):
 
 
 def main():
+    from .common import configure_cli_stdio
+    configure_cli_stdio()
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--stage',choices=('prepare','generate','classify','report','all'),default='all')
+    p.add_argument('--stage',choices=('prepare','preflight','generate','classify','report','all'),default='all')
     p.add_argument('--dataset-dir'); p.add_argument('--output-dir',required=True)
     p.add_argument('--split',default='core'); p.add_argument('--limit-sources',type=int)
     p.add_argument('--base-url'); p.add_argument('--model'); p.add_argument('--api-key-env',default='OPENAI_API_KEY')
     p.add_argument('--temperature',type=float,default=0.); p.add_argument('--max-tokens',type=int,default=1024)
     p.add_argument('--retries',type=int,default=2); p.add_argument('--timeout',type=float,default=120)
+    add_execution_arguments(p)
     for arg in ('safety-adapter','safety-base','strategy-adapter','strategy-base'): p.add_argument('--'+arg)
     p.add_argument('--batch-size',type=int,default=2)
+    p.add_argument('--classifier-dtype',choices=('auto','float16','bfloat16','float32'))
+    p.add_argument('--measurement-order',choices=('original','reverse'),default='original')
+    p.add_argument('--measurement-mode',choices=('batch','single'),default='batch')
+    p.add_argument('--trace-measurements',action='store_true',help='New private token/dtype/order sidecars')
     p.add_argument('--min-sources',type=int,default=20); p.add_argument('--min-coverage',type=float,default=.9)
     a=p.parse_args(); output=Path(a.output_dir)
     if a.batch_size<1 or a.retries<0 or a.max_tokens<1: p.error('Invalid batch size, retries or max tokens')
-    if a.stage in ('all','generate') and (not a.base_url or not a.model): p.error('--base-url and --model are required to generate')
+    if a.stage in ('all','generate','preflight') and (not a.base_url or not a.model): p.error('--base-url and --model are required to generate')
     if a.stage in ('all','classify') and not all((a.safety_adapter,a.safety_base,a.strategy_adapter,a.strategy_base)):
         p.error('Both local adapter and base paths are required for classification')
     if a.stage in ('all','prepare'):
@@ -177,10 +211,20 @@ def main():
         manifest=prepare_run(a.dataset_dir,output,a.split,a.limit_sources)
     else: manifest=json.loads((output/'pipeline.json').read_text(encoding='utf-8'))
     verify_prepared(output,manifest)
+    if a.stage=='preflight':
+        from .preflight import preflight
+        config=make_config(a.base_url,a.model,a.temperature,a.max_tokens,extra_body=load_options(a.extra_body_file))
+        rows=[row for task in (1,2,3,5) for row in read_jsonl(output/f'task{task}_input.jsonl')]
+        save_json(output/'preflight.json',preflight(config,rows,api_key=os.environ.get(a.api_key_env,''),timeout=a.timeout))
     if a.stage in ('all','generate'):
-        generate_run(output,manifest,base_url=a.base_url,model=a.model,api_key=os.environ.get(a.api_key_env,''),temperature=a.temperature,max_tokens=a.max_tokens,retries=a.retries,timeout=a.timeout)
+        generate_run(output,manifest,base_url=a.base_url,model=a.model,api_key=os.environ.get(a.api_key_env,''),temperature=a.temperature,max_tokens=a.max_tokens,retries=a.retries,timeout=a.timeout,
+                     workers=a.workers,retry_delay=a.retry_delay,progress=print_progress,preflight=a.preflight,
+                     extra_body=load_options(a.extra_body_file),engine_version=a.engine_version,
+                     model_provenance=load_options(a.model_provenance_file))
     if a.stage in ('all','classify'):
-        classify_run(output,manifest,a.safety_adapter,a.safety_base,a.strategy_adapter,a.strategy_base,a.batch_size)
+        classify_run(output,manifest,a.safety_adapter,a.safety_base,a.strategy_adapter,a.strategy_base,a.batch_size,
+                     classifier_dtype=a.classifier_dtype,input_order=a.measurement_order,
+                     inference_mode=a.measurement_mode,trace_measurements=a.trace_measurements)
     if a.stage in ('all','report'): report_run(output,manifest,a.min_sources,a.min_coverage)
     print(output.resolve())
 

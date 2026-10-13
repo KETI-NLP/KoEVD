@@ -1,0 +1,220 @@
+{
+  "scope": "two_actual_target_prefix96_gpu_pipeline_and_local_app_numeric_acceptance",
+  "status": "passed_with_explicit_scope_limits",
+  "node": "GPU_NODE",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "source_checkpoint_sha256": "0cbccf73f3a363dde8aae50df9cc7a1be5b514d03285fec478551c2cf8c1bdf2",
+  "controller_sha256": "f986f582a32baab914f5c0ef196afacff0cddb76a8b1a23be77b4fc8166e902f",
+  "terminal_execution": {
+    "session": 66554,
+    "exit_code": 0,
+    "attempt": "expanded-v3",
+    "stages_passed": 13,
+    "sources_per_prefix": 96
+  },
+  "targets": [
+    {
+      "model": {
+        "id": "Qwen/Qwen3-4B",
+        "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+        "chat_template": "tokenizer_config.json sha256:d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "dtype": "bfloat16",
+        "quantization": "none",
+        "thinking": "off",
+        "verification": "user_reported"
+      },
+      "path": "expanded-v3/Qwen3-4B/results.json",
+      "artifact_sha256": "d1faae8d8a502b67a95852ffbb758798f7fa785ec20684b75b0e2055df831c57",
+      "records": 1150,
+      "task_rows": {
+        "1": 96,
+        "2": 384,
+        "3": 191,
+        "4": 191,
+        "5": 288
+      },
+      "independent_reexport_exact_match": true
+    },
+    {
+      "model": {
+        "id": "Qwen/Qwen3-8B",
+        "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+        "chat_template": "tokenizer_config.json sha256:d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "dtype": "bfloat16",
+        "quantization": "none",
+        "thinking": "off",
+        "verification": "user_reported"
+      },
+      "path": "expanded-v3/Qwen3-8B/results.json",
+      "artifact_sha256": "d22513a1fb00c9e91e7b1fb0d0e54da96f2d13d11c77af43fc661ba016bef6e8",
+      "records": 1150,
+      "task_rows": {
+        "1": 96,
+        "2": 384,
+        "3": 191,
+        "4": 191,
+        "5": 288
+      },
+      "independent_reexport_exact_match": true
+    }
+  ],
+  "generation": [
+    {
+      "model": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+      "pid": 35839,
+      "argv": [
+        "[private-node-path]",
+        "serve",
+        "[private-node-path]",
+        "--served-model-name",
+        "Qwen/Qwen3-8B",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "18080",
+        "--dtype",
+        "bfloat16",
+        "--max-model-len",
+        "16384",
+        "--gpu-memory-utilization",
+        "0.25",
+        "--max-num-seqs",
+        "16",
+        "--enforce-eager"
+      ],
+      "gpu_uuid": "GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b",
+      "status": "stopped_owned_child",
+      "generation": {
+        "1": {
+          "expected": 96,
+          "actual": 96,
+          "api_failures": 0,
+          "prediction_sha256": "b53f6ca63893e0633db6c342dde580b666a8015b66a81b769008f47c9215cc5d"
+        },
+        "2": {
+          "expected": 384,
+          "actual": 384,
+          "api_failures": 0,
+          "prediction_sha256": "31eb3c61e158b5183d1677cc7928bec28ba91c341dc6742d1e52deaf219199e5"
+        },
+        "3": {
+          "expected": 191,
+          "actual": 191,
+          "api_failures": 0,
+          "prediction_sha256": "bc5c2d91b6f36b0a11d53f4c1f6d1c7e2bf9b976cc14e159f37530a7aee51971"
+        },
+        "5": {
+          "expected": 288,
+          "actual": 288,
+          "api_failures": 0,
+          "prediction_sha256": "07c2fa20ed193e799f9affedf68030bbbb51a97e2a6f1bd23440c5d3c39f58df"
+        }
+      },
+      "exit_code": 0
+    },
+    {
+      "model": "Qwen/Qwen3-4B",
+      "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "pid": 37879,
+      "argv": [
+        "[private-node-path]",
+        "serve",
+        "[private-node-path]",
+        "--served-model-name",
+        "Qwen/Qwen3-4B",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "18080",
+        "--dtype",
+        "bfloat16",
+        "--max-model-len",
+        "16384",
+        "--gpu-memory-utilization",
+        "0.25",
+        "--max-num-seqs",
+        "16",
+        "--enforce-eager"
+      ],
+      "gpu_uuid": "GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b",
+      "status": "stopped_owned_child",
+      "generation": {
+        "1": {
+          "expected": 96,
+          "actual": 96,
+          "api_failures": 0,
+          "prediction_sha256": "d69b31122ff666f459889e3f0863968195565ece2f95d6a2f407a56c4ba114f7"
+        },
+        "2": {
+          "expected": 384,
+          "actual": 384,
+          "api_failures": 0,
+          "prediction_sha256": "0a42e26fe58c332c9d4e1e58aefdce2a42f615e0710d042e82d1b228cf8b616b"
+        },
+        "3": {
+          "expected": 191,
+          "actual": 191,
+          "api_failures": 0,
+          "prediction_sha256": "9a015479982901e58526ae0840fcf3d9f2ddd91c09732b41ebba33e4a951c5bf"
+        },
+        "5": {
+          "expected": 288,
+          "actual": 288,
+          "api_failures": 0,
+          "prediction_sha256": "48bb332c934d5ae82fd372c4f846c1158f9bc3de414811f47d2d6addd0bb368d"
+        }
+      },
+      "exit_code": 0
+    }
+  ],
+  "return_bundle": {
+    "path": "generated/KoEVD_platform_expanded_20261008_v3.zip",
+    "sha256": "6a26dea365322ecd8078b7125eaf77b03867e9285c0ceda86080a7cc5b6375fc",
+    "bytes": 12842931,
+    "manifest_files": 96,
+    "intake_receipt": "generated/gpu-expanded-intake-20261008-v1/intake-receipt.json",
+    "trusted_index": "generated/private-space-deployment-20261008-v16/operator-data/prefix-96-index.json",
+    "archive_code_executed": false
+  },
+  "numeric_acceptance": {
+    "node_local_json_equal": true,
+    "app_local_json_equal": true,
+    "profile_sha256": "f8b323734b5fa7a7bb15a2b101cc976565f8816eb6c54136797681ee35e5f7fd",
+    "evidence": "generated/gpu-expanded-space-ui-20261008/evidence.json",
+    "browser_checks": [
+      "Downloaded app profile exactly equals independent CLI profile, including all task denominators and paired analyses",
+      "Supplied Korean response case is retained as literal text; measurement warning and paired UI are visible",
+      "Separate browser sessions/download ACL; desktop/mobile overflow; session deletion and token-free URLs"
+    ],
+    "browser_errors": [],
+    "external_requests": [],
+    "comparison_desktop_and_mobile_visually_inspected": true,
+    "owned_app_session_stopped": 29744
+  },
+  "quality_flags": {
+    "Qwen/Qwen3-8B": {
+      "task3_denominator": 191,
+      "length_limit": 27,
+      "single_character_repetition": 20,
+      "classifier_disagreement": 24
+    },
+    "Qwen/Qwen3-4B": {
+      "task3_denominator": 191,
+      "length_limit": 12,
+      "classifier_disagreement": 19
+    }
+  },
+  "interpretation": [
+    "Prefix96 is an integration subset, not a representative sample or full standard baseline.",
+    "Task3 union: 96 primary + 96 tool sources minus 1 overlap = 191; Task4 reuses these answers.",
+    "Each target generated 959 API-ok outputs; portable1150 records include reused Task4, not extra generations.",
+    "Quality flags can overlap; API success does not prove output quality or classifier accuracy.",
+    "Same-family targets; no new held-out F1, human adjudication, cryptographic generation authenticity or official ranking."
+  ],
+  "actual_hf_login": false,
+  "public_posting": false,
+  "official_rank_eligible": false,
+  "classifier_accuracy_verified": false,
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

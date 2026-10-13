@@ -1,0 +1,115 @@
+{
+  "format": "koevd-platform-gpu-lock-v1",
+  "status": "candidate_not_executed",
+  "protocol_id": "koevd-core-canonical-v1",
+  "protocol_sha256": "501401566487a29fa7252372621c8239a5c7388e90312c7c3dbe920dcd7020a0",
+  "release_artifacts": {
+    "assistant_base": {
+      "repo_id": "Qwen/Qwen3.5-0.8B",
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17"
+    },
+    "strategy_base": {
+      "repo_id": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    "dataset": {
+      "repo_id": "KETI-NLP/KoEVD",
+      "revision": "f5920837769bea77e072c8e033e5ad9cbff4d45d"
+    },
+    "assistant": {
+      "repo_id": "KETI-NLP/KoEVD-assistant-safety",
+      "revision": "e821f2a0d8809bafe0cbf1b6ee0ac8350d2554b3"
+    },
+    "strategy": {
+      "repo_id": "KETI-NLP/KoEVD-response-strategy",
+      "revision": "846df8d29758b956c420e0f4dd17ced8630a9b81"
+    }
+  },
+  "target_models": [
+    {
+      "id": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218"
+    },
+    {
+      "id": "Qwen/Qwen3-4B",
+      "revision": "1cfa9a7208912126459214e8b04321603b3df60c"
+    }
+  ],
+  "target_conditions": {
+    "thinking": "off",
+    "dtype": "bfloat16",
+    "quantization": "none",
+    "temperature": 0.0,
+    "max_tokens": 1024,
+    "seed": null,
+    "extra_body": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      }
+    }
+  },
+  "measurement_conditions": [
+    {
+      "id": "untraced-b2",
+      "batch_size": 2,
+      "dtype": "bfloat16",
+      "order": "original",
+      "mode": "batch",
+      "trace": false
+    },
+    {
+      "id": "traced-b2",
+      "batch_size": 2,
+      "dtype": "bfloat16",
+      "order": "original",
+      "mode": "batch",
+      "trace": true
+    },
+    {
+      "id": "traced-b1",
+      "batch_size": 1,
+      "dtype": "bfloat16",
+      "order": "original",
+      "mode": "batch",
+      "trace": true
+    },
+    {
+      "id": "traced-b4",
+      "batch_size": 4,
+      "dtype": "bfloat16",
+      "order": "original",
+      "mode": "batch",
+      "trace": true
+    },
+    {
+      "id": "traced-b2-reverse",
+      "batch_size": 2,
+      "dtype": "bfloat16",
+      "order": "reverse",
+      "mode": "batch",
+      "trace": true
+    },
+    {
+      "id": "traced-single",
+      "batch_size": 1,
+      "dtype": "bfloat16",
+      "order": "original",
+      "mode": "single",
+      "trace": true
+    }
+  ],
+  "optional_measurement_condition": {
+    "id": "traced-fp32-b2",
+    "batch_size": 2,
+    "dtype": "float32",
+    "order": "original",
+    "mode": "batch",
+    "trace": true
+  },
+  "interpretation": [
+    "Two actual target models required; two measurement classifiers do not satisfy this.",
+    "Both target models and the strategy base share the Qwen family; not an independent cross-family ranking study.",
+    "Source/protocol hashes and complete logs support reported reproducibility, not cryptographic inference authenticity.",
+    "CPU/synthetic preparation is not GPU integration evidence."
+  ]
+}

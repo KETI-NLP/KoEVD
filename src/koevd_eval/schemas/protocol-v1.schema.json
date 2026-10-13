@@ -1,0 +1,389 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "koevd-protocol-v1"
+    },
+    "status": {
+      "const": "release_candidate"
+    },
+    "id": {
+      "type": "string",
+      "maxLength": 128,
+      "minLength": 1
+    },
+    "dataset": {
+      "type": "object",
+      "properties": {
+        "repo": {
+          "type": "string",
+          "maxLength": 4096,
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "files": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      },
+      "required": [
+        "repo",
+        "revision",
+        "files"
+      ],
+      "additionalProperties": false
+    },
+    "selection": {
+      "type": "object",
+      "properties": {
+        "split": {
+          "const": "core"
+        },
+        "limit_sources": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "split",
+        "limit_sources"
+      ],
+      "additionalProperties": false
+    },
+    "preparation_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "decoding_policy": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "const": 0.0
+        },
+        "max_tokens": {
+          "const": 1024
+        },
+        "seed": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "temperature",
+        "max_tokens",
+        "seed"
+      ],
+      "additionalProperties": false
+    },
+    "measurement_policy": {
+      "type": "object",
+      "properties": {
+        "3": {
+          "type": "object",
+          "properties": {
+            "adapter": {
+              "type": "object",
+              "properties": {
+                "repo": {
+                  "type": "string",
+                  "maxLength": 4096,
+                  "minLength": 1
+                },
+                "revision": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{40}$"
+                }
+              },
+              "required": [
+                "repo",
+                "revision"
+              ],
+              "additionalProperties": false
+            },
+            "base": {
+              "type": "object",
+              "properties": {
+                "repo": {
+                  "type": "string",
+                  "maxLength": 4096,
+                  "minLength": 1
+                },
+                "revision": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{40}$"
+                }
+              },
+              "required": [
+                "repo",
+                "revision"
+              ],
+              "additionalProperties": false
+            },
+            "accuracy_status": {
+              "const": "measurement_limited"
+            },
+            "official_ranking": {
+              "const": false
+            }
+          },
+          "required": [
+            "adapter",
+            "base",
+            "accuracy_status",
+            "official_ranking"
+          ],
+          "additionalProperties": false
+        },
+        "4": {
+          "type": "object",
+          "properties": {
+            "adapter": {
+              "type": "object",
+              "properties": {
+                "repo": {
+                  "type": "string",
+                  "maxLength": 4096,
+                  "minLength": 1
+                },
+                "revision": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{40}$"
+                }
+              },
+              "required": [
+                "repo",
+                "revision"
+              ],
+              "additionalProperties": false
+            },
+            "base": {
+              "type": "object",
+              "properties": {
+                "repo": {
+                  "type": "string",
+                  "maxLength": 4096,
+                  "minLength": 1
+                },
+                "revision": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{40}$"
+                }
+              },
+              "required": [
+                "repo",
+                "revision"
+              ],
+              "additionalProperties": false
+            },
+            "accuracy_status": {
+              "const": "measurement_limited"
+            },
+            "official_ranking": {
+              "const": false
+            }
+          },
+          "required": [
+            "adapter",
+            "base",
+            "accuracy_status",
+            "official_ranking"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "3",
+        "4"
+      ],
+      "additionalProperties": false
+    },
+    "scoring": {
+      "type": "object",
+      "properties": {
+        "historical": {
+          "const": "koevd-0.2.0"
+        },
+        "diagnostic": {
+          "const": "strict-profile-v1"
+        }
+      },
+      "required": [
+        "historical",
+        "diagnostic"
+      ],
+      "additionalProperties": false
+    },
+    "metadata_view": {
+      "const": "canonical-prepared"
+    },
+    "denominators": {
+      "type": "object",
+      "properties": {
+        "task1": {
+          "type": "string",
+          "maxLength": 4096,
+          "minLength": 1
+        },
+        "task2": {
+          "type": "string",
+          "maxLength": 4096,
+          "minLength": 1
+        },
+        "task3": {
+          "type": "string",
+          "maxLength": 4096,
+          "minLength": 1
+        },
+        "task4": {
+          "type": "string",
+          "maxLength": 4096,
+          "minLength": 1
+        },
+        "task5": {
+          "type": "string",
+          "maxLength": 4096,
+          "minLength": 1
+        }
+      },
+      "required": [
+        "task1",
+        "task2",
+        "task3",
+        "task4",
+        "task5"
+      ],
+      "additionalProperties": false
+    },
+    "expected_inputs": {
+      "type": "object",
+      "properties": {
+        "1": {
+          "type": "object",
+          "properties": {
+            "rows": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "rows",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "2": {
+          "type": "object",
+          "properties": {
+            "rows": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "rows",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "3": {
+          "type": "object",
+          "properties": {
+            "rows": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "rows",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "4": {
+          "type": "object",
+          "properties": {
+            "rows": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "rows",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "5": {
+          "type": "object",
+          "properties": {
+            "rows": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "rows",
+            "sha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "additionalProperties": false
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "id",
+    "dataset",
+    "selection",
+    "preparation_sha256",
+    "decoding_policy",
+    "measurement_policy",
+    "scoring",
+    "metadata_view",
+    "denominators",
+    "expected_inputs",
+    "content_sha256"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KoEVD pinned evaluation protocol candidate v1",
+  "$comment": "Operator-controlled registry definition; hashes, source set, paths and preparation code require executable verification."
+}

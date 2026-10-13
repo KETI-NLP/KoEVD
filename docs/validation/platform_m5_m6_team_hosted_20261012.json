@@ -1,0 +1,164 @@
+{
+  "format": "koevd-team-private-hosted-validation-v1",
+  "plan_version": "0.43",
+  "observed_utc": "2026-10-12T04:06:12.769679+00:00",
+  "scope": "Actual private CPU Docker deployment, native HF login, analysis and private drafts; not production registration/durability.",
+  "repo_id": "KETI-NLP/KoEVD-Platform-Dev",
+  "revision": "03e79a75ee35570b83948343d521f684a38fce01",
+  "organization_plan": "team",
+  "hardware": "cpu-basic",
+  "private": true,
+  "runtime_stage": "RUNNING",
+  "exact_uploaded_payload_files_including_manifest": 66,
+  "manifest_sha256": "f39ef78bfe6c6a567ad971a1265f983b56d9e62b00cfdb7fdfb82b2a31792b6a",
+  "deployment_receipt": {
+    "path": "generated/private-team-browser-20261012-v65/deployment-receipt.json",
+    "sha256": "84f633df3314431ad28c5390f7b72c26873249b2d4a248211f26310a70220ffb"
+  },
+  "previous_v64_API_acceptance": {
+    "revision": "8d1b353ee0bb12f979386db4b5482939377be77c",
+    "records": [
+      48,
+      48
+    ],
+    "all_five_outputs_byte_exact": true,
+    "session_isolation_verified": true,
+    "temporary_sessions_deleted": [
+      200,
+      200
+    ],
+    "path": "generated/private-team-hosted-runtime-20261012-v64-docker-access/receipt.json",
+    "sha256": "7b80f814f7028c3e6f4e2366e40043339c131153be25278fb46d491cfa2e4eb1"
+  },
+  "current_v65_browser": {
+    "real_native_OAuth_login": true,
+    "scopes": [
+      "openid",
+      "profile"
+    ],
+    "own_workspace_tab_used": true,
+    "records": [
+      48,
+      48
+    ],
+    "paired_comparisons": 1,
+    "resamples": 100,
+    "seed": 1729,
+    "report_tabs": 12,
+    "matched_Task1_inputs": 4,
+    "mismatched_inputs": 0,
+    "smoke_exploratory_warning_visible": true,
+    "private_drafts_saved": [
+      {
+        "model": "Qwen3-8B",
+        "records": 48,
+        "JSON_content_equal_to_GPU_source": true,
+        "source_bytes_sha256": "787e3c87ef4929f232dffb800fd143397e80f63137bd397411dcef7d42997adb",
+        "downloaded_original_bytes_sha256": "7ca9ee1da906266fa7e60757ada1e575977d7babc6c5f5abd428dcd3c2b8b392",
+        "sealed_artifact_content_sha256": "9eb9e8353c4e33c3000f80c6aa02a41a85cc8eb045cf3d625e0657289c06c86c",
+        "serialization_note": "Canonical JSON serialization changes bytes only; complete JSON content equal.",
+        "history_sha256": "b8fa835a4fe8927dc2798ce6c3420de27661265204966ab8f8f9cf88b8f61b4f",
+        "revision": 1,
+        "events": [
+          "create"
+        ],
+        "authentication_source": "hf_oauth",
+        "publication": "unpublished",
+        "consent": null,
+        "approval": null
+      },
+      {
+        "model": "Qwen3-4B",
+        "records": 48,
+        "JSON_content_equal_to_GPU_source": true,
+        "source_bytes_sha256": "7d16beb22381beb8f259c1859ec640bd68419ee1cf5ef2f1b5a9ef9a7c35dcf7",
+        "downloaded_original_bytes_sha256": "ecd3fe5ae55ed72f0acd7fb893a56bfa30679b5236b0d02a0f4fa47a386cf626",
+        "sealed_artifact_content_sha256": "eda11f61bc320f4760decf369a472572febb7e4bdb3d9f670d05eb7d4c1c1147",
+        "serialization_note": "Canonical JSON serialization changes bytes only; complete JSON content equal.",
+        "history_sha256": "e358f89790d117e8912c0e396a10ea7f0c67f4e2bbcc9f5def452c2374d55a15",
+        "revision": 1,
+        "events": [
+          "create"
+        ],
+        "authentication_source": "hf_oauth",
+        "publication": "unpublished",
+        "consent": null,
+        "approval": null
+      }
+    ],
+    "saved_drafts_refreshed_from_server": true,
+    "verified_downloaded_report_files": {
+      "profile-v2.json": {
+        "bytes": 7506689,
+        "sha256": "14c7b851c5516ad5981f6bb49f363fb9006624b029611a9ae5aa161872fbd547",
+        "native_and_Public_Static_bytes_equal": true
+      },
+      "report-v2.html": {
+        "bytes": 4157103,
+        "sha256": "68708c48804e72fb4badc43b9cdec1c5843f90f2baa41bef1f10b1381bd2d354",
+        "native_and_Public_Static_bytes_equal": true
+      }
+    },
+    "other_three_browser_downloads": "Buttons clicked, files not observed; no claim of successful browser download. All5 HTTP bytes verified separately at v64.",
+    "file_URL_permission_problem": "User enabled Chrome extension permission; chooser retry succeeded.",
+    "download_event_observation": "CUA event timed out despite actual original file being saved; verified actual disk artifact instead.",
+    "dom_evidence_path": "generated/private-team-browser-20261012-v65/saved-drafts-dom.txt",
+    "dom_evidence_sha256": "adc99d169882133b1f997ea6e91f3d01f16999d41cdef75bc840b8ce0cf26022",
+    "private_draft_screenshot": "generated/private-team-browser-20261012-v65/private-drafts.jpg"
+  },
+  "fix": {
+    "file": "src/koevd_eval/assets/space.js",
+    "reason": "Private Docker resource proxy needs same-origin HttpOnly cookie on analysis API calls.",
+    "credentials": "same-origin",
+    "analysis_Bearer_and_CSRF_still_required": true,
+    "browser_startup_404_resolved": true,
+    "cookie_only_identity_or_analysis_access_added": false
+  },
+  "tests": {
+    "launcher-tests.log": {
+      "count": 4,
+      "path": "generated/team-space-checks-20261012-v64/launcher-tests.log",
+      "sha256": "6a321951e7764ff48783860fc0178794a8ece6c13189cccb2dc5b8cac2df7849"
+    },
+    "context-tests.log": {
+      "count": 6,
+      "path": "generated/team-space-checks-20261012-v64/context-tests.log",
+      "sha256": "7d5a132ba1080d6fd018d83ffc488d322b743f48667e390e0de60d83734c5203"
+    },
+    "docker-access-tests.log": {
+      "count": 3,
+      "path": "generated/team-space-checks-20261012-v64/docker-access-tests.log",
+      "sha256": "711e16d54bb22b3556b124a003826163e69e5c4420b180692e66a66a6de71de2"
+    },
+    "current-source-spaces-tests.log": {
+      "count": 11,
+      "path": "generated/team-space-checks-20261012-v64/current-source-spaces-tests.log",
+      "sha256": "2d2dc73ca1fe69d1b7ad903cc437103d8351ac7b764e1d535dd479db796a17e3"
+    }
+  },
+  "fresh_full_suite_claimed": false,
+  "prior_installed50_current_source_byte_match": false,
+  "prior_install_note": "space.js changed after v60 installation. Current source11 tests and actual Docker installed app are separate evidence; prior full310 remains historical.",
+  "public_Static_unchanged": true,
+  "public_Static_revision": "dbf81077126375b0a9bba55436d0c1df5825efc3",
+  "paid_hardware_or_storage_activated": false,
+  "new_GPU_inference": false,
+  "credentials_saved_in_artifacts": false,
+  "review_requested": false,
+  "public_results_posted": false,
+  "operator_roles": {
+    "reviewers": [],
+    "admins": []
+  },
+  "approved_baselines": [],
+  "official_rank_enabled": false,
+  "cloud_backup_or_durability_verified": false,
+  "remaining": [
+    "Durable storage/independent cloud restore",
+    "Actual operator permission/generation/policy review",
+    "Approved public raw references",
+    "Public production migration",
+    "Three additional browser downloads not confirmed"
+  ],
+  "goal": "active; original scope incomplete"
+}

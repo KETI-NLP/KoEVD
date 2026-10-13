@@ -1,0 +1,209 @@
+{
+  "format": "koevd-platform-full-comparison-browser-v1",
+  "recorded_at_utc": "2026-10-08T12:37:30.144769+00:00",
+  "plan_version": "0.26",
+  "scope": "Offline full-input two-CPU-fixture browser and visual QA; not actual full inference or hosted Space",
+  "fixture_only": true,
+  "html_sha256": "67bd5abe94e605a7273239fdf80343f97b9505c5ca78756323add26fd3e83108",
+  "validation_script_sha256": "6f58cf499aec72b6110aa66a42c32ed3ff24b642ee8be4a1952c563872e6d771",
+  "browser_evidence": {
+    "status": "passed",
+    "report": "[private-local-path]",
+    "html_bytes": 149176208,
+    "renderer": "koevd-offline-html-v1",
+    "runs": 2,
+    "records": 35340,
+    "records_per_run": 17670,
+    "sources_per_run": 2659,
+    "synthetic_only": true,
+    "gpu_inference": false,
+    "measurement_accuracy_evidence": false,
+    "official_rank_eligible": false,
+    "browser": "154.0.8037.98",
+    "load_seconds": 2.1642738,
+    "checkpoints": [
+      {
+        "tab": "overview",
+        "heading": "Understand behavior at each decision point",
+        "charts": 0,
+        "interaction_seconds": 0.05327020000000084
+      },
+      {
+        "tab": "task1",
+        "heading": "Task 1 · Input-risk judgment",
+        "charts": 4,
+        "interaction_seconds": 0.08007170000000043
+      },
+      {
+        "tab": "task2",
+        "heading": "Task 2 · Candidate-response choice",
+        "charts": 4,
+        "interaction_seconds": 0.053281199999999446
+      },
+      {
+        "tab": "task3",
+        "heading": "Task 3 · Response safety proxy",
+        "charts": 3,
+        "interaction_seconds": 0.04009160000000065
+      },
+      {
+        "tab": "task4",
+        "heading": "Task 4 · Response strategies",
+        "charts": 4,
+        "interaction_seconds": 0.08785540000000037
+      },
+      {
+        "tab": "task5",
+        "heading": "Task 5 · Mock-tool choice",
+        "charts": 6,
+        "interaction_seconds": 0.07410570000000007
+      },
+      {
+        "tab": "transitions",
+        "heading": "From response to tool selection",
+        "charts": 1,
+        "interaction_seconds": 0.04847610000000077
+      },
+      {
+        "tab": "metadata",
+        "heading": "Metadata-conditioned behavior",
+        "charts": 3,
+        "interaction_seconds": 0.053144800000000034
+      },
+      {
+        "tab": "quality",
+        "heading": "Output and measurement quality",
+        "charts": 5,
+        "interaction_seconds": 0.08674319999999988
+      },
+      {
+        "tab": "comparison",
+        "heading": "Compare identical inputs",
+        "charts": 1,
+        "interaction_seconds": 0.08329500000000008
+      },
+      {
+        "tab": "cases",
+        "heading": "Inspect the full response set",
+        "charts": 0,
+        "interaction_seconds": 0.07785179999999946
+      },
+      {
+        "tab": "method",
+        "heading": "Method, provenance and interpretation",
+        "charts": 0,
+        "interaction_seconds": 0.05019949999999972
+      },
+      {
+        "check": "full paired scope and valid/invalid filters",
+        "task": 3,
+        "scope": "subset:core",
+        "total": 2000,
+        "paired_status": {
+          "both_valid": 1947,
+          "left_only_valid": 0,
+          "right_only_valid": 0,
+          "both_invalid": 53,
+          "left_event_only": 0,
+          "right_event_only": 0
+        }
+      },
+      {
+        "check": "full paired scope and valid/invalid filters",
+        "task": 3,
+        "scope": "subset:task5_overlap",
+        "total": 784,
+        "paired_status": {
+          "both_valid": 762,
+          "left_only_valid": 0,
+          "right_only_valid": 0,
+          "both_invalid": 22,
+          "left_event_only": 0,
+          "right_event_only": 0
+        }
+      },
+      {
+        "check": "full paired scope and valid/invalid filters",
+        "task": 5,
+        "scope": "variant:safe_guided",
+        "total": 784,
+        "paired_status": {
+          "both_valid": 762,
+          "left_only_valid": 0,
+          "right_only_valid": 0,
+          "both_invalid": 22,
+          "left_event_only": 0,
+          "right_event_only": 0
+        }
+      },
+      {
+        "check": "two full runs selectable without merging case denominators",
+        "records_per_run": 17670,
+        "task4_event_rank": false
+      },
+      {
+        "check": "full cases / core / overlap / framing / pagination / literal-search / empty / metadata drilldown",
+        "literal_search_records": 7,
+        "primary_filter_seconds": 0.05559470000000056,
+        "literal_search_seconds": 0.5102379000000001
+      }
+    ],
+    "console_errors": [],
+    "blocked_external_requests": [],
+    "screenshots": [
+      "scale-overview.png",
+      "scale-task3.png",
+      "scale-two-run-comparison.png",
+      "scale-two-run-descriptive-strategies.png",
+      "scale-tool-cases-folded.png",
+      "scale-risk-category.png",
+      "scale-mobile-strategies.png",
+      "scale-mobile-comparison.png"
+    ]
+  },
+  "browser_exit_code": 0,
+  "visual_inspection": {
+    "screenshots_viewed": [
+      "scale-two-run-comparison.png",
+      "scale-mobile-comparison.png",
+      "scale-risk-category.png",
+      "scale-two-run-descriptive-strategies.png"
+    ],
+    "status": "passed",
+    "finding": "Desktop controls, scoped denominators, risk chart and descriptive Task4 are legible; mobile document has no horizontal overflow. The navigation bar scrolls horizontally by design."
+  },
+  "same_full_gpu_live_observation": {
+    "epoch": 1791463007.6006544,
+    "session_id": 90124,
+    "controller_pid": 56870,
+    "same_controller_live": true,
+    "actual_process": "56870    5438 [private-node-path] [private-node-path] --root [private-node-path] --gpu-uuid GPU-795fabdc-a541-1b0f-aa66-b7efab297b4b --full-core --attempt v1 --port 18080 --ptxas-path /usr/local/cuda-13.0/bin/ptxas --source-root [private-node-path] --core-bin [private-node-path] --measure-bin [private-node-path] --dataset-dir [private-node-path]",
+    "status": "running",
+    "stages": [
+      [
+        "Qwen3-8B-prepare",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-index",
+        "passed"
+      ],
+      [
+        "Qwen3-8B-generate",
+        "running"
+      ]
+    ],
+    "progress": {
+      "Qwen3-8B-generate.log": [
+        "[running] 1910/2659 checkpointed, 1910 API-ok, 0 failed, 749 pending"
+      ]
+    }
+  },
+  "package_ui_and_v22_candidate_changed": false,
+  "limitations": [
+    "CPU fixtures do not establish model inference, measurement accuracy or actual full-result capacity.",
+    "Actual full GPU completion and independent return intake are pending.",
+    "No HF Space, provider login, container image, cloud write, human/operator approval or public release was performed."
+  ],
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

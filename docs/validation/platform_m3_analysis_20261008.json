@@ -1,0 +1,175 @@
+{
+  "milestone": "M3_partial_analysis_engine",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "test_scope": "installed CPU package; no PYTHONPATH or editable import",
+  "tests_passed": 74,
+  "test_seconds": 14.751,
+  "new_analysis_tests": 18,
+  "wheel_sha256": "6e2c39af0afbd3f2da2fd96c89b3982e08c2782b17afd83d2120fab6560c26dc",
+  "demo": {
+    "format": "koevd-analysis-v2",
+    "runs": 2,
+    "comparisons": 1,
+    "case_records": 1160,
+    "installed_module": "[private-local-path]",
+    "preparation_sha256": "b3bb72a02a0b676afe67c8182345254d397f0da89be374963c9ff0fd8d23fbb8",
+    "per_run": [
+      {
+        "model": "SYNTHETIC-A",
+        "charts": 134,
+        "signals": 48,
+        "task_counts": {
+          "1": 60,
+          "2": 240,
+          "3": 80,
+          "4": 80,
+          "5": 120
+        },
+        "task3_partitions": {
+          "all:all": {
+            "rows": 80,
+            "unique_sources": 80,
+            "valid": 74
+          },
+          "subset:core": {
+            "rows": 60,
+            "unique_sources": 60,
+            "valid": 56
+          },
+          "subset:task5_overlap": {
+            "rows": 40,
+            "unique_sources": 40,
+            "valid": 37
+          }
+        },
+        "measurement_disagreement_sources": 6
+      },
+      {
+        "model": "SYNTHETIC-B",
+        "charts": 134,
+        "signals": 48,
+        "task_counts": {
+          "1": 60,
+          "2": 240,
+          "3": 80,
+          "4": 80,
+          "5": 120
+        },
+        "task3_partitions": {
+          "all:all": {
+            "rows": 80,
+            "unique_sources": 80,
+            "valid": 74
+          },
+          "subset:core": {
+            "rows": 60,
+            "unique_sources": 60,
+            "valid": 56
+          },
+          "subset:task5_overlap": {
+            "rows": 40,
+            "unique_sources": 40,
+            "valid": 37
+          }
+        },
+        "measurement_disagreement_sources": 5
+      }
+    ],
+    "comparison_levels": [
+      {
+        "task": 1,
+        "level": "common_inputs_exploratory",
+        "matched": 60
+      },
+      {
+        "task": 2,
+        "level": "common_inputs_exploratory",
+        "matched": 240
+      },
+      {
+        "task": 3,
+        "level": "common_inputs_exploratory",
+        "matched": 80
+      },
+      {
+        "task": 4,
+        "level": "common_inputs_exploratory",
+        "matched": 80
+      },
+      {
+        "task": 5,
+        "level": "common_inputs_exploratory",
+        "matched": 120
+      }
+    ],
+    "fixture_only": true,
+    "gpu_inference": false,
+    "html_visual_qa": false,
+    "public_rank": false
+  },
+  "demo_artifact_sha256": {
+    "cases-v2.jsonl": "fd60c9100caa4eb962bbbb7c677d7a09ebdba9f9490c0471d5a77128b0c9827c",
+    "metrics-v2.csv": "5e7e3a4ff8339aaa4c27afa56c0713ce0c4c2c2fc83d910ba233afb88b70bf3f",
+    "numeric-evidence.json": "873470cc43ab39e06451b2a060809ebb5b1e05902c1b3153cc39631408a07261",
+    "profile-v2.json": "db922d68e153d0274623e9d6b135e07efd7ca1f2674962004cfcaee8a4cee5a3",
+    "report-v2.md": "e9eda98b38e120e0468810749d22eae220bd5b3ec9dbd3716656d2cf6a3c42eb"
+  },
+  "full_scale": {
+    "fixture_only": true,
+    "gpu_inference": false,
+    "measurement_accuracy_evidence": false,
+    "trusted_index_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+    "sources": 2659,
+    "records": 17670,
+    "task_counts": {
+      "1": 2000,
+      "2": 8000,
+      "3": 2659,
+      "4": 2659,
+      "5": 2352
+    },
+    "task3_partitions": {
+      "all:all": {
+        "rows": 2659,
+        "unique_sources": 2659,
+        "valid": 2587
+      },
+      "subset:core": {
+        "rows": 2000,
+        "unique_sources": 2000,
+        "valid": 1947
+      },
+      "subset:task5_overlap": {
+        "rows": 784,
+        "unique_sources": 784,
+        "valid": 762
+      }
+    },
+    "charts": 134,
+    "bootstrap_resamples": 100,
+    "assembly_seconds": 8.392169099999592,
+    "analysis_seconds": 44.472912500146776,
+    "writing_seconds": 1.1448167997878045,
+    "official_rank_eligible": false,
+    "html_visual_qa": false
+  },
+  "full_scale_scope_note": "Scale checkpoint preceded final additive case-filter and CSV/Markdown escaping helpers; final installed tests cover these helpers. Core analysis/counts unchanged.",
+  "source_sha256": {
+    "src/koevd_eval/diagnostics.py": "0951cf99da96a5a39614c8561c8840a83466e001b777a4814bcb2d79585c9804",
+    "tests/test_diagnostics.py": "cbcc80530bf54cf5f6437358d404a1bd0c0be47ad59eeb9f4ace2bcfd9e6965f",
+    "examples/make_demo_diagnostics.py": "01134162ec388df29ded20343c3f739ba49186220b980254ff5d68d8aaf56a54",
+    "scripts/validate_analysis_scale.py": "3090019d3ba50d9d3612b54af714a319c2446fc5b30773adbef90c9a6f29b49d",
+    "pyproject.toml": "663417d46b5b9d7a8cc3a01a2c29325b03f7ef658f50dc4c939d70c8fc5bc4a9"
+  },
+  "remaining": [
+    "offline HTML renderer",
+    "browser UI visual QA",
+    "two real target-model GPU evidence",
+    "Spaces app",
+    "persistence/registration/release gates"
+  ],
+  "gpu_inference": false,
+  "published": false,
+  "m3_complete": false,
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

@@ -1,0 +1,79 @@
+{
+  "milestone": "M4 measurement audit CPU, partial",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "working_tree": "uncommitted local candidate; no public push",
+  "tests_passed": 101,
+  "new_audit_tests": 13,
+  "test_seconds": 37.924,
+  "test_command": "generated/contract-install-venv/Scripts/python.exe -X utf8 -m unittest discover -s tests -v",
+  "test_exit_code": 0,
+  "installed_source_matches": true,
+  "installed_module": "[private-local-path]",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "wheel_sha256": "5d1447ab79b1f179594aec16c273e208d99281715373af6c333d0f0a1f113539",
+  "wheel_bytes": 136902,
+  "source_sha256": {
+    "src\\koevd_eval\\measurement_audit.py": "6a9f25eabfc5cffc42081f234282f22b9bf715a1da54401b0c8f591a23cca496",
+    "tests\\test_measurement_audit.py": "f213380c51b02c465af5a741e589f0fe5e519a9b824041b6b0d96eed7bb43a17",
+    "pyproject.toml": "b92fcc2f50ad6836a983fb02e0334f80b44cfc5be2df14512ccd9ae3b70af2b8"
+  },
+  "cli_evidence_path": "generated/audit-cli-20261008/CLI-evidence.json",
+  "cli_evidence_sha256": "d421809b1deb2cb3cd333fe849c70bea9b046bec1ec6979629b34376c07cae47",
+  "cli_counts": {
+    "universe_sources": 80,
+    "audit_case_sources": 20,
+    "semantic_changes": 1,
+    "jointly_valid": 73,
+    "validity_changes": 1,
+    "raw_output_comparable": 0,
+    "stale_review_exit_code": 2,
+    "stale_review_wrote_output": false,
+    "baseline_fixture_reconstructed_equal": true
+  },
+  "scale_evidence_path": "generated/audit-full-scale-20261008/scale-evidence.json",
+  "scale_evidence_sha256": "dd22916b5792c3049037722dcef00ba402382000655367f8e6bfecf12f28405d",
+  "scale": {
+    "fixture_only": true,
+    "gpu_inference": false,
+    "human_annotation_occurred": false,
+    "records": 17670,
+    "task3_sources": 2659,
+    "valid_safety": 2587,
+    "selected_sources": 100,
+    "registered_index_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+    "audit_sha256": "3510be010c21775c0c591f6585f4f7c721c366aefeac445cea255772d8ec02e0",
+    "suspects_present": [
+      "new_template3_1st_05104",
+      "new_template3_1st_05843",
+      "new_template3_1st_13794"
+    ],
+    "suspects_missing": [],
+    "create_validate_write_seconds": 40.638955199858174,
+    "rank_eligible": false,
+    "source_fixture_cases_file_sha256": "09cfeed5cce7bfb01f391061be5b4be59a70e619a71215094c4f602a3f104a84"
+  },
+  "test_scope": "CPU synthetic responses and synthetic review decisions; original scorer/parser and existing service tests preserved.",
+  "implemented": [
+    "frozen-response measurement variants",
+    "semantic/raw-presence/validity denominators",
+    "deterministic prioritized metadata-round-robin selection",
+    "blinded reviewer files",
+    "bound independent review import with stale/tamper rejection"
+  ],
+  "known_limitations": [
+    "No actual classifier inference in audit module",
+    "Observed input order/tokenization/dtype/truncation need GPU logs",
+    "Reviewer identity self-reported",
+    "No adjudication/conflict-resolution import yet",
+    "Selected reviews are not representative accuracy evidence",
+    "Existing Starlette TestClient httpx deprecation warning observed"
+  ],
+  "gpu_inference": false,
+  "human_annotation_occurred": false,
+  "measurement_accuracy_established": false,
+  "m4_complete": false,
+  "whole_goal_complete": false,
+  "published": false,
+  "official_rank_eligible": false,
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

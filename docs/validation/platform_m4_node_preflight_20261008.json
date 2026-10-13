@@ -1,0 +1,90 @@
+{
+  "format": "koevd-platform-node-preflight-v1",
+  "observed_utc": "2026-10-08T06:51:36.628661+00:00",
+  "node": "GPU_NODE",
+  "remote_root": "[private-node-path]",
+  "source": {
+    "verified_source_integrity": true,
+    "zip_sha256": "0cbccf73f3a363dde8aae50df9cc7a1be5b514d03285fec478551c2cf8c1bdf2",
+    "source_files": 131,
+    "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+    "source_path": "[private-node-path]",
+    "gpu_inference_verified": false
+  },
+  "measurement_runtime": {
+    "scope": "real_cuda_bfloat16_kernel_and_import_probe_not_target_model_validation",
+    "gpu_uuid": "GPU-6e6eae12-0d8b-efc1-d7da-33c239882473",
+    "device_name": "NVIDIA B300 SXM6 AC",
+    "capability": [
+      10,
+      3
+    ],
+    "torch_cuda": "13.0",
+    "packages": {
+      "torch": "2.9.1+cu130",
+      "transformers": "5.8.1",
+      "peft": "0.18.0",
+      "accelerate": "1.15.0",
+      "huggingface-hub": "1.31.0",
+      "koevd-eval": "0.2.0"
+    },
+    "koevd_module": "[private-node-path]",
+    "kernel_value": 32768.0,
+    "expected_value": 32768.0,
+    "elapsed_seconds": 56.881710942834616,
+    "peak_allocated_bytes": 8524288,
+    "target_models_evaluated": 0
+  },
+  "linux_cpu": {
+    "tests_run": 189,
+    "passed": 188,
+    "skipped": 1,
+    "unittest_seconds": 23.364,
+    "scope": "installed_linux_cpu_regression_not_gpu_inference",
+    "argv": [
+      "[private-node-path]",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 24.42528588976711,
+    "skip_reason": "Optional Node presentation-helper parity check; Node not on PATH"
+  },
+  "active_preparation_at_observation": [
+    {
+      "exec_session": 75701,
+      "remote_bootstrap_pid": 26332,
+      "remote_uv_pid": 27711,
+      "stage": "install-serve"
+    },
+    {
+      "exec_session": 19798,
+      "remote_artifact_pid": 27859,
+      "stage": "pinned artifact preparation"
+    }
+  ],
+  "actual_target_models_evaluated": 0,
+  "actual_hf_oauth_verified": false,
+  "official_rank_eligible": false,
+  "pending": [
+    "vLLM install/dependency check/runtime acceptance",
+    "all pinned artifact bytes verified",
+    "two actual target generation-measurement-export-report-comparison",
+    "Spaces numeric/UI acceptance",
+    "measurement condition variants",
+    "full-core scope",
+    "human adjudication",
+    "official receipt/policy/remote storage/deployment"
+  ],
+  "control_scripts": {
+    "probe_gpu_node.py": "9b0a95d448f0e094a9804c1847d4c85d7cd807e9aed1726aaf075fed0bd76428",
+    "bootstrap_gpu_validation.py": "3680bfbed2c0ea8d4d116c39b8e669ff1d715bec617ca9ce6e1c2b8f6e663219",
+    "prepare_gpu_artifacts.py": "89c69d951ac10f02d2ec612885cbd40f869c97a8c73ad9eadee8420618d48db2",
+    "validate_gpu_pipeline.py": "6d1e6d9989dcb1ab3b5cec8f81bff04d85b8b249c6b247f1b707248d4d139e03"
+  },
+  "public_copy_note": "Private local/node paths and workstation identifiers were redacted. Evidence hashes refer to preserved original private files; this public summary is not their byte-identical copy."
+}

@@ -1,0 +1,66 @@
+{
+  "format": "koevd-release-source-hygiene-v1",
+  "date_kst": "2026-10-11",
+  "plan_version": "0.40",
+  "head": "cfb79006a6471ecd3ce89c0bad8a98e85c8a75fb",
+  "dirty_entries_before": 168,
+  "previous_goal_turn_classification": "progress: explicit public OAuth mode/full310 install/refreshed server candidate",
+  "current_goal_turn_classification": "progress: source bundle build-metadata boundary fixed,7 scoped tests and exact candidate/source acceptance",
+  "change": "Exclude generated .egg-info/.dist-info directories from source collection, without deleting local files or rejecting historical bundles",
+  "removed_build_metadata_paths": [
+    "src/koevd_eval.egg-info/SOURCES.txt",
+    "src/koevd_eval.egg-info/dependency_links.txt",
+    "src/koevd_eval.egg-info/entry_points.txt",
+    "src/koevd_eval.egg-info/requires.txt",
+    "src/koevd_eval.egg-info/top_level.txt"
+  ],
+  "original_metadata_sha256": {
+    "src/koevd_eval.egg-info/SOURCES.txt": "5b675ab140c948026870f13a2639346fca69cc89711f50e8105decff5ee305af",
+    "src/koevd_eval.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/koevd_eval.egg-info/entry_points.txt": "a9e040303fadff16c8484a715f742f419f57f7fca473ed0db350c549d9b9144e",
+    "src/koevd_eval.egg-info/requires.txt": "961876b5a30071d6c63d0939cf27b3bbb40182bb8912e4ea97e115d83c142ca8",
+    "src/koevd_eval.egg-info/top_level.txt": "71b97591735bb777769a8b2ed46b54d05fb5ad50f88823581c9eabf52251e906"
+  },
+  "new_source_inventory_contains_no_build_metadata": true,
+  "tests": {
+    "scoped_tests": 7,
+    "new_tests": 1,
+    "errors": 0,
+    "failures": 0,
+    "skips": 0,
+    "seconds": 0.369,
+    "log_path": "generated/source-hygiene-20261011-v61/unittest.log",
+    "log_sha256": "782d37a385b92e515fece9f85f1126c27ad2ec6a9b28e73c99bf905cefa5f868",
+    "prior_full_suite_tests": 310,
+    "full311_suite_claimed": false,
+    "command": "generated/public-oauth-package-20261011-v60/env/Scripts/python.exe -m unittest discover -s tests -p test_gpu_source_bundle.py -v"
+  },
+  "changed_source_sha256": {
+    "scripts/gpu_source_bundle.py": "6a75d4ad470091b01d3f234cc16075d7efd57fc9fbbf2e39d34df7faef79fc82",
+    "tests/test_gpu_source_bundle.py": "0d91d4f3751fd25ff8343f1007a18afdbe3f42a11f74cffcb8a590cc433ac02c"
+  },
+  "installed_core_assets_unchanged_and_exact": 50,
+  "wheel_sha256": "16de531ce00b74cfa087483384ed30f07015295177fa6b1f78f27f35cda07db3",
+  "server_candidate_unchanged_and_exact_files": 64,
+  "static_engine_unchanged_and_exact_files": 19,
+  "actual_full_two_target_original_result_sha256": {
+    "Qwen3-8B": "27a4dea555208658133b7713f4f24938cf4e8b8cde23bb1e2003028692ba5a99",
+    "Qwen3-4B": "d136bf925164a6604e99da65f8e604541f0236a69d2bfe6479c9549daf293cf1"
+  },
+  "prior_actual_GPU_terminal13_stages_preserved": true,
+  "hosted_evidence_digest_current": true,
+  "actual_registered_OAuth_app": "client ID/secret absent; updated secretless-app question pending",
+  "existing_public_reference_approval": false,
+  "new_external_execution_or_posting": false,
+  "new_actual_GPU_inference": false,
+  "new_container_or_cloud_acceptance": false,
+  "remaining": [
+    "registered OAuth app/account callback verification",
+    "approved actual public references",
+    "independent operator/policy/publication/recovery decisions",
+    "private cloud durability verification",
+    "actual server container runtime",
+    "HF Hub parent complete file-analysis-download flow"
+  ],
+  "goal_status": "active; incomplete; original M0-M6 scope preserved"
+}
