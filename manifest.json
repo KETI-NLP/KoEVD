@@ -100,8 +100,8 @@
     },
     {
       "path": "apps/spaces/public_launch.py",
-      "bytes": 5964,
-      "sha256": "20c3c7a5677ffb7a4b80fc46de5d0e70fb1bd2cf05992b80a7e22a00682af5be"
+      "bytes": 6296,
+      "sha256": "465b26fd3e49d696e8472cdb3c629e7ffae9571e57ea15e531fb83a733d8383c"
     },
     {
       "path": "apps/spaces/requirements.lock.txt",
@@ -1520,8 +1520,8 @@
     },
     {
       "path": "tests/test_public_reference_assets.py",
-      "bytes": 3765,
-      "sha256": "328700521b643a14ccf8a6bc2ef2adaf36ba0429e327fae7117ecd4b771d0128"
+      "bytes": 4951,
+      "sha256": "4a570518d50c40925721acd1e48d538b6dca03e140664089579d90d18f793676"
     },
     {
       "path": "tests/test_public_static_hosting.py",
