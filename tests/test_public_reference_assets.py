@@ -66,3 +66,22 @@ class PublicReferenceAssetTests(unittest.TestCase):
         with patch.dict('os.environ',{'SPACE_HOST':'keti-nlp-koevd-platform.hf.space'},clear=True):
             with self.assertRaisesRegex(ValueError,'read-only Bucket-scoped'):
                 public_launch.main()
+
+    def test_startup_error_logs_only_class_and_integer_status(self):
+        from unittest.mock import patch
+        class TransportError(Exception):
+            response=SimpleNamespace(status_code=404)
+        error=TransportError('secret-value https://private.example/?token=secret-value')
+        with patch.dict('os.environ',{'SPACE_HOST':'keti-nlp-koevd-platform.hf.space',
+                                    'KOEVD_REFERENCE_TOKEN':'secret-value'},clear=True), \
+             patch('huggingface_hub.HfApi') as api, \
+             patch.object(public_launch,'pinned_reference_assets',side_effect=error):
+            with self.assertRaises(ValueError) as caught:
+                public_launch.main()
+            self.assertEqual(str(caught.exception),
+                'Pinned private reference initialization failed (TransportError; HTTP 404)')
+            self.assertNotIn('secret-value',str(caught.exception))
+            self.assertIsNone(caught.exception.__cause__)
+            api.assert_called_once_with(token='secret-value')
+            import os
+            self.assertNotIn('KOEVD_REFERENCE_TOKEN',os.environ)

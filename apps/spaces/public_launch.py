@@ -63,8 +63,12 @@ def main():
     try:
         references=pinned_reference_assets(root/'operator-data/reference-assets.json',
                                            '/tmp/koevd-pinned-references',api=HfApi(token=token))
-    except Exception:
-        raise ValueError('Pinned private reference initialization failed') from None
+    except Exception as exc:
+        # Report only the exception class and integer HTTP status; messages,
+        # URLs, response bodies and credentials must never enter startup logs.
+        status=getattr(getattr(exc,'response',None),'status_code',None)
+        suffix=f'; HTTP {status}' if type(status) is int else ''
+        raise ValueError(f'Pinned private reference initialization failed ({type(exc).__name__}{suffix})') from None
     finally:
         token=None
     for key in list(os.environ):
