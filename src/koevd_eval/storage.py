@@ -33,6 +33,28 @@ def token(value, name):
     return value
 
 
+def _operational_failure(exc):
+    """Classify known SQLite failures on supported Python 3.10 and newer.
+
+    Python exposes sqlite_errorcode and SQLITE_* result constants from 3.11.
+    Prefer the numeric primary result when present; on legacy wrappers use only
+    exact SQLite messages. Unknown errors keep their original exception type.
+    """
+    raw_code = getattr(exc, 'sqlite_errorcode', None)
+    if type(raw_code) is int:
+        code = raw_code & 255
+        busy, full = code in (5, 6), code == 13
+    else:
+        message = str(exc).partition(':')[0].strip().lower()
+        busy = message in ('database is locked', 'database table is locked', 'database schema is locked')
+        full = message == 'database or disk is full'
+    if busy:
+        return ('store_busy', 'Store is busy; retry the same idempotency key', 503)
+    if full:
+        return ('store_capacity', 'Submission database capacity reached', 507)
+    return None
+
+
 class LocalSubmissionStore:
     """One atomic artifact/revision/event/state/request transaction per operation.
 
@@ -111,11 +133,9 @@ class LocalSubmissionStore:
             if db.in_transaction: db.commit()
         except sqlite3.OperationalError as exc:
             if db.in_transaction: db.rollback()
-            code = getattr(exc, 'sqlite_errorcode', 0) & 255
-            if code in (sqlite3.SQLITE_BUSY, sqlite3.SQLITE_LOCKED):
-                raise StorageError('store_busy', 'Store is busy; retry the same idempotency key', 503) from exc
-            if code == sqlite3.SQLITE_FULL:
-                raise StorageError('store_capacity', 'Submission database capacity reached', 507) from exc
+            failure = _operational_failure(exc)
+            if failure:
+                raise StorageError(*failure) from exc
             raise
         except BaseException:
             if db.in_transaction: db.rollback()
