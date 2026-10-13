@@ -1520,8 +1520,8 @@
     },
     {
       "path": "tests/test_public_reference_assets.py",
-      "bytes": 4891,
-      "sha256": "8d48809fe3add2a853a0dcfade419c94a91debcfbe12d01099d88c7c4a163ec5"
+      "bytes": 4951,
+      "sha256": "4a570518d50c40925721acd1e48d538b6dca03e140664089579d90d18f793676"
     },
     {
       "path": "tests/test_public_static_hosting.py",

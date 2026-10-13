@@ -68,13 +68,14 @@ class PublicReferenceAssetTests(unittest.TestCase):
                 public_launch.main()
 
     def test_startup_error_logs_only_class_and_integer_status(self):
-        from unittest.mock import patch
+        from unittest.mock import Mock, patch
+        api=Mock()
         class TransportError(Exception):
             response=SimpleNamespace(status_code=404)
         error=TransportError('secret-value https://private.example/?token=secret-value')
         with patch.dict('os.environ',{'SPACE_HOST':'keti-nlp-koevd-platform.hf.space',
                                     'KOEVD_REFERENCE_TOKEN':'secret-value'},clear=True), \
-             patch('huggingface_hub.HfApi') as api, \
+             patch.dict('sys.modules',{'huggingface_hub':SimpleNamespace(HfApi=api)}), \
              patch.object(public_launch,'pinned_reference_assets',side_effect=error):
             with self.assertRaises(ValueError) as caught:
                 public_launch.main()
