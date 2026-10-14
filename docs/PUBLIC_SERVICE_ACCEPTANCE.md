@@ -9,7 +9,7 @@ regression evidence; they do not prove registered-service completion.
 | G2 | Model/run metadata and separate display name | Owner display metadata API/UI implemented; model profile integration pending |
 | G3 | Actual HF identity, persisted registration and URL | Missing in production |
 | G4 | Explicit summary/response scope and publication state | Consented numerical summary path and reviewed response upgrade tested locally; hosted evidence missing |
-| G5 | Re-login and restart preserve acknowledged originals/history | Local acknowledged checkpoint/restore tests passed; actual HF durability/re-login missing |
+| G5 | Re-login and restart preserve acknowledged originals/history | Local conditional remote-double/CLI restore checks passed; actual HF durability/re-login missing |
 | G6 | Independent public reader; private data denied | Beta isolation only |
 | G7 | Two actual-model public profiles and paired comparison | Two full actual results passed local registered API comparison; actual hosted pair still pending |
 | G8 | CLI/profile/board/download numerical agreement | Local actual point estimates/denominators match independent reports; hosted agreement/downloads pending |
@@ -82,3 +82,20 @@ comparison, not relabeled as matching. No official rank, raw case publication,
 new GPU inference, HF transfer, hosted identity or remote durability was claimed.
 See actual-reference-receipt.json and actual-reference-board-receipt.json in the
 same private evidence directory. Operator-local test ownership is not HF login.
+
+## Conditional state adapter checkpoint
+
+Sixteen conditional-object fixture tests and three CLI assembly scenarios passed.
+They verify confirmed originals/history, exact retry after lost response,
+withdrawal fencing of an older instance, corruption/refusal, quota/initialization
+guards and explicit dedicated credentials. The optional local boto3 SDK model
+supports If-Match/If-None-Match; no real request was sent. This is not actual HF
+durability, OAuth login or a deployed registered runtime. Frozen regression
+receipts are retained separately in generated/public-service-20261014-v6/.
+
+Final frozen source passed **438 CPU tests** in 175.546 seconds. The receipt and
+source hashes are in generated/public-service-20261014-v7/. The HF metadata
+endpoint is fixed independently of HF_ENDPOINT; S3 uses the fixed HF namespace
+gateway and explicit dedicated credentials. The earlier v6 run passed 438 tests
+before that endpoint guard and remains earlier-scope evidence. G1–G12 hosted
+acceptance is still incomplete; no source-only success is a durability certificate.

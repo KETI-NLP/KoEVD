@@ -118,3 +118,25 @@ stored board metric rows matched registered admission reports. Public summaries
 use zero bootstrap resamples versus the oracle's 100; intervals were excluded
 explicitly from the point comparison. This proves local actual-data integration,
 not hosted HF identity/durability, new generation or classifier accuracy.
+
+## Conditional remote state candidate
+
+`remote_durability.py` adds dedicated private HF/S3 object access and a conditional
+HEAD ledger. Objects are read back before HEAD, exact replay reconciles a lost
+HEAD response, live reads are fenced against newer authority, and a fresh runtime
+restores the acknowledged SQL cut while preserving divergent existing directories.
+The `koevd-space` CLI can select this sink with explicit state/initialization flags
+and dedicated server Secrets. Old filesystem and periodic-backup paths are intact.
+
+Sixteen local object-store tests and three CLI assembly checks passed, covering
+checkpoint failure/replay, stale reads/writes after withdrawal, byte corruption,
+private target checks, quota, orphan initialization and no cached administrator
+credential fallback. Local boto3 1.43.113 exposes both conditional PUT fields;
+that SDK model check sent no requests. Full frozen-source CPU regression is
+recorded in generated/public-service-20261014-v6/.
+
+The production launcher still runs the anonymous beta. Registered launcher/
+Docker assembly, actual scoped S3 tests, native hosted OAuth and restart/restore
+must still be completed. No Bucket/Secret creation or actual HF/S3 state transfer
+occurred. Follow ACKNOWLEDGED_STORAGE_GUIDE.md for the candidate contract and
+future concrete approval/credential scope.

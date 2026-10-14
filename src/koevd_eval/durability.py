@@ -261,6 +261,10 @@ class AcknowledgedSubmissionStore(LocalSubmissionStore):
         with self._lock:
             if self._ready and not self._checkpointing:
                 self._confirm()
+                fence = getattr(self.sink, 'check_current', None)
+                if callable(fence):
+                    # A second server must not expose an older publication cut.
+                    fence(self.last_checkpoint)
             with super().connection(write=write) as db:
                 before = db.total_changes
                 yield db

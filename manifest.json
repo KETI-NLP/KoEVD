@@ -149,6 +149,11 @@
       "sha256": "ba76f799d674cfdeb732c38269fc60cec5a0d11ca0be2254c4be39ad89d46569"
     },
     {
+      "path": "docs/ACKNOWLEDGED_STORAGE_GUIDE.md",
+      "bytes": 6579,
+      "sha256": "9accd017b12692fbc34c4daed0d01aac24c725ea93e52c0c95cf72040654d824"
+    },
+    {
       "path": "docs/ACTUAL_REFERENCE_CANDIDATE.md",
       "bytes": 2910,
       "sha256": "4a70fbc137d1a44751430305e7ac888c27bbc7074d7258ee25bfc7d506f9e0ff"
@@ -305,13 +310,13 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 5711,
-      "sha256": "94ba07e2771d41bd438a46a41433014e0cd5aed8c111e3413f4efe5d6bf9809a"
+      "bytes": 6788,
+      "sha256": "4f802c4dcb280c920d3c83c154fae3a60a144acb08e5d256cdf42f3c1ccb7384"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
-      "bytes": 7206,
-      "sha256": "ca09b7742a2a9c2f641ab80ce202c51735f5ff304ca3d742adbbe7ffeab9623a"
+      "bytes": 8550,
+      "sha256": "8a3a8f356d3628c05c4f020e5cfd610db92c126d3905a6ee93d9feda0d874175"
     },
     {
       "path": "docs/RANK_ADMISSION_GUIDE.md",
@@ -865,8 +870,8 @@
     },
     {
       "path": "pyproject.toml",
-      "bytes": 1758,
-      "sha256": "3d2ef0ada8a3285ece339b17efb4197492eb3ba442641b9a5f1cc89a4d6a0cbe"
+      "bytes": 1776,
+      "sha256": "f14e6d8445f6081c0168b578c30589df83bb25a4e435ccf7e33ce57dc3b41111"
     },
     {
       "path": "reproduction/task1_metadata_v1/README.md",
@@ -1240,8 +1245,8 @@
     },
     {
       "path": "src/koevd_eval/durability.py",
-      "bytes": 14244,
-      "sha256": "c975ac836be2678455a887a6a7fb6c3edd7b239382e665ee649aa4fed4977739"
+      "bytes": 14474,
+      "sha256": "8a3a2107e9accd595ceac10b06ebe759733d5770b2b108d2e3bee8909a75a214"
     },
     {
       "path": "src/koevd_eval/eligibility.py",
@@ -1339,6 +1344,11 @@
       "sha256": "1fc2a85d10884538ed13e718be176ad8ffdf01dbc84e3644bc52699e01f8320d"
     },
     {
+      "path": "src/koevd_eval/remote_durability.py",
+      "bytes": 13707,
+      "sha256": "e6e087a14ddea10fa8965c7fa26caac7f7d9be3a8483402b617aca86630ea11c"
+    },
+    {
       "path": "src/koevd_eval/reports.py",
       "bytes": 3280,
       "sha256": "c8826063fc75d7c2486f7dd13d3b320dd151332b5e998ddb0276cf3c012de6f9"
@@ -1385,8 +1395,8 @@
     },
     {
       "path": "src/koevd_eval/spaces.py",
-      "bytes": 16788,
-      "sha256": "15d1b9c021609ff5c7902fb77570d43d7ed12f21f6ec02c6de9309d59bc1d0f6"
+      "bytes": 18316,
+      "sha256": "73491f7fa5baae5ef588e76d5f5b58187468361a4baf35c9e8e388f6bb77ca3e"
     },
     {
       "path": "src/koevd_eval/storage.py",
@@ -1582,6 +1592,16 @@
       "path": "tests/test_recovery.py",
       "bytes": 13527,
       "sha256": "3001ea292f9ad79b95d2195c52f89a6d888ff35053c82174b6e8a9174cf504d1"
+    },
+    {
+      "path": "tests/test_remote_durability.py",
+      "bytes": 11799,
+      "sha256": "385f2942c10d1e9cf052f8c19a878ccaf964052dff5d66afb4b64c83d1bc3747"
+    },
+    {
+      "path": "tests/test_remote_state_cli.py",
+      "bytes": 4042,
+      "sha256": "39799b2e59b51a42c2d7f78ea2789bd9d9a8b4917785b34dace7ef053582d744"
     },
     {
       "path": "tests/test_reports.py",

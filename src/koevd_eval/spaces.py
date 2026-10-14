@@ -202,6 +202,11 @@ def main():
     parser.add_argument('--submission-root',default=os.environ.get('KOEVD_SUBMISSION_ROOT'))
     parser.add_argument('--checkpoint-root',default=os.environ.get('KOEVD_CHECKPOINT_ROOT'),
                         help='Separate retained filesystem ledger: confirm each mutation before success; not an HF Bucket')
+    parser.add_argument('--state-bucket',default=os.environ.get('KOEVD_STATE_BUCKET'),
+                        help='Explicit existing private HF Bucket for conditional acknowledged state; dedicated S3 secrets required')
+    parser.add_argument('--state-prefix',default='koevd-state-v1')
+    parser.add_argument('--initialize-state',action='store_true',
+                        help='Explicitly permit a verified empty remote namespace; never overwrite an existing cut')
     parser.add_argument('--self-reported-summaries',action='store_true',
                         help='Allow owners to explicitly publish numerical summaries; no response review or official rank implied')
     parser.add_argument('--roles-file',default=os.environ.get('KOEVD_ROLES_FILE'))
@@ -247,7 +252,19 @@ def main():
             registry=ProtocolRegistry(args.protocol_registry) if args.protocol_registry else None
             from .policy_decisions import configured_policy
             policy=configured_policy(args.policy_root,args.policy_head_sha256)
-            if args.checkpoint_root:
+            if args.checkpoint_root and args.state_bucket:
+                parser.error('Select either retained filesystem or remote state checkpoints')
+            if args.state_bucket:
+                from .remote_durability import HFS3StateObjects,RemoteCheckpointLedger,open_acknowledged_store
+                objects=HFS3StateObjects.from_secrets(args.state_bucket,
+                    hf_token=os.environ.get('KOEVD_STATE_TOKEN',''),
+                    access_key_id=os.environ.get('KOEVD_STATE_ACCESS_KEY_ID',''),
+                    secret_access_key=os.environ.get('KOEVD_STATE_SECRET_ACCESS_KEY',''))
+                ledger=RemoteCheckpointLedger(objects,prefix=args.state_prefix,initialize_empty=args.initialize_state)
+                store=open_acknowledged_store(args.submission_root,ledger)
+            elif args.initialize_state or args.state_prefix!='koevd-state-v1':
+                parser.error('Remote initialization/prefix requires --state-bucket')
+            elif args.checkpoint_root:
                 from .durability import AcknowledgedSubmissionStore, FileCheckpointLedger
                 ledger=FileCheckpointLedger(args.checkpoint_root)
                 # Restore is an explicit operator action, not silent empty initialization.
@@ -257,7 +274,7 @@ def main():
             persistent=SubmissionService(store,{k:v['index'] for k,v in catalog.indexes.items()},registry=registry,rank_policy=policy,
                                          allow_self_reported_summaries=args.self_reported_summaries,**roles)
             registration=RegistrationWeb(persistent,identities)
-        elif args.self_reported_summaries or args.checkpoint_root or args.roles_file or args.oauth_origin or args.protocol_registry or args.policy_root or args.policy_head_sha256 or args.oauth_client_type!='confidential':parser.error('OAuth/roles/admission configuration requires --submission-root')
+        elif args.self_reported_summaries or args.checkpoint_root or args.state_bucket or args.initialize_state or args.state_prefix!='koevd-state-v1' or args.roles_file or args.oauth_origin or args.protocol_registry or args.policy_root or args.policy_head_sha256 or args.oauth_client_type!='confidential':parser.error('OAuth/roles/admission configuration requires --submission-root')
         import uvicorn
         app=create_app(service,origins=origins,frame_ancestors=("'self'",'https://huggingface.co'),registration=registration,
                        deployment_notice=os.environ.get('KOEVD_DEPLOYMENT_NOTICE'))
