@@ -14,12 +14,14 @@ The production Space is public, RUNNING, CPU Basic, one replica at
 two exact references and anonymous-analysis acceptance remain intact.
 
 The registered candidate's implementation commit is
-`c447bfd6edc5fffed9cfb6c154c417a4b9df785c`. Its source-only private test preparation
-is `4bdf0cda2bb36a95033451cbdb827f34a5727d16`, PAUSED with activation/initialization
+`01e5d7edd3f7c718f1e046ac7ff2e6ca323dd16a`. Its source-only private test preparation
+is `71c010860056b6f80d13f8e1da7a4b92a3bbca4a`, PAUSED with activation/initialization
 0. Four required user-entered Secret names were absent on the latest read-only
 probe; scope approval and manual credential setup remain pending. Local backend
-regression passed 452 tests; subsequent frontend-only checks passed with 53
-synthetic publications at desktop/mobile widths. No actual HF login, state cut,
+regression reached 459 tests; final export formatting has separate seven-test
+and browser follow-up evidence. Search/pair choices passed with 53 synthetic
+publications, and retained actual numerical snapshots passed 15 exports.
+No actual HF login, state cut,
 restart acceptance or public registration deployment is claimed.
 
 ## Decisions and sequence
@@ -242,3 +244,11 @@ oracle, including CSV/JSONL denominators. The initial pretty JSON exceeded the
 cap for the pair; compact JSON fixed it without truncation or a larger quota.
 No live HF identity, data write/restore or production registration is claimed.
 Usage/units are in PUBLIC_NUMERICAL_REPORT_GUIDE.md; detailed scope is in v14–v16.
+
+The final export implementation's three code files plus checksum manifest
+(68,382 bytes) are prepared at private revision
+71c010860056b6f80d13f8e1da7a4b92a3bbca4a. Source parent/current revision, PAUSED,
+private and activation/initialization 0 were checked. No originals, snapshots,
+new inputs or credentials were transmitted. The latest metadata-only readiness
+probe still found all four required data Secret names absent; manual setup and
+finite-trial approval remain pending.

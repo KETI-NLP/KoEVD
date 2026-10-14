@@ -12,11 +12,11 @@ regression evidence; they do not prove registered-service completion.
 | G5 | Re-login and restart preserve acknowledged originals/history | Local conditional remote-double/CLI restore checks passed; actual HF durability/re-login missing |
 | G6 | Independent public reader; private data denied | Local candidate anonymous profile/pair and private-session access tests passed; independent hosted reader pending |
 | G7 | Two actual-model public profiles and paired comparison | Two full actual results passed local registered API comparison; actual hosted pair still pending |
-| G8 | CLI/profile/board/download numerical agreement | Local actual point estimates/denominators match independent reports; hosted agreement/downloads pending |
+| G8 | CLI/profile/board/download numerical agreement | Local actual point values/denominators and 15 numerical exports match; hosted registered downloads remain pending |
 | G9 | Duplicate, invalid, incompatible, concurrent and failed writes | Local replay/failure/copy/quota/conflict checks passed; new hosted integration required |
 | G10 | Withdrawal removes all current public projections | Local cache/race and failed-refresh clearing checks passed; actual hosted withdrawal/restart pending |
 | G11 | Actual retained storage, recovery, capacity, responsive UI | Local bounded storage and desktop/mobile checks; private HF source paused, actual storage/capacity/restore pending |
-| G12 | Matching public code/runtime and current user documentation | Private code prepared at 4bdf0cda; production remains beta, final public registered release pending |
+| G12 | Matching public code/runtime and current user documentation | Private code prepared at 71c01086; production remains beta, final public registered release pending |
 
 Record commands, exact source/revision, fixture versus actual scope, exit codes
 and artifact hashes here as evidence becomes available. Do not convert simulated
@@ -198,3 +198,12 @@ not compared. This is serializer/CPU evidence, not new inference, actual hosted
 registration, HF storage or public G1–G12 acceptance. See v14/v15/v16 receipts and
 PUBLIC_NUMERICAL_REPORT_GUIDE.md. Actual native identity/state/restart gates remain
 pending manual scoped Secrets and the separately requested finite trial approval.
+
+Final source-only preparation is at private revision
+71c010860056b6f80d13f8e1da7a4b92a3bbca4a, matching implementation commit
+01e5d7edd3f7c718f1e046ac7ff2e6ca323dd16a for materialized code. Only three source
+files and checksum manifest (68,382 bytes) changed. The Space remains PAUSED,
+private, activation/initialization 0. The metadata-only readiness probe before
+preparation showed all four required data Secrets absent and production unchanged.
+No original data, state writes or native HF login occurred. See v16's prepared
+context, final-validation-receipt.json and hf-code-update-receipt.json.
