@@ -65,3 +65,21 @@ is relabeled as a pass.
 
 No deployment, paid resource, token change or new original-result transmission
 has occurred for this goal. Historical bounded test approvals are not reused.
+
+## Numerical profile implementation
+
+Public summaries and `/api/public/submissions/{id}/profile` now expose the shared
+engine's numerical partitions, metadata groups, charts, strategy distributions,
+quality counts and signals. A bounded disposable memory cache binds artifact,
+index, analysis/admission/projection versions, rank policy, registry definitions
+and active evidence. Current publication, version, recovery and policy checks
+still run before and after cache access. Display metadata is read from current
+state rather than cached. Cached projections contain no raw cases, prompts,
+responses, run/request identifiers or disagreement source identities.
+
+Nine new CPU tests cover metric preservation, cache concurrency/failure/size,
+metadata refresh, policy invalidation and withdrawal including a warm-cache
+race. Public profile HTTP checks were added to the existing registration fixture.
+Cache entries can be regenerated after restart; they are not the durable store.
+Board aggregation still needs conversion from repeated raw analysis, and public
+profile rendering, public paired comparisons and hosted acceptance remain open.

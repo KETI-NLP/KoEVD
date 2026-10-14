@@ -10,8 +10,9 @@ from datetime import datetime, timezone
 import json
 import uuid
 
-from .diagnostics import analyze
-from .eligibility import RankPolicy, evaluate_admission, leaderboard
+from .diagnostics import VERSION as ANALYSIS_VERSION, analyze
+from .profile_cache import NumericalProfileCache, numerical_profile
+from .eligibility import VERSION as ADMISSION_VERSION, RankPolicy, evaluate_admission, leaderboard
 from .generation_receipts import active_evidence, validate_receipt
 from .results import canonical_hash, validate_index, validate_results
 from .storage import LocalSubmissionStore, StorageError, encode, token
@@ -79,6 +80,7 @@ class SubmissionService:
         if type(allow_self_reported_summaries) is not bool:
             raise ValueError('Summary publication must be explicit operator configuration')
         self.allow_self_reported_summaries = allow_self_reported_summaries
+        self.profile_cache = NumericalProfileCache()
         store.register_indexes({name:index['content_sha256'] for name,index in self.indexes.items()})
 
     def _index(self, name):
@@ -367,26 +369,45 @@ class SubmissionService:
             document = self._result(db,state,state['publication']['revision'])
             evidence = active_evidence(events,state['publication']['revision'],document,self._index(state['index_id']))
         # CPU analysis must not hold the DB read lock and delay a withdrawal commit.
-        profile = analyze(document,self._index(state['index_id']),resamples=0)
-        admission = evaluate_admission(document,self._index(state['index_id']),evidence=evidence,
-                                       registry=registry,policy=policy)
+        index = self._index(state['index_id'])
+        registry_hash = canonical_hash(registry.definitions) if registry is not None else None
+        identity = {'artifact':document['content_sha256'], 'index':index['content_sha256'],
+                    'analysis':ANALYSIS_VERSION, 'admission':ADMISSION_VERSION, 'policy':policy.sha256,
+                    'registry':registry_hash, 'evidence':evidence.receipt_sha256 if evidence else None,
+                    'resamples':0, 'seed':1729}
+        def compute():
+            return {'profile':numerical_profile(analyze(document,index,resamples=0)),
+                    'admission':evaluate_admission(document,index,evidence=evidence,
+                                                   registry=registry,policy=policy)}
+        cached = self.profile_cache.get_or_compute(identity,compute)
+        profile, admission = cached['profile'], cached['admission']
         with self.store.connection() as db:
             current,_ = self.store.state(db,submission); self._public(current)
             self._recovery_ready(db,policy)
             if (current['publication'] != state['publication'] or current['version'] != state['version']
-                    or self.rank_policy!=policy or self.registry is not registry):
+                    or self.rank_policy!=policy or self.registry is not registry
+                    or self._index(state['index_id'])['content_sha256'] != index['content_sha256']
+                    or (canonical_hash(registry.definitions) if registry is not None else None) != registry_hash):
                 raise StorageError('publication_changed','Published revision changed; retry the summary',409)
         verification = deepcopy(state['verification'])
         if evidence is not None:
             verification['generation'] = 'operator_reproduced' if evidence.execution_scope == 'actual_gpu' else 'cpu_fixture_only'
         return {'format':'koevd-public-candidate-summary-v1','submission_id':submission,
                 'revision':state['publication']['revision'],'scope':state['publication']['scope'],
-                'model':profile['run']['model'],'display':deepcopy(state.get('display')),
+                'model':deepcopy(document['run']['model']),'display':deepcopy(state.get('display')),
                 'protocol_sha256':canonical_hash(profile['protocol']),
                 'tasks':profile['tasks'],'task3_task5':profile['task3_task5'],'statistics':profile['statistics'],
+                'analysis':profile,'generation':deepcopy(document['run']['generation']),
                 'verification':verification,'official_rank_eligible':bool(admission['eligible_metric_ids']),
                 'rank_policy_status':admission['policy']['status'],'rank_admission':admission,
                 'publication_environment':'local_candidate'}
+
+    def public_profile(self, submission):
+        """Current public numerical analysis; summary scope never returns cases."""
+        # public_summary performs authoritative publication/recovery checks before
+        # and after scoring, including cache hits. Use its checked result as the
+        # response envelope rather than a second unchecked cache read.
+        return self.public_summary(submission)
 
     def _board_states(self, db):
         """Complete bounded public membership, never a page labeled as a rank."""

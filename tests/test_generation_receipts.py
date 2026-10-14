@@ -104,13 +104,24 @@ class GenerationReceiptTests(unittest.TestCase):
         self.assertFalse(summary['official_rank_eligible'])
         self.assertEqual(summary['rank_policy_status'],'candidate')
         self.assertEqual(summary['rank_admission']['operator_evidence_sha256'],canonical_hash(receipt))
+        original_cache=self.service.profile_cache.get_or_compute
+        def revoke_during_cache(*args,**kwargs):
+            result=original_cache(*args,**kwargs)
+            self.revoke(accepted,receipt)
+            return result
+        with patch.object(self.service.profile_cache,'get_or_compute',side_effect=revoke_during_cache):
+            self.base.assert_code('publication_changed',lambda:self.service.public_summary(state['id']))
+        self.assertIsNone(self.service.public_summary(state['id'])['rank_admission']['operator_evidence_sha256'])
+
+    def test_receipt_revocation_during_first_analysis_is_rechecked(self):
+        state=self.base.publish('summary');receipt=self.receipt();accepted=self.accept(state,receipt)
         original_analyze=submission_fixture.analyze
         def revoke_during_analysis(*args,**kwargs):
             self.revoke(accepted,receipt)
             return original_analyze(*args,**kwargs)
         with patch('koevd_eval.submissions.analyze',side_effect=revoke_during_analysis):
             self.base.assert_code('publication_changed',lambda:self.service.public_summary(state['id']))
-        self.assertIsNone(self.service.public_summary(state['id'])['rank_admission']['operator_evidence_sha256'])
+        self.assertEqual(self.service.public_summary(state['id'])['verification']['generation'],'user_reported')
 
     def test_new_revision_does_not_inherit_generation_receipt_and_withdrawal_is_terminal(self):
         state=self.base.create();accepted=self.accept(state)

@@ -31,3 +31,22 @@ command outcome and local fixture scope are retained in
 The actual HF login, remote checkpoint adapter, cached public profiles, reference
 intake, hosted recovery and production deployment remain unverified or missing.
 The full goal remains active and incomplete.
+
+## Numerical profile checkpoint
+
+Nine local CPU tests passed for bounded numerical caching, shared-engine metric
+preservation, display refresh, policy invalidation and withdrawal on a warm cache
+(including a withdrawal during a cache hit). The prior 20 submission and 8
+registration contract tests also passed before the final HTTP profile assertion
+and admission-version key additions. These are fixture/API evidence only.
+Public profile chart rendering and two-model paired comparison are still pending;
+G7, G8, G10 and G11 have not been proven on the hosted registered service.
+
+Final frozen source passed **410 CPU tests** in 160.489 seconds. The receipt,
+command and unchanged source hashes are retained in
+generated/public-service-20261014-v3/full-cpu-receipt.json.
+The earlier 409-test run had one obsolete race-injection failure and remains
+separately preserved in v2. Receipt revocation is now checked during both first
+analysis and a warm-cache read; neither check weakens rank or privacy rules.
+Read-only production probing still shows registration disabled at the original
+production revision. No registered-service hosted acceptance is claimed.

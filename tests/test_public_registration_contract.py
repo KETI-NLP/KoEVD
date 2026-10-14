@@ -150,3 +150,9 @@ class PublicRegistrationHTTPTests(unittest.TestCase):
         summary=self.other.get('/api/public/submissions/'+state['id']).json()
         self.assertFalse(summary['official_rank_eligible'])
         self.assertEqual(summary['scope'],'summary')
+        profile=self.other.get('/api/public/submissions/'+state['id']+'/profile')
+        self.assertEqual(profile.status_code,200,profile.text)
+        self.assertEqual(profile.json()['analysis']['tasks'],summary['tasks'])
+        self.assertNotIn('cases',profile.json()['analysis'])
+        # API fixture identity is fictional; this is not hosted OAuth evidence.
+        self.assertEqual(self.other.get('/api/public/submissions/not-a-submission/profile').status_code,404)

@@ -196,3 +196,6 @@ def install_routes(app, analysis, registration, *, allowed_origins, bounded_body
 
     @app.get('/api/public/submissions/{submission_id}/result')
     async def public_result(submission_id:str):return await invoke(submissions.public_result,submission_id)
+
+    @app.get('/api/public/submissions/{submission_id}/profile')
+    async def public_profile(submission_id:str):return await invoke(submissions.public_profile,submission_id)
