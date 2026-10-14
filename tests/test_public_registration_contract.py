@@ -125,6 +125,39 @@ class PublicRegistrationHTTPTests(unittest.TestCase):
     login=web_fixture.SubmissionHTTPTests.login
     headers=web_fixture.SubmissionHTTPTests.headers
 
+    def test_anonymous_http_pair_uses_summary_permissions_and_current_publications(self):
+        from koevd_eval.results import _seal
+        self.submissions.allow_self_reported_summaries=True
+        self.login(self.author,'SYNTHETIC-author')
+        states=[]
+        for number in range(2):
+            document=deepcopy(self.document)
+            document['run']['model']['id']='SYNTHETIC-run-'+str(number)
+            document=_seal({k:v for k,v in document.items() if k!='content_sha256'})
+            entry=self.upload(document)
+            response=self.author.post('/api/submissions',headers=self.headers(self.author),json={
+                'upload_id':entry['id'],'key':'pair-create-'+str(number),'display_name':'시험 모델 '+str(number)})
+            self.assertEqual(response.status_code,201,response.text)
+            state=response.json()
+            response=self.author.post('/api/submissions/'+state['id']+'/actions',
+                headers=self.headers(self.author,analysis=False),json={'name':'publish_summary',
+                'key':'pair-publish-'+str(number),'reason':'SYNTHETIC permission','expected_version':state['version'],'consent':CONSENT})
+            self.assertEqual(response.status_code,200,response.text);states.append(response.json())
+        url='/api/public/compare';params={'left':states[0]['id'],'right':states[1]['id']}
+        self.assertFalse(self.other.get('/api/identity').json()['signed_in'])
+        response=self.other.get(url,params=params)
+        self.assertEqual(response.status_code,200,response.text)
+        self.assertFalse(response.json()['raw_cases_included'])
+        self.assertEqual(response.json()['left']['display']['display_name'],'시험 모델 0')
+        self.assertEqual(self.other.get(url,params={'left':states[0]['id'],'right':states[0]['id']}).status_code,400)
+        self.assertEqual(self.other.get(url,params={'left':states[0]['id'],'right':'not-found'}).status_code,404)
+        state=states[1]
+        response=self.author.post('/api/submissions/'+state['id']+'/actions',
+            headers=self.headers(self.author,analysis=False),json={'name':'withdraw','key':'pair-withdraw',
+            'reason':'SYNTHETIC withdrawal','expected_version':state['version']})
+        self.assertEqual(response.status_code,200,response.text)
+        self.assertEqual(self.other.get(url,params=params).status_code,404)
+
     def test_http_metadata_and_summary_are_owned_and_never_accept_roles(self):
         self.submissions.allow_self_reported_summaries=True  # Operator fixture, not an HTTP setting.
         self.login(self.author,'SYNTHETIC-author');entry=self.upload()

@@ -28,6 +28,19 @@ def numerical_profile(profile):
     return json.loads(encode(value))
 
 
+def numerical_comparison(comparison):
+    """Exact matched-input counts and rates without run or sample identities."""
+    value = {key: comparison[key] for key in
+             ('format', 'left_artifact', 'right_artifact', 'tasks', 'note')}
+    value = json.loads(encode(value))
+    value['note'] = (comparison['note'].replace('Intervals resample shared sources together.',
+                     'Bootstrap is disabled in this public summary; no confidence intervals are shown.'))
+    for task in value['tasks']:
+        for partition in task['partitions']:
+            partition.pop('sample_ids', None)
+    return value
+
+
 class NumericalProfileCache:
     def __init__(self, *, max_entries=128, max_bytes=64 * 1024**2):
         if (type(max_entries) is not int or max_entries < 1

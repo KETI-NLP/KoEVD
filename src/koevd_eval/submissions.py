@@ -10,15 +10,16 @@ from datetime import datetime, timezone
 import json
 import uuid
 
-from .diagnostics import VERSION as ANALYSIS_VERSION, analyze
-from .profile_cache import NumericalProfileCache, numerical_profile
-from .eligibility import VERSION as ADMISSION_VERSION, RankPolicy, evaluate_admission, leaderboard
+from .diagnostics import VERSION as ANALYSIS_VERSION, analyze, compare
+from .profile_cache import NumericalProfileCache, numerical_profile, numerical_comparison
+from .eligibility import VERSION as ADMISSION_VERSION, RankPolicy, evaluate_admission, _boards_from_admissions
 from .generation_receipts import active_evidence, validate_receipt
 from .results import canonical_hash, validate_index, validate_results
 from .storage import LocalSubmissionStore, StorageError, encode, token
 
 MAX_REVISIONS, MAX_EVENTS = 100, 1000
-MAX_LEADERBOARD_ENTRIES, MAX_LEADERBOARD_BYTES = 50, 128 * 1024**2
+MAX_LEADERBOARD_ENTRIES, MAX_LEADERBOARD_BYTES = 512, 32 * 1024**2
+MAX_PUBLIC_COMPARISON_BYTES = 128 * 1024**2
 
 
 @dataclass(frozen=True)
@@ -419,11 +420,12 @@ class SubmissionService:
         states=[]
         for row in rows:
             state,events=self.store.state(db,row['id']);self._public(state)
-            states.append((state,events))
+            # Retain membership metadata only, not every publication's history.
+            states.append((state,[]))
         return states
 
     def public_leaderboard(self):
-        """Recompute current published originals with exact-revision receipts.
+        """Assemble all current publications from engine-computed admission.
 
         Operator-supplied policy/registry stay outside uploads. Raw responses,
         owners and private review evidence never enter this public projection.
@@ -431,34 +433,102 @@ class SubmissionService:
         """
         entries,publications,total=[],[],0
         registry,policy=self.registry,self.rank_policy
+        registry_hash=canonical_hash(registry.definitions) if registry is not None else None
         with self.store.connection() as db:
             snapshot=self._board_states(db)
-            for state,events in snapshot:
-                revision=state['publication']['revision']
-                # Check immutable SQL bytes before decoding/copying each artifact.
-                digest=db.execute('SELECT artifact FROM revisions WHERE submission=? AND number=?',
-                                  (state['id'],revision)).fetchone()['artifact']
-                total+=db.execute('SELECT length(data) FROM artifacts WHERE digest=?',(digest,)).fetchone()[0]
-                if total>MAX_LEADERBOARD_BYTES:
-                    raise StorageError('leaderboard_capacity','Published originals exceed comparison capacity; no partial ranks were returned',503)
-                document=self._result(db,state,revision)
-                index=self._index(state['index_id'])
-                evidence=active_evidence(events,revision,document,index)
-                entries.append((state['id'],document,index,evidence))
-                publications.append({'submission_id':state['id'],'revision':revision,
-                    'artifact_sha256':document['content_sha256'],'scope':state['publication']['scope'],
-                                     'model':deepcopy(document['run']['model']), 'display':deepcopy(state.get('display'))})
-        # Permit withdrawal/revocation to commit during expensive CPU scoring.
-        result=leaderboard(entries,registry=registry,policy=policy,resamples=0)
+        measured = {}
+        for state,_ in sorted(snapshot,key=lambda item:(item[0]['created_at'],item[0]['id'])):
+            try: summary=self.public_summary(state['id'])
+            except StorageError as exc:
+                if exc.code=='not_found':
+                    raise StorageError('publication_changed','Public comparison changed; retry the complete comparison',409) from None
+                raise
+            report=summary['rank_admission']
+            if report['policy_sha256']!=policy.sha256:
+                raise StorageError('publication_changed','Operator policy changed; retry the complete comparison',409)
+            artifact=report['artifact_sha256']
+            duplicate_of=measured.get(artifact)
+            if duplicate_of is None:
+                measured[artifact]=state['id']
+            total+=0 if duplicate_of else len(encode(report))
+            if total>MAX_LEADERBOARD_BYTES:
+                raise StorageError('leaderboard_capacity','Numerical admissions exceed comparison capacity; no partial ranks were returned',503)
+            if duplicate_of is None:entries.append((state['id'],summary['model'],report))
+            publications.append({'submission_id':state['id'],'revision':summary['revision'],
+                'artifact_sha256':report['artifact_sha256'],'scope':summary['scope'],
+                'model':summary['model'],'display':summary['display'],'verification':summary['verification'],
+                'duplicate_of':duplicate_of})
+        # No all-original memory pool or repeated admission computation on hits.
+        result=_boards_from_admissions(entries,policy=policy)
         expected=[(s['id'],s['version'],s['publication']) for s,_ in snapshot]
         with self.store.connection() as db:
             current=[(s['id'],s['version'],s['publication']) for s,_ in self._board_states(db)]
-            if current!=expected or self.rank_policy!=policy or self.registry is not registry:
+            if (current!=expected or self.rank_policy!=policy or self.registry is not registry
+                    or (canonical_hash(registry.definitions) if registry is not None else None)!=registry_hash):
                 raise StorageError('publication_changed','Public comparison changed; retry the complete comparison',409)
         return {**result,'publication_environment':'local_candidate',
                 'policy_status':policy.status,'official_ranking_enabled':policy.status=='ratified',
                 'publication_count':len(publications),'publications':publications,
+                'distinct_artifact_count':len(measured),
                 'coverage':'complete_current_publication_snapshot','bootstrap_resamples':0}
+
+    def public_comparison(self, left, right):
+        """Paired original measurements, projected to numbers for any public scope."""
+        token(left,'left submission');token(right,'right submission')
+        if left==right:raise StorageError('distinct_runs_required','Select two different published runs')
+        registry,policy=self.registry,self.rank_policy
+        registry_hash=canonical_hash(registry.definitions) if registry is not None else None
+        with self.store.connection() as db:
+            self._recovery_ready(db,policy)
+            states=[self.store.state(db,sid)[0] for sid in (left,right)]
+            for state in states:self._public(state)
+            original_bytes=0
+            for state in states:
+                row=db.execute('SELECT length(a.data) AS size FROM revisions r JOIN artifacts a ON r.artifact=a.digest WHERE r.submission=? AND r.number=?',
+                               (state['id'],state['publication']['revision'])).fetchone()
+                if row is None:raise StorageError('store_integrity','Published artifact missing',503)
+                original_bytes+=row['size']
+            if original_bytes>MAX_PUBLIC_COMPARISON_BYTES:
+                raise StorageError('comparison_capacity','Paired originals exceed the current comparison limit',503)
+        try: summaries=[self.public_summary(sid) for sid in (left,right)]
+        except StorageError as exc:
+            if exc.code=='not_found':
+                raise StorageError('publication_changed','Comparison changed; retry with current publications',409) from None
+            raise
+        documents,indexes,total=[],[],0
+        with self.store.connection() as db:
+            self._recovery_ready(db,policy)
+            for state in states:
+                current,_=self.store.state(db,state['id'])
+                if current!=state:
+                    raise StorageError('publication_changed','Comparison changed; retry with current publications',409)
+                revision=state['publication']['revision']
+                row=db.execute('SELECT length(a.data) AS size FROM revisions r JOIN artifacts a ON r.artifact=a.digest WHERE r.submission=? AND r.number=?',
+                               (state['id'],revision)).fetchone()
+                if row is None:raise StorageError('store_integrity','Published artifact missing',503)
+                total+=row['size']
+                if total>MAX_PUBLIC_COMPARISON_BYTES:
+                    raise StorageError('comparison_capacity','Paired originals exceed the current comparison limit',503)
+                documents.append(self._result(db,state,revision));indexes.append(self._index(state['index_id']))
+        if documents[0]['content_sha256']==documents[1]['content_sha256']:
+            raise StorageError('duplicate_artifacts','These registrations contain the same original result')
+        identity={'kind':'public_pair','analysis':ANALYSIS_VERSION,'policy':policy.sha256,
+                  'registry':registry_hash,'left':documents[0]['content_sha256'],
+                  'right':documents[1]['content_sha256'],'indexes':[i['content_sha256'] for i in indexes],
+                  'resamples':0,'seed':1729}
+        comparison=self.profile_cache.get_or_compute(identity,lambda:numerical_comparison(
+            compare(documents[0],indexes[0],documents[1],indexes[1],resamples=0)))
+        with self.store.connection() as db:
+            self._recovery_ready(db,policy)
+            changed=any(self.store.state(db,state['id'])[0]!=state for state in states)
+            if (changed or self.rank_policy!=policy or self.registry is not registry
+                    or (canonical_hash(registry.definitions) if registry is not None else None)!=registry_hash
+                    or [self._index(s['index_id'])['content_sha256'] for s in states]!=identity['indexes']):
+                raise StorageError('publication_changed','Comparison changed; retry with current publications',409)
+        return {'format':'koevd-public-comparison-v1','left':summaries[0],'right':summaries[1],
+                'comparison':comparison,'raw_cases_included':False,
+                'approved_originals_available':all(s['scope']=='responses' for s in summaries),
+                'bootstrap_resamples':0,'publication_environment':'local_candidate'}
 
     def visible_list(self, actor, *, after='', limit=50):
         """Bounded identity-filtered page; roles come only from operator config."""

@@ -6,7 +6,7 @@ import uuid
 from unittest.mock import patch
 
 import test_eligibility as admission_fixture
-from koevd_eval.eligibility import RankPolicy, declaration_identity, leaderboard
+from koevd_eval.eligibility import RankPolicy, declaration_identity, leaderboard, _boards_from_admissions
 from koevd_eval.generation_receipts import FORMAT, REQUIRED_KINDS
 from koevd_eval.results import canonical_hash
 from koevd_eval.storage import LocalSubmissionStore, StorageError
@@ -56,8 +56,8 @@ class PublicLeaderboardTests(unittest.TestCase):
 
     def assert_changed(self,mutation):
         def during_compute(*args,**kwargs):
-            mutation();return leaderboard(*args,**kwargs)
-        with patch('koevd_eval.submissions.leaderboard',side_effect=during_compute):
+            mutation();return _boards_from_admissions(*args,**kwargs)
+        with patch('koevd_eval.submissions._boards_from_admissions',side_effect=during_compute):
             with self.assertRaises(StorageError) as error:self.service.public_leaderboard()
         self.assertEqual(error.exception.code,'publication_changed')
 

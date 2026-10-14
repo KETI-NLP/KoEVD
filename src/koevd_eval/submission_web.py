@@ -191,6 +191,9 @@ def install_routes(app, analysis, registration, *, allowed_origins, bounded_body
     @app.get('/api/public/leaderboard')
     async def public_leaderboard():return await invoke(submissions.public_leaderboard)
 
+    @app.get('/api/public/compare')
+    async def public_compare(left:str,right:str):return await invoke(submissions.public_comparison,left,right)
+
     @app.get('/api/public/submissions/{submission_id}')
     async def public_summary(submission_id:str):return await invoke(submissions.public_summary,submission_id)
 

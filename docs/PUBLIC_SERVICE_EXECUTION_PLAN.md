@@ -83,3 +83,38 @@ race. Public profile HTTP checks were added to the existing registration fixture
 Cache entries can be regenerated after restart; they are not the durable store.
 Board aggregation still needs conversion from repeated raw analysis, and public
 profile rendering, public paired comparisons and hosted acceptance remain open.
+
+## Public comparison and rendering checkpoint
+
+Board aggregation now consumes the same cached engine admissions as numerical
+profiles. It retains only public membership states between reads and does not
+pool every raw original. Capacity is bounded by 512 registrations and 32 MiB
+of numerical admissions. Duplicate artifacts contribute one measurement row;
+catalog aliases and registration counts remain visible separately.
+
+The public pair API computes identical-input matched partitions and jointly
+valid differences, projects away run/sample identities and rechecks both current
+publications after cold scoring or a warm cache read. Summary scope enables
+numbers and metadata trends, while original case access remains independent.
+
+The UI now has public profile chart selectors, paginated numerical chart rows,
+recorded model/generation declarations, anonymous two-run comparison and stable
+fragment links. Approved originals can be explored in the existing private
+analysis workspace. User-controlled names remain literal text. Summary consent
+and reviewed response-scope upgrades have distinct UI paths.
+
+Eight new CPU comparison tests and an additional anonymous HTTP scenario passed.
+The frozen candidate passed 419 CPU tests in 169.160 seconds. Final localhost
+Chrome QA at 1440 and 390 pixels passed profile/Task 4 exploration, literal
+untrusted Korean names, anonymous summary comparisons, revisiting pair links and
+no page overflow, with zero page errors or external requests. Evidence is in
+generated/public-service-20261014-v5/. This is fixture/browser evidence, not
+hosted HF login, remote preservation or public deployment acceptance.
+
+Both existing actual full references also passed the local registered path in
+87.406 seconds: 17,670 records each, original hashes unchanged, all numerical
+point values and denominators matched the independent native report, and 94
+stored board metric rows matched registered admission reports. Public summaries
+use zero bootstrap resamples versus the oracle's 100; intervals were excluded
+explicitly from the point comparison. This proves local actual-data integration,
+not hosted HF identity/durability, new generation or classifier accuracy.

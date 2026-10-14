@@ -11,10 +11,10 @@ regression evidence; they do not prove registered-service completion.
 | G4 | Explicit summary/response scope and publication state | Consented numerical summary path and reviewed response upgrade tested locally; hosted evidence missing |
 | G5 | Re-login and restart preserve acknowledged originals/history | Local acknowledged checkpoint/restore tests passed; actual HF durability/re-login missing |
 | G6 | Independent public reader; private data denied | Beta isolation only |
-| G7 | Two actual-model public profiles and paired comparison | Private beta comparison only |
-| G8 | CLI/profile/board/download numerical agreement | Existing beta regression; public path missing |
+| G7 | Two actual-model public profiles and paired comparison | Two full actual results passed local registered API comparison; actual hosted pair still pending |
+| G8 | CLI/profile/board/download numerical agreement | Local actual point estimates/denominators match independent reports; hosted agreement/downloads pending |
 | G9 | Duplicate, invalid, incompatible, concurrent and failed writes | Local replay/failure/copy/quota/conflict checks passed; new hosted integration required |
-| G10 | Withdrawal removes all current public projections | Consented-summary withdrawal and restored hidden state tested locally; public cache/hosted evidence missing |
+| G10 | Withdrawal removes all current public projections | Local profile/board/pair cache and race tests; hosted evidence pending |
 | G11 | Actual retained storage, recovery, capacity, responsive UI | Incomplete |
 | G12 | Matching public code/runtime and current user documentation | Beta release only |
 
@@ -50,3 +50,35 @@ separately preserved in v2. Receipt revocation is now checked during both first
 analysis and a warm-cache read; neither check weakens rank or privacy rules.
 Read-only production probing still shows registration disabled at the original
 production revision. No registered-service hosted acceptance is claimed.
+
+## Public comparison candidate
+
+The final frozen candidate passed **419 CPU tests** in 169.160 seconds. Eight
+new tests cover public numerical pairs, exact engine agreement, warm profile/board
+reuse, incompatible settings, duplicate artifacts, capacity and withdrawal races.
+The anonymous HTTP fixture covers summary permission and post-withdrawal refusal.
+Prior leaderboard race tests now inject changes at cached-admission assembly;
+the authoritative membership/policy recheck is preserved.
+
+Local Chrome QA at 1440/390 pixels passed public profile charts, Task 4 context,
+literal Korean/untrusted names, summary-only paired comparison, link revisiting
+and page-width checks. It recorded zero page errors and external requests.
+Hashes and browser screenshots are in generated/public-service-20261014-v5/.
+The goal still lacks actual HF registration, remote durability/restart,
+production public catalog and full hosted G1–G12 acceptance.
+
+Existing actual Qwen3-8B/4B artifacts (17,670 records each) passed local operator
+summary registration, profiles, complete metric board and paired comparison in
+87.406 seconds. Original byte/content hashes were preserved. Numerical Task,
+metadata-group, transition, strategy/quality/chart and signal point values and
+denominators matched the prior independent native report (SHA-256
+58d68fc772681c5ec0de3e7da72ce11e7fe26f233e9bea8ce6db38fdd9b6526e).
+Matched Task 1–5 input counts were 2000/8000/2659/2659/2352. The 94 stored board
+metric rows matched the registered profiles' engine admissions exactly.
+
+The older report used 100 source-cluster resamples; this public numerical
+candidate uses zero. Intervals were explicitly excluded from the point-value
+comparison, not relabeled as matching. No official rank, raw case publication,
+new GPU inference, HF transfer, hosted identity or remote durability was claimed.
+See actual-reference-receipt.json and actual-reference-board-receipt.json in the
+same private evidence directory. Operator-local test ownership is not HF login.
