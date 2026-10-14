@@ -68,6 +68,13 @@ remain unknown. Saving/revising in the UI requires a fresh confirmation for that
 selection; changing the selection resets it. The declaration endpoint returns
 no original response text and denies another session or expired access.
 
+Public metric exploration permits name/model/revision search and observed-value
+display sorting. This does not assign official ranks; the official-rank column
+and verification/reasons remain unchanged. Pair choices use the complete bounded
+publication snapshot, including runs beyond the first catalog page. A failed
+refresh clears old profiles, metric rows and pair choices rather than presenting
+them as current authoritative results.
+
 ## Initial references and restart
 
 First initialization requires a verified empty state namespace and explicit

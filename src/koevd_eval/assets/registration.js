@@ -3,9 +3,14 @@
 const $=id=>document.getElementById(id), workspace=window.KoEVDWorkspace;
 const state={identity:null,current:null,busy:false,next:null,publicNext:null,keys:new Map(),board:null,declaration:null};
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
+const boardFilters=el('div',undefined,'public-chart-controls'),searchLabel=el('label','Search model, display name or revision'),search=el('input'),orderLabel=el('label','Display order'),order=el('select'),viewStatus=el('p');
+search.id='leaderboard-search';search.type='search';search.maxLength=200;searchLabel.htmlFor=search.id;order.id='leaderboard-order';orderLabel.htmlFor=order.id;viewStatus.id='leaderboard-view-status';viewStatus.setAttribute('role','status');
+for(const [value,label] of [['reported','Reported order'],['ascending','Observed value: low to high'],['descending','Observed value: high to low']]){const option=el('option',label);option.value=value;order.append(option);}boardFilters.append(searchLabel,search,orderLabel,order);$('leaderboard-metric').after(boardFilters,viewStatus);
 function message(text,error=false){$('submission-status').textContent=text;$('submission-status').classList.toggle('error',error);}
 function controls(){for(const n of $('registration-section').querySelectorAll('button'))n.disabled=state.busy;
   $('submission-upload').disabled=state.busy;
+  $('leaderboard-search').disabled=state.busy||!state.board;
+  $('leaderboard-order').disabled=state.busy||!state.board;
   $('submission-declaration-confirm').disabled=state.busy||state.declaration!==$('submission-upload').value;
   $('public-pair-build').disabled=state.busy||!$('public-pair-left').value||!$('public-pair-right').value||$('public-pair-left').value===$('public-pair-right').value;
   const confirmed=state.declaration===$('submission-upload').value&&$('submission-declaration-confirm').checked;
@@ -45,7 +50,7 @@ function show(item){state.current=item;$('submission-detail').hidden=false;$('su
     if(name==='approve')body.rights_evidence=$('review-evidence').value;
     const saved=await mutate(url,body);show(await api('/api/submissions/'+encodeURIComponent(saved.id)));await list();await published();message('Action recorded. Reloaded state includes any exact-request replay.');}));holder.append(button);}controls();}
 async function download(url,name){const response=await workspace.api(url,{authCsrf:state.identity?.csrf_token});const blob=URL.createObjectURL(await response.blob());const a=el('a');a.href=blob;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(blob),10000);}
-function clearBoard(text,error=false){state.board=null;$('leaderboard-values').replaceChildren();$('leaderboard-metric').replaceChildren();$('leaderboard-metric').disabled=true;$('leaderboard-status').textContent=text;$('leaderboard-status').classList.toggle('error',error);}
+function clearBoard(text,error=false){state.board=null;$('leaderboard-values').replaceChildren();$('leaderboard-metric').replaceChildren();$('leaderboard-metric').disabled=true;$('leaderboard-search').disabled=true;$('leaderboard-order').disabled=true;$('leaderboard-view-status').textContent='';$('leaderboard-status').textContent=text;$('leaderboard-status').classList.toggle('error',error);}
 async function publicMetrics(id){const holder=$('public-metrics');holder.replaceChildren(el('p','Loading candidate metrics…'));
   try{metrics(await api('/api/public/submissions/'+encodeURIComponent(id)+'/profile',{authenticated:false}));history.replaceState(null,'','#model='+encodeURIComponent(id));}
   catch(e){holder.replaceChildren(el('p','Candidate metrics unavailable: '+e.message,'error'));}}
@@ -89,6 +94,8 @@ async function publicPair(left,right){const holder=$('public-pair-results');hold
     const charts=el('details');charts.append(el('summary','Compare metadata and strategy charts'),el('h3','Left run'));publicCharts(charts,result.left);charts.append(el('h3','Right run'));publicCharts(charts,result.right);holder.append(charts);$('public-pair-status').textContent='Comparison complete · current publications checked · no raw cases included.';history.replaceState(null,'','#left='+encodeURIComponent(left)+'&right='+encodeURIComponent(right));
   }catch(e){holder.replaceChildren();$('public-pair-status').textContent='Comparison unavailable: '+e.message;}}
 async function board(){
+  const priorPair={left:$('public-pair-left').value,right:$('public-pair-right').value};
+  pairOptions([]);$('public-pair-results').replaceChildren();$('public-pair-status').textContent='';$('public-metrics').replaceChildren();
   // Clear old values before requesting a new complete projection. A failed
   // recheck or capacity error must not leave withdrawn rows on screen.
   clearBoard('Loading published metric comparison…');
@@ -103,25 +110,31 @@ async function board(){
   const ordered=[...groups.entries()].sort((a,b)=>a[0].localeCompare(b[0]));
   for(const [key,group] of ordered){const n=ordered.filter(x=>x[1].id===group.id).findIndex(x=>x[0]===key)+1;
     const option=el('option',group.id.replaceAll('_',' ')+' · evaluation group '+n);option.value=key;select.append(option);}
-  select.disabled=!ordered.length;drawBoard();
+  select.disabled=!ordered.length;pairOptions(result.publications);for(const side of ['left','right'])if(result.publications.some(p=>p.submission_id===priorPair[side]))$('public-pair-'+side).value=priorPair[side];controls();drawBoard();
 }
 function drawBoard(){
   const holder=$('leaderboard-values');holder.replaceChildren();const result=state.board,key=$('leaderboard-metric').value;
   if(!result||!key){holder.append(el('p','No published metric values to compare.','empty'));return;}
   const [metricId,cohort]=key.split('|'),rows=[];
   for(const b of result.boards)if(b.metric_id===metricId&&b.cohort_sha256===cohort)for(const row of b.rows)rows.push({...row,eligible:true});
-  // Excluded rows retain submission identity order, never a provisional rank.
+  // Observed values can be sorted without creating or changing official ranks.
   for(const row of result.excluded)if(row.metric_id===metricId&&row.metric.cohort_sha256===cohort)rows.push({...row,eligible:false});
+  const publications=new Map(result.publications.map(p=>[p.submission_id,p])),query=$('leaderboard-search').value.trim().toLocaleLowerCase(),order=$('leaderboard-order').value;
+  const selected=rows.filter(entry=>{const p=publications.get(entry.entry_id);return [p?.display?.display_name,entry.model.id,entry.model.revision].filter(Boolean).join(' ').toLocaleLowerCase().includes(query);});
+  if(order!=='reported')selected.sort((a,b)=>{const av=a.metric.rate.value,bv=b.metric.rate.value,an=typeof av==='number'&&Number.isFinite(av),bn=typeof bv==='number'&&Number.isFinite(bv);if(an!==bn)return an?-1:1;if(an&&av!==bv)return (order==='ascending'?1:-1)*(av-bv);return a.entry_id.localeCompare(b.entry_id);});
+  $('leaderboard-view-status').textContent='Showing '+selected.length+' of '+rows.length+' measured runs in this evaluation group. Duplicate originals count once. Sorting changes display order only; official ranks remain unchanged.';
   const wrapper=el('div',undefined,'metric-scroll'),table=el('table',undefined,'leaderboard-table'),thead=el('thead'),head=el('tr');
-  for(const label of ['Model / revision','Observed ratio','Valid coverage','Rank','Status and reasons'])head.append(el('th',label));thead.append(head);table.append(thead);
-  const body=el('tbody');for(const entry of rows){const m=entry.metric,ratio=m.rate.value===null?'N/A':(100*m.rate.value).toFixed(2)+'%',row=el('tr');row.dataset.boardEntry=entry.entry_id;
-    const publication=result.publications.find(p=>p.submission_id===entry.entry_id);
-    row.append(el('td',(publication?.display?.display_name||entry.model.id)+' · '+entry.model.id+' · '+(entry.model.revision?entry.model.revision.slice(0,12):'unknown revision')),
+  for(const label of ['Model / revision','Observed ratio','Valid coverage','Official rank','Origin and verification','Status and reasons'])head.append(el('th',label));thead.append(head);table.append(thead);
+  const body=el('tbody');for(const entry of selected){const m=entry.metric,ratio=m.rate.value===null?'N/A':(100*m.rate.value).toFixed(2)+'%',row=el('tr');row.dataset.boardEntry=entry.entry_id;
+    const publication=publications.get(entry.entry_id),modelCell=el('td'),profileLink=el('a',publication?.display?.display_name||entry.model.id);profileLink.href='#model='+encodeURIComponent(entry.entry_id);profileLink.addEventListener('click',event=>{event.preventDefault();perform(()=>publicMetrics(entry.entry_id));});modelCell.append(profileLink,el('p',entry.model.id+' · '+(entry.model.revision?entry.model.revision.slice(0,12):'unknown revision')));
+    row.append(modelCell,
       el('td',ratio+' ('+m.rate.numerator+'/'+m.rate.denominator+') · '+m.rate.sources+' sources'),el('td',m.coverage.numerator+'/'+m.coverage.denominator),
-      el('td',entry.eligible?String(entry.rank):'—'),el('td',entry.eligible?'Eligible':m.reasons.map(r=>reasonLabels[r]||r.replaceAll('_',' ')).join('; ')));body.append(row);}
+      el('td',entry.eligible?String(entry.rank):'—'),el('td',(publication?.origin==='operator_reference'?'Operator reference':'Submitted run')+' · generation '+(publication?.verification?.generation||'unknown')+' · measurement '+(publication?.verification?.measurement||'unknown')),el('td',entry.eligible?'Eligible':m.reasons.map(r=>reasonLabels[r]||r.replaceAll('_',' ')).join('; ')));body.append(row);}
+  if(!selected.length)holder.append(el('p','No measured runs match this search in the selected evaluation group.','empty'));
   table.append(body);wrapper.append(table);holder.append(wrapper);
 }
 $('leaderboard-refresh').addEventListener('click',()=>perform(board));$('leaderboard-metric').addEventListener('change',drawBoard);
+$('leaderboard-search').addEventListener('input',drawBoard);$('leaderboard-order').addEventListener('change',drawBoard);
 $('public-pair-build').addEventListener('click',()=>perform(()=>publicPair($('public-pair-left').value,$('public-pair-right').value)));for(const side of ['left','right'])$('public-pair-'+side).addEventListener('change',controls);
 $('identity-refresh').addEventListener('click',()=>perform(signIn));$('identity-logout').addEventListener('click',()=>perform(async()=>{await api('/api/identity/logout',{method:'POST',body:'{}'});await signIn();message('Signed out. Preserved submissions remain private or published in their recorded scope.');}));
 $('submission-upload-refresh').addEventListener('click',uploads);$('submission-upload').addEventListener('change',()=>perform(declaration));$('submission-declaration-confirm').addEventListener('change',controls);

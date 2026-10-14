@@ -193,3 +193,23 @@ That final frozen regression completed with 452 tests passing in 216.222 seconds
 exit code 0. Source hashes and the full log are retained in the v12 receipt.
 The earlier failed v11 run is still a separate failure with unproven root cause.
 Remote activation remains pending; no local pass changes the approval boundary.
+
+## Observed-value exploration and complete pair choices
+
+The public metric table now searches original model IDs, display names and
+revisions, sorts observed values without assigning or changing official ranks,
+keeps undefined rates last and links rows to their numerical profiles. Origin
+and generation/measurement verification are visible alongside denominators.
+Pair selectors use the complete bounded board publication snapshot rather than
+the first 50-entry catalog page. Failed refresh clears profiles, previous pair
+results/options and metric rows before showing the error.
+
+Local desktop/mobile Chrome checks passed against 53 fictional engine-computed
+runs, including a contrasting classification and an invalid-output denominator.
+They prove pagination boundaries, both sort directions, N/A handling, literal
+untrusted Korean names, no fabricated ranks, profile links and clearing on a
+failed authoritative refresh. There were no page errors or external requests.
+The two fixture-setup mistakes and sandbox/no-listener browser attempts remain
+separate failed receipts; the corrected owned localhost server was explicitly
+confirmed running before the successful checks. This is not hosted HF evidence.
+See generated/public-service-20261014-v13/board-browser-receipt.json.

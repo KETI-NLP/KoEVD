@@ -152,3 +152,11 @@ terminal exit code 0. Ten source/test hashes were rechecked before writing
 generated/public-service-20261014-v12/full-cpu-receipt.json. This proves the
 local declaration/activation/bounded-checkpoint regression only. Actual HF OAuth,
 conditional state writes, hosted restart and the public G1–G12 gates remain open.
+
+Frontend-only exploration checks subsequently passed with 53 synthetic published
+runs at 1440/390 pixels: observed-value sorting/search leaves official ranks
+unchanged, undefined values stay last, all 53 runs appear in pair choices despite
+a 50-entry catalog page, and failed refresh clears previous views/options.
+G1/G7/G9/G10 local UI evidence is in v13; actual production gates remain open.
+The 452-test backend regression is earlier-source evidence, with the later JS/CSS
+changes verified separately by syntax and these browser checks.
