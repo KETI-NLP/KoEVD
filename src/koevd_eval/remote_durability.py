@@ -143,14 +143,17 @@ class RemoteCheckpointLedger:
     kind='hf_private_bucket_conditional'
 
     def __init__(self, objects, *, prefix='koevd-state-v1', initialize_empty=False,
-                 max_database_bytes=2*1024**3, max_retained_bytes=8*1024**3):
+                 max_database_bytes=2*1024**3, max_retained_bytes=8*1024**3,max_sequence=10000):
         if not isinstance(prefix,str) or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{0,63}',prefix):
             raise ValueError('Explicit simple state namespace required')
         if type(initialize_empty) is not bool:raise ValueError('Explicit initialization flag required')
         if any(type(v) is not int or v<65536 for v in (max_database_bytes,max_retained_bytes)):
             raise ValueError('Positive bounded remote capacity required')
+        if type(max_sequence) is not int or not 1<=max_sequence<=10000:
+            raise ValueError('Explicit bounded checkpoint sequence required')
         self.objects,self.prefix,self.initialize_empty=objects,prefix,initialize_empty
         self.max_database_bytes,self.max_retained_bytes=max_database_bytes,max_retained_bytes
+        self.max_sequence=max_sequence
 
     def _call(self, name, *args, **kwargs):
         try:return getattr(self.objects,name)(*args,**kwargs)
@@ -172,7 +175,7 @@ class RemoteCheckpointLedger:
         try:value=json.loads(raw.decode('utf-8'),object_pairs_hook=_unique_object)
         except (ValueError,UnicodeError):raise _failure('checkpoint_integrity') from None
         checked_receipt(value)
-        if value['database_bytes']>self.max_database_bytes:raise _failure('checkpoint_capacity')
+        if value['database_bytes']>self.max_database_bytes or value['sequence']>self.max_sequence:raise _failure('checkpoint_capacity')
         manifest=self._call('read',self._key(value['content_sha256'],'.json'),8192)
         if manifest is None or manifest[0]!=encode(value)+b'\n':raise _failure('checkpoint_integrity')
         return value,etag
@@ -198,7 +201,7 @@ class RemoteCheckpointLedger:
         parent=previous['content_sha256'] if previous else None
         if parent!=expected_parent:
             raise StorageError('checkpoint_conflict','Another writer changed the acknowledged checkpoint',409)
-        if previous and previous['sequence']>=10000:raise _failure('checkpoint_capacity')
+        if previous and previous['sequence']>=self.max_sequence:raise _failure('checkpoint_capacity')
         with tempfile.TemporaryDirectory(prefix='koevd-remote-cut-') as temporary:
             stage=Path(temporary);raw=stage/'database.sqlite3';saved=store.backup(raw)
             if saved['bytes']>self.max_database_bytes:raise _failure('checkpoint_capacity')

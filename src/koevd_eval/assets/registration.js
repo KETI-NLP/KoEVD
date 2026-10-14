@@ -1,19 +1,26 @@
 /* Server-confirmed identity only. Untrusted names/reasons are textContent. */
 (function(){'use strict';
 const $=id=>document.getElementById(id), workspace=window.KoEVDWorkspace;
-const state={identity:null,current:null,busy:false,next:null,publicNext:null,keys:new Map(),board:null};
+const state={identity:null,current:null,busy:false,next:null,publicNext:null,keys:new Map(),board:null,declaration:null};
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 function message(text,error=false){$('submission-status').textContent=text;$('submission-status').classList.toggle('error',error);}
 function controls(){for(const n of $('registration-section').querySelectorAll('button'))n.disabled=state.busy;
+  $('submission-upload').disabled=state.busy;
+  $('submission-declaration-confirm').disabled=state.busy||state.declaration!==$('submission-upload').value;
   $('public-pair-build').disabled=state.busy||!$('public-pair-left').value||!$('public-pair-right').value||$('public-pair-left').value===$('public-pair-right').value;
-  $('submission-create').disabled=state.busy||!$('submission-upload').value||!workspace.ready();
-  $('submission-revise').disabled=state.busy||!state.current||!$('submission-upload').value||state.current.owner!==state.identity?.subject||state.current.workflow==='withdrawn';}
+  const confirmed=state.declaration===$('submission-upload').value&&$('submission-declaration-confirm').checked;
+  $('submission-create').disabled=state.busy||!$('submission-upload').value||!workspace.ready()||!confirmed;
+  $('submission-revise').disabled=state.busy||!state.current||!$('submission-upload').value||state.current.owner!==state.identity?.subject||state.current.workflow==='withdrawn'||!confirmed;}
 async function api(url,options={}){return (await workspace.api(url,{...options,authCsrf:state.identity?.csrf_token})).json();}
 async function perform(task){if(state.busy)return;state.busy=true;controls();try{await task();}catch(e){message(e.message,true);}finally{state.busy=false;controls();}}
 function payload(url,value){const fingerprint=url+JSON.stringify(value);let key=state.keys.get(fingerprint);if(!key){if(state.keys.size>=100)state.keys.delete(state.keys.keys().next().value);key=crypto.randomUUID();state.keys.set(fingerprint,key);}return JSON.stringify({...value,key});}
 async function mutate(url,value){return api(url,{method:'POST',body:payload(url,value)});}
 function uploads(){const select=$('submission-upload'),previous=select.value;select.replaceChildren();select.append(el('option','Select a validated private upload'));select.firstChild.value='';
-  for(const run of workspace.uploads()){const option=el('option',run.model+' · '+run.records+' records · '+run.id.slice(0,8));option.value=run.id;select.append(option);}select.value=[...select.options].some(n=>n.value===previous)?previous:'';controls();}
+  for(const run of workspace.uploads()){const option=el('option',run.model+' · '+run.records+' records · '+run.id.slice(0,8));option.value=run.id;select.append(option);}select.value=[...select.options].some(n=>n.value===previous)?previous:'';if(select.value!==previous)resetDeclaration();controls();}
+function resetDeclaration(){state.declaration=null;$('submission-declaration-confirm').checked=false;$('submission-declaration').textContent='';$('submission-declaration-detail').hidden=true;}
+async function declaration(){resetDeclaration();const id=$('submission-upload').value;if(!id){controls();return;}
+  try{const value=await api('/api/uploads/'+encodeURIComponent(id)+'/declaration');if($('submission-upload').value!==id)return;$('submission-declaration').textContent=JSON.stringify(value,null,2);$('submission-declaration-detail').hidden=false;$('submission-declaration-detail').open=true;state.declaration=id;message('Review the uploaded declaration. Missing settings remain unknown; this is not verification of model generation.');}
+  catch(e){message('Model declaration unavailable: '+e.message,true);}controls();}
 async function signIn(){const info=await api('/api/identity',{authenticated:false});state.identity=info.signed_in?info:null;
   $('identity-status').textContent=info.signed_in?'Signed in as '+info.username+'. Submission permissions are checked by the server.':'Not signed in. Sign in in a separate tab, then check again.';
   $('identity-logout').hidden=!info.signed_in;$('submission-controls').hidden=!info.signed_in;
@@ -117,7 +124,7 @@ function drawBoard(){
 $('leaderboard-refresh').addEventListener('click',()=>perform(board));$('leaderboard-metric').addEventListener('change',drawBoard);
 $('public-pair-build').addEventListener('click',()=>perform(()=>publicPair($('public-pair-left').value,$('public-pair-right').value)));for(const side of ['left','right'])$('public-pair-'+side).addEventListener('change',controls);
 $('identity-refresh').addEventListener('click',()=>perform(signIn));$('identity-logout').addEventListener('click',()=>perform(async()=>{await api('/api/identity/logout',{method:'POST',body:'{}'});await signIn();message('Signed out. Preserved submissions remain private or published in their recorded scope.');}));
-$('submission-upload-refresh').addEventListener('click',uploads);$('submission-upload').addEventListener('change',controls);
+$('submission-upload-refresh').addEventListener('click',uploads);$('submission-upload').addEventListener('change',()=>perform(declaration));$('submission-declaration-confirm').addEventListener('change',controls);
 $('submissions-refresh').addEventListener('click',()=>perform(()=>list()));$('submissions-next').addEventListener('click',()=>perform(()=>list(state.next)));
 $('public-refresh').addEventListener('click',()=>perform(()=>published()));$('public-next').addEventListener('click',()=>perform(()=>published(state.publicNext)));
 $('submission-create').addEventListener('click',()=>perform(async()=>{const saved=await mutate('/api/submissions',{upload_id:$('submission-upload').value,display_name:$('submission-display-name').value.trim()||null,description:$('submission-description').value});show(await api('/api/submissions/'+encodeURIComponent(saved.id)));await list();message('Private original saved. Publication review has not been requested.');}));

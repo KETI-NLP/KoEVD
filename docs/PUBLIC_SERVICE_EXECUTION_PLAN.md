@@ -163,3 +163,33 @@ references and fictional state/identity in 116.422 seconds. Full local CPU
 regression passed 446 tests in 179.512 seconds. No HF Space or state Bucket was
 created or changed, and actual HF OAuth/S3 durability remains unverified.
 See REGISTERED_SPACE_GUIDE.md and generated/public-service-20261014-v9/.
+
+## HF preparation and pending finite trial
+
+New private resources KETI-NLP/KoEVD-Platform-State-Dev and
+KETI-NLP/KoEVD-Platform-Registration-Dev were created under the active service
+goal. Only source and already public input indexes were committed to the new
+Space at 79ed3c012e86d29237c808303dcb9302ab336f98. It is paused, the state Bucket
+is empty, and activation/initialization remain 0. New hard guards support 12 cuts,
+128 MiB per DB and 1.5 GiB retained for the requested limited trial. No original
+responses, state snapshots or secret values were transferred.
+
+The user has been asked to approve the exact original-reference/finite-trial
+scope and to set resource-scoped state/S3 and read-only reference Secrets. Neither
+pending intent nor elapsed time counts as approval/configuration. Continue local
+independent work while these inputs are pending; production stays unchanged.
+
+Independent G2 work adds a private declaration endpoint and confirmation UI
+before saving/revising selected upload metadata. Four CPU/HTTP checks and local
+mobile browser QA passed. The initial browser harness omitted navigation from
+the sign-in completion page back to the workspace; its failed receipt is kept.
+
+The v11 448-test run had one Windows temporary-file replacement PermissionError
+in an unchanged report fixture. Targeted report tests passed on rerun; this does
+not establish a root cause or reclassify the failure as success. Frozen full
+regression uses a task-owned temporary directory and separate v12 evidence.
+
+That final frozen regression completed with 452 tests passing in 216.222 seconds,
+exit code 0. Source hashes and the full log are retained in the v12 receipt.
+The earlier failed v11 run is still a separate failure with unproven root cause.
+Remote activation remains pending; no local pass changes the approval boundary.

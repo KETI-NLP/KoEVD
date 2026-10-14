@@ -12,6 +12,8 @@ import tempfile
 
 
 def captured_configuration(environ):
+    if environ.get('KOEVD_REGISTRATION_ENABLED','0')!='1':
+        raise ValueError('Registered runtime requires explicit activation; no reference/state access')
     host=environ.get('SPACE_HOST','').lower()
     if not host.endswith('.hf.space') or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789-.' for c in host):
         raise ValueError('Canonical provider SPACE_HOST required')
@@ -22,6 +24,13 @@ def captured_configuration(environ):
     environment=environ.get('KOEVD_REGISTRATION_ENVIRONMENT','hosted_candidate')
     if environment not in ('hosted_candidate','hosted_service'):raise ValueError('Explicit hosted environment required')
     settings={'origin':'https://'+host,'initialize':initialize=='1','environment':environment}
+    for key,default,upper in (('max_database_bytes',2*1024**3,2*1024**3),
+                             ('max_retained_bytes',8*1024**3,8*1024**3),('max_sequence',10000,10000)):
+        raw=environ.get('KOEVD_STATE_'+key.upper(),str(default))
+        if not isinstance(raw,str) or not raw.isascii() or not raw.isdigit():raise ValueError('Bounded state limits required')
+        value=int(raw)
+        if not (1 if key=='max_sequence' else 65536)<=value<=upper:raise ValueError('State limit outside supported range')
+        settings[key]=value
     for name in ('OAUTH_CLIENT_ID','OAUTH_CLIENT_SECRET','KOEVD_REFERENCE_TOKEN','KOEVD_STATE_TOKEN',
                  'KOEVD_STATE_ACCESS_KEY_ID','KOEVD_STATE_SECRET_ACCESS_KEY','KOEVD_STATE_BUCKET'):
         value=environ.get(name,'')
@@ -69,7 +78,9 @@ def build_app(root, runtime, settings):
     roles=read_document(root/'operator-data/roles.json',max_bytes=1024*1024)
     objects=HFS3StateObjects.from_secrets(settings['KOEVD_STATE_BUCKET'],hf_token=settings['KOEVD_STATE_TOKEN'],
         access_key_id=settings['KOEVD_STATE_ACCESS_KEY_ID'],secret_access_key=settings['KOEVD_STATE_SECRET_ACCESS_KEY'])
-    ledger=RemoteCheckpointLedger(objects,initialize_empty=settings['initialize'])
+    ledger=RemoteCheckpointLedger(objects,initialize_empty=settings['initialize'],
+        max_database_bytes=settings['max_database_bytes'],max_retained_bytes=settings['max_retained_bytes'],
+        max_sequence=settings['max_sequence'])
     submissions=bootstrap_registered_service(catalog,ledger,runtime/'state',roles=roles,
         registry=ProtocolRegistry(root/'configs/protocols'),publication_environment=settings['environment'])
     identities=IdentitySessions(settings['provider'],settings['origin'])

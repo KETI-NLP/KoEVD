@@ -168,6 +168,10 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
     async def delete_upload(upload_id:str,request:Request):
         token,csrf=credentials(request,True);service.delete_upload(token,csrf,upload_id);return {'deleted':True}
 
+    @app.get('/api/uploads/{upload_id}/declaration')
+    async def upload_declaration(upload_id:str,request:Request):
+        return await run_in_threadpool(service.upload_declaration,credentials(request),upload_id)
+
     @app.post('/api/analyses')
     async def analyze(request:Request):
         token,csrf=credentials(request,True)

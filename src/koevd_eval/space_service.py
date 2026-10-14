@@ -1,6 +1,8 @@
 """Private CPU upload/analysis service. No registration or model authentication."""
 from __future__ import annotations
 from concurrent.futures import ThreadPoolExecutor
+from collections import Counter
+from copy import deepcopy
 from dataclasses import dataclass, field
 from hashlib import sha256
 import json
@@ -171,6 +173,33 @@ class AnalysisService:
 
     def _invalidate(self,s):
         if s.report:self._remove(s.report['directory']);s.report=None
+
+    def upload_declaration(self, token, upload_id):
+        """Private original declaration for confirmation before registration."""
+        with self.lock:
+            session=self._lookup(token)
+            if session.busy:raise ServiceError('session_busy','Wait for the active session operation.',409)
+            entry=session.uploads.get(upload_id)
+            if entry is None:raise ServiceError('not_found','Private upload not found.',404)
+            session.busy=True
+        try:
+            if digest(entry['path'])!=entry['file_sha256']:
+                raise ServiceError('upload_integrity','Private result bytes changed.',503)
+            document=read_document(entry['path'],max_bytes=self.limits.upload_bytes)
+            if document['content_sha256']!=entry['artifact_sha256']:
+                raise ServiceError('upload_integrity','Private result identity changed.',503)
+            item=self.catalog.resolve(document);validate_results(document,item['index'])
+            counts=Counter(record['task'] for record in document['records'])
+            value={'format':'koevd-upload-declaration-v1','upload_id':upload_id,
+                'artifact_sha256':document['content_sha256'],'input_index_sha256':document['input_index_sha256'],
+                'model':deepcopy(document['run']['model']),'generation':deepcopy(document['run']['generation']),
+                'measurements':deepcopy(document['run']['measurements']),
+                'record_counts':{str(task):counts[task] for task in range(1,6)},
+                'verification':'structurally_validated_user_reported','publication':'private_ephemeral_session'}
+            with self.lock:self._lookup(token)
+            return value
+        finally:
+            with self.lock:session.busy=False;self.cleanup()
 
     def describe(self,token):
         with self.lock:

@@ -128,3 +128,27 @@ was corrected. Final JS syntax and localhost Chrome desktop/mobile QA passed;
 the rebuilt v10 context differs from the Docker-tested v9 context in registration.js
 only. Backend/dependency files are identical. Final frontend hashes/screenshots
 and the source-only context are in generated/public-service-20261014-v10/.
+
+## Actual HF preparation, no state activation
+
+The new private registration test Space exists at
+79ed3c012e86d29237c808303dcb9302ab336f98 with source/index files only. It is
+PAUSED; activation and first-state initialization are 0. The exact new private
+state Bucket has 0 bytes/0 objects. Resource creation and source preparation do
+not prove actual OAuth, S3, registration or restart. Original-transfer/trial
+approval and dedicated user-entered Secrets are pending. Existing production
+remains a85e57c45cbe3943796543134e68805c389ae74d.
+
+Local declaration checks prove model/generation/measurement values are shown
+without response text or fabricated verification; session isolation, expiration
+and changed-byte refusal remain enforced. Mobile UI checks prove confirmation
+is required before saving and is reset after selection changes. The first browser
+harness failure remains separate from the corrected pass. Full v11 had one
+temporary-file PermissionError; targeted report rerun passed. Final source tests
+are recorded in v12 and are not inferred from either earlier outcome.
+
+The final frozen v12 source passed **452 CPU tests** in 216.222 seconds with
+terminal exit code 0. Ten source/test hashes were rechecked before writing
+generated/public-service-20261014-v12/full-cpu-receipt.json. This proves the
+local declaration/activation/bounded-checkpoint regression only. Actual HF OAuth,
+conditional state writes, hosted restart and the public G1–G12 gates remain open.

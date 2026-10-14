@@ -157,6 +157,12 @@ class RemoteDurabilityTests(unittest.TestCase):
         self.ledger.max_retained_bytes=65536
         self.code('checkpoint_capacity',self.create)
 
+    def test_sequence_budget_stops_new_writes_before_upload(self):
+        self.ledger.max_sequence=1
+        before=len(self.s3.calls)
+        self.code('checkpoint_capacity',self.create)
+        self.assertEqual(len(self.s3.calls),before)
+
     def test_conditional_conflict_is_never_unconditional_overwrite(self):
         old=self.objects.read('koevd-state-v1/HEAD.json',8192)
         self.create();current=deepcopy(self.s3.objects)

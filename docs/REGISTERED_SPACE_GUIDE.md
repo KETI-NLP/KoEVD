@@ -43,12 +43,30 @@ does not resolve CLI administrator credentials or an AWS profile as fallback.
 | `KOEVD_STATE_ACCESS_KEY_ID` Secret | S3 key generated from the scoped state token |
 | `KOEVD_STATE_SECRET_ACCESS_KEY` Secret | Matching S3 secret |
 | `KOEVD_STATE_INITIALIZE` variable | `1` only for approved first initialization; default `0` |
+| `KOEVD_REGISTRATION_ENABLED` variable | Explicit `1` after activation approval; default `0` prevents reference/state access |
+| `KOEVD_STATE_MAX_DATABASE_BYTES` variable | Checkpoint DB cap; limited trial uses 134217728 |
+| `KOEVD_STATE_MAX_RETAINED_BYTES` variable | Retained object cap; limited trial uses 1610612736 |
+| `KOEVD_STATE_MAX_SEQUENCE` variable | Hard sequence cap; limited trial uses 12 |
 | `KOEVD_REGISTRATION_ENVIRONMENT` variable | `hosted_candidate` by default; `hosted_service` for approved production |
 
 Reference and state tokens must be distinct. State storage cannot use either
 existing reference/periodic-backup Bucket. Native Space OAuth supplies the app ID
 and secret; it is separate from these data-access tokens. Never send secret values
 in chat or encode them in README, Docker build arguments or result artifacts.
+
+On 2026-10-14 the goal's new private State-Dev Bucket and private CPU Basic
+Registration-Dev Space were created as preparation only. The Space is paused,
+activation/initialization are both 0, and the Bucket contains zero objects/bytes.
+Source/public-index context revision 79ed3c012e86d29237c808303dcb9302ab336f98
+contains no response originals, submission DBs or secrets. New original transfer
+and finite live testing require the separately requested scope; creation alone
+does not authorize them. Dedicated secret values must be entered by the user.
+
+The registration UI now fetches the selected upload's original model/generation/
+measurement declaration through its private analysis session. Missing revisions
+remain unknown. Saving/revising in the UI requires a fresh confirmation for that
+selection; changing the selection resets it. The declaration endpoint returns
+no original response text and denies another session or expired access.
 
 ## Initial references and restart
 

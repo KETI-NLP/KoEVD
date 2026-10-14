@@ -90,7 +90,7 @@ class RegisteredLauncherConfigurationTests(unittest.TestCase):
         path=Path(__file__).resolve().parents[1]/'apps/spaces/registered_launch.py'
         spec=importlib.util.spec_from_file_location('registered_launcher',path)
         self.module=importlib.util.module_from_spec(spec);spec.loader.exec_module(self.module)
-        self.env={'SPACE_HOST':'keti-nlp-SYNTHETIC.hf.space','OAUTH_CLIENT_ID':'SYNTHETIC-app',
+        self.env={'KOEVD_REGISTRATION_ENABLED':'1','SPACE_HOST':'keti-nlp-SYNTHETIC.hf.space','OAUTH_CLIENT_ID':'SYNTHETIC-app',
             'OAUTH_CLIENT_SECRET':'SYNTHETIC-secret','KOEVD_REFERENCE_TOKEN':'SYNTHETIC-read',
             'KOEVD_STATE_TOKEN':'SYNTHETIC-state','KOEVD_STATE_ACCESS_KEY_ID':'SYNTHETIC-key',
             'KOEVD_STATE_SECRET_ACCESS_KEY':'SYNTHETIC-s3-secret','KOEVD_STATE_BUCKET':'SYNTHETIC/state'}
@@ -111,3 +111,13 @@ class RegisteredLauncherConfigurationTests(unittest.TestCase):
         for env in cases:
             with self.subTest(changes=[k for k in env if env[k]!=self.env.get(k)]),self.assertRaises(ValueError):
                 self.module.captured_configuration(env)
+
+    def test_activation_and_finite_trial_limits_are_explicit(self):
+        with self.assertRaises(ValueError):self.module.captured_configuration({**self.env,'KOEVD_REGISTRATION_ENABLED':'0'})
+        values={**self.env,'KOEVD_STATE_MAX_DATABASE_BYTES':str(128*1024**2),
+                'KOEVD_STATE_MAX_RETAINED_BYTES':str(1536*1024**2),'KOEVD_STATE_MAX_SEQUENCE':'12'}
+        result=self.module.captured_configuration(values)
+        self.assertEqual(result['max_sequence'],12)
+        self.assertEqual(result['max_retained_bytes'],1536*1024**2)
+        for raw in ('0','10001','-1','nan'):
+            with self.assertRaises(ValueError):self.module.captured_configuration({**values,'KOEVD_STATE_MAX_SEQUENCE':raw})
