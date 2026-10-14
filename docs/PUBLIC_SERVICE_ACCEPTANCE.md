@@ -99,3 +99,32 @@ endpoint is fixed independently of HF_ENDPOINT; S3 uses the fixed HF namespace
 gateway and explicit dedicated credentials. The earlier v6 run passed 438 tests
 before that endpoint guard and remains earlier-scope evidence. G1–G12 hosted
 acceptance is still incomplete; no source-only success is a durability certificate.
+
+## Registered deployment candidate
+
+Registered launcher/bootstrap checks passed 8 fictional CPU scenarios: atomic
+two-reference first cut, same IDs/history after restart, withdrawn reference
+remaining hidden, input mutation preflight, explicit migration/initialization and
+dedicated native/provider configuration. Local materialized-app HTTP checks with
+both actual full references passed in 116.422 seconds. Storage and OAuth were
+doubles; the two references' original bytes remained local.
+
+The final local suite passed **446 CPU tests** in 179.512 seconds. A source-only
+Docker context plus synthetic QA was transferred to the user-selected b200-1:
+6,849,703 bytes, SHA-256 a36c383056f2eeceaf47776e9141918c69de942ace679da34aea1846dfde7f5c.
+The image digest was
+sha256:485f018f5d57515c4e22dcf59a8a4cc1c26a3c6ad83691c9ca425cf9174cacc6;
+27 container tests passed with networking disabled, 2 CPUs and 6 GiB RAM.
+The post-build shell wrapper's quoting error remains distinguished from verified
+image/container success. Validation containers/image were cleaned up.
+
+No HF state/Space changes, original model-result transmission, actual hosted
+OAuth, conditional storage or restart acceptance occurred. G1–G12 remain open
+for actual production evidence. Candidate/log/source hashes are in
+generated/public-service-20261014-v9/.
+
+After the frozen CPU/container checks, the footer's environment wording alone
+was corrected. Final JS syntax and localhost Chrome desktop/mobile QA passed;
+the rebuilt v10 context differs from the Docker-tested v9 context in registration.js
+only. Backend/dependency files are identical. Final frontend hashes/screenshots
+and the source-only context are in generated/public-service-20261014-v10/.

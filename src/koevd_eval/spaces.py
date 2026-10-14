@@ -56,6 +56,7 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
 
     app=FastAPI(title='KoEVD private analysis candidate',docs_url=None,redoc_url=None,openapi_url=None,lifespan=lifespan)
     app.state.service=service
+    app.state.registration=registration
     app.add_middleware(TrustedHostMiddleware,allowed_hosts=hosts)
 
     @app.exception_handler(ServiceError)
@@ -113,7 +114,7 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
 
     @app.get('/api/registration')
     async def registration_status():
-        value={'enabled':registration is not None,'publication_environment':'local_candidate',
+        value={'enabled':registration is not None,'publication_environment':registration.submissions.publication_environment if registration is not None else 'local_candidate',
                'official_ranking_enabled':registration is not None and registration.submissions.rank_policy.status=='ratified'}
         if registration is not None and registration.submissions.allow_self_reported_summaries:
             value['self_reported_summaries_enabled']=True

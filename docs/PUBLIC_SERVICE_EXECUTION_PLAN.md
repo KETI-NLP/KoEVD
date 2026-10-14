@@ -140,3 +140,26 @@ Docker assembly, actual scoped S3 tests, native hosted OAuth and restart/restore
 must still be completed. No Bucket/Secret creation or actual HF/S3 state transfer
 occurred. Follow ACKNOWLEDGED_STORAGE_GUIDE.md for the candidate contract and
 future concrete approval/credential scope.
+
+## Registered launcher and Docker assembly
+
+The registered launcher now combines native OAuth configuration, pinned private
+references, conditional acknowledged state, operator reference intake, warmed
+public numerical profiles and the existing private analysis service. The first
+two references are one acknowledged SQL cut; later starts preserve IDs/history
+and never reactivate withdrawn references. Public responses distinguish operator
+references and user runs without fabricating HF identities or GPU verification.
+
+The new allowlisted materializer emits a source-only 75-file registered context
+with OAuth metadata, empty operator roles and observed CPU/S3 dependencies.
+The 6,849,703-byte compressed code/public-input/synthetic-QA package went to the
+previously specified b200-1 private folder. It contained no model response
+originals, DB or credentials. Docker build was independently confirmed by image
+digest and 27 passing network-disabled synthetic tests (2 CPUs/6 GiB). Its
+container/image were removed; source/log evidence remains private.
+
+The materialized app passed local HTTP checks with both existing actual full
+references and fictional state/identity in 116.422 seconds. Full local CPU
+regression passed 446 tests in 179.512 seconds. No HF Space or state Bucket was
+created or changed, and actual HF OAuth/S3 durability remains unverified.
+See REGISTERED_SPACE_GUIDE.md and generated/public-service-20261014-v9/.

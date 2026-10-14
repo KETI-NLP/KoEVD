@@ -117,7 +117,7 @@ def install_routes(app, analysis, registration, *, allowed_origins, bounded_body
         principal=entry['principal']
         return {'signed_in':True,'subject':principal.subject,'username':entry['username'],'csrf_token':entry['csrf'],
             'reviewer':principal.subject in submissions.reviewers | submissions.admins,'admin':principal.subject in submissions.admins,
-            'generation_verification':'user_reported','publication_environment':'local_candidate'}
+            'generation_verification':'user_reported','publication_environment':submissions.publication_environment}
 
     @app.post('/api/identity/logout')
     async def logout(request:Request):
@@ -185,7 +185,7 @@ def install_routes(app, analysis, registration, *, allowed_origins, bounded_body
 
     @app.get('/api/public/submissions')
     async def public(after:str='',limit:int=50):
-        return {**await invoke(submissions.public_page,after=after,limit=limit),'publication_environment':'local_candidate',
+        return {**await invoke(submissions.public_page,after=after,limit=limit),'publication_environment':submissions.publication_environment,
                 'official_ranking_enabled':submissions.rank_policy.status=='ratified'}
 
     @app.get('/api/public/leaderboard')

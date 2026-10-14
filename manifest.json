@@ -104,6 +104,21 @@
       "sha256": "465b26fd3e49d696e8472cdb3c629e7ffae9571e57ea15e531fb83a733d8383c"
     },
     {
+      "path": "apps/spaces/registered.Dockerfile",
+      "bytes": 815,
+      "sha256": "a272a1e8b85758d3cb58e6bdb9fad293144d81c84f01bf0fc4f5dd175d4033d2"
+    },
+    {
+      "path": "apps/spaces/registered.requirements.lock.txt",
+      "bytes": 650,
+      "sha256": "0c8a515e7a56d84c8583f631573387edc6270c38ec309bedf7717723bd21a651"
+    },
+    {
+      "path": "apps/spaces/registered_launch.py",
+      "bytes": 6885,
+      "sha256": "72e6a823611cdedf784e7a1753f5fedd6295ad478747c3c3e6adf245c05a5cd8"
+    },
+    {
       "path": "apps/spaces/requirements.lock.txt",
       "bytes": 334,
       "sha256": "57486aec325c55108ae1dcf3e05ce76897bfcae6c98fba19fff79c0e565bdc53"
@@ -310,13 +325,13 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 6788,
-      "sha256": "4f802c4dcb280c920d3c83c154fae3a60a144acb08e5d256cdf42f3c1ccb7384"
+      "bytes": 8512,
+      "sha256": "d4f9269edec21e4e2ba0e33bf9d5ea49d152cc10cdcdd5ee8d26c2ef99306015"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
-      "bytes": 8550,
-      "sha256": "8a3a8f356d3628c05c4f020e5cfd610db92c126d3905a6ee93d9feda0d874175"
+      "bytes": 9987,
+      "sha256": "bd138e9dcc71d5831933d829240563d5ed1bb7f06f3cfd1f31c4a5b343c37da6"
     },
     {
       "path": "docs/RANK_ADMISSION_GUIDE.md",
@@ -327,6 +342,11 @@
       "path": "docs/RECOVERY_GUIDE.md",
       "bytes": 8882,
       "sha256": "19b6cb28b5be195d78fb0cc79516771b5ac1043c6c98edd4d915d80d9c13d774"
+    },
+    {
+      "path": "docs/REGISTERED_SPACE_GUIDE.md",
+      "bytes": 5382,
+      "sha256": "186d0a1e7f1689995fe20f4a4e45ceb7e865b7e88c945988729c062ba23f1361"
     },
     {
       "path": "docs/RELEASE.md",
@@ -984,6 +1004,11 @@
       "sha256": "143958b3d606777818764dc0c7db9c9d59a25d48b8e976559d9d7ec54d2e7ad8"
     },
     {
+      "path": "scripts/materialize_registered_space.py",
+      "bytes": 4331,
+      "sha256": "620f39b8be443a628181ad8321c2c060844f985e6a94812d435887c4c66ae7a8"
+    },
+    {
       "path": "scripts/materialize_static_space.py",
       "bytes": 6705,
       "sha256": "551c49308448f0396a8dd2bba9090241078db1c4990c5d4df09ec7c333c9d6b1"
@@ -1190,8 +1215,8 @@
     },
     {
       "path": "src/koevd_eval/assets/registration.js",
-      "bytes": 25967,
-      "sha256": "ff1fcc918e6cf2255a7063112a0539130ee9539a665087386154a412571719ce"
+      "bytes": 26299,
+      "sha256": "d620a66ee71157ba1d1f6f302cf2c43e21f9b528b53ed9ec6cad82d3c1ee3b08"
     },
     {
       "path": "src/koevd_eval/assets/report.css",
@@ -1344,6 +1369,11 @@
       "sha256": "1fc2a85d10884538ed13e718be176ad8ffdf01dbc84e3644bc52699e01f8320d"
     },
     {
+      "path": "src/koevd_eval/registration_runtime.py",
+      "bytes": 4766,
+      "sha256": "8f43e9a729f2f0e1d15a742c41561694df0b8047e1870c087b8db82c72fec101"
+    },
+    {
       "path": "src/koevd_eval/remote_durability.py",
       "bytes": 13707,
       "sha256": "e6e087a14ddea10fa8965c7fa26caac7f7d9be3a8483402b617aca86630ea11c"
@@ -1395,8 +1425,8 @@
     },
     {
       "path": "src/koevd_eval/spaces.py",
-      "bytes": 18316,
-      "sha256": "73491f7fa5baae5ef588e76d5f5b58187468361a4baf35c9e8e388f6bb77ca3e"
+      "bytes": 18438,
+      "sha256": "2d4a0135b0a5ee7393eda31e5b592589d2942572de3ad67f6f25530a87278a51"
     },
     {
       "path": "src/koevd_eval/storage.py",
@@ -1405,13 +1435,13 @@
     },
     {
       "path": "src/koevd_eval/submission_web.py",
-      "bytes": 12570,
-      "sha256": "8a28a9f8489b425edaca512993b43e9b1edcda6662777e285d11a5430d6f9159"
+      "bytes": 12606,
+      "sha256": "c76a1f375e6cace33aed585d1c49012ecc8dcf66bb4ec12f1fd5724e9b53c4a5"
     },
     {
       "path": "src/koevd_eval/submissions.py",
-      "bytes": 46317,
-      "sha256": "b47b2156f12dfed80415d23300ad2f6f55cc9131c89626518ac4e73b6858bcc9"
+      "bytes": 46976,
+      "sha256": "b14f6517cb39ec71513813ab74fe37a326bbb7c05f9a7793dae0dd215358283c"
     },
     {
       "path": "tests/test_backups.py",
@@ -1592,6 +1622,11 @@
       "path": "tests/test_recovery.py",
       "bytes": 13527,
       "sha256": "3001ea292f9ad79b95d2195c52f89a6d888ff35053c82174b6e8a9174cf504d1"
+    },
+    {
+      "path": "tests/test_registration_runtime.py",
+      "bytes": 6976,
+      "sha256": "b3032c8920914ab9808adb68f3ff0846f82bd6928e308f82f335b702783cd399"
     },
     {
       "path": "tests/test_remote_durability.py",

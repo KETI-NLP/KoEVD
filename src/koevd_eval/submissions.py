@@ -20,6 +20,7 @@ from .storage import LocalSubmissionStore, StorageError, encode, token
 MAX_REVISIONS, MAX_EVENTS = 100, 1000
 MAX_LEADERBOARD_ENTRIES, MAX_LEADERBOARD_BYTES = 512, 32 * 1024**2
 MAX_PUBLIC_COMPARISON_BYTES = 128 * 1024**2
+OPERATOR_REFERENCE_OWNER = 'koevd-operator-reference'
 
 
 @dataclass(frozen=True)
@@ -62,7 +63,8 @@ class SubmissionService:
     external publish or official ranking. Durable remote storage is still needed.
     """
     def __init__(self, store, indexes, *, reviewers=(), admins=(), clock=None,
-                 registry=None, rank_policy=None, allow_self_reported_summaries=False):
+                 registry=None, rank_policy=None, allow_self_reported_summaries=False,
+                 publication_environment='local_candidate'):
         if not isinstance(store, LocalSubmissionStore): raise ValueError('Expected local persistence adapter')
         self.store = store
         self.indexes = deepcopy(indexes)
@@ -81,6 +83,9 @@ class SubmissionService:
         if type(allow_self_reported_summaries) is not bool:
             raise ValueError('Summary publication must be explicit operator configuration')
         self.allow_self_reported_summaries = allow_self_reported_summaries
+        if publication_environment not in ('local_candidate','hosted_candidate','hosted_service'):
+            raise ValueError('Explicit operator deployment environment required')
+        self.publication_environment = publication_environment
         self.profile_cache = NumericalProfileCache()
         store.register_indexes({name:index['content_sha256'] for name,index in self.indexes.items()})
 
@@ -394,6 +399,7 @@ class SubmissionService:
         if evidence is not None:
             verification['generation'] = 'operator_reproduced' if evidence.execution_scope == 'actual_gpu' else 'cpu_fixture_only'
         return {'format':'koevd-public-candidate-summary-v1','submission_id':submission,
+                'origin':'operator_reference' if state['owner']==OPERATOR_REFERENCE_OWNER else 'submitted_run',
                 'revision':state['publication']['revision'],'scope':state['publication']['scope'],
                 'model':deepcopy(document['run']['model']),'display':deepcopy(state.get('display')),
                 'protocol_sha256':canonical_hash(profile['protocol']),
@@ -401,7 +407,7 @@ class SubmissionService:
                 'analysis':profile,'generation':deepcopy(document['run']['generation']),
                 'verification':verification,'official_rank_eligible':bool(admission['eligible_metric_ids']),
                 'rank_policy_status':admission['policy']['status'],'rank_admission':admission,
-                'publication_environment':'local_candidate'}
+                'publication_environment':self.publication_environment}
 
     def public_profile(self, submission):
         """Current public numerical analysis; summary scope never returns cases."""
@@ -457,6 +463,7 @@ class SubmissionService:
             publications.append({'submission_id':state['id'],'revision':summary['revision'],
                 'artifact_sha256':report['artifact_sha256'],'scope':summary['scope'],
                 'model':summary['model'],'display':summary['display'],'verification':summary['verification'],
+                'origin':summary['origin'],
                 'duplicate_of':duplicate_of})
         # No all-original memory pool or repeated admission computation on hits.
         result=_boards_from_admissions(entries,policy=policy)
@@ -466,7 +473,7 @@ class SubmissionService:
             if (current!=expected or self.rank_policy!=policy or self.registry is not registry
                     or (canonical_hash(registry.definitions) if registry is not None else None)!=registry_hash):
                 raise StorageError('publication_changed','Public comparison changed; retry the complete comparison',409)
-        return {**result,'publication_environment':'local_candidate',
+        return {**result,'publication_environment':self.publication_environment,
                 'policy_status':policy.status,'official_ranking_enabled':policy.status=='ratified',
                 'publication_count':len(publications),'publications':publications,
                 'distinct_artifact_count':len(measured),
@@ -528,7 +535,7 @@ class SubmissionService:
         return {'format':'koevd-public-comparison-v1','left':summaries[0],'right':summaries[1],
                 'comparison':comparison,'raw_cases_included':False,
                 'approved_originals_available':all(s['scope']=='responses' for s in summaries),
-                'bootstrap_resamples':0,'publication_environment':'local_candidate'}
+                'bootstrap_resamples':0,'publication_environment':self.publication_environment}
 
     def visible_list(self, actor, *, after='', limit=50):
         """Bounded identity-filtered page; roles come only from operator config."""
@@ -561,6 +568,7 @@ class SubmissionService:
         # Listing metadata does not rescore metrics or inspect generation receipts.
         # A ratified policy cannot make a listing's uncomputed admission false.
         return {'submission_id':state['id'],'revision':state['publication']['revision'],
+                'origin':'operator_reference' if state['owner']==OPERATOR_REFERENCE_OWNER else 'submitted_run',
                 'display':deepcopy(state.get('display')),
                 'scope':state['publication']['scope'],
                 'official_rank_eligible':False if policy.status=='candidate' else None,
