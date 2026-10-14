@@ -133,12 +133,21 @@ def install_routes(app, analysis, registration, *, allowed_origins, bounded_body
 
     @app.post('/api/submissions')
     async def create(request:Request):
-        principal=actor(request,True);body=await fields(request,('upload_id','key'))
+        principal=actor(request,True);body=await fields(request,('upload_id','key'),('display_name','description'))
         token,csrf=analysis_credentials(request)
         def operation():
             document,index_id=analysis.submission_source(token,csrf,body['upload_id'])
-            return submissions.create(principal,document,index_id,key=body['key'])
+            return submissions.create(principal,document,index_id,key=body['key'],
+                                      display_name=body.get('display_name'),description=body.get('description',''))
         return JSONResponse(await invoke(operation),status_code=201)
+
+    @app.post('/api/submissions/{submission_id}/metadata')
+    async def metadata(submission_id:str,request:Request):
+        principal=actor(request,True)
+        body=await fields(request,('display_name','expected_version','key'),('description',))
+        return await invoke(submissions.update_display,principal,submission_id,
+                            display_name=body['display_name'],description=body.get('description',''),
+                            expected_version=body['expected_version'],key=body['key'])
 
     @app.get('/api/submissions/{submission_id}')
     async def get(submission_id:str,request:Request):return await invoke(submissions.get,actor(request),submission_id)
@@ -165,6 +174,12 @@ def install_routes(app, analysis, registration, *, allowed_origins, bounded_body
     async def action(submission_id:str,request:Request):
         principal=actor(request,True)
         body=await fields(request,('name','key','expected_version','reason'),('consent','rights_evidence'))
+        if body['name'] == 'publish_summary':
+            if body.get('rights_evidence') is not None:
+                raise StorageError('unexpected_rights_evidence', 'User summary publication cannot assert operator review')
+            return await invoke(submissions.publish_summary,principal,submission_id,
+                                consent=body.get('consent'),key=body['key'],expected_version=body['expected_version'],
+                                reason=body['reason'])
         return await invoke(submissions.action,principal,submission_id,body['name'],key=body['key'],expected_version=body['expected_version'],
                             reason=body['reason'],consent=body.get('consent'),rights_evidence=body.get('rights_evidence'))
 

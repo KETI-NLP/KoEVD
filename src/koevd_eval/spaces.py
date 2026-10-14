@@ -112,8 +112,12 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
     async def health():return {'status':'ready','registration_enabled':registration is not None}
 
     @app.get('/api/registration')
-    async def registration_status():return {'enabled':registration is not None,'publication_environment':'local_candidate',
-        'official_ranking_enabled':registration is not None and registration.submissions.rank_policy.status=='ratified'}
+    async def registration_status():
+        value={'enabled':registration is not None,'publication_environment':'local_candidate',
+               'official_ranking_enabled':registration is not None and registration.submissions.rank_policy.status=='ratified'}
+        if registration is not None and registration.submissions.allow_self_reported_summaries:
+            value['self_reported_summaries_enabled']=True
+        return value
 
     @app.get('/api/catalog')
     async def catalog():return {**service.catalog.public(),'limits':{'upload_bytes':service.limits.upload_bytes,'max_uploads':service.limits.max_uploads,'ttl_seconds':service.limits.ttl_seconds,'bootstrap_resamples':service.limits.bootstrap_resamples,'bootstrap_seed':service.limits.bootstrap_seed}}
@@ -196,6 +200,10 @@ def main():
                         help='Withhold configured reference raw text after analysis; personal session results remain intact')
     parser.add_argument('--session-root',default=os.environ.get('KOEVD_SESSION_ROOT'))
     parser.add_argument('--submission-root',default=os.environ.get('KOEVD_SUBMISSION_ROOT'))
+    parser.add_argument('--checkpoint-root',default=os.environ.get('KOEVD_CHECKPOINT_ROOT'),
+                        help='Separate retained filesystem ledger: confirm each mutation before success; not an HF Bucket')
+    parser.add_argument('--self-reported-summaries',action='store_true',
+                        help='Allow owners to explicitly publish numerical summaries; no response review or official rank implied')
     parser.add_argument('--roles-file',default=os.environ.get('KOEVD_ROLES_FILE'))
     parser.add_argument('--protocol-registry',default=os.environ.get('KOEVD_PROTOCOL_REGISTRY'),
                         help='Operator protocol directory for published metric admission')
@@ -239,9 +247,17 @@ def main():
             registry=ProtocolRegistry(args.protocol_registry) if args.protocol_registry else None
             from .policy_decisions import configured_policy
             policy=configured_policy(args.policy_root,args.policy_head_sha256)
-            persistent=SubmissionService(LocalSubmissionStore(args.submission_root),{k:v['index'] for k,v in catalog.indexes.items()},registry=registry,rank_policy=policy,**roles)
+            if args.checkpoint_root:
+                from .durability import AcknowledgedSubmissionStore, FileCheckpointLedger
+                ledger=FileCheckpointLedger(args.checkpoint_root)
+                # Restore is an explicit operator action, not silent empty initialization.
+                store=AcknowledgedSubmissionStore(args.submission_root,ledger)
+            else:
+                store=LocalSubmissionStore(args.submission_root)
+            persistent=SubmissionService(store,{k:v['index'] for k,v in catalog.indexes.items()},registry=registry,rank_policy=policy,
+                                         allow_self_reported_summaries=args.self_reported_summaries,**roles)
             registration=RegistrationWeb(persistent,identities)
-        elif args.roles_file or args.oauth_origin or args.protocol_registry or args.policy_root or args.policy_head_sha256 or args.oauth_client_type!='confidential':parser.error('OAuth/roles/admission configuration requires --submission-root')
+        elif args.self_reported_summaries or args.checkpoint_root or args.roles_file or args.oauth_origin or args.protocol_registry or args.policy_root or args.policy_head_sha256 or args.oauth_client_type!='confidential':parser.error('OAuth/roles/admission configuration requires --submission-root')
         import uvicorn
         app=create_app(service,origins=origins,frame_ancestors=("'self'",'https://huggingface.co'),registration=registration,
                        deployment_notice=os.environ.get('KOEVD_DEPLOYMENT_NOTICE'))

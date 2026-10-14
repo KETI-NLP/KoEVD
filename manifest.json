@@ -299,6 +299,16 @@
       "sha256": "c05b4ec541b407775fc1145878339f9e7286bbcd3f4a03d00ebb411d01f58146"
     },
     {
+      "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
+      "bytes": 2473,
+      "sha256": "e889a6f71ef0fd57d908b49d0bd4c6a32ad1e19e83c524c19da25ef98aa81726"
+    },
+    {
+      "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
+      "bytes": 3936,
+      "sha256": "0174415cafc01f4c5e662d9b2b4e37985a9805f15c5965c42e7c588f1a0bb675"
+    },
+    {
       "path": "docs/RANK_ADMISSION_GUIDE.md",
       "bytes": 12492,
       "sha256": "ab50f743380fb5e9ea6445f6519bd0b3f21dc1e9bd4558b19fc1e8d6750fef75"
@@ -1170,8 +1180,8 @@
     },
     {
       "path": "src/koevd_eval/assets/registration.js",
-      "bytes": 15809,
-      "sha256": "b40af211cbbd70cfda72dc4e550508112f40434d8058526957fa986dca3fb702"
+      "bytes": 17028,
+      "sha256": "c41ceab5614f4ffa117f4b790bcc802eba21583839829292aca94faef4373473"
     },
     {
       "path": "src/koevd_eval/assets/report.css",
@@ -1190,8 +1200,8 @@
     },
     {
       "path": "src/koevd_eval/assets/space.html",
-      "bytes": 8148,
-      "sha256": "17a972a4733cbaac73c552a21a6f4636f4fb1f9001a9b3e545250a9a8bd2ff1e"
+      "bytes": 8652,
+      "sha256": "4ab2111a64da36e06a5f77e8eed0dad09565481a2b43a47b47c49bfc3a4b25b7"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1222,6 +1232,11 @@
       "path": "src/koevd_eval/diagnostics.py",
       "bytes": 42728,
       "sha256": "983c50f5fd5e8a9348106fc3b61669371a32fc393eea69b1365114b7baf3d0a0"
+    },
+    {
+      "path": "src/koevd_eval/durability.py",
+      "bytes": 14244,
+      "sha256": "c975ac836be2678455a887a6a7fb6c3edd7b239382e665ee649aa4fed4977739"
     },
     {
       "path": "src/koevd_eval/eligibility.py",
@@ -1360,8 +1375,8 @@
     },
     {
       "path": "src/koevd_eval/spaces.py",
-      "bytes": 15610,
-      "sha256": "f35833a388525269beffc5dc7f49f859e1cde25a9db9d1daade79611674daa7e"
+      "bytes": 16788,
+      "sha256": "15d1b9c021609ff5c7902fb77570d43d7ed12f21f6ec02c6de9309d59bc1d0f6"
     },
     {
       "path": "src/koevd_eval/storage.py",
@@ -1370,13 +1385,13 @@
     },
     {
       "path": "src/koevd_eval/submission_web.py",
-      "bytes": 11096,
-      "sha256": "7d3bfdeb406f127fca93d5a91102635d05c4ac55e81bcb4ae598d193573ebe57"
+      "bytes": 12247,
+      "sha256": "dc59371064cc54756d720f6d4caf1c65785020826c034c34c5a0e6997a643bfa"
     },
     {
       "path": "src/koevd_eval/submissions.py",
-      "bytes": 35052,
-      "sha256": "8a7b5c89e72355a5f0051c98f25e7009787da85025ea32f2511c1f997e8257aa"
+      "bytes": 39801,
+      "sha256": "98f5b9137cebd3bb7542bafcbacb199547c5b6c80bc341ce02a8ca050c1c29f0"
     },
     {
       "path": "tests/test_backups.py",
@@ -1392,6 +1407,11 @@
       "path": "tests/test_diagnostics.py",
       "bytes": 21005,
       "sha256": "cbcc80530bf54cf5f6437358d404a1bd0c0be47ad59eeb9f4ace2bcfd9e6965f"
+    },
+    {
+      "path": "tests/test_durability.py",
+      "bytes": 10710,
+      "sha256": "20a62dcaf60bb49ae7e841fb4994c2960cab7874b30a6ffe62a88a61ad59f471"
     },
     {
       "path": "tests/test_eligibility.py",
@@ -1522,6 +1542,11 @@
       "path": "tests/test_public_reference_assets.py",
       "bytes": 4951,
       "sha256": "4a570518d50c40925721acd1e48d538b6dca03e140664089579d90d18f793676"
+    },
+    {
+      "path": "tests/test_public_registration_contract.py",
+      "bytes": 10576,
+      "sha256": "654322f0e507add2140f59c0595433ed946f25c3a38dd53c66f7ad2ec353407b"
     },
     {
       "path": "tests/test_public_static_hosting.py",

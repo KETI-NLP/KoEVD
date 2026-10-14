@@ -39,6 +39,19 @@ def _text(value, name):
     return value
 
 
+def _display(display_name, description, *, default_name=None):
+    if display_name is None:
+        display_name = default_name
+        if isinstance(display_name, str) and len(display_name) > 200:
+            display_name = display_name[:197]+'…'
+    if (not isinstance(display_name, str) or not display_name.strip()
+            or len(display_name) > 200 or len(display_name.encode('utf-8')) > 800):
+        raise StorageError('invalid_display_name', 'Result display name must contain 1–200 characters')
+    if not isinstance(description, str) or len(description) > 2000 or len(description.encode('utf-8')) > 8000:
+        raise StorageError('invalid_description', 'Result description must contain at most 2000 characters')
+    return {'display_name':display_name.strip(), 'description':description.strip()}
+
+
 class SubmissionService:
     """Private original/revision/history, distinct review and publication axes.
 
@@ -47,7 +60,7 @@ class SubmissionService:
     external publish or official ranking. Durable remote storage is still needed.
     """
     def __init__(self, store, indexes, *, reviewers=(), admins=(), clock=None,
-                 registry=None, rank_policy=None):
+                 registry=None, rank_policy=None, allow_self_reported_summaries=False):
         if not isinstance(store, LocalSubmissionStore): raise ValueError('Expected local persistence adapter')
         self.store = store
         self.indexes = deepcopy(indexes)
@@ -63,6 +76,9 @@ class SubmissionService:
         if rank_policy is not None and not isinstance(rank_policy, RankPolicy):
             raise ValueError('Expected operator rank policy, never an uploaded policy')
         self.registry, self.rank_policy = registry, rank_policy or RankPolicy()
+        if type(allow_self_reported_summaries) is not bool:
+            raise ValueError('Summary publication must be explicit operator configuration')
+        self.allow_self_reported_summaries = allow_self_reported_summaries
         store.register_indexes({name:index['content_sha256'] for name,index in self.indexes.items()})
 
     def _index(self, name):
@@ -106,10 +122,13 @@ class SubmissionService:
         self.store.event(db,state,action=action,actor=_actor(actor),timestamp=state['updated_at'],details=details)
         return deepcopy(state)
 
-    def create(self, actor, document, index_id, *, key):
+    def create(self, actor, document, index_id, *, key, display_name=None, description=''):
         _actor(actor)
         document = self._document(document, index_id)
+        display = _display(display_name, description, default_name=document['run']['model']['id'])
         request = {'action':'create','artifact':document['content_sha256'],'index':index_id}
+        if display_name is not None or description:
+            request['display'] = display
         def operation(db):
             if db.execute('SELECT id FROM submissions WHERE owner=? AND initial_artifact=?', (actor.subject,document['content_sha256'])).fetchone():
                 raise StorageError('duplicate_submission', 'This original already has a submission; use its ID or original idempotency key', 409)
@@ -118,12 +137,57 @@ class SubmissionService:
             state = {'format':'koevd-submission-v1','id':sid,'owner':actor.subject,'index_id':index_id,
                      'version':0,'head_revision':1,'workflow':'draft','created_at':now,'updated_at':now,
                      'consent':None,'approval':None,'publication':{'status':'unpublished','revision':None,'scope':None},
-                     'verification':{'structure':'validated_against_operator_index','generation':'user_reported','measurement':'measurement_limited'}}
+                     'verification':{'structure':'validated_against_operator_index','generation':'user_reported','measurement':'measurement_limited'},
+                     'display':display}
             db.execute('INSERT INTO submissions VALUES(?,?,?,?)', (sid,actor.subject,digest,encode(state).decode()))
             revision = {'number':1,'parent':None,'kind':'original','artifact_sha256':digest,'created_at':now,'actor':_actor(actor)}
             db.execute('INSERT INTO revisions VALUES(?,?,?,?,?)',(sid,1,None,digest,encode(revision).decode()))
             return self._event(db,state,'create',actor,{'revision':1,'artifact_sha256':digest})
         return self.store.apply(actor.subject,key,request,operation)
+
+    def update_display(self, actor, submission, *, display_name, description='', expected_version, key):
+        """Owner metadata only; do not reseal or rewrite the original artifact."""
+        _actor(actor)
+        display = _display(display_name, description)
+        current = self.get(actor, submission); self._own(current, actor)
+        request = {'action':'update_display','id':submission,'expected_version':expected_version,'display':display}
+        def operation(db):
+            state, _ = self.store.state(db, submission)
+            self._own(state, actor); self._version(state, expected_version)
+            state['display'] = display
+            return self._event(db, state, 'update_display', actor, {'display':display})
+        return self.store.apply(actor.subject, key, request, operation)
+
+    def publish_summary(self, actor, submission, *, consent, expected_version, reason, key):
+        """Explicit owner-consented numerical publication, never response approval.
+
+        This is a separate opt-in deployment policy. It does not create an
+        operator review, generation receipt, accuracy claim or official rank.
+        """
+        _actor(actor); _text(reason, 'summary publication reason')
+        if not self.allow_self_reported_summaries:
+            raise StorageError('summary_publication_disabled', 'Self-reported summary publication is not enabled', 403)
+        if (not isinstance(consent, dict) or set(consent) != {'scope','accepted','rights_statement'}
+                or consent.get('accepted') is not True or consent.get('scope') != 'summary'):
+            raise StorageError('summary_consent_required', 'Explicit summary-only publication consent required')
+        _text(consent['rights_statement'], 'summary rights statement')
+        consent = deepcopy(consent)
+        current = self.get(actor, submission); self._own(current, actor)
+        request = {'action':'publish_summary','id':submission,'expected_version':expected_version,
+                   'reason':reason,'consent':consent}
+        def operation(db):
+            state, _ = self.store.state(db, submission)
+            self._own(state, actor); self._version(state, expected_version)
+            if state['workflow'] not in ('draft','rejected','registered'):
+                raise StorageError('invalid_transition', 'Finish the current review before summary publication', 409)
+            if state['publication']['status'] == 'published' and state['publication']['revision'] == state['head_revision']:
+                raise StorageError('already_published', 'Current revision is already published', 409)
+            state.update(workflow='registered', consent=consent, approval=None,
+                         publication={'status':'published','revision':state['head_revision'],'scope':'summary'})
+            return self._event(db, state, 'publish_summary', actor,
+                               {'revision':state['head_revision'],'reason':reason,'consent':consent,
+                                'permission_review':'not_operator_reviewed'})
+        return self.store.apply(actor.subject, key, request, operation)
 
     def get(self, actor, submission):
         _actor(actor)
@@ -209,7 +273,7 @@ class SubmissionService:
             state,_ = self.store.state(db,submission); self._version(state,expected_version)
             workflow = state['workflow']
             if action == 'request_review':
-                if workflow not in ('draft','rejected'): raise StorageError('invalid_transition','Revision is already in review',409)
+                if workflow not in ('draft','rejected','registered'): raise StorageError('invalid_transition','Revision is already in review',409)
                 state.update(workflow='pending',consent=consent,approval=None)
             elif action == 'start_review':
                 if workflow!='pending': raise StorageError('invalid_transition','Review must begin from pending',409)
@@ -221,7 +285,8 @@ class SubmissionService:
             elif action == 'publish':
                 if workflow!='approved' or state['approval']['revision']!=state['head_revision']:
                     raise StorageError('invalid_transition','Publication requires approval of the current revision',409)
-                if state['publication']['status']=='published' and state['publication']['revision']==state['head_revision']:
+                if (state['publication']['status']=='published' and state['publication']['revision']==state['head_revision']
+                        and state['publication']['scope']==state['approval']['scope']):
                     raise StorageError('already_published','Current revision is already published',409)
                 state['publication']={'status':'published','revision':state['head_revision'],'scope':state['approval']['scope']}
             elif action == 'reject':
@@ -316,7 +381,8 @@ class SubmissionService:
             verification['generation'] = 'operator_reproduced' if evidence.execution_scope == 'actual_gpu' else 'cpu_fixture_only'
         return {'format':'koevd-public-candidate-summary-v1','submission_id':submission,
                 'revision':state['publication']['revision'],'scope':state['publication']['scope'],
-                'model':profile['run']['model'],'protocol_sha256':canonical_hash(profile['protocol']),
+                'model':profile['run']['model'],'display':deepcopy(state.get('display')),
+                'protocol_sha256':canonical_hash(profile['protocol']),
                 'tasks':profile['tasks'],'task3_task5':profile['task3_task5'],'statistics':profile['statistics'],
                 'verification':verification,'official_rank_eligible':bool(admission['eligible_metric_ids']),
                 'rank_policy_status':admission['policy']['status'],'rank_admission':admission,
@@ -360,7 +426,7 @@ class SubmissionService:
                 entries.append((state['id'],document,index,evidence))
                 publications.append({'submission_id':state['id'],'revision':revision,
                     'artifact_sha256':document['content_sha256'],'scope':state['publication']['scope'],
-                    'model':deepcopy(document['run']['model'])})
+                                     'model':deepcopy(document['run']['model']), 'display':deepcopy(state.get('display'))})
         # Permit withdrawal/revocation to commit during expensive CPU scoring.
         result=leaderboard(entries,registry=registry,policy=policy,resamples=0)
         expected=[(s['id'],s['version'],s['publication']) for s,_ in snapshot]
@@ -404,6 +470,7 @@ class SubmissionService:
         # Listing metadata does not rescore metrics or inspect generation receipts.
         # A ratified policy cannot make a listing's uncomputed admission false.
         return {'submission_id':state['id'],'revision':state['publication']['revision'],
+                'display':deepcopy(state.get('display')),
                 'scope':state['publication']['scope'],
                 'official_rank_eligible':False if policy.status=='candidate' else None,
                 'rank_policy_status':policy.status,
