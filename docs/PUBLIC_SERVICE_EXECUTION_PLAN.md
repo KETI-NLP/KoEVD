@@ -13,6 +13,15 @@ The production Space is public, RUNNING, CPU Basic, one replica at
 `a85e57c45cbe3943796543134e68805c389ae74d`. Registration remains disabled. Its
 two exact references and anonymous-analysis acceptance remain intact.
 
+The registered candidate's implementation commit is
+`c447bfd6edc5fffed9cfb6c154c417a4b9df785c`. Its source-only private test preparation
+is `4bdf0cda2bb36a95033451cbdb827f34a5727d16`, PAUSED with activation/initialization
+0. Four required user-entered Secret names were absent on the latest read-only
+probe; scope approval and manual credential setup remain pending. Local backend
+regression passed 452 tests; subsequent frontend-only checks passed with 53
+synthetic publications at desktop/mobile widths. No actual HF login, state cut,
+restart acceptance or public registration deployment is claimed.
+
 ## Decisions and sequence
 
 1. A successful registration mutation must have a confirmed storage checkpoint
@@ -213,3 +222,10 @@ The two fixture-setup mistakes and sandbox/no-listener browser attempts remain
 separate failed receipts; the corrected owned localhost server was explicitly
 confirmed running before the successful checks. This is not hosted HF evidence.
 See generated/public-service-20261014-v13/board-browser-receipt.json.
+
+Read-only HF readiness found all four required data Secret names absent; the
+state Bucket remains private/empty and production remains the existing beta.
+The private paused test Space now has the five tested code updates plus checksum
+manifest at 4bdf0cda2bb36a95033451cbdb827f34a5727d16 (98,430 bytes, no originals or
+new input files). Activation/initialization remain 0. Scope approval and dedicated
+Secret setup are still pending; follow HF_REGISTRATION_TRIAL_SETUP_KO.md.

@@ -5,18 +5,18 @@ regression evidence; they do not prove registered-service completion.
 
 | ID | Required evidence | Current goal status |
 |---|---|---|
-| G1 | Anonymous public model list and metrics, no upload required | Missing |
-| G2 | Model/run metadata and separate display name | Owner display metadata API/UI implemented; model profile integration pending |
+| G1 | Anonymous public model list and metrics, no upload required | Local candidate catalog/board/profile and 53-run UI checks passed; actual production registration disabled |
+| G2 | Model/run metadata and separate display name | Original declaration, file-selection confirmation and separate display metadata passed locally; actual hosted workflow pending |
 | G3 | Actual HF identity, persisted registration and URL | Missing in production |
 | G4 | Explicit summary/response scope and publication state | Consented numerical summary path and reviewed response upgrade tested locally; hosted evidence missing |
 | G5 | Re-login and restart preserve acknowledged originals/history | Local conditional remote-double/CLI restore checks passed; actual HF durability/re-login missing |
-| G6 | Independent public reader; private data denied | Beta isolation only |
+| G6 | Independent public reader; private data denied | Local candidate anonymous profile/pair and private-session access tests passed; independent hosted reader pending |
 | G7 | Two actual-model public profiles and paired comparison | Two full actual results passed local registered API comparison; actual hosted pair still pending |
 | G8 | CLI/profile/board/download numerical agreement | Local actual point estimates/denominators match independent reports; hosted agreement/downloads pending |
 | G9 | Duplicate, invalid, incompatible, concurrent and failed writes | Local replay/failure/copy/quota/conflict checks passed; new hosted integration required |
-| G10 | Withdrawal removes all current public projections | Local profile/board/pair cache and race tests; hosted evidence pending |
-| G11 | Actual retained storage, recovery, capacity, responsive UI | Incomplete |
-| G12 | Matching public code/runtime and current user documentation | Beta release only |
+| G10 | Withdrawal removes all current public projections | Local cache/race and failed-refresh clearing checks passed; actual hosted withdrawal/restart pending |
+| G11 | Actual retained storage, recovery, capacity, responsive UI | Local bounded storage and desktop/mobile checks; private HF source paused, actual storage/capacity/restore pending |
+| G12 | Matching public code/runtime and current user documentation | Private code prepared at 4bdf0cda; production remains beta, final public registered release pending |
 
 Record commands, exact source/revision, fixture versus actual scope, exit codes
 and artifact hashes here as evidence becomes available. Do not convert simulated
@@ -160,3 +160,13 @@ a 50-entry catalog page, and failed refresh clears previous views/options.
 G1/G7/G9/G10 local UI evidence is in v13; actual production gates remain open.
 The 452-test backend regression is earlier-source evidence, with the later JS/CSS
 changes verified separately by syntax and these browser checks.
+
+Read-only HF metadata subsequently confirmed the four required user-entered
+Secrets absent, State-Dev private/empty (0 bytes), the test Space paused and
+production unchanged at a85e57c45cbe3943796543134e68805c389ae74d. The exact
+five changed code files and checksum manifest (98,430 bytes) were prepared at
+4bdf0cda2bb36a95033451cbdb827f34a5727d16 in the private test Space. Its observed
+revision matches the commit; PAUSED and activation/initialization 0 are confirmed.
+No original results, state snapshots, new input files or Secret values were sent.
+This is actual source preparation only, not actual hosted G1–G12 acceptance.
+Receipts are in v13; user setup is documented in HF_REGISTRATION_TRIAL_SETUP_KO.md.
