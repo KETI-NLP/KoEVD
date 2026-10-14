@@ -170,3 +170,31 @@ revision matches the commit; PAUSED and activation/initialization 0 are confirme
 No original results, state snapshots, new input files or Secret values were sent.
 This is actual source preparation only, not actual hosted G1–G12 acceptance.
 Receipts are in v13; user setup is documented in HF_REGISTRATION_TRIAL_SETUP_KO.md.
+
+## Public numerical downloads
+
+The candidate now exports current public profiles and paired comparisons in
+JSON/JSONL/CSV/Markdown/HTML without original cases. Rendering is bounded to
+32 MiB and rechecks current publication after rendering; withdrawal or changed
+metadata discards the attachment. All routes use the existing bounded CPU gate.
+CSV formula protection, scriptless HTML, explicit units and separate submission/
+model revisions are covered. Task 4 has no quality/event difference row.
+
+The compact-JSON source passed **459 CPU tests** in 228.072 seconds with frozen
+source hashes (v15). The subsequent export column names/HTML minimum widths and
+their assertions passed **7 focused tests** in 11.914 seconds (v16); these two
+file changes are kept distinct from the earlier full-regression source scope.
+Final localhost Chrome checks saved all five profile and five comparison formats
+at desktop/mobile widths, byte-matched each to the current API and opened the
+scriptless offline HTML with readable scrolling columns and literal Korean names.
+
+Serializer replay of the two previously validated actual numerical snapshots
+(17,670 records/model) passed all 15 outputs, exact decoded JSON/JSONL/CSV numbers,
+oracle point values and denominators. The largest file is 18,922,174 bytes. The
+earlier pretty-JSON capacity failure remains a separate receipt; whitespace was
+removed without increasing the cap. Historical origin metadata was derived from
+read-only retained local SQL, not invented HF ownership. Bootstrap intervals were
+not compared. This is serializer/CPU evidence, not new inference, actual hosted
+registration, HF storage or public G1–G12 acceptance. See v14/v15/v16 receipts and
+PUBLIC_NUMERICAL_REPORT_GUIDE.md. Actual native identity/state/restart gates remain
+pending manual scoped Secrets and the separately requested finite trial approval.

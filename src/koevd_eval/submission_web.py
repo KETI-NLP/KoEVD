@@ -10,6 +10,7 @@ from .oauth import IdentitySessions
 from .results import _unique_object
 from .storage import StorageError
 from .submissions import SubmissionService
+from .public_exports import checked_export
 
 
 class RegistrationWeb:
@@ -194,6 +195,11 @@ def install_routes(app, analysis, registration, *, allowed_origins, bounded_body
     @app.get('/api/public/compare')
     async def public_compare(left:str,right:str):return await invoke(submissions.public_comparison,left,right)
 
+    @app.get('/api/public/compare/download')
+    async def public_comparison_download(left:str,right:str,format:str='json'):
+        raw,media,name=await invoke(checked_export,lambda:submissions.public_comparison(left,right),format)
+        return Response(raw,media_type=media,headers={'Content-Disposition':'attachment; filename="'+name+'"','Cache-Control':'no-store'})
+
     @app.get('/api/public/submissions/{submission_id}')
     async def public_summary(submission_id:str):return await invoke(submissions.public_summary,submission_id)
 
@@ -202,3 +208,8 @@ def install_routes(app, analysis, registration, *, allowed_origins, bounded_body
 
     @app.get('/api/public/submissions/{submission_id}/profile')
     async def public_profile(submission_id:str):return await invoke(submissions.public_profile,submission_id)
+
+    @app.get('/api/public/submissions/{submission_id}/profile/download')
+    async def public_profile_download(submission_id:str,format:str='json'):
+        raw,media,name=await invoke(checked_export,lambda:submissions.public_profile(submission_id),format)
+        return Response(raw,media_type=media,headers={'Content-Disposition':'attachment; filename="'+name+'"','Cache-Control':'no-store'})

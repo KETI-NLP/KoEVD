@@ -75,6 +75,11 @@ publication snapshot, including runs beyond the first catalog page. A failed
 refresh clears old profiles, metric rows and pair choices rather than presenting
 them as current authoritative results.
 
+Public profile/pair numerical downloads are documented in
+PUBLIC_NUMERICAL_REPORT_GUIDE.md. They return numerical snapshots only, with
+publication checked again after rendering. Response sharing never implicitly
+includes a private result download in these formats.
+
 ## Initial references and restart
 
 First initialization requires a verified empty state namespace and explicit

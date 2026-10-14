@@ -229,3 +229,16 @@ The private paused test Space now has the five tested code updates plus checksum
 manifest at 4bdf0cda2bb36a95033451cbdb827f34a5727d16 (98,430 bytes, no originals or
 new input files). Activation/initialization remain 0. Scope approval and dedicated
 Secret setup are still pending; follow HF_REGISTRATION_TRIAL_SETUP_KO.md.
+
+## Public numerical report downloads
+
+Profiles and pairs now have five numerical download formats, with public-state
+recheck after rendering, existing bounded CPU admission, no-store attachments,
+no originals and a 32 MiB cap. The compact serializer passed 459 frozen CPU tests;
+final revision-label/HTML-width follow-ups passed seven focused tests and actual
+desktop/mobile download/byte checks. Both actual historical numerical profiles
+and their pair passed 15 exports against the prior independent point-value
+oracle, including CSV/JSONL denominators. The initial pretty JSON exceeded the
+cap for the pair; compact JSON fixed it without truncation or a larger quota.
+No live HF identity, data write/restore or production registration is claimed.
+Usage/units are in PUBLIC_NUMERICAL_REPORT_GUIDE.md; detailed scope is in v14–v16.
