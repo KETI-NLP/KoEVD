@@ -1,6 +1,7 @@
 """Read-only, bounded GPU validation preflight. Does not read credential values."""
 
 import importlib.metadata
+import argparse
 import json
 import os
 from pathlib import Path
@@ -20,6 +21,10 @@ def command(args):
 
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--workspace-root',type=Path,default=Path.cwd(),
+                        help='Operator-selected working directory to inspect; defaults to the current directory')
+    workspace=parser.parse_args().workspace_root.expanduser().resolve()
     packages = {}
     for name in ("torch", "transformers", "peft", "accelerate", "vllm",
                  "huggingface-hub", "fastapi", "koevd-eval"):
@@ -27,13 +32,15 @@ def main():
             packages[name] = importlib.metadata.version(name)
         except importlib.metadata.PackageNotFoundError:
             packages[name] = None
-    roots = [Path.home(), Path("/mnt/nfs5/nlp/workspace"), Path("/tmp")]
+    temporary=Path(os.getenv('TMPDIR') or os.getenv('TEMP') or os.getenv('TMP') or
+                   ('/tmp' if os.name!='nt' else Path.home()))
+    roots = [Path.home(), workspace, temporary]
     disks = {}
     for root in roots:
         if root.is_dir():
             usage = shutil.disk_usage(root)
             disks[str(root)] = {"total_bytes": usage.total, "free_bytes": usage.free}
-    homes = [Path("/mnt/nfs5/nlp/workspace/test_ethics_deploy"), Path("/opt"),
+    homes = [workspace, Path("/opt"),
              Path("/opt/venv"), Path("/opt/conda"), Path.home()]
     children = {}
     for root in homes:

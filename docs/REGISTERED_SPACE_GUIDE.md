@@ -24,7 +24,7 @@ Reviewer/admin configuration starts empty and does not inherit old approvals.
 Check deployment-manifest.json and its exact file hashes before upload. The
 manifest's `actual_hosted_acceptance` remains false until independent hosted checks.
 
-The new context currently has 75 files, approximately 75.7 MB uncompressed;
+The current export candidate has 76 files, approximately 75.7 MB uncompressed;
 most bytes are the already public input indexes. Do not bundle the 8B/4B response
 files or any existing development store as code.
 

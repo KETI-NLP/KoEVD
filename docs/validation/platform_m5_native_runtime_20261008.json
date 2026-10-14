@@ -1,5 +1,6 @@
 {
   "format": "koevd-platform-native-runtime-validation-v1",
+  "publication_projection": "Internal directory names replaced with portable labels; original private validation and all measured values/checksums are preserved",
   "recorded_at_utc": "2026-10-08T11:45:46.701332+00:00",
   "plan_version": "0.24",
   "scope": "native Linux CPU Docker-candidate dependency/package/HTTP check using independently accepted prefix96 results",
@@ -128,27 +129,27 @@
       "child_not_launched": true,
       "error": "PermissionError EACCES when executing child interpreter through restricted NFS ancestors",
       "paths": {
-        "/mnt/nfs5/nlp/workspace/KoEVD_platform_validation_20261008/incoming/space_native_uid1000_v24": {
+        "<validation-runtime-directory>": {
           "uid": 1000,
           "gid": 1000,
           "mode": "0o700"
         },
-        "/mnt/nfs5/nlp/workspace/KoEVD_platform_validation_20261008/incoming": {
+        "<validation-input-directory>": {
           "uid": 0,
           "gid": 0,
           "mode": "0o755"
         },
-        "/mnt/nfs5/nlp/workspace/KoEVD_platform_validation_20261008": {
+        "<validation-root-directory>": {
           "uid": 0,
           "gid": 0,
           "mode": "0o700"
         },
-        "/mnt/nfs5/nlp/workspace": {
+        "<workspace-root-directory>": {
           "uid": 0,
           "gid": 0,
           "mode": "0o755"
         },
-        "/mnt/nfs5/nlp": {
+        "<workspace-parent-directory>": {
           "uid": 0,
           "gid": 0,
           "mode": "0o755"

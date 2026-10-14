@@ -1,6 +1,7 @@
 {
   "format": "sha256-file-manifest-v1",
   "release_version": "0.2.0rc1",
+  "snapshot_kind": "unreleased-public-registration-candidate; existing release tags unchanged",
   "basis": "exact staged Git blobs, excluding the manifest itself",
   "excludes": [
     "manifest.json",
@@ -10,8 +11,8 @@
   "files": [
     {
       "path": ".github/workflows/test.yml",
-      "bytes": 519,
-      "sha256": "42fb843e65c0f717d7b0012021f2057ec9f769dc483e86be7e879e4c57cf0673"
+      "bytes": 527,
+      "sha256": "bbe51151c9e21f5dacfa69ed0d5298d119838cbdb3ac04c9c32f034987dfb759"
     },
     {
       "path": ".gitignore",
@@ -20,8 +21,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 2583,
-      "sha256": "fe3cef6e51048710aa582dfc1866a170901b62ffc6ee144c8e20feeabfb6c160"
+      "bytes": 3518,
+      "sha256": "b4cc72a91d177be36117e5addee293180c23552efbec269d75fcda9ae35cee22"
     },
     {
       "path": "CITATION.cff",
@@ -45,8 +46,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 13203,
-      "sha256": "4db4c77969a68e54b3a21c5881fdf367e0680358e9ccc094c27bf784dbd8923a"
+      "bytes": 13939,
+      "sha256": "f6fd9e20faaa75dd161b1432dfb38795aca579c499fe8b71b749d265fcb08530"
     },
     {
       "path": "analysis/plot_paper_tables.py",
@@ -115,8 +116,8 @@
     },
     {
       "path": "apps/spaces/registered_launch.py",
-      "bytes": 6885,
-      "sha256": "72e6a823611cdedf784e7a1753f5fedd6295ad478747c3c3e6adf245c05a5cd8"
+      "bytes": 7746,
+      "sha256": "5f9c155206207ad57e2e786ffd0a41c4cd74aa2c6a9a34803be79126a96b0203"
     },
     {
       "path": "apps/spaces/requirements.lock.txt",
@@ -244,6 +245,11 @@
       "sha256": "b583d1e28fe75503772824c3599569fba1099699bda24d51eba6a8b79f6fb593"
     },
     {
+      "path": "docs/HF_REGISTRATION_TRIAL_SETUP_KO.md",
+      "bytes": 5530,
+      "sha256": "1fa80281a239e1eed5a24b08812d6ab44ce1c39c43837e259c5b02ba909bcdbb"
+    },
+    {
       "path": "docs/HOSTED_FULL_ANALYSIS_ACCEPTANCE.md",
       "bytes": 8258,
       "sha256": "02ecd14b45f941c2fd3616e8ca6bb4b49b68fd5f1e5cd51d21b4b92c4c4de41c"
@@ -319,19 +325,24 @@
       "sha256": "c05b4ec541b407775fc1145878339f9e7286bbcd3f4a03d00ebb411d01f58146"
     },
     {
+      "path": "docs/PUBLIC_NUMERICAL_REPORT_GUIDE.md",
+      "bytes": 4976,
+      "sha256": "6d2425f35ee2d0dc570adc50290b11ddab86813f7803087022764220f1e9b6d8"
+    },
+    {
       "path": "docs/PUBLIC_PROFILES_GUIDE.md",
       "bytes": 5628,
       "sha256": "9a3de96e8b0979cb1ac240f3332bb1c0c06517459d055da7f042bffada31a9cf"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 8512,
-      "sha256": "d4f9269edec21e4e2ba0e33bf9d5ea49d152cc10cdcdd5ee8d26c2ef99306015"
+      "bytes": 14189,
+      "sha256": "f23f130c93e8b18b1bc5bc537e23935347b23db7dbf33bd28e60bde5f2d31a41"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
-      "bytes": 9987,
-      "sha256": "bd138e9dcc71d5831933d829240563d5ed1bb7f06f3cfd1f31c4a5b343c37da6"
+      "bytes": 15606,
+      "sha256": "1416a490b2e5c86ec87a5e6610ebb8723e8efd34018783fa26e314a5db7d2f6b"
     },
     {
       "path": "docs/RANK_ADMISSION_GUIDE.md",
@@ -345,8 +356,8 @@
     },
     {
       "path": "docs/REGISTERED_SPACE_GUIDE.md",
-      "bytes": 5382,
-      "sha256": "186d0a1e7f1689995fe20f4a4e45ceb7e865b7e88c945988729c062ba23f1361"
+      "bytes": 7441,
+      "sha256": "fb72165014df6ddd20a96b38fee79a2a30950cb876c8f10ceccb0cd4ac0c49de"
     },
     {
       "path": "docs/RELEASE.md",
@@ -605,8 +616,8 @@
     },
     {
       "path": "docs/validation/platform_m5_native_runtime_20261008.json",
-      "bytes": 13351,
-      "sha256": "8e301e3da707b3283bdccc43b53380f1fb3c59b17ede0a90d8f7921f98689044"
+      "bytes": 13401,
+      "sha256": "3433cd8a9fc1d220e3b35cb49dbc66e47a317ac792aeb7a0cbbe81c8560a3e96"
     },
     {
       "path": "docs/validation/platform_m5_public_failure_ui_20261012.json",
@@ -1025,8 +1036,8 @@
     },
     {
       "path": "scripts/probe_gpu_node.py",
-      "bytes": 3393,
-      "sha256": "9b0a95d448f0e094a9804c1847d4c85d7cd807e9aed1726aaf075fed0bd76428"
+      "bytes": 3804,
+      "sha256": "5b19d6f57332666fbc9239e8bfa3963f19f9c689df047ea2c3ee6d320a258f46"
     },
     {
       "path": "scripts/run_submission_ui_fixture.py",
@@ -1215,8 +1226,8 @@
     },
     {
       "path": "src/koevd_eval/assets/registration.js",
-      "bytes": 26299,
-      "sha256": "d620a66ee71157ba1d1f6f302cf2c43e21f9b528b53ed9ec6cad82d3c1ee3b08"
+      "bytes": 31879,
+      "sha256": "5cfaa4c4f548b24d6c653259944364e7fc1e592645661a9aca9f12401a549bbf"
     },
     {
       "path": "src/koevd_eval/assets/report.css",
@@ -1230,13 +1241,13 @@
     },
     {
       "path": "src/koevd_eval/assets/space.css",
-      "bytes": 4555,
-      "sha256": "f99d0a43afe4987c83f0d8749f4de591b8691432e4532594c15a73ff2d9f5f56"
+      "bytes": 4944,
+      "sha256": "dc41c572f8da1457d87e74601f16dec9308fc20e1df96baae641dd4e7981c12c"
     },
     {
       "path": "src/koevd_eval/assets/space.html",
-      "bytes": 9388,
-      "sha256": "1e5b58ee077698a00b240abdf67dd7cbff72e15174c8757287de3b5e3bec5f7f"
+      "bytes": 9752,
+      "sha256": "85f1ffbe357d72085809aca0196da28a2b74a1f49966e0f9cf28418e56d96c87"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1364,6 +1375,11 @@
       "sha256": "8be217ff303ffeac74e3df04b14c2897d937c3617334b099f273464e5d7b973c"
     },
     {
+      "path": "src/koevd_eval/public_exports.py",
+      "bytes": 10744,
+      "sha256": "7e370f199e61ae41b7188958d921431fbdc2c0884aeabb415926c5032a983918"
+    },
+    {
       "path": "src/koevd_eval/recovery.py",
       "bytes": 17779,
       "sha256": "1fc2a85d10884538ed13e718be176ad8ffdf01dbc84e3644bc52699e01f8320d"
@@ -1375,8 +1391,8 @@
     },
     {
       "path": "src/koevd_eval/remote_durability.py",
-      "bytes": 13707,
-      "sha256": "e6e087a14ddea10fa8965c7fa26caac7f7d9be3a8483402b617aca86630ea11c"
+      "bytes": 13966,
+      "sha256": "0b020a837753f7dddd1769e0043db8918bff947a82a9608c94393c6f1da90f6e"
     },
     {
       "path": "src/koevd_eval/reports.py",
@@ -1420,13 +1436,13 @@
     },
     {
       "path": "src/koevd_eval/space_service.py",
-      "bytes": 20353,
-      "sha256": "c6e86cb22a3c292173348590104a7f1d2b218907c607d234bd3381a6a2d7bc39"
+      "bytes": 22193,
+      "sha256": "165cd310b6e0beb798e4b98ce8eb322a109555ceda1a5252973c63b9ca23f1d9"
     },
     {
       "path": "src/koevd_eval/spaces.py",
-      "bytes": 18438,
-      "sha256": "2d4a0135b0a5ee7393eda31e5b592589d2942572de3ad67f6f25530a87278a51"
+      "bytes": 18655,
+      "sha256": "a181a3ed9f5b6aa228827a18a9c216e4be75ef7c81ead48ed6799960f1697ca8"
     },
     {
       "path": "src/koevd_eval/storage.py",
@@ -1435,8 +1451,8 @@
     },
     {
       "path": "src/koevd_eval/submission_web.py",
-      "bytes": 12606,
-      "sha256": "c76a1f375e6cace33aed585d1c49012ecc8dcf66bb4ec12f1fd5724e9b53c4a5"
+      "bytes": 13419,
+      "sha256": "ba0903a4388042dab22630d34b0b8af4ddd75142dfe604e20bc8b03da0c42d4d"
     },
     {
       "path": "src/koevd_eval/submissions.py",
@@ -1594,6 +1610,11 @@
       "sha256": "a72c9f97f0acd2da40a33705abffa802379c3e691595595949a729f6ef548a13"
     },
     {
+      "path": "tests/test_public_exports.py",
+      "bytes": 9532,
+      "sha256": "cadcd62d26c10e86cf0a080e991067d96c7413072ae35daadbe6c328a000d047"
+    },
+    {
       "path": "tests/test_public_leaderboard.py",
       "bytes": 9735,
       "sha256": "c3c511128fbf9827647cd4cdbed95ac97a95f947524b54c7c186c18cc71bfee5"
@@ -1625,13 +1646,13 @@
     },
     {
       "path": "tests/test_registration_runtime.py",
-      "bytes": 6976,
-      "sha256": "b3032c8920914ab9808adb68f3ff0846f82bd6928e308f82f335b702783cd399"
+      "bytes": 7729,
+      "sha256": "d1baebccb6ed1f6f6e25e2815913e7c7a4659c57b4b753bbc355eb7985bcd9e6"
     },
     {
       "path": "tests/test_remote_durability.py",
-      "bytes": 11799,
-      "sha256": "385f2942c10d1e9cf052f8c19a878ccaf964052dff5d66afb4b64c83d1bc3747"
+      "bytes": 12041,
+      "sha256": "7fdd738ccbb8a905e30f7a76b67048ab1fbfe9b2cf72c26fbdd9a48874cb854a"
     },
     {
       "path": "tests/test_remote_state_cli.py",
@@ -1697,6 +1718,11 @@
       "path": "tests/test_submissions.py",
       "bytes": 22450,
       "sha256": "e1a44a2ac8b96749a5bf3d6e526b78d998a70f374b5442724759da5654a02508"
+    },
+    {
+      "path": "tests/test_upload_declaration.py",
+      "bytes": 3218,
+      "sha256": "7d52008d6d1c0fb9667de7698ac24c7f865c7a3cb52ae93767b80a0df202a2d8"
     }
   ]
 }

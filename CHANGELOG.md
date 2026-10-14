@@ -1,3 +1,17 @@
+# Unreleased registered-service candidate
+
+- HF-owned submission metadata, original-declaration confirmation and explicit
+  consent for numerical summary publication, separate from reviewed originals.
+- Acknowledged checkpoints with conditional private HF/S3 state, restore and
+  stale-instance/withdrawal fencing; activation and initialization remain opt-in.
+- Cached public profiles, metric search/display sorting, complete published-run
+  pair choices and exact-input comparisons without fabricating official ranks.
+- Five bounded public numerical export formats, current-publication rechecks,
+  explicit units and scriptless offline reports. No original cases are exported.
+- Local CPU, synthetic browser/container and retained actual numerical checks;
+  actual hosted identity/state/restart and production G1–G12 acceptance are still
+  required. Existing tags, beta operation and classifier limits are preserved.
+
 # 0.2.0rc1 platform public beta
 
 - Portable validated results, resumable execution and shared offline/CPU/browser analysis.
