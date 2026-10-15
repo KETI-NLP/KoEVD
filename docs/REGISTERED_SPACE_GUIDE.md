@@ -1,9 +1,13 @@
-# Registered Space deployment candidate
+# Registered Space deployment and recovery
 
-This candidate connects registration, explicit summary publication, public
-profiles/metric comparison and private conditional state. The existing anonymous
-production launcher is preserved. Local API, CPU and container results do not
-prove actual HF login, storage or deployed G1–G12 acceptance.
+The registered service is deployed at
+[KoEVD-Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+Actual public login, owned registration, consented summaries, withdrawal,
+original/history restoration after restart and numerical exports passed on
+2026-10-15. See [exact source/runtime and acceptance scope](PUBLIC_SERVICE_ACCEPTANCE.md).
+The anonymous launcher remains available for explicit rollback. The operator
+instructions below apply to a new reviewed deployment; local tests alone do not
+prove another deployment's hosted acceptance.
 
 ## Prepare the context
 
@@ -22,9 +26,10 @@ the registered Dockerfile, CPU dependency lock and native OAuth README metadata.
 It excludes actual model response originals, submission DBs and credentials.
 Reviewer/admin configuration starts empty and does not inherit old approvals.
 Check deployment-manifest.json and its exact file hashes before upload. The
-manifest's `actual_hosted_acceptance` remains false until independent hosted checks.
+manifest's `actual_hosted_acceptance` is a preflight fact. Preserve the frozen
+manifest; record later independent hosted checks in a separate dated receipt.
 
-The current export candidate has 76 files, approximately 75.7 MB uncompressed;
+The accepted deployment has 78 payload files (75,725,087 bytes), plus its manifest;
 most bytes are the already public input indexes. Do not bundle the 8B/4B response
 files or any existing development store as code.
 

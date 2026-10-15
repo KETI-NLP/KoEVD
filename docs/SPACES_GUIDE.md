@@ -1,5 +1,12 @@
 # Local upload and reference-comparison app (development candidate)
 
+**Current public service (2026-10-15): v0.3.0-rc.1.** Actual HF-owned registration,
+confirmed private storage/restart, consented summary sharing/withdrawal, two-model
+public profiles/comparison and 15 numerical exports passed. Start with the
+[user guide](PLATFORM_USER_GUIDE.md) and [current acceptance](PUBLIC_SERVICE_ACCEPTANCE.md).
+Official ranks and original-response publication remain disabled. Earlier beta,
+local-only and pending statements below retain their dated historical scope.
+
 **Public beta v0.2.0-rc.1:** new disclosure projection and private pinned reference transport passed 374 CPU checks and full actual one-upload/reference browser acceptance. See [deployment scope](PUBLIC_BETA_DEPLOYMENT.md) and [local beta evidence](validation/platform_public_beta_local_v94.json). The earlier checkpoints below retain their dated scope.
 
 An additional [Static candidate](STATIC_SPACES_GUIDE.md) runs the unchanged
