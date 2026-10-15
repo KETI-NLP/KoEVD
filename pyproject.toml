@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "koevd-eval"
-version = "0.2.0rc1"
+version = "0.3.0rc1"
 description = "Reference evaluation and analysis for KoEVD"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -14,7 +14,7 @@ dependencies = []
 [project.optional-dependencies]
 dev = ["jsonschema>=4.20", "httpx>=0.27"]
 hub = ["huggingface-hub>=0.34"]
-storage = ["huggingface-hub>=1.31"]
+storage = ["huggingface-hub>=1.31", "boto3>=1.40,<2"]
 analysis = ["numpy>=1.26", "pandas>=2.2", "matplotlib>=3.8", "seaborn>=0.13"]
 classifiers = ["torch>=2.4", "transformers>=5.8.1", "peft>=0.18", "accelerate>=1.0", "sentencepiece", "huggingface-hub>=0.34"]
 serve = ["fastapi>=0.110", "uvicorn>=0.27"]

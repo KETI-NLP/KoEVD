@@ -56,6 +56,7 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
 
     app=FastAPI(title='KoEVD private analysis candidate',docs_url=None,redoc_url=None,openapi_url=None,lifespan=lifespan)
     app.state.service=service
+    app.state.registration=registration
     app.add_middleware(TrustedHostMiddleware,allowed_hosts=hosts)
 
     @app.exception_handler(ServiceError)
@@ -112,8 +113,12 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
     async def health():return {'status':'ready','registration_enabled':registration is not None}
 
     @app.get('/api/registration')
-    async def registration_status():return {'enabled':registration is not None,'publication_environment':'local_candidate',
-        'official_ranking_enabled':registration is not None and registration.submissions.rank_policy.status=='ratified'}
+    async def registration_status():
+        value={'enabled':registration is not None,'publication_environment':registration.submissions.publication_environment if registration is not None else 'local_candidate',
+               'official_ranking_enabled':registration is not None and registration.submissions.rank_policy.status=='ratified'}
+        if registration is not None and registration.submissions.allow_self_reported_summaries:
+            value['self_reported_summaries_enabled']=True
+        return value
 
     @app.get('/api/catalog')
     async def catalog():return {**service.catalog.public(),'limits':{'upload_bytes':service.limits.upload_bytes,'max_uploads':service.limits.max_uploads,'ttl_seconds':service.limits.ttl_seconds,'bootstrap_resamples':service.limits.bootstrap_resamples,'bootstrap_seed':service.limits.bootstrap_seed}}
@@ -163,6 +168,10 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
     async def delete_upload(upload_id:str,request:Request):
         token,csrf=credentials(request,True);service.delete_upload(token,csrf,upload_id);return {'deleted':True}
 
+    @app.get('/api/uploads/{upload_id}/declaration')
+    async def upload_declaration(upload_id:str,request:Request):
+        return await run_in_threadpool(service.upload_declaration,credentials(request),upload_id)
+
     @app.post('/api/analyses')
     async def analyze(request:Request):
         token,csrf=credentials(request,True)
@@ -196,6 +205,15 @@ def main():
                         help='Withhold configured reference raw text after analysis; personal session results remain intact')
     parser.add_argument('--session-root',default=os.environ.get('KOEVD_SESSION_ROOT'))
     parser.add_argument('--submission-root',default=os.environ.get('KOEVD_SUBMISSION_ROOT'))
+    parser.add_argument('--checkpoint-root',default=os.environ.get('KOEVD_CHECKPOINT_ROOT'),
+                        help='Separate retained filesystem ledger: confirm each mutation before success; not an HF Bucket')
+    parser.add_argument('--state-bucket',default=os.environ.get('KOEVD_STATE_BUCKET'),
+                        help='Explicit existing private HF Bucket for conditional acknowledged state; dedicated S3 secrets required')
+    parser.add_argument('--state-prefix',default='koevd-state-v1')
+    parser.add_argument('--initialize-state',action='store_true',
+                        help='Explicitly permit a verified empty remote namespace; never overwrite an existing cut')
+    parser.add_argument('--self-reported-summaries',action='store_true',
+                        help='Allow owners to explicitly publish numerical summaries; no response review or official rank implied')
     parser.add_argument('--roles-file',default=os.environ.get('KOEVD_ROLES_FILE'))
     parser.add_argument('--protocol-registry',default=os.environ.get('KOEVD_PROTOCOL_REGISTRY'),
                         help='Operator protocol directory for published metric admission')
@@ -239,9 +257,29 @@ def main():
             registry=ProtocolRegistry(args.protocol_registry) if args.protocol_registry else None
             from .policy_decisions import configured_policy
             policy=configured_policy(args.policy_root,args.policy_head_sha256)
-            persistent=SubmissionService(LocalSubmissionStore(args.submission_root),{k:v['index'] for k,v in catalog.indexes.items()},registry=registry,rank_policy=policy,**roles)
+            if args.checkpoint_root and args.state_bucket:
+                parser.error('Select either retained filesystem or remote state checkpoints')
+            if args.state_bucket:
+                from .remote_durability import HFS3StateObjects,RemoteCheckpointLedger,open_acknowledged_store
+                objects=HFS3StateObjects.from_secrets(args.state_bucket,
+                    hf_token=os.environ.get('KOEVD_STATE_TOKEN',''),
+                    access_key_id=os.environ.get('KOEVD_STATE_ACCESS_KEY_ID',''),
+                    secret_access_key=os.environ.get('KOEVD_STATE_SECRET_ACCESS_KEY',''))
+                ledger=RemoteCheckpointLedger(objects,prefix=args.state_prefix,initialize_empty=args.initialize_state)
+                store=open_acknowledged_store(args.submission_root,ledger)
+            elif args.initialize_state or args.state_prefix!='koevd-state-v1':
+                parser.error('Remote initialization/prefix requires --state-bucket')
+            elif args.checkpoint_root:
+                from .durability import AcknowledgedSubmissionStore, FileCheckpointLedger
+                ledger=FileCheckpointLedger(args.checkpoint_root)
+                # Restore is an explicit operator action, not silent empty initialization.
+                store=AcknowledgedSubmissionStore(args.submission_root,ledger)
+            else:
+                store=LocalSubmissionStore(args.submission_root)
+            persistent=SubmissionService(store,{k:v['index'] for k,v in catalog.indexes.items()},registry=registry,rank_policy=policy,
+                                         allow_self_reported_summaries=args.self_reported_summaries,**roles)
             registration=RegistrationWeb(persistent,identities)
-        elif args.roles_file or args.oauth_origin or args.protocol_registry or args.policy_root or args.policy_head_sha256 or args.oauth_client_type!='confidential':parser.error('OAuth/roles/admission configuration requires --submission-root')
+        elif args.self_reported_summaries or args.checkpoint_root or args.state_bucket or args.initialize_state or args.state_prefix!='koevd-state-v1' or args.roles_file or args.oauth_origin or args.protocol_registry or args.policy_root or args.policy_head_sha256 or args.oauth_client_type!='confidential':parser.error('OAuth/roles/admission configuration requires --submission-root')
         import uvicorn
         app=create_app(service,origins=origins,frame_ancestors=("'self'",'https://huggingface.co'),registration=registration,
                        deployment_notice=os.environ.get('KOEVD_DEPLOYMENT_NOTICE'))

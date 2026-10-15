@@ -4,4 +4,11 @@
 .metric-scroll table{min-width:900px}.metric-scroll td:nth-child(4),.metric-scroll th:nth-child(4){min-width:420px}
 
 .leaderboard-table td:nth-child(4),.leaderboard-table th:nth-child(4){min-width:65px;white-space:nowrap}.leaderboard-table td:nth-child(5),.leaderboard-table th:nth-child(5){min-width:420px}
+.leaderboard-table td:nth-child(5),.leaderboard-table th:nth-child(5){min-width:200px}.leaderboard-table td:nth-child(6),.leaderboard-table th:nth-child(6){min-width:420px}#leaderboard-search{font:inherit;width:100%;max-width:100%;border:1px solid #b9cddb;border-radius:6px;padding:8px;margin:8px 0 14px}
 .error,#leaderboard-status{overflow-wrap:anywhere}
+.public-chart-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.public-chart-table meter{width:140px;height:22px}.public-chart-table td,.public-chart-table th{min-width:110px!important;overflow-wrap:anywhere}.public-pair-table td,.public-pair-table th{min-width:150px!important}#public-pair-status,#public-pair-results h3{overflow-wrap:anywhere}#public-pair-results details{border-top:1px solid #d9e3ed;padding-top:12px}
+#public-metrics pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}
+#submission-declaration{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}
+#public-pair-section select{font:inherit;width:100%;max-width:100%;padding:8px;border:1px solid #b9cddb;border-radius:6px;margin:8px 0 14px}#public-metrics h3,#public-submissions button{overflow-wrap:anywhere;max-width:100%}
+
+#workspace-navigation{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px}#workspace-navigation a{background:white;border:1px solid #b9cddb;border-radius:7px;padding:9px 14px;color:#175b83;text-decoration:none}#workspace-navigation a:focus-visible{outline:3px solid #da9a2b;outline-offset:3px}#public-catalog-section select{font:inherit;width:100%;max-width:100%;padding:8px;border:1px solid #b9cddb;border-radius:6px;margin:8px 0 14px}#public-catalog-section a{color:#175b83}#public-catalog-section h3{overflow-wrap:anywhere}#public-catalog-section,#public-pair-section,#upload-section,#registration-section{scroll-margin-top:20px}

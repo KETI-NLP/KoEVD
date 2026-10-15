@@ -206,21 +206,36 @@ def leaderboard(entries, *, registry, policy, resamples=500, seed=1729):
     No authentication/publication/withdrawal decision is made here: the caller
     must take a current publication snapshot and recheck it before returning.
     """
-    boards, excluded, seen = {}, [], set()
+    reports = []
     for entry_id, document, index, evidence in entries:
-        if not isinstance(entry_id,str) or not entry_id or entry_id in seen:
-            raise ValueError('Leaderboard entry IDs must be unique nonempty strings')
-        seen.add(entry_id)
         report = evaluate_admission(document,index,registry=registry,policy=policy,evidence=evidence,
                                     resamples=resamples,seed=seed)
+        reports.append((entry_id, document['run']['model'], report))
+    return _boards_from_admissions(reports, policy=policy)
+
+
+def _boards_from_admissions(reports, *, policy):
+    """Internal assembly from engine-computed reports, never HTTP/upload scores.
+
+    Publication authority and current evidence checks remain with the caller.
+    This is shared by uncached CLI scoring and the server's numerical cache.
+    """
+    boards, excluded, seen = {}, [], set()
+    for entry_id, model, report in reports:
+        if not isinstance(entry_id,str) or not entry_id or entry_id in seen:
+            raise ValueError('Leaderboard entry IDs must be unique nonempty strings')
+        if report['policy_sha256'] != policy.sha256:
+            raise ValueError('Admission report belongs to a different operator policy')
+        seen.add(entry_id)
         for metric in report['metrics']:
-            row = {'entry_id':entry_id,'artifact_sha256':document['content_sha256'],
-                   'model':deepcopy(document['run']['model']),'metric':metric}
+            metric = deepcopy(metric)
+            row = {'entry_id':entry_id,'artifact_sha256':report['artifact_sha256'],
+                   'model':deepcopy(model),'metric':metric}
             if metric['rank_eligible']:
                 key = (metric['id'],metric['cohort_sha256'])
                 boards.setdefault(key,[]).append(row)
             else: excluded.append({'entry_id':entry_id,'metric_id':metric['id'],'reasons':metric['reasons'],
-                                   'model':deepcopy(document['run']['model']),'metric':metric})
+                                   'model':deepcopy(model),'metric':metric})
     output = []
     for (metric_id, cohort), rows in sorted(boards.items()):
         direction = rows[0]['metric']['direction']
