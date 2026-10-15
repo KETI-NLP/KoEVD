@@ -1,22 +1,26 @@
 # Public registration service acceptance
 
-Updated 2026-10-14. All G1–G12 are required. Existing anonymous beta receipts are
-regression evidence; they do not prove registered-service completion.
+Updated 2026-10-15. All G1–G12 are required. The approved finite private hosted
+trial passed at revision 71c010860056b6f80d13f8e1da7a4b92a3bbca4a. Its evidence
+is in generated/public-service-20261015-v18/FINAL_TRIAL_RECEIPT.json. It proves
+the private integration scopes below, not final public production acceptance.
+The trial Space is PAUSED, activation/initialization 0; production is unchanged.
+Earlier dated sections below are historical evidence.
 
 | ID | Required evidence | Current goal status |
 |---|---|---|
-| G1 | Anonymous public model list and metrics, no upload required | Local candidate catalog/board/profile and 53-run UI checks passed; actual production registration disabled |
-| G2 | Model/run metadata and separate display name | Original declaration, file-selection confirmation and separate display metadata passed locally; actual hosted workflow pending |
-| G3 | Actual HF identity, persisted registration and URL | Missing in production |
-| G4 | Explicit summary/response scope and publication state | Consented numerical summary path and reviewed response upgrade tested locally; hosted evidence missing |
-| G5 | Re-login and restart preserve acknowledged originals/history | Local conditional remote-double/CLI restore checks passed; actual HF durability/re-login missing |
-| G6 | Independent public reader; private data denied | Local candidate anonymous profile/pair and private-session access tests passed; independent hosted reader pending |
-| G7 | Two actual-model public profiles and paired comparison | Two full actual results passed local registered API comparison; actual hosted pair still pending |
-| G8 | CLI/profile/board/download numerical agreement | Local actual point values/denominators and 15 numerical exports match; hosted registered downloads remain pending |
-| G9 | Duplicate, invalid, incompatible, concurrent and failed writes | Local replay/failure/copy/quota/conflict checks passed; new hosted integration required |
-| G10 | Withdrawal removes all current public projections | Local cache/race and failed-refresh clearing checks passed; actual hosted withdrawal/restart pending |
-| G11 | Actual retained storage, recovery, capacity, responsive UI | Local bounded storage and desktop/mobile checks; private HF source paused, actual storage/capacity/restore pending |
-| G12 | Matching public code/runtime and current user documentation | Private code prepared at 71c01086; production remains beta, final public registered release pending |
+| G1 | Anonymous public model list and metrics, no upload required | Private hosted app-anonymous catalog/board shows two actual references; public production registration remains disabled |
+| G2 | Model/run metadata and separate display name | Actual upload of 17,670 records, original declaration confirmation and separate name edit passed privately |
+| G3 | Actual HF identity, persisted registration and URL | Actual HF OAuth owner registered a private submission and found the same ID after restart; public deployment pending |
+| G4 | Explicit summary/response scope and publication state | Actual private trial recorded summary consent; original response access stayed 403; public deployment and reviewed response scope remain separate |
+| G5 | Re-login and restart preserve acknowledged originals/history | Actual scoped HF/S3 restore and HF re-login passed; full original document equal and final 7,299-byte event history identical across restart |
+| G6 | Independent public reader; private data denied | App-anonymous API reads passed inside private HF perimeter; private history 401 and summary-only original 403; independent public-browser acceptance pending |
+| G7 | Two actual-model public profiles and paired comparison | Actual private hosted profiles/pair match offline points and denominators; public production pair acceptance pending |
+| G8 | CLI/profile/board/download numerical agreement | Hosted profile/pair points match offline oracle; normal private original/history downloads verified; all five numerical hosted exports and public deployment acceptance pending |
+| G9 | Duplicate, invalid, incompatible, concurrent and failed writes | Actual duplicate sharing yields 3 registrations/2 distinct artifacts; invalid/conflict/fault scenarios retain earlier local evidence |
+| G10 | Withdrawal removes all current public projections | Actual private withdrawal removes catalog/board entry and cached profile/pair/download paths (404); persists after final restart |
+| G11 | Actual retained storage, recovery, capacity, responsive UI | Actual CPU Basic/single replica, 3 total starts, 5 checkpoints/335,866,272 bytes and restore passed; iframe identity needs own-tab path; public mobile/operations pending |
+| G12 | Matching public code/runtime and current user documentation | Draft PR #3 has 459-test CI on Python 3.10/3.12; private runtime 71c01086 tested; public registered release pending |
 
 Record commands, exact source/revision, fixture versus actual scope, exit codes
 and artifact hashes here as evidence becomes available. Do not convert simulated

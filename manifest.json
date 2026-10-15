@@ -1,7 +1,6 @@
 {
   "format": "sha256-file-manifest-v1",
-  "release_version": "0.2.0rc1",
-  "snapshot_kind": "unreleased-public-registration-candidate; existing release tags unchanged",
+  "release_version": "0.3.0rc1",
   "basis": "exact staged Git blobs, excluding the manifest itself",
   "excludes": [
     "manifest.json",
@@ -21,8 +20,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 3518,
-      "sha256": "b4cc72a91d177be36117e5addee293180c23552efbec269d75fcda9ae35cee22"
+      "bytes": 3854,
+      "sha256": "e0f60ad518a989cb043d47cf09b460b42552fc932acf81caa83870e1058200c9"
     },
     {
       "path": "CITATION.cff",
@@ -46,8 +45,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 13939,
-      "sha256": "f6fd9e20faaa75dd161b1432dfb38795aca579c499fe8b71b749d265fcb08530"
+      "bytes": 14108,
+      "sha256": "7d823d180affc0696e02e60238824810459f25ae6be1e349fc39bcf430143ab2"
     },
     {
       "path": "analysis/plot_paper_tables.py",
@@ -310,6 +309,11 @@
       "sha256": "d0870d9a1c6ae470443cb72172032db12044304d1fa875c2a6b1b2be27e4cd23"
     },
     {
+      "path": "docs/PLATFORM_USER_GUIDE.md",
+      "bytes": 6127,
+      "sha256": "bf6a1c83e5b0a264cb9f3cb45db071938e9baccc8d64dda8c176f01eb39f3f87"
+    },
+    {
       "path": "docs/PLATFORM_VALIDATION_LOG.md",
       "bytes": 179161,
       "sha256": "b36b76347ae61cea53499a4b2315933546d532db338f52a8b14067cf5e559722"
@@ -336,13 +340,13 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 14189,
-      "sha256": "f23f130c93e8b18b1bc5bc537e23935347b23db7dbf33bd28e60bde5f2d31a41"
+      "bytes": 14934,
+      "sha256": "79791f089dd287e437be0f4e7c8d1bee92d2ed63b5bfc163bc1b2b09f1fab085"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
-      "bytes": 15606,
-      "sha256": "1416a490b2e5c86ec87a5e6610ebb8723e8efd34018783fa26e314a5db7d2f6b"
+      "bytes": 17902,
+      "sha256": "600689617b462d5052aeee71758e36fef6f32361a0a5c450e95a901eb70a15ea"
     },
     {
       "path": "docs/RANK_ADMISSION_GUIDE.md",
@@ -902,7 +906,7 @@
     {
       "path": "pyproject.toml",
       "bytes": 1776,
-      "sha256": "f14e6d8445f6081c0168b578c30589df83bb25a4e435ccf7e33ce57dc3b41111"
+      "sha256": "d53a559971572c2de430127726edc62ec7d09480007ddaaa6fcdb97c2e9f3f32"
     },
     {
       "path": "reproduction/task1_metadata_v1/README.md",
@@ -1016,8 +1020,8 @@
     },
     {
       "path": "scripts/materialize_registered_space.py",
-      "bytes": 4331,
-      "sha256": "620f39b8be443a628181ad8321c2c060844f985e6a94812d435887c4c66ae7a8"
+      "bytes": 5340,
+      "sha256": "baa2feac9fb6bc55f8de81105367c2b96176a10e852ac27229cec635b0a088d8"
     },
     {
       "path": "scripts/materialize_static_space.py",
@@ -1217,7 +1221,7 @@
     {
       "path": "src/koevd_eval/__init__.py",
       "bytes": 87,
-      "sha256": "fa31ec4745043f240e6a30127e86260b8c1d55fd224a61972598d0013d933b3b"
+      "sha256": "07b8957c6efaba4ebdd967a2edb9cfcb10a6ed1d235e2ae05dc13b8961f7f2ba"
     },
     {
       "path": "src/koevd_eval/analysis.py",
@@ -1226,8 +1230,8 @@
     },
     {
       "path": "src/koevd_eval/assets/registration.js",
-      "bytes": 31879,
-      "sha256": "5cfaa4c4f548b24d6c653259944364e7fc1e592645661a9aca9f12401a549bbf"
+      "bytes": 33142,
+      "sha256": "58a7bda59980b2b5994ab5c53f3d8a7524eaa37e3ff0cb1d776812c0ef7c3a11"
     },
     {
       "path": "src/koevd_eval/assets/report.css",
@@ -1241,13 +1245,13 @@
     },
     {
       "path": "src/koevd_eval/assets/space.css",
-      "bytes": 4944,
-      "sha256": "dc41c572f8da1457d87e74601f16dec9308fc20e1df96baae641dd4e7981c12c"
+      "bytes": 5593,
+      "sha256": "2a9639ce20ac0d614f964c8f5263a0697cc8bad96489bfd4afefc1dae7ce4568"
     },
     {
       "path": "src/koevd_eval/assets/space.html",
-      "bytes": 9752,
-      "sha256": "85f1ffbe357d72085809aca0196da28a2b74a1f49966e0f9cf28418e56d96c87"
+      "bytes": 10891,
+      "sha256": "e9bb76827b121bbc5a8fa0059524d037d2a6fcfa5d9b6deb0959a11821e1f3d2"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1724,5 +1728,6 @@
       "bytes": 3218,
       "sha256": "7d52008d6d1c0fb9667de7698ac24c7f865c7a3cb52ae93767b80a0df202a2d8"
     }
-  ]
+  ],
+  "snapshot_kind": "0.3.0rc1-public-registration-release-candidate; existing tags unchanged; hosted production acceptance pending"
 }

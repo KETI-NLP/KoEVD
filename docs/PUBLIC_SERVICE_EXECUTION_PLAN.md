@@ -1,6 +1,6 @@
 # Public registration service execution plan
 
-Updated 2026-10-14. Goal: complete the public registered-result service, including
+Updated 2026-10-15. Goal: complete the public registered-result service, including
 G1–G12, rather than extend the anonymous-analysis beta alone.
 
 The original development checkout has 214 dirty entries and is preserved. Work
@@ -9,20 +9,53 @@ uses branch `feature/public-registration-service`, based on public main
 
 ## Current state
 
+Production preparation after the private trial: `0.3.0rc1` adds public-first
+navigation and model exploration, accurate hosted-environment notices and an
+embedded-sign-in advisory. The frozen local source passed 459 CPU tests in
+270.061 seconds; separate local synthetic desktop/mobile checks confirmed
+anonymous exploration/comparison. This does not extend the earlier hosted trial
+to the new frontend. A 76-file/75,718,613-byte production-profile context and a
+hash-verified rollback context at a85e57c are prepared locally in
+`generated/public-service-20261015-v20/`. No production source was deployed.
+
+The new `KETI-NLP/KoEVD-Platform-State` Bucket is private/empty. The existing
+production reference Secret is present; three production state Secrets are not.
+The user has been asked to configure one Bucket-scoped HF token and its S3 pair
+directly in the existing public Platform's settings. Test credentials are not
+copied or expanded. Production variable changes/initialization remain deferred
+until credentials and the concrete activation scope are verified. The local UI
+fixture server was terminated after validation.
+
 The production Space is public, RUNNING, CPU Basic, one replica at
 `a85e57c45cbe3943796543134e68805c389ae74d`. Registration remains disabled. Its
 two exact references and anonymous-analysis acceptance remain intact.
 
 The registered candidate's implementation commit is
-`01e5d7edd3f7c718f1e046ac7ff2e6ca323dd16a`. Its source-only private test preparation
-is `71c010860056b6f80d13f8e1da7a4b92a3bbca4a`, PAUSED with activation/initialization
-0. Four required user-entered Secret names were absent on the latest read-only
-probe; scope approval and manual credential setup remain pending. Local backend
-regression reached 459 tests; final export formatting has separate seven-test
-and browser follow-up evidence. Search/pair choices passed with 53 synthetic
-publications, and retained actual numerical snapshots passed 15 exports.
-No actual HF login, state cut,
-restart acceptance or public registration deployment is claimed.
+`01e5d7edd3f7c718f1e046ac7ff2e6ca323dd16a`, private runtime revision
+`71c010860056b6f80d13f8e1da7a4b92a3bbca4a`. The user supplied four scoped Secrets
+and explicitly approved the finite private trial. Actual HF identity, one original
+upload, acknowledged private registration/name edit, numerical summary consent,
+duplicate accounting, withdrawal and two restart restores passed. The original
+17,670-record document is equal after restore; final four-event history is byte
+identical. Hosted two-reference profiles/pairs match offline points/denominators.
+The original browser download-wait timeout remains a failed tool attempt; later
+normal UI downloads verified the files. Iframe identity did not share cookies;
+the documented standalone path succeeded. No browser protection was disabled.
+
+Trial evidence is in `generated/public-service-20261015-v18/`; 3 total starts,
+one additional upload, reserved original-transfer ceiling 312,970,240 bytes,
+5 checkpoints/335,866,272 retained bytes. Space PAUSED, activation/initialization
+0; development state preserved privately. No production mutation or new inference.
+Draft PR #3 at `2b2f1a2481c739a81e4e5511a7cbecb8fcecfe2b` passed 459-test CI on
+Python 3.10/3.12 before these local evidence/documentation updates.
+
+Next prepare separate production state and narrowly scoped credentials without
+copying the development trial owner/draft/history into production. Complete the
+bounded production candidate, review its activation scope, and then establish
+public G1–G12 evidence, including independent browsers/mobile and numerical
+downloads. The private trial approval is consumed; it does not authorize public
+activation, further original transfers or standing backup automation. Historical
+sections below do not override this current status or create new authorization.
 
 ## Decisions and sequence
 

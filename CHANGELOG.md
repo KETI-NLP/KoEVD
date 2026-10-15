@@ -1,4 +1,4 @@
-# Unreleased registered-service candidate
+# 0.3.0rc1 registered-service release candidate (not yet activated in production)
 
 - HF-owned submission metadata, original-declaration confirmation and explicit
   consent for numerical summary publication, separate from reviewed originals.
@@ -8,9 +8,13 @@
   pair choices and exact-input comparisons without fabricating official ranks.
 - Five bounded public numerical export formats, current-publication rechecks,
   explicit units and scriptless offline reports. No original cases are exported.
-- Local CPU, synthetic browser/container and retained actual numerical checks;
-  actual hosted identity/state/restart and production G1–G12 acceptance are still
-  required. Existing tags, beta operation and classifier limits are preserved.
+- Actual private HF OAuth registration, scoped state writes, original/history
+  restore, numerical consent, duplicate accounting and withdrawal survived two
+  restarts. Hosted points/denominators matched the retained offline oracle.
+- Public-first model exploration, direct section navigation, explicit embedded
+  sign-in guidance and environment-specific registration notices.
+- Production G1–G12 acceptance remains required. Existing tags, beta operation
+  and classifier limits are preserved; no new inference or accuracy claim.
 
 # 0.2.0rc1 platform public beta
 

@@ -7,9 +7,12 @@ import re
 import shutil
 
 from materialize_public_space import build as public_context
+from koevd_eval import __version__
 
 
-def build(repo,base,references,output):
+def build(repo,base,references,output,*,profile='hosted_candidate'):
+    if profile not in ('hosted_candidate','hosted_service'):
+        raise ValueError('Explicit supported registered deployment profile required')
     repo=Path(repo).resolve(strict=True);out=Path(output).resolve()
     out.parent.mkdir(parents=True,exist_ok=True)
     public_context(repo,base,references,out)
@@ -58,6 +61,14 @@ Before deployment, review the source's REGISTERED_SPACE_GUIDE.md and complete
 actual HF identity, conditional storage, restart/restore and public G1–G12 checks.
 Source and usage: https://github.com/KETI-NLP/KoEVD
 ''',encoding='utf-8')
+    if profile=='hosted_service':
+        readme=out/'README.md'
+        text=readme.read_text(encoding='utf-8')
+        text=text.replace('title: KoEVD Registered Research Candidate','title: KoEVD Platform')
+        text=text.replace('# KoEVD registered research candidate', '# KoEVD Platform — registered research beta '+__version__)
+        text=text.replace('Before deployment, review the source\'s REGISTERED_SPACE_GUIDE.md and complete',
+                          'This is the production-profile bundle. Before activation, review REGISTERED_SPACE_GUIDE.md and complete')
+        readme.write_text(text,encoding='utf-8')
     files={}
     for p in sorted(out.rglob('*')):
         if not p.is_file() or p.name=='deployment-manifest.json':continue
@@ -65,7 +76,8 @@ Source and usage: https://github.com/KETI-NLP/KoEVD
         if re.search(rb'(?:hf_[A-Za-z0-9]{30,}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{50,}|HFAK[A-Za-z0-9]{20,})',raw):
             raise ValueError('Credential-like literal in registered context')
         files[p.relative_to(out).as_posix()]={'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-    manifest={'format':'koevd-registered-space-context-v1','version':'0.2.0rc1','files':files,
+    manifest={'format':'koevd-registered-space-context-v1','version':__version__,'files':files,
+        'deployment_profile':profile,
         'raw_reference_originals_included':False,'credentials_included':False,
         'registration_configured':True,'actual_hosted_acceptance':False,
         'official_ranking_enabled':False,'continuous_backup_worker':False,
@@ -78,6 +90,7 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repo',default='.');parser.add_argument('--base-context',required=True)
     parser.add_argument('--reference-assets',required=True);parser.add_argument('--output',required=True)
-    args=parser.parse_args();manifest=build(args.repo,args.base_context,args.reference_assets,args.output)
+    parser.add_argument('--profile',choices=('hosted_candidate','hosted_service'),default='hosted_candidate')
+    args=parser.parse_args();manifest=build(args.repo,args.base_context,args.reference_assets,args.output,profile=args.profile)
     print(json.dumps({'files':len(manifest['files']),'bytes':sum(f['bytes'] for f in manifest['files'].values()),
                       'uploaded':False,'actual_hosted_acceptance':False}))

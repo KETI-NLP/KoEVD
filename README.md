@@ -4,13 +4,15 @@
 
 The beta does not grant official rankings or establish classifier accuracy. Personal uploads are temporary analysis sessions; persistent submission/publication is a later operating stage.
 
-**Registered-service development candidate:** This branch adds HF account
+**Registered-service release candidate: v0.3.0-rc.1.** This branch adds HF account
 ownership, confirmed private registration storage, consented numerical summaries,
 public model profiles/metric exploration, paired comparisons and five numerical
 report downloads. It preserves the anonymous beta launcher. These features are
-pending actual hosted identity, storage/restart and public-service acceptance;
-they are not an activated production release or new GPU/accuracy evidence.
+validated for actual HF identity, storage/restart, summary sharing and withdrawal
+in a private hosted trial. Production activation and final public-service acceptance
+remain pending. This is not new GPU inference or classifier accuracy evidence.
 See the [deployment candidate](docs/REGISTERED_SPACE_GUIDE.md),
+[registering and comparing results](docs/PLATFORM_USER_GUIDE.md),
 [public profile contract](docs/PUBLIC_PROFILES_GUIDE.md),
 [numerical report formats](docs/PUBLIC_NUMERICAL_REPORT_GUIDE.md) and
 [current acceptance scope](docs/PUBLIC_SERVICE_ACCEPTANCE.md).
