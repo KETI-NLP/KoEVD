@@ -588,6 +588,13 @@ class SubmissionService:
                 items.append(self._publication_reference(state,policy))
             return {'items':items,'next_cursor':items[-1]['submission_id'] if len(rows)>limit else None}
 
+    def check_readiness(self):
+        """Read storage/fencing/recovery state; never compute profiles or save."""
+        connection = getattr(self.store, 'readiness_connection', self.store.connection)
+        with connection() as db:
+            self._recovery_ready(db)
+            db.execute('SELECT 1').fetchone()
+
     def _recovery_ready(self, db, policy=None):
         from .recovery import require_ready
         require_ready(db,policy_sha256=(policy or self.rank_policy).sha256)

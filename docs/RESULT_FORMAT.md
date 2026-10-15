@@ -1,14 +1,47 @@
-# Portable results: first implementation (v1)
+# Portable results (v1): export and validation
 
 This format packages one completed KoEVD pipeline generation into a single `results.json`. It retains all expected samples, including failed generation and unmeasured responses. Existing Task JSONL files and `pipeline.json` remain the source logs.
 
-The checkout now contains an operator-controlled pinned core protocol candidate as well as local smoke/custom indexes. The format does not establish model authenticity, classifier accuracy, or public leaderboard registration. Task 3/4 measurements remain user-reported and measurement-limited. Public registration and protocol eligibility are not implemented in this milestone.
+The public Platform supports registered results and shared numerical profiles.
+The format does not establish model authenticity or classifier accuracy. Task 3/4
+measurements remain user-reported and measurement-limited; official ranks are disabled.
+For the complete evaluation-to-registration workflow, use [GETTING_STARTED.md](GETTING_STARTED.md).
 
-## Prepare, export, validate and report
+## Registered full evaluation: start here
+
+Prepare the registered inputs **before generation**, in a new run directory:
+
+```bash
+koevd-results protocol-index --registry configs/protocols \
+  --protocol-id koevd-core-canonical-v1 --dataset-dir downloads/KoEVD \
+  --run-dir runs/my-model-core --output runs/my-model-core/trusted_input_index.json
+```
+
+Generate and measure against those inputs using [steps 4–6](GETTING_STARTED.md#4-start-your-model-server-and-check-the-connection).
+Then export using that same index:
+
+```bash
+koevd-results export --run-dir runs/my-model-core \
+  --trusted-index runs/my-model-core/trusted_input_index.json \
+  --output runs/my-model-core/results.json
+koevd-results validate --input runs/my-model-core/results.json \
+  --trusted-index runs/my-model-core/trusted_input_index.json \
+  --registry configs/protocols --protocol-id koevd-core-canonical-v1
+```
+
+Upload `results.json`, not the trusted index or `profile-v2.json`. Equal record
+counts do not make a custom index identical to the registered index. The hosted
+catalog resolves an exact independently configured input hash; unsupported input
+sets fail with `unknown_inputs`. Never rename or edit hashes to bypass this check.
+
+## Custom local preparation, export, validation and report
 
 Install the checkout with `pip install -e .` first. `python -m koevd_eval.results` can replace `koevd-results` in every command below.
 
-Prepare inputs and generate responses using [OWN_MODEL_GUIDE.md](OWN_MODEL_GUIDE.md). Create an index from those prepared inputs. Where known, record immutable dataset and preparation-code revisions; omitted provenance is `null`, never inferred from the model name or current main branch.
+For **local custom diagnostics**, prepare inputs and generate responses using
+[OWN_MODEL_GUIDE.md](OWN_MODEL_GUIDE.md). The `index` command below creates a custom
+local contract, not a registered full-protocol index. For Space registration use
+the preceding recipe instead. Create a local index from your prepared inputs. Where known, record immutable dataset and preparation-code revisions; omitted provenance is `null`, never inferred from the model name or current main branch.
 
 ```bash
 koevd-results index --run-dir runs/my-model --output local_input_index.json \
@@ -29,7 +62,7 @@ The full core pipeline has 15,011 generation requests and 17,670 exported record
 
 ## The trust boundary
 
-A local index is convenient for your own run. Creating it does **not** make it an official index. A future hosted service must build and approve its index independently from pinned official data/code, keep it outside uploads, and select it through its own protocol registry. Never accept an uploader's index as proof of official inputs.
+A local index is convenient for your own run. Creating it does **not** make it an official index. The hosted service builds and approves its index independently from pinned data/code, keeps it outside uploads, and selects it through its own protocol registry. Never accept an uploader's index as proof of official inputs.
 
 The upload contains no `gold`, `metadata`, prompt messages or aggregate score. For each task/sample the validator requires the independently supplied index checksum, input checksum, source and variant. It restores prompt, gold, metadata and source from that index. Rescoring uses the existing `profile.py` engine for the local JSONL and portable JSON paths.
 
@@ -78,7 +111,7 @@ koevd-results validate --input results.json --trusted-index operator/trusted_inp
 
 An upload's claimed protocol ID, a locally renamed file, or a recomputed uploader checksum cannot select an arbitrary registry definition. `ProtocolRegistry.validate_index` checks the stored definition and expected input-set digests, including gold and metadata. Do not point the operator's registry directory at uploaded files. Registered input identity does **not** automatically prove compliance of actual generation/measurement settings or make a result rank-eligible. The decoding/measurement policy is recorded for the later compatibility and registration checks. CLI validation currently reports `official_rank_eligible: false`. Task 3 official ranking remains disabled because of measurement concerns; Task 4 is descriptive and also has no official ranking. This protocol is a release candidate, not a published leaderboard standard.
 
-The full trusted index currently occupies 69,541,861 bytes as pretty-printed JSON, below the 128 MiB reader cap. It belongs on the trusted operator side, not in a user result upload. Later hosted code can cache a validated index per process rather than duplicating it per session.
+The full trusted index currently occupies 69,541,861 bytes as pretty-printed JSON, below the 128 MiB reader cap. It belongs on the trusted operator side, not in a user result upload. The hosted input catalog loads its independently validated index outside user sessions.
 
 ## Import original standalone JSONL logs
 
@@ -108,7 +141,11 @@ The output contains 12 records: Task counts 1/4/2/2/3. It uses a fictitious mode
 
 ## Remaining scope
 
-Common compatibility and offline chart/case UI are implemented in the separate v2 diagnostic report. The local upload/session/reference-analysis flow now has CPU/browser evidence. Persistent submissions/leaderboard, actual raw baseline and two-target-model GPU integration evidence remain incomplete. The previous result reporter is preserved for historical use.
+Interactive diagnostics, full two-model GPU integration, persistent registration,
+shared numerical comparison and public hosted acceptance now have separate evidence
+in [PUBLIC_SERVICE_ACCEPTANCE.md](PUBLIC_SERVICE_ACCEPTANCE.md). The previous report
+layout is preserved. Generation authentication, classifier accuracy and official
+ranking are not established by that acceptance.
 
 ## Source-aware analysis
 
@@ -120,7 +157,7 @@ all raw cases. It preserves historical scorer semantics. See
 remaining GPU/Spaces/submission limits.
 
 
-## Upload using the local app candidate
+## Upload using the Platform or a local app
 
 `koevd-space` accepts only full result JSON and resolves its input hash against an
 operator-configured catalog. It does not take an uploader index/gold/score/path.

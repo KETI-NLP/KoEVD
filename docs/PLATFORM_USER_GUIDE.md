@@ -22,11 +22,13 @@ original responses remain private; numerical comparisons retain their counts.
 
 ## Evaluate your model and prepare JSON
 
-Use [OWN_MODEL_GUIDE.md](OWN_MODEL_GUIDE.md) to run the existing Task 1–5 pipeline
-against your own vLLM-compatible endpoint. The Platform does not run inference.
-Use [RESULT_FORMAT.md](RESULT_FORMAT.md) to export and validate one portable
-full-record JSON and create local reports. Keep this original and record your
-source commit, model revision and inference/measurement settings.
+Follow **[GETTING_STARTED.md](GETTING_STARTED.md)** from installation through
+the standard input index, generation, measurement and portable export. It uses
+`protocol-index` before generation and the same index for export/validation.
+The Platform does not run inference. Keep your `results.json` original, source
+commit, model revision and inference/measurement settings. Report/profile JSON
+files are not upload artifacts. [RESULT_FORMAT.md](RESULT_FORMAT.md) is the format
+reference; [OWN_MODEL_GUIDE.md](OWN_MODEL_GUIDE.md) covers custom local workflows.
 
 Upload full records, not a hand-written score table. The server validates against
 its configured input index and recomputes metrics. A different input set or
@@ -34,8 +36,10 @@ protocol requires an explicitly supported index rather than relabeling results.
 
 ## Analyze and register
 
-1. Open the workspace in its own tab, then **Sign in with Hugging Face** and
-   **Check sign-in**. Embedded and standalone cookies can differ; open the own-tab
+1. Open the workspace in its own tab before uploading. In the pre-upload
+   account section choose **Sign in to save results**, then **Check account sign-in**.
+   Older deployed versions put **Sign in with Hugging Face** / **Check sign-in**
+   in the registration section instead; the order is still sign-in, then upload. Embedded and standalone cookies can differ; open the own-tab
    workspace before uploading to avoid losing access to an anonymous session.
 2. In **Analyze your JSON**, select the result and **Validate and add results**.
    Temporary analysis is available without sign-in and does not publish data.
@@ -48,7 +52,9 @@ protocol requires an explicitly supported index rather than relabeling results.
    Compression does not increase the expanded 128 MiB limit.
 3. Optionally build an analysis with another uploaded run or configured reference.
    The interactive report contains charts, groups and permitted response cases.
-4. In **Register or manage results**, select the validated upload. Inspect the
+4. Follow **Continue to registration**. The validated upload is added to the
+   **Register or manage results** selector automatically; select it. Older clients
+   have **Refresh uploaded results** if the selector has not updated. Inspect the
    original model/generation/measurement declaration and confirm it. Unknown
    fields remain unknown; account sign-in does not verify model generation.
 5. Set a display name/description and **Save private submission**. This preserves
@@ -61,8 +67,9 @@ identical original must not be presented as an additional independent model.
 
 ## Choose a sharing scope
 
-For numerical sharing, select **Metrics summary only**, provide your permission
-statement, accept the sharing/retention notice and **Publish numerical summary**.
+For numerical sharing, enter a brief **Reason for this action or revision**,
+select **Metrics summary only**, provide the separate **Permission statement**,
+accept the sharing/retention notice and **Publish numerical summary**.
 This exposes numerical profiles and declared model settings, without original
 response text. A shared summary can be listed/compared while official ranks remain
 disabled. Duplicate originals are counted once in metric comparisons.

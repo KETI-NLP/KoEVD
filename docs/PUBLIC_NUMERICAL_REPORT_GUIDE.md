@@ -61,9 +61,10 @@ an unknown model revision stays blank/null/N/A rather than becoming revision 1.
 
 ## API examples
 
-Use the canonical registered app origin selected by the operator, replacing the
-example origin below and all IDs. The currently paused development candidate is
-not a deployed public API. Do not put OAuth cookies or private bearer tokens in
+The public registered app origin is `https://keti-nlp-koevd-platform.hf.space`.
+Replace the example origin below with it, and use actual published IDs from the
+current catalog. See [public acceptance](PUBLIC_SERVICE_ACCEPTANCE.md) for deployed
+versions. A paused development candidate is separate from that public service. Do not put OAuth cookies or private bearer tokens in
 these public URLs.
 
 ```text

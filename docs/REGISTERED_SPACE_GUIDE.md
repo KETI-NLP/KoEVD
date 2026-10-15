@@ -149,3 +149,22 @@ Public numerical and authorized original/report downloads negotiate gzip; identi
 and session endpoints are excluded. Range requests retain uncompressed semantics.
 This transport candidate has local actual-data evidence; see current acceptance
 before claiming its production behavior.
+
+## Liveness and explicit readiness
+
+`GET /healthz` preserves the process-liveness response used by existing launchers.
+It does not certify remote storage availability. `GET /readyz` additionally checks
+the acknowledged storage fence and recovery gate, returning HTTP 503 with a bounded
+generic response when unavailable. It creates no submission, profile or checkpoint
+and does not confirm a pending unacknowledged write. Only one readiness probe runs
+at a time; overlapping probes receive 503. The dependency check uses the storage
+client's existing transport timeouts and can take longer than a liveness check.
+Use it sparingly for diagnosis; do not turn a temporary dependency failure into
+an automatic restart or a new initialization.
+
+The browser retries only allowlisted public list/leaderboard/profile/comparison
+GETs for network errors or transient 502/503/504, at most twice with 1 s and 2.5 s
+delays. Explicit integrity/stale/permission errors, private reads, downloads and
+all write requests are excluded. Failed checks clear the displayed projection;
+older cached public data is not substituted. Storage fencing and publication
+permissions remain enforced by the server on every request.

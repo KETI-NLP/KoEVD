@@ -1,0 +1,53 @@
+{
+  "scope": "local first-user workflow correction; not a new hosted deployment or GPU evaluation",
+  "observed_date": "2026-10-16",
+  "regression": {
+    "tests_passed": 477,
+    "python": "3.12.14",
+    "elapsed_seconds": 271.924,
+    "node_retry_boundary_tests_enabled": true
+  },
+  "standard_path": {
+    "new_protocol_index_prepared_from_pinned_dataset": true,
+    "configured_server_catalog_resolves_new_index": true,
+    "input_index_sha256": "0d78a9b2ed412fa3507cf3d68db6b45d102ef0b8e24f0c65f3a10c3a987cd26d",
+    "protocol_sha256": "501401566487a29fa7252372621c8239a5c7388e90312c7c3dbe920dcd7020a0",
+    "preparation_identity": "b3bb72a02a0b676afe67c8182345254d397f0da89be374963c9ff0fd8d23fbb8",
+    "existing_qwen3_8b_and_4b_full_results_validate": true,
+    "records_per_existing_model": 17670,
+    "new_inference": false
+  },
+  "browser": {
+    "scope": "localhost synthetic identity and 12-record fictional result only",
+    "pre_upload_account_guidance_visible": true,
+    "sign_in_before_upload": true,
+    "upload_populates_registration_without_manual_refresh": true,
+    "explicit_model_declaration_confirmation_retained": true,
+    "private_save_and_explicit_numerical_sharing": true,
+    "registered_run_selectable_for_paired_comparison": true,
+    "paired_numerical_comparison_completed": true,
+    "remove_upload_clears_selection_confirmation_and_next_action": true,
+    "injected_public_dependency_failure_requests": 3,
+    "failed_recheck_clears_metric_rows_and_pair_data": true,
+    "friendly_service_error_distinct_from_file_rejection": true,
+    "manual_refresh_recovers_after_dependency_restored": true,
+    "unexpected_console_errors_observed": 0
+  },
+  "readiness": {
+    "liveness_compatibility_preserved": true,
+    "dependency_failure_returns_generic_503": true,
+    "dirty_checkpoint_is_not_confirmed_by_probe": true,
+    "remote_fence_and_recovery_gate_checked": true
+  },
+  "limits": {
+    "retry_only_allowlisted_public_reads": true,
+    "no_automatic_write_replay": true,
+    "no_integrity_or_permission_retry_bypass": true,
+    "no_stale_public_projection_fallback": true,
+    "no_live_hf_login_or_new_sensitive_upload_in_this_test": true,
+    "hosted_transient_failure_root_cause_established": false,
+    "hosted_acceptance_of_this_new_candidate": false,
+    "official_ranking_enabled": false,
+    "classifier_accuracy_verified": false
+  }
+}

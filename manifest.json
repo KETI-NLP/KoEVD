@@ -45,8 +45,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 14184,
-      "sha256": "741403aef9c4a3539090e6016f66b7fd97f2826f9e10ab5d82f1cdcf681d6744"
+      "bytes": 15295,
+      "sha256": "73cde8489be3a18b1d88ced93042f6dd81327899e41f78c5b2bd29b2d68eaa5b"
     },
     {
       "path": "analysis/plot_paper_tables.py",
@@ -200,8 +200,8 @@
     },
     {
       "path": "docs/DIAGNOSTICS_GUIDE.md",
-      "bytes": 14220,
-      "sha256": "9369c278904d519b3644cc93dc37197bbaa52d4f65cbffb5438f1af5acd8459c"
+      "bytes": 14410,
+      "sha256": "cc0ce543595cdc578a321afe0dfe7505b802f1b85b329276d2303c7ebb2f2c16"
     },
     {
       "path": "docs/EXTERNAL_ACCEPTANCE_HANDOFF.md",
@@ -210,13 +210,18 @@
     },
     {
       "path": "docs/FULL_STANDARD_RUN_GUIDE.md",
-      "bytes": 9243,
-      "sha256": "e716c9be6c3af15df42123bb0c631d06095668f1c7dfc73b8241c16a0b449c3e"
+      "bytes": 9697,
+      "sha256": "21b6a8a2e0174e956872f7893614e333b4db88d58b22c1f9e89cd62a1da73a1c"
     },
     {
       "path": "docs/GENERATION_RECEIPT_GUIDE.md",
       "bytes": 8347,
       "sha256": "d31146960bc055918d9b7b44a88e06a61cb7527f4f30bf7d22eb5abf350943b5"
+    },
+    {
+      "path": "docs/GETTING_STARTED.md",
+      "bytes": 16119,
+      "sha256": "c20d24c403dcf3f4f0ddaabac8a5048a899327f39d908048b1b2704d4f1209fa"
     },
     {
       "path": "docs/GPU_MEASUREMENT_MATRIX_RESULTS.md",
@@ -290,8 +295,8 @@
     },
     {
       "path": "docs/OWN_MODEL_GUIDE.md",
-      "bytes": 15410,
-      "sha256": "11f0b5bed48ae66e3e330a6c8a6a2295617b3a6d11cb8193bf7e353cac7a16ed"
+      "bytes": 15612,
+      "sha256": "8f6a49cdb4f0f71223fc4c408810eeb1553d5f69f40a3e7d62ad4bdfec6bcc02"
     },
     {
       "path": "docs/PIPELINE_VALIDATION_RESULTS.md",
@@ -310,8 +315,8 @@
     },
     {
       "path": "docs/PLATFORM_USER_GUIDE.md",
-      "bytes": 6821,
-      "sha256": "ae142c2ed3299e5f5900d6d7f176d821f3d0df4c576a01f5227648e9684006c8"
+      "bytes": 7445,
+      "sha256": "cc83647454ce6737e7364170e1027534dd98dbbbdcfd87cb179a1dda989f703c"
     },
     {
       "path": "docs/PLATFORM_VALIDATION_LOG.md",
@@ -330,8 +335,8 @@
     },
     {
       "path": "docs/PUBLIC_NUMERICAL_REPORT_GUIDE.md",
-      "bytes": 4976,
-      "sha256": "6d2425f35ee2d0dc570adc50290b11ddab86813f7803087022764220f1e9b6d8"
+      "bytes": 5112,
+      "sha256": "c46c6224e01daf477d74d3bdef92647e04a0f06e18d6d21c2886a91375d58196"
     },
     {
       "path": "docs/PUBLIC_PROFILES_GUIDE.md",
@@ -340,8 +345,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 16468,
-      "sha256": "f37ec93cacb6040453c41590d0eaad212b8c93dcfa4a44e02a63f8a650fa69b1"
+      "bytes": 17817,
+      "sha256": "3a55c59e8e05e3ccc4242a9eec779046fa897568e607c9b88e002e487a94a83c"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
@@ -360,8 +365,8 @@
     },
     {
       "path": "docs/REGISTERED_SPACE_GUIDE.md",
-      "bytes": 9088,
-      "sha256": "b35455211fe812abc669a4a1b3f6ed188238cc0fd95e79613e217a4d66d25ee9"
+      "bytes": 10289,
+      "sha256": "83e3b7c78baec966827f958dc00617b7a19a6d39a88bbbe1494c465ac0b5ff7c"
     },
     {
       "path": "docs/RELEASE.md",
@@ -375,13 +380,13 @@
     },
     {
       "path": "docs/RESULT_FORMAT.md",
-      "bytes": 15242,
-      "sha256": "d85916bb866a74a9772d18582e177e08fb15511f2f7454ee8e2c6b6b84a4b3be"
+      "bytes": 16636,
+      "sha256": "70bb1c4ab001e3f576a42f62615a75c57c987b01f3169b6bcfb9e2c57176b63c"
     },
     {
       "path": "docs/RUNNER_GUIDE.md",
-      "bytes": 9520,
-      "sha256": "881d7bd794e2e225c1bfcd9df829408c6d5508e290f6ad1f0677c2e57f1e72de"
+      "bytes": 9862,
+      "sha256": "446be84ef87398add968befd451420e160ecd0cb5e66823291a2f8a0e8f703c4"
     },
     {
       "path": "docs/SPACES_GUIDE.md",
@@ -442,6 +447,11 @@
       "path": "docs/validation/pipeline_b200_20260915.json",
       "bytes": 5938,
       "sha256": "af1eb29464717f8a61d1a9d3165cf16c8e8421c445a68827281ae79f7fb82a25"
+    },
+    {
+      "path": "docs/validation/platform_first_user_workflow_20261016.json",
+      "bytes": 2381,
+      "sha256": "f9f8824f26ab672d7072c480f665a064999c74c07a63c1f45741a1baa85b945d"
     },
     {
       "path": "docs/validation/platform_m1_20261008.json",
@@ -1239,9 +1249,14 @@
       "sha256": "0853e5125087a1c18b382f83da2d672cf428b3916b9c6b2446879cf866e18594"
     },
     {
+      "path": "src/koevd_eval/assets/public_reads.js",
+      "bytes": 2489,
+      "sha256": "a55ad4d743f77b510b1df947d8d4a38a35f2be624aa22eafe692b94001ea197a"
+    },
+    {
       "path": "src/koevd_eval/assets/registration.js",
-      "bytes": 33142,
-      "sha256": "58a7bda59980b2b5994ab5c53f3d8a7524eaa37e3ff0cb1d776812c0ef7c3a11"
+      "bytes": 34036,
+      "sha256": "dd8bb73677a4f9b10f3a82c46ca369769bfba2aa7d5996b284d766b3d7b4dc06"
     },
     {
       "path": "src/koevd_eval/assets/report.css",
@@ -1260,13 +1275,13 @@
     },
     {
       "path": "src/koevd_eval/assets/space.html",
-      "bytes": 10985,
-      "sha256": "cb8df805ae0081a8f6569cdedac31c608b3eb76e2237b9be2d86e67114e8ea83"
+      "bytes": 12966,
+      "sha256": "e82656849b51272834ea00c4d8db19f61c51380a2762b2b3a9ac1049ac7cf496"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
-      "bytes": 11292,
-      "sha256": "ff7ffb02677dd06f54a27ba4fdf61212f3d550e2494bb76812475834cda51114"
+      "bytes": 11932,
+      "sha256": "f39f659af792ee3c01b012a356e0b587b3a11c92b41935639780082a30354bc4"
     },
     {
       "path": "src/koevd_eval/backups.py",
@@ -1295,8 +1310,8 @@
     },
     {
       "path": "src/koevd_eval/durability.py",
-      "bytes": 14474,
-      "sha256": "8a3a2107e9accd595ceac10b06ebe759733d5770b2b108d2e3bee8909a75a214"
+      "bytes": 15021,
+      "sha256": "069cd3d37a61985f1fe8ee93744abbf9281a1cd9510327adf681f657332e428a"
     },
     {
       "path": "src/koevd_eval/eligibility.py",
@@ -1455,8 +1470,8 @@
     },
     {
       "path": "src/koevd_eval/spaces.py",
-      "bytes": 18732,
-      "sha256": "8508f853dff9f7cb35f58aadef412ae49b59dafc0303a535f3091a991eebaee6"
+      "bytes": 19549,
+      "sha256": "eb932190396c26eafb0d959b16e81b4d1ad5ce82a91e8b3ce2d2dc114e493f90"
     },
     {
       "path": "src/koevd_eval/storage.py",
@@ -1470,8 +1485,8 @@
     },
     {
       "path": "src/koevd_eval/submissions.py",
-      "bytes": 46976,
-      "sha256": "b14f6517cb39ec71513813ab74fe37a326bbb7c05f9a7793dae0dd215358283c"
+      "bytes": 47295,
+      "sha256": "decf2a84fa4cc52ded77a558c7f2d2535311dfdfeb5407d0142e3d8da5cbd494"
     },
     {
       "path": "src/koevd_eval/transfer.py",
@@ -1507,6 +1522,11 @@
       "path": "tests/test_eligibility.py",
       "bytes": 12400,
       "sha256": "26bca8de572dc1193ad33a03ebd1f6cbeb7ca11a9c9c5fc1b43688f23e0628eb"
+    },
+    {
+      "path": "tests/test_first_user_workflow.py",
+      "bytes": 6200,
+      "sha256": "a035121e740f5b2fa162d6e981cf3274d907654f284c1d5ee4059d76f66a570f"
     },
     {
       "path": "tests/test_frozen_measurement_controller.py",
@@ -1753,6 +1773,5 @@
       "bytes": 3218,
       "sha256": "7d52008d6d1c0fb9667de7698ac24c7f865c7a3cb52ae93767b80a0df202a2d8"
     }
-  ],
-  "snapshot_kind": "0.3.0rc1-public-registration-hosted-acceptance; existing tags unchanged"
+  ]
 }

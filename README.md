@@ -17,8 +17,10 @@ downloads. The public app uses CPU Basic and one replica. This is research-servi
 acceptance, with no new inference or classifier-accuracy claim. Prior beta and
 failed activation evidence retain their dated scope.
 
-Start with [evaluating your model](docs/OWN_MODEL_GUIDE.md) and
-[registering and comparing results](docs/PLATFORM_USER_GUIDE.md).
+Start with the **[complete first-user guide](docs/GETTING_STARTED.md)**: pinned
+inputs → model generation → measurement → `results.json` → sign-in → private
+registration → optional shared numerical comparison. Use
+[Platform controls and data handling](docs/PLATFORM_USER_GUIDE.md) as a reference.
 See [current acceptance and source/runtime versions](docs/PUBLIC_SERVICE_ACCEPTANCE.md),
 [deployment and recovery](docs/REGISTERED_SPACE_GUIDE.md),
 [public profile definitions](docs/PUBLIC_PROFILES_GUIDE.md), and
@@ -38,6 +40,15 @@ separate, and the platform beta is released separately from the historical paper
 
 **Evaluate your own model:** The 0.2.0 `koevd-pipeline` (prepare → generate → classify → report) completed live Qwen3-8B evaluation on B200 without source changes: 40 smoke and 959 expanded generation requests. See the [complete guide](docs/OWN_MODEL_GUIDE.md) and [live validation findings](docs/PIPELINE_VALIDATION_RESULTS.md). **Measurement limits remain:** strategy outputs differed at batch 2/4 in 5/191 cases; all-safe Task 3 labels included concerning outputs on qualitative review. Execution success does not establish measurement accuracy or target-model safety.
 
+## Choose a workflow
+
+- **Evaluate and register your own model:** follow [GETTING_STARTED.md](docs/GETTING_STARTED.md)
+  from a new run directory. Use `protocol-index`, then export with that same index.
+- **Explore without GPU or uploads:** open the [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+- **Run custom local diagnostics or reproduce historical components:** use the
+  component commands below. Their input selection is separate from the registered
+  full protocol; arbitrary local indexes are not accepted by the service.
+
 ## Install
 
 Start from a clone in a fresh environment (Linux shell example):
@@ -49,7 +60,10 @@ python3.11 -m venv .venv
 source .venv/bin/activate
 ```
 
-For the exact code exercised on B200, check out `9aa38fa6d811fc61e26496d05e70abca17ec11f9` before installation. To use the new own-model pipeline, install the current source on `main` and record its commit; the pipeline is not in the old `v0.1.0` tag. Install the components needed for your use:
+For the current registered workflow, keep the current source and follow
+[GETTING_STARTED.md](docs/GETTING_STARTED.md). The standalone commands below are
+component examples, not the full registered workflow. For the historical code
+exercised on B200, check out `9aa38fa6d811fc61e26496d05e70abca17ec11f9` before installation. To use the new own-model pipeline, install the current source on `main` and record its commit; the pipeline is not in the old `v0.1.0` tag. Install the components needed for your use:
 
 ```bash
 python -m pip install -e .
@@ -160,8 +174,9 @@ and strategy measurements remain limited and excluded from official ranks;
 Task4 frequencies are descriptive. The organization Team plan enabled the
 private CPU development Space; native HF login, private draft saving and bounded
 backup/fixed restore have been tested. Its default disk remains ephemeral and
-continuous backup is off. The initial HTTP402 attempt is historical. The shared
-production service and official ranking have not been activated.
+continuous backup is off. The initial HTTP402 attempt is historical. The shared production registration service is now active; see
+[current public acceptance](docs/PUBLIC_SERVICE_ACCEPTANCE.md). Official ranking
+remains disabled. Earlier development gates above describe their dated scope.
 
 B200 GPU inference and offline CLI validation passed on the fixed 12/96-candidate samples. See [GPU validation](docs/GPU_VALIDATION.md) for a pinned-download smoke test, result collection, and the distinction from reproducing the paper's performance.
 
