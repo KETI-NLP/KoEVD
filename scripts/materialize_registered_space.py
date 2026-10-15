@@ -63,11 +63,52 @@ Source and usage: https://github.com/KETI-NLP/KoEVD
 ''',encoding='utf-8')
     if profile=='hosted_service':
         readme=out/'README.md'
-        text=readme.read_text(encoding='utf-8')
-        text=text.replace('title: KoEVD Registered Research Candidate','title: KoEVD Platform')
-        text=text.replace('# KoEVD registered research candidate', '# KoEVD Platform — registered research beta '+__version__)
-        text=text.replace('Before deployment, review the source\'s REGISTERED_SPACE_GUIDE.md and complete',
-                          'This is the production-profile bundle. Before activation, review REGISTERED_SPACE_GUIDE.md and complete')
+        text=f'''---
+title: KoEVD Platform
+emoji: 📊
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+license: apache-2.0
+hf_oauth: true
+hf_oauth_expiration_minutes: 60
+short_description: Register model results, explore scores and compare behavior
+---
+
+# KoEVD Platform — registered research beta {__version__}
+
+Explore published model profiles and metric comparisons without a file or sign-in.
+Evaluate your own vLLM-compatible model with the GitHub code, export its full
+result JSON, and upload it for private analysis. Sign in with Hugging Face to
+save your original, model display name and edit history as a registration.
+
+Select numerical-summary sharing explicitly to add your result to the model
+catalog and metric leaderboard. Compare matching inputs, metadata trends,
+response strategies and simulated tool choices. There is no combined ethics score.
+Official rank eligibility is separate from observed-value sorting.
+
+Use the workspace in its own tab for reliable sign-in. Temporary analysis
+sessions expire after two hours. Saved registrations are separate and remain
+private until shared; withdrawal removes public access while private originals
+and audit history remain retained. Original response sharing requires independent
+permission review. Keep your local original and read the retention notice before
+sharing. A capacity or save failure is not a successful registration.
+
+The two Qwen3-8B/4B operator references each contain 17,670 previously measured
+records. Their text stays private; numerical counts and comparisons are retained.
+Account sign-in does not verify model generation. Classifier measurements remain
+limited, Task 4 strategy frequencies are descriptive and Task 5 tools are simulated.
+No GPU inference runs in this Space.
+
+KoEVD contains harmful research examples. Preserve attribution and the separate
+DATA_LICENSE.md research-use terms; the code license is Apache-2.0.
+
+- [Platform user guide and data handling](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PLATFORM_USER_GUIDE.md)
+- [Evaluate your own model](https://github.com/KETI-NLP/KoEVD/blob/main/docs/OWN_MODEL_GUIDE.md)
+- [Portable result JSON](https://github.com/KETI-NLP/KoEVD/blob/main/docs/RESULT_FORMAT.md)
+- [Source and current validation scope](https://github.com/KETI-NLP/KoEVD)
+'''
         readme.write_text(text,encoding='utf-8')
     files={}
     for p in sorted(out.rglob('*')):

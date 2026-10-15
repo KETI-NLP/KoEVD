@@ -89,11 +89,13 @@ def build_app(root, runtime, settings):
         # Warm numerical admission once before serving; subsequent board/profile
         # requests reuse it and still perform current publication fencing.
         submissions.public_leaderboard()
+        notice=('KoEVD research beta: saved results and edit history are retained privately. '
+                if settings['environment']=='hosted_service' else
+                'Registered research candidate: saved results and edit history are retained privately. ')
         return create_app(analysis,origins=[settings['origin']],frame_ancestors=("'self'",'https://huggingface.co'),
-            registration=RegistrationWeb(submissions,identities),deployment_notice=(
-                'Registered research candidate: explicit summary consent preserves results in private acknowledged state. '
-                'Raw responses require independent permission review. Reference originals remain private. '
-                'Generation is self-reported unless independently reviewed; official ranks stay disabled.'))
+            registration=RegistrationWeb(submissions,identities),deployment_notice=notice+(
+                'Sharing numerical summaries requires your consent; sharing original responses additionally requires independent permission review. '
+                'Reference originals remain private. Generation is self-reported unless independently reviewed; official ranks stay disabled.'))
     except Exception:
         identities.close();analysis.close();raise
 

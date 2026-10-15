@@ -115,8 +115,8 @@
     },
     {
       "path": "apps/spaces/registered_launch.py",
-      "bytes": 7746,
-      "sha256": "5f9c155206207ad57e2e786ffd0a41c4cd74aa2c6a9a34803be79126a96b0203"
+      "bytes": 7974,
+      "sha256": "5cf14c94bb1dad5c062e3de28e4319ae8fd8f857e75b3ae40adab0dbb9d5899b"
     },
     {
       "path": "apps/spaces/requirements.lock.txt",
@@ -1020,8 +1020,8 @@
     },
     {
       "path": "scripts/materialize_registered_space.py",
-      "bytes": 5340,
-      "sha256": "baa2feac9fb6bc55f8de81105367c2b96176a10e852ac27229cec635b0a088d8"
+      "bytes": 7130,
+      "sha256": "df0903c93a0bf895a75f4b89d935c95bc6355dc5ffb23315033524128ee2fbd4"
     },
     {
       "path": "scripts/materialize_static_space.py",
