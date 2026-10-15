@@ -1,24 +1,28 @@
 # KoEVD evaluation and analysis
 
-**Platform public beta: v0.2.0-rc.1.** Evaluate your own model, export portable JSON, build offline charts and compare compatible runs. The public CPU beta provides two full measured Qwen3 references with explicit raw-text disclosure limits. See [public deployment and reference scope](docs/PUBLIC_BETA_DEPLOYMENT.md).
+**Public registered service: v0.3.0-rc.1.** Evaluate your own model, export
+portable JSON, build offline reports, and register results in the
+[public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+Anonymous visitors can explore the two full Qwen3 references, model profiles,
+metadata trends and paired comparisons without uploading a file.
 
-The beta does not grant official rankings or establish classifier accuracy. Personal uploads are temporary analysis sessions; persistent submission/publication is a later operating stage.
+Sign in with Hugging Face to preserve a private original, give the run a display
+name, and optionally share its numerical summary. Uploading alone stays temporary.
+Summary sharing does not publish original responses or grant an official rank.
 
-**Registered-service release candidate: v0.3.0-rc.1.** This branch adds HF account
-ownership, confirmed private registration storage, consented numerical summaries,
-public model profiles/metric exploration, paired comparisons and five numerical
-report downloads. It preserves the anonymous beta launcher. These features are
-validated for actual HF identity, storage/restart, summary sharing and withdrawal
-in a private hosted trial. Production activation and final public-service acceptance
-remain pending. The bounded public activation trial did not complete its bulk
-transfer checks and the previous anonymous beta was restored. The follow-up
-adds lossless compressed transfers; its hosted acceptance is still pending.
-This is not new GPU inference or classifier accuracy evidence.
-See the [deployment candidate](docs/REGISTERED_SPACE_GUIDE.md),
-[registering and comparing results](docs/PLATFORM_USER_GUIDE.md),
-[public profile contract](docs/PUBLIC_PROFILES_GUIDE.md),
-[numerical report formats](docs/PUBLIC_NUMERICAL_REPORT_GUIDE.md) and
-[current acceptance scope](docs/PUBLIC_SERVICE_ACCEPTANCE.md).
+Actual public acceptance on 2026-10-15 passed the full 17,670-record gzip upload,
+registration, rename, summary sharing/withdrawal, native re-login after server
+restart, exact original/history preservation, 94 metric rows and 15 numerical
+downloads. The public app uses CPU Basic and one replica. This is research-service
+acceptance, with no new inference or classifier-accuracy claim. Prior beta and
+failed activation evidence retain their dated scope.
+
+Start with [evaluating your model](docs/OWN_MODEL_GUIDE.md) and
+[registering and comparing results](docs/PLATFORM_USER_GUIDE.md).
+See [current acceptance and source/runtime versions](docs/PUBLIC_SERVICE_ACCEPTANCE.md),
+[deployment and recovery](docs/REGISTERED_SPACE_GUIDE.md),
+[public profile definitions](docs/PUBLIC_PROFILES_GUIDE.md), and
+[numerical report formats](docs/PUBLIC_NUMERICAL_REPORT_GUIDE.md).
 
 Reference software for **KoEVD: A Korean Benchmark for Metadata-Conditioned Multi-Stage LLM Safety Evaluation**.
 

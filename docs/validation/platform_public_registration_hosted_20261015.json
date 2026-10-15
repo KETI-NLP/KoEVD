@@ -1,0 +1,309 @@
+{
+  "format": "koevd-public-registration-hosted-acceptance-v1",
+  "observed_at_utc": "2026-10-15T11:05:44.085868+00:00",
+  "scope": "Actual public research registration service; previously measured results, no new inference",
+  "version": "0.3.0rc1",
+  "release_tag": "v0.3.0-rc.1",
+  "source_commit": "064a013d2f8e558acdb217a57d20e4f653121677",
+  "source_merge_commit": "ee7b5e32584954b023533061ddee6439ad66e95e",
+  "space": "KETI-NLP/KoEVD-Platform",
+  "space_revision": "1bc4cbdf552a9999ca91c87d4cb2af81927ec44b",
+  "space_url": "https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform",
+  "source_runtime_agreement": {
+    "files_checked": 69,
+    "all_exact_git_blob_matches": true,
+    "provider_lfs_attributes_preserved": true
+  },
+  "ci": {
+    "url": "https://github.com/KETI-NLP/KoEVD/actions/runs/38722314566",
+    "python_3_10": {
+      "tests": 471,
+      "seconds": 61.415,
+      "passed": true
+    },
+    "python_3_12": {
+      "tests": 471,
+      "seconds": 69.21,
+      "passed": true
+    }
+  },
+  "references": [
+    {
+      "model": "Qwen/Qwen3-8B",
+      "records": 17670,
+      "original_bytes": 44779573,
+      "original_sha256": "27a4dea555208658133b7713f4f24938cf4e8b8cde23bb1e2003028692ba5a99",
+      "artifact_sha256": "6fd409fd69017a165deead22fab7d6f9b590837f455bd5bdff8976e8f252d4c7"
+    },
+    {
+      "model": "Qwen/Qwen3-4B",
+      "records": 17670,
+      "original_bytes": 44617316,
+      "original_sha256": "d136bf925164a6604e99da65f8e604541f0236a69d2bfe6479c9549daf293cf1",
+      "artifact_sha256": "40842d703496e813b0d7a8d95833ac99efa04d52f33f371a30ecd8cb1a85f608"
+    }
+  ],
+  "hosted_upload": {
+    "count": 1,
+    "gzip_bytes": 6022832,
+    "expanded_bytes": 44779573,
+    "records": 17670,
+    "full_decoded_original_equal": true,
+    "gzip_sha256": "1935d370cd44f0b46f4ec67e0781e13276337817a0e655f90946b66d81902728"
+  },
+  "owned_workflow": {
+    "actual_hf_oauth": true,
+    "declaration_confirmed": true,
+    "private_save": true,
+    "display_rename_preserves_original": true,
+    "consented_summary_publish": true,
+    "withdraw": true,
+    "relogin_after_server_restart": true,
+    "original_and_history_exact_bytes_preserved": true,
+    "events": [
+      "create",
+      "update_display",
+      "publish_summary",
+      "withdraw"
+    ],
+    "revision_count": 1,
+    "test_artifact_duplicates_existing_reference": true
+  },
+  "public_checks": {
+    "independent_anonymous_browser": true,
+    "publication_counts_before_during_after": [
+      2,
+      3,
+      2
+    ],
+    "distinct_artifacts": 2,
+    "private_history_http_status": 401,
+    "summary_original_http_status": 403,
+    "withdrawn_catalog_profile_pair_and_downloads_http_status": 404,
+    "post_restart_withdrawal_preserved": true,
+    "reference_point_estimates_and_denominators_match_offline": true,
+    "bootstrap_intervals_compared": false,
+    "board_rows_exact": 94,
+    "paired_identical_input_counts": [
+      2000,
+      8000,
+      2659,
+      2659,
+      2352
+    ]
+  },
+  "numerical_downloads": {
+    "files": 15,
+    "formats": [
+      "json",
+      "jsonl",
+      "csv",
+      "markdown",
+      "html"
+    ],
+    "decoded_bytes": 63796419,
+    "wire_bytes": 3465141,
+    "all_exact_local_renderer_bytes": true,
+    "downloads": [
+      {
+        "label": "profile-0",
+        "format": "json",
+        "bytes": 9389327,
+        "wire_bytes": 591139,
+        "content_encoding": "gzip",
+        "sha256": "d94c64ad17199a45d789403a60dacc658248eb04ed00021495c68d61b4544522",
+        "matches_current_local_renderer": true,
+        "seconds": 5.766
+      },
+      {
+        "label": "profile-0",
+        "format": "jsonl",
+        "bytes": 2044156,
+        "wire_bytes": 71764,
+        "content_encoding": "gzip",
+        "sha256": "b7bc61af201b100fae09d57c11b9f1cac467624c015a1e5efbfd3d93643b6399",
+        "matches_current_local_renderer": true,
+        "seconds": 3.672
+      },
+      {
+        "label": "profile-0",
+        "format": "csv",
+        "bytes": 1075336,
+        "wire_bytes": 56491,
+        "content_encoding": "gzip",
+        "sha256": "aae8a57a747bbf8340181678de9ee7be216fd0e7e473efe0504b3ae478fa4648",
+        "matches_current_local_renderer": true,
+        "seconds": 3.953
+      },
+      {
+        "label": "profile-0",
+        "format": "markdown",
+        "bytes": 1280596,
+        "wire_bytes": 60349,
+        "content_encoding": "gzip",
+        "sha256": "b0bbe55f3c299052e062b5f0e154b79238d86fc2d19701c59d7b513cdbab9949",
+        "matches_current_local_renderer": true,
+        "seconds": 3.734
+      },
+      {
+        "label": "profile-0",
+        "format": "html",
+        "bytes": 2129210,
+        "wire_bytes": 84624,
+        "content_encoding": "gzip",
+        "sha256": "fe3a826288b1c82db2529392ddcdf45117475922e5202dfc11248fe71726da0d",
+        "matches_current_local_renderer": true,
+        "seconds": 3.844
+      },
+      {
+        "label": "profile-1",
+        "format": "json",
+        "bytes": 9379052,
+        "wire_bytes": 589044,
+        "content_encoding": "gzip",
+        "sha256": "0fef3952e064d083a85f4e7b180ea511b098396ccc2d3ec78e906473311f3c7c",
+        "matches_current_local_renderer": true,
+        "seconds": 5.25
+      },
+      {
+        "label": "profile-1",
+        "format": "jsonl",
+        "bytes": 2043311,
+        "wire_bytes": 71765,
+        "content_encoding": "gzip",
+        "sha256": "6c1a4a7128982eb2a16bb2b32d981327ca6c56ead750651d5b0488d6689da7ec",
+        "matches_current_local_renderer": true,
+        "seconds": 4.75
+      },
+      {
+        "label": "profile-1",
+        "format": "csv",
+        "bytes": 1074963,
+        "wire_bytes": 56493,
+        "content_encoding": "gzip",
+        "sha256": "ea37056dc1475c6064468489f0a6fb566d2518f06db1b71f7badef334f830c85",
+        "matches_current_local_renderer": true,
+        "seconds": 4.844
+      },
+      {
+        "label": "profile-1",
+        "format": "markdown",
+        "bytes": 1280141,
+        "wire_bytes": 60401,
+        "content_encoding": "gzip",
+        "sha256": "5cce533299f095b73c095cca095ebdf6f1c24b5ec08df3025b7ca6b0868eff3b",
+        "matches_current_local_renderer": true,
+        "seconds": 4.766
+      },
+      {
+        "label": "profile-1",
+        "format": "html",
+        "bytes": 2128145,
+        "wire_bytes": 84547,
+        "content_encoding": "gzip",
+        "sha256": "f6571bd52c3981e2b0a7e16abdc5c54b7b141006180ec35f07e39557d6091ce9",
+        "matches_current_local_renderer": true,
+        "seconds": 4.469
+      },
+      {
+        "label": "pair",
+        "format": "json",
+        "bytes": 18922387,
+        "wire_bytes": 1192837,
+        "content_encoding": "gzip",
+        "sha256": "ad7e88a97cea17e075441a448d959f44a841a7c1af60c32666a01c577941eca0",
+        "matches_current_local_renderer": true,
+        "seconds": 15.656
+      },
+      {
+        "label": "pair",
+        "format": "jsonl",
+        "bytes": 4087768,
+        "wire_bytes": 143612,
+        "content_encoding": "gzip",
+        "sha256": "44a8fbd54f6c5bf670885c080a3c8eec771c14a779a5529175f3571d67788133",
+        "matches_current_local_renderer": true,
+        "seconds": 13.796
+      },
+      {
+        "label": "pair",
+        "format": "csv",
+        "bytes": 2147933,
+        "wire_bytes": 113544,
+        "content_encoding": "gzip",
+        "sha256": "cd0dbe1705fc3186b25e017ead4a1612e6ac0e03a3615a4dcd7909116daf1645",
+        "matches_current_local_renderer": true,
+        "seconds": 13.515
+      },
+      {
+        "label": "pair",
+        "format": "markdown",
+        "bytes": 2558426,
+        "wire_bytes": 120847,
+        "content_encoding": "gzip",
+        "sha256": "a874bc908605de0de74b87fc1ced573508d0a3a9c55fffd36c8c9b46de01401c",
+        "matches_current_local_renderer": true,
+        "seconds": 14.719
+      },
+      {
+        "label": "pair",
+        "format": "html",
+        "bytes": 4255668,
+        "wire_bytes": 167684,
+        "content_encoding": "gzip",
+        "sha256": "b6a40bdd57938b7b3aca9c86bbc19c28a2d5decb0bee19a01878567da025f29f",
+        "matches_current_local_renderer": true,
+        "seconds": 16.984
+      }
+    ]
+  },
+  "ui": {
+    "desktop_client_and_scroll_width": 1265,
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "mobile_client_and_scroll_width": 375,
+    "console_errors": 0,
+    "profile_and_pair_complete": true,
+    "korean_and_untrusted_name_checks": "Earlier dated local browser evidence; no new production identity mutation"
+  },
+  "operations": {
+    "hardware": "cpu-basic",
+    "replicas": 1,
+    "initialization": false,
+    "trial_starts_used": 2,
+    "new_checkpoints": 4,
+    "new_retained_bytes": 268703380,
+    "state_total_bytes": 335866272,
+    "reference_original_bytes_reserved": 178793778,
+    "original_logical_transfer_reserved": 223573351,
+    "database_cap_bytes": 2147483648,
+    "retained_cap_bytes": 8589934592,
+    "standing_backup_worker": false,
+    "new_paid_resources": false
+  },
+  "boundaries": {
+    "official_ranking_enabled": false,
+    "raw_response_publication": false,
+    "new_gpu_inference": false,
+    "classifier_accuracy_established": false,
+    "combined_ethics_score": false,
+    "fault_and_invalid_input_tests": "CI/local fixtures and earlier private hosted trial, not new destructive production fault injection"
+  },
+  "gates": {
+    "G1": "passed in the stated actual/fixture scope",
+    "G2": "passed in the stated actual/fixture scope",
+    "G3": "passed in the stated actual/fixture scope",
+    "G4": "passed in the stated actual/fixture scope",
+    "G5": "passed in the stated actual/fixture scope",
+    "G6": "passed in the stated actual/fixture scope",
+    "G7": "passed in the stated actual/fixture scope",
+    "G8": "passed in the stated actual/fixture scope",
+    "G9": "passed in the stated actual/fixture scope",
+    "G10": "passed in the stated actual/fixture scope",
+    "G11": "passed in the stated actual/fixture scope"
+  },
+  "G12": "Verified source/runtime mapping; accompanying release documentation and new tag are the distribution step",
+  "private_originals_history_credentials_and_internal_paths_included": false
+}

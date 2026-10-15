@@ -1,40 +1,27 @@
 # Public registration service execution plan
 
-Updated 2026-10-15. Goal: complete the public registered-result service, including
-G1–G12, rather than extend the anonymous-analysis beta alone.
+Updated 2026-10-15. The registered research service is running publicly at
+[KoEVD-Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+Application source `064a013` merged normally through PR #4 as `ee7b5e3`;
+Space revision `1bc4cbdf552a9999ca91c87d4cb2af81927ec44b` matches its code.
+[Current acceptance](PUBLIC_SERVICE_ACCEPTANCE.md) and the
+[aggregate receipt](validation/platform_public_registration_hosted_20261015.json)
+supersede the historical checkpoints below.
 
-The original development checkout has 214 dirty entries and is preserved. Work
-uses branch `feature/public-registration-service`, based on public main
-`701140249ce69a3a4089e3a184d000bdde2cebb9`, in the isolated publishing checkout.
+Actual native login, full compressed upload, private registration, display rename,
+consented summary sharing, withdrawal, server restart/re-login, original/history
+byte comparison, anonymous profiles/paired comparison and all 15 numerical exports
+passed. Two starts and four new checkpoints were used within the approved scope.
+No raw-response publication, official ranks, standing backup worker, GPU work or
+new paid resources were enabled. Preserve existing limited Secrets and State;
+initialize remains 0. The withdrawn validation duplicate stays private for audit.
 
-## Current state
+The original development checkout's 214 preexisting dirty entries are preserved.
+The isolated publishing checkout remains the source of release changes.
+Distribution uses the reviewed acceptance/user-guide documentation and new
+`v0.3.0-rc.1` release; no runtime redeployment is needed for these documentation updates.
 
-PR #3 source 92866324276a6e7f10f28d6d1f21e630305e0c74 is merged as
-2d59bdebbc1a06f486b629609a08905085e6231d and main CI passed. The production
-registered trial booted, seeded two references and passed public numerical points,
-94 board values, anonymous privacy denials and mobile catalog checks. Its one
-owner upload and full bulk-download acceptance did not complete; no user
-registration was acknowledged. The previous anonymous beta is RUNNING at
-04de803411b5e904b3773341e9f9445ce4889790. Reference-only private state is retained.
-Production Secrets are already configured; do not ask for or copy them again.
-
-The initial LFS omission is fixed in the deployment preparation and follow-up
-materializer: preserve provider attributes and verify committed Git/LFS metadata
-before requesting a start. New source on `fix/compressed-result-transfer` adds
-lossless browser gzip uploads, bounded server expansion and negotiated report
-compression. Identity/session endpoints and range requests remain excluded from
-response compression. Numerical formulas, model records and provenance rules are
-unchanged. Actual-data local browser and all 15 numerical transfer formats passed;
-this is not actual HF acceptance of the new source.
-
-Complete frozen tests, source-only audit and a concrete deployment candidate,
-then obtain a fresh bounded transition scope for this changed source and the new
-original transmission. Restore the existing acknowledged production state with
-initialization disabled; do not reseed or copy development owner data. Sequential
-native identity/upload/register/share/withdraw/restore and hosted exports must
-pass before release. Consumed finite trial approvals do not authorize unlimited
-retries, standing backups, raw publication or paid-resource changes. Earlier
-sections below are historical checkpoints.
+## Historical implementation decisions and checkpoints
 
 ## Decisions and sequence
 

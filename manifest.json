@@ -20,8 +20,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 4176,
-      "sha256": "e96e2a51712a2b1b24df3dc42b2755f2d24b9111363ff3cad12778c2d6015cc3"
+      "bytes": 4528,
+      "sha256": "363eece971c4b915461a3131bb44fa55e0e147cd2cf8846f4648b472c5c46c74"
     },
     {
       "path": "CITATION.cff",
@@ -45,8 +45,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 14325,
-      "sha256": "a441c75602b71a3b22c973d8862aea7a99d39d34d4248347b5e6463428ec93f6"
+      "bytes": 14184,
+      "sha256": "741403aef9c4a3539090e6016f66b7fd97f2826f9e10ab5d82f1cdcf681d6744"
     },
     {
       "path": "analysis/plot_paper_tables.py",
@@ -280,8 +280,8 @@
     },
     {
       "path": "docs/OAUTH_SUBMISSION_GUIDE.md",
-      "bytes": 13122,
-      "sha256": "9c126e5e95078a1474838585c3235bf560665142e9798bfadcc9780dddad9d42"
+      "bytes": 13601,
+      "sha256": "3737d06b4b927d72c814dbb34996b37c7d5feabb4c85ec3af7544a84499b0681"
     },
     {
       "path": "docs/OPERATOR_POLICY_GUIDE.md",
@@ -305,8 +305,8 @@
     },
     {
       "path": "docs/PLATFORM_RELEASE_CANDIDATE.md",
-      "bytes": 9327,
-      "sha256": "d0870d9a1c6ae470443cb72172032db12044304d1fa875c2a6b1b2be27e4cd23"
+      "bytes": 9827,
+      "sha256": "6d88b42bac44e296dd1eb1f00908f8344db7365788b21d13d6e283abcf5dbbec"
     },
     {
       "path": "docs/PLATFORM_USER_GUIDE.md",
@@ -340,13 +340,13 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 15203,
-      "sha256": "518b18b8a71c373f502a7805849b4b4046edae9283d74f241bbd4298e1fcd74c"
+      "bytes": 16468,
+      "sha256": "f37ec93cacb6040453c41590d0eaad212b8c93dcfa4a44e02a63f8a650fa69b1"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
-      "bytes": 16509,
-      "sha256": "9b20d6b1877332516fc3b7407c69f1143f8793dd81f3a733136dbc943ee496c5"
+      "bytes": 15712,
+      "sha256": "6d297a887d8e3636c8ea3d72aaed990bdc20ee74f876db034e8fe21f49a12c4b"
     },
     {
       "path": "docs/RANK_ADMISSION_GUIDE.md",
@@ -360,13 +360,13 @@
     },
     {
       "path": "docs/REGISTERED_SPACE_GUIDE.md",
-      "bytes": 8752,
-      "sha256": "0c714bd13ebe0da041af83fbdfd93f19fa80f880c0fb18f0c9578ae85d6adf1d"
+      "bytes": 9088,
+      "sha256": "b35455211fe812abc669a4a1b3f6ed188238cc0fd95e79613e217a4d66d25ee9"
     },
     {
       "path": "docs/RELEASE.md",
-      "bytes": 2574,
-      "sha256": "fcc8da6ab253ef62e253c4e093b58c48bdd8cdd340a74890a26ffc12f4c3feea"
+      "bytes": 3082,
+      "sha256": "058923a5e74a85bd98f36d10094e905c579b57039c5dc94a9ff88f8b989fcc2d"
     },
     {
       "path": "docs/REPRODUCIBILITY.md",
@@ -385,8 +385,8 @@
     },
     {
       "path": "docs/SPACES_GUIDE.md",
-      "bytes": 16508,
-      "sha256": "80b92d9b02910865c2bbe1cf46e0cf62c12028622497cd6cd4735cabaa1e9f56"
+      "bytes": 17008,
+      "sha256": "7973b89eed853aea9e5746e3d67c7bf201454ac6b6187f4a178b5ba2500f51bd"
     },
     {
       "path": "docs/SPACES_RUNTIME_VALIDATION.md",
@@ -747,6 +747,11 @@
       "path": "docs/validation/platform_public_beta_local_v94.json",
       "bytes": 2609,
       "sha256": "8bf78241a56f3f7179447839eb1e085617fe1fabea3ae0ee56986eca6dc29bfa"
+    },
+    {
+      "path": "docs/validation/platform_public_registration_hosted_20261015.json",
+      "bytes": 10401,
+      "sha256": "2f065092e6ebb326ceb1ebca4a21750bf755b7e48ae34298ea3f93d44d51f9c6"
     },
     {
       "path": "docs/validation/platform_rc_audit_20261009.json",
@@ -1749,5 +1754,5 @@
       "sha256": "7d52008d6d1c0fb9667de7698ac24c7f865c7a3cb52ae93767b80a0df202a2d8"
     }
   ],
-  "snapshot_kind": "0.3.0rc1-lossless-transfer-candidate; existing tags unchanged; actual HF acceptance pending"
+  "snapshot_kind": "0.3.0rc1-public-registration-hosted-acceptance; existing tags unchanged"
 }

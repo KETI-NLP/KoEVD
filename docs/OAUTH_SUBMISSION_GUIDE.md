@@ -1,5 +1,11 @@
 # HF 로그인과 웹 제출 후보
 
+현재 공개 서비스(2026-10-15): 운영 Space에서 실제 HF 로그인, 소유자 등록,
+수치 요약 공유·철회, 서버 재시작 후 재로그인 및 원본·이력 복원을 검증했다.
+최신 사용법은 [사용자 안내](PLATFORM_USER_GUIDE.md), 정확한 소스·배포 버전과
+검증 범위는 [현재 인수 결과](PUBLIC_SERVICE_ACCEPTANCE.md)를 따른다.
+아래 개발 단계의 미완료·미검증 표시는 해당 날짜의 과거 기록이다.
+
 현재 상태(2026-10-12/plan0.43): v0.43에서 실제 Team 가입을 API로 확인하고 별도 비공개 CPU Docker Space `KETI-NLP/KoEVD-Platform-Dev`를 배포했다. 현재 revision `03e79a75ee35570b83948343d521f684a38fce01`의 payload65개+manifest가 일치하고 RUNNING/cpu-basic이다. 실제 HF 로그인 후 두 모델48+48기록의 업로드·분석·대응 비교와 비공개 draft2건 저장/재조회를 확인했다. 내려받은 원본 JSON 내용·HF OAuth 생성 이력과 분석 JSON/HTML의 native 바이트가 일치한다. v64의 별도 HTTP 검증에서는 다섯 출력·세션 격리·삭제가 통과했다. 현재 브라우저의 나머지3개 다운로드는 확인하지 못했다. Private proxy cookie 누락을 수정했고 관련4+6+3+11 검사가 통과했다. 기존 전체310은 이전 설치 근거다. Public Static은 그대로이며 영구 저장·운영자 승인·공개 참조/공식 순위·production은 미완료다. [최신 근거](validation/platform_m5_m6_team_hosted_20261012.json) Goal active/원래 범위를 유지한다.
 
 아래 이전 검증의 범위·수치는 당시 근거다. [운영 준비](TEAM_SPACE_OPERATIONS.md).

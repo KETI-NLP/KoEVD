@@ -1,4 +1,4 @@
-# 0.3.0rc1 registered-service release candidate (production acceptance pending)
+# 0.3.0rc1 public registered research service
 
 - HF-owned submission metadata, original-declaration confirmation and explicit
   consent for numerical summary publication, separate from reviewed originals.
@@ -17,8 +17,13 @@
   wire/expanded bounds, damaged-stream rejection and unchanged original bytes.
   Identity/session responses are excluded; ranged downloads stay uncompressed.
 - Materialized contexts preserve provider LFS attributes and declare large assets.
-- Production G1–G12 acceptance remains required. Existing tags, beta operation
-  and classifier limits are preserved; no new inference or accuracy claim.
+- Actual public HF acceptance passed full gzip upload, owned registration, rename,
+  metrics-only consent, withdrawal, re-login after server restart, exact private
+  original/history recovery, 94 board values and all 15 numerical downloads.
+- Main CI passed 471 checks on each of Python 3.10 and 3.12. CPU Basic/single
+  replica, official-rank exclusions and existing tags remain unchanged.
+- See the dated hosted acceptance receipt for exact runtime and scope; no new
+  inference, raw-response publication or classifier-accuracy claim.
 
 # 0.2.0rc1 platform public beta
 

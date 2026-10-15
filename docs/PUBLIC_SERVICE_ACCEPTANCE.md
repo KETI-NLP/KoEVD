@@ -1,43 +1,61 @@
 # Public registration service acceptance
 
-Updated 2026-10-15. The public activation trial is **not accepted**. Source
-92866324276a6e7f10f28d6d1f21e630305e0c74 merged through PR #3 as
-2d59bdebbc1a06f486b629609a08905085e6231d; its main CI passed. The registered
-runtime 08f1b621b3d53a3660f11723e4accfd8b5676ea9 successfully served two actual
-references, but the one original upload did not return a completion and bulk
-numerical downloads stalled/timed out. No user registration was acknowledged.
-The old anonymous beta was restored at 04de803411b5e904b3773341e9f9445ce4889790.
-CPU Basic/single replica and the private reference checkpoint remain; no release,
-raw-response publication or official ranks were activated.
+Updated 2026-10-15. **The public research registration service passed its bounded
+acceptance trial.** [Open the Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform)
+or follow the [user guide](PLATFORM_USER_GUIDE.md). Numerical comparison is active;
+official ranks and original-response publication remain disabled.
 
-The earlier LFS omission was separately diagnosed and corrected by retaining the
-provider's `.gitattributes` and verifying committed Git/LFS hashes before start.
-The follow-up candidate adds bounded lossless upload/report compression. Its real
-loopback-browser upload preserved all 17,670 records and exact original bytes;
-15 loopback numerical downloads matched the renderer. These local tests do not
-prove the new transport on HF. The previous private hosted trial at
-71c010860056b6f80d13f8e1da7a4b92a3bbca4a remains valid for its own identity,
-registration, consent, withdrawal and two-restart scope.
+- Application source: `064a013d2f8e558acdb217a57d20e4f653121677`, PR #4,
+  normally merged as `ee7b5e32584954b023533061ddee6439ad66e95e`.
+- Actual Space revision: `1bc4cbdf552a9999ca91c87d4cb2af81927ec44b`.
+  Its 69 code/license/protocol files match the committed source blobs. Provider
+  LFS attributes and every deployed Git/LFS file were verified before start.
+- Distribution: `v0.3.0-rc.1` / Python package `0.3.0rc1`. Accompanying documentation
+  changes do not change deployed application files or require another restart.
+- [Main CI](https://github.com/KETI-NLP/KoEVD/actions/runs/38722314566): Python 3.10
+  and 3.12 each passed 471 tests. [Aggregate hosted receipt](validation/platform_public_registration_hosted_20261015.json)
+  contains hashes, counts and scope, without private originals or credentials.
 
-| ID | Required evidence | Current evidence and remaining gate |
+| ID | Acceptance evidence | Scope |
 |---|---|---|
-| G1 | Anonymous public list and metrics without upload | Actual public trial passed two-reference catalog/board; current production is restored anonymous analysis |
-| G2 | Original model declaration and separate display name | Prior private trial passed; new public owner upload did not complete |
-| G3 | HF-owned persisted registration and URL | Public HF sign-in passed; public persisted owner registration remains pending |
-| G4 | Explicit sharing scopes and publication state | Prior private consent passed; fresh public owner summary/withdrawal remains pending |
-| G5 | Re-login/restart preserve originals/history | Prior private original/history restore passed; fresh production owner restore pending |
-| G6 | Independent public reader and private denial | Public anonymous APIs, independent browser, private history 401 and raw originals 403 passed |
-| G7 | Actual model profiles and paired comparison | Both public profiles/pair match offline points and denominators; full browser pair did not finish |
-| G8 | CLI/profile/board/download agreement | 94 public board metrics exactly match profiles; one hosted JSON matched exact bytes; all 15 gzip numerical downloads passed locally only |
-| G9 | Duplicate/invalid/conflict/fault behavior | Earlier private duplicate and local fault evidence retained; current public owner flow incomplete |
-| G10 | Withdrawal removes every public projection | Earlier private withdrawal/restart passed; fresh public owner flow pending |
-| G11 | Storage, recovery, capacity and responsive UI | Actual public CPU Basic/single replica and mobile catalog passed; bulk transport and final owner recovery pending |
-| G12 | Matching public code/runtime and documentation | PR #3/main CI passed; compressed follow-up and final production release pending |
+| G1 | Independent anonymous browser lists two actual references and metric values | No upload/sign-in required |
+| G2 | Full 17,670-record gzip upload; immutable model/generation/measurement declaration and separate display name | Same existing 8B artifact; no new generation |
+| G3 | Actual native HF sign-in, private save, owner list and public summary URL | Account ownership does not verify generation |
+| G4 | Explicit metrics-only rights/consent; public summary; private original returns 403 to public reader | No response-publication approval fabricated |
+| G5 | Server restart and native re-login; private original and four-event history byte-identical before/after | One production restart, in addition to earlier dated private trials |
+| G6 | Independent browser and anonymous HTTP reads; private history 401 | No administrative token impersonates app identity |
+| G7 | Both profiles, metadata/framing/strategy controls and exact-input paired comparison render | Task counts 2000/8000/2659/2659/2352; raw cases withheld |
+| G8 | Offline point values/denominators agree; all 94 board rows exact; all 15 numerical exports match renderer bytes | Bootstrap intervals excluded from oracle comparison |
+| G9 | Actual duplicate counts once; full CI covers invalid/partial/configuration/conflict/fault handling | Fault injection remains local/CI; earlier private hosted duplicate evidence retained |
+| G10 | Withdrawal removes catalog/profile/pair/downloads, including after restart; private history retained | Previously downloaded copies cannot be recalled |
+| G11 | Actual CPU Basic/single replica, four confirmed checkpoints, restored owner state, desktop/mobile widths and zero console errors | Korean/untrusted-name checks retain earlier local scope; no availability SLA inferred |
+| G12 | Versioned public source, exact runtime mapping, user guide and aggregate receipt accompany the new release | Historical tags preserved; docs-only updates do not alter runtime |
 
-All G1–G12 are required. Historical sections below describe earlier source and
-scope; they do not override this current status. Never convert local compression,
-fictional identity or a successful server start into actual hosted registration,
-classifier accuracy or official ranking evidence.
+The validation upload was 6,022,832 compressed bytes and reconstructed the existing
+44,779,573-byte original. Owner downloads use canonical JSON: the entire decoded
+object equals the upload; their 33,589,402 bytes and the 8,086-byte history were
+also exactly equal before and after restart. Events were create, display update,
+summary publication and withdrawal, with one immutable result revision.
+
+The 15 numerical exports total 63,796,419 decoded bytes and 3,465,141 wire bytes.
+They contain no original prompts/responses or private history. Observed values
+remain descriptive: Task 3 uses limited classifier measurements, Task 4 is not a
+quality score, Task 5 selects simulated tools, and no combined ethics score exists.
+
+Two starts were used. Four new checkpoints retained 268,703,380 bytes; total State
+was 335,866,272 bytes. Initialization stayed disabled. DB/retained caps remain
+2 GiB/8 GiB; no recurring backup worker, new paid resources or GPU work was enabled.
+The test duplicate was withdrawn, leaving the two reference summaries public.
+Registrations and audit copies are retained privately; withdrawal is not erasure.
+
+The earlier LFS omission and incomplete plain-transfer trial remain failures in
+their own scope. They were followed by the corrected compressed trial above.
+The build manifest retains its pre-acceptance flag as an immutable build fact;
+the separate dated receipt records later hosted acceptance.
+
+## Historical checkpoints
+
+The sections below are dated development records, not current pending gates.
 
 ## First implementation checkpoint
 
