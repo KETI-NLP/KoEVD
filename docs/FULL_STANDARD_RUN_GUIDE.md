@@ -1,5 +1,11 @@
 # 전체 표준 평가 실행과 독립 인수
 
+> This is the historical **operator two-model validation controller** procedure.
+> Its placeholder private paths and fixed target pair are not a first-user recipe.
+> To evaluate your own model and register results, use [GETTING_STARTED.md](GETTING_STARTED.md).
+> Later hosted/container/permission acceptance supersedes the unfinished gates
+> recorded at the end of this dated run; see [PUBLIC_SERVICE_ACCEPTANCE.md](PUBLIC_SERVICE_ACCEPTANCE.md).
+
 전체 표준 평가는 `koevd-core-canonical-v1` registry가 고정한 입력을 모두 사용한다. 기존 prefix4/96 결과는 통합 검사이며 전체 표준 기준선으로 등록하지 않는다. **전체 입력 완료와 classifier 정확도·사람 판정·공개 허가·공식 순위 자격은 별도 조건**이다.
 
 | 과업 | 입력/결과 수 | 설명 |

@@ -53,6 +53,27 @@ their own scope. They were followed by the corrected compressed trial above.
 The build manifest retains its pre-acceptance flag as an immutable build fact;
 the separate dated receipt records later hosted acceptance.
 
+## First-user workflow correction (2026-10-16 source candidate)
+
+The [complete first-user guide](GETTING_STARTED.md) now connects registered input
+preparation, generation, measurement, portable export, sign-in, private save,
+optional numerical sharing and comparison. Custom local indexes are explicitly
+separate. README and core guides no longer describe registration as unimplemented.
+
+The accompanying UI candidate links uploaded results to registration automatically,
+puts account guidance before upload, distinguishes temporary analysis from saving,
+and retries only bounded public numerical reads. An explicit `/readyz` probes
+storage/recovery without confirming a pending save; `/healthz` stays liveness.
+A temporary public-read failure's underlying hosted cause has not been established.
+
+[Local correction evidence](validation/platform_first_user_workflow_20261016.json)
+records 477 passing tests, independent full-index preparation and validation of
+both existing 17,670-record results, and a synthetic browser walkthrough through
+private registration, numerical sharing and paired comparison. No new GPU run,
+real HF login, raw-result upload or hosted deployment was performed for this
+candidate. These checks do not replace hosted acceptance of the new UI. The
+actual deployed revision above continues to identify the previous service.
+
 ## Historical checkpoints
 
 The sections below are dated development records, not current pending gates.

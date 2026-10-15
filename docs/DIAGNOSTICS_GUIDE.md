@@ -3,8 +3,10 @@
 The M3 shared CPU analysis engine and interactive offline HTML passed their
 installed-package and browser gates. `koevd-diagnose` creates the new chart/case
 report. `koevd-results report` preserves the previous HTML layout and historical
-scores. This does not complete the Spaces/submission platform or real two-model
-GPU validation.
+scores. For the current evaluation-to-registration route use
+[GETTING_STARTED.md](GETTING_STARTED.md). Later full two-model and hosted
+registration evidence is recorded in [PUBLIC_SERVICE_ACCEPTANCE.md](PUBLIC_SERVICE_ACCEPTANCE.md);
+the M3 validation below retains its original scope.
 
 ## Run the installed CLI
 

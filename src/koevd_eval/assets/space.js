@@ -12,11 +12,14 @@ async function api(url,{method='GET',body=null,authenticated=true,identity=false
   if(identity&&method!=='GET')headers['X-Koevd-Auth-CSRF']=authCsrf||'';
   // HF private Docker proxy access also needs its HttpOnly cookie on analysis
   // requests. Same-origin cookies never replace the separate session token/CSRF.
-  const response=await fetch(url,{method,headers,body,credentials:'same-origin',cache:'no-store',referrerPolicy:'no-referrer'});
-  if(!response.ok){let value;try{value=await response.json();}catch{value=null;}throw new Error(value?.error?.message||'Request failed ('+response.status+').');}
+  const fetchOnce=()=>fetch(url,{method,headers,body,credentials:'same-origin',cache:'no-store',referrerPolicy:'no-referrer'});
+  let retried=false;
+  const response=await window.KoEVDPublicReads.request(fetchOnce,{method,path:url,onRetry:({attempt,maxAttempts})=>{retried=true;const notice=node('public-service-status');if(notice){notice.textContent='Checking published results again (attempt '+attempt+' of '+maxAttempts+')…';notice.classList.remove('error');}}});
+  if(!response.ok){let value;try{value=await response.json();}catch{value=null;}const error=new Error(value?.error?.message||'Request failed ('+response.status+').');error.code=value?.error?.code;error.status=response.status;throw error;}
+  if(retried){const notice=node('public-service-status');if(notice){notice.textContent='Published results checked successfully.';notice.classList.remove('error');}}
   return response;
 }
-function updateButtons(){node('upload').disabled=state.busy||!state.token||!node('result-files').files.length;node('analyze').disabled=state.busy||!state.uploads.length;node('delete-session').disabled=state.busy||!state.token;for(const b of node('uploads').querySelectorAll('button'))b.disabled=state.busy;}
+function updateButtons(){node('upload').disabled=state.busy||!state.token||!node('result-files').files.length;node('analyze').disabled=state.busy||!state.uploads.length;node('delete-session').disabled=state.busy||!state.token;for(const b of node('uploads').querySelectorAll('button'))b.disabled=state.busy;window.dispatchEvent(new Event('koevd-workspace-change'));}
 function clearPreparedDownload(){state.downloadRequest++;if(state.downloadURL)URL.revokeObjectURL(state.downloadURL);state.downloadURL=null;node('prepared-download')?.remove();}
 function clearReport(){clearPreparedDownload();node('report-section').hidden=true;node('report-preview').removeAttribute('src');if(state.preview)URL.revokeObjectURL(state.preview);state.preview=null;state.job=null;}
 function scopeName(scope){return ({synthetic_demo:'Synthetic demo',operator_custom:'Operator-configured custom inputs',standard:'Registered input protocol'})[scope]||scope;}

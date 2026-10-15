@@ -237,6 +237,18 @@ class AcknowledgedSubmissionStore(LocalSubmissionStore):
                 raise StorageError('checkpoint_initialization_required', 'Existing data needs explicit checkpoint adoption', 503)
         self._ready = True
 
+    @contextmanager
+    def readiness_connection(self):
+        """Check the acknowledged cut without confirming or writing a dirty cut."""
+        with self._lock:
+            if not self._ready or self._dirty or self._checkpointing:
+                raise StorageError('durability_unavailable', 'Acknowledged storage is not ready', 503)
+            fence = getattr(self.sink, 'check_current', None)
+            if callable(fence):
+                fence(self.last_checkpoint)
+            with super().connection() as db:
+                yield db
+
     def _confirm(self):
         if not self._dirty:
             return

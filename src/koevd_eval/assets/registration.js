@@ -1,7 +1,7 @@
 /* Server-confirmed identity only. Untrusted names/reasons are textContent. */
 (function(){'use strict';
 const $=id=>document.getElementById(id), workspace=window.KoEVDWorkspace;
-const state={identity:null,current:null,busy:false,next:null,publicNext:null,keys:new Map(),board:null,declaration:null};
+const state={enabled:false,identity:null,current:null,busy:false,next:null,publicNext:null,keys:new Map(),board:null,declaration:null};
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const boardFilters=el('div',undefined,'public-chart-controls'),searchLabel=el('label','Search model, display name or revision'),search=el('input'),orderLabel=el('label','Display order'),order=el('select'),viewStatus=el('p');
 search.id='leaderboard-search';search.type='search';search.maxLength=200;searchLabel.htmlFor=search.id;order.id='leaderboard-order';orderLabel.htmlFor=order.id;viewStatus.id='leaderboard-view-status';viewStatus.setAttribute('role','status');
@@ -20,14 +20,15 @@ async function api(url,options={}){return (await workspace.api(url,{...options,a
 async function perform(task){if(state.busy)return;state.busy=true;controls();try{await task();}catch(e){message(e.message,true);}finally{state.busy=false;controls();}}
 function payload(url,value){const fingerprint=url+JSON.stringify(value);let key=state.keys.get(fingerprint);if(!key){if(state.keys.size>=100)state.keys.delete(state.keys.keys().next().value);key=crypto.randomUUID();state.keys.set(fingerprint,key);}return JSON.stringify({...value,key});}
 async function mutate(url,value){return api(url,{method:'POST',body:payload(url,value)});}
-function uploads(){const select=$('submission-upload'),previous=select.value;select.replaceChildren();select.append(el('option','Select a validated private upload'));select.firstChild.value='';
-  for(const run of workspace.uploads()){const option=el('option',run.model+' · '+run.records+' records · '+run.id.slice(0,8));option.value=run.id;select.append(option);}select.value=[...select.options].some(n=>n.value===previous)?previous:'';if(select.value!==previous)resetDeclaration();controls();}
+function uploads(){const runs=workspace.uploads();$('registration-next').hidden=!state.enabled||!runs.length;const select=$('submission-upload'),previous=select.value;select.replaceChildren();select.append(el('option','Select a validated private upload'));select.firstChild.value='';
+  for(const run of runs){const option=el('option',run.model+' · '+run.records+' records · '+run.id.slice(0,8));option.value=run.id;select.append(option);}select.value=[...select.options].some(n=>n.value===previous)?previous:'';if(select.value!==previous)resetDeclaration();controls();}
 function resetDeclaration(){state.declaration=null;$('submission-declaration-confirm').checked=false;$('submission-declaration').textContent='';$('submission-declaration-detail').hidden=true;}
 async function declaration(){resetDeclaration();const id=$('submission-upload').value;if(!id){controls();return;}
   try{const value=await api('/api/uploads/'+encodeURIComponent(id)+'/declaration');if($('submission-upload').value!==id)return;$('submission-declaration').textContent=JSON.stringify(value,null,2);$('submission-declaration-detail').hidden=false;$('submission-declaration-detail').open=true;state.declaration=id;message('Review the uploaded declaration. Missing settings remain unknown; this is not verification of model generation.');}
   catch(e){message('Model declaration unavailable: '+e.message,true);}controls();}
 async function signIn(){const info=await api('/api/identity',{authenticated:false});state.identity=info.signed_in?info:null;
   $('identity-status').textContent=info.signed_in?'Signed in as '+info.username+'. Submission permissions are checked by the server.':'Not signed in. Sign in in a separate tab, then check again.';
+  $('start-identity-status').textContent=info.signed_in?'Signed in as '+info.username+'. You can upload and save a result.':'Not signed in. Temporary analysis is available; sign in before uploading if you want to save results.';
   $('identity-logout').hidden=!info.signed_in;$('submission-controls').hidden=!info.signed_in;
   if(!info.signed_in){state.current=null;$('submission-list').replaceChildren();$('submission-detail').hidden=true;}
   else{uploads();await list();}controls();}
@@ -55,11 +56,11 @@ function publicDownloads(holder,url,kind){holder.append(el('h3','Download public
 function clearBoard(text,error=false){state.board=null;$('leaderboard-values').replaceChildren();$('leaderboard-metric').replaceChildren();$('leaderboard-metric').disabled=true;$('leaderboard-search').disabled=true;$('leaderboard-order').disabled=true;$('leaderboard-view-status').textContent='';$('leaderboard-status').textContent=text;$('leaderboard-status').classList.toggle('error',error);}
 async function publicMetrics(id){const holder=$('public-metrics');holder.replaceChildren(el('p','Loading candidate metrics…'));
   try{metrics(await api('/api/public/submissions/'+encodeURIComponent(id)+'/profile',{authenticated:false}));history.replaceState(null,'','#model='+encodeURIComponent(id));}
-  catch(e){holder.replaceChildren(el('p','Candidate metrics unavailable: '+e.message,'error'));}}
+  catch(e){holder.replaceChildren(el('p',window.KoEVDPublicReads.explanation(e),'error'));}}
 async function published(after=''){const holder=$('public-submissions');state.publicNext=null;$('public-next').hidden=true;holder.replaceChildren(el('p','Loading published candidates…'));$('public-metrics').replaceChildren();clearBoard('Loading published metric comparison…');
   $('public-pair-results').replaceChildren();$('public-pair-status').textContent='';pairOptions([]);
   let data;try{data=await api('/api/public/submissions?after='+encodeURIComponent(after),{authenticated:false});}
-  catch(e){holder.replaceChildren(el('p','Published candidates unavailable: '+e.message,'error'));clearBoard('Comparison unavailable: '+e.message,true);return;}
+  catch(e){const text=window.KoEVDPublicReads.explanation(e);holder.replaceChildren(el('p',text,'error'));clearBoard(text,true);$('public-service-status').textContent=text;$('public-service-status').classList.add('error');return;}
   state.publicNext=data.next_cursor;$('public-next').hidden=!state.publicNext;holder.replaceChildren();
   pairOptions(data.items);
   if(!data.items.length)holder.append(el('p','No published candidates on this page.','empty'));
@@ -94,7 +95,7 @@ async function publicPair(left,right){const holder=$('public-pair-results');hold
       for(const part of task.partitions){const row=el('tr'),delta=part.event_difference_left_minus_right_on_both_valid;row.append(el('td',part.kind+': '+part.name),el('td',task.task===4?'Descriptive strategies':observed(part.left.rates.event_on_valid)),el('td',task.task===4?'Descriptive strategies':observed(part.right.rates.event_on_valid)),el('td',delta?.value===null||delta?.value===undefined?'N/A':(100*delta.value).toFixed(2)+' ('+delta.numerator+'/'+delta.denominator+')'),el('td',part.paired_status.both_valid+' / '+part.left.rows));table.append(row);}scroll.append(table);block.append(scroll);holder.append(block);}
     if(result.approved_originals_available){const button=el('button','Explore approved response cases in private analysis','secondary');button.type='button';button.addEventListener('click',()=>perform(async()=>{for(const sid of [left,right]){const original=await workspace.api('/api/public/submissions/'+encodeURIComponent(sid)+'/result',{authenticated:false});await workspace.importResult(await original.text());}uploads();message('Approved originals added above. Select both runs and build analysis to inspect response cases.');}));holder.append(button);}else holder.append(el('p','Response cases are unavailable in this sharing scope. Numerical and metadata comparisons remain available.'));
     const charts=el('details');charts.append(el('summary','Compare metadata and strategy charts'),el('h3','Left run'));publicCharts(charts,result.left);charts.append(el('h3','Right run'));publicCharts(charts,result.right);holder.append(charts);publicDownloads(holder,'/api/public/compare/download?left='+encodeURIComponent(left)+'&right='+encodeURIComponent(right),'comparison');$('public-pair-status').textContent='Comparison complete · current publications checked · no raw cases included.';history.replaceState(null,'','#left='+encodeURIComponent(left)+'&right='+encodeURIComponent(right));
-  }catch(e){holder.replaceChildren();$('public-pair-status').textContent='Comparison unavailable: '+e.message;}}
+  }catch(e){holder.replaceChildren();$('public-pair-status').textContent=window.KoEVDPublicReads.explanation(e);}}
 async function board(){
   const priorPair={left:$('public-pair-left').value,right:$('public-pair-right').value};
   pairOptions([]);$('public-pair-results').replaceChildren();$('public-pair-status').textContent='';$('public-metrics').replaceChildren();
@@ -102,7 +103,7 @@ async function board(){
   // recheck or capacity error must not leave withdrawn rows on screen.
   clearBoard('Loading published metric comparison…');
   try{state.board=await api('/api/public/leaderboard',{authenticated:false});}
-  catch(e){clearBoard('Comparison unavailable: '+e.message,true);return;}
+  catch(e){const text=window.KoEVDPublicReads.explanation(e);clearBoard(text,true);$('public-service-status').textContent=text;$('public-service-status').classList.add('error');return;}
   const result=state.board,select=$('leaderboard-metric');
   $('leaderboard-status').textContent=result.publication_count+' registration(s), '+(result.distinct_artifact_count??result.publication_count)+' distinct result(s) · policy '+result.policy_status+
     (result.official_ranking_enabled?' · eligible metrics ranked separately.':' · official ranks disabled; excluded values are descriptive.');
@@ -112,7 +113,7 @@ async function board(){
   const ordered=[...groups.entries()].sort((a,b)=>a[0].localeCompare(b[0]));
   for(const [key,group] of ordered){const n=ordered.filter(x=>x[1].id===group.id).findIndex(x=>x[0]===key)+1;
     const option=el('option',group.id.replaceAll('_',' ')+' · evaluation group '+n);option.value=key;select.append(option);}
-  select.disabled=!ordered.length;pairOptions(result.publications);for(const side of ['left','right'])if(result.publications.some(p=>p.submission_id===priorPair[side]))$('public-pair-'+side).value=priorPair[side];controls();drawBoard();
+  select.disabled=!ordered.length;pairOptions(result.publications);for(const side of ['left','right'])if(result.publications.some(p=>p.submission_id===priorPair[side]))$('public-pair-'+side).value=priorPair[side];controls();drawBoard();$('public-service-status').textContent='Published model list and measurements are available.';$('public-service-status').classList.remove('error');
 }
 function drawBoard(){
   const holder=$('leaderboard-values');holder.replaceChildren();const result=state.board,key=$('leaderboard-metric').value;
@@ -138,6 +139,8 @@ function drawBoard(){
 $('leaderboard-refresh').addEventListener('click',()=>perform(board));$('leaderboard-metric').addEventListener('change',drawBoard);
 $('leaderboard-search').addEventListener('input',drawBoard);$('leaderboard-order').addEventListener('change',drawBoard);
 $('public-pair-build').addEventListener('click',()=>perform(()=>publicPair($('public-pair-left').value,$('public-pair-right').value)));for(const side of ['left','right'])$('public-pair-'+side).addEventListener('change',controls);
+window.addEventListener('koevd-workspace-change',uploads);
+$('start-identity-refresh').addEventListener('click',()=>perform(signIn));
 $('identity-refresh').addEventListener('click',()=>perform(signIn));$('identity-logout').addEventListener('click',()=>perform(async()=>{await api('/api/identity/logout',{method:'POST',body:'{}'});await signIn();message('Signed out. Preserved submissions remain private or published in their recorded scope.');}));
 $('submission-upload-refresh').addEventListener('click',uploads);$('submission-upload').addEventListener('change',()=>perform(declaration));$('submission-declaration-confirm').addEventListener('change',controls);
 $('submissions-refresh').addEventListener('click',()=>perform(()=>list()));$('submissions-next').addEventListener('click',()=>perform(()=>list(state.next)));
@@ -147,7 +150,7 @@ $('submission-revise').addEventListener('click',()=>perform(async()=>{const item
 $('submission-metadata-save').addEventListener('click',()=>perform(async()=>{const item=state.current;const saved=await mutate('/api/submissions/'+encodeURIComponent(item.id)+'/metadata',{display_name:$('submission-display-name').value,description:$('submission-description').value,expected_version:item.version});show(saved);await list();await published();message('Display metadata saved. Original model identity and result are unchanged.');}));
 $('submission-original').addEventListener('click',()=>perform(()=>download('/api/submissions/'+encodeURIComponent(state.current.id)+'/result','koevd-private-original.json')));
 $('submission-history').addEventListener('click',()=>perform(()=>download('/api/submissions/'+encodeURIComponent(state.current.id)+'/history','koevd-submission-history.json')));
-(async()=>{try{const config=await api('/api/registration',{authenticated:false});if(!config.enabled)return;state.summaryPublication=config.self_reported_summaries_enabled===true;$('registration-section').hidden=false;$('public-catalog-section').hidden=false;$('public-pair-section').hidden=false;$('workspace-navigation').hidden=false;
+(async()=>{try{const config=await api('/api/registration',{authenticated:false});if(!config.enabled)return;state.enabled=true;$('registration-start').hidden=false;$('start-embedded-note').hidden=window.self===window.top;state.summaryPublication=config.self_reported_summaries_enabled===true;$('registration-section').hidden=false;$('public-catalog-section').hidden=false;$('public-pair-section').hidden=false;$('workspace-navigation').hidden=false;
   document.querySelector('header h1').textContent='Evaluate, register and compare model behavior';
   document.querySelector('header > p').textContent='Explore published model scores and metadata trends, compare matching inputs, or analyze and register your own evaluation JSON. Public exploration needs no upload or sign-in.';
   $('identity-embedded-note').hidden=window.self===window.top;

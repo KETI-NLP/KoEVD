@@ -108,11 +108,27 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
 
     @app.get('/assets/{name}')
     async def assets(name:str):
-        if name not in ('space.js','space.css','registration.js'):raise ServiceError('not_found','Asset not found.',404)
+        if name not in ('space.js','space.css','registration.js','public_reads.js'):raise ServiceError('not_found','Asset not found.',404)
         return Response(files('koevd_eval').joinpath('assets',name).read_text(encoding='utf-8'),media_type='text/javascript' if name.endswith('.js') else 'text/css')
 
     @app.get('/healthz')
     async def health():return {'status':'ready','registration_enabled':registration is not None}
+
+    readiness_gate=asyncio.Semaphore(1)
+
+    @app.get('/readyz')
+    async def readiness():
+        # /healthz is process liveness. This explicit dependency probe neither
+        # starts a background worker nor confirms an unacknowledged mutation.
+        enabled=registration is not None
+        if service.closed or readiness_gate.locked():
+            return JSONResponse({'status':'unavailable','registration_enabled':enabled},status_code=503)
+        async with readiness_gate:
+            try:
+                if enabled:await run_in_threadpool(registration.submissions.check_readiness)
+            except Exception:
+                return JSONResponse({'status':'unavailable','registration_enabled':enabled},status_code=503)
+        return {'status':'ready','registration_enabled':enabled}
 
     @app.get('/api/registration')
     async def registration_status():

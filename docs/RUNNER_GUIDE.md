@@ -4,6 +4,11 @@ The M2 runner preserves assistant final content, finish reason, token counts, se
 
 Core execution/reporting remains standard-library-only. Actual target serving and the measurement classifiers use their separate GPU environments. This checkpoint was verified with local HTTP fixtures and CPU doubles; it is not new vLLM/GPU or classifier-accuracy evidence.
 
+For a first registered full run, start with [GETTING_STARTED.md](GETTING_STARTED.md);
+use its registered input index before the generation options below. The local
+fixture scope above describes the original M2 checkpoint. Later actual two-model
+and service evidence is linked in [PUBLIC_SERVICE_ACCEPTANCE.md](PUBLIC_SERVICE_ACCEPTANCE.md).
+
 ## Connection check, then evaluate
 
 First prepare as described in [OWN_MODEL_GUIDE.md](OWN_MODEL_GUIDE.md), or use the pinned index in [RESULT_FORMAT.md](RESULT_FORMAT.md). With your target server already running:

@@ -2,7 +2,15 @@
 
 The evaluated model is **your model**. The two KoEVD adapters are measurement models that label its generated responses. You can use any model exposed through the supported chat endpoint contract, or import outputs from your own inference code. The pipeline creates a source-linked Task 1–5 profile, not a single safety score.
 
-This workflow is included in the 0.2.0 source package. The immutable `v0.1.0` release does not contain `koevd-pipeline` or automatic reports. The live target-model pipeline was tested at commit `78509c9a62605e631500e12ace61b67cdeef5d7d`; use `git checkout --detach 78509c9a62605e631500e12ace61b67cdeef5d7d` to reproduce that source. Record `git rev-parse HEAD`, your target-model revision, serving configuration, batch size and decoding settings. [Live validation](PIPELINE_VALIDATION_RESULTS.md) found successful execution but unresolved measurement and batch-sensitivity concerns.
+**To evaluate a model and register it on the public Platform, follow the complete
+[GETTING_STARTED.md](GETTING_STARTED.md) guide.** It prepares the registered
+input index first and uses it again for export/validation. This page covers
+custom local smoke runs, interpretation and importing other inference logs.
+Its arbitrary local indexes are not automatically supported by the service.
+
+Use current source and record `git rev-parse HEAD`. Historical 0.2.0 pipeline
+evidence is retained in [PIPELINE_VALIDATION_RESULTS.md](PIPELINE_VALIDATION_RESULTS.md);
+it is not the source version to select for the current registered workflow.
 
 ## What the results tell you
 
@@ -48,14 +56,14 @@ Replace `YOUR_SERVED_MODEL_ID` and the endpoint with your server's values:
 ```bash
 koevd-pipeline --stage generate --output-dir runs/my-model-smoke \
   --base-url http://localhost:8000/v1 --model YOUR_SERVED_MODEL_ID \
-  --temperature 0 --max-tokens 512
+  --temperature 0 --max-tokens 1024
 ```
 
-For authenticated endpoints, set the environment variable selected by `--api-key-env` (default `OPENAI_API_KEY`). Do not put secrets into flags or run manifests. Generation incurs the endpoint's normal compute/API cost. Match decoding budgets when comparing models; 512 tokens can truncate reasoning-heavy models.
+For authenticated endpoints, set the environment variable selected by `--api-key-env` (default `OPENAI_API_KEY`). Do not put secrets into flags or run manifests. Generation incurs the endpoint's normal compute/API cost. Match decoding budgets when comparing models; even 1,024 tokens can truncate reasoning-heavy models; inspect finish reasons.
 
 Each response is durably appended to `*.progress.jsonl`. After a task completes it is compacted into a unique-row `taskN_predictions.jsonl`. Rerun the same command to resume successful requests and retry failed requests. Keep progress files after interruption. Changed input, model, endpoint or decoding settings require a new output directory. An API failure and a refusal expressed in a successful response remain different cases.
 
-The CLI announces task starts rather than per-row progress. During a long task, inspect its growing progress journal and server request logs. Preserve server finish_reason/usage logs: current prediction files retain response text but do not retain those fields. The live test found nonempty repetitive/length-limited output that still satisfied classification eligibility.
+Inspect the progress/status files and server logs during a long task. Current prediction files retain observed finish reason and usage when the server returns them; older logs may not. The historical live test found nonempty repetitive/length-limited output that still satisfied classification eligibility. API success and task validity remain different checks.
 
 ## Measure the generated responses
 
@@ -92,13 +100,15 @@ The pipeline rejects missing prediction rows and stale classifier outputs, rathe
 
 ## Full evaluation in one command
 
-After the smoke run succeeds, use a **new** directory without `--limit-sources`:
+For a registered full run, use [steps 3–7 of the first-user guide](GETTING_STARTED.md#3-prepare-the-registered-full-input-set).
+The following is an alternative **local custom** all-in-one run in a new directory;
+it does not create the registered input index or portable JSON automatically:
 
 ```bash
 koevd-pipeline --dataset-dir downloads/KoEVD --split core \
   --output-dir runs/my-model-core \
   --base-url http://localhost:8000/v1 --model YOUR_SERVED_MODEL_ID \
-  --temperature 0 --max-tokens 512 \
+  --temperature 0 --max-tokens 1024 \
   --safety-adapter downloads/KoEVD-assistant-safety \
   --safety-base downloads/Qwen3.5-0.8B \
   --strategy-adapter downloads/KoEVD-response-strategy \
@@ -176,23 +186,23 @@ source-cluster intervals. The HTML keeps all raw text locally and does not
 register a result. Actual Qwen3-8B and Qwen3-4B prefix96 generation, measurement,
 export and app/CLI/node parity have passed; see [the scoped evidence](validation/platform_m4_gpu_expanded_20261008.json).
 This is a custom integration subset, not full standard evaluation or classifier
-accuracy evidence. Measurement-condition auditing, independent human/operator
-review and hosted deployment remain separate requirements. Artificial
+accuracy evidence. Current full-run and hosted evidence is listed in
+[PUBLIC_SERVICE_ACCEPTANCE.md](PUBLIC_SERVICE_ACCEPTANCE.md).
+Generation authenticity and classifier accuracy are separate from execution success. Artificial
 demonstrations are not model performance evidence.
 
 
-## Private upload app and configured reference comparison
+## Private upload, registration and comparison
 
-The development checkout includes `koevd-space` with optional `[serve]` dependencies.
-Use [SPACES_GUIDE.md](SPACES_GUIDE.md) for the tested local upload/reference/report
-flow and operator-controlled trusted catalog. It shares `koevd-diagnose` and the
-HTML renderer, retains missing/N/A states, and separates private uploads from
-public registration. The demo references are explicitly fictional. Actual raw
-reference consent, container/Space deployment and persistent remote-submission
-gates remain incomplete. Local submission/history/withdrawal and metric
-comparison are implemented with candidate/no-rank defaults; see
-[SUBMISSIONS_GUIDE.md](SUBMISSIONS_GUIDE.md). Actual two-target prefix96 GPU
-integration has passed independently, but the classifiers remain
-`measurement_limited` and are excluded from official ranks. KETI-NLP is the
-confirmed hosting destination; organization Docker Space creation currently
-requires plan activation and has returned HTTP402. No live Space is claimed.
+The [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform) supports
+temporary analysis, account-owned private originals, optional numerical sharing,
+profiles and paired comparison. Use the [first-user guide](GETTING_STARTED.md)
+and [Platform guide](PLATFORM_USER_GUIDE.md). Open the workspace in its own tab
+and sign in before uploading if you intend to save a registration. The registered
+service has superseded the earlier HTTP402/undeployed status; dated validation
+documents preserve that history. Official ranks remain disabled and Task 3/4
+remain measurement-limited.
+
+For operator catalog and session configuration, use [SPACES_GUIDE.md](SPACES_GUIDE.md)
+and [REGISTERED_SPACE_GUIDE.md](REGISTERED_SPACE_GUIDE.md). Local synthetic demo
+references are fictional; they do not replace the actual published Qwen references.
