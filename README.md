@@ -10,7 +10,10 @@ public model profiles/metric exploration, paired comparisons and five numerical
 report downloads. It preserves the anonymous beta launcher. These features are
 validated for actual HF identity, storage/restart, summary sharing and withdrawal
 in a private hosted trial. Production activation and final public-service acceptance
-remain pending. This is not new GPU inference or classifier accuracy evidence.
+remain pending. The bounded public activation trial did not complete its bulk
+transfer checks and the previous anonymous beta was restored. The follow-up
+adds lossless compressed transfers; its hosted acceptance is still pending.
+This is not new GPU inference or classifier accuracy evidence.
 See the [deployment candidate](docs/REGISTERED_SPACE_GUIDE.md),
 [registering and comparing results](docs/PLATFORM_USER_GUIDE.md),
 [public profile contract](docs/PUBLIC_PROFILES_GUIDE.md),

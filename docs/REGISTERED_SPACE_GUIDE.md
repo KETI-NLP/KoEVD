@@ -122,3 +122,25 @@ next work is an explicitly scoped HF trial: target/resource/Secret preparation,
 real S3 preconditions/readback, native account ownership, restart/re-login,
 withdrawal and actual public service checks. Preparing or building this context
 does not authorize new original-data transfer, standing backups or paid resources.
+
+## Large transfers and LFS context rules
+
+Preserve `.gitattributes` when replacing or restoring a Space source tree. The
+materializer retains inherited provider rules and declares large context assets.
+Before starting, verify the committed Git blob/LFS digests and the large input's
+LFS rule. Correct local asset hashes alone do not prove that a container checkout
+will expand its pointer; deleting provider attributes caused the first failed
+public activation.
+
+Large browser uploads can use one gzip member with `Content-Encoding: gzip` and
+`Content-Type: application/json`. The browser also accepts an existing `.json.gz`
+copy without recompressing it. Wire and expanded sizes are each capped at the
+configured upload limit. Expanded output is written in bounded chunks; corrupt,
+truncated, concatenated or trailing compressed data is refused. The upload receive
+deadline is 600 seconds for gzip and 120 seconds for plain JSON. Validation and
+submission retain the original decoded bytes and existing provenance limits.
+
+Public numerical and authorized original/report downloads negotiate gzip; identity
+and session endpoints are excluded. Range requests retain uncompressed semantics.
+This transport candidate has local actual-data evidence; see current acceptance
+before claiming its production behavior.

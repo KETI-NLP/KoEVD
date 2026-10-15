@@ -1,30 +1,43 @@
 # Public registration service acceptance
 
-Updated 2026-10-15. All G1–G12 are required. The approved finite private hosted
-trial passed at revision 71c010860056b6f80d13f8e1da7a4b92a3bbca4a. Its evidence
-is in generated/public-service-20261015-v18/FINAL_TRIAL_RECEIPT.json. It proves
-the private integration scopes below, not final public production acceptance.
-The trial Space is PAUSED, activation/initialization 0; production is unchanged.
-Earlier dated sections below are historical evidence.
+Updated 2026-10-15. The public activation trial is **not accepted**. Source
+92866324276a6e7f10f28d6d1f21e630305e0c74 merged through PR #3 as
+2d59bdebbc1a06f486b629609a08905085e6231d; its main CI passed. The registered
+runtime 08f1b621b3d53a3660f11723e4accfd8b5676ea9 successfully served two actual
+references, but the one original upload did not return a completion and bulk
+numerical downloads stalled/timed out. No user registration was acknowledged.
+The old anonymous beta was restored at 04de803411b5e904b3773341e9f9445ce4889790.
+CPU Basic/single replica and the private reference checkpoint remain; no release,
+raw-response publication or official ranks were activated.
 
-| ID | Required evidence | Current goal status |
+The earlier LFS omission was separately diagnosed and corrected by retaining the
+provider's `.gitattributes` and verifying committed Git/LFS hashes before start.
+The follow-up candidate adds bounded lossless upload/report compression. Its real
+loopback-browser upload preserved all 17,670 records and exact original bytes;
+15 loopback numerical downloads matched the renderer. These local tests do not
+prove the new transport on HF. The previous private hosted trial at
+71c010860056b6f80d13f8e1da7a4b92a3bbca4a remains valid for its own identity,
+registration, consent, withdrawal and two-restart scope.
+
+| ID | Required evidence | Current evidence and remaining gate |
 |---|---|---|
-| G1 | Anonymous public model list and metrics, no upload required | Private hosted app-anonymous catalog/board shows two actual references; public production registration remains disabled |
-| G2 | Model/run metadata and separate display name | Actual upload of 17,670 records, original declaration confirmation and separate name edit passed privately |
-| G3 | Actual HF identity, persisted registration and URL | Actual HF OAuth owner registered a private submission and found the same ID after restart; public deployment pending |
-| G4 | Explicit summary/response scope and publication state | Actual private trial recorded summary consent; original response access stayed 403; public deployment and reviewed response scope remain separate |
-| G5 | Re-login and restart preserve acknowledged originals/history | Actual scoped HF/S3 restore and HF re-login passed; full original document equal and final 7,299-byte event history identical across restart |
-| G6 | Independent public reader; private data denied | App-anonymous API reads passed inside private HF perimeter; private history 401 and summary-only original 403; independent public-browser acceptance pending |
-| G7 | Two actual-model public profiles and paired comparison | Actual private hosted profiles/pair match offline points and denominators; public production pair acceptance pending |
-| G8 | CLI/profile/board/download numerical agreement | Hosted profile/pair points match offline oracle; normal private original/history downloads verified; all five numerical hosted exports and public deployment acceptance pending |
-| G9 | Duplicate, invalid, incompatible, concurrent and failed writes | Actual duplicate sharing yields 3 registrations/2 distinct artifacts; invalid/conflict/fault scenarios retain earlier local evidence |
-| G10 | Withdrawal removes all current public projections | Actual private withdrawal removes catalog/board entry and cached profile/pair/download paths (404); persists after final restart |
-| G11 | Actual retained storage, recovery, capacity, responsive UI | Actual CPU Basic/single replica, 3 total starts, 5 checkpoints/335,866,272 bytes and restore passed; iframe identity needs own-tab path; public mobile/operations pending |
-| G12 | Matching public code/runtime and current user documentation | Draft PR #3 has 459-test CI on Python 3.10/3.12; private runtime 71c01086 tested; public registered release pending |
+| G1 | Anonymous public list and metrics without upload | Actual public trial passed two-reference catalog/board; current production is restored anonymous analysis |
+| G2 | Original model declaration and separate display name | Prior private trial passed; new public owner upload did not complete |
+| G3 | HF-owned persisted registration and URL | Public HF sign-in passed; public persisted owner registration remains pending |
+| G4 | Explicit sharing scopes and publication state | Prior private consent passed; fresh public owner summary/withdrawal remains pending |
+| G5 | Re-login/restart preserve originals/history | Prior private original/history restore passed; fresh production owner restore pending |
+| G6 | Independent public reader and private denial | Public anonymous APIs, independent browser, private history 401 and raw originals 403 passed |
+| G7 | Actual model profiles and paired comparison | Both public profiles/pair match offline points and denominators; full browser pair did not finish |
+| G8 | CLI/profile/board/download agreement | 94 public board metrics exactly match profiles; one hosted JSON matched exact bytes; all 15 gzip numerical downloads passed locally only |
+| G9 | Duplicate/invalid/conflict/fault behavior | Earlier private duplicate and local fault evidence retained; current public owner flow incomplete |
+| G10 | Withdrawal removes every public projection | Earlier private withdrawal/restart passed; fresh public owner flow pending |
+| G11 | Storage, recovery, capacity and responsive UI | Actual public CPU Basic/single replica and mobile catalog passed; bulk transport and final owner recovery pending |
+| G12 | Matching public code/runtime and documentation | PR #3/main CI passed; compressed follow-up and final production release pending |
 
-Record commands, exact source/revision, fixture versus actual scope, exit codes
-and artifact hashes here as evidence becomes available. Do not convert simulated
-identity/transport evidence into actual HF acceptance or classifier accuracy.
+All G1–G12 are required. Historical sections below describe earlier source and
+scope; they do not override this current status. Never convert local compression,
+fictional identity or a successful server start into actual hosted registration,
+classifier accuracy or official ranking evidence.
 
 ## First implementation checkpoint
 

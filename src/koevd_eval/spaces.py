@@ -58,6 +58,8 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
     app.state.service=service
     app.state.registration=registration
     app.add_middleware(TrustedHostMiddleware,allowed_hosts=hosts)
+    from .transfer import ResultCompressionMiddleware
+    app.add_middleware(ResultCompressionMiddleware)
 
     @app.exception_handler(ServiceError)
     async def service_error(request,exc):return JSONResponse({'error':{'code':exc.code,'message':exc.message}},status_code=exc.status)
@@ -142,21 +144,18 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
     async def upload(request:Request):
         token,csrf=credentials(request,True)
         if request.headers.get('content-type','').split(';')[0].strip().lower()!='application/json':raise ServiceError('content_type','Upload one result JSON document; HTML, ZIP and index uploads are not accepted.',415)
+        encoding=request.headers.get('content-encoding','identity').strip().lower()
+        if encoding not in ('identity','gzip'):raise ServiceError('content_encoding','Use an uncompressed or gzip JSON body.',415)
         length=request.headers.get('content-length')
         if length is not None:
             if not length.isascii() or not length.isdigit():raise ServiceError('length','Invalid Content-Length.')
             if int(length)>service.limits.upload_bytes:raise ServiceError('upload_size','Result exceeds the upload limit.',413)
         s,path=service.begin_upload(token,csrf);handed_off=False
-        async def receive():
-            count=0
-            with path.open('xb') as stream:
-                async for chunk in request.stream():
-                    count+=len(chunk)
-                    if count>service.limits.upload_bytes:raise ServiceError('upload_size','Result exceeds the upload limit.',413)
-                    stream.write(chunk)
-            if length is not None and count!=int(length):raise ServiceError('length','Body length differs from Content-Length.')
+        from .transfer import receive_result
         try:
-            await asyncio.wait_for(receive(),timeout=120)
+            await asyncio.wait_for(receive_result(request,path,limit=service.limits.upload_bytes,
+                encoding=encoding,expected_length=int(length) if length is not None else None),
+                timeout=600 if encoding=='gzip' else 120)
             handed_off=True
             entry=await run_in_threadpool(service.finish_upload,token,s,path)
             return JSONResponse(entry,status_code=201)
