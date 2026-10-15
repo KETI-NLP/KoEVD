@@ -9,53 +9,32 @@ uses branch `feature/public-registration-service`, based on public main
 
 ## Current state
 
-Production preparation after the private trial: `0.3.0rc1` adds public-first
-navigation and model exploration, accurate hosted-environment notices and an
-embedded-sign-in advisory. The frozen local source passed 459 CPU tests in
-270.061 seconds; separate local synthetic desktop/mobile checks confirmed
-anonymous exploration/comparison. This does not extend the earlier hosted trial
-to the new frontend. A 76-file/75,718,613-byte production-profile context and a
-hash-verified rollback context at a85e57c are prepared locally in
-`generated/public-service-20261015-v20/`. No production source was deployed.
+PR #3 source 92866324276a6e7f10f28d6d1f21e630305e0c74 is merged as
+2d59bdebbc1a06f486b629609a08905085e6231d and main CI passed. The production
+registered trial booted, seeded two references and passed public numerical points,
+94 board values, anonymous privacy denials and mobile catalog checks. Its one
+owner upload and full bulk-download acceptance did not complete; no user
+registration was acknowledged. The previous anonymous beta is RUNNING at
+04de803411b5e904b3773341e9f9445ce4889790. Reference-only private state is retained.
+Production Secrets are already configured; do not ask for or copy them again.
 
-The new `KETI-NLP/KoEVD-Platform-State` Bucket is private/empty. The existing
-production reference Secret is present; three production state Secrets are not.
-The user has been asked to configure one Bucket-scoped HF token and its S3 pair
-directly in the existing public Platform's settings. Test credentials are not
-copied or expanded. Production variable changes/initialization remain deferred
-until credentials and the concrete activation scope are verified. The local UI
-fixture server was terminated after validation.
+The initial LFS omission is fixed in the deployment preparation and follow-up
+materializer: preserve provider attributes and verify committed Git/LFS metadata
+before requesting a start. New source on `fix/compressed-result-transfer` adds
+lossless browser gzip uploads, bounded server expansion and negotiated report
+compression. Identity/session endpoints and range requests remain excluded from
+response compression. Numerical formulas, model records and provenance rules are
+unchanged. Actual-data local browser and all 15 numerical transfer formats passed;
+this is not actual HF acceptance of the new source.
 
-The production Space is public, RUNNING, CPU Basic, one replica at
-`a85e57c45cbe3943796543134e68805c389ae74d`. Registration remains disabled. Its
-two exact references and anonymous-analysis acceptance remain intact.
-
-The registered candidate's implementation commit is
-`01e5d7edd3f7c718f1e046ac7ff2e6ca323dd16a`, private runtime revision
-`71c010860056b6f80d13f8e1da7a4b92a3bbca4a`. The user supplied four scoped Secrets
-and explicitly approved the finite private trial. Actual HF identity, one original
-upload, acknowledged private registration/name edit, numerical summary consent,
-duplicate accounting, withdrawal and two restart restores passed. The original
-17,670-record document is equal after restore; final four-event history is byte
-identical. Hosted two-reference profiles/pairs match offline points/denominators.
-The original browser download-wait timeout remains a failed tool attempt; later
-normal UI downloads verified the files. Iframe identity did not share cookies;
-the documented standalone path succeeded. No browser protection was disabled.
-
-Trial evidence is in `generated/public-service-20261015-v18/`; 3 total starts,
-one additional upload, reserved original-transfer ceiling 312,970,240 bytes,
-5 checkpoints/335,866,272 retained bytes. Space PAUSED, activation/initialization
-0; development state preserved privately. No production mutation or new inference.
-Draft PR #3 at `2b2f1a2481c739a81e4e5511a7cbecb8fcecfe2b` passed 459-test CI on
-Python 3.10/3.12 before these local evidence/documentation updates.
-
-Next prepare separate production state and narrowly scoped credentials without
-copying the development trial owner/draft/history into production. Complete the
-bounded production candidate, review its activation scope, and then establish
-public G1–G12 evidence, including independent browsers/mobile and numerical
-downloads. The private trial approval is consumed; it does not authorize public
-activation, further original transfers or standing backup automation. Historical
-sections below do not override this current status or create new authorization.
+Complete frozen tests, source-only audit and a concrete deployment candidate,
+then obtain a fresh bounded transition scope for this changed source and the new
+original transmission. Restore the existing acknowledged production state with
+initialization disabled; do not reseed or copy development owner data. Sequential
+native identity/upload/register/share/withdraw/restore and hosted exports must
+pass before release. Consumed finite trial approvals do not authorize unlimited
+retries, standing backups, raw publication or paid-resource changes. Earlier
+sections below are historical checkpoints.
 
 ## Decisions and sequence
 

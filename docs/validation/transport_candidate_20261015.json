@@ -1,0 +1,70 @@
+{
+  "format": "koevd-transport-candidate-validation-v1",
+  "date": "2026-10-15",
+  "scope": "local CPU, real loopback browser upload and HTTP report transport; hosted compression acceptance pending",
+  "cpu_regression": {
+    "tests": 471,
+    "passed": true,
+    "seconds": 254.797,
+    "source_frozen": true,
+    "final_node_syntax_check_passed": true,
+    "subsequent_browser_ui_branch_checked_separately": true
+  },
+  "upload": {
+    "model": "Qwen/Qwen3-8B",
+    "records": 17670,
+    "http_status": 201,
+    "wire_encoding": "gzip",
+    "wire_bytes": 5773986,
+    "restored_bytes": 44779573,
+    "original_sha256": "27a4dea555208658133b7713f4f24938cf4e8b8cde23bb1e2003028692ba5a99",
+    "original_bytes_preserved": true
+  },
+  "numerical_downloads": {
+    "files": 15,
+    "formats": [
+      "json",
+      "jsonl",
+      "csv",
+      "markdown",
+      "html"
+    ],
+    "profiles": 2,
+    "comparisons": 1,
+    "all_renderer_bytes_equal": true,
+    "wire_bytes": 3465141,
+    "restored_bytes": 63796419
+  },
+  "limits": {
+    "wire_and_expanded_upload_bytes": 134217728,
+    "expanded_write_chunk_bytes": 65536,
+    "gzip_receive_seconds": 600,
+    "identity_receive_seconds": 120,
+    "single_gzip_member_required": true,
+    "identity_and_session_responses_not_compressed": true,
+    "range_requests_not_compressed": true
+  },
+  "hosted_compression_acceptance": false,
+  "new_gpu_inference": false,
+  "classifier_accuracy_claim": false,
+  "official_ranking_activated": false,
+  "raw_response_publication": false,
+  "prior_public_trial": {
+    "source_commit": "92866324276a6e7f10f28d6d1f21e630305e0c74",
+    "runtime_revision": "08f1b621b3d53a3660f11723e4accfd8b5676ea9",
+    "public_profile_points_and_denominators_match": true,
+    "board_metric_entries_match": 94,
+    "owner_registration_acknowledged": false,
+    "bulk_transfer_acceptance_passed": false,
+    "rolled_back_revision": "04de803411b5e904b3773341e9f9445ce4889790"
+  },
+  "precompressed_upload": {
+    "records": 17670,
+    "http_status": 201,
+    "wire_bytes": 6022832,
+    "restored_bytes": 44779573,
+    "original_sha256": "27a4dea555208658133b7713f4f24938cf4e8b8cde23bb1e2003028692ba5a99",
+    "original_bytes_preserved": true,
+    "scope": "actual loopback browser only"
+  }
+}

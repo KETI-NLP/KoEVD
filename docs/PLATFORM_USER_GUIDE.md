@@ -39,6 +39,13 @@ protocol requires an explicitly supported index rather than relabeling results.
    workspace before uploading to avoid losing access to an anonymous session.
 2. In **Analyze your JSON**, select the result and **Validate and add results**.
    Temporary analysis is available without sign-in and does not publish data.
+   In browsers supporting compression, large JSON files are compressed only for
+   transport when this reduces their size. Choose the same original `.json`; the
+   server restores and validates its exact bytes. The file on your device, model
+   identity and recorded measurements are unchanged. Older clients can send plain
+   JSON. You may also choose a losslessly compressed `.json.gz` copy of the same
+   result. The server applies the same expanded-size and JSON validation limits.
+   Compression does not increase the expanded 128 MiB limit.
 3. Optionally build an analysis with another uploaded run or configured reference.
    The interactive report contains charts, groups and permitted response cases.
 4. In **Register or manage results**, select the validated upload. Inspect the
@@ -68,7 +75,9 @@ Otherwise numerical and metadata comparison remains available.
 
 Profile and pair numerical reports support JSON, JSONL, CSV, Markdown and HTML.
 These numerical downloads exclude prompts, responses, private review notes and
-case identifiers. Temporary personal analysis reports follow their separate
+case identifiers. Compatible clients negotiate HTTP compression for numerical
+and personal report downloads; saved files remain normal JSON/JSONL/CSV/Markdown/HTML.
+Temporary personal analysis reports follow their separate
 session scope and can contain your uploaded response text.
 
 ## Data handling and limits

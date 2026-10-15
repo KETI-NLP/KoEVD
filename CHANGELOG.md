@@ -1,4 +1,4 @@
-# 0.3.0rc1 registered-service release candidate (not yet activated in production)
+# 0.3.0rc1 registered-service release candidate (production acceptance pending)
 
 - HF-owned submission metadata, original-declaration confirmation and explicit
   consent for numerical summary publication, separate from reviewed originals.
@@ -13,6 +13,10 @@
   restarts. Hosted points/denominators matched the retained offline oracle.
 - Public-first model exploration, direct section navigation, explicit embedded
   sign-in guidance and environment-specific registration notices.
+- Lossless browser gzip uploads and negotiated report downloads, with separate
+  wire/expanded bounds, damaged-stream rejection and unchanged original bytes.
+  Identity/session responses are excluded; ranged downloads stay uncompressed.
+- Materialized contexts preserve provider LFS attributes and declare large assets.
 - Production G1–G12 acceptance remains required. Existing tags, beta operation
   and classifier limits are preserved; no new inference or accuracy claim.
 

@@ -20,8 +20,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 3854,
-      "sha256": "e0f60ad518a989cb043d47cf09b460b42552fc932acf81caa83870e1058200c9"
+      "bytes": 4176,
+      "sha256": "e96e2a51712a2b1b24df3dc42b2755f2d24b9111363ff3cad12778c2d6015cc3"
     },
     {
       "path": "CITATION.cff",
@@ -45,8 +45,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 14108,
-      "sha256": "7d823d180affc0696e02e60238824810459f25ae6be1e349fc39bcf430143ab2"
+      "bytes": 14325,
+      "sha256": "a441c75602b71a3b22c973d8862aea7a99d39d34d4248347b5e6463428ec93f6"
     },
     {
       "path": "analysis/plot_paper_tables.py",
@@ -310,8 +310,8 @@
     },
     {
       "path": "docs/PLATFORM_USER_GUIDE.md",
-      "bytes": 6127,
-      "sha256": "bf6a1c83e5b0a264cb9f3cb45db071938e9baccc8d64dda8c176f01eb39f3f87"
+      "bytes": 6821,
+      "sha256": "ae142c2ed3299e5f5900d6d7f176d821f3d0df4c576a01f5227648e9684006c8"
     },
     {
       "path": "docs/PLATFORM_VALIDATION_LOG.md",
@@ -340,13 +340,13 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 14934,
-      "sha256": "79791f089dd287e437be0f4e7c8d1bee92d2ed63b5bfc163bc1b2b09f1fab085"
+      "bytes": 15203,
+      "sha256": "518b18b8a71c373f502a7805849b4b4046edae9283d74f241bbd4298e1fcd74c"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
-      "bytes": 17902,
-      "sha256": "600689617b462d5052aeee71758e36fef6f32361a0a5c450e95a901eb70a15ea"
+      "bytes": 16509,
+      "sha256": "9b20d6b1877332516fc3b7407c69f1143f8793dd81f3a733136dbc943ee496c5"
     },
     {
       "path": "docs/RANK_ADMISSION_GUIDE.md",
@@ -360,8 +360,8 @@
     },
     {
       "path": "docs/REGISTERED_SPACE_GUIDE.md",
-      "bytes": 7441,
-      "sha256": "fb72165014df6ddd20a96b38fee79a2a30950cb876c8f10ceccb0cd4ac0c49de"
+      "bytes": 8752,
+      "sha256": "0c714bd13ebe0da041af83fbdfd93f19fa80f880c0fb18f0c9578ae85d6adf1d"
     },
     {
       "path": "docs/RELEASE.md",
@@ -779,6 +779,11 @@
       "sha256": "26a5816a51e5769fac87793f365cba5baa5af976998ce3e1d6244bbed4855083"
     },
     {
+      "path": "docs/validation/transport_candidate_20261015.json",
+      "bytes": 2256,
+      "sha256": "e4a2a3be212d9706cac9d2b048d7cf65d803b8b92361de16e6111ca0366c3607"
+    },
+    {
       "path": "examples/make_demo_diagnostics.py",
       "bytes": 6550,
       "sha256": "119a2a2cfbc1f999dc7c52b1a9a185ecbd881ad070411184197a06ffdaeb5f0d"
@@ -1015,8 +1020,8 @@
     },
     {
       "path": "scripts/materialize_public_space.py",
-      "bytes": 5993,
-      "sha256": "143958b3d606777818764dc0c7db9c9d59a25d48b8e976559d9d7ec54d2e7ad8"
+      "bytes": 7081,
+      "sha256": "c6725c242fc5860f1e59a7d2d32fe586a08857d2021c5158dc6a1edd187b99c1"
     },
     {
       "path": "scripts/materialize_registered_space.py",
@@ -1250,13 +1255,13 @@
     },
     {
       "path": "src/koevd_eval/assets/space.html",
-      "bytes": 10891,
-      "sha256": "e9bb76827b121bbc5a8fa0059524d037d2a6fcfa5d9b6deb0959a11821e1f3d2"
+      "bytes": 10985,
+      "sha256": "cb8df805ae0081a8f6569cdedac31c608b3eb76e2237b9be2d86e67114e8ea83"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
-      "bytes": 10717,
-      "sha256": "33ba7981c1e8c81f224691855f0fe464f2b0855fd36af501d628ba42645da978"
+      "bytes": 11292,
+      "sha256": "ff7ffb02677dd06f54a27ba4fdf61212f3d550e2494bb76812475834cda51114"
     },
     {
       "path": "src/koevd_eval/backups.py",
@@ -1445,8 +1450,8 @@
     },
     {
       "path": "src/koevd_eval/spaces.py",
-      "bytes": 18655,
-      "sha256": "a181a3ed9f5b6aa228827a18a9c216e4be75ef7c81ead48ed6799960f1697ca8"
+      "bytes": 18732,
+      "sha256": "8508f853dff9f7cb35f58aadef412ae49b59dafc0303a535f3091a991eebaee6"
     },
     {
       "path": "src/koevd_eval/storage.py",
@@ -1464,6 +1469,11 @@
       "sha256": "b14f6517cb39ec71513813ab74fe37a326bbb7c05f9a7793dae0dd215358283c"
     },
     {
+      "path": "src/koevd_eval/transfer.py",
+      "bytes": 3169,
+      "sha256": "a6e3edf2036606e4002d9b7f580add801228186d047726d9c4ed05843711fe46"
+    },
+    {
       "path": "tests/test_backups.py",
       "bytes": 13318,
       "sha256": "bcc7b8ca1697c9e16a526b45a285d160c984b243956a546a22c1e9ba1563dfaa"
@@ -1472,6 +1482,11 @@
       "path": "tests/test_browser_bridge.py",
       "bytes": 4675,
       "sha256": "50f2535edfdb16698297d1ae5ceddb9561718ea135d987e9016e3b6904733ca8"
+    },
+    {
+      "path": "tests/test_context_lfs.py",
+      "bytes": 1862,
+      "sha256": "4531c65f55f295ae986f1ba97d1f4785d44189d46a7421b130af638b728ee1e1"
     },
     {
       "path": "tests/test_diagnostics.py",
@@ -1724,10 +1739,15 @@
       "sha256": "e1a44a2ac8b96749a5bf3d6e526b78d998a70f374b5442724759da5654a02508"
     },
     {
+      "path": "tests/test_transfer.py",
+      "bytes": 8921,
+      "sha256": "a052bb0a10d124a76eb68c892e46dca7aee1b65aa00eac35248df7559662fbaf"
+    },
+    {
       "path": "tests/test_upload_declaration.py",
       "bytes": 3218,
       "sha256": "7d52008d6d1c0fb9667de7698ac24c7f865c7a3cb52ae93767b80a0df202a2d8"
     }
   ],
-  "snapshot_kind": "0.3.0rc1-public-registration-release-candidate; existing tags unchanged; hosted production acceptance pending"
+  "snapshot_kind": "0.3.0rc1-lossless-transfer-candidate; existing tags unchanged; actual HF acceptance pending"
 }

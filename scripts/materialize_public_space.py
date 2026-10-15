@@ -6,6 +6,27 @@ from pathlib import Path
 import shutil
 
 
+def preserve_lfs_attributes(base, output):
+    """Keep provider rules and declare large context assets before checkout."""
+    source=Path(base)/'.gitattributes'
+    if source.is_symlink():raise ValueError('Context attributes symlink rejected')
+    inherited=source.read_bytes() if source.is_file() else b''
+    if len(inherited)>65536:raise ValueError('Context attributes exceed supported size')
+    lines=inherited.decode('utf-8').splitlines()
+    additions=[]
+    for path in sorted(Path(output).rglob('*')):
+        if path.is_file() and path.stat().st_size>=10_000_000:
+            name=path.relative_to(output).as_posix()
+            pattern=json.dumps(name,ensure_ascii=False) if any(c.isspace() for c in name) else name
+            rule=pattern+' filter=lfs diff=lfs merge=lfs -text'
+            if rule not in lines:additions.append(rule)
+    raw=inherited
+    if additions:
+        if raw and not raw.endswith(b'\n'):raw+=b'\n'
+        raw+=('\n'.join(additions)+'\n').encode('utf-8')
+    (Path(output)/'.gitattributes').write_bytes(raw)
+
+
 def build(repo, base, references, output):
     from koevd_eval.results import read_document
     from koevd_eval.space_service import InputCatalog
@@ -83,6 +104,7 @@ Source and usage: https://github.com/KETI-NLP/KoEVD
 Private analysis in your browser: https://huggingface.co/spaces/KETI-NLP/KoEVD-Explorer
 Dataset: https://huggingface.co/datasets/KETI-NLP/KoEVD
 ''',encoding='utf-8')
+    preserve_lfs_attributes(base,out)
     files={p.relative_to(out).as_posix():{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
            for p in sorted(out.rglob('*')) if p.is_file()}
     manifest={'format':'koevd-public-analysis-beta-context-v1','version':'0.2.0rc1','files':files,
