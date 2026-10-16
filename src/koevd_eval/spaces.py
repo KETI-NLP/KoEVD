@@ -109,7 +109,7 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
 
     @app.get('/assets/{name}')
     async def assets(name:str):
-        if name not in ('space.js','space.css','registration.js','public_reads.js','navigation.js'):raise ServiceError('not_found','Asset not found.',404)
+        if name not in ('space.js','space.css','registration.js','public_reads.js','navigation.js','metric_labels.js'):raise ServiceError('not_found','Asset not found.',404)
         return Response(files('koevd_eval').joinpath('assets',name).read_text(encoding='utf-8'),media_type='text/javascript' if name.endswith('.js') else 'text/css')
 
     @app.get('/healthz')
