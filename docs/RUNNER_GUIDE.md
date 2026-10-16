@@ -107,3 +107,12 @@ python scripts/validate_runner_cli.py --output-dir generated/my-runner-cli-check
 ```
 
 The validation script requires the checkout's tests/fixtures and an installed package in the active interpreter. It uses a local HTTP server and fictitious outputs only. It exercises installed CLI prepare→doctor→generate→resume→export→validate→report, with 10 evaluation requests, 2 explicit probes and 12 exported records. Re-running completed generation sends zero new evaluation requests. The deliberately reported length-limited response is synthetic, not real inference. Use a new/empty output directory.
+
+## Recover a full registered run
+
+For the canonical end-to-end workflow and model-ID conventions, use
+[GETTING_STARTED.md](GETTING_STARTED.md). Its recovery commands cover generation
+resume, Task-specific measurement retry, explicit `--remeasure`, local tokenizer
+budgets and bounded prepared-input probes. Use the real served model ID rather
+than a generic alias; retain its immutable revision separately. These operations
+do not change the standard protocol or hide failed rows.

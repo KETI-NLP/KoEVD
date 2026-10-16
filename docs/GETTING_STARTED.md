@@ -98,8 +98,11 @@ GPU/driver and target architecture. A server example, with values replaced by
 your real model repository and immutable commit:
 
 ```bash
-vllm serve YOUR_MODEL_REPOSITORY --revision YOUR_MODEL_COMMIT \
-  --served-model-name my-model --host 127.0.0.1 --port 8000 \
+# Replace both values with your actual model identity.
+MODEL_ID='YOUR_ORGANIZATION/YOUR_MODEL'
+MODEL_REVISION='YOUR_IMMUTABLE_COMMIT'
+vllm serve "$MODEL_ID" --revision "$MODEL_REVISION" \
+  --served-model-name "$MODEL_ID" --host 127.0.0.1 --port 8000 \
   --generation-config vllm
 ```
 
@@ -108,15 +111,36 @@ for the generation-config option and architecture-specific serving settings.
 The prior two-model GPU validation used vLLM 0.13.0; that does not establish
 compatibility with every target model. If serving remotely, use the reachable
 endpoint and its normal authentication, rather than exposing an unauthenticated
-server to the internet. In the evaluation shell, perform one separate probe:
+server to the internet. In the evaluation shell, set `MODEL_ID` to that same real repository ID (shell
+variables are not shared between environments). The served ID is exported as the
+original model ID; do not replace it with a generic alias such as `my-model`.
+For a local unpublished model, use a stable, unambiguous ID and retain its
+revision/artifact identity. The registration display name is a separate label.
+Perform a separate connection probe plus four prepared-input probes:
 
 ```bash
 koevd-pipeline --stage preflight --output-dir runs/my-model-core \
-  --base-url http://localhost:8000/v1 --model my-model \
-  --temperature 0 --max-tokens 1024
+  --base-url http://localhost:8000/v1 --model "$MODEL_ID" \
+  --temperature 0 --max-tokens 1024 --preflight-samples 4
 ```
 
-Check `preflight.json`. This probe is outside evaluation denominators. Use
+Check `preflight.json`. These probes are outside evaluation denominators and do not create prediction
+rows. The four prepared samples exercise Task 1/2/3/5 with the actual output
+budget, rather than only a short synthetic request. Check each sample's
+`nonempty_final_content` and `finish_reason`; empty final content or token-limit
+finishes require inspection of thinking/output budgets before the full run.
+A successful probe does not establish full coverage or model identity.
+
+For a CPU check of **all prepared prompt lengths**, install a tokenizer-compatible
+Transformers build and add `--tokenizer-dir /path/to/local/target-tokenizer
+--context-window YOUR_ACTUAL_SERVER_CONTEXT_LIMIT` to the same preflight command.
+The tokenizer must match the server's chat template and revision; pass the same
+`--extra-body-file` in preflight and generation when using template options.
+The check rejects prompts whose input length plus 1,024 output tokens exceeds
+that declared limit, before making API requests. It does not prove server/local
+tokenizer parity. No custom remote tokenizer code is executed.
+
+Use
 `OPENAI_API_KEY` for an authenticated endpoint, or select its environment variable
 with `--api-key-env`; do not put credentials in command arguments or JSON files.
 
@@ -140,7 +164,7 @@ loaded weights. Then run:
 
 ```bash
 koevd-pipeline --stage generate --output-dir runs/my-model-core \
-  --base-url http://localhost:8000/v1 --model my-model \
+  --base-url http://localhost:8000/v1 --model "$MODEL_ID" \
   --temperature 0 --max-tokens 1024 --workers 4 \
   --model-provenance-file model-provenance.json
 ```
@@ -168,6 +192,7 @@ and [GPU validation conditions](GPU_VALIDATION_RESULTS.md) before choosing build
 
 ```bash
 python -m pip install -e ".[classifiers]"
+python -m pip check
 koevd-pipeline --stage classify --output-dir runs/my-model-core \
   --safety-adapter downloads/KoEVD-assistant-safety --safety-base downloads/Qwen3.5-0.8B \
   --strategy-adapter downloads/KoEVD-response-strategy --strategy-base downloads/Qwen3-8B \
@@ -179,7 +204,26 @@ koevd-pipeline --stage report --output-dir runs/my-model-core
 The classifiers run sequentially in separate processes. Float32 can require
 substantial GPU memory, particularly for the 8B base. If you need another dtype
 or batch size, record it explicitly and inspect the resulting compatibility
-restrictions. Trace sidecars preserve observed runtime evidence locally; requested
+restrictions. Completed Task 3/4 measurements are validated and reused on the same command.
+Each new attempt writes into `measurement_attempts/`; partial outputs and traces
+are retained. After Task 3 succeeds and Task 4 fails, repeat the same classify
+command: Task 3 is reused and only Task 4 runs again. If Task 4 ran out of memory,
+retry it alone with a smaller batch (its actual condition remains recorded):
+
+```bash
+koevd-pipeline --stage classify --output-dir runs/my-model-core \
+  --measurement-tasks 4 --batch-size 1 --classifier-dtype float32 \
+  --strategy-adapter downloads/KoEVD-response-strategy --strategy-base downloads/Qwen3-8B \
+  --measurement-order original --measurement-mode batch --trace-measurements
+```
+
+To intentionally replace successful measurements, add `--remeasure` and select
+`--measurement-tasks 3`, `4` or `3 4`; previous files remain in the attempt folder.
+Changed settings without that explicit option are rejected. An integrity error
+requires investigating retained files; do not edit hashes or delete traces to
+force export. Keep the full run directory until validation is complete.
+
+Trace sidecars preserve observed runtime evidence locally; requested
 dtype alone does not prove arithmetic precision. They do not establish accuracy.
 
 Open `runs/my-model-core/report/report.html`. This historical report is useful
@@ -224,7 +268,12 @@ limit. Do not upload ZIP files or rename a profile JSON to `results.json`.
 
 ## 8. Sign in, upload and save a private registration
 
-1. Open the [Platform in its own tab](https://keti-nlp-koevd-platform.hf.space/)
+The home view starts with the public leaderboard. **Submit results** opens the
+upload/registration view; **Model leaderboard** returns to comparisons. Switching
+between these two views preserves this page's temporary uploads. Reloading or
+opening a different tab still creates a different temporary page session.
+
+1. On the leaderboard home, choose **Submit results**, then open the [submission workspace in its own tab](https://keti-nlp-koevd-platform.hf.space/submit)
    **before uploading**. The embedded HF view and its standalone tab can have
    different temporary sessions and cookies. Moving tabs later requires reupload.
 2. Before the upload section, choose **Sign in to save results**, complete native
@@ -232,7 +281,7 @@ limit. Do not upload ZIP files or rename a profile JSON to `results.json`.
 3. Choose `runs/my-model-core/results.json`, then **Validate and add results**.
    Upload validation does not publish or permanently register anything.
 4. Follow **Continue to registration**. The validated result appears automatically
-   in **Register or manage results**. Select it and review/confirm its original
+   in **Choose whether to register a result**. Select it and review/confirm its original
    model, revision, generation and measurement declaration.
 5. Enter a display name and optional description, then **Save private submission**.
    Keep the submission ID. A display name is a label; it does not change the
@@ -251,12 +300,15 @@ Saving privately does not add an entry to the public model list. On your saved
 registration enter a brief **Reason for this action or revision**, choose
 **Metrics summary only**, provide the separate required **Permission statement**,
 accept the sharing notice and **Publish numerical summary**.
-Original responses stay private. They require a separate permission review and
-operator publication route; numerical sharing does not enable that route.
+Original responses stay private. Independent permission review is available only
+when the operator has configured a publication administrator. With that route
+disabled, **Request publication review** is hidden and the server rejects new
+requests; numerical sharing remains available. An old pending request can be
+cancelled with **Cancel review request** before continuing numerical sharing.
 
-Your published summary can now appear in **Explore models**, **Metric leaderboard**
+Your published summary can now appear on the **Model leaderboard** home, its metric table
 and the two selectors in **Compare models**. Choose your run and a Qwen reference,
-then **Compare selected runs**. Inspect input overlap, jointly valid coverage,
+then **Compare selected runs**. You can also choose **Compare this result** on your registration to open a comparison with another published run. Inspect input overlap, jointly valid coverage,
 evaluation groups and settings before interpreting a delta. Numerical comparison
 works without publishing response text. For private case analysis, use your
 temporary uploaded run and the permitted configured reference instead.
@@ -269,18 +321,26 @@ groups with overlapping topics must not be summed as disjoint populations.
 
 Download public profiles/comparisons as JSON, JSONL, CSV, Markdown or HTML.
 These numerical snapshots omit prompts, responses and private history.
-**Withdraw publication** removes current public access, while retaining private
-originals, consent, revisions and checkpoint history. It cannot recall copies
-already downloaded. See [data handling and limits](PLATFORM_USER_GUIDE.md#data-handling-and-limits).
+**Stop sharing** removes current public access while retaining the private
+original and history. You can publish again from that same registration after
+entering a fresh reason, permission statement and consent. For an older
+registration you withdrew yourself, choose **Restore private draft** first; restoration never
+publishes anything by itself. Administrator withdrawals cannot be bypassed through owner restoration. Neither action can recall downloaded copies. See [data handling and limits](PLATFORM_USER_GUIDE.md#data-handling-and-limits).
 
 ## Troubleshooting and completion check
 
 | Symptom | Next step |
 |---|---|
+| Classifier failed or the GPU ran out of memory | Repeat the classify command; completed tasks are checked and reused. For a smaller Task 4 batch use the task-specific retry above. Keep attempts/traces. |
+| Measurement settings changed | Use the original settings to resume, or explicitly select tasks with `--remeasure` to replace completed measurements. |
+| Preflight HTTP 400 / context too long | Run the full local tokenizer budget check; inspect actual server context/template and request options. Use a new run if generation settings change. |
+| Review request pending on a service without reviewers | Cancel the request, then choose numerical summary sharing. No approval is inferred from cancellation. |
+| Stopped/withdrawn model no longer appears | Select the saved registration. Restore its private draft if needed, then publish numerical metrics with fresh consent. Do not create a duplicate original. |
 | `unknown_inputs` at upload | Check that step 3 used `protocol-index` and step 7 used that exact index. Arbitrary custom indexes/counts do not establish identity. Do not edit hashes; regenerate/reexport from the correct inputs. |
 | Settings differ / measurement is unknown | Inspect the declaration and compatibility reasons. Do not fill unknown values with guessed defaults. |
-| Validated upload is absent from registration | In the updated UI it appears automatically. A currently deployed older UI has **Refresh uploaded results**. Check service/source versions if behavior differs. |
+| Validated upload is absent from registration | In the updated UI it appears automatically. Use **Refresh uploaded results** if the list needs refreshing. Check service/source versions if behavior differs. |
 | Not signed in after opening a new tab | Use the standalone workspace and check sign-in there before reuploading. CLI login is unrelated. |
+| Home or sign-in configuration could not load | Use **Retry service connection**. Navigation and retries preserve current-page uploads. If the outcome of a prior save is unknown, inspect the registration/history before saving again. |
 | Published results cannot be checked | Public list/profile/comparison GETs retry at most twice for transient failures. Wait, then use the relevant Refresh button; this is not a file rejection. No old public data is used after a failed current-state check. |
 | Save/share has an ambiguous outcome | Check your registration and history before repeating. The UI does not automatically replay write requests. |
 | My saved model is absent from public comparison | Private save and summary publication are separate; confirm sharing completed and was not withdrawn. |

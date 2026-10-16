@@ -16,7 +16,7 @@ from .overlap import source_id
 from .prepare_tasks import prepare
 from .profile import write_report, identity
 from .run_openai_compatible import (run_rows, endpoint, unique_rows, make_config,
-                                   add_execution_arguments, load_options, print_progress)
+                                   add_execution_arguments, load_options, print_progress, _atomic_json)
 
 TASK2_VARIANTS = ('choose_best', 'choose_unsafe', 'rejected_vs_accepted', 'relative_harmfulness')
 TASK5_VARIANTS = ('safe_guided', 'tool_forced', 'unsafe_induced')
@@ -30,10 +30,8 @@ def file_sha(path):
 
 
 def save_json(path, value):
-    path = Path(path)
-    temporary = path.with_suffix(path.suffix + '.tmp')
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
-    os.replace(temporary, path)
+    # Share the fsync + bounded Windows file-lock retry used by runner checkpoints.
+    _atomic_json(Path(path), value)
 
 
 def prepare_run(dataset, output, split='core', limit_sources=None):
@@ -138,38 +136,17 @@ def artifact_fingerprint(directory):
 
 
 def classify_run(output, manifest, safety_adapter, safety_base, strategy_adapter, strategy_base, batch_size=2,
-                 *, classifier_dtype=None, input_order='original', inference_mode='batch', trace_measurements=False):
-    verify_predictions(output, manifest, 3)
-    measurements={}
-    for task, adapter, base in ((3,safety_adapter,safety_base),(4,strategy_adapter,strategy_base)):
-        if not adapter or not base: raise ValueError('Both local adapters and base-model paths are required for classification')
-        print(f'Classifying Task {task}', flush=True)
-        provenance={'prediction_sha256':file_sha(output/'task3_predictions.jsonl'), 'batch_size':batch_size,
-                    'adapter':artifact_fingerprint(adapter), 'base':artifact_fingerprint(base),
-                    'requested_dtype':classifier_dtype or 'auto', 'input_order':input_order,
-                    'inference_mode':inference_mode}
-        path=output/f'task{task}_measured.jsonl'
-        command=[sys.executable,'-m','koevd_eval.classify_responses','--task',str(task),
-                 '--input',str(output/'task3_predictions.jsonl'),'--output',str(path),
-                 '--adapter-path',str(adapter),'--base-model-name-or-path',str(base),
-                 '--local-files-only','--batch-size',str(batch_size)]
-        if classifier_dtype is not None: command.extend(['--torch-dtype',classifier_dtype])
-        if input_order!='original': command.extend(['--input-order',input_order])
-        if inference_mode!='batch': command.extend(['--inference-mode',inference_mode])
-        trace_path=output/f'task{task}_measurement_trace.json'
-        if trace_measurements: command.extend(['--trace-output',str(trace_path)])
-        # Separate processes release each classifier's GPU allocations before loading the next.
-        subprocess.run(command,check=True)
-        if trace_measurements:
-            from .measurement_trace import validate_trace
-            from .results import read_document
-            validate_trace(read_document(trace_path),output/'task3_predictions.jsonl',path,task)
-            provenance['trace_sha256']=file_sha(trace_path)
-        measurements[str(task)]={**provenance,'output_sha256':file_sha(path)}
-    manifest['measurements']=measurements; save_json(output/'pipeline.json',manifest)
+                 *, classifier_dtype=None, input_order='original', inference_mode='batch', trace_measurements=False,
+                 measurement_tasks=(3,4), remeasure=False):
+    from .measurement_runs import classify_run as measure
+    return measure(output,manifest,safety_adapter,safety_base,strategy_adapter,strategy_base,batch_size,
+                   classifier_dtype=classifier_dtype,input_order=input_order,inference_mode=inference_mode,
+                   trace_measurements=trace_measurements,measurement_tasks=measurement_tasks,remeasure=remeasure)
 
 
 def report_run(output, manifest, min_sources=20, min_coverage=.9):
+    if manifest.get('measurement_pending'):
+        raise ValueError('Measurement promotion pending; repeat the classify command before reporting')
     for task in (1,2,3,5): verify_predictions(output,manifest,task)
     for task in (3,4):
         evidence=manifest.get('measurements',{}).get(str(task))
@@ -199,13 +176,19 @@ def main():
     p.add_argument('--classifier-dtype',choices=('auto','float16','bfloat16','float32'))
     p.add_argument('--measurement-order',choices=('original','reverse'),default='original')
     p.add_argument('--measurement-mode',choices=('batch','single'),default='batch')
+    p.add_argument('--measurement-tasks',type=int,nargs='+',choices=(3,4),default=(3,4))
+    p.add_argument('--remeasure',action='store_true',help='Keep prior attempts and explicitly remeasure selected tasks')
     p.add_argument('--trace-measurements',action='store_true',help='New private token/dtype/order sidecars')
     p.add_argument('--min-sources',type=int,default=20); p.add_argument('--min-coverage',type=float,default=.9)
+    from .preflight import add_input_checks,load_tokenizer
+    add_input_checks(p)
     a=p.parse_args(); output=Path(a.output_dir)
+    if a.stage!='preflight' and (a.tokenizer_dir or a.context_window is not None or a.preflight_samples):
+        p.error('Input budget and sample checks require --stage preflight')
     if a.batch_size<1 or a.retries<0 or a.max_tokens<1: p.error('Invalid batch size, retries or max tokens')
     if a.stage in ('all','generate','preflight') and (not a.base_url or not a.model): p.error('--base-url and --model are required to generate')
-    if a.stage in ('all','classify') and not all((a.safety_adapter,a.safety_base,a.strategy_adapter,a.strategy_base)):
-        p.error('Both local adapter and base paths are required for classification')
+    if a.stage in ('all','classify') and any(not all((a.safety_adapter,a.safety_base) if t==3 else (a.strategy_adapter,a.strategy_base)) for t in a.measurement_tasks):
+        p.error('Local adapter and base paths are required for each selected measurement task')
     if a.stage in ('all','prepare'):
         if not a.dataset_dir: p.error('--dataset-dir is required to prepare')
         manifest=prepare_run(a.dataset_dir,output,a.split,a.limit_sources)
@@ -215,7 +198,7 @@ def main():
         from .preflight import preflight
         config=make_config(a.base_url,a.model,a.temperature,a.max_tokens,extra_body=load_options(a.extra_body_file))
         rows=[row for task in (1,2,3,5) for row in read_jsonl(output/f'task{task}_input.jsonl')]
-        save_json(output/'preflight.json',preflight(config,rows,api_key=os.environ.get(a.api_key_env,''),timeout=a.timeout))
+        save_json(output/'preflight.json',preflight(config,rows,api_key=os.environ.get(a.api_key_env,''),timeout=a.timeout,tokenizer=load_tokenizer(a.tokenizer_dir),context_window=a.context_window,samples=a.preflight_samples))
     if a.stage in ('all','generate'):
         generate_run(output,manifest,base_url=a.base_url,model=a.model,api_key=os.environ.get(a.api_key_env,''),temperature=a.temperature,max_tokens=a.max_tokens,retries=a.retries,timeout=a.timeout,
                      workers=a.workers,retry_delay=a.retry_delay,progress=print_progress,preflight=a.preflight,
@@ -224,7 +207,7 @@ def main():
     if a.stage in ('all','classify'):
         classify_run(output,manifest,a.safety_adapter,a.safety_base,a.strategy_adapter,a.strategy_base,a.batch_size,
                      classifier_dtype=a.classifier_dtype,input_order=a.measurement_order,
-                     inference_mode=a.measurement_mode,trace_measurements=a.trace_measurements)
+                     inference_mode=a.measurement_mode,trace_measurements=a.trace_measurements,measurement_tasks=a.measurement_tasks,remeasure=a.remeasure)
     if a.stage in ('all','report'): report_run(output,manifest,a.min_sources,a.min_coverage)
     print(output.resolve())
 

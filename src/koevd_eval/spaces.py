@@ -100,6 +100,7 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
         return b''.join(pieces)
 
     @app.get('/')
+    @app.get('/submit')
     async def landing():
         content=files('koevd_eval').joinpath('assets','space.html').read_text(encoding='utf-8')
         if deployment_notice:
@@ -108,7 +109,7 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
 
     @app.get('/assets/{name}')
     async def assets(name:str):
-        if name not in ('space.js','space.css','registration.js','public_reads.js'):raise ServiceError('not_found','Asset not found.',404)
+        if name not in ('space.js','space.css','registration.js','public_reads.js','navigation.js'):raise ServiceError('not_found','Asset not found.',404)
         return Response(files('koevd_eval').joinpath('assets',name).read_text(encoding='utf-8'),media_type='text/javascript' if name.endswith('.js') else 'text/css')
 
     @app.get('/healthz')
@@ -134,6 +135,7 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
     async def registration_status():
         value={'enabled':registration is not None,'publication_environment':registration.submissions.publication_environment if registration is not None else 'local_candidate',
                'official_ranking_enabled':registration is not None and registration.submissions.rank_policy.status=='ratified'}
+        value['review_requests_enabled']=registration is not None and registration.submissions.review_requests_enabled
         if registration is not None and registration.submissions.allow_self_reported_summaries:
             value['self_reported_summaries_enabled']=True
         return value

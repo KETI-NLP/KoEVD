@@ -41,7 +41,10 @@ An independently supplied index validates the artifact and restores gold/metadat
 | `approve` | Independent reviewer/admin; under review | Approved current revision, reviewed rights evidence recorded |
 | `publish` | Independent admin; approved current revision | Local published projection of exactly that revision and scope |
 | `reject` | Independent reviewer/admin; under review | Rejected head; prior published revision remains unchanged |
-| `withdraw` | Owner or admin | Terminal withdrawal; public reference removed, private original/history retained |
+| `cancel_review` | Owner; pending or under review | Restore the workflow/consent/approval before the request; retain events |
+| `unpublish` | Owner; published | Stop sharing; private draft with fresh consent required for any future publication |
+| `reopen` | Owner; withdrawn by that owner | Restore private draft; never auto-publish or restore consent |
+| `withdraw` | Owner or admin | Legacy withdrawal; public reference removed, private original/history retained; owner may restore a private draft |
 
 Every mutation requires an expected state version and an idempotency key. Concurrent changes with a stale version are rejected. Exact replay returns the original receipt, which can be older than the current state; reload `get` before acting again. Reusing a key for different arguments is rejected. Duplicate creation of the same owner/original is rejected unless it is the exact original request replay.
 
@@ -132,3 +135,11 @@ The optional authenticated HTTP/UI transport and local public-candidate/withdraw
 ## Restoration quarantine (v0.21)
 
 Combined snapshot restores now append an immutable recovery guard inside the DB. All public domain/HTTP projections and domain mutations/request replays reject503 until an independent operator checkpoint comparison is recorded; authorized private original/history reads remain available. Guards survive relocation/restart, and another restore always creates another guarded sequence. Checkpoint comparison does not authenticate the latest state or human approval; actual two-model restores remain quarantined. See [RECOVERY_GUIDE.md](RECOVERY_GUIDE.md). Raw DB copying does not automatically add a guard and must not substitute for the verified operational restore path. The v0.22 [backup worker](BACKUP_WORKER_GUIDE.md) adds periodic same-cut snapshot/checkpoint pairs, failure preservation and uncopied-change observations. Synchronous remote commit/RPO guarantees, actual cloud storage and operational recovery remain pending.
+
+Review requests are enabled only when at least one publication administrator is
+configured. `/api/registration` exposes `review_requests_enabled`; disabled
+requests fail with `review_unavailable`. Cancellation remains available for
+existing pending/under-review requests. The hosted owner UI uses `unpublish`
+(**Stop sharing**) rather than legacy `withdraw`. These transitions preserve
+immutable originals, revisions and event chains and require the current version,
+a reason and an idempotency key just like other actions.

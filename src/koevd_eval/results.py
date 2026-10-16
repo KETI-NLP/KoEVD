@@ -144,6 +144,8 @@ def validate_index(index):
 
 
 def _measurement_evidence(root, manifest, task, predictions):
+    if manifest.get('measurement_pending',{}).get(str(task)):
+        raise ValueError('Measurement promotion pending; repeat the classify command before export')
     path = root / f'task{task}_measured.jsonl'
     evidence = manifest.get('measurements', {}).get(str(task))
     if not evidence or evidence.get('prediction_sha256') != file_sha(root / 'task3_predictions.jsonl'):
@@ -194,6 +196,8 @@ def export_run(run_dir, index, *, code_revision=None):
         raise ValueError('Generation model is missing')
     predictions = {task: unique_rows(verify_predictions(root, manifest, task))
                    for task in (1, 2, 3, 5)}
+    if manifest.get('measurement_pending'):
+        raise ValueError('Measurement promotion pending; repeat the classify command before export')
     measured, provenance = {}, {}
     for task in (3, 4):
         if (root / f'task{task}_measured.jsonl').exists() or str(task) in manifest.get('measurements', {}):
