@@ -345,8 +345,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 19513,
-      "sha256": "dd18303a7ffb3b74c58734cd4be8faf9573f817a6594ccb7500fe05e141d4fdd"
+      "bytes": 22192,
+      "sha256": "1bd80b9624629ebebd5ad85f0c054e2392ae6bbc4e257a6ce092638e0a7bc0bb"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
@@ -787,6 +787,11 @@
       "path": "docs/validation/platform_rc_source_hygiene_20261011.json",
       "bytes": 3604,
       "sha256": "ef006c319fe8236a81c802dbf13cb4f2ef768af5676b13ed7231cfa42008c29c"
+    },
+    {
+      "path": "docs/validation/platform_recovery_hosted_20261016.json",
+      "bytes": 6423,
+      "sha256": "4c58019f102d200d7b0aede22a8ffb9c150371c5dfaabf24775e4aba925abdc1"
     },
     {
       "path": "docs/validation/platform_space_creation_20261008.json",

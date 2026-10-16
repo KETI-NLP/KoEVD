@@ -1,6 +1,46 @@
 # Public registration service acceptance
 
-Updated 2026-10-16. **The first-user workflow correction is now deployed** in the
+Updated 2026-10-16. **The recoverable workflow and leaderboard-first home are
+now deployed** in the [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+Follow [GETTING_STARTED.md](GETTING_STARTED.md) for evaluation, retries,
+registration and comparison.
+
+- Application source: `af6d25e8f024eae9d6751946dcd00bead40df6ce`, [PR #8](https://github.com/KETI-NLP/KoEVD/pull/8),
+  merged as `8d0f71fdd590bc05986369ac645bab7b995351bb`.
+- Actual running Space revision: `cf439ba7092dd2e4bb56f153fb5ca416925f61eb`.
+  Eleven changed code/manifest files (208,816 bytes) match the pinned candidate;
+  all 70 materialized source files match the application commit. CPU Basic,
+  one replica, LFS attributes, operator inputs, Secret and State configuration
+  are preserved. One automatic start; no rollback.
+- [Linux CI](https://github.com/KETI-NLP/KoEVD/actions/runs/38840689534) passed
+  489 tests each on Python 3.10 and 3.12. Local CPU tests and actual localhost
+  browser tests use synthetic measurements, identities and results. A Windows
+  replace-permission error observed in a full rerun was addressed using the
+  existing fsync/bounded-retry checkpoint writer; 41 affected-module tests passed.
+- Thirteen anonymous hosted HTTP checks passed: health/storage readiness,
+  registration configuration, both reference profiles, leaderboard, paired
+  comparison, assets and `/`/`/submit`. The actual HF embedded browser opened
+  on the model leaderboard, switched to the account/upload view, returned to
+  the model view and completed the two-reference comparison without console
+  errors. Independent review is disabled; numerical sharing remains enabled.
+- New owner-action writes retain local synthetic/CI validation scope: cancellation,
+  reversible summary unsharing, fresh-consent resharing and recovery of an
+  owner-withdrawn private draft. Administrator withdrawals cannot be bypassed.
+  Measurement retries preserve attempts, validate successful tasks before reuse
+  and reject export while file promotion is pending. The preparation identity
+  and standard protocol inputs are unchanged.
+- This update made no new result upload, registration/publication write, native
+  HF sign-in, GPU run, classifier-accuracy claim, paid-resource change or tag
+  change. Original-response publication and official ranks remain disabled.
+  The earlier full persistence trial below is still the hosted evidence for
+  owner registration, native sign-in and exact restart preservation.
+
+[Aggregate hosted receipt](validation/platform_recovery_hosted_20261016.json)
+records hashes, read checks and scope without originals or credentials.
+
+## Earlier first-user workflow correction (2026-10-16)
+
+The preceding first-user workflow correction was deployed in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
 Start with the [complete evaluation-to-comparison guide](GETTING_STARTED.md).
 
