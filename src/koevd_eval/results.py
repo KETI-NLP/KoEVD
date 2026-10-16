@@ -196,6 +196,8 @@ def export_run(run_dir, index, *, code_revision=None):
         raise ValueError('Generation model is missing')
     predictions = {task: unique_rows(verify_predictions(root, manifest, task))
                    for task in (1, 2, 3, 5)}
+    from .generation_recovery import require_complete
+    require_complete(manifest)
     if manifest.get('measurement_pending'):
         raise ValueError('Measurement promotion pending; repeat the classify command before export')
     measured, provenance = {}, {}

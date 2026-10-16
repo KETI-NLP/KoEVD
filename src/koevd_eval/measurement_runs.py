@@ -23,6 +23,8 @@ def classify_run(output, manifest, safety_adapter, safety_base, strategy_adapter
     from .pipeline import verify_predictions, artifact_fingerprint, file_sha, save_json
     from .results import read_document, _measurement_evidence
     from .measurement_trace import validate_trace
+    from .generation_recovery import require_complete
+    require_complete(manifest)
     output=Path(output)
     tasks=tuple(measurement_tasks)
     if not tasks or len(set(tasks))!=len(tasks) or any(t not in (3,4) for t in tasks):

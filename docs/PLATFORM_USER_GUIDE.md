@@ -53,7 +53,7 @@ protocol requires an explicitly supported index rather than relabeling results.
 3. Optionally build an analysis with another uploaded run or configured reference.
    The interactive report contains charts, groups and permitted response cases.
 4. Follow **Continue to registration**. The validated upload is added to the
-   **Register or manage results** selector automatically; select it. Older clients
+   **Private analysis result to preserve** selector automatically; select it. Older clients
    have **Refresh uploaded results** if the selector has not updated. Inspect the
    original model/generation/measurement declaration and confirm it. Unknown
    fields remain unknown; account sign-in does not verify model generation.
@@ -95,7 +95,7 @@ session scope and can contain your uploaded response text.
 - Registration originals, revisions, sharing consent and audit events are stored
   privately. A successful mutation confirms its durable checkpoint first. No
   successful registration acknowledgement is given for an unconfirmed save.
-- **Withdraw publication** removes current public catalog/profile/comparison
+- **Stop sharing** removes current public catalog/profile/comparison
   access. It does not erase private originals, audit history or prior checkpoint
   copies. Previously downloaded shared copies cannot be recalled.
 - The beta has no automatic erasure schedule. Private registration/audit copies
@@ -142,3 +142,42 @@ button is hidden and new requests are rejected by the server. Numerical sharing
 still works. No action automatically retries an ambiguous write: refresh the
 registration/history before repeating it. See the concrete
 [retry and troubleshooting commands](GETTING_STARTED.md#troubleshooting-and-completion-check).
+
+## Recover, find your model and interpret its metrics
+
+- If generation fails, rerun the same `--stage generate` command with the same
+  directory and generation settings. Successful rows are reused. If Task 3 had
+  already been measured, validated predictions, measurements, traces and the old
+  manifest are preserved under `generation_retries/` before resuming. A changed
+  generation invalidates its Task 3/4 measurements; repeat classify, report and
+  export. Do not upload the earlier export as the recovered run. An interrupted
+  retry must finish with generate before measurement/export can continue.
+- If only classification failed, repeat classify. Completed unchanged tasks are
+  reused; use `--measurement-tasks 4 --batch-size 1` to retry only strategy
+  measurement with a smaller batch. To replace completed measurements explicitly,
+  use `--remeasure`. Integrity failures are rejected; they are not overwritten.
+- If startup fails, use **Retry service connection**. It retries a missing
+  analysis session as well as service configuration. A valid session and its
+  uploads are retained; reloading the page instead loses the temporary token.
+- After saving privately, numerical sharing still requires fresh permission and
+  consent. After sharing, use **Show my model on leaderboard**, **View my public
+  profile** or **Compare this result**. Private registrations are not public rows.
+- **Find any published model** searches names, model IDs, revisions and submission
+  IDs across every evaluation group. **Show model on leaderboard** switches to
+  that run's group. The separate row filter searches only the current group.
+  Different groups reflect different conditions; they are not one ranking.
+- Task 2 leaderboard values are **accuracy (higher is better)**. Paired Task 2
+  comparisons display **answer error rate (lower is better)**: within the same
+  partition and valid outputs, accuracy = 100% minus error. Thus 81.55% accuracy
+  corresponds to 18.45% error. Paired differences use jointly valid outputs;
+  individual displayed rates may have different valid denominators.
+- Task 1 missed risk and false alarms are separate conditional rates; its paired
+  overall judgment error is a different denominator. Task 3 uses classifier-based
+  unsafe response rates, and Task 5 uses unsafe **simulated** tool selections.
+  Lower is better for these rates; measurement limitations still apply. Task 4
+  strategy frequencies describe behavior and do not measure quality. N/A means
+  an undefined denominator, not zero. There is no aggregate ethics score.
+
+For a saved private result, download its private original and upload it to a new
+analysis session when needed. Direct reanalysis from saved registrations is not
+currently offered. Public numerical downloads are reports, not upload artifacts.

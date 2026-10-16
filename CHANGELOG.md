@@ -1,3 +1,15 @@
+# 0.3.0rc2 recovery and model discovery
+
+- Preserve validated measurements before retrying failed generation; changed
+  Task 3 responses require new Task 3/4 measurements. Interrupted retries remain
+  blocked and resumable. Existing integrity checks remain enforced.
+- Retry service connection also reconnects private analysis, preserving valid
+  sessions and uploads. Concurrent retries share one session request.
+- Find published models across evaluation groups and jump to your shared model.
+- Explain metric direction and accuracy/error rates; pin the first-user guide
+  to this release and mark private analysis as optional before registration.
+- See current service acceptance for tested source/runtime versions and limits.
+
 # 0.3.0rc1 public registered research service
 
 - HF-owned submission metadata, original-declaration confirmation and explicit

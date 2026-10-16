@@ -11,15 +11,16 @@ No account, GPU or upload is required to inspect the two full Qwen3 references,
 their metric tables, metadata trends and paired comparisons. If you already have
 a completed standard run and its trusted index, start at step 7.
 
-Use the current `main` source for the workflow described here and record its
-commit. [Service acceptance](PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
+Use **v0.3.0-rc.2** (Python package **0.3.0rc2**) for this guide and record its
+commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
+or the generation/measurement retry repair. Existing release tags are immutable. [Service acceptance](PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
 validation logs describe their original dates and versions.
 
 ## 1. Install the evaluation client
 
 ```bash
-git clone https://github.com/KETI-NLP/KoEVD.git
+git clone --branch v0.3.0-rc.2 --single-branch https://github.com/KETI-NLP/KoEVD.git
 cd KoEVD
 git rev-parse HEAD
 python3.11 -m venv .venv-eval
@@ -350,3 +351,42 @@ A complete first run leaves you with the source commit, actual serving settings,
 prepared inputs/index, generation/measurement logs, `results.json`, a readable
 local diagnostic report and a private submission ID. Optional numerical sharing
 adds a public profile that can be compared with compatible published runs.
+
+## Recover, find your model and interpret its metrics
+
+- If generation fails, rerun the same `--stage generate` command with the same
+  directory and generation settings. Successful rows are reused. If Task 3 had
+  already been measured, validated predictions, measurements, traces and the old
+  manifest are preserved under `generation_retries/` before resuming. A changed
+  generation invalidates its Task 3/4 measurements; repeat classify, report and
+  export. Do not upload the earlier export as the recovered run. An interrupted
+  retry must finish with generate before measurement/export can continue.
+- If only classification failed, repeat classify. Completed unchanged tasks are
+  reused; use `--measurement-tasks 4 --batch-size 1` to retry only strategy
+  measurement with a smaller batch. To replace completed measurements explicitly,
+  use `--remeasure`. Integrity failures are rejected; they are not overwritten.
+- If startup fails, use **Retry service connection**. It retries a missing
+  analysis session as well as service configuration. A valid session and its
+  uploads are retained; reloading the page instead loses the temporary token.
+- After saving privately, numerical sharing still requires fresh permission and
+  consent. After sharing, use **Show my model on leaderboard**, **View my public
+  profile** or **Compare this result**. Private registrations are not public rows.
+- **Find any published model** searches names, model IDs, revisions and submission
+  IDs across every evaluation group. **Show model on leaderboard** switches to
+  that run's group. The separate row filter searches only the current group.
+  Different groups reflect different conditions; they are not one ranking.
+- Task 2 leaderboard values are **accuracy (higher is better)**. Paired Task 2
+  comparisons display **answer error rate (lower is better)**: within the same
+  partition and valid outputs, accuracy = 100% minus error. Thus 81.55% accuracy
+  corresponds to 18.45% error. Paired differences use jointly valid outputs;
+  individual displayed rates may have different valid denominators.
+- Task 1 missed risk and false alarms are separate conditional rates; its paired
+  overall judgment error is a different denominator. Task 3 uses classifier-based
+  unsafe response rates, and Task 5 uses unsafe **simulated** tool selections.
+  Lower is better for these rates; measurement limitations still apply. Task 4
+  strategy frequencies describe behavior and do not measure quality. N/A means
+  an undefined denominator, not zero. There is no aggregate ethics score.
+
+For a saved private result, download its private original and upload it to a new
+analysis session when needed. Direct reanalysis from saved registrations is not
+currently offered. Public numerical downloads are reports, not upload artifacts.

@@ -122,9 +122,17 @@ def generate_run(output, manifest, *, base_url, model, api_key='', temperature=0
         save_json(output/'preflight.json',check(config,rows,api_key=api_key,timeout=timeout))
     for task in (1, 2, 3, 5):
         print(f'Generating Task {task}', flush=True)
-        run_rows(list(read_jsonl(output/f'task{task}_input.jsonl')), output/f'task{task}_predictions.jsonl', config,
-                 api_key=api_key, timeout=timeout, retries=retries, retry_delay=retry_delay, resume=True,
-                 workers=workers,progress=progress,run_id=manifest['generation_run']['id'])
+        def generate():
+            run_rows(list(read_jsonl(output/f'task{task}_input.jsonl')), output/f'task{task}_predictions.jsonl', config,
+                     api_key=api_key, timeout=timeout, retries=retries, retry_delay=retry_delay, resume=True,
+                     workers=workers,progress=progress,run_id=manifest['generation_run']['id'])
+        if task == 3:
+            from .generation_recovery import resume_measured_generation
+            from .run_openai_compatible import _output_lock
+            with _output_lock(output/'measurement-stage'):
+                resume_measured_generation(output, manifest, generate)
+        else:
+            generate()
 
 
 def artifact_fingerprint(directory):
@@ -145,6 +153,8 @@ def classify_run(output, manifest, safety_adapter, safety_base, strategy_adapter
 
 
 def report_run(output, manifest, min_sources=20, min_coverage=.9):
+    from .generation_recovery import require_complete
+    require_complete(manifest)
     if manifest.get('measurement_pending'):
         raise ValueError('Measurement promotion pending; repeat the classify command before reporting')
     for task in (1,2,3,5): verify_predictions(output,manifest,task)
