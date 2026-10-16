@@ -89,6 +89,12 @@ class SubmissionService:
         self.profile_cache = NumericalProfileCache()
         store.register_indexes({name:index['content_sha256'] for name,index in self.indexes.items()})
 
+    @property
+    def review_requests_enabled(self):
+        # An independent admin can review and publish; no request is queued
+        # when the deployment has nobody authorized to finish it.
+        return bool(self.admins)
+
     def _index(self, name):
         token(name, 'index ID')
         if name not in self.indexes: raise StorageError('unknown_operator_index', 'Index is not selected by the operator')
@@ -117,13 +123,13 @@ class SubmissionService:
             raise StorageError('independent_reviewer_required', 'An independent operator reviewer is required', 403)
 
     @staticmethod
-    def _version(state, expected):
+    def _version(state, expected, *, allow_withdrawn=False):
         if type(expected) is not int or expected < 1: raise StorageError('version_required', 'Expected version is required')
         if state['version'] != expected: raise StorageError('stale_version', 'Submission changed; reload before retrying', 409)
-        if state['workflow'] == 'withdrawn': raise StorageError('withdrawn', 'Withdrawn submissions are terminal', 409)
+        if state['workflow'] == 'withdrawn' and not allow_withdrawn: raise StorageError('withdrawn', 'Restore this withdrawn registration as a private draft before changing it', 409)
 
     def _event(self, db, state, action, actor, details):
-        limit = MAX_EVENTS if action == 'withdraw' else MAX_EVENTS - 1
+        limit = MAX_EVENTS if action in ('withdraw','unpublish') else MAX_EVENTS - 1
         if state['version'] >= limit: raise StorageError('history_capacity', 'Submission history capacity reached', 409)
         state['version'] += 1
         state['updated_at'] = self.clock()
@@ -258,9 +264,11 @@ class SubmissionService:
 
     def action(self, actor, submission, action, *, expected_version, reason, key, consent=None, rights_evidence=None):
         _actor(actor); _text(reason,'action reason')
-        if action not in ('request_review','start_review','approve','publish','reject','withdraw'):
+        if action not in ('request_review','start_review','approve','publish','reject','withdraw','cancel_review','unpublish','reopen'):
             raise StorageError('invalid_action','Unknown submission action')
         if action == 'request_review':
+            if not self.review_requests_enabled:
+                raise StorageError('review_unavailable','Independent publication review is not enabled; use numerical sharing instead',409)
             if not isinstance(consent,dict) or set(consent) != {'scope','rights_statement','accepted'} or consent.get('accepted') is not True or consent.get('scope') not in ('summary','responses'):
                 raise StorageError('consent_required','Explicit summary/response publication consent required')
             _text(consent['rights_statement'],'rights statement')
@@ -273,14 +281,29 @@ class SubmissionService:
         if action == 'withdraw':
             if actor.subject != current['owner'] and actor.subject not in self.admins:
                 raise StorageError('withdrawal_forbidden','Only the submitter or administrator may withdraw',403)
-        elif action == 'request_review': self._own(current,actor)
+        elif action in ('request_review','cancel_review','unpublish','reopen'): self._own(current,actor)
         else: self._review(current,actor,publish=action=='publish')
         request = {'action':action,'id':submission,'expected_version':expected_version,'reason':reason,
                    'consent':consent,'rights_evidence':rights_evidence}
         def operation(db):
-            state,_ = self.store.state(db,submission); self._version(state,expected_version)
+            state,events = self.store.state(db,submission)
+            self._version(state,expected_version,allow_withdrawn=action=='reopen')
             workflow = state['workflow']
-            if action == 'request_review':
+            if action == 'reopen':
+                if workflow!='withdrawn': raise StorageError('invalid_transition','Only a withdrawn registration can be restored',409)
+                state.update(workflow='draft',consent=None,approval=None,
+                             publication={'status':'withdrawn','revision':None,'scope':None})
+            elif action == 'unpublish':
+                if state['publication']['status']!='published': raise StorageError('invalid_transition','This result is not publicly shared',409)
+                state.update(workflow='draft',consent=None,approval=None,
+                             publication={'status':'withdrawn','revision':None,'scope':None})
+            elif action == 'cancel_review':
+                if workflow not in ('pending','under_review'): raise StorageError('invalid_transition','There is no active review request',409)
+                position=next((i for i in range(len(events)-1,-1,-1) if events[i]['action']=='request_review'),None)
+                if position is None or position==0: raise StorageError('store_integrity','Review origin is missing',503)
+                previous=events[position-1]['state']
+                state.update(workflow=previous['workflow'],consent=deepcopy(previous['consent']),approval=deepcopy(previous['approval']))
+            elif action == 'request_review':
                 if workflow not in ('draft','rejected','registered'): raise StorageError('invalid_transition','Revision is already in review',409)
                 state.update(workflow='pending',consent=consent,approval=None)
             elif action == 'start_review':
@@ -626,7 +649,7 @@ def main():
     for sub in (revise,):
         sub.add_argument('--expected-version',type=int,required=True);sub.add_argument('--reason',required=True);sub.add_argument('--key',required=True)
     action=commands.add_parser('action');action.add_argument('--id',required=True)
-    action.add_argument('--name',choices=('request_review','start_review','approve','publish','reject','withdraw'),required=True)
+    action.add_argument('--name',choices=('request_review','start_review','approve','publish','reject','withdraw','cancel_review','unpublish','reopen'),required=True)
     action.add_argument('--expected-version',type=int,required=True);action.add_argument('--reason',required=True);action.add_argument('--key',required=True)
     action.add_argument('--consent-file');action.add_argument('--rights-evidence')
     accept=commands.add_parser('accept-generation');accept.add_argument('--receipt-file',required=True)

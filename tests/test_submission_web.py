@@ -366,6 +366,9 @@ class SubmissionHTTPTests(unittest.TestCase):
         self.assertEqual(self.author.post('/api/submissions',content=body,headers=headers).status_code,400)
         self.assertEqual(self.author.post('/api/submissions',content=b'x'*16385,headers=headers).status_code,413)
         self.assertEqual(self.author.get('/assets/registration.js').status_code,200)
+        self.assertEqual(self.author.get('/assets/navigation.js').status_code,200)
+        self.assertEqual(self.author.get('/submit').status_code,200)
+        self.assertTrue(self.author.get('/api/registration').json()['review_requests_enabled'])
         self.assertIn('no-store',self.author.get('/api/identity').headers['cache-control'])
         app=create_app(self.service,origins=['http://127.0.0.1'])
         from fastapi.testclient import TestClient

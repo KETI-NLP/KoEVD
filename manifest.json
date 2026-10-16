@@ -45,8 +45,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 15295,
-      "sha256": "73cde8489be3a18b1d88ced93042f6dd81327899e41f78c5b2bd29b2d68eaa5b"
+      "bytes": 15675,
+      "sha256": "b63cb799bea279b2902092b2d889b7f320d0b5851151e3cd6e067b5eddc3baf6"
     },
     {
       "path": "analysis/plot_paper_tables.py",
@@ -220,8 +220,8 @@
     },
     {
       "path": "docs/GETTING_STARTED.md",
-      "bytes": 16119,
-      "sha256": "c20d24c403dcf3f4f0ddaabac8a5048a899327f39d908048b1b2704d4f1209fa"
+      "bytes": 20951,
+      "sha256": "1444b3c62d2c28a776f91e8d96fb6b32820db760f09612204035ea0235b383b0"
     },
     {
       "path": "docs/GPU_MEASUREMENT_MATRIX_RESULTS.md",
@@ -295,8 +295,8 @@
     },
     {
       "path": "docs/OWN_MODEL_GUIDE.md",
-      "bytes": 15612,
-      "sha256": "8f6a49cdb4f0f71223fc4c408810eeb1553d5f69f40a3e7d62ad4bdfec6bcc02"
+      "bytes": 16094,
+      "sha256": "33bedd2c2c17331313a4f44ae21107ee7e7235cf54bf4f8b225e209609a2f17a"
     },
     {
       "path": "docs/PIPELINE_VALIDATION_RESULTS.md",
@@ -315,8 +315,8 @@
     },
     {
       "path": "docs/PLATFORM_USER_GUIDE.md",
-      "bytes": 7445,
-      "sha256": "cc83647454ce6737e7364170e1027534dd98dbbbdcfd87cb179a1dda989f703c"
+      "bytes": 9182,
+      "sha256": "cd9931317f4cf8fa6e7fd84e167d39f56e6413f7bb0a3abe94b1df904e78e9f8"
     },
     {
       "path": "docs/PLATFORM_VALIDATION_LOG.md",
@@ -385,8 +385,8 @@
     },
     {
       "path": "docs/RUNNER_GUIDE.md",
-      "bytes": 9862,
-      "sha256": "446be84ef87398add968befd451420e160ecd0cb5e66823291a2f8a0e8f703c4"
+      "bytes": 10344,
+      "sha256": "98c723ddbd3b34fd3f68021c7e62969ad28e9f1424996be9ed308a44c33f1057"
     },
     {
       "path": "docs/SPACES_GUIDE.md",
@@ -415,8 +415,8 @@
     },
     {
       "path": "docs/SUBMISSIONS_GUIDE.md",
-      "bytes": 15665,
-      "sha256": "be5361222426b2430dd0c80fa42998437bfa6d4fd1c40d9c996a77d15d4bf5e5"
+      "bytes": 16561,
+      "sha256": "4cbb726ba93a24d4af7bf2182491bcffbea5b106612ed55f3c6c07588eb73510"
     },
     {
       "path": "docs/TEAM_BACKUP_CONNECTION.md",
@@ -1254,14 +1254,19 @@
       "sha256": "0853e5125087a1c18b382f83da2d672cf428b3916b9c6b2446879cf866e18594"
     },
     {
+      "path": "src/koevd_eval/assets/navigation.js",
+      "bytes": 1430,
+      "sha256": "48bfcf8e3330dd917720fdc47cba468ee43e6c10703f487a29f390db1aefb88a"
+    },
+    {
       "path": "src/koevd_eval/assets/public_reads.js",
       "bytes": 2489,
       "sha256": "a55ad4d743f77b510b1df947d8d4a38a35f2be624aa22eafe692b94001ea197a"
     },
     {
       "path": "src/koevd_eval/assets/registration.js",
-      "bytes": 34036,
-      "sha256": "dd8bb73677a4f9b10f3a82c46ca369769bfba2aa7d5996b284d766b3d7b4dc06"
+      "bytes": 36763,
+      "sha256": "e9c580bf264729cd7bf78a3411a344c4b781fd2fa053d0463da7679028b264cb"
     },
     {
       "path": "src/koevd_eval/assets/report.css",
@@ -1275,13 +1280,13 @@
     },
     {
       "path": "src/koevd_eval/assets/space.css",
-      "bytes": 5593,
-      "sha256": "2a9639ce20ac0d614f964c8f5263a0697cc8bad96489bfd4afefc1dae7ce4568"
+      "bytes": 6213,
+      "sha256": "0cd80fecdc1db595a11ee25e7ff3f5a7708e1eee79b3a0154470c1d4ac5cdb5f"
     },
     {
       "path": "src/koevd_eval/assets/space.html",
-      "bytes": 12966,
-      "sha256": "e82656849b51272834ea00c4d8db19f61c51380a2762b2b3a9ac1049ac7cf496"
+      "bytes": 13947,
+      "sha256": "4671ad8bc0498486791dc4a23b94fc74915d1e06fae668c12f13503d67496b82"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1344,6 +1349,11 @@
       "sha256": "0b9b278cb4f4da2d73c170cf03ed0d4104b600f4c0cf04166ffa68cf9d72d536"
     },
     {
+      "path": "src/koevd_eval/measurement_runs.py",
+      "bytes": 8225,
+      "sha256": "e804274104aa1919e89ae5f87bd4128104f88cf22136644d56e4472b5d849630"
+    },
+    {
       "path": "src/koevd_eval/measurement_trace.py",
       "bytes": 14266,
       "sha256": "dd9a0ff213459bd6160ab672ed202aa66b4b3ab959b4fc52e4c873d1aa555d9b"
@@ -1370,8 +1380,8 @@
     },
     {
       "path": "src/koevd_eval/pipeline.py",
-      "bytes": 14659,
-      "sha256": "848a8e3fd7fcc22751d71b14cc0de232e3d800b1cd68d591e29b007be90297e9"
+      "bytes": 13866,
+      "sha256": "f80300915ad26d5ecd269e60a0f69aeab35b20bacef2c13f7e53aafc4c127812"
     },
     {
       "path": "src/koevd_eval/policy_decisions.py",
@@ -1380,8 +1390,8 @@
     },
     {
       "path": "src/koevd_eval/preflight.py",
-      "bytes": 4821,
-      "sha256": "328bfdb0bec99897eea2249a1cf432d6a422e001126bd547ce28b53ed8fc0b4d"
+      "bytes": 9094,
+      "sha256": "b7f4cb5765631ced34448722521b4797c46987e17fe55f3aa57c402073a915d4"
     },
     {
       "path": "src/koevd_eval/prepare_tasks.py",
@@ -1435,8 +1445,8 @@
     },
     {
       "path": "src/koevd_eval/results.py",
-      "bytes": 36570,
-      "sha256": "3ba906a5b062f74ed106b4033b81ff7c6535ff852889e25ec5567431ffb43b0f"
+      "bytes": 36878,
+      "sha256": "168e08a30aebca0d5de916d93f4e092921dbfe43cac71ad7c0c5674bc5497928"
     },
     {
       "path": "src/koevd_eval/run_openai_compatible.py",
@@ -1475,8 +1485,8 @@
     },
     {
       "path": "src/koevd_eval/spaces.py",
-      "bytes": 19549,
-      "sha256": "eb932190396c26eafb0d959b16e81b4d1ad5ce82a91e8b3ce2d2dc114e493f90"
+      "bytes": 19708,
+      "sha256": "b0c946a91628b00daeb4671b8c1bb1e2282cea4b27fc40115aa07e846e1de988"
     },
     {
       "path": "src/koevd_eval/storage.py",
@@ -1490,8 +1500,8 @@
     },
     {
       "path": "src/koevd_eval/submissions.py",
-      "bytes": 47295,
-      "sha256": "decf2a84fa4cc52ded77a558c7f2d2535311dfdfeb5407d0142e3d8da5cbd494"
+      "bytes": 49289,
+      "sha256": "a38e4006dbfc3f83c64f5d9ddf812f11c10080d396bfa8c5a4b78591d8706a98"
     },
     {
       "path": "src/koevd_eval/transfer.py",
@@ -1610,8 +1620,8 @@
     },
     {
       "path": "tests/test_measurement_trace.py",
-      "bytes": 21350,
-      "sha256": "038fc142bf699c9edcbe224b5e7e000a88c4ed8176245fdf3a8a461cef647522"
+      "bytes": 22251,
+      "sha256": "f4912e20476cbcd7904ede7a66b34a44dbcfe90e2e72031e4bab1b82dcbef332"
     },
     {
       "path": "tests/test_oauth_client_configuration.py",
@@ -1760,8 +1770,8 @@
     },
     {
       "path": "tests/test_submission_web.py",
-      "bytes": 29644,
-      "sha256": "8321ef8b8649be186ad2da269cf7b7a6d45efa5ad3c4f9c4870a2ed60e39f2c1"
+      "bytes": 29892,
+      "sha256": "53ca32ee79bb40e3440a90f70d096c216c3df664bad3c7f5eb2fce63381e2473"
     },
     {
       "path": "tests/test_submissions.py",
@@ -1777,6 +1787,11 @@
       "path": "tests/test_upload_declaration.py",
       "bytes": 3218,
       "sha256": "7d52008d6d1c0fb9667de7698ac24c7f865c7a3cb52ae93767b80a0df202a2d8"
+    },
+    {
+      "path": "tests/test_workflow_recovery.py",
+      "bytes": 10582,
+      "sha256": "4e449ebedc4d6a88c4fa739e342e809fc48d552a3d0acd6b80a75aef8d40577b"
     }
   ]
 }

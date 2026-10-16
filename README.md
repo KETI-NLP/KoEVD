@@ -4,7 +4,10 @@
 portable JSON, build offline reports, and register results in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
 Anonymous visitors can explore the two full Qwen3 references, model profiles,
-metadata trends and paired comparisons without uploading a file.
+metadata trends and paired comparisons without uploading a file. Current source
+opens with a task-specific **Model leaderboard** and a separate **Submit results**
+view. Use the [runtime acceptance record](docs/PUBLIC_SERVICE_ACCEPTANCE.md) to
+check whether a source correction has reached the hosted app.
 
 Sign in with Hugging Face to preserve a private original, give the run a display
 name, and optionally share its numerical summary. Uploading alone stays temporary.
@@ -19,7 +22,9 @@ failed activation evidence retain their dated scope.
 
 Start with the **[complete first-user guide](docs/GETTING_STARTED.md)**: pinned
 inputs → model generation → measurement → `results.json` → sign-in → private
-registration → optional shared numerical comparison. Use
+registration → optional shared numerical comparison. The guide includes failed
+measurement retries, local prompt-budget checks, review-request cancellation and
+reversible summary sharing. Use
 [Platform controls and data handling](docs/PLATFORM_USER_GUIDE.md) as a reference.
 See [current acceptance and source/runtime versions](docs/PUBLIC_SERVICE_ACCEPTANCE.md),
 [deployment and recovery](docs/REGISTERED_SPACE_GUIDE.md),

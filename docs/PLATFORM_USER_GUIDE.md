@@ -7,9 +7,9 @@ deployed release; a candidate branch alone does not activate the service.
 
 ## Explore without a file or account
 
-1. Open **Explore models**. Select a published run to see its declared model,
+1. The home opens **Model leaderboard**. Select a model name to see its declared model,
    revision, generation settings, measured scores and metadata charts.
-2. Use **Metric leaderboard** to select a metric/evaluation group and search or
+2. Use the metric table to select a metric/evaluation group and search or
    sort observed values. Official rank eligibility and exclusion reasons remain
    separate. There is no combined ethics score.
 3. In **Compare models**, choose two runs and build the paired comparison.
@@ -36,12 +36,12 @@ protocol requires an explicitly supported index rather than relabeling results.
 
 ## Analyze and register
 
-1. Open the workspace in its own tab before uploading. In the pre-upload
+1. Choose **Submit results**, then open the standalone `/submit` workspace before uploading. In the pre-upload
    account section choose **Sign in to save results**, then **Check account sign-in**.
    Older deployed versions put **Sign in with Hugging Face** / **Check sign-in**
    in the registration section instead; the order is still sign-in, then upload. Embedded and standalone cookies can differ; open the own-tab
    workspace before uploading to avoid losing access to an anonymous session.
-2. In **Analyze your JSON**, select the result and **Validate and add results**.
+2. In **Choose your result JSON**, select the result and **Validate and add results**.
    Temporary analysis is available without sign-in and does not publish data.
    In browsers supporting compression, large JSON files are compressed only for
    transport when this reduces their size. Choose the same original `.json`; the
@@ -99,8 +99,7 @@ session scope and can contain your uploaded response text.
   access. It does not erase private originals, audit history or prior checkpoint
   copies. Previously downloaded shared copies cannot be recalled.
 - The beta has no automatic erasure schedule. Private registration/audit copies
-  remain until an operator-reviewed removal procedure; withdrawal is the supported
-  immediate public-removal action. Do not interpret withdrawal as permanent
+  remain until an operator-reviewed removal procedure; **Stop sharing** is the immediate public-removal action. Do not interpret withdrawal as permanent
   deletion of every retained copy. Request retention/removal guidance through
   the [project issue tracker](https://github.com/KETI-NLP/KoEVD/issues) without
   posting private outputs or credentials there.
@@ -114,3 +113,32 @@ storage/restore contract. Dataset research-use terms are separate from the code
 license. Task 3 labels are classifier measurements, Task 4 strategy frequencies
 are descriptive, and Task 5 tool selections are simulated. None establishes
 universal model safety or a controlled demographic discrimination finding.
+
+## Leaderboard home and recoverable submission
+
+The public home opens the **Model leaderboard**. Choose a task-specific metric,
+inspect coverage and evaluation groups, and compare two published runs. There is
+no aggregate ethics score and official ranking remains disabled. **Submit
+results** opens a separate upload/login/registration view. The navigation links
+preserve temporary uploads within the same page; browser reloads/new tabs do not.
+Open the standalone `/submit` workspace before login/upload when using the HF
+embedded view.
+
+Saving privately and publishing a numerical summary are separate. A saved
+registration offers **Compare this result** after summary publication. Original
+response text is not included in public numerical profiles or comparisons.
+
+* **Cancel review request** returns an active request to its prior workflow and
+  consent state. This remains possible if the operator later disables review.
+* **Stop sharing** removes the public projection and clears current consent and
+  approval. The original/history remain private; fresh consent is required to
+  publish again.
+* **Restore private draft** recovers a legacy withdrawn registration without
+  making it public. Use this instead of creating a duplicate original, then
+  provide fresh consent for numerical sharing.
+
+When no publication administrator is configured, the independent review request
+button is hidden and new requests are rejected by the server. Numerical sharing
+still works. No action automatically retries an ambiguous write: refresh the
+registration/history before repeating it. See the concrete
+[retry and troubleshooting commands](GETTING_STARTED.md#troubleshooting-and-completion-check).

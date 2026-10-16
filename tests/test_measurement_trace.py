@@ -303,9 +303,20 @@ class TraceExportTests(unittest.TestCase):
             trace.update(input_file_sha256=file_hash(value('--input')),output_file_sha256=file_hash(value('--output')))
             write_trace(value('--trace-output'),trace)
         manifest=deepcopy(self.fixture.manifest)
+        manifest['measurements']={}
         with patch('koevd_eval.pipeline.subprocess.run',side_effect=fake_process):
             classify_run(root,manifest,*artifacts,batch_size=2,classifier_dtype='float32',
                          input_order='reverse',inference_mode='single',trace_measurements=True)
+        with patch('koevd_eval.pipeline.subprocess.run',side_effect=AssertionError('completed traces must be reused')):
+            classify_run(root,manifest,*artifacts,batch_size=2,classifier_dtype='float32',
+                         input_order='reverse',inference_mode='single',trace_measurements=True)
+        old_trace=file_hash(root/'task4_measurement_trace.json')
+        with patch('koevd_eval.pipeline.subprocess.run',side_effect=fake_process):
+            classify_run(root,manifest,*artifacts,batch_size=2,classifier_dtype='float32',
+                         input_order='reverse',inference_mode='single',trace_measurements=True,
+                         measurement_tasks=(4,),remeasure=True)
+        previous=root/manifest['measurements']['4']['attempt']/'previous-task4_measurement_trace.json'
+        self.assertEqual(file_hash(previous),old_trace)
         document=export_run(root,self.fixture.index)
         for task in ('3','4'):
             self.assertEqual(manifest['measurements'][task]['input_order'],'reverse')

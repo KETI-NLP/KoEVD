@@ -12,3 +12,7 @@
 #public-pair-section select{font:inherit;width:100%;max-width:100%;padding:8px;border:1px solid #b9cddb;border-radius:6px;margin:8px 0 14px}#public-metrics h3,#public-submissions button{overflow-wrap:anywhere;max-width:100%}
 
 #workspace-navigation{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px}#workspace-navigation a{background:white;border:1px solid #b9cddb;border-radius:7px;padding:9px 14px;color:#175b83;text-decoration:none}#workspace-navigation a:focus-visible{outline:3px solid #da9a2b;outline-offset:3px}#public-catalog-section select{font:inherit;width:100%;max-width:100%;padding:8px;border:1px solid #b9cddb;border-radius:6px;margin:8px 0 14px}#public-catalog-section a{color:#175b83}#public-catalog-section h3{overflow-wrap:anywhere}#public-catalog-section,#public-pair-section,#upload-section,#registration-section{scroll-margin-top:20px}
+
+#page-navigation{display:flex;gap:12px;margin-bottom:24px}#page-navigation a{padding:12px 22px;border:1px solid #17628c;border-radius:8px;text-decoration:none;color:#17628c;font-weight:650}#page-navigation a[aria-current=page]{background:#17628c;color:white}#submit-page,#explore-page{scroll-margin-top:20px}#page-title:focus{outline:none}#submission-next{color:#175b83}#workspace-navigation a[href="#upload-section"],#workspace-navigation a[href="#registration-section"]{display:none}
+
+header{padding-bottom:10px}header h1{font-size:32px;margin-top:12px}#public-catalog-section>details:first-of-type{margin:8px 0}

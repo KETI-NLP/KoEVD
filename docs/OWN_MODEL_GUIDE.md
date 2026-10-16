@@ -206,3 +206,12 @@ remain measurement-limited.
 For operator catalog and session configuration, use [SPACES_GUIDE.md](SPACES_GUIDE.md)
 and [REGISTERED_SPACE_GUIDE.md](REGISTERED_SPACE_GUIDE.md). Local synthetic demo
 references are fictional; they do not replace the actual published Qwen references.
+
+## Recover a full registered run
+
+For the canonical end-to-end workflow and model-ID conventions, use
+[GETTING_STARTED.md](GETTING_STARTED.md). Its recovery commands cover generation
+resume, Task-specific measurement retry, explicit `--remeasure`, local tokenizer
+budgets and bounded prepared-input probes. Use the real served model ID rather
+than a generic alias; retain its immutable revision separately. These operations
+do not change the standard protocol or hide failed rows.
