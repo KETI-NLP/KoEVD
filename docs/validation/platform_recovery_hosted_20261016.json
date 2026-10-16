@@ -1,0 +1,210 @@
+{
+  "format": "koevd-hosted-recovery-acceptance-v1",
+  "checked_at": "2026-10-16T02:35:04.954471+00:00",
+  "application_source": "af6d25e8f024eae9d6751946dcd00bead40df6ce",
+  "github_pr": "https://github.com/KETI-NLP/KoEVD/pull/8",
+  "github_merge": "8d0f71fdd590bc05986369ac645bab7b995351bb",
+  "space": "KETI-NLP/KoEVD-Platform",
+  "running_space_revision": "cf439ba7092dd2e4bb56f153fb5ca416925f61eb",
+  "previous_space_revision": "7cfd8d88099a28119d88c5f3a67852a43bfaf242",
+  "changed_files": [
+    {
+      "path": "deployment-manifest.json",
+      "bytes": 13155,
+      "sha256": "e5c31bf5f82ab216e7c5fc6ad8ec60224ef826c3dd6fe4a26075e77c4056efc4"
+    },
+    {
+      "path": "src/koevd_eval/assets/navigation.js",
+      "bytes": 1430,
+      "sha256": "48bfcf8e3330dd917720fdc47cba468ee43e6c10703f487a29f390db1aefb88a"
+    },
+    {
+      "path": "src/koevd_eval/assets/registration.js",
+      "bytes": 36763,
+      "sha256": "e9c580bf264729cd7bf78a3411a344c4b781fd2fa053d0463da7679028b264cb"
+    },
+    {
+      "path": "src/koevd_eval/assets/space.css",
+      "bytes": 6213,
+      "sha256": "0cd80fecdc1db595a11ee25e7ff3f5a7708e1eee79b3a0154470c1d4ac5cdb5f"
+    },
+    {
+      "path": "src/koevd_eval/assets/space.html",
+      "bytes": 13947,
+      "sha256": "4671ad8bc0498486791dc4a23b94fc74915d1e06fae668c12f13503d67496b82"
+    },
+    {
+      "path": "src/koevd_eval/measurement_runs.py",
+      "bytes": 8225,
+      "sha256": "e804274104aa1919e89ae5f87bd4128104f88cf22136644d56e4472b5d849630"
+    },
+    {
+      "path": "src/koevd_eval/pipeline.py",
+      "bytes": 13794,
+      "sha256": "c0cb58763bd35465a20e9ab6413cac5da94216f7987ff68b31481a52002eae4e"
+    },
+    {
+      "path": "src/koevd_eval/preflight.py",
+      "bytes": 9094,
+      "sha256": "b7f4cb5765631ced34448722521b4797c46987e17fe55f3aa57c402073a915d4"
+    },
+    {
+      "path": "src/koevd_eval/results.py",
+      "bytes": 36878,
+      "sha256": "168e08a30aebca0d5de916d93f4e092921dbfe43cac71ad7c0c5674bc5497928"
+    },
+    {
+      "path": "src/koevd_eval/spaces.py",
+      "bytes": 19708,
+      "sha256": "b0c946a91628b00daeb4671b8c1bb1e2282cea4b27fc40115aa07e846e1de988"
+    },
+    {
+      "path": "src/koevd_eval/submissions.py",
+      "bytes": 49609,
+      "sha256": "406109bec6718f257c8bf70b8419ff5314b553f36580462a97018f5901e58ec0"
+    }
+  ],
+  "changed_bytes": 208816,
+  "git_matched_source_files": 70,
+  "cpu": "cpu-basic",
+  "replicas": 1,
+  "automatic_starts": 1,
+  "rollback": false,
+  "preserved": {
+    "provider_lfs": true,
+    "operator_indexes_and_reference_configuration": true,
+    "secret_and_state_configuration": true
+  },
+  "ci": {
+    "python_versions": [
+      "3.10",
+      "3.12"
+    ],
+    "tests_per_version": 489,
+    "passed": true,
+    "run": "https://github.com/KETI-NLP/KoEVD/actions/runs/38840689534"
+  },
+  "hosted_checks": {
+    "anonymous_http": [
+      {
+        "path": "/healthz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.672
+      },
+      {
+        "path": "/readyz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.969
+      },
+      {
+        "path": "/api/registration",
+        "status": 200,
+        "bytes": 163,
+        "seconds": 0.218
+      },
+      {
+        "path": "/api/public/submissions",
+        "status": 200,
+        "bytes": 972,
+        "seconds": 0.719
+      },
+      {
+        "path": "/api/public/leaderboard",
+        "status": 200,
+        "bytes": 133849,
+        "seconds": 4.078
+      },
+      {
+        "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f/profile",
+        "status": 200,
+        "bytes": 9389326,
+        "seconds": 3.953
+      },
+      {
+        "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23/profile",
+        "status": 200,
+        "bytes": 9379051,
+        "seconds": 3.829
+      },
+      {
+        "path": "/api/public/compare?left=6204d78594f64db6ab6b74233058107f&right=6a9efc32e21a40c19aeeff935cc03b23",
+        "status": 200,
+        "bytes": 18922386,
+        "seconds": 19.36
+      },
+      {
+        "path": "/assets/navigation.js",
+        "status": 200,
+        "bytes": 1430,
+        "seconds": 0.218
+      },
+      {
+        "path": "/assets/registration.js",
+        "status": 200,
+        "bytes": 36595,
+        "seconds": 0.282
+      },
+      {
+        "path": "/assets/space.css",
+        "status": 200,
+        "bytes": 6195,
+        "seconds": 0.203
+      },
+      {
+        "path": "/",
+        "status": 200,
+        "bytes": 14293,
+        "seconds": 0.219
+      },
+      {
+        "path": "/submit",
+        "status": 200,
+        "bytes": 14293,
+        "seconds": 0.219
+      }
+    ],
+    "public_reference_ids": [
+      "6204d78594f64db6ab6b74233058107f",
+      "6a9efc32e21a40c19aeeff935cc03b23"
+    ],
+    "browser": {
+      "leaderboard_on_initial_load": true,
+      "submitted_view_hides_leaderboard": true,
+      "submit_view_shows_upload_and_account_guide": true,
+      "back_to_leaderboard": true,
+      "existing_two_reference_comparison_completed": true,
+      "console_error_count": 0
+    }
+  },
+  "local_synthetic_checks": [
+    "measurement failure and completed-task reuse",
+    "task-specific changed batch retry",
+    "trace reuse and archived remeasurement",
+    "pending promotion recovery and export rejection",
+    "review disabled/cancel existing request",
+    "stop sharing/fresh-consent reshare",
+    "owner withdrawal restoration and administrator restriction",
+    "actual-input probe and local prompt budgets",
+    "login-upload-register-compare-reshare navigation",
+    "startup connection retry"
+  ],
+  "windows_recheck": {
+    "observed": "one transient replace permission failure in existing matrix fixture",
+    "fix": "shared fsync/bounded-Windows-retry checkpoint writer",
+    "affected_module_tests": 41,
+    "affected_module_tests_passed": true
+  },
+  "scope": {
+    "new_result_uploads": 0,
+    "new_registration_or_publication_writes": false,
+    "new_native_hf_login": false,
+    "new_gpu_inference": false,
+    "new_classifier_accuracy_evidence": false,
+    "official_ranks_enabled": false,
+    "original_response_publication_enabled": false,
+    "new_paid_resources": false,
+    "release_tag_changes": false
+  }
+}
