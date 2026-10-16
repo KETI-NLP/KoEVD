@@ -16,7 +16,7 @@ from .overlap import source_id
 from .prepare_tasks import prepare
 from .profile import write_report, identity
 from .run_openai_compatible import (run_rows, endpoint, unique_rows, make_config,
-                                   add_execution_arguments, load_options, print_progress)
+                                   add_execution_arguments, load_options, print_progress, _atomic_json)
 
 TASK2_VARIANTS = ('choose_best', 'choose_unsafe', 'rejected_vs_accepted', 'relative_harmfulness')
 TASK5_VARIANTS = ('safe_guided', 'tool_forced', 'unsafe_induced')
@@ -30,10 +30,8 @@ def file_sha(path):
 
 
 def save_json(path, value):
-    path = Path(path)
-    temporary = path.with_suffix(path.suffix + '.tmp')
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
-    os.replace(temporary, path)
+    # Share the fsync + bounded Windows file-lock retry used by runner checkpoints.
+    _atomic_json(Path(path), value)
 
 
 def prepare_run(dataset, output, split='core', limit_sources=None):
