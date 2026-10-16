@@ -1,0 +1,160 @@
+{
+  "scope": "approved first-user code update and anonymous read-only hosted validation",
+  "observed_date": "2026-10-16",
+  "at_utc": "2026-10-16T00:36:28.189226+00:00",
+  "source_commit": "39962e31d498ee9b0d0256b377c5e4837e915f6f",
+  "main_merge_commit": "6d5b9fa5a1646148fd947d71b1c0013f83dd1667",
+  "space": "KETI-NLP/KoEVD-Platform",
+  "previous_space_revision": "1bc4cbdf552a9999ca91c87d4cb2af81927ec44b",
+  "space_revision": "7cfd8d88099a28119d88c5f3a67852a43bfaf242",
+  "runtime_stage": "RUNNING",
+  "runtime_revision_matches_deployment": true,
+  "hardware": "cpu-basic",
+  "replicas": 1,
+  "automatic_starts": 1,
+  "rollback_starts": 0,
+  "changed_files": 8,
+  "changed_bytes": 156124,
+  "remote_files_equal_to_candidate": [
+    {
+      "path": "deployment-manifest.json",
+      "bytes": 12836,
+      "sha256": "81c4d6e847e07829ccca43f122b5331d7fedac67e8b176b9235515464180ec78"
+    },
+    {
+      "path": "src/koevd_eval/assets/public_reads.js",
+      "bytes": 2489,
+      "sha256": "a55ad4d743f77b510b1df947d8d4a38a35f2be624aa22eafe692b94001ea197a"
+    },
+    {
+      "path": "src/koevd_eval/assets/registration.js",
+      "bytes": 34036,
+      "sha256": "dd8bb73677a4f9b10f3a82c46ca369769bfba2aa7d5996b284d766b3d7b4dc06"
+    },
+    {
+      "path": "src/koevd_eval/assets/space.html",
+      "bytes": 12966,
+      "sha256": "e82656849b51272834ea00c4d8db19f61c51380a2762b2b3a9ac1049ac7cf496"
+    },
+    {
+      "path": "src/koevd_eval/assets/space.js",
+      "bytes": 11932,
+      "sha256": "f39f659af792ee3c01b012a356e0b587b3a11c92b41935639780082a30354bc4"
+    },
+    {
+      "path": "src/koevd_eval/durability.py",
+      "bytes": 15021,
+      "sha256": "069cd3d37a61985f1fe8ee93744abbf9281a1cd9510327adf681f657332e428a"
+    },
+    {
+      "path": "src/koevd_eval/spaces.py",
+      "bytes": 19549,
+      "sha256": "eb932190396c26eafb0d959b16e81b4d1ad5ce82a91e8b3ce2d2dc114e493f90"
+    },
+    {
+      "path": "src/koevd_eval/submissions.py",
+      "bytes": 47295,
+      "sha256": "decf2a84fa4cc52ded77a558c7f2d2535311dfdfeb5407d0142e3d8da5cbd494"
+    }
+  ],
+  "anonymous_http_checks": [
+    {
+      "path": "/healthz",
+      "status": 200,
+      "bytes": 46,
+      "seconds": 0.687
+    },
+    {
+      "path": "/readyz",
+      "status": 200,
+      "bytes": 46,
+      "seconds": 0.516
+    },
+    {
+      "path": "/api/registration",
+      "status": 200,
+      "bytes": 131,
+      "seconds": 0.203
+    },
+    {
+      "path": "/api/public/submissions",
+      "status": 200,
+      "bytes": 972,
+      "seconds": 0.547
+    },
+    {
+      "path": "/api/public/leaderboard",
+      "status": 200,
+      "bytes": 133849,
+      "seconds": 4.14
+    },
+    {
+      "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f/profile",
+      "status": 200,
+      "bytes": 9389326,
+      "seconds": 3.86
+    },
+    {
+      "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23/profile",
+      "status": 200,
+      "bytes": 9379051,
+      "seconds": 2.907
+    },
+    {
+      "path": "/api/public/compare?left=6204d78594f64db6ab6b74233058107f&right=6a9efc32e21a40c19aeeff935cc03b23",
+      "status": 200,
+      "bytes": 18922386,
+      "seconds": 21.375
+    },
+    {
+      "path": "/assets/public_reads.js",
+      "status": 200,
+      "bytes": 2489,
+      "seconds": 0.218
+    },
+    {
+      "path": "/assets/registration.js",
+      "status": 200,
+      "bytes": 33875,
+      "seconds": 0.219
+    },
+    {
+      "path": "/assets/space.js",
+      "status": 200,
+      "bytes": 11932,
+      "seconds": 0.203
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 13318,
+      "seconds": 0.203
+    }
+  ],
+  "existing_reference_summaries": 2,
+  "browser": {
+    "scope": "actual HF embedded workspace, anonymous; no sign-in or result upload",
+    "embedded_own_tab_notice_visible": true,
+    "pre_upload_account_guidance_visible": true,
+    "standard_export_and_getting_started_links_visible": true,
+    "existing_qwen_references_and_metric_rows_visible": true,
+    "qwen3_8b_profile_task_selector_options": 5,
+    "paired_reference_comparison_completed": true,
+    "paired_metadata_charts_present": true,
+    "console_errors_observed": 0
+  },
+  "new_raw_result_uploads": 0,
+  "new_registration_or_publication_actions": 0,
+  "secret_changes": false,
+  "state_or_protocol_configuration_changes": false,
+  "lfs_attributes_preserved": true,
+  "new_paid_resources": false,
+  "new_gpu_work": false,
+  "new_release_or_tag": false,
+  "official_ranking_enabled": false,
+  "limits": [
+    "The local synthetic test covers registration writes; this hosted update did not repeat them.",
+    "No fresh native HF sign-in, model inference, classifier accuracy or original/history byte-preservation claim.",
+    "Transient hosted-read failure root cause remains unestablished; bounded read-side handling is a mitigation."
+  ]
+}

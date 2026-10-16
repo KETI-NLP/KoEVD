@@ -1,6 +1,31 @@
 # Public registration service acceptance
 
-Updated 2026-10-15. **The public research registration service passed its bounded
+Updated 2026-10-16. **The first-user workflow correction is now deployed** in the
+[public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+Start with the [complete evaluation-to-comparison guide](GETTING_STARTED.md).
+
+- Application source: `39962e31d498ee9b0d0256b377c5e4837e915f6f`, PR #6,
+  normally merged as `6d5b9fa5a1646148fd947d71b1c0013f83dd1667`.
+- Actual running Space revision: `7cfd8d88099a28119d88c5f3a67852a43bfaf242`.
+  Eight changed files (156,124 bytes) match the candidate byte-for-byte. CPU Basic,
+  one replica, existing LFS attributes, Secret and State configuration are retained.
+- Health and explicit storage readiness, registration configuration, both existing
+  reference profiles, leaderboard and paired numerical comparison passed anonymous
+  HTTP checks. The actual HF embedded browser displayed the new pre-upload account
+  guidance, five-task profile charts and the completed two-reference comparison.
+- One automatic start; no rollback, new result upload, registration/publication
+  write, fresh native sign-in, GPU run or release/tag change. Registration writes
+  retain the local synthetic scope of the correction tests. This update does not
+  repeat the full persistence trial below or establish classifier accuracy.
+
+[Hosted update receipt](validation/platform_first_user_hosted_20261016.json)
+contains code hashes, read-check statuses and explicit scope. The earlier full
+acceptance below remains the evidence for sign-in, registration and restart
+preservation. Official ranks remain disabled.
+
+## Initial full registration acceptance (2026-10-15)
+
+On 2026-10-15, **the public research registration service passed its bounded
 acceptance trial.** [Open the Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform)
 or follow the [user guide](PLATFORM_USER_GUIDE.md). Numerical comparison is active;
 official ranks and original-response publication remain disabled.
@@ -53,7 +78,7 @@ their own scope. They were followed by the corrected compressed trial above.
 The build manifest retains its pre-acceptance flag as an immutable build fact;
 the separate dated receipt records later hosted acceptance.
 
-## First-user workflow correction (2026-10-16 source candidate)
+## First-user workflow correction (2026-10-16 implementation and local checks)
 
 The [complete first-user guide](GETTING_STARTED.md) now connects registered input
 preparation, generation, measurement, portable export, sign-in, private save,
@@ -70,9 +95,10 @@ A temporary public-read failure's underlying hosted cause has not been establish
 records 477 passing tests, independent full-index preparation and validation of
 both existing 17,670-record results, and a synthetic browser walkthrough through
 private registration, numerical sharing and paired comparison. No new GPU run,
-real HF login, raw-result upload or hosted deployment was performed for this
-candidate. These checks do not replace hosted acceptance of the new UI. The
-actual deployed revision above continues to identify the previous service.
+real HF login or raw-result upload was performed for those local checks.
+The subsequent approved deployment and anonymous hosted checks are recorded at
+the top of this document and in the separate hosted receipt. The local synthetic
+registration test is not represented as a new hosted registration-write trial.
 
 ## Historical checkpoints
 
