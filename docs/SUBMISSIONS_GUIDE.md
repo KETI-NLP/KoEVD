@@ -43,7 +43,7 @@ An independently supplied index validates the artifact and restores gold/metadat
 | `reject` | Independent reviewer/admin; under review | Rejected head; prior published revision remains unchanged |
 | `cancel_review` | Owner; pending or under review | Restore the workflow/consent/approval before the request; retain events |
 | `unpublish` | Owner; published | Stop sharing; private draft with fresh consent required for any future publication |
-| `reopen` | Owner; withdrawn | Restore private draft; never auto-publish or restore consent |
+| `reopen` | Owner; withdrawn by that owner | Restore private draft; never auto-publish or restore consent |
 | `withdraw` | Owner or admin | Legacy withdrawal; public reference removed, private original/history retained; owner may restore a private draft |
 
 Every mutation requires an expected state version and an idempotency key. Concurrent changes with a stale version are rejected. Exact replay returns the original receipt, which can be older than the current state; reload `get` before acting again. Reusing a key for different arguments is rejected. Duplicate creation of the same owner/original is rejected unless it is the exact original request replay.

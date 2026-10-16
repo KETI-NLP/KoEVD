@@ -220,8 +220,8 @@
     },
     {
       "path": "docs/GETTING_STARTED.md",
-      "bytes": 20951,
-      "sha256": "1444b3c62d2c28a776f91e8d96fb6b32820db760f09612204035ea0235b383b0"
+      "bytes": 21035,
+      "sha256": "d618be6e37fbcf7754f14daf3cd03f79d030e04405149888429a969b50fdbcd7"
     },
     {
       "path": "docs/GPU_MEASUREMENT_MATRIX_RESULTS.md",
@@ -315,8 +315,8 @@
     },
     {
       "path": "docs/PLATFORM_USER_GUIDE.md",
-      "bytes": 9182,
-      "sha256": "cd9931317f4cf8fa6e7fd84e167d39f56e6413f7bb0a3abe94b1df904e78e9f8"
+      "bytes": 9236,
+      "sha256": "78f14ad30ef21b1492e2429d9607130b41cba2eab92fc98ebe3be574414bbda5"
     },
     {
       "path": "docs/PLATFORM_VALIDATION_LOG.md",
@@ -415,8 +415,8 @@
     },
     {
       "path": "docs/SUBMISSIONS_GUIDE.md",
-      "bytes": 16561,
-      "sha256": "4cbb726ba93a24d4af7bf2182491bcffbea5b106612ed55f3c6c07588eb73510"
+      "bytes": 16575,
+      "sha256": "a936f7c9340778c277c84f355ff9a0a74a75a14cdeabce4ba90486a21c3bdf80"
     },
     {
       "path": "docs/TEAM_BACKUP_CONNECTION.md",
@@ -1500,8 +1500,8 @@
     },
     {
       "path": "src/koevd_eval/submissions.py",
-      "bytes": 49289,
-      "sha256": "a38e4006dbfc3f83c64f5d9ddf812f11c10080d396bfa8c5a4b78591d8706a98"
+      "bytes": 49609,
+      "sha256": "406109bec6718f257c8bf70b8419ff5314b553f36580462a97018f5901e58ec0"
     },
     {
       "path": "src/koevd_eval/transfer.py",
@@ -1790,8 +1790,8 @@
     },
     {
       "path": "tests/test_workflow_recovery.py",
-      "bytes": 10582,
-      "sha256": "4e449ebedc4d6a88c4fa739e342e809fc48d552a3d0acd6b80a75aef8d40577b"
+      "bytes": 10881,
+      "sha256": "b06ed318b186adf647a1d9c14537dfdadd30a054350ec157dc5fbb54dd2ffc02"
     }
   ]
 }

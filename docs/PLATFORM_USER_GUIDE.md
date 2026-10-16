@@ -133,9 +133,9 @@ response text is not included in public numerical profiles or comparisons.
 * **Stop sharing** removes the public projection and clears current consent and
   approval. The original/history remain private; fresh consent is required to
   publish again.
-* **Restore private draft** recovers a legacy withdrawn registration without
+* **Restore private draft** recovers a legacy registration you withdrew yourself without
   making it public. Use this instead of creating a duplicate original, then
-  provide fresh consent for numerical sharing.
+  provide fresh consent for numerical sharing. Administrator withdrawals remain blocked.
 
 When no publication administrator is configured, the independent review request
 button is hidden and new requests are rejected by the server. Numerical sharing

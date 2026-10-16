@@ -324,8 +324,8 @@ These numerical snapshots omit prompts, responses and private history.
 **Stop sharing** removes current public access while retaining the private
 original and history. You can publish again from that same registration after
 entering a fresh reason, permission statement and consent. For an older
-withdrawn registration, choose **Restore private draft** first; restoration never
-publishes anything by itself. Neither action can recall downloaded copies. See [data handling and limits](PLATFORM_USER_GUIDE.md#data-handling-and-limits).
+registration you withdrew yourself, choose **Restore private draft** first; restoration never
+publishes anything by itself. Administrator withdrawals cannot be bypassed through owner restoration. Neither action can recall downloaded copies. See [data handling and limits](PLATFORM_USER_GUIDE.md#data-handling-and-limits).
 
 ## Troubleshooting and completion check
 

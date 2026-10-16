@@ -120,6 +120,11 @@ class RegistrationRecoveryTests(unittest.TestCase):
         self.assertEqual(state['publication']['scope'],'summary')
         self.assert_code('responses_private',lambda:self.service.public_result(sid))
 
+    def test_administrator_withdrawal_cannot_be_bypassed_by_owner_restore(self):
+        state=self.action(self.publish('summary'),'withdraw',self.admin)
+        self.assert_code('operator_withdrawal',lambda:self.action(state,'reopen'))
+        self.assertEqual(self.service.public_list(),[])
+
     def test_legacy_withdraw_restores_private_without_recreating_original(self):
         state=self.action(self.publish('summary'),'withdraw');sid=state['id']
         self.assert_code('not_found',lambda:self.action(state,'reopen',self.other))

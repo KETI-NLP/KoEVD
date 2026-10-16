@@ -291,6 +291,9 @@ class SubmissionService:
             workflow = state['workflow']
             if action == 'reopen':
                 if workflow!='withdrawn': raise StorageError('invalid_transition','Only a withdrawn registration can be restored',409)
+                withdrawal=next((e for e in reversed(events) if e['action']=='withdraw'),None)
+                if not withdrawal or withdrawal['actor']['subject']!=state['owner']:
+                    raise StorageError('operator_withdrawal','An administrator-withdrawn registration cannot be restored by its owner',403)
                 state.update(workflow='draft',consent=None,approval=None,
                              publication={'status':'withdrawn','revision':None,'scope':None})
             elif action == 'unpublish':
