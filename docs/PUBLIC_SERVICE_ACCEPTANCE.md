@@ -1,7 +1,56 @@
 # Public registration service acceptance
 
-Updated 2026-10-16. **The recoverable workflow and leaderboard-first home are
-now deployed** in the [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+Updated 2026-10-16. **Release v0.3.0-rc.2 and the recovery/discovery improvements
+are deployed** in the [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+Use the [pinned first-user guide](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.2/docs/GETTING_STARTED.md).
+
+- Application source: `dfd32d34265835af4c6217447facfb8d38b551c3`,
+  [PR #10](https://github.com/KETI-NLP/KoEVD/pull/10), normally merged as
+  `2f480566cacdff7e1f5deebf55d3fae13de540af`.
+- [Release v0.3.0-rc.2](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.2)
+  points to that merge; Python package/module version is `0.3.0rc2`. A fresh clone
+  of this tag and clean environment installed the `hub` extra, passed dependency
+  checks and eight focused recovery tests, and exposed both `--measurement-tasks`
+  and `--remeasure`. Historical rc.1 is preserved and lacks those recovery options.
+- Actual running Space revision: `d6f863926557eb86c0a17ceb335084f753b634d5`.
+  All 14 changed files (172,785 bytes) match the candidate at the remote revision;
+  all 72 materialized source files match the application commit. CPU Basic,
+  single replica, provider LFS attributes, operator data and existing State/Secret
+  configuration are unchanged. One automatic start; no rollback.
+- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/38854569046) and
+  [merged CI](https://github.com/KETI-NLP/KoEVD/actions/runs/38854759633) passed
+  **497 tests each on Python 3.10 and 3.12**. The initial local full CPU run
+  passed 496 tests; final focused and fresh-release runs each passed eight.
+- Generation retry after classification preserves validated prior predictions,
+  measurements, traces and manifest before generation changes. Changed Task 3
+  predictions invalidate Task 3/4 measurements. Interrupted invalidation resumes
+  without another inference request; pending retries block classify/report/export.
+  Canonical/archived tampering is rejected. Preparation identity stays unchanged.
+- The actual localhost browser recovered combined configuration/session failure
+  without reloading, then completed synthetic upload, private save, explicit
+  numerical consent, own-model jump, global search, profile and paired comparison.
+  A local-only loader sent synthetic JSON through the normal upload API; the
+  native OS file chooser was not retested. JavaScript also verifies single-flight
+  retries, valid-session/upload retention and cross-group duplicate mapping.
+- Fifteen anonymous hosted HTTP reads passed. The two reference registrations,
+  all **94 leaderboard metric rows**, and the entire public paired comparison
+  response exactly match the predeployment values. Hosted browser checks cover
+  the new global finder, metric direction and public comparison. Metrics use
+  their existing denominators; Task 2 accuracy versus error is explained explicitly.
+- This update makes **no actual owner upload/write/sign-in trial or new GPU/
+  accuracy claim**. The earlier full hosted persistence acceptance remains the
+  evidence for native HF sign-in, durable owner writes and restart recovery.
+  Official ranks and reference response publication stay disabled. Saved private
+  results can be downloaded and reuploaded for analysis; direct saved-result
+  reanalysis is not implemented.
+
+[Recovery/discovery hosted receipt](validation/platform_recovery_discovery_hosted_20261016.json)
+records exact versions, file hashes, validation scope and unchanged metrics.
+
+## Earlier recovery and leaderboard-first update (2026-10-16)
+
+Earlier 2026-10-16 update (superseded above). **The recoverable workflow and leaderboard-first home were
+deployed** in the [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
 Follow [GETTING_STARTED.md](GETTING_STARTED.md) for evaluation, retries,
 registration and comparison.
 

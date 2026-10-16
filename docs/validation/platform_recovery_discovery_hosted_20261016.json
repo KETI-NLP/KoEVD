@@ -1,0 +1,302 @@
+{
+  "format": "koevd-hosted-recovery-and-discovery-acceptance-v1",
+  "date": "2026-10-16",
+  "source": "dfd32d34265835af4c6217447facfb8d38b551c3",
+  "merge_commit": "2f480566cacdff7e1f5deebf55d3fae13de540af",
+  "release_tag": "v0.3.0-rc.2",
+  "package_version": "0.3.0rc2",
+  "space": "KETI-NLP/KoEVD-Platform",
+  "running_revision": "d6f863926557eb86c0a17ceb335084f753b634d5",
+  "ci": {
+    "python_versions": [
+      "3.10",
+      "3.12"
+    ],
+    "tests_each": 497,
+    "passed": true,
+    "source_run": 38854569046,
+    "merge_run": 38854759633
+  },
+  "local_cpu": {
+    "initial_full_tests": 496,
+    "initial_full_passed": true,
+    "final_focused_tests": 8,
+    "final_focused_passed": true
+  },
+  "local_acceptance": {
+    "format": "koevd-recovery-validation-v1",
+    "date": "2026-10-16",
+    "scope": "CPU synthetic measurements, local HTTP and synthetic identity; no actual inference or external result publication",
+    "focused_tests": 8,
+    "focused_tests_passed": true,
+    "preparation_identity": "b3bb72a02a0b676afe67c8182345254d397f0da89be374963c9ff0fd8d23fbb8",
+    "checks": [
+      "failed generation after measurement resumes one failed HTTP request, archives prior evidence and invalidates Task 3/4",
+      "classification failure after regeneration reuses completed task, then exports validated result",
+      "interrupted invalidation resumes without another generation; pending retry blocks classify/report/export",
+      "tampered canonical measurement and archived evidence fail closed",
+      "concurrent workspace retry makes one session request; an existing valid session and upload are retained",
+      "global finder and duplicate mapping select the matching evaluation group; metric directions remain server-owned",
+      "localhost browser: config/session both fail, Retry succeeds without reload, upload via local synthetic loader, private registration, summary consent, own-model jump, global search, profile and paired comparison"
+    ],
+    "browser_startup_requests": [
+      {
+        "method": "POST",
+        "path": "/api/session"
+      },
+      {
+        "method": "GET",
+        "path": "/api/registration"
+      },
+      {
+        "method": "POST",
+        "path": "/api/session"
+      },
+      {
+        "method": "GET",
+        "path": "/api/registration"
+      }
+    ],
+    "browser_file_input_used": false,
+    "local_loader_note": "A local-only fixture button sent synthetic JSON through the normal upload API; native OS file chooser was not retested.",
+    "limits": [
+      "No GPU accuracy or new actual-model inference claim",
+      "No actual HF sign-in or owner mutation retest in this update",
+      "Official ranks and raw reference response publication remain disabled"
+    ]
+  },
+  "fresh_release_install": {
+    "tag": "v0.3.0-rc.2",
+    "commit": "2f480566cacdff7e1f5deebf55d3fae13de540af",
+    "hub_extra": true,
+    "package_and_module_versions_equal": true,
+    "pip_check_passed": true,
+    "measurement_recovery_options_present": true,
+    "focused_tests": 8,
+    "focused_tests_passed": true
+  },
+  "files": [
+    {
+      "path": "CITATION.cff",
+      "bytes": 463,
+      "sha256": "0d67c6da39c186a044a83c3cf9d933c5c4de9d94cae8fe0e596a1f14121ee917"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2360,
+      "sha256": "5ba0bbecc63c8d3314aa506c363a4fea969caed2f757673e8cf2d7b83199249d"
+    },
+    {
+      "path": "deployment-manifest.json",
+      "bytes": 13480,
+      "sha256": "661a6483a0b3c7ac36d1ac7f50f7be3a223f01c392d4f087f6792b1c46dd2261"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 1776,
+      "sha256": "c927a13b4ebfa152fb7ab579f04c18c645ee85c296b62af295f60bb908b77ca8"
+    },
+    {
+      "path": "src/koevd_eval/__init__.py",
+      "bytes": 87,
+      "sha256": "e9f32abb63b88dec2f94656b8264796e8e8cbaefc41da81f50ab439b4794c816"
+    },
+    {
+      "path": "src/koevd_eval/assets/metric_labels.js",
+      "bytes": 2483,
+      "sha256": "8c01660c9671da22580e0735c40018340d7252ecec9cd56015d1b808748f6b63"
+    },
+    {
+      "path": "src/koevd_eval/assets/registration.js",
+      "bytes": 41163,
+      "sha256": "af0b7c2f9fbfca7437a4408a8155eb213a9a8097015fd1c531f295c75d0f2e8c"
+    },
+    {
+      "path": "src/koevd_eval/assets/space.html",
+      "bytes": 14126,
+      "sha256": "b96eb2b967c37b0f2d8ce571ab6fc276ad1348d1c5a7722a636a2aa2ed58c258"
+    },
+    {
+      "path": "src/koevd_eval/assets/space.js",
+      "bytes": 12318,
+      "sha256": "c99960da1ac8240ae2cb54ad28e862d5054df97acd3c5e1f8e1a3ebd3ca5e767"
+    },
+    {
+      "path": "src/koevd_eval/generation_recovery.py",
+      "bytes": 5293,
+      "sha256": "e13556e147a64e02c28173e8898991859415085fc66125f7f6215939e478ede8"
+    },
+    {
+      "path": "src/koevd_eval/measurement_runs.py",
+      "bytes": 8310,
+      "sha256": "97c7784d2b69e79cac4b533085a410f2ae51e4ef9dd46812c08dcb6b8282f491"
+    },
+    {
+      "path": "src/koevd_eval/pipeline.py",
+      "bytes": 14236,
+      "sha256": "13fbac8a3d21127bbee54a4be58cc0b269169985f897a94a77522b8fbb3854d1"
+    },
+    {
+      "path": "src/koevd_eval/results.py",
+      "bytes": 36963,
+      "sha256": "c5f52ff18c8086a6f4a89e4f6238753c97bfd6d280f888b7a5f4b393c7e7bb0e"
+    },
+    {
+      "path": "src/koevd_eval/spaces.py",
+      "bytes": 19727,
+      "sha256": "4d97907ee51729d1cbe63b9d2227fb7bb953682626f25283ec79afe7524f035c"
+    }
+  ],
+  "changed_files": 14,
+  "changed_bytes": 172785,
+  "hosted_http": {
+    "passed": true,
+    "at": "2026-10-16T05:17:47.126768+00:00",
+    "scope": "anonymous GET only; no upload/sign-in/write",
+    "revision": "d6f863926557eb86c0a17ceb335084f753b634d5",
+    "source": "dfd32d34265835af4c6217447facfb8d38b551c3",
+    "public_references": [
+      "6204d78594f64db6ab6b74233058107f",
+      "6a9efc32e21a40c19aeeff935cc03b23"
+    ],
+    "registration_enabled": true,
+    "official_ranking_enabled": false,
+    "observations": [
+      {
+        "path": "/healthz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.625
+      },
+      {
+        "path": "/readyz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.5
+      },
+      {
+        "path": "/api/registration",
+        "status": 200,
+        "bytes": 163,
+        "seconds": 0.203
+      },
+      {
+        "path": "/api/public/submissions",
+        "status": 200,
+        "bytes": 972,
+        "seconds": 0.563
+      },
+      {
+        "path": "/api/public/leaderboard",
+        "status": 200,
+        "bytes": 133849,
+        "seconds": 5.375
+      },
+      {
+        "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f/profile",
+        "status": 200,
+        "bytes": 9389326,
+        "seconds": 3.969
+      },
+      {
+        "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23/profile",
+        "status": 200,
+        "bytes": 9379051,
+        "seconds": 3.328
+      },
+      {
+        "path": "/api/public/compare?left=6204d78594f64db6ab6b74233058107f&right=6a9efc32e21a40c19aeeff935cc03b23",
+        "status": 200,
+        "bytes": 18922386,
+        "seconds": 23.828
+      },
+      {
+        "path": "/assets/navigation.js",
+        "status": 200,
+        "bytes": 1430,
+        "seconds": 0.204
+      },
+      {
+        "path": "/assets/registration.js",
+        "status": 200,
+        "bytes": 40988,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/space.js",
+        "status": 200,
+        "bytes": 12318,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/metric_labels.js",
+        "status": 200,
+        "bytes": 2467,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/space.css",
+        "status": 200,
+        "bytes": 6195,
+        "seconds": 0.203
+      },
+      {
+        "path": "/",
+        "status": 200,
+        "bytes": 14472,
+        "seconds": 1.093
+      },
+      {
+        "path": "/submit",
+        "status": 200,
+        "bytes": 14472,
+        "seconds": 0.219
+      }
+    ]
+  },
+  "public_oracle": {
+    "publication_count": 2,
+    "board_metric_rows": 94,
+    "board_exact_equal_before_after": true,
+    "complete_pair_exact_equal_before_after": true
+  },
+  "runtime": {
+    "stage": "RUNNING",
+    "actual_revision": "d6f863926557eb86c0a17ceb335084f753b634d5",
+    "hardware": "cpu-basic",
+    "replicas": 1,
+    "automatic_starts": 1,
+    "rollback": false,
+    "operator_data_unchanged": true,
+    "lfs_attributes_unchanged": true
+  },
+  "owner_writes": 0,
+  "raw_result_uploads": 0,
+  "secret_changes": false,
+  "state_configuration_changes": false,
+  "new_paid_resources": false,
+  "official_ranking_enabled": false,
+  "reference_original_publication_enabled": false,
+  "hosted_browser": {
+    "passed": true,
+    "scope": "anonymous existing references only; temporary empty analysis session, no result upload or owner write",
+    "checks": [
+      "new global search finds Qwen3-4B and selects its evaluation group",
+      "board accuracy and direction visible",
+      "two-reference paired comparison completes",
+      "Task 2 explains 81.55% accuracy versus 18.45% answer error, and 65.35% versus 34.65%",
+      "Submit results shows optional analysis and save/share steps; navigation returns to models"
+    ],
+    "console_errors": 0,
+    "screenshots": [
+      {
+        "file": "hosted-model-finder.png",
+        "sha256": "44bf84ba45c5fc0782bb21c5ea74ce2a6fb92400fd4821b77b62c396d2affb96"
+      },
+      {
+        "file": "hosted-comparison-interpretation.png",
+        "sha256": "663a9f05ec4bc7ea157377b9d988100bc1ebbbcf00647079180e43d7e8820389"
+      }
+    ]
+  }
+}
