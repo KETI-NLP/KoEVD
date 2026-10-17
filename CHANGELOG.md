@@ -1,3 +1,17 @@
+# 0.3.0rc3 model-first overview and paper results
+
+- Public model loading no longer waits for account checks or a private analysis
+  session. Private sessions start when the submission workspace is opened.
+- A compact first-screen model table and Task 1–5 tabs expose counts, coverage,
+  four choice variants, three tool framings and descriptive strategy frequencies.
+- Historical paper tables are a separate aggregate-only collection with exact
+  source provenance, distinct input counts and no fabricated current registrations.
+- Saved originals can be imported into private analysis directly. Saving and
+  numerical sharing have explicit, separate status messages.
+- `koevd-pipeline --stage status` and final run summaries identify failed/pending
+  generations and incomplete or invalid measurements without changing run data.
+- See current service acceptance for actual deployment and validation scope.
+
 # 0.3.0rc2 recovery and model discovery
 
 - Preserve validated measurements before retrying failed generation; changed

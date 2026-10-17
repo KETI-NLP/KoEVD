@@ -11,7 +11,7 @@ No account, GPU or upload is required to inspect the two full Qwen3 references,
 their metric tables, metadata trends and paired comparisons. If you already have
 a completed standard run and its trusted index, start at step 7.
 
-Use **v0.3.0-rc.2** (Python package **0.3.0rc2**) for this guide and record its
+Use **v0.3.0-rc.3** (Python package **0.3.0rc3**) for this guide and record its
 commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
 or the generation/measurement retry repair. Existing release tags are immutable. [Service acceptance](PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
@@ -20,7 +20,7 @@ validation logs describe their original dates and versions.
 ## 1. Install the evaluation client
 
 ```bash
-git clone --branch v0.3.0-rc.2 --single-branch https://github.com/KETI-NLP/KoEVD.git
+git clone --branch v0.3.0-rc.3 --single-branch https://github.com/KETI-NLP/KoEVD.git
 cd KoEVD
 git rev-parse HEAD
 python3.11 -m venv .venv-eval
@@ -292,8 +292,10 @@ You may instead upload without signing in for temporary analysis only. Select
 your upload plus a configured reference, then **Build analysis and comparison**
 to inspect private cases. Session data expires after two hours; reloading loses
 the page's temporary access token. Saving a registration preserves a separate
-private original and history. To analyze a saved private original in a new
-session, download it from your registration and upload it again.
+private original and history. To analyze it later, sign in, select your saved
+registration and **Analyze saved result**. This imports its current original
+into your private session; it neither publishes nor revises the registration.
+Choose another upload/reference and **Build analysis and comparison**.
 
 ## 9. Share numerical metrics and compare models
 
@@ -387,6 +389,47 @@ adds a public profile that can be compared with compatible published runs.
   strategy frequencies describe behavior and do not measure quality. N/A means
   an undefined denominator, not zero. There is no aggregate ethics score.
 
-For a saved private result, download its private original and upload it to a new
-analysis session when needed. Direct reanalysis from saved registrations is not
-currently offered. Public numerical downloads are reports, not upload artifacts.
+For a saved private result, sign in, select the registration and choose
+**Analyze saved result**. Select a reference or second uploaded run and build
+analysis. Your original and history stay unchanged. Public numerical downloads
+are reports, not upload artifacts.
+
+## Start with models and task results (v0.3.0-rc.3)
+
+The default **Current protocol** view shows every currently shared model with
+representative Task 1–5 measurements before advanced controls. **Overview** uses
+Task 1 missed risk/false alarms, Task 2 Choose Best accuracy, Task 3 core unsafe
+classifier rate, the most frequent Task 4 strategy, and Task 5's three framings.
+Task 4 is behavior frequency, not quality. Open Task tabs for separate variants,
+counts, coverage and evaluation-group IDs. Different conditions are not pooled
+into an official rank. The **Profile** and **Compare** buttons open deeper views.
+
+**Paper results** is a separate historical aggregate collection. Task 3/4 show
+12 paper models; Task 1/2 and Task 5 show their published pooled tables rather
+than invented per-model scores. Source CSV links and historical denominators are
+retained. These are not new protocol registrations, raw cases or paired-input
+comparison results. Current Task 3 has 2,659 union sources, whereas the paper
+summary lists 13,552 prompts per model. Do not merge their scores into one rank.
+
+Public model results load independently of account checks and private analysis.
+If account lookup fails, use **Check account sign-in**; the model list remains
+available. For temporary analysis use **Retry analysis connection**. Neither
+button automatically repeats an ambiguous save/share write.
+
+After generation or measurement, inspect the printed overall status summary.
+A command can finish with retained failed rows; successful exit does not mean
+all API requests or task parses succeeded. Check again at any time:
+
+```bash
+koevd-pipeline --stage status --output-dir runs/my-model-core
+```
+
+This read-only check shows expected/generated/failed/pending rows for each task,
+measurement readiness or integrity problems, and the next stage to run. It
+requires no model endpoint, adapter or GPU. It does not verify model accuracy or
+the freshness of an older exported JSON. Repeat your original generation command
+when failures remain, preserving every model/decoding/provenance setting. After
+changes, rebuild the report, reexport and validate against the same trusted index.
+A status recommendation never authorizes editing hashes or discarding failures.
+
+If a command stops before printing its status summary, run `koevd-pipeline --stage status --output-dir <the-same-run-directory>` to inspect retained progress and the next recovery step.

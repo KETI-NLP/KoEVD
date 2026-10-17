@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "koevd-eval"
-version = "0.3.0rc2"
+version = "0.3.0rc3"
 description = "Reference evaluation and analysis for KoEVD"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -45,4 +45,4 @@ license-files = ["LICENSE", "LICENSES/*.md", "NOTICE.md"]
 where = ["src"]
 
 [tool.setuptools.package-data]
-koevd_eval = ["schemas/*.json", "assets/*.css", "assets/*.js", "assets/*.html"]
+koevd_eval = ["schemas/*.json", "assets/*.css", "assets/*.js", "assets/*.html", "assets/*.json"]
