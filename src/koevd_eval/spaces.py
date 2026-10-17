@@ -104,13 +104,13 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
     async def landing():
         content=files('koevd_eval').joinpath('assets','space.html').read_text(encoding='utf-8')
         if deployment_notice:
-            content=content.replace('<body><main>','<body><main><div class="notice" role="note">'+escape(deployment_notice)+'</div>',1)
+            content=content.replace('<body><main>','<body><main><details class="deployment-notice"><summary>Research use · measurement and sharing limits</summary><p>'+escape(deployment_notice)+'</p></details>',1)
         return Response(content,media_type='text/html')
 
     @app.get('/assets/{name}')
     async def assets(name:str):
-        if name not in ('space.js','space.css','registration.js','public_reads.js','navigation.js','metric_labels.js'):raise ServiceError('not_found','Asset not found.',404)
-        return Response(files('koevd_eval').joinpath('assets',name).read_text(encoding='utf-8'),media_type='text/javascript' if name.endswith('.js') else 'text/css')
+        if name not in ('space.js','space.css','registration.js','public_reads.js','navigation.js','metric_labels.js','home.js','paper_results.json'):raise ServiceError('not_found','Asset not found.',404)
+        return Response(files('koevd_eval').joinpath('assets',name).read_text(encoding='utf-8'),media_type='text/javascript' if name.endswith('.js') else 'application/json' if name.endswith('.json') else 'text/css')
 
     @app.get('/healthz')
     async def health():return {'status':'ready','registration_enabled':registration is not None}

@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const home=require('../src/koevd_eval/assets/home.js'),labels=require('../src/koevd_eval/assets/metric_labels.js');
+function element(){return {value:'',children:[],dataset:{},hidden:false,files:[],classList:{toggle(){},remove(){},add(){}},append(...v){this.children.push(...v)},replaceChildren(...v){this.children=v},get firstChild(){return this.children[0]},get options(){return this.children},setAttribute(){},addEventListener(){},after(){},before(){},querySelector(){return element()},querySelectorAll(){return []},scrollIntoView(){}};}
+async function startup(failConfig){const nodes=new Map(),node=id=>{if(!nodes.has(id))nodes.set(id,element());return nodes.get(id)},calls=[];let rendered,resolveRender;
+ const ready=new Promise(resolve=>resolveRender=resolve),board={publications:[{submission_id:'a',model:{id:'SYNTHETIC-a'},revision:1},{submission_id:'b',model:{id:'SYNTHETIC-b'},revision:1}],boards:[],excluded:[],publication_count:2,distinct_artifact_count:2};
+ const workspace={uploads:()=>[],ready:()=>false,ensureReady:()=>{calls.push('PRIVATE_SESSION');return new Promise(()=>{})},api:async path=>{calls.push(path);if(path==='/api/registration'){if(failConfig)throw Error('SYNTHETIC config unavailable');return {json:async()=>({enabled:true,self_reported_summaries_enabled:true})};}if(path==='/api/identity')throw Error('SYNTHETIC account unavailable');if(path==='/api/public/leaderboard')return {json:async()=>board};throw Error('Unexpected '+path);}};
+ const window={KoEVDWorkspace:workspace,KoEVDMetrics:labels,KoEVDNavigation:{configure(){},show(){}},KoEVDPublicReads:{explanation:e=>e.message},KoEVDHome:{create:()=>({clear(){},refresh(){},render(value){rendered=value;resolveRender();}})},addEventListener(){}};window.self=window.top=window;
+ vm.runInNewContext(fs.readFileSync('src/koevd_eval/assets/registration.js','utf8'),{window,document:{getElementById:node,createElement:element,querySelector:node,querySelectorAll:()=>[]},location:{hash:'',origin:'http://localhost',pathname:'/'},URLSearchParams,console});
+ await Promise.race([ready,new Promise((_,reject)=>setTimeout(()=>reject(Error('Public home waited for an unrelated dependency')),1000))]);
+ assert.equal(rendered.publications.length,2);assert(!calls.includes('PRIVATE_SESSION'));assert(calls.includes('/api/public/leaderboard'));
+}
+(async()=>{await startup(false);await startup(true);
+ const metric={rate:{value:0,numerator:0,denominator:2},coverage:{numerator:2,denominator:3},cohort_sha256:'group'},board={publications:[{submission_id:'duplicate',duplicate_of:'original'}],boards:[],excluded:[{entry_id:'original',metric_id:'task2/variant/choose_best/accuracy_on_valid',metric}]};
+ assert.equal(home.metrics(board,'duplicate').get('task2/variant/choose_best/accuracy_on_valid'),metric);assert.equal(home.rate(metric.rate),'0.00%');assert.equal(home.rate({value:null}),'N/A');assert.equal(home.specs('2').length,4);assert.equal(home.specs('5').length,3);assert.equal(home.bestStrategy({}),null);assert.equal(home.bestStrategy({strategy_inclusion:{reasoning:{rate_on_classified:0}}})[0],'reasoning');
+ console.log('Public startup survives account/config failure without any private session; metric/duplicate/N/A projections passed');
+})().catch(e=>{console.error(e);process.exitCode=1});

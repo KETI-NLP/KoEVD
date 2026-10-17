@@ -178,6 +178,47 @@ registration/history before repeating it. See the concrete
   strategy frequencies describe behavior and do not measure quality. N/A means
   an undefined denominator, not zero. There is no aggregate ethics score.
 
-For a saved private result, download its private original and upload it to a new
-analysis session when needed. Direct reanalysis from saved registrations is not
-currently offered. Public numerical downloads are reports, not upload artifacts.
+For a saved private result, sign in, select the registration and choose
+**Analyze saved result**. Select a reference or second uploaded run and build
+analysis. Your original and history stay unchanged. Public numerical downloads
+are reports, not upload artifacts.
+
+## Start with models and task results (v0.3.0-rc.3)
+
+The default **Current protocol** view shows every currently shared model with
+representative Task 1–5 measurements before advanced controls. **Overview** uses
+Task 1 missed risk/false alarms, Task 2 Choose Best accuracy, Task 3 core unsafe
+classifier rate, the most frequent Task 4 strategy, and Task 5's three framings.
+Task 4 is behavior frequency, not quality. Open Task tabs for separate variants,
+counts, coverage and evaluation-group IDs. Different conditions are not pooled
+into an official rank. The **Profile** and **Compare** buttons open deeper views.
+
+**Paper results** is a separate historical aggregate collection. Task 3/4 show
+12 paper models; Task 1/2 and Task 5 show their published pooled tables rather
+than invented per-model scores. Source CSV links and historical denominators are
+retained. These are not new protocol registrations, raw cases or paired-input
+comparison results. Current Task 3 has 2,659 union sources, whereas the paper
+summary lists 13,552 prompts per model. Do not merge their scores into one rank.
+
+Public model results load independently of account checks and private analysis.
+If account lookup fails, use **Check account sign-in**; the model list remains
+available. For temporary analysis use **Retry analysis connection**. Neither
+button automatically repeats an ambiguous save/share write.
+
+After generation or measurement, inspect the printed overall status summary.
+A command can finish with retained failed rows; successful exit does not mean
+all API requests or task parses succeeded. Check again at any time:
+
+```bash
+koevd-pipeline --stage status --output-dir runs/my-model-core
+```
+
+This read-only check shows expected/generated/failed/pending rows for each task,
+measurement readiness or integrity problems, and the next stage to run. It
+requires no model endpoint, adapter or GPU. It does not verify model accuracy or
+the freshness of an older exported JSON. Repeat your original generation command
+when failures remain, preserving every model/decoding/provenance setting. After
+changes, rebuild the report, reexport and validate against the same trusted index.
+A status recommendation never authorizes editing hashes or discarding failures.
+
+If a command stops before printing its status summary, run `koevd-pipeline --stage status --output-dir <the-same-run-directory>` to inspect retained progress and the next recovery step.

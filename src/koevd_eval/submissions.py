@@ -490,6 +490,7 @@ class SubmissionService:
                 'artifact_sha256':report['artifact_sha256'],'scope':summary['scope'],
                 'model':summary['model'],'display':summary['display'],'verification':summary['verification'],
                 'origin':summary['origin'],
+                'strategy_inclusion':deepcopy(next((p['strategy_inclusion'] for p in summary['tasks']['4']['partitions'] if p['kind']=='all' and p['name']=='all'),{})),
                 'duplicate_of':duplicate_of})
         # No all-original memory pool or repeated admission computation on hits.
         result=_boards_from_admissions(entries,policy=policy)

@@ -1,0 +1,538 @@
+{
+  "format": "koevd-paper-aggregates-v1",
+  "scope": "historical_aggregate_only",
+  "notice": "Published paper aggregates. Different inputs, denominators and generation settings from current registered runs; do not combine into one rank or infer missing per-model results. No original cases or new evaluations are included.",
+  "tables": [
+    {
+      "task": 1,
+      "title": "Task 1: input-risk judgments by severity",
+      "note": "Historical pooled/model-mean summary; not a per-model current-protocol score.",
+      "source": "paper_assets/tables/appendix_f_task1_full_severity_summary.csv",
+      "source_sha256": "efa6d62039a465a16e8af1ac33bfdfd6b0a1642b9c7d5ccd28df1798bf01e000",
+      "columns": [
+        "Severity band",
+        "Source n",
+        "Effective model judgments",
+        "Model-mean unsafe judgment rate (%)"
+      ],
+      "rows": [
+        {
+          "Severity band": "Benign",
+          "Source n": "1043",
+          "Effective model judgments": "11472",
+          "Model-mean unsafe judgment rate (%)": "14.3"
+        },
+        {
+          "Severity band": "Low",
+          "Source n": "2629",
+          "Effective model judgments": "28917",
+          "Model-mean unsafe judgment rate (%)": "25.4"
+        },
+        {
+          "Severity band": "Moderate",
+          "Source n": "3017",
+          "Effective model judgments": "33183",
+          "Model-mean unsafe judgment rate (%)": "58.1"
+        },
+        {
+          "Severity band": "High",
+          "Source n": "2552",
+          "Effective model judgments": "28066",
+          "Model-mean unsafe judgment rate (%)": "84.2"
+        },
+        {
+          "Severity band": "Extreme",
+          "Source n": "4189",
+          "Effective model judgments": "46059",
+          "Model-mean unsafe judgment rate (%)": "80.7"
+        },
+        {
+          "Severity band": "HD/borderline",
+          "Source n": "122",
+          "Effective model judgments": "1342",
+          "Model-mean unsafe judgment rate (%)": "27.9"
+        }
+      ]
+    },
+    {
+      "task": 2,
+      "title": "Task 2: answered accuracy by metadata",
+      "note": "Historical pooled summary. Paper model panels average three common variants; current runs expose four variants separately.",
+      "source": "paper_assets/tables/appendix_g_task2_metadata_accuracy_summary.csv",
+      "source_sha256": "a72fe6ab03c44091fdc28022b4e5dc6a618102b002d45d2c1a85ba60f62bd701",
+      "columns": [
+        "Axis",
+        "Value",
+        "Parsed/answered items",
+        "Accuracy on answered items (%)"
+      ],
+      "rows": [
+        {
+          "Axis": "Severity band",
+          "Value": "Benign",
+          "Parsed/answered items": "25027",
+          "Accuracy on answered items (%)": "74.4"
+        },
+        {
+          "Axis": "Severity band",
+          "Value": "Extreme",
+          "Parsed/answered items": "100523",
+          "Accuracy on answered items (%)": "70.4"
+        },
+        {
+          "Axis": "Severity band",
+          "Value": "HD/borderline",
+          "Parsed/answered items": "2928",
+          "Accuracy on answered items (%)": "72.1"
+        },
+        {
+          "Axis": "Severity band",
+          "Value": "High",
+          "Parsed/answered items": "61236",
+          "Accuracy on answered items (%)": "71.2"
+        },
+        {
+          "Axis": "Severity band",
+          "Value": "Low",
+          "Parsed/answered items": "63089",
+          "Accuracy on answered items (%)": "74.2"
+        },
+        {
+          "Axis": "Severity band",
+          "Value": "Moderate",
+          "Parsed/answered items": "72399",
+          "Accuracy on answered items (%)": "74.1"
+        },
+        {
+          "Axis": "Explicitness",
+          "Value": "Explicit",
+          "Parsed/answered items": "157802",
+          "Accuracy on answered items (%)": "72.1"
+        },
+        {
+          "Axis": "Explicitness",
+          "Value": "Implicit",
+          "Parsed/answered items": "141630",
+          "Accuracy on answered items (%)": "72.5"
+        },
+        {
+          "Axis": "Explicitness",
+          "Value": "Missing/unspecified",
+          "Parsed/answered items": "4583",
+          "Accuracy on answered items (%)": "71.6"
+        },
+        {
+          "Axis": "Explicitness",
+          "Value": "Neutral",
+          "Parsed/answered items": "21187",
+          "Accuracy on answered items (%)": "74.9"
+        },
+        {
+          "Axis": "Utterance type",
+          "Value": "Biased Qs",
+          "Parsed/answered items": "6286",
+          "Accuracy on answered items (%)": "75.3"
+        },
+        {
+          "Axis": "Utterance type",
+          "Value": "Controversial Requests",
+          "Parsed/answered items": "20922",
+          "Accuracy on answered items (%)": "70.1"
+        },
+        {
+          "Axis": "Utterance type",
+          "Value": "Copyright",
+          "Parsed/answered items": "19008",
+          "Accuracy on answered items (%)": "72.2"
+        },
+        {
+          "Axis": "Utterance type",
+          "Value": "Exploring Opinions",
+          "Parsed/answered items": "54186",
+          "Accuracy on answered items (%)": "73.7"
+        },
+        {
+          "Axis": "Utterance type",
+          "Value": "Expressing Opinion",
+          "Parsed/answered items": "131999",
+          "Accuracy on answered items (%)": "72.9"
+        },
+        {
+          "Axis": "Utterance type",
+          "Value": "Future Predictions",
+          "Parsed/answered items": "10296",
+          "Accuracy on answered items (%)": "73.0"
+        },
+        {
+          "Axis": "Utterance type",
+          "Value": "Personal Info",
+          "Parsed/answered items": "10056",
+          "Accuracy on answered items (%)": "68.0"
+        },
+        {
+          "Axis": "Utterance type",
+          "Value": "Prohibited Acts",
+          "Parsed/answered items": "12912",
+          "Accuracy on answered items (%)": "70.1"
+        },
+        {
+          "Axis": "Utterance type",
+          "Value": "Proverb/Term Meaning",
+          "Parsed/answered items": "1488",
+          "Accuracy on answered items (%)": "63.1"
+        },
+        {
+          "Axis": "Utterance type",
+          "Value": "Providing Information",
+          "Parsed/answered items": "38350",
+          "Accuracy on answered items (%)": "71.0"
+        },
+        {
+          "Axis": "Utterance type",
+          "Value": "Specialized Advice",
+          "Parsed/answered items": "19699",
+          "Accuracy on answered items (%)": "75.2"
+        }
+      ]
+    },
+    {
+      "task": 3,
+      "title": "Task 3: generated-response safety by model",
+      "note": "13,552 prompts per model in this historical experiment; current core/union counts differ. Classifier-based proxy.",
+      "source": "paper_assets/tables/appendix_h_task3_model_summary.csv",
+      "source_sha256": "7e3fced50d4ead27ccb93e641e7dbaa31f2c9e6394c1e4a81731539ea0e00418",
+      "columns": [
+        "Cohort",
+        "Model",
+        "Total prompts",
+        "Classified responses",
+        "Unsafe responses",
+        "Unsafe/classified (%)",
+        "Unsafe/all (%)",
+        "Generation skip (%)",
+        "Classification errors"
+      ],
+      "rows": [
+        {
+          "Cohort": "Open-weight models",
+          "Model": "Ministral 3 8B",
+          "Total prompts": "13552",
+          "Classified responses": "13552",
+          "Unsafe responses": "1489",
+          "Unsafe/classified (%)": "10.99",
+          "Unsafe/all (%)": "10.99",
+          "Generation skip (%)": "0.0",
+          "Classification errors": "0"
+        },
+        {
+          "Cohort": "Open-weight models",
+          "Model": "Apertus 8B",
+          "Total prompts": "13552",
+          "Classified responses": "13552",
+          "Unsafe responses": "950",
+          "Unsafe/classified (%)": "7.01",
+          "Unsafe/all (%)": "7.01",
+          "Generation skip (%)": "0.0",
+          "Classification errors": "0"
+        },
+        {
+          "Cohort": "Commercial",
+          "Model": "GPT-5.4",
+          "Total prompts": "13552",
+          "Classified responses": "10819",
+          "Unsafe responses": "627",
+          "Unsafe/classified (%)": "5.8",
+          "Unsafe/all (%)": "4.63",
+          "Generation skip (%)": "20.17",
+          "Classification errors": "0"
+        },
+        {
+          "Cohort": "Commercial",
+          "Model": "Gemini 3.1 Pro",
+          "Total prompts": "13552",
+          "Classified responses": "13550",
+          "Unsafe responses": "463",
+          "Unsafe/classified (%)": "3.42",
+          "Unsafe/all (%)": "3.42",
+          "Generation skip (%)": "0.0",
+          "Classification errors": "0"
+        },
+        {
+          "Cohort": "Open-weight models",
+          "Model": "Qwen3.5 9B",
+          "Total prompts": "13552",
+          "Classified responses": "13552",
+          "Unsafe responses": "334",
+          "Unsafe/classified (%)": "2.46",
+          "Unsafe/all (%)": "2.46",
+          "Generation skip (%)": "0.0",
+          "Classification errors": "0"
+        },
+        {
+          "Cohort": "Open-weight models",
+          "Model": "OLMo 3 7B",
+          "Total prompts": "13552",
+          "Classified responses": "13552",
+          "Unsafe responses": "247",
+          "Unsafe/classified (%)": "1.82",
+          "Unsafe/all (%)": "1.82",
+          "Generation skip (%)": "0.0",
+          "Classification errors": "0"
+        },
+        {
+          "Cohort": "Commercial",
+          "Model": "Gemini 3.1 Flash-Lite",
+          "Total prompts": "13552",
+          "Classified responses": "13550",
+          "Unsafe responses": "236",
+          "Unsafe/classified (%)": "1.74",
+          "Unsafe/all (%)": "1.74",
+          "Generation skip (%)": "0.0",
+          "Classification errors": "0"
+        },
+        {
+          "Cohort": "Open-weight models",
+          "Model": "Qwen3.6 27B",
+          "Total prompts": "13552",
+          "Classified responses": "13552",
+          "Unsafe responses": "222",
+          "Unsafe/classified (%)": "1.64",
+          "Unsafe/all (%)": "1.64",
+          "Generation skip (%)": "0.0",
+          "Classification errors": "0"
+        },
+        {
+          "Cohort": "Open-weight models",
+          "Model": "Gemma 4 E4B",
+          "Total prompts": "13552",
+          "Classified responses": "13552",
+          "Unsafe responses": "170",
+          "Unsafe/classified (%)": "1.25",
+          "Unsafe/all (%)": "1.25",
+          "Generation skip (%)": "0.0",
+          "Classification errors": "0"
+        },
+        {
+          "Cohort": "Commercial",
+          "Model": "GPT-5.4 Nano",
+          "Total prompts": "13552",
+          "Classified responses": "10839",
+          "Unsafe responses": "134",
+          "Unsafe/classified (%)": "1.24",
+          "Unsafe/all (%)": "0.99",
+          "Generation skip (%)": "20.02",
+          "Classification errors": "0"
+        },
+        {
+          "Cohort": "Commercial",
+          "Model": "Claude 4.6 Sonnet",
+          "Total prompts": "13552",
+          "Classified responses": "13525",
+          "Unsafe responses": "152",
+          "Unsafe/classified (%)": "1.12",
+          "Unsafe/all (%)": "1.12",
+          "Generation skip (%)": "0.2",
+          "Classification errors": "0"
+        },
+        {
+          "Cohort": "Commercial",
+          "Model": "Claude Haiku 4.5",
+          "Total prompts": "13552",
+          "Classified responses": "13552",
+          "Unsafe responses": "88",
+          "Unsafe/classified (%)": "0.65",
+          "Unsafe/all (%)": "0.65",
+          "Generation skip (%)": "0.0",
+          "Classification errors": "0"
+        }
+      ]
+    },
+    {
+      "task": 4,
+      "title": "Task 4: model strategy clusters",
+      "note": "Dominant included strategy and PCA coordinates from the paper; not a quality score or a full strategy distribution.",
+      "source": "paper_assets/tables/appendix_i_task4_model_strategy_clusters.csv",
+      "source_sha256": "6db4c08d8fbe612edafdc7ea29c62bc1d2646c27b0fc4b2488855eef946d5d34",
+      "columns": [
+        "Cluster",
+        "Model",
+        "Cohort",
+        "Dominant included strategy",
+        "Dominant included rate (%)",
+        "PC1",
+        "PC2"
+      ],
+      "rows": [
+        {
+          "Cluster": "1",
+          "Model": "Apertus 8B",
+          "Cohort": "Open Models",
+          "Dominant included strategy": "Info Providing",
+          "Dominant included rate (%)": "68.17",
+          "PC1": "0.1488540703152708",
+          "PC2": "-0.3238128380780485"
+        },
+        {
+          "Cluster": "1",
+          "Model": "Gemini 3.1 Flash-Lite",
+          "Cohort": "Commercial",
+          "Dominant included strategy": "Info Providing",
+          "Dominant included rate (%)": "86.58",
+          "PC1": "-0.1417597825642536",
+          "PC2": "-0.2412778681949987"
+        },
+        {
+          "Cluster": "1",
+          "Model": "Gemini 3.1 Pro",
+          "Cohort": "Commercial",
+          "Dominant included strategy": "Info Providing",
+          "Dominant included rate (%)": "75.77",
+          "PC1": "0.1013805369943833",
+          "PC2": "-0.2566024669397967"
+        },
+        {
+          "Cluster": "1",
+          "Model": "Ministral 3 8B",
+          "Cohort": "Open Models",
+          "Dominant included strategy": "Info Providing",
+          "Dominant included rate (%)": "76.96",
+          "PC1": "0.0734108121931578",
+          "PC2": "-0.115195115525513"
+        },
+        {
+          "Cluster": "1",
+          "Model": "OLMo 3 7B",
+          "Cohort": "Open Models",
+          "Dominant included strategy": "Info Providing",
+          "Dominant included rate (%)": "87.48",
+          "PC1": "-0.0541417726431832",
+          "PC2": "-0.257752697234032"
+        },
+        {
+          "Cluster": "1",
+          "Model": "Qwen3.5 9B",
+          "Cohort": "Open Models",
+          "Dominant included strategy": "Info Providing",
+          "Dominant included rate (%)": "87.57",
+          "PC1": "-0.0598742314829012",
+          "PC2": "-0.2107855609800336"
+        },
+        {
+          "Cluster": "1",
+          "Model": "Qwen3.6 27B",
+          "Cohort": "Open Models",
+          "Dominant included strategy": "Info Providing",
+          "Dominant included rate (%)": "89.02",
+          "PC1": "-0.0623589901136456",
+          "PC2": "-0.2937406412562865"
+        },
+        {
+          "Cluster": "2",
+          "Model": "Claude 4.6 Sonnet",
+          "Cohort": "Commercial",
+          "Dominant included strategy": "Info Providing",
+          "Dominant included rate (%)": "87.68",
+          "PC1": "-0.2187419513458402",
+          "PC2": "0.2651439528759885"
+        },
+        {
+          "Cluster": "2",
+          "Model": "Claude Haiku 4.5",
+          "Cohort": "Commercial",
+          "Dominant included strategy": "Info Providing",
+          "Dominant included rate (%)": "95.43",
+          "PC1": "-0.3409572236857125",
+          "PC2": "0.2202381653369313"
+        },
+        {
+          "Cluster": "2",
+          "Model": "GPT-5.4",
+          "Cohort": "Commercial",
+          "Dominant included strategy": "Info Providing",
+          "Dominant included rate (%)": "84.6",
+          "PC1": "-0.3083652738240617",
+          "PC2": "0.3145789875804436"
+        },
+        {
+          "Cluster": "2",
+          "Model": "GPT-5.4 Nano",
+          "Cohort": "Commercial",
+          "Dominant included strategy": "Redirecting",
+          "Dominant included rate (%)": "89.45",
+          "PC1": "-0.3388709536653344",
+          "PC2": "0.4812454007999943"
+        },
+        {
+          "Cluster": "3",
+          "Model": "Gemma 4 E4B",
+          "Cohort": "Open Models",
+          "Dominant included strategy": "Info Providing",
+          "Dominant included rate (%)": "68.1",
+          "PC1": "0.1418721776212177",
+          "PC2": "0.0502362849405087"
+        }
+      ]
+    },
+    {
+      "task": 5,
+      "title": "Task 5: pooled mock tool choices",
+      "note": "Pooled historical results across models; these rows do not provide individual model scores. No real tools were executed.",
+      "source": "paper_assets/tables/appendix_j_task5_variant_summary.csv",
+      "source_sha256": "5fb9d1150350fd8475f610188247e4659c2eb647af2a88fe1e3e45121ac767c5",
+      "columns": [
+        "Variant",
+        "Rows",
+        "Parsed rows",
+        "Unsafe tool-call rate (%)",
+        "Allowed tool-call rate (%)",
+        "Refusal rate (%)",
+        "Parse rate (%)",
+        "Decision accuracy (%)",
+        "Unsafe calls",
+        "Allowed calls",
+        "Refusals"
+      ],
+      "rows": [
+        {
+          "Variant": "Safe-Guided",
+          "Rows": "9408",
+          "Parsed rows": "9258",
+          "Unsafe tool-call rate (%)": "0.01",
+          "Allowed tool-call rate (%)": "50.24",
+          "Refusal rate (%)": "36.44",
+          "Parse rate (%)": "98.41",
+          "Decision accuracy (%)": "51.88",
+          "Unsafe calls": "1",
+          "Allowed calls": "4727",
+          "Refusals": "3428"
+        },
+        {
+          "Variant": "Tool-Forced",
+          "Rows": "9408",
+          "Parsed rows": "8999",
+          "Unsafe tool-call rate (%)": "6.44",
+          "Allowed tool-call rate (%)": "77.67",
+          "Refusal rate (%)": "11.44",
+          "Parse rate (%)": "95.65",
+          "Decision accuracy (%)": "24.64",
+          "Unsafe calls": "606",
+          "Allowed calls": "7307",
+          "Refusals": "1076"
+        },
+        {
+          "Variant": "Unsafe-Induced",
+          "Rows": "9408",
+          "Parsed rows": "9020",
+          "Unsafe tool-call rate (%)": "22.32",
+          "Allowed tool-call rate (%)": "26.68",
+          "Refusal rate (%)": "44.9",
+          "Parse rate (%)": "95.88",
+          "Decision accuracy (%)": "51.34",
+          "Unsafe calls": "2100",
+          "Allowed calls": "2510",
+          "Refusals": "4224"
+        }
+      ]
+    }
+  ]
+}

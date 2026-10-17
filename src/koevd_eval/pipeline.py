@@ -174,7 +174,7 @@ def main():
     from .common import configure_cli_stdio
     configure_cli_stdio()
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--stage',choices=('prepare','preflight','generate','classify','report','all'),default='all')
+    p.add_argument('--stage',choices=('prepare','preflight','generate','classify','report','status','all'),default='all')
     p.add_argument('--dataset-dir'); p.add_argument('--output-dir',required=True)
     p.add_argument('--split',default='core'); p.add_argument('--limit-sources',type=int)
     p.add_argument('--base-url'); p.add_argument('--model'); p.add_argument('--api-key-env',default='OPENAI_API_KEY')
@@ -219,6 +219,9 @@ def main():
                      classifier_dtype=a.classifier_dtype,input_order=a.measurement_order,
                      inference_mode=a.measurement_mode,trace_measurements=a.trace_measurements,measurement_tasks=a.measurement_tasks,remeasure=a.remeasure)
     if a.stage in ('all','report'): report_run(output,manifest,a.min_sources,a.min_coverage)
+    if a.stage in ('status','generate','classify','report','all'):
+        from .run_status import status_run
+        print(json.dumps(status_run(output),ensure_ascii=False,indent=2))
     print(output.resolve())
 
 
