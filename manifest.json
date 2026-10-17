@@ -345,8 +345,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 25741,
-      "sha256": "958a8b027e05a699cf27183bbda8f145c1e2c050c793f8178ab79a2666823965"
+      "bytes": 30244,
+      "sha256": "48225a66e05d33867d831d7de4a971c5b4a9ab765b86537261e4d7283d4d5609"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
@@ -807,6 +807,11 @@
       "path": "docs/validation/platform_space_org_recheck_20261008.json",
       "bytes": 1288,
       "sha256": "26a5816a51e5769fac87793f365cba5baa5af976998ce3e1d6244bbed4855083"
+    },
+    {
+      "path": "docs/validation/platform_task_home_hosted_20261017.json",
+      "bytes": 9330,
+      "sha256": "24124099e89fea90ff863e62be5b510930e5541b82188c7d06e884358f621e3e"
     },
     {
       "path": "docs/validation/transport_candidate_20261015.json",

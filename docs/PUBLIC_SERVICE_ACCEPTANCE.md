@@ -1,5 +1,63 @@
 # Public registration service acceptance
 
+Updated 2026-10-17. **Release v0.3.0-rc.3 is deployed** in the
+[public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+Start with the [pinned first-user guide](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.3/docs/GETTING_STARTED.md).
+
+- Application source: `ee6405fb18e2c7fbe4438a6fa81c9e9383c50b87`,
+  [PR #12](https://github.com/KETI-NLP/KoEVD/pull/12), merged as
+  `842e49aef73aea106f68e7229eee6db85f87f79a`.
+  [Release v0.3.0-rc.3](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.3)
+  fixes that merge; Python package/module version is `0.3.0rc3`.
+- Running Space revision: `f7d26f3cc1117028975e5900e9b75f3ff1dbf38b`.
+  The 16 changed files (218,098 bytes) match their remote bytes, and 75
+  materialized source files match the application commit. CPU Basic, one replica,
+  provider LFS attributes, operator data, State and Secret configuration are
+  unchanged. One automatic start; no rollback.
+- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39016362176) and
+  [merged CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39016495253) passed
+  **504 tests on each of Python 3.10 and 3.12**. Local CPU validation passed
+  503 tests before the final recovery-order case and 35 final focused tests.
+  A fresh public tag clone installed the `hub` extra in an isolated environment,
+  passed dependency checks and eight focused tests, exposed `--stage status`,
+  and verified all 369 manifest entries against exact Git blobs. The deeply
+  nested initial Windows fixture exceeded the path limit; a shorter workspace
+  clone installed successfully without a source or package change.
+- The first screen shows both existing Qwen3-8B/4B references and representative
+  Task 1–5 results. In the actual HF embedded app, model rows begin at 379.89
+  and 488.06 pixels; the second ends at 596.23 within the 670-pixel app viewport.
+  Task tabs expose denominators and coverage; Task 4 shows 15 multi-label
+  strategy inclusion frequencies, with no quality direction. Existing **94
+  metric rows and the entire public paired response remain exactly unchanged**.
+- Paper results occupy a separate historical collection. Its five tables match
+  the five existing public CSVs exactly: Task 1/2 pooled summaries (6/21 rows),
+  Task 3/4 per-model tables (12 models each), and Task 5 pooled framing results
+  (3 rows). The original 13,552 Task 3 prompts/model differ from current runs;
+  missing per-model scores are not invented, and historical results never enter
+  current-protocol ranking or paired comparison.
+- The localhost browser completed synthetic upload, private save, analysis of an
+  already-loaded saved result, page reload, saved-result import into a fresh
+  private session, one-run analysis, explicit numerical consent/publication,
+  own-model discovery and comparison with a different published artifact.
+  Public startup also succeeded while account checks failed and private session
+  creation was held. Actual hosted browser checks passed Task 1–5, all paper
+  tabs, reference comparison and submission-entry instructions.
+- `--stage status --output-dir RUN` reads retained generation/measurement state,
+  reports failed/pending rows and recovery actions, and finishes pending
+  measurement promotion before suggesting generation retry. It does not change
+  model scores, hide failed denominators or claim export freshness.
+- This update performs **no actual hosted owner upload/write/sign-in retest or
+  new GPU/accuracy experiment**. The earlier full hosted acceptance remains the
+  evidence for native HF sign-in, durable owner writes and restart recovery.
+  A local-only loader exercised the normal upload API; native file selection and
+  mobile execution were not retested. Official ranks and reference response
+  publication remain disabled. Saved-result reanalysis is now implemented.
+
+[Task-home hosted receipt](validation/platform_task_home_hosted_20261017.json)
+records versions, remote file hashes, test scope and unchanged measurements.
+
+## Earlier recovery/discovery release (2026-10-16; superseded)
+
 Updated 2026-10-16. **Release v0.3.0-rc.2 and the recovery/discovery improvements
 are deployed** in the [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
 Use the [pinned first-user guide](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.2/docs/GETTING_STARTED.md).

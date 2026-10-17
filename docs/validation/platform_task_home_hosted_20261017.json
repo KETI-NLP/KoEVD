@@ -1,0 +1,323 @@
+{
+  "format": "koevd-hosted-task-home-acceptance-v1",
+  "at": "2026-10-17T08:17:11.621519+00:00",
+  "application_source": "ee6405fb18e2c7fbe4438a6fa81c9e9383c50b87",
+  "merge": "842e49aef73aea106f68e7229eee6db85f87f79a",
+  "tag": "v0.3.0-rc.3",
+  "tag_object": "b6a3d827072c4871203323b06a126afec2407757",
+  "space_revision": "f7d26f3cc1117028975e5900e9b75f3ff1dbf38b",
+  "deployment": {
+    "changed_files": 16,
+    "changed_bytes": 218098,
+    "git_matched_source_files": 75,
+    "cpu_basic_single_replica": true,
+    "unchanged_operator_data": true,
+    "unchanged_provider_lfs": true,
+    "state_or_secret_configuration_changed": false,
+    "automatic_starts": 1,
+    "rollback": false
+  },
+  "ci": {
+    "source_run": "https://github.com/KETI-NLP/KoEVD/actions/runs/39016362176",
+    "merge_run": "https://github.com/KETI-NLP/KoEVD/actions/runs/39016495253",
+    "python_versions": [
+      "3.10",
+      "3.12"
+    ],
+    "tests_per_version": 504,
+    "passed": true
+  },
+  "local_full_tests_before_final_recovery_order_case": 503,
+  "final_focused_tests": 35,
+  "fresh_public_release": {
+    "passed": true,
+    "tag": "v0.3.0-rc.3",
+    "module_version": "0.3.0rc3",
+    "metadata_version": "0.3.0rc3",
+    "manifest_exact_git_files": 369,
+    "hub_extra": true,
+    "pip_check": true,
+    "status_cli": true,
+    "scope": "fresh public clone and isolated CPU environment; no PYTHONPATH source override"
+  },
+  "local_browser": {
+    "passed": true,
+    "scope": "localhost synthetic browser journey; no actual hosted owner mutation or GPU inference",
+    "initial_dependency_faults": {
+      "identity_503": true,
+      "private_session_held": true,
+      "public_models_available": true,
+      "private_session_not_requested_on_home": true
+    },
+    "journey": [
+      "submit",
+      "synthetic JSON import through normal API via local-only loader",
+      "private save",
+      "analyze already-loaded saved result without duplicate upload entry",
+      "reload document and restore owner list",
+      "import saved original into fresh private session",
+      "build one-run private analysis",
+      "explicit numerical consent and publish",
+      "show my model across evaluation groups",
+      "compare to different published artifact"
+    ],
+    "task_tabs": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "paper_tabs": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "paper_task3_model_rows": 12,
+    "public_comparison_completed": true,
+    "native_os_file_picker_retested": false,
+    "mobile_viewport_verified": false,
+    "mobile_note": "Browser viewport override did not change actual 1280x720 viewport; no mobile execution claim."
+  },
+  "hosted_browser": {
+    "first_two_model_rows_top": [
+      379.890625,
+      488.0625
+    ],
+    "second_model_bottom": 596.234375,
+    "app_viewport_height": 670,
+    "both_visible_before_scroll": true,
+    "current_task_tabs": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "paper_rows_by_task": {
+      "1": 6,
+      "2": 21,
+      "3": 12,
+      "4": 12,
+      "5": 3
+    },
+    "task4_strategies": 15,
+    "model_compare": "complete",
+    "submit_instructions": true,
+    "actual_owner_mutation_retested": false,
+    "mobile_viewport_verified": false
+  },
+  "regression": {
+    "existing_metric_rows_unchanged": 94,
+    "entire_public_pair_response_unchanged": true,
+    "new_strategy_frequencies_equal_checked_public_profiles": true,
+    "paper_tables_equal_five_existing_public_csvs": true,
+    "preparation_identity_unchanged": "b3bb72a02a0b676afe67c8182345254d397f0da89be374963c9ff0fd8d23fbb8"
+  },
+  "hosted_anonymous_gets": [
+    {
+      "path": "/healthz",
+      "status": 200,
+      "bytes": 46,
+      "seconds": 0.625
+    },
+    {
+      "path": "/readyz",
+      "status": 200,
+      "bytes": 46,
+      "seconds": 0.453
+    },
+    {
+      "path": "/api/registration",
+      "status": 200,
+      "bytes": 163,
+      "seconds": 0.203
+    },
+    {
+      "path": "/api/public/submissions",
+      "status": 200,
+      "bytes": 972,
+      "seconds": 0.609
+    },
+    {
+      "path": "/api/public/leaderboard",
+      "status": 200,
+      "bytes": 136600,
+      "seconds": 3.422
+    },
+    {
+      "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f/profile",
+      "status": 200,
+      "bytes": 9389326,
+      "seconds": 3.594
+    },
+    {
+      "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23/profile",
+      "status": 200,
+      "bytes": 9379051,
+      "seconds": 2.703
+    },
+    {
+      "path": "/api/public/compare?left=6204d78594f64db6ab6b74233058107f&right=6a9efc32e21a40c19aeeff935cc03b23",
+      "status": 200,
+      "bytes": 18922386,
+      "seconds": 16.812
+    },
+    {
+      "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f",
+      "status": 200,
+      "bytes": 9389326,
+      "seconds": 5.328
+    },
+    {
+      "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23",
+      "status": 200,
+      "bytes": 9379051,
+      "seconds": 2.844
+    },
+    {
+      "path": "/assets/navigation.js",
+      "status": 200,
+      "bytes": 1574,
+      "seconds": 0.204
+    },
+    {
+      "path": "/assets/registration.js",
+      "status": 200,
+      "bytes": 42546,
+      "seconds": 0.203
+    },
+    {
+      "path": "/assets/space.js",
+      "status": 200,
+      "bytes": 13330,
+      "seconds": 0.203
+    },
+    {
+      "path": "/assets/metric_labels.js",
+      "status": 200,
+      "bytes": 2467,
+      "seconds": 0.203
+    },
+    {
+      "path": "/assets/space.css",
+      "status": 200,
+      "bytes": 8563,
+      "seconds": 0.203
+    },
+    {
+      "path": "/assets/home.js",
+      "status": 200,
+      "bytes": 10574,
+      "seconds": 0.203
+    },
+    {
+      "path": "/assets/paper_results.json",
+      "status": 200,
+      "bytes": 17866,
+      "seconds": 0.203
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 16305,
+      "seconds": 0.203
+    },
+    {
+      "path": "/submit",
+      "status": 200,
+      "bytes": 16305,
+      "seconds": 0.204
+    }
+  ],
+  "remote_code_files": [
+    {
+      "path": "CITATION.cff",
+      "bytes": 463,
+      "sha256": "62e718d8837ba88943b498b5ac9ceb24d82947238094dd62a6f73f0789a79c03"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2360,
+      "sha256": "f0c63594844073c56386f66113298351fbc22f26e974ae8943cdef44f52526cd"
+    },
+    {
+      "path": "deployment-manifest.json",
+      "bytes": 13954,
+      "sha256": "c56b1562c5f79864d59b1730cf413fb15352e7d7d7ac2a7127df1c90753ecd6a"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 1793,
+      "sha256": "99cd4509c444ed7dd52ec0ca9946e620ee11bf8c31b2b978d11d1c3792fb815b"
+    },
+    {
+      "path": "src/koevd_eval/__init__.py",
+      "bytes": 87,
+      "sha256": "def0ecde00bc0fd0503b01a9f9eae561104f832b7123058861dbbf531be32e62"
+    },
+    {
+      "path": "src/koevd_eval/assets/home.js",
+      "bytes": 10614,
+      "sha256": "f88965cfbe9ff488da667df736742b631b3dab7924fdc14278c072931be478a9"
+    },
+    {
+      "path": "src/koevd_eval/assets/navigation.js",
+      "bytes": 1574,
+      "sha256": "2cb3ffabc60ff01583f44444c8da3b822529b6e014b5b938481a01f700384236"
+    },
+    {
+      "path": "src/koevd_eval/assets/paper_results.json",
+      "bytes": 18404,
+      "sha256": "3c222c03c6f48f9c96afc721c81f35c05c84f04e3319eaec793c05ffe4413af3"
+    },
+    {
+      "path": "src/koevd_eval/assets/registration.js",
+      "bytes": 42727,
+      "sha256": "0943e90f43eaa6cec5e6417e1c568942950cb0be5928c8d0afdc4643c224c570"
+    },
+    {
+      "path": "src/koevd_eval/assets/space.css",
+      "bytes": 8584,
+      "sha256": "417133f66a5a7716c3a556f0d63c327240159293759f723154651a29a51fc8c4"
+    },
+    {
+      "path": "src/koevd_eval/assets/space.html",
+      "bytes": 15885,
+      "sha256": "8ee1a7f146efd1bf3517bfdda439993bec9f907efee3e0b1c6a4339abe321bd7"
+    },
+    {
+      "path": "src/koevd_eval/assets/space.js",
+      "bytes": 13330,
+      "sha256": "ab9302ec66ff651f3d420eac34d1e12305ccfa797c1ad8d2659df221ce87a871"
+    },
+    {
+      "path": "src/koevd_eval/pipeline.py",
+      "bytes": 14432,
+      "sha256": "c4f23ec8b560ce9978b6657fe9261224f68824c8bc1e10a3534d386663ecad24"
+    },
+    {
+      "path": "src/koevd_eval/run_status.py",
+      "bytes": 4226,
+      "sha256": "c811a4218a677e1a9907b3283aaee095cc154335f9fd6b92fa50408621e264ba"
+    },
+    {
+      "path": "src/koevd_eval/spaces.py",
+      "bytes": 19887,
+      "sha256": "823727dc55eeccf0c9474b91b3041e1aed395cab4c6e4eefc961a40c2af4d1a0"
+    },
+    {
+      "path": "src/koevd_eval/submissions.py",
+      "bytes": 49778,
+      "sha256": "fef615fb53764db7a06312cdaf484c7f2c36fd33ff7d5a3030b19486870aface"
+    }
+  ],
+  "limits": [
+    "Synthetic localhost owner journey; no actual HF owner upload/write/sign-in retest in this update.",
+    "No new GPU, held-out accuracy or F1 reproduction claim.",
+    "Historical paper populations and pooled tables are not merged into current-protocol rankings.",
+    "Native file chooser and mobile execution not retested."
+  ]
+}
