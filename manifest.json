@@ -345,8 +345,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 5162,
-      "sha256": "9f61e4609af940d26387e8e452f3cd6952ea68e8c76532760720b13c96c47bd9"
+      "bytes": 5639,
+      "sha256": "6eba880a4ae1f760f95702c7086c33a5cc165218b9eb8dce62b4c56c937a20c9"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC5_20261019.md",
@@ -357,6 +357,11 @@
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC6_20261019.md",
       "bytes": 5862,
       "sha256": "b83dc51d7c93791c14ec0c9d37cfb8cbc0f475dca39ea8fa4213bd4aaedef5bf"
+    },
+    {
+      "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC7_20261019.md",
+      "bytes": 5162,
+      "sha256": "9f61e4609af940d26387e8e452f3cd6952ea68e8c76532760720b13c96c47bd9"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
@@ -847,6 +852,11 @@
       "path": "docs/validation/public-registration-rc7-20261019.json",
       "bytes": 9934,
       "sha256": "84b9381699f3f5c137eb35c71e9fb236d0d4375abb05493ed37b25ade1e31880"
+    },
+    {
+      "path": "docs/validation/public-registration-rc8-20261019.json",
+      "bytes": 9987,
+      "sha256": "81030018730a5bbcf717f1f64145d919800871f12144e67ba6353c63c1ed3c96"
     },
     {
       "path": "docs/validation/transport_candidate_20261015.json",

@@ -1,0 +1,318 @@
+{
+  "release": "v0.3.0-rc.8",
+  "package_version": "0.3.0rc8",
+  "source": "ff385d037500424cbb73f9fdc23a6f43bcce5b43",
+  "merge": "8326b4d0154aca5da566bf0f36ec4afcc9a378a0",
+  "pr": 22,
+  "space_revision": "b53bb8a5ebbcbda79b6d29eaa4cb4b76763e7b4f",
+  "changed_files": 9,
+  "changed_bytes": 125918,
+  "git_matched_files": 78,
+  "automatic_starts_used": 1,
+  "local_cpu_tests": 520,
+  "fresh_focused_tests": 22,
+  "ci": [
+    {
+      "run": 39209589017,
+      "url": "https://github.com/KETI-NLP/KoEVD/actions/runs/39209589017",
+      "jobs": [
+        {
+          "name": "test (3.10)",
+          "conclusion": "success"
+        },
+        {
+          "name": "test (3.12)",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "run": 39209855628,
+      "url": "https://github.com/KETI-NLP/KoEVD/actions/runs/39209855628",
+      "jobs": [
+        {
+          "name": "test (3.10)",
+          "conclusion": "success"
+        },
+        {
+          "name": "test (3.12)",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "run": 39209961848,
+      "url": "https://github.com/KETI-NLP/KoEVD/actions/runs/39209961848",
+      "jobs": [
+        {
+          "name": "test (3.10)",
+          "conclusion": "success"
+        },
+        {
+          "name": "test (3.12)",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "fresh_public_tag": {
+    "passed": true,
+    "tag": "v0.3.0-rc.8",
+    "module_version": "0.3.0rc8",
+    "metadata_version": "0.3.0rc8",
+    "manifest_exact_git_files": 399,
+    "hub_extra": true,
+    "pip_check": true,
+    "status_cli": true,
+    "scope": "fresh public clone and isolated CPU environment; no PYTHONPATH source override"
+  },
+  "local_browser": {
+    "passed": true,
+    "scope": "Localhost fictional 12-record results, synthetic OAuth and actual shipped UI/API. No real GPU, remote identity, original transfer or production registration.",
+    "checks": [
+      "Sign in with synthetic OAuth before selecting result files",
+      "Native File/DataTransfer selection passes original serialized JSON to the shipped upload handler",
+      "A succeeds and B fails; outcomes are individual and A remains in the analysis/registration list",
+      "Explicit retry of the same selection sends B only: first-session request sequence A,B,B",
+      "A private revision 1 is saved and shared with explicit permission and consent",
+      "B is confirmed and saved as measurement_recheck revision 2; public revision remains 1",
+      "Progress, next-action text, private-analysis/download and public-navigation buttons distinguish revision scopes",
+      "Compare public revision 1 uses left revision 1 while private head is 2",
+      "Fresh explicit consent publishes revision 2; comparison then uses left revision 2",
+      "Reload restores account registration with saved/public revision 2",
+      "Reselected A/B files show local filenames in private registration choices",
+      "Another private revision 3 leaves public revision 2, with unambiguous latest UI guidance"
+    ],
+    "unit_and_backend_additional_coverage": [
+      "Continue to later selected files after a failure",
+      "Read current session on exact duplicate rather than replaying a write automatically",
+      "Changed file contents with identical filename are not skipped",
+      "Removed file can be uploaded again and quota still applies",
+      "Lost acknowledgement does not cause automatic POST retry; explicit duplicate reconciliation restores the retained upload",
+      "Warm server profile/comparison projections change only after fresh publication consent"
+    ]
+  },
+  "local_server_check": {
+    "first_session_attempts": [
+      "A",
+      "B",
+      "B"
+    ],
+    "saved_revision": 3,
+    "public_revision": 2,
+    "preserved_revisions": 3
+  },
+  "production_browser": {
+    "passed": true,
+    "scope": "Anonymous production browser; no file upload, sign-in or owner writes",
+    "checks": [
+      "Initial paper collection shows 12/12 models",
+      "Search all models locates Qwen3-8B across conditions and Show on leaderboard switches to its registered group",
+      "Qwen3-8B public profile displays Published revision: 1 and recorded settings",
+      "Compare this model completes against Qwen3-4B; Public revisions: left 1; right 1",
+      "Submission page shows per-file outcome list, retained-success and explicit retry/reselection instructions",
+      "Guide and export links pin v0.3.0-rc.8"
+    ]
+  },
+  "anonymous_production": {
+    "passed": true,
+    "at": "2026-10-19T06:31:32.505510+00:00",
+    "scope": "anonymous GET only; no upload/sign-in/write",
+    "revision": "b53bb8a5ebbcbda79b6d29eaa4cb4b76763e7b4f",
+    "source": "ff385d037500424cbb73f9fdc23a6f43bcce5b43",
+    "public_references": [
+      "6204d78594f64db6ab6b74233058107f",
+      "6a9efc32e21a40c19aeeff935cc03b23"
+    ],
+    "registration_enabled": true,
+    "official_ranking_enabled": false,
+    "observations": [
+      {
+        "path": "/healthz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.625
+      },
+      {
+        "path": "/readyz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.469
+      },
+      {
+        "path": "/api/registration",
+        "status": 200,
+        "bytes": 163,
+        "seconds": 0.203
+      },
+      {
+        "path": "/api/public/submissions",
+        "status": 200,
+        "bytes": 972,
+        "seconds": 0.469
+      },
+      {
+        "path": "/api/public/leaderboard",
+        "status": 200,
+        "bytes": 136600,
+        "seconds": 3.5
+      },
+      {
+        "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f/profile",
+        "status": 200,
+        "bytes": 9389326,
+        "seconds": 3.718
+      },
+      {
+        "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23/profile",
+        "status": 200,
+        "bytes": 9379051,
+        "seconds": 2.688
+      },
+      {
+        "path": "/api/public/compare?left=6204d78594f64db6ab6b74233058107f&right=6a9efc32e21a40c19aeeff935cc03b23",
+        "status": 200,
+        "bytes": 18922386,
+        "seconds": 17.031
+      },
+      {
+        "path": "/assets/navigation.js",
+        "status": 200,
+        "bytes": 2176,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/registration.js",
+        "status": 200,
+        "bytes": 48228,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/space.js",
+        "status": 200,
+        "bytes": 15604,
+        "seconds": 0.984
+      },
+      {
+        "path": "/assets/metric_labels.js",
+        "status": 200,
+        "bytes": 4581,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/space.css",
+        "status": 200,
+        "bytes": 10010,
+        "seconds": 0.204
+      },
+      {
+        "path": "/assets/home.js",
+        "status": 200,
+        "bytes": 10574,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/paper_results.json",
+        "status": 200,
+        "bytes": 17866,
+        "seconds": 0.25
+      },
+      {
+        "path": "/assets/leaderboard.js",
+        "status": 200,
+        "bytes": 24490,
+        "seconds": 0.234
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 1.422
+      },
+      {
+        "path": "/",
+        "status": 200,
+        "bytes": 18140,
+        "seconds": 0.203
+      },
+      {
+        "path": "/submit",
+        "status": 200,
+        "bytes": 18140,
+        "seconds": 0.203
+      },
+      {
+        "path": "/compare",
+        "status": 200,
+        "bytes": 18140,
+        "seconds": 0.203
+      },
+      {
+        "path": "/models",
+        "status": 200,
+        "bytes": 18140,
+        "seconds": 0.391
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.203
+      }
+    ]
+  },
+  "remote_code": {
+    "passed": true,
+    "revision": "b53bb8a5ebbcbda79b6d29eaa4cb4b76763e7b4f",
+    "files": [
+      {
+        "path": "CITATION.cff",
+        "bytes": 463,
+        "sha256": "6273cf5d35550eb62cba818404ffdd0f19e6a5ffb4816699a7f6c11a4116dbd8"
+      },
+      {
+        "path": "README.md",
+        "bytes": 2786,
+        "sha256": "93be8721255a742a31d6bdec5cc14c82e8da63a3d70b87932b2cb3e328b82155"
+      },
+      {
+        "path": "deployment-manifest.json",
+        "bytes": 14446,
+        "sha256": "a87b15345976cbbab85ba273d44959f095db08c2f6fe99e0f8a4723eec068a92"
+      },
+      {
+        "path": "pyproject.toml",
+        "bytes": 1793,
+        "sha256": "1f48487827a1b7516b97814e0b23daac55b0d1c5be6d4fab8d624c03572a238c"
+      },
+      {
+        "path": "src/koevd_eval/__init__.py",
+        "bytes": 87,
+        "sha256": "89364e70f8446678338face883ceb504a7d79f280690c1d337906716e2364b01"
+      },
+      {
+        "path": "src/koevd_eval/assets/leaderboard.js",
+        "bytes": 24589,
+        "sha256": "e755c833441ce4a367675c2ec4e4103e9b3bcb3afb0ed436f9b4a814bec8a3b3"
+      },
+      {
+        "path": "src/koevd_eval/assets/registration.js",
+        "bytes": 48428,
+        "sha256": "a9459a3b409c89eded545d6bc023e471d7d04072ba4f4bbb52fcf64f58232c3b"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.html",
+        "bytes": 17722,
+        "sha256": "d8e1d3bb3b62c78742277377123a50329cb9ca34ab344ee8c059c249556bbbd1"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.js",
+        "bytes": 15604,
+        "sha256": "86327fabd01ac17915a0b168139324a082be962410b07a8a0a55074234f41aea"
+      }
+    ]
+  },
+  "unchanged_public_metric_rows": 94,
+  "full_pair_unchanged": true,
+  "no_new_gpu_or_real_owner_mutation": true
+}
