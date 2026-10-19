@@ -1,0 +1,67 @@
+{
+  "format": "koevd-rc5-acceptance-v1",
+  "date": "2026-10-19",
+  "release": "v0.3.0-rc.5",
+  "package": "0.3.0rc5",
+  "source": "d7a4cb45a5dc8918006526d852ab8e96f4a79164",
+  "merge": "8a2f59ac37c9bf2e5098ed330c28a4f338c9ff99",
+  "pull_request": 16,
+  "space_revision": "8821bc5cecdc94b2c023284abe5a51906feb7576",
+  "changed_code_files": 9,
+  "changed_bytes": 104080,
+  "git_matched_context_files": 77,
+  "source_ci": "https://github.com/KETI-NLP/KoEVD/actions/runs/39200857351",
+  "merge_ci": "https://github.com/KETI-NLP/KoEVD/actions/runs/39201010193",
+  "ci_tests_each_python_version": 510,
+  "python_ci_versions": [
+    "3.10",
+    "3.12"
+  ],
+  "fresh_public_install": {
+    "passed": true,
+    "tag": "v0.3.0-rc.5",
+    "module_version": "0.3.0rc5",
+    "metadata_version": "0.3.0rc5",
+    "manifest_exact_git_files": 388,
+    "hub_extra": true,
+    "pip_check": true,
+    "status_cli": true,
+    "scope": "fresh public clone and isolated CPU environment; no PYTHONPATH source override"
+  },
+  "public_get_checks": 22,
+  "board_exactly_unchanged": true,
+  "pair_exactly_unchanged": true,
+  "public_metric_rows": 94,
+  "paper_models": 12,
+  "public_registered_references": 2,
+  "raw_result_uploads": 0,
+  "production_owner_mutations": 0,
+  "state_config_changes": false,
+  "secret_changes": false,
+  "automatic_starts": 1,
+  "rollback": false,
+  "gpu_inference": false,
+  "production_ui": {
+    "passed": true,
+    "scope": "anonymous browser reads only; no real upload, owner mutation or sign-in",
+    "checks": [
+      "12 paper models on default home",
+      "score definitions explain paper versus registered values and denominators",
+      "Task 2 to Task 1 resets alphabetical order",
+      "paper detail to global Compare retains selected model and collection",
+      "Task 4 same strategy labels correctly identified",
+      "paper selector change removes previous result",
+      "Qwen3-8B detail to Compare works even while profile request is pending",
+      "registered comparison selects Qwen3-8B on left and Qwen3-4B on right",
+      "registered comparison completes",
+      "registered selector change removes old comparison and downloads",
+      "home restored to paper overview",
+      "guide link pins v0.3.0-rc.5"
+    ],
+    "desktop_viewport": [
+      1280,
+      720
+    ],
+    "mobile_tested": false
+  }
+}

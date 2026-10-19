@@ -220,8 +220,8 @@
     },
     {
       "path": "docs/GETTING_STARTED.md",
-      "bytes": 30829,
-      "sha256": "169047d4e4553e7dec6678047bf8b8441980f30139c29c57222942f00b03e838"
+      "bytes": 30886,
+      "sha256": "65136c7110227c27de35db103389019bf4f3600f053dbc0bb0debd8628f549a7"
     },
     {
       "path": "docs/GPU_MEASUREMENT_MATRIX_RESULTS.md",
@@ -345,8 +345,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 34929,
-      "sha256": "0c733272005010a3f87074ee108f5674fd8aacebb5e24c786e0d2be4c5d7c116"
+      "bytes": 4956,
+      "sha256": "163a5764118099f86df6b1a39e4df2539e5270baea98a00ee31063e26105e69d"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
@@ -817,6 +817,16 @@
       "path": "docs/validation/platform_task_home_hosted_20261017.json",
       "bytes": 9330,
       "sha256": "24124099e89fea90ff863e62be5b510930e5541b82188c7d06e884358f621e3e"
+    },
+    {
+      "path": "docs/validation/public-registration-rc4-20261019.md",
+      "bytes": 34929,
+      "sha256": "0c733272005010a3f87074ee108f5674fd8aacebb5e24c786e0d2be4c5d7c116"
+    },
+    {
+      "path": "docs/validation/public-registration-rc5-20261019.json",
+      "bytes": 2400,
+      "sha256": "79c6a784839d55239dcad04f76082af5dd9407941127980fa747883a1727bb0a"
     },
     {
       "path": "docs/validation/transport_candidate_20261015.json",
