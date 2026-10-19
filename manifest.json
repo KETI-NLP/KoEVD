@@ -1370,8 +1370,8 @@
     },
     {
       "path": "src/koevd_eval/assets/registration.js",
-      "bytes": 45866,
-      "sha256": "ec3412f75d8fde790a7033c14f0e888ed5721b4820c2e9c3aa8b80e5579998a8"
+      "bytes": 46144,
+      "sha256": "39cdb1d8efc811cb8d10f7ff73cda475558921c7d15e7a0c107b767cc3f651f6"
     },
     {
       "path": "src/koevd_eval/assets/report.css",
@@ -1625,8 +1625,8 @@
     },
     {
       "path": "tests/comparison_journey.cjs",
-      "bytes": 7284,
-      "sha256": "c788ffcc51b2bf7ec1658b50630df9849dca4b59c230ed2610cd5ee5641a6ce4"
+      "bytes": 7498,
+      "sha256": "ea692f5e9c978dae0e36bfa218f644dba23aaaa284903f20d52c0c4be24f5f16"
     },
     {
       "path": "tests/home_startup.cjs",

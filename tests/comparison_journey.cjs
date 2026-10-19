@@ -58,5 +58,6 @@ function resolvePair(request){const p=new URLSearchParams(request.path.split('?'
  assert.equal(node('public-pair-results').textContent,'');assert.equal(window.KoEVDNavigation.current(),'models');
  // Paper detail also retains its model rather than the previous registered pair.
  await createdHome.paperDetail('GPT-5.4');links[1].fire('click');await tick();await tick();assert.equal(node('comparison-collection').value,'paper');assert.equal(node('paper-pair-left').value,'GPT-5.4');
+ location.hash='#left=missing&right=a';window.dispatchEvent({type:'hashchange'});await tick();await tick();assert.match(node('public-pair-status').textContent,/currently published/);assert.equal(pending.length,0);
  console.log('Shipped UI: selection invalidation, late-response/navigation guard, detail context, strategy labels and descriptive order passed');
 })().catch(e=>{console.error(e);process.exitCode=1});
