@@ -345,13 +345,18 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 5862,
-      "sha256": "b83dc51d7c93791c14ec0c9d37cfb8cbc0f475dca39ea8fa4213bd4aaedef5bf"
+      "bytes": 5162,
+      "sha256": "9f61e4609af940d26387e8e452f3cd6952ea68e8c76532760720b13c96c47bd9"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC5_20261019.md",
       "bytes": 4956,
       "sha256": "163a5764118099f86df6b1a39e4df2539e5270baea98a00ee31063e26105e69d"
+    },
+    {
+      "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC6_20261019.md",
+      "bytes": 5862,
+      "sha256": "b83dc51d7c93791c14ec0c9d37cfb8cbc0f475dca39ea8fa4213bd4aaedef5bf"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
@@ -839,6 +844,11 @@
       "sha256": "5b008c4c656760400e877f6feb77cf4ea6385f84438f01aec7e14455512d622e"
     },
     {
+      "path": "docs/validation/public-registration-rc7-20261019.json",
+      "bytes": 9934,
+      "sha256": "84b9381699f3f5c137eb35c71e9fb236d0d4375abb05493ed37b25ade1e31880"
+    },
+    {
       "path": "docs/validation/transport_candidate_20261015.json",
       "bytes": 2256,
       "sha256": "e4a2a3be212d9706cac9d2b048d7cf65d803b8b92361de16e6111ca0366c3607"
@@ -1145,8 +1155,8 @@
     },
     {
       "path": "scripts/materialize_registered_space.py",
-      "bytes": 7588,
-      "sha256": "4f2fd904ae99bca630a9b3467a1a33f4875239fe815f2a4b658bd1d1ad4c7bbf"
+      "bytes": 7638,
+      "sha256": "51870342ba6320f4e16af19d70139083282ffbd8bbe7c1f7223511fe453532af"
     },
     {
       "path": "scripts/materialize_static_space.py",
@@ -1872,6 +1882,11 @@
       "path": "tests/test_recovery.py",
       "bytes": 13527,
       "sha256": "3001ea292f9ad79b95d2195c52f89a6d888ff35053c82174b6e8a9174cf504d1"
+    },
+    {
+      "path": "tests/test_registered_materializer_links.py",
+      "bytes": 1698,
+      "sha256": "d52d50a8f7a91a6d1dfafd60edad85f9b2400a372026639a6d1990666f65906d"
     },
     {
       "path": "tests/test_registration_runtime.py",
