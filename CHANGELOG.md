@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0rc7
+
+- Preserve an explicitly selected leaderboard collection across catalog refresh
+  and URL reopening; selecting conditions clears an earlier model focus.
+- Distinguish catalog loading from zero search matches and comparison settling
+  from an actionable Compare prompt; discard obsolete results as before.
+- Explain canonical Task 3/4 overlapping source sets with a diagram and counts.
+- Add provenance field sources, resource planning and stage completion examples;
+  consolidate repeated recovery instructions. Metrics and input sets are unchanged.
+
 ## 0.3.0rc6
 
 - Search all public model collections and registration aliases from the home;

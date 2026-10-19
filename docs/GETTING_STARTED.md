@@ -33,7 +33,7 @@ Task 5 uses simulated tools. Read valid/expected coverage separately from each
 event ratio. A low all-row rate with many invalid outputs does not establish
 safety. The Platform provides no combined ethics score or official rank.
 
-Use **v0.3.0-rc.6** (Python package **0.3.0rc6**) for this guide and record its
+Use **v0.3.0-rc.7** (Python package **0.3.0rc7**) for this guide and record its
 commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
 or the generation/measurement retry repair. Existing release tags are immutable. [Current service acceptance](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
@@ -42,7 +42,7 @@ validation logs describe their original dates and versions.
 ## 1. Install the evaluation client
 
 ```bash
-git clone --branch v0.3.0-rc.6 --single-branch https://github.com/KETI-NLP/KoEVD.git
+git clone --branch v0.3.0-rc.7 --single-branch https://github.com/KETI-NLP/KoEVD.git
 cd KoEVD
 git rev-parse HEAD
 python3.11 -m venv .venv-eval
@@ -55,6 +55,18 @@ vLLM server: its Torch/Transformers requirements can differ from those of the
 measurement classifiers. Core preparation, export and reports need no GPU.
 Public code uses Apache-2.0; dataset, measurement weights and copied classifier
 wrappers have separate [terms](../NOTICE.md).
+
+Before downloading, plan three separate resources: target-model serving,
+measurement, and local storage. You can stop your own target server before
+running the measurement models, which run sequentially. The strategy base is 8B;
+float32 parameters alone are roughly 32 GB in decimal units before activations,
+runtime buffers and other overhead. **This is not a tested minimum GPU size.**
+The operational GPU evidence uses B200; memory/time for your target architecture,
+context length and concurrency must be checked on your machine. Keep room for
+both measurement base downloads, the target weights, run logs/attempts and reports.
+The measurement download size on disk does not imply float32 GPU memory use.
+Run the documented small endpoint smoke test before committing to the full run;
+an arbitrary smoke subset is not accepted as a full Platform evaluation.
 
 ## 2. Download the pinned data and measurement models
 
@@ -100,8 +112,20 @@ This checks the pinned files and preparation implementation, then creates
 | 5 | 2,352 | Text-only mock action choices, three framings |
 | Total | 17,670 | 15,011 generation requests, excluding probes/retries |
 
-Task 3 includes the union of core and tool-overlap sources; inspect its core-only
-partition when needed. Task 5 never executes real tools.
+Task 3 uses the union of two overlapping sets, rather than their sum:
+
+| Membership | Sources |
+|---|---:|
+| Core only | 1,875 |
+| Both core and Task-5-linked | 125 |
+| Task-5-linked only | 659 |
+| Union | **2,659** |
+
+Thus core has 2,000 sources and the Task-5-linked subset has 784:
+**2,000 + 784 - 125 = 2,659**. The 659 additional sources are outside core,
+not the entire Task-5-linked subset. Their subset counts/rates must not be added
+as disjoint populations. Measurement failures can reduce valid denominators.
+Task 4 labels these same responses; Task 5 never executes real tools.
 
 **Do not replace this step with `koevd-results index`.** That command makes a
 local custom index, even when its row counts match. The hosted server selects
@@ -183,7 +207,35 @@ Create `model-provenance.json` from actual serving settings. Example fields:
 
 Replace known values with your real revision, dtype, template identity and
 thinking setting; leave unknown values null. These declarations do not verify
-loaded weights. Then run:
+loaded weights. For example, a **fictional illustration, not a default to copy**:
+
+```json
+{
+  "revision": "0123456789abcdef0123456789abcdef01234567",
+  "dtype": "bfloat16",
+  "quantization": "none",
+  "chat_template": "tokenizer_config.json sha256:<ACTUAL_FILE_SHA256>",
+  "thinking": "disabled"
+}
+```
+
+| Field | Where to obtain your actual value |
+|---|---|
+| `revision` | Immutable target snapshot commit passed to `vllm serve --revision`; resolve local weights to their own retained artifact identity. |
+| `dtype` | Actual resolved dtype in the model server startup log/configuration; do not infer it from the weight download size or copy the measurement dtype. |
+| `quantization` | Actual loaded quantization configuration. Use `none` only after confirming no quantization; otherwise retain its method or `null` if unknown. |
+| `chat_template` | The actual tokenizer/template file and revision loaded by the server. Record custom template overrides separately; hashing an unrelated local file does not establish server parity. |
+| `thinking` | Explicit target-model template/request setting and its observed server behavior. Use `null` when it cannot be established; do not infer it from the model name. |
+
+For a known local tokenizer snapshot, obtain a file digest with
+`sha256sum /path/to/actual/tokenizer_config.json`. If a separate template file
+is loaded, identify/hash that actual file instead. A file hash describes the
+artifact; it is not evidence that the server loaded it. Put matching template
+options in the same `--extra-body-file` for preflight and generation. Keep the
+server command, resolved startup log and serving package version alongside the run.
+Unknown fields stay `null` and remain visible as compatibility limits.
+
+Then run:
 
 ```bash
 koevd-pipeline --stage generate --output-dir runs/my-model-core \
@@ -392,6 +444,58 @@ entering a fresh reason, permission statement and consent. For an older
 registration you withdrew yourself, choose **Restore private draft** first; restoration never
 publishes anything by itself. Administrator withdrawals cannot be bypassed through owner restoration. Neither action can recall downloaded copies. See [data handling and limits](PLATFORM_USER_GUIDE.md#data-handling-and-limits).
 
+## Decide whether each stage is complete
+
+Read these signals separately; no single success message certifies model safety.
+The JSON below is abbreviated illustrative output, not a performance result.
+
+| Check | Completion signal | If not complete |
+|---|---|---|
+| Generate | `status` shows zero failed/pending requests | Repeat the identical generation command. Successful rows are reused; then remeasure affected responses and reexport. |
+| Measure | Task 3/4 report `complete` with intact traces | Resume classify; retry Task 4 alone for its OOM. Inspect parsed/usable coverage in diagnostics even when a process finishes. |
+| Export freshness | `check-run`: `current` or `current_with_warnings` | `stale_export`: reexport/validate/check; `check_failed`: inspect integrity or pending recovery. |
+| Task usability | Diagnostic report shows per-task parsing, measurement and valid/expected coverage | Inspect invalid/unmeasured cases. API success is not task parsing success. |
+| Private registration | Submission ID and saved original/history appear under your account | Check submissions/history before repeating an ambiguous save. |
+| Public discovery | Summary publication succeeded; Show my model opens its condition table | Private save alone creates no public row. Confirm consent and current sharing state. |
+
+Read-only readiness check:
+
+```bash
+koevd-pipeline --stage status --output-dir runs/my-model-core
+```
+
+Abbreviated examples:
+
+```json
+{"failed_generation_rows": 1, "pending_generation_rows": 0,
+ "all_generation_requests_succeeded": false}
+```
+
+This is an incomplete generation, even if every expected row exists as either
+success or explicit failure. Resume the same generation command.
+
+```json
+{"current": true, "status": "current_with_warnings",
+ "failed_generation_requests": 1,
+ "unmeasured_usable_responses": {"3": 2, "4": 2}}
+```
+
+This JSON matches the retained run **but retains a failed request and unmeasured
+responses**. It is not an all-success or safety certificate. Review diagnostics,
+recover where appropriate, then reexport and check again.
+
+```json
+{"current": false, "status": "stale_export", "changed_sections": ["records"]}
+```
+
+Do not upload that file as the latest recovered run. Repeat step 7 after recovery.
+`check-run` exits 0 for current exports (including warnings), and 2 for stale or
+failed checks. Run the step-7 commands one at a time and stop on an error; pasting
+multiple shell lines does not itself stop later commands after a failure.
+
+The same private registration can later be re-opened with **Analyze saved result**.
+Sharing only numerical metrics adds a public profile; it does not expose responses.
+
 ## Troubleshooting and completion check
 
 | Symptom | Next step |
@@ -419,52 +523,28 @@ prepared inputs/index, generation/measurement logs, `results.json`, a readable
 local diagnostic report and a private submission ID. Optional numerical sharing
 adds a public profile that can be compared with compatible published runs.
 
-## Recover, find your model and interpret its metrics
+## Find your model and interpret its metrics
 
-- If generation fails, rerun the same `--stage generate` command with the same
-  directory and generation settings. Successful rows are reused. If Task 3 had
-  already been measured, validated predictions, measurements, traces and the old
-  manifest are preserved under `generation_retries/` before resuming. A changed
-  generation invalidates its Task 3/4 measurements; repeat classify, report and
-  export. Do not upload the earlier export as the recovered run. An interrupted
-  retry must finish with generate before measurement/export can continue.
-- If only classification failed, repeat classify. Completed unchanged tasks are
-  reused; use `--measurement-tasks 4 --batch-size 1` to retry only strategy
-  measurement with a smaller batch. To replace completed measurements explicitly,
-  use `--remeasure`. Integrity failures are rejected; they are not overwritten.
-- If startup fails, use **Retry service connection**. It retries a missing
-  analysis session as well as service configuration. A valid session and its
-  uploads are retained; reloading the page instead loses the temporary token.
-- After saving privately, numerical sharing still requires fresh permission and
-  consent. After sharing, use **Show my model on leaderboard**, **View my public
-  profile** or **Compare this result**. Private registrations are not public rows.
-- **Search all models** on the home searches paper names and every public registered
-  group, including display names, model revisions, submission IDs and duplicate
-  registration aliases. Choose **Show on leaderboard** in a match to open the
-  correct condition table and highlight its row. The table itself remains scoped
-  to the selected group; scores from different groups are never pooled.
-- **Find any published model** in advanced details uses the same home navigation
-  and highlighting. Multiple registrations of one exact original share a single
-  result row with a registration count; aliases remain searchable. Comparisons
-  require different originals, not merely different submission IDs.
-- Task 2 leaderboard values are **accuracy (higher is better)**. Paired Task 2
-  comparisons display **answer error rate (lower is better)**: within the same
-  partition and valid outputs, accuracy = 100% minus error. Thus 81.55% accuracy
-  corresponds to 18.45% error. Paired differences use jointly valid outputs;
-  individual displayed rates may have different valid denominators.
-- Task 1 missed risk and false alarms are separate conditional rates; its paired
-  overall judgment error is a different denominator. Task 3 uses classifier-based
-  unsafe response rates, and Task 5 uses unsafe **simulated** tool selections.
-  Lower is better for these rates; measurement limitations still apply. Task 4
-  strategy frequencies describe behavior and do not measure quality. N/A means
-  an undefined denominator, not zero. There is no aggregate ethics score.
+Use **Search all models**, then **Show on leaderboard** to select the correct
+condition table and highlight its row. Display names, revisions, submission IDs
+and duplicate aliases are searchable across public collections. The advanced
+finder uses the same navigation. Identical originals occupy one result row;
+their aliases remain discoverable but are not independent comparison targets.
+Changing **Evaluation conditions** clears an earlier model focus; refreshing the
+catalog or reopening that condition URL keeps the chosen table. During loading,
+search is marked incomplete and updates automatically when the catalog arrives.
 
-For a saved private result, sign in, select the registration and choose
-**Analyze saved result**. Select a reference or second uploaded run and build
-analysis. Your original and history stay unchanged. Public numerical downloads
-are reports, not upload artifacts.
+Task 2 leaderboard values are accuracy (higher is better); paired comparisons
+show answer error (lower is better). Within the same partition and valid outputs,
+81.55% accuracy corresponds to 18.45% error. Paired differences use jointly valid
+outputs, so do not subtract individual rates with different valid denominators.
+Task 1 missed risk and false alarms are separate conditional rates; paired overall
+judgment error has another denominator. Task 3 uses classifier-based unsafe rates;
+Task 5 uses unsafe simulated tool selections. Task 4 frequencies describe behavior.
+N/A is not zero, and overlapping subsets must not be summed. There is no combined
+ethics score. See steps 6–9 and the completion/troubleshooting tables for recovery.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.6)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.7)
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
 all 12 models in the paper experiment. Choose Task tabs or All tasks. Display

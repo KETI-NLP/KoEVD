@@ -192,7 +192,7 @@ For a saved private result, sign in, select the registration and choose
 analysis. Your original and history stay unchanged. Public numerical downloads
 are reports, not upload artifacts.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.6)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.7)
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
 all 12 models in the paper experiment. Choose Task tabs or All tasks. Display
@@ -306,3 +306,24 @@ or universal safety; the Space cannot inspect your local files.
 The **Deployment and version** link always opens the current service acceptance
 record. Evaluation commands remain pinned to an immutable release tag. Historical
 validation documents describe their own dates and releases, not today's runtime.
+
+
+## Loading, selection and completion cues
+
+Changing **Evaluation conditions** clears the prior model focus and retains the
+chosen collection in its URL, including after a public-catalog refresh. A focused
+model link still restores its group until you explicitly choose another collection.
+Search says **in progress** while registered results load and updates automatically;
+this is not a completed zero-match search. If you change models during comparison,
+wait for the previous request to finish before the Compare button becomes available.
+The old response is discarded, not attached to the new selection.
+
+Task 3/4 canonical inputs overlap: core 2,000 + Task-5-linked 784 - common 125 =
+union 2,659. There are 659 additional sources outside core. The diagrams in score
+definitions, profiles and comparisons explain why subset counts are not additive.
+Custom subsets and valid measurement denominators can differ from these totals.
+
+Before selecting a JSON, use the [stage completion examples](GETTING_STARTED.md#decide-whether-each-stage-is-complete).
+`current_with_warnings` means consistency with local records, not all-success,
+parse accuracy or safety. Private save and public numerical sharing have separate
+completion signals; neither account login nor a display name verifies model weights.
