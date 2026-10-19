@@ -1,91 +1,75 @@
 # Public registration service acceptance
 
-Updated 2026-10-19. **Release v0.3.0-rc.9 is deployed** in the
+Updated 2026-10-19. **Release v0.3.0-rc.10 is deployed** in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
-Follow the [pinned complete first-user guide](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.9/docs/GETTING_STARTED.md).
-This living record is linked from the guide and the Space's Deployment and version link.
-Immutable tags retain the evidence available when their source was frozen.
+Follow the [pinned complete first-user guide](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.10/docs/GETTING_STARTED.md).
+The [previous rc.9 acceptance](audit/public_service_acceptance_rc9_20261019.md)
+preserves recovery, measurement-condition and registration evidence.
 
-- App source `185d107674a22ef038d5620d48d95318e03a1e10`, [PR #24](https://github.com/KETI-NLP/KoEVD/pull/24),
-  normal merge `76eb8f38061dab6190b09e10f66d3383d32e883a`.
-  Immutable [v0.3.0-rc.9](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.9)
-  fixes that merge; module/package version is `0.3.0rc9`.
-- Running HF Space revision `17313aad0c939812ac7fcca52f970253899d025e`. All 14 changed
-  files (214,445 bytes) match remote bytes; all 78 materialized
-  source files match Git. CPU Basic, one replica, provider LFS, operator inputs,
-  State and Secrets are preserved. One code update; no manual restart or rollback.
-- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39215486376),
-  [PR CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39215513366) and
-  [merge CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39215805700) passed
-  **528 tests each on Python 3.10 and 3.12**. The local full CPU suite passed
-  528 tests; the six shipped-JavaScript journeys also passed after final guards.
-  A fresh public-tag clone/isolated hub-extra installation passed dependencies,
-  versions and CLI checks, 30 focused tests and all 406 manifest entries against
-  exact Git blobs, without a source PYTHONPATH override.
+## Deployed source and verification
 
-## Recovery corrections
+- App source `d38a1c8fbf7958c3ebb2e9ccfd7fec0eb5ec92d7`, [PR #26](https://github.com/KETI-NLP/KoEVD/pull/26),
+  normal merge `c4fec5af19dde113a0648adf92459537d407ff05`.
+  Immutable [v0.3.0-rc.10](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.10)
+  fixes that merge; package/module version is `0.3.0rc10`.
+- Running HF revision `a5584e5cdfdda95947158ad0c4f61d024f186462`. All 11 changed files
+  (168,350 bytes) match remote bytes; all 80 materialized source files match Git.
+  CPU Basic, one replica, provider LFS, operator inputs, State and Secrets remain
+  unchanged. One code update; no manual restart or rollback.
+- Local final CPU suite: **530 tests passed**. An initial full run encountered
+  one checkpoint-confirmation error in an unchanged durability test; the 35-test
+  focused run and the subsequent full 530-test run passed without storage changes.
+- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39224389537),
+  [PR CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39224396093),
+  [merge CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39224662007) and
+  [tag CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39224674374) passed on
+  Python 3.10 and 3.12.
+- Fresh public-tag clone / isolated hub+serve installation passed pip check,
+  version/CLI checks, 32 focused tests and all 412 exact Git manifest entries.
+- Anonymous hosted health/readiness, configuration, both reference profiles,
+  full comparison, assets and page checks passed. Public leaderboard and paired
+  numerical projections are **fully equal** to the pre-update snapshots. Existing
+  94 public metric rows, public revisions and original records are unchanged.
 
-Explicit Retry analysis connection checks a retained session, preserves it on
-transient failure, and creates one replacement after confirmed expiry/missing
-session. Only unavailable temporary files/reports are invalidated. The page
-instructs explicit file reselection or saved-original import; uploads and owner
-writes are never replayed automatically. Partial selections stop on expiry, and
-a late response from an older session cannot invalidate a newly connected one.
+## Interactive analysis
 
-Pipeline status reads validated durable journals using the resume parser. It
-separates confirmed successes, known errors, interrupted unknown attempts and
-pending inputs. An actual CPU runner interruption preserved one of four responses;
-status reported that success and resume made three further calls. Status is
-read-only, rejects corrupt/mismatched checkpoints, and recommends generation
-compaction before export even when all responses have been checkpointed.
+Details and comparison now use live SVG charts with keyboard/focus/hover evidence,
+pinning, exact tables, SVG/JSON exports and per-public-revision session view
+restoration. Task 1 shows confusion/error rates; Task 2 shows instruction accuracy;
+Task 3 shows question/metadata risk; Task 4 shows multi-label strategies/heatmaps;
+Task 5 shows framing, strict outcomes and row-normalized response-to-tool transitions.
 
-Reload selected registration and Refresh submissions read the selected latest
-owner state without a page reload. They preserve unsaved names, descriptions and
-reasons; permission statements and sharing consent are cleared for review.
-Conflicting mutations remain disabled until the read, then require explicit retry.
+Scope/condition selections use existing exact numerical partitions/groups. Two
+models share Task/scope/axis controls and fixed rate scales while retaining their
+own denominators. Missing model/group combinations are unavailable, never whole-
+scope fallbacks. Severity × explicitness is an exact joint view; other arbitrary
+multi-axis intersections are not inferred. Conditional Task 3→5 transitions are
+hidden when the required aggregate is not supplied.
 
-## Measurement conditions
+Both public references passed **1,844 chart selections / 171,815 observations**.
+Actual browser checks covered Task 1–5 switching, Task 3 joint heatmap and
+keyboard evidence, Task 4 High severity (426 valid/expected rows) with matching
+15-strategy JSON export, Task 5 High severity (49 valid/expected tool-forced rows)
+and explicit unavailable conditional transitions, synchronized comparison,
+public-revision view restoration, and historical per-model limits. Hosted browser
+checks confirmed the deployed charts and shared controls.
 
-Generation cohorts and all numerical metric calculations remain unchanged.
-Registered Task 3/4 scores show classifier batch/precision and expandable settings.
-Task-specific filters retain their selection during catalog refresh; model focus
-clears an obstructing filter. Task 1/2/5 tables do not inherit these filters.
-Unknown declarations stay unknown. A declaration digest labels matching settings,
-not verified inference or classifier accuracy, and confers no rank eligibility.
+## Interpretation and retained boundaries
 
-Profiles, public leaderboard publications and JSON numerical snapshots add
-allowlisted per-Task measurement declarations. Their digests omit trace identity
-and response-dependent counts. Comparison warnings show actual left/right values.
-No prompt, original response, device identity or private audit note is added to
-that declaration. Existing public metric rows and paired numerical outputs are
-unchanged after omitting only the added measurement metadata from the envelopes.
+Historical twelve-model charts expose only released per-model aggregates. Pooled
+all-model question tables are not attributed to an individual model; missing
+strategy labels and unreleased counts/intervals are not reconstructed.
 
-## User journey evidence and limits
+Task 3 is classifier-labeled and Task 4 frequency is descriptive; their recorded
+measurement conditions and limitations remain visible. Invalid/unmeasured output
+is never evidence of safety. Task 5 is a simulation; no tool or robot is executed.
+Chart selection does not reveal prompts, responses or private history. Existing
+publication permissions, raw-response restrictions, official-rank policy and
+registration/recovery behavior are unchanged. No new result upload, HF identity
+write, original publication, recurring backup, GPU job or paid resource change
+was made for this release.
 
-The actual localhost UI/API used fictional 12-record results and synthetic OAuth.
-It passed A/B partial upload with explicit B-only retry, owner conflict/read
-recovery/draft preservation/explicit save, real service-session expiry and
-reconnection while the registration stayed preserved, saved-original import,
-private revision 2/public revision 1 separation, fresh publication of revision 2,
-reload recovery, Task 4 batch 2/4 display and filtering retained after refresh,
-unaffected Task 2 discovery, and completed comparison of public revisions 2/1
-showing left measurement batch 4/right batch 2.
-
-Anonymous production checks passed health/readiness, public configuration,
-catalog, both profiles, full comparison, assets and four page paths. All **94
-public metric rows** and the previous paired numerical output were preserved;
-only measurement metadata was added. Browser checks verify the default 12-model
-paper table, cross-collection search, registered Task 3/4 declarations/filter,
-unaffected other Tasks, real Qwen3-8B/4B comparison and pinned rc.9 guide links.
-
-No new real original upload or production owner mutation was performed. Owner
-flows used localhost fictional data; hosted checks were anonymous reads. Normal
-launch restored existing acknowledged state. Earlier real OAuth/save/restart
-evidence remains in previous records. No new GPU inference or held-out-F1
-reproduction was performed. Official ranks, response publication and recurring
-backup remain off. Paper conditions remain separate; Task 3/4 measurements are
-classifier-limited, Task 4 is descriptive and Task 5 tools are simulated.
-
-Machine-readable [current receipt](validation/public-registration-rc9-20261019.json).
-The [rc.8 acceptance](PUBLIC_SERVICE_ACCEPTANCE_RC8_20261019.md) preserves its
-original dates and scope; its runtime revision is superseded.
+The [machine-readable receipt](audit/interactive_charts_rc10_receipt_20261019.json)
+records deployment, fresh installation, numerical parity and hosted read evidence.
+Immutable release tags keep the evidence present when their source was frozen;
+this living document is updated after hosted validation.

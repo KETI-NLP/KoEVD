@@ -25,6 +25,15 @@ deployed release; a candidate branch alone does not activate the service.
    Paper comparisons are aggregate only; registered comparisons use identical
    inputs and jointly valid outputs, with explicit compatibility warnings.
 
+Details now open interactive Task charts. Use **Input scope / framing**,
+**Analyze by** and **Show condition** to inspect exact conditional aggregates;
+hover/focus or select a mark for counts, denominators and source support. Task 4
+uses multi-label bars and heatmaps; Task 5 includes framing, outcome composition
+and response-to-tool transitions. Comparison controls synchronize both models.
+Export with **SVG** / **Chart JSON**. These are analysis snapshots, not files to
+submit as results. Historical data supports only its released aggregates; see the
+[chart interpretation guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc10).
+
 The Qwen3-8B/4B references each contain 17,670 previously measured records.
 They are operator references, not independent generation verification. Their
 original responses remain private; numerical comparisons retain their counts.

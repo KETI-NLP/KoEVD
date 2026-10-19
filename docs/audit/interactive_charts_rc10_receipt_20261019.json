@@ -1,0 +1,267 @@
+{
+  "space": "KETI-NLP/KoEVD-Platform",
+  "source": "d38a1c8fbf7958c3ebb2e9ccfd7fec0eb5ec92d7",
+  "deployed_revision": "a5584e5cdfdda95947158ad0c4f61d024f186462",
+  "changed_paths": [
+    "CITATION.cff",
+    "README.md",
+    "deployment-manifest.json",
+    "pyproject.toml",
+    "src/koevd_eval/__init__.py",
+    "src/koevd_eval/assets/detail_charts.css",
+    "src/koevd_eval/assets/detail_charts.js",
+    "src/koevd_eval/assets/leaderboard.js",
+    "src/koevd_eval/assets/registration.js",
+    "src/koevd_eval/assets/space.html",
+    "src/koevd_eval/spaces.py"
+  ],
+  "changed_bytes": 168350,
+  "unchanged_operator_data": true,
+  "unchanged_provider_lfs": true,
+  "raw_result_uploads": 0,
+  "secret_changes": false,
+  "state_or_protocol_configuration_changes": false,
+  "new_paid_resources": false,
+  "automatic_starts_used": 1,
+  "release": "v0.3.0-rc.10",
+  "merge": "c4fec5af19dde113a0648adf92459537d407ff05",
+  "full_cpu_tests": 530,
+  "fresh_release": {
+    "passed": true,
+    "tag": "v0.3.0-rc.10",
+    "module_version": "0.3.0rc10",
+    "metadata_version": "0.3.0rc10",
+    "manifest_exact_git_files": 412,
+    "hub_extra": true,
+    "pip_check": true,
+    "status_cli": true,
+    "scope": "fresh public clone and isolated CPU environment; no PYTHONPATH source override"
+  },
+  "chart_parity": {
+    "models": 2,
+    "selections": 1844,
+    "cells": 171815,
+    "passed": true,
+    "scope": "Existing public numerical aggregates only; no inference or original upload."
+  },
+  "hosted": {
+    "passed": true,
+    "at": "2026-10-19T08:46:15.110023+00:00",
+    "scope": "anonymous GET only; no upload/sign-in/write",
+    "revision": "a5584e5cdfdda95947158ad0c4f61d024f186462",
+    "source": "d38a1c8fbf7958c3ebb2e9ccfd7fec0eb5ec92d7",
+    "public_references": [
+      "6204d78594f64db6ab6b74233058107f",
+      "6a9efc32e21a40c19aeeff935cc03b23"
+    ],
+    "registration_enabled": true,
+    "official_ranking_enabled": false,
+    "observations": [
+      {
+        "path": "/healthz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.625
+      },
+      {
+        "path": "/readyz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.469
+      },
+      {
+        "path": "/api/registration",
+        "status": 200,
+        "bytes": 163,
+        "seconds": 0.219
+      },
+      {
+        "path": "/api/public/submissions",
+        "status": 200,
+        "bytes": 972,
+        "seconds": 0.516
+      },
+      {
+        "path": "/api/public/leaderboard",
+        "status": 200,
+        "bytes": 145768,
+        "seconds": 3.796
+      },
+      {
+        "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f/profile",
+        "status": 200,
+        "bytes": 9393910,
+        "seconds": 3.594
+      },
+      {
+        "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23/profile",
+        "status": 200,
+        "bytes": 9383635,
+        "seconds": 2.953
+      },
+      {
+        "path": "/api/public/compare?left=6204d78594f64db6ab6b74233058107f&right=6a9efc32e21a40c19aeeff935cc03b23",
+        "status": 200,
+        "bytes": 18931554,
+        "seconds": 17.328
+      },
+      {
+        "path": "/assets/detail_charts.js",
+        "status": 200,
+        "bytes": 32961,
+        "seconds": 0.391
+      },
+      {
+        "path": "/assets/detail_charts.css",
+        "status": 200,
+        "bytes": 2775,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/navigation.js",
+        "status": 200,
+        "bytes": 2176,
+        "seconds": 0.218
+      },
+      {
+        "path": "/assets/registration.js",
+        "status": 200,
+        "bytes": 47298,
+        "seconds": 0.969
+      },
+      {
+        "path": "/assets/space.js",
+        "status": 200,
+        "bytes": 17261,
+        "seconds": 0.36
+      },
+      {
+        "path": "/assets/metric_labels.js",
+        "status": 200,
+        "bytes": 5414,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/space.css",
+        "status": 200,
+        "bytes": 10010,
+        "seconds": 0.218
+      },
+      {
+        "path": "/assets/home.js",
+        "status": 200,
+        "bytes": 10574,
+        "seconds": 0.204
+      },
+      {
+        "path": "/assets/paper_results.json",
+        "status": 200,
+        "bytes": 17866,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/leaderboard.js",
+        "status": 200,
+        "bytes": 26745,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.203
+      },
+      {
+        "path": "/",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.203
+      },
+      {
+        "path": "/submit",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.219
+      },
+      {
+        "path": "/compare",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.218
+      },
+      {
+        "path": "/models",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.204
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.234
+      }
+    ]
+  },
+  "remote_code": {
+    "passed": true,
+    "revision": "a5584e5cdfdda95947158ad0c4f61d024f186462",
+    "files": [
+      {
+        "path": "CITATION.cff",
+        "bytes": 464,
+        "sha256": "dbdb572299f40421018e003ec7886f43efafe886add49c8d1d4469d2ad95dfca"
+      },
+      {
+        "path": "README.md",
+        "bytes": 2789,
+        "sha256": "e128a569e7c436ad8ebd412b29818a8c6b217d20c474cd582ee86d302fbb48da"
+      },
+      {
+        "path": "deployment-manifest.json",
+        "bytes": 14776,
+        "sha256": "b4e15b2bef5b0a336692c791be2a6653f5941a57e827caed31031f28920a9283"
+      },
+      {
+        "path": "pyproject.toml",
+        "bytes": 1794,
+        "sha256": "26e71b174c9efcd5d23df88e1fa468f90f0aa051b9049cf625a49acc24db5b0c"
+      },
+      {
+        "path": "src/koevd_eval/__init__.py",
+        "bytes": 88,
+        "sha256": "3d5c8150d3771d0dc05a7423b01e2e0a40b29baaae3ed7aaf7966a70e174ffb7"
+      },
+      {
+        "path": "src/koevd_eval/assets/detail_charts.css",
+        "bytes": 2780,
+        "sha256": "c2856f46a8601e8749adbb09c9f067f1712797c7c9f332ec9a49b3d0de27bae6"
+      },
+      {
+        "path": "src/koevd_eval/assets/detail_charts.js",
+        "bytes": 33126,
+        "sha256": "fe59efbafe941d2b7ccbeeb72a1f9f894069fae8b501698c7459816ad4f691de"
+      },
+      {
+        "path": "src/koevd_eval/assets/leaderboard.js",
+        "bytes": 26856,
+        "sha256": "f6d64d63c15e5cb67e02c5d9d197cc011870b0374d22a1b34d77c7ad9dfce684"
+      },
+      {
+        "path": "src/koevd_eval/assets/registration.js",
+        "bytes": 47498,
+        "sha256": "d6a16808cd72b89400e699d0e6b4b9726eb94d1ec563b44bd19d16037db049bf"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.html",
+        "bytes": 18167,
+        "sha256": "5b3eea9a681862d55bb568683466e01ad2b3690ea61e6bd3f7cb70834af14277"
+      },
+      {
+        "path": "src/koevd_eval/spaces.py",
+        "bytes": 20012,
+        "sha256": "337973c893aef4f4edced54275668c610dd09e57babf61bd58f56826e015a034"
+      }
+    ]
+  }
+}
