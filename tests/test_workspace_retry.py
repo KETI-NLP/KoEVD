@@ -18,6 +18,15 @@ class WorkspaceRetryTests(unittest.TestCase):
     def test_private_and_public_revision_scope(self):
         self.run_journey('revision_scope_journey.cjs')
 
+    def test_expired_session_recovery_without_replaying_writes(self):
+        self.run_journey('session_expiry_journey.cjs')
+
+    def test_stale_owner_read_recovery_preserves_drafts(self):
+        self.run_journey('owner_conflict_journey.cjs')
+
+    def test_measurement_declarations_and_task_specific_filter(self):
+        self.run_journey('measurement_filter_journey.cjs')
+
     def run_journey(self, name):
         node=os.environ.get('KOEVD_TEST_NODE') or shutil.which('node')
         if not node:self.skipTest('Node.js unavailable')

@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.3.0rc9
+
+- Recover expired/missing temporary analysis sessions through an explicit
+  connection check, preserving valid sessions on transient errors and never
+  automatically replaying an upload. Stop remaining uploads on confirmed expiry.
+- Read validated durable generation journals in pipeline status. Distinguish
+  retained successes, known errors, interrupted unknown attempts and pending work;
+  recommend resume/compaction before export without mutating the run.
+- Recover stale selected registrations through a read without page reload.
+  Preserve unsaved metadata/reasons, clear sharing consent and require explicit
+  retry; Refresh submissions also updates the selected state.
+- Show allowlisted Task 3/4 classifier declarations beside scores and in profiles/
+  numerical exports, with Task-specific filters and left/right comparison values.
+  Existing metric values, generation cohorts and official rank policy are unchanged.
+
+
 ## 0.3.0rc8
 
 - Preserve successful files through partial batch upload failures, display file

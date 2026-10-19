@@ -29,5 +29,7 @@ function subsetGuide(holder,doc){
   box.append(el('p','Core = 1,875 + 125 = 2,000. Task-5-linked = 125 + 659 = 784. These subset rates are overlapping views; do not add their counts or percentages as disjoint groups. Missing/invalid measurements can reduce their valid denominators.'));
   holder.append(box);
 }
-const api={name,rate,direction,focusKey,matching,uniquePublications,canonicalId,differentPublication,subsetGuide};if(typeof module==='object'&&module.exports)module.exports=api;else root.KoEVDMetrics=api;
+function measurementLabel(value){if(!value?.conditions)return 'Measurement conditions unknown';const c=value.conditions;return 'batch '+(c.batch_size??'unknown')+' · requested '+(c.requested_dtype??'unknown')+' · observed '+(c.observed_parameter_dtypes?.join('/')||c.precision||'unknown')+' · '+(value.conditions_sha256?.slice(0,8)||'unknown declaration');}
+function measurementDetails(holder,value,doc){const n=doc.createElement('small');n.textContent=measurementLabel(value);holder.append(n);if(value?.conditions){const details=doc.createElement('details'),summary=doc.createElement('summary'),pre=doc.createElement('pre');summary.textContent='Measurement settings (user-reported)';pre.textContent=JSON.stringify(value.conditions,null,2);details.append(summary,pre);holder.append(details);}}
+const api={name,rate,direction,focusKey,matching,uniquePublications,canonicalId,differentPublication,subsetGuide,measurementLabel,measurementDetails};if(typeof module==='object'&&module.exports)module.exports=api;else root.KoEVDMetrics=api;
 }(typeof window==='object'?window:globalThis));

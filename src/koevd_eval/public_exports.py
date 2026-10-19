@@ -29,6 +29,8 @@ def projection(value):
     """Reapply numerical whitelists even if a future caller adds private fields."""
     if value.get('format')=='koevd-public-candidate-summary-v1':
         result={key:deepcopy(value[key]) for key in PROFILE_FIELDS}
+        if 'measurements' in value:
+            result['measurements']=deepcopy(value['measurements'])
         result['analysis']=numerical_profile(value['analysis'])
         return result
     if value.get('format')=='koevd-public-comparison-v1':
