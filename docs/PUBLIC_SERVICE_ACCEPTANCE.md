@@ -1,75 +1,84 @@
 # Public registration service acceptance
 
-Updated 2026-10-19. **Release v0.3.0-rc.10 is deployed** in the
+Updated 2026-10-19. **Release v0.3.0-rc.11 is deployed** in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
-Follow the [pinned complete first-user guide](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.10/docs/GETTING_STARTED.md).
-The [previous rc.9 acceptance](audit/public_service_acceptance_rc9_20261019.md)
-preserves recovery, measurement-condition and registration evidence.
+Follow the [pinned first-user guide](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.11/docs/GETTING_STARTED.md).
+The [previous rc.10 acceptance](audit/public_service_acceptance_rc10_20261019.md)
+preserves the initial interactive-chart and earlier registration/recovery evidence.
 
 ## Deployed source and verification
 
-- App source `d38a1c8fbf7958c3ebb2e9ccfd7fec0eb5ec92d7`, [PR #26](https://github.com/KETI-NLP/KoEVD/pull/26),
-  normal merge `c4fec5af19dde113a0648adf92459537d407ff05`.
-  Immutable [v0.3.0-rc.10](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.10)
-  fixes that merge; package/module version is `0.3.0rc10`.
-- Running HF revision `a5584e5cdfdda95947158ad0c4f61d024f186462`. All 11 changed files
-  (168,350 bytes) match remote bytes; all 80 materialized source files match Git.
-  CPU Basic, one replica, provider LFS, operator inputs, State and Secrets remain
-  unchanged. One code update; no manual restart or rollback.
-- Local final CPU suite: **530 tests passed**. An initial full run encountered
-  one checkpoint-confirmation error in an unchanged durability test; the 35-test
-  focused run and the subsequent full 530-test run passed without storage changes.
-- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39224389537),
-  [PR CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39224396093),
-  [merge CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39224662007) and
-  [tag CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39224674374) passed on
-  Python 3.10 and 3.12.
-- Fresh public-tag clone / isolated hub+serve installation passed pip check,
-  version/CLI checks, 32 focused tests and all 412 exact Git manifest entries.
-- Anonymous hosted health/readiness, configuration, both reference profiles,
-  full comparison, assets and page checks passed. Public leaderboard and paired
-  numerical projections are **fully equal** to the pre-update snapshots. Existing
-  94 public metric rows, public revisions and original records are unchanged.
+- Source `f8fb607998e6832550d639b7c383d5139520df9b`, [PR #28](https://github.com/KETI-NLP/KoEVD/pull/28),
+  merged as `bf5e95f7e1c495185554d5671368ef4987e6b58d`.
+  Immutable [v0.3.0-rc.11](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.11)
+  fixes the tested application source; module/package version `0.3.0rc11`.
+- Running HF revision `10d70564fe1cb936e996305e9c19317fab3cef5b`. All 10 changed files
+  (167,189 bytes) match remote bytes; 80 materialized source files match Git.
+  CPU Basic, one replica, provider LFS, operator inputs, State and Secrets are
+  unchanged. One code update, no manual restart or rollback.
+- **532 local CPU tests passed**, including shipped JavaScript controls,
+  registration/recovery, first-user workflow and chart handoff regressions.
+- Python 3.10/3.12 [source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39236940568),
+  [PR CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39236947254),
+  [merge CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39237363712) and
+  [tag CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39237398113) passed.
+- Fresh public-tag clone, isolated hub+serve installation, pip check,
+  module/metadata versions, CLI commands, **34 focused tests** and all **416**
+  exact Git manifest entries passed.
+- **1,768 chart selections / 168,979 observations** passed numerical checks
+  against existing public aggregates. Hosted anonymous health/configuration,
+  profile, comparison, page and asset checks passed. Public leaderboard and
+  comparison JSON are fully equal to pre-update snapshots; all 94 metric rows,
+  public revisions and underlying results remain unchanged.
 
-## Interactive analysis
+## Analysis flow and interpretation
 
-Details and comparison now use live SVG charts with keyboard/focus/hover evidence,
-pinning, exact tables, SVG/JSON exports and per-public-revision session view
-restoration. Task 1 shows confusion/error rates; Task 2 shows instruction accuracy;
-Task 3 shows question/metadata risk; Task 4 shows multi-label strategies/heatmaps;
-Task 5 shows framing, strict outcomes and row-normalized response-to-tool transitions.
+1. Start with the twelve-model paper leaderboard or the separately grouped
+   registered references. Open model details and inspect a Task.
+2. Severity/explicitness use semantic orders. Task 5 segments and legend share
+   one outcome order. Task 1 confusion defaults to gold-row percentages with
+   a separate count view; row totals include unparsed predictions.
+3. Choose scope, metadata axis and condition. Moving from details to comparison
+   retains the view. Rebuilding a pair retains comparison conditions. Both
+   models use identical category rows and rate scales; value ordering uses a
+   shared maximum. Missing cells remain unavailable, distinct from zero.
+4. Comparison bars use the full width with two model bars per category.
+   Matrices are grouped by chart with aligned domains and shared count scales.
+   Select a mark to pin its evidence in an on-screen panel; clear or Escape
+   closes it. Counts, valid/expected coverage and source support are explicit.
+5. Task 3/5 candidate summaries compare a metadata group against disjoint
+   remaining sources within that model and scope. Both sides require at least
+   20 valid sources and 90% coverage. Inspect group applies the condition to
+   both model charts. Small/low/unknown-support groups remain in plots but do
+   not become supported candidates. These contrasts are descriptive, not
+   significance tests, causal bias findings or confirmed strengths/weaknesses.
 
-Scope/condition selections use existing exact numerical partitions/groups. Two
-models share Task/scope/axis controls and fixed rate scales while retaining their
-own denominators. Missing model/group combinations are unavailable, never whole-
-scope fallbacks. Severity × explicitness is an exact joint view; other arbitrary
-multi-axis intersections are not inferred. Conditional Task 3→5 transitions are
-hidden when the required aggregate is not supplied.
+Actual hosted browser checks covered paper detail-to-Task-4 comparison, registered
+Task-4 High severity (426/426 for each model), detail-to-comparison handoff,
+shared ordering, pinned evidence/clear, Task-5 canonical compositions and the
+3/18 transition row versus 784 full-framing sources, candidate inspection and
+comparison rebuild. The fixed panel was checked inside the actual HF iframe.
+Regression tests cover registration, partial-upload recovery and revision/public
+comparison flows; this release did not perform a new identity or original upload.
 
-Both public references passed **1,844 chart selections / 171,815 observations**.
-Actual browser checks covered Task 1–5 switching, Task 3 joint heatmap and
-keyboard evidence, Task 4 High severity (426 valid/expected rows) with matching
-15-strategy JSON export, Task 5 High severity (49 valid/expected tool-forced rows)
-and explicit unavailable conditional transitions, synchronized comparison,
-public-revision view restoration, and historical per-model limits. Hosted browser
-checks confirmed the deployed charts and shared controls.
+Task 2/5 overview charts include all available variants/framings for the selected
+metadata condition; scope-specific detail charts use the selected scope. Label
+search filters bars, highlights complete matrices and retains all composition
+segments, without changing denominators. Task-5 transitions use their response-
+label row totals including invalid choices; full-framing source support is
+separately labeled. Metadata chart filters do not recalculate matched-input
+comparison tables above. Severity x explicitness uses an exact precomputed joint
+view; unsupported arbitrary multi-axis intersections are never inferred.
 
-## Interpretation and retained boundaries
+Historical paper models have only released per-model aggregates: no fabricated
+metadata filters, supported candidates, matched-case comparisons, counts or
+missing strategy labels. Task 4 is multi-label/descriptive; its percentages need
+not total 100% and have no quality direction. Task 3 is classifier-labeled;
+measurement settings and limitations remain visible. Task 5 is a simulation.
 
-Historical twelve-model charts expose only released per-model aggregates. Pooled
-all-model question tables are not attributed to an individual model; missing
-strategy labels and unreleased counts/intervals are not reconstructed.
-
-Task 3 is classifier-labeled and Task 4 frequency is descriptive; their recorded
-measurement conditions and limitations remain visible. Invalid/unmeasured output
-is never evidence of safety. Task 5 is a simulation; no tool or robot is executed.
-Chart selection does not reveal prompts, responses or private history. Existing
-publication permissions, raw-response restrictions, official-rank policy and
-registration/recovery behavior are unchanged. No new result upload, HF identity
-write, original publication, recurring backup, GPU job or paid resource change
-was made for this release.
-
-The [machine-readable receipt](audit/interactive_charts_rc10_receipt_20261019.json)
-records deployment, fresh installation, numerical parity and hosted read evidence.
-Immutable release tags keep the evidence present when their source was frozen;
-this living document is updated after hosted validation.
+No original-response publication, official ranking, recurring backup, GPU job,
+paid resource change or publication-permission change was introduced. Existing
+registration storage and recovery behavior remain enabled.
+The [machine-readable receipt](audit/chart_analysis_ux_rc11_receipt_20261019.json)
+records deployment, installation, numerical and hosted checks. Immutable tags
+retain their source-time evidence; this living document is updated after hosting.

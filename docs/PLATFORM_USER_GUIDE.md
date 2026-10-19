@@ -34,6 +34,16 @@ Export with **SVG** / **Chart JSON**. These are analysis snapshots, not files to
 submit as results. Historical data supports only its released aggregates; see the
 [chart interpretation guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc10).
 
+Chart usability is updated in **v0.3.0-rc.11**. Severity and outcome orders are
+stable, and details-to-comparison retains your Task/scope/condition. Read grouped
+model bars on common category rows; select a mark for its fixed evidence panel
+and press Escape or Clear selection to close it. For Task 3/5, use **Inspect
+group** in supported contrast candidates, then compare both models under that
+condition. Candidate contrasts require support and coverage; they are descriptive
+screening aids, not confirmed strengths or causal bias findings. The
+[chart guide](PUBLIC_PROFILES_GUIDE.md) explains row denominators, missing values,
+multi-label strategy rates and historical limits.
+
 The Qwen3-8B/4B references each contain 17,670 previously measured records.
 They are operator references, not independent generation verification. Their
 original responses remain private; numerical comparisons retain their counts.
