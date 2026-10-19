@@ -345,6 +345,11 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
+      "bytes": 5862,
+      "sha256": "b83dc51d7c93791c14ec0c9d37cfb8cbc0f475dca39ea8fa4213bd4aaedef5bf"
+    },
+    {
+      "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC5_20261019.md",
       "bytes": 4956,
       "sha256": "163a5764118099f86df6b1a39e4df2539e5270baea98a00ee31063e26105e69d"
     },
@@ -827,6 +832,11 @@
       "path": "docs/validation/public-registration-rc5-20261019.json",
       "bytes": 2400,
       "sha256": "79c6a784839d55239dcad04f76082af5dd9407941127980fa747883a1727bb0a"
+    },
+    {
+      "path": "docs/validation/public-registration-rc6-20261019.json",
+      "bytes": 4101,
+      "sha256": "5b008c4c656760400e877f6feb77cf4ea6385f84438f01aec7e14455512d622e"
     },
     {
       "path": "docs/validation/transport_candidate_20261015.json",

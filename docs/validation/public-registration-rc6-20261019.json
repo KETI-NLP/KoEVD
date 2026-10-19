@@ -1,0 +1,104 @@
+{
+  "format": "koevd-rc6-acceptance-v1",
+  "date": "2026-10-19",
+  "release": "v0.3.0-rc.6",
+  "package": "0.3.0rc6",
+  "source": "ab8fc860a36970f521ba4ef071028f46ac7b6741",
+  "merge": "f0ed34905e03002c8039020fa93af3147ff98993",
+  "pull_request": 18,
+  "space_revision": "45e91bad9be833e9499fb0030e72c08cbde7fc9d",
+  "changed_code_files": 14,
+  "changed_bytes": 167874,
+  "git_matched_context_files": 78,
+  "source_ci": "https://github.com/KETI-NLP/KoEVD/actions/runs/39203180115",
+  "merge_ci": "https://github.com/KETI-NLP/KoEVD/actions/runs/39203442606",
+  "ci_tests_each_python_version": 516,
+  "python_ci_versions": [
+    "3.10",
+    "3.12"
+  ],
+  "fresh_public_install": {
+    "passed": true,
+    "tag": "v0.3.0-rc.6",
+    "module_version": "0.3.0rc6",
+    "metadata_version": "0.3.0rc6",
+    "manifest_exact_git_files": 392,
+    "hub_extra": true,
+    "pip_check": true,
+    "status_cli": true,
+    "scope": "fresh public clone and isolated CPU environment; no PYTHONPATH source override"
+  },
+  "fresh_focused_tests": 20,
+  "public_get_checks": 22,
+  "public_metric_rows": 94,
+  "board_exactly_unchanged": true,
+  "pair_exactly_unchanged": true,
+  "paper_models": 12,
+  "public_registered_references": 2,
+  "raw_result_uploads": 0,
+  "production_owner_mutations": 0,
+  "state_or_secret_config_changes": false,
+  "automatic_starts": 1,
+  "rollback": false,
+  "gpu_inference": false,
+  "production_ui": {
+    "passed": true,
+    "scope": "anonymous browser only; no real upload, sign-in or owner mutation",
+    "checks": [
+      "default home displays 12 paper models",
+      "global Qwen3-8B query discovers registered result without manual collection switch",
+      "Show on leaderboard selects registered cohort and highlights model",
+      "registered model link opens detail",
+      "advanced Find any published model navigates to same home and highlights Qwen3-4B",
+      "model name descending visibly reverses model order",
+      "Apertus detail shows 50.37 percent and decoded Benign/Low/Moderate/High/Extreme/HD codes",
+      "registered detail to Compare retains chosen model and completes numerical pair",
+      "guide pins rc.6 and deployment/version link points to living main record"
+    ],
+    "desktop_viewport": [
+      1280,
+      720
+    ],
+    "mobile_tested": false
+  },
+  "local_synthetic_owner_flow": {
+    "passed": true,
+    "scope": "localhost synthetic identity and 12-record fixture only; no real GPU, account or publication",
+    "checks": [
+      "global search from paper home finds registered model in a different cohort",
+      "search match navigates and highlights correct condition table",
+      "advanced finder opens the same home and highlights selected model",
+      "initial session failure and explicit retry",
+      "synthetic OAuth account and private save",
+      "explicit numerical-summary consent and sharing",
+      "duplicate original occupies one row labeled two registrations",
+      "owner alias remains searchable",
+      "owner Compare this result selects a distinct original and completes across conditions",
+      "reload and Analyze saved result recover private original",
+      "CPU diagnostic report completes with five output formats",
+      "Stop sharing removes alias from global search immediately",
+      "fresh consent republishes same saved registration",
+      "owner focus URL restores correct group and highlighted row after reload"
+    ],
+    "fixture_registrations": 3,
+    "fixture_distinct_originals": 2
+  },
+  "synthetic_registered_cli": {
+    "passed": true,
+    "scope": "CPU synthetic registered protocol, no GPU or hosted write",
+    "initial": "current_with_warnings",
+    "input_scope": "registered_protocol_checked",
+    "stable_identity_checked": true,
+    "after_prediction_change": "stale_export",
+    "stale_exit": 2,
+    "after_reexport": "current_with_warnings",
+    "record_counts": {
+      "1": 1,
+      "2": 4,
+      "3": 2,
+      "4": 2,
+      "5": 3
+    },
+    "failed_requests_retained": 1
+  }
+}
