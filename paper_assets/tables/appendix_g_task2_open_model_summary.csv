@@ -1,0 +1,7 @@
+﻿Model,Mean answered accuracy (%),Parsed/answered rate (%)
+Qwen3.6 27B,94.7,100.0
+Gemma 4 E4B,88.3,100.0
+Qwen3.5 9B,78.8,100.0
+OLMo 3 7B,75.3,99.93
+Ministral 3 8B,55.8,100.0
+Apertus 8B,41.8,100.0

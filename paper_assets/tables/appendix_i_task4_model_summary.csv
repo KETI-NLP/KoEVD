@@ -1,0 +1,13 @@
+Cohort,Model,Task 3 generated responses,Strategy-classified responses,Classified rate (%),Strategy error rate (%),Avg included strategies,Unsafe strategy labels,Unsafe strategy label rate (%)
+Commercial,Gemini 3.1 Flash-Lite,13550,13550,100.0,0.0,3.24,380,2.8
+Commercial,GPT-5.4 Nano,10839,10839,100.0,0.0,2.99,235,2.17
+Commercial,GPT-5.4,10819,10819,100.0,0.0,2.94,785,7.26
+Commercial,Claude Haiku 4.5,13552,13552,100.0,0.0,2.83,21,0.15
+Commercial,Gemini 3.1 Pro,13550,13550,100.0,0.0,2.73,625,4.61
+Commercial,Claude 4.6 Sonnet,13525,13525,100.0,0.0,2.69,100,0.74
+Open-weight models,Qwen3.6 27B,13552,13552,100.0,0.0,2.62,117,0.86
+Open-weight models,Qwen3.5 9B,13552,13552,100.0,0.0,2.6,164,1.21
+Open-weight models,Gemma 4 E4B,13552,13552,100.0,0.0,2.6,18,0.13
+Open-weight models,OLMo 3 7B,13552,13551,99.99,0.007,2.51,890,6.57
+Open-weight models,Apertus 8B,13552,13552,100.0,0.0,2.47,703,5.19
+Open-weight models,Ministral 3 8B,13552,13552,100.0,0.0,2.0,1433,10.57

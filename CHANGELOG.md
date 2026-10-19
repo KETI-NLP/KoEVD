@@ -1,5 +1,17 @@
 # 0.3.0rc3 model-first overview and paper results
 
+## 0.3.0rc4
+
+- Default model leaderboard includes all 12 paper models, with search, task tabs,
+  metric sorting and separate registered evaluation groups.
+- Model details, comparison and submission use separate navigation screens.
+- Twelve exact aggregate source tables cover paper Tasks 1–5. Task 2 compares
+  three common variants; Task 1 missing judgments stay N/A; Task 5 retains its
+  all-expected denominator. Paper comparisons remain aggregate-only.
+- Existing owner registration, recovery, consent and public paired API values
+  are preserved. No GPU accuracy or official ranking activation is claimed.
+
+
 - Public model loading no longer waits for account checks or a private analysis
   session. Private sessions start when the submission workspace is opened.
 - A compact first-screen model table and Task 1–5 tabs expose counts, coverage,

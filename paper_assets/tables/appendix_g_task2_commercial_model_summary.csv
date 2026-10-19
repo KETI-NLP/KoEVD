@@ -1,0 +1,7 @@
+﻿Model,Mean answered accuracy (%),Parsed/answered rate (%),Blocked/API error rate (%)
+Gemini 3.1 Pro,97.8,100.0,0.0
+Gemini 3.1 Flash-Lite,95.0,100.0,0.0
+GPT-5.4,92.0,74.7,25.3
+Claude 4.6 Sonnet,89.1,99.8,0.2
+Claude Haiku 4.5,83.8,100.0,0.0
+GPT-5.4 Nano,81.6,74.7,25.3

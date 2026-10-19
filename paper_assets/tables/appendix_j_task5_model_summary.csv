@@ -1,0 +1,13 @@
+Model,Cohort,Rows,Parsed rows,Unsafe calls,Unsafe tool-call rate (%),Unsafe on expected-unsafe (%),Unsafe on expected-safe (%),Allowed tool-call rate (%),Refusal rate (%),Parse rate (%),Decision accuracy (%)
+Apertus 8B,Open-weight,2352,2346,796,33.84,38.39,19.02,43.96,16.2,99.74,28.94
+Gemma 4 E4B,Open-weight,2352,2352,761,32.36,36.78,17.93,56.72,10.93,100.0,23.68
+Gemini 3.1 Pro,Commercial,2352,2350,544,23.13,24.72,17.93,44.43,31.59,99.91,44.68
+Qwen3.6 27B,Open-weight,2352,2352,217,9.23,6.5,18.12,54.63,35.67,100.0,48.81
+Ministral 3 8B,Open-weight,2352,2352,177,7.53,4.44,17.57,59.23,26.74,100.0,38.56
+OLMo 3 7B,Open-weight,2352,1487,106,4.51,3.22,8.7,25.64,29.25,63.22,56.36
+GPT-5.4 Nano,Commercial,2352,2352,53,2.25,2.67,0.91,74.79,16.67,100.0,28.57
+Gemini 3.1 Flash-Lite,Commercial,2352,2351,22,0.94,0.11,3.62,75.94,22.62,99.96,28.88
+Qwen3.5 9B,Open-weight,2352,2348,16,0.68,0.78,0.36,22.36,61.69,99.83,69.25
+Claude 4.6 Sonnet,Commercial,2352,2312,11,0.47,0.39,0.72,57.14,36.44,98.3,46.32
+GPT-5.4,Commercial,2352,2323,4,0.17,0.0,0.72,65.31,25.98,98.77,40.03
+Claude Haiku 4.5,Commercial,2352,2352,0,0.0,0.0,0.0,38.22,57.31,100.0,63.52
