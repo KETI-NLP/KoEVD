@@ -1,0 +1,278 @@
+{
+  "space": "KETI-NLP/KoEVD-Platform",
+  "source": "f8fb607998e6832550d639b7c383d5139520df9b",
+  "deployed_revision": "10d70564fe1cb936e996305e9c19317fab3cef5b",
+  "changed_paths": [
+    "CITATION.cff",
+    "README.md",
+    "deployment-manifest.json",
+    "pyproject.toml",
+    "src/koevd_eval/__init__.py",
+    "src/koevd_eval/assets/detail_charts.css",
+    "src/koevd_eval/assets/detail_charts.js",
+    "src/koevd_eval/assets/leaderboard.js",
+    "src/koevd_eval/assets/registration.js",
+    "src/koevd_eval/assets/space.html"
+  ],
+  "changed_bytes": 167189,
+  "unchanged_operator_data": true,
+  "unchanged_provider_lfs": true,
+  "raw_result_uploads": 0,
+  "secret_changes": false,
+  "state_or_protocol_configuration_changes": false,
+  "new_paid_resources": false,
+  "automatic_starts_used": 1,
+  "release": "v0.3.0-rc.11",
+  "merge": "bf5e95f7e1c495185554d5671368ef4987e6b58d",
+  "full_cpu_tests": 532,
+  "fresh_release": {
+    "passed": true,
+    "tag": "v0.3.0-rc.11",
+    "module_version": "0.3.0rc11",
+    "metadata_version": "0.3.0rc11",
+    "manifest_exact_git_files": 416,
+    "hub_extra": true,
+    "pip_check": true,
+    "status_cli": true,
+    "scope": "fresh public clone and isolated CPU environment; no PYTHONPATH source override"
+  },
+  "chart_parity": {
+    "models": 2,
+    "selections": 1768,
+    "cells": 168979,
+    "passed": true,
+    "scope": "Existing public numerical aggregates only; no inference or original upload."
+  },
+  "hosted": {
+    "passed": true,
+    "at": "2026-10-19T10:28:37.100320+00:00",
+    "scope": "anonymous GET only; no upload/sign-in/write",
+    "revision": "10d70564fe1cb936e996305e9c19317fab3cef5b",
+    "source": "f8fb607998e6832550d639b7c383d5139520df9b",
+    "public_references": [
+      "6204d78594f64db6ab6b74233058107f",
+      "6a9efc32e21a40c19aeeff935cc03b23"
+    ],
+    "registration_enabled": true,
+    "official_ranking_enabled": false,
+    "observations": [
+      {
+        "path": "/healthz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.609
+      },
+      {
+        "path": "/readyz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.438
+      },
+      {
+        "path": "/api/registration",
+        "status": 200,
+        "bytes": 163,
+        "seconds": 0.203
+      },
+      {
+        "path": "/api/public/submissions",
+        "status": 200,
+        "bytes": 972,
+        "seconds": 0.468
+      },
+      {
+        "path": "/api/public/leaderboard",
+        "status": 200,
+        "bytes": 145768,
+        "seconds": 3.704
+      },
+      {
+        "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f/profile",
+        "status": 200,
+        "bytes": 9393910,
+        "seconds": 3.859
+      },
+      {
+        "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23/profile",
+        "status": 200,
+        "bytes": 9383635,
+        "seconds": 2.859
+      },
+      {
+        "path": "/api/public/compare?left=6204d78594f64db6ab6b74233058107f&right=6a9efc32e21a40c19aeeff935cc03b23",
+        "status": 200,
+        "bytes": 18931554,
+        "seconds": 17.984
+      },
+      {
+        "path": "/assets/detail_charts.js",
+        "status": 200,
+        "bytes": 49186,
+        "seconds": 0.422
+      },
+      {
+        "path": "/assets/detail_charts.css",
+        "status": 200,
+        "bytes": 4522,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/navigation.js",
+        "status": 200,
+        "bytes": 2176,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/registration.js",
+        "status": 200,
+        "bytes": 47692,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/space.js",
+        "status": 200,
+        "bytes": 17261,
+        "seconds": 0.187
+      },
+      {
+        "path": "/assets/metric_labels.js",
+        "status": 200,
+        "bytes": 5414,
+        "seconds": 0.907
+      },
+      {
+        "path": "/assets/space.css",
+        "status": 200,
+        "bytes": 10010,
+        "seconds": 0.187
+      },
+      {
+        "path": "/assets/home.js",
+        "status": 200,
+        "bytes": 10574,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/paper_results.json",
+        "status": 200,
+        "bytes": 17866,
+        "seconds": 0.188
+      },
+      {
+        "path": "/assets/leaderboard.js",
+        "status": 200,
+        "bytes": 27116,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.203
+      },
+      {
+        "path": "/",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.203
+      },
+      {
+        "path": "/submit",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.203
+      },
+      {
+        "path": "/compare",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.188
+      },
+      {
+        "path": "/models",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.203
+      }
+    ]
+  },
+  "browser": {
+    "passed": true,
+    "scope": "Actual public HF iframe; anonymous numerical reads and chart controls only; no upload or state write",
+    "checks": [
+      "paper leaderboard 12 models and separate registered conditions",
+      "historical-specific top guidance and Task 4 detail-to-comparison handoff",
+      "registered Task 4 High severity 426/426 for both",
+      "registered detail-to-comparison scope/axis/condition retained",
+      "reversed comparison pair retains Task 4 High condition",
+      "fixed selection panel top 256 bottom 658 width 440 inside HF iframe; Escape clears",
+      "Task 1 gold-row 371/1842=20.14%, whole-input source support separately labeled",
+      "Task 5 search keeps 21 segments per model in canonical seven-outcome order",
+      "Task 5 transition 3/18=16.67% versus 784 full-framing sources, small row flagged",
+      "Task 3 supported candidate Inspect group applies Providing Information to both: 240/240 each"
+    ],
+    "screenshot": "generated/chart-analysis-ux-20261019/hosted-task4-comparison.png"
+  },
+  "remote_code": {
+    "passed": true,
+    "revision": "10d70564fe1cb936e996305e9c19317fab3cef5b",
+    "files": [
+      {
+        "path": "CITATION.cff",
+        "bytes": 464,
+        "sha256": "4e23361e222723b1a07cf6b8d3bf2fb448f0f769c2b0ef82a726dc7c2f32608c"
+      },
+      {
+        "path": "README.md",
+        "bytes": 2789,
+        "sha256": "732d9c549d92a5daaa0c5e39608d9aa75b969f9eb1a6d3c72b4578a8f1aa3dab"
+      },
+      {
+        "path": "deployment-manifest.json",
+        "bytes": 14776,
+        "sha256": "5fa8b37da69bb326456b64dd1190ea8da0dd2d1319fff0dbc3c29f228fb1511b"
+      },
+      {
+        "path": "pyproject.toml",
+        "bytes": 1794,
+        "sha256": "4b919e030daa376bf939a7cd1b89eefbced7a52216a74995874e71f9d5eb3051"
+      },
+      {
+        "path": "src/koevd_eval/__init__.py",
+        "bytes": 88,
+        "sha256": "13871cbd4923ccf5003304de63c016e0431369e0b40cfba3dae19d043eb27b5a"
+      },
+      {
+        "path": "src/koevd_eval/assets/detail_charts.css",
+        "bytes": 4532,
+        "sha256": "405cd8e41c82528767e71ef81554c473e4854248a4522782f7ac8922fccef799"
+      },
+      {
+        "path": "src/koevd_eval/assets/detail_charts.js",
+        "bytes": 49459,
+        "sha256": "a6732c649961bcb76ae8668371bd0cdb4cdea5da4b6a6e1f0a4e356825fc7830"
+      },
+      {
+        "path": "src/koevd_eval/assets/leaderboard.js",
+        "bytes": 27228,
+        "sha256": "0b345cc7ca403f70ab8172be473cb8ac679d94334fca7f5ca5f72387a3398ad9"
+      },
+      {
+        "path": "src/koevd_eval/assets/registration.js",
+        "bytes": 47892,
+        "sha256": "20e3a44ff06437e7ea47785aaac97cfd6f4404b4ead4a2384827649d488e1579"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.html",
+        "bytes": 18167,
+        "sha256": "36607b15451d4a75a53ce31b67f7d54933df35e963e48c684b125d41aac27291"
+      }
+    ]
+  }
+}
