@@ -110,7 +110,7 @@ DATA_LICENSE.md research-use terms; the code license is Apache-2.0.
 
 - [Current deployment and version](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PUBLIC_SERVICE_ACCEPTANCE.md)
 - [Platform user guide and data handling](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PLATFORM_USER_GUIDE.md)
-- [Evaluate, recover, register and compare (v0.3.0-rc.6)](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.6/docs/GETTING_STARTED.md)
+- [Evaluate, recover, register and compare (v{__version__.replace('rc', '-rc.')})](https://github.com/KETI-NLP/KoEVD/blob/v{__version__.replace('rc', '-rc.')}/docs/GETTING_STARTED.md)
 - [Portable result JSON](https://github.com/KETI-NLP/KoEVD/blob/main/docs/RESULT_FORMAT.md)
 - [Source and current validation scope](https://github.com/KETI-NLP/KoEVD)
 '''
