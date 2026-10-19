@@ -1125,8 +1125,8 @@
     },
     {
       "path": "scripts/materialize_registered_space.py",
-      "bytes": 7167,
-      "sha256": "d53a8aa017c7ae38cf584873665cf00caf1b87de793f4d165c48b587c1f9c25c"
+      "bytes": 7474,
+      "sha256": "9064f1298c8eafc6e1254a581ddb0be00cb470a89243041b33f6c93b01fc80c6"
     },
     {
       "path": "scripts/materialize_static_space.py",
@@ -1370,8 +1370,8 @@
     },
     {
       "path": "src/koevd_eval/assets/registration.js",
-      "bytes": 45785,
-      "sha256": "10fdc024f997477d2a35cdd4b886ff3d82040f4f70667657420862fb9fcc9c4f"
+      "bytes": 45866,
+      "sha256": "ec3412f75d8fde790a7033c14f0e888ed5721b4820c2e9c3aa8b80e5579998a8"
     },
     {
       "path": "src/koevd_eval/assets/report.css",

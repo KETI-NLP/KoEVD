@@ -78,7 +78,11 @@ short_description: Register model results, explore scores and compare behavior
 
 # KoEVD Platform — registered research beta {__version__}
 
-Explore published model profiles and metric comparisons without a file or sign-in.
+Start with the 12-model historical paper leaderboard, then switch Evaluation
+conditions to Registered results for current protocol submissions and the two
+Qwen references. Score definitions and denominators differ between collections;
+they do not form one common ranking. Open a model profile and Compare this model
+to retain its collection and identity. Explore without a file or sign-in.
 Evaluate your own vLLM-compatible model with the GitHub code, export its full
 result JSON, and upload it for private analysis. Sign in with Hugging Face to
 save your original, model display name and edit history as a registration.
