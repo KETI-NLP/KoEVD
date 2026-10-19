@@ -28,7 +28,7 @@ object. Existing metric and denominator fields retain their meanings. A
 generation declaration or an uploaded measured label is not independent
 generation verification or a classifier accuracy certificate.
 
-## Interactive model details (v0.3.0-rc.11)
+## Interactive model details (v0.3.0-rc.12)
 
 Open a model from the leaderboard, then choose a Task in **Explore task behavior**.
 These are live SVG charts, not screenshots. Hover or keyboard-focus a mark for
@@ -51,8 +51,8 @@ partitions and groups. **Show condition** selects an exact group and updates its
 summary, rates and strategy/outcome counts. Framing comparisons use that same
 group in each variant where supplied; missing model/group combinations remain
 unavailable. Conditional Task 3→5 transitions are not supplied, so that matrix is
-hidden while a condition is selected. **Find chart
-labels** hides marks without changing any denominator. Other arbitrary metadata
+hidden while a condition is selected. **Find chart labels** filters bars, highlights matrix cells and retains all
+composition segments without changing any denominator. Other arbitrary metadata
 intersections are not offered: marginal percentages cannot establish them.
 Small groups remain visible, with a warning when fewer than 20 valid sources are
 reported. N/A is not zero. No confidence interval is estimated in the browser.
@@ -116,6 +116,35 @@ Response-case access remains a separate permission-aware workflow. Anonymous cha
 interaction makes no registration/publication/server-state writes. Chart
 controls are remembered in browser session storage for each public model/revision
 or comparison; **Reset view** restores the task defaults.
+
+## Reading conditions, denominators and availability
+
+Every chart card repeats its input scope, selected condition and denominator
+basis. Task 2 overview uses all instruction variants; Task 5 framing/composition
+overview uses all framings under the selected metadata condition. Other detail
+charts use the selected scope. Matched-input tables live in a separate collapsed
+section and are never recalculated by these chart filters.
+
+Task 1 gold-class-specific breakdowns are shown only when **Analyze by** matches
+their released axis (currently input severity); they no longer remain under an
+unrelated question/topic view. Select Input severity to inspect those charts.
+
+Task 2 accuracy points up; answer-error points down. Strategy frequency has no
+quality direction. Coverage describes completeness, not safety. Direction and
+denominator labels also appear in exact tables and evidence. Task 5 can show
+140/783 = 17.88% on valid choices and 140/784 = 17.86% on all expected rows;
+the extra row is invalid, so these are different denominators for the same event.
+
+A measured zero uses an unfilled baseline marker, with no positive-length fill.
+Unavailable values state the known reason: no eligible denominator, no valid
+outputs, condition not supplied, measurement not supplied, or historical value
+not released. Absence alone is not relabeled as a confirmed measurement failure.
+
+Key measured rates precede charts. Supported contrast candidates and detailed
+interpretation follow the plots and start collapsed. Plot regions support keyboard
+focus and scrolling; rate scales, conditions and legends remain beside the plot.
+Dark outcome colors retain readable white labels. Exports preserve full plots and
+exact observations; chart viewport scrolling does not discard data.
 
 ## Interpretation
 

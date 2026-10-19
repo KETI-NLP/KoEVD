@@ -1,0 +1,47 @@
+/* First-user clarity journeys use the shipped renderer and measured fixtures. */
+const fs=require('node:fs');
+let test=fs.readFileSync('tests/detail_charts.cjs','utf8').split('const before=JSON.stringify(summary)')[0];
+test+=String.raw`
+assert.equal(charts.unavailableReason({value:null,denominator:0}),'No eligible denominator');
+assert.equal(charts.unavailableReason({value:null,denominator:0,valid:0,expected:12}),'No valid outputs');
+assert.equal(charts.unavailableReason({value:null,missing:true}),'Condition not supplied');
+assert.equal(charts.unavailableReason({value:null},{family:'paper_summary'}),'Not released');
+assert.equal(charts.unavailableReason({value:null}),'Measurement not supplied');
+assert.equal(charts.unavailableReason({value:0,denominator:10}),'');
+const zero=JSON.parse(JSON.stringify(summary));zero.analysis.charts[0].data[0].value=0;
+const h=new Element('div');ctx.window.KoEVDDetailCharts.mount(h,[zero]);
+const zeroMark=walk(h).find(n=>n.attrs.role==='button'&&n.attrs['aria-label'].includes('0.00%'));
+assert(zeroMark.children.some(n=>n.tagName==='circle'),'Measured zero needs a baseline marker');
+assert(!zeroMark.children.some(n=>n.tagName==='rect'&&n.attrs.fill==='#b84942'&&Number(n.attrs.width)>0),'Zero must not have a positive fill');
+zeroMark.fire('mouseenter',{clientX:10,clientY:10});assert.equal(walk(h).find(n=>n.className==='detail-tooltip').hidden,false);
+walk(h).find(n=>n.className==='detail-chart-scroll').fire('scroll');assert.equal(walk(h).find(n=>n.className==='detail-tooltip').hidden,true,'Scrolling must clear stale hover evidence');
+const firstSvg=walk(h).findIndex(n=>n.tagName==='svg'),review=walk(h).findIndex(n=>n.className==='detail-review');
+assert(review>firstSvg,'Candidates must follow charts');assert.equal(walk(h).find(n=>n.className==='detail-review').open,false);
+assert.equal(walk(h).find(n=>n.className==='detail-interpretation').tagName,'details');
+assert(walk(h).some(n=>n.className==='detail-key-metrics'));
+assert(walk(h).some(n=>n.className==='detail-chart-context'&&n.textContent.includes('Core')));
+const task1=JSON.parse(JSON.stringify(summary));task1.analysis.charts.push({task:1,kind:'rate_bars',family:'label_specific',title:'Missed risk by severity',data:[{label:'High',...r(1,4),case_filter:{axis:'severity_band'}}]});
+assert(!charts.selectCharts(task1,{task:'1',scope:'all:all',axis:'utterance_type'}).some(c=>c.family==='label_specific'));
+assert(charts.selectCharts(task1,{task:'1',scope:'all:all',axis:'severity_band'}).some(c=>c.family==='label_specific'));
+const five=charts.selectCharts(summary,{task:'5',scope:'variant:tool_forced',axis:'risk_category'});
+assert.equal(five.find(c=>c.family==='variants').scope_label,'All framings');
+assert.equal(five.find(c=>c.family==='composition').denominator_note,'All expected rows · includes invalid');
+assert.equal(five.find(c=>c.family==='composition').data[0].denominator,12);
+assert.equal(five.find(c=>c.family==='variants').data[0].denominator,10);
+const two=charts.selectCharts(summary,{task:'2',scope:'variant:choose_best',axis:''});
+assert.equal(two.find(c=>c.family==='variants').scope_label,'All instruction variants');
+assert.match(two.find(c=>c.family==='variants').data[0].direction_label,/Accuracy ↑/);
+assert.match(charts.directionLabel({label:'coverage'},{task:3,family:'rates'}),/Coverage ↑.*not safety/);
+assert.match(charts.directionLabel({label:'choose_best'},{task:2,family:'group'}),/Answer error ↓/);
+assert.match(charts.directionLabel({label:'safe_guided'},{task:5,family:'paper_coverage'}),/Coverage ↑/);
+assert.match(charts.directionLabel({label:'unsafe_marker'},{task:4,family:'unsafe_marker'}),/Descriptive/);
+function luminance(hex){return hex.slice(1).match(/../g).map(x=>parseInt(x,16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4).reduce((sum,x,i)=>sum+x*[.2126,.7152,.0722][i],0);}
+for(const color of charts.OUTCOME_COLORS)assert(1.05/(luminance(color)+.05)>=4.5,'White label contrast: '+color);
+const composition=walk(h).find(n=>n.tagName==='svg'&&n.attrs['aria-label']==='Strict outcome composition · all expected rows');
+button(h,'Task 5 · Simulated tool choices').fire('click');
+const nodes=walk(h),legendIndex=nodes.findIndex(n=>n.className==='detail-outcome-legend'),compositionIndex=nodes.findIndex(n=>n.tagName==='svg'&&n.attrs['aria-label']==='Strict outcome composition · all expected rows');
+assert(legendIndex<compositionIndex,'Outcome legend must precede its composition plot');
+assert(nodes.filter(n=>n.className==='detail-chart-scroll').every(n=>n.attrs.tabindex==='0'),'Scrollable plots need keyboard focus');
+console.log('Chart clarity journeys passed: exact zero, reasoned N/A, explicit denominators/directions/filter scope, chart-first flow, keyboard scrolling and readable palettes');
+`;
+eval(test);

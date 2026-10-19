@@ -1,6 +1,6 @@
 # KoEVD evaluation and analysis
 
-**Evaluation client: v0.3.0-rc.11 (package 0.3.0rc11).** Evaluate your own model, export
+**Evaluation client: v0.3.0-rc.12 (package 0.3.0rc12).** Evaluate your own model, export
 portable JSON, build offline reports, and register results in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
 Anonymous visitors start with the 12-model historical paper leaderboard. Search

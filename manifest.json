@@ -1,6 +1,6 @@
 {
   "format": "sha256-file-manifest-v1",
-  "release_version": "0.3.0rc11",
+  "release_version": "0.3.0rc12",
   "basis": "exact staged Git blobs, excluding the manifest itself",
   "excludes": [
     "manifest.json",
@@ -26,7 +26,7 @@
     {
       "path": "CITATION.cff",
       "bytes": 464,
-      "sha256": "4e23361e222723b1a07cf6b8d3bf2fb448f0f769c2b0ef82a726dc7c2f32608c"
+      "sha256": "45575d15c54a48a069fab17457e91c64192f538685d88c1f535da35d1192a37d"
     },
     {
       "path": "LICENSE",
@@ -46,7 +46,7 @@
     {
       "path": "README.md",
       "bytes": 15913,
-      "sha256": "411e66c29158aecdad881b7faaec3861fb21d85dfe4b120b5cb8783a678368c5"
+      "sha256": "3a409cdc3dd49309792db0219eb1e6ccaacc057d700868fbb16f418f7cf328d0"
     },
     {
       "path": "analysis/plot_paper_tables.py",
@@ -220,8 +220,8 @@
     },
     {
       "path": "docs/GETTING_STARTED.md",
-      "bytes": 44122,
-      "sha256": "425630696c2ee27cfa3483a8c2d5b712e87545502c3fa02a2915799dfacbb23d"
+      "bytes": 44498,
+      "sha256": "21b112dad282c134997ad463835e533c2c2c47a6c0649201104a37d4bfb44710"
     },
     {
       "path": "docs/GPU_MEASUREMENT_MATRIX_RESULTS.md",
@@ -340,8 +340,8 @@
     },
     {
       "path": "docs/PUBLIC_PROFILES_GUIDE.md",
-      "bytes": 11961,
-      "sha256": "7faeb58398c11a6ed421cbf2512bd65c28e5a8dde4cc0807bc250d73dcd63a10"
+      "bytes": 13800,
+      "sha256": "eda06eb29ee62c8494c8ac4952d6248230cbe70abe5babe5a51cf8dfc98f64b1"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
@@ -1076,7 +1076,7 @@
     {
       "path": "pyproject.toml",
       "bytes": 1794,
-      "sha256": "4b919e030daa376bf939a7cd1b89eefbced7a52216a74995874e71f9d5eb3051"
+      "sha256": "815765cc4c54a130367304eef4cc58748e19d924c16f1fc96c5487d3b1c1d412"
     },
     {
       "path": "reproduction/task1_metadata_v1/README.md",
@@ -1396,7 +1396,7 @@
     {
       "path": "src/koevd_eval/__init__.py",
       "bytes": 88,
-      "sha256": "13871cbd4923ccf5003304de63c016e0431369e0b40cfba3dae19d043eb27b5a"
+      "sha256": "75eb3dbe56262a1e8e9dcd4f1a1ccb4a7c06b4f5677eccaa7cf27f51fbfb9303"
     },
     {
       "path": "src/koevd_eval/analysis.py",
@@ -1405,13 +1405,13 @@
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.css",
-      "bytes": 4532,
-      "sha256": "405cd8e41c82528767e71ef81554c473e4854248a4522782f7ac8922fccef799"
+      "bytes": 9704,
+      "sha256": "c2e0ee4d41c4809c3f95af2e1e6ab1530f05ab8d46f56aaea1bc45064f954776"
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.js",
-      "bytes": 49459,
-      "sha256": "a6732c649961bcb76ae8668371bd0cdb4cdea5da4b6a6e1f0a4e356825fc7830"
+      "bytes": 56199,
+      "sha256": "e5c9810a87c4fc63749a5af3021878e24ae5dd3cfac45e97aad78d763c62738a"
     },
     {
       "path": "src/koevd_eval/assets/home.js",
@@ -1450,8 +1450,8 @@
     },
     {
       "path": "src/koevd_eval/assets/registration.js",
-      "bytes": 47892,
-      "sha256": "20e3a44ff06437e7ea47785aaac97cfd6f4404b4ead4a2384827649d488e1579"
+      "bytes": 48263,
+      "sha256": "28d99495adfb7573fa45332fa83118e7a6fdce609dc66f86feea3cd852b0451b"
     },
     {
       "path": "src/koevd_eval/assets/report.css",
@@ -1465,13 +1465,13 @@
     },
     {
       "path": "src/koevd_eval/assets/space.css",
-      "bytes": 10037,
-      "sha256": "c087a0c5c618ec536c0779bcc012edebc8e4924a1f45ace8766355c1d2c0e9f2"
+      "bytes": 10801,
+      "sha256": "f7f24fcfd9a87c37a7d2526723ea606ff0f8d8d99bb54f5712d1d62231e40cb1"
     },
     {
       "path": "src/koevd_eval/assets/space.html",
       "bytes": 18167,
-      "sha256": "36607b15451d4a75a53ce31b67f7d54933df35e963e48c684b125d41aac27291"
+      "sha256": "98f965e2040b0431c0e901031f3efbe1c0ed2509bf273320b8f2b7e0bb808f47"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1709,6 +1709,11 @@
       "sha256": "a6e3edf2036606e4002d9b7f580add801228186d047726d9c4ed05843711fe46"
     },
     {
+      "path": "tests/chart_clarity_design.cjs",
+      "bytes": 4806,
+      "sha256": "27c3aa0648c49992f0a5e05f228a291179c45e78ce2166339a66979788a91f36"
+    },
+    {
       "path": "tests/chart_handoff.cjs",
       "bytes": 1779,
       "sha256": "c0369c3bde84e66540d914efe11e0a107857e16733a8834bea620cfea9ec0c2e"
@@ -1785,8 +1790,8 @@
     },
     {
       "path": "tests/test_detail_charts.py",
-      "bytes": 1718,
-      "sha256": "0809a56d452f3cea4f2fd8acb8fa8fc832b976cba8d360af239d7aa7f543758c"
+      "bytes": 1831,
+      "sha256": "84f6906a414e4ef8ae1ea480746b64c48faa5db80d140aaacf93dea41b6865c5"
     },
     {
       "path": "tests/test_diagnostics.py",

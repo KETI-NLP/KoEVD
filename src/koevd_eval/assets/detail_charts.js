@@ -12,6 +12,8 @@ const axisOf=c=>c.data?.[0]?.case_filter?.axis;
 const scopeOf=c=>{const f=c.data?.[0]?.case_filter||{};return f.subset?'subset:'+f.subset:f.variant?'variant:'+f.variant:'all:all';};
 const datumLabel=d=>d.label?pretty(d.label):[d.left??d.response_label,d.right??d.tool_outcome].map(pretty).join(' → ');
 const value=d=>Object.hasOwn(d,'value')?d.value:d.count;
+const MODEL_COLORS=['#2765a1','#94551e','#71519b'];
+const OUTCOME_COLORS=['#b84942','#176474','#536b89','#70508d','#80600f','#246e73','#58616e'];
 const OUTCOMES=['unsafe_tool','allowed_tool','other_available_tool','refuse','answer_without_tool','ask_clarification','invalid'];
 const FRAMINGS=['safe_guided','tool_forced','unsafe_induced','Safe-Guided','Tool-Forced','Unsafe-Induced'];
 const SEVERITY=['Benign','Low','Moderate','High','Extreme','HD/borderline','Hold/Borderline','__missing__'];
@@ -36,13 +38,48 @@ function matrixDomains(charts){
  const axis=charts.find(Boolean)?.axis||axisOf(charts.find(Boolean)||{});
  return {rows:categoryOrder(data.map(d=>d.left??d.response_label),family==='strategy_group'||kind==='count_matrix'?'strategy':family==='transition'?'response_label':axis==='severity_band × explicitness'?'severity_band':axis),cols:categoryOrder(data.map(d=>d.right??d.tool_outcome),family==='strategy_group'?axis:family==='transition'?'outcome':kind==='count_matrix'?'strategy':axis==='severity_band × explicitness'?'explicitness':'framing')};
 }
+function unavailableReason(d,c={}){
+ if(finite(value(d)))return '';
+ if(d.missing)return 'Condition not supplied';
+ if(d.denominator===0||d.classified===0)return d.expected>0&&d.valid===0?'No valid outputs':'No eligible denominator';
+ return c.family?.startsWith('paper_')?'Not released':'Measurement not supplied';
+}
+function directionLabel(d,c){
+ if(c.kind==='confusion_matrix')return 'Gold-row distribution; inspect errors separately';
+ if(/coverage/i.test(d.label||'')||c.family==='paper_coverage')return 'Coverage ↑ · completeness, not safety';
+ if(c.task===1&&c.family?.startsWith('paper_')||c.task===4||c.kind==='count_matrix')return 'Descriptive · no quality direction';
+ if(/accuracy/i.test(d.label||'')||c.task===2&&['variants','paper_summary'].includes(c.family))return 'Accuracy ↑';
+ if(c.family==='composition'||c.family==='transition')return 'Outcome distribution · inspect unsafe and invalid separately';
+ return c.task===1?'Judgment error ↓':c.task===2?'Answer error ↓':c.task===3?'Classifier unsafe ↓ · proxy measurement':'Unsafe tool choice ↓ · simulation';
+}
+function denominatorLabel(d,c){
+ if(d.denominator_label)return d.denominator_label;
+ const label=d.label||'';
+ if(/coverage/i.test(label)||c.family==='paper_coverage')return /unsafe|safe/.test(label)?'All expected inputs in this gold-label class':'All expected outputs';
+ if(c.family==='co_occurrence')return 'Strategy-classified responses';
+ if(c.family==='strategy'||c.family==='unsafe_marker'||c.family==='strategy_group')return 'Strategy-classified responses in this condition';
+ if(c.family==='composition')return 'All expected rows in this framing and condition';
+ if(c.family==='label_specific'||/missed.risk|false.alarm/.test(label))return /missed|risk/.test(label)||c.title.toLowerCase().includes('missed')?'Valid judgments on gold-unsafe inputs':'Valid judgments on gold-safe inputs';
+ if(c.family==='rates'&&/observed/i.test(label))return 'All expected outputs';
+ if(c.kind==='confusion_matrix')return 'All expected inputs; gold-row mode uses its row total';
+ if(c.family?.startsWith('paper_'))return finite(d.denominator)?'Released denominator for this metric':'Counts not released';
+ return 'Valid '+(c.task===1?'judgments':c.task===2?'answers':c.task===3?'response measurements':'tool choices')+' in this condition';
+}
+function decorateChart(c,summary,selection){
+ const historical=summary.historical,overview=['variants','composition','framing_matrix'].includes(c.family),scope=historical?'Released paper aggregate':overview?(c.task===2?'All instruction variants':'All framings'):(scopes([summary],c.task).find(([key])=>key===selection.scope)?.[1]||selection.scope);
+ const condition=selection.group?(AXES[selection.axis]||selection.axis)+': '+pretty(selection.group):'All conditions';
+ const annotated=c.data.map(d=>({...d,denominator_label:denominatorLabel(d,c),direction_label:directionLabel(d,c)}));
+ const denominator=c.family==='rates'?'Mixed denominators · labeled per metric':c.kind==='confusion_matrix'?'Gold-label row % or counts · includes unparsed':c.family==='transition'?'Each response-label row · includes invalid':c.family==='composition'?'All expected rows · includes invalid':c.task===4?'Strategy-classified responses':c.family==='label_specific'?'Gold-label-specific valid judgments':historical?'Released metric-specific denominator':'Valid outputs';
+ return {...c,data:annotated,scope_label:scope,condition_label:condition,denominator_note:denominator,historical:!!historical};
+}
 function chartCaption(c){
  if(c.task===1&&c.family.startsWith('paper_'))return 'Historical unsafe-judgment frequency is descriptive, not accuracy or a better/worse score. Fixed 0–100% rate scale; missing source counts remain unavailable.';
- if(c.kind==='stacked')return 'Complete outcome composition over all expected rows, including invalid outputs. Segment order matches the legend; zero segments remain in the exact table. Label search retains every component.';
+ if(c.kind==='stacked')return 'Each framing totals 100% of expected rows, including invalid outputs. This denominator differs from valid-output rates. Zero outcomes remain in the exact table.';
  if(c.kind==='confusion_matrix')return c.matrixMode==='row_percent'?'Rows: gold labels; columns: model predictions. Each rate uses all inputs in its gold-label row, including unparsed predictions.':'Observed counts. Rows: gold labels; columns: model predictions. Cell denominator is all expected inputs, not the missed-risk or false-alarm denominator.';
  if(c.kind==='count_matrix')return 'Co-occurrence counts, not correlation or strategy quality. Diagonal: inclusion count. Cell denominator: strategy-classified responses. '+(c.countMax?'Both models share the count color maximum '+c.countMax+'.':'Colors use the largest displayed count.');
- if(c.family==='transition')return 'Each response-label row totals 100%, including invalid choices. Denominator: matched observations in that row. Full-framing source support is separate; classifier groups can differ across models.';
- return (c.task===4?'Descriptive strategy frequency; no quality direction. ':c.task===2?'Accuracy/coverage: higher is better. Answer errors: lower is better. ':'Unsafe/error rates: lower observed frequency; inspect coverage. ')+'Fixed 0–100% rate scale. N/A differs from measured zero. Small support is flagged; no interval is invented.';
+ if(c.family==='transition')return 'Each response-label row totals 100%, including invalid choices. Full-framing source support is separate; classifier groups can differ across models.';
+ if(c.family==='rates')return 'Each row names its denominator and direction. Coverage describes completeness, not safety. Valid-output rates exclude invalid outputs; all-expected rates retain them.';
+ return (c.task===4?'Descriptive strategy frequency; no quality direction. ':c.task===2&&c.family==='group'?'Answer error ↓. ':c.task===2?'Accuracy ↑. ':'Unsafe/error rate ↓; inspect coverage. ')+'Fixed 0–100% rate scale. Measured zero differs from unavailable data; small support is flagged.';
 }
 function comparisonBars(charts,summaries,selection){
  const base=charts.find(Boolean),domain=categoryOrder(charts.filter(Boolean).flatMap(c=>c.data.map(d=>d.label)),base.family==='paper_group'?'historical_severity':base.family==='strategy'?'strategy':base.family==='variants'?'framing':axisOf(base)||selection.axis);
@@ -93,18 +130,18 @@ function transitionMatrix(c){
  return {...c,kind:'rate_matrix',title:c.title+' · row-normalized (including invalid)',data:c.data.map(d=>({...d,left:d.response_label,right:d.tool_outcome,numerator:d.count,denominator:sums.get(d.response_label),value:sums.get(d.response_label)?d.count/sums.get(d.response_label):null,denominator_label:'Matched observations in this response-label row (including invalid)',sources_label:'Unique sources in the full framing, not this row',support_count:sums.get(d.response_label)}))};
 }
 function variantChart(summary,task,selection={}){
- const data=partitions(summary,task).filter(p=>p.kind==='variant').map(p=>{const g=selection.group?groups(summary,task,partKey(p),selection.axis).find(g=>g.value===selection.group):p;return rateDatum(p.name,g?(task===2?g.rates.accuracy_on_valid:g.rates.event_on_valid):{value:null,numerator:null,denominator:null},{coverage:g?.coverage,valid:g?.valid,expected:g?.rows});});
+ const data=partitions(summary,task).filter(p=>p.kind==='variant').map(p=>{const g=selection.group?groups(summary,task,partKey(p),selection.axis).find(g=>g.value===selection.group):p;return rateDatum(p.name,g?(task===2?g.rates.accuracy_on_valid:g.rates.event_on_valid):{value:null,numerator:null,denominator:null},{coverage:g?.coverage,valid:g?.valid,expected:g?.rows,missing:!g});});
  return spec(task===2?'Answer accuracy by instruction variant':'Unsafe tool selections / valid by framing',task,'rate_bars',data,'variants');
 }
 function composition(summary,selection={}){return spec('Strict outcome composition · all expected rows',5,'stacked',partitions(summary,5).filter(p=>p.kind==='variant').flatMap(p=>{const g=selection.group?groups(summary,5,partKey(p),selection.axis).find(g=>g.value===selection.group):p;return g?OUTCOMES.map(label=>({left:p.name,right:label,label,count:g.strict_outcomes[label],denominator:g.rows,value:g.rows?g.strict_outcomes[label]/g.rows:null,sources:g.unique_sources,coverage:g.coverage,valid:g.valid,expected:g.rows,denominator_label:'All expected rows in this framing and condition'})):[];}), 'composition');}
 function framingMatrix(summary,axis){return {...spec('Unsafe tool selections / valid · '+(AXES[axis]||axis)+' × framing',5,'rate_matrix',(summary.analysis?.tasks?.['5']?.groups||[]).filter(g=>g.partition_kind==='variant'&&g.axis===axis).map(g=>({left:g.value,right:g.partition_name,...g.rates.event_on_valid,coverage:g.coverage})), 'framing_matrix'),axis};}
 function selectCharts(summary,selection){
  const task=Number(selection.task),{scope,axis}=selection,all=summary.analysis?.charts||[];
- if(summary.historical)return all.filter(c=>c.task===task).map(c=>c.family==='paper_group'?c:fixedData(c));
+ if(summary.historical)return all.filter(c=>c.task===task).map(c=>decorateChart(c.family==='paper_group'?c:fixedData(c),summary,selection));
  const chosen=selectedPart(summary,selection);if(selection.group&&!chosen)return [];
  const selected=all.filter(c=>c.task===task&&scopeOf(c)===scope),result=[];
  const add=(...families)=>result.push(...selected.filter(c=>families.includes(c.family)));
- if(task===1)add('confusion','rates','label_specific');
+ if(task===1){add('confusion','rates');result.push(...selected.filter(c=>c.family==='label_specific'&&axisOf(c)===axis));}
  if(task===2){result.push(variantChart(summary,2,selection));add('rates');}
  if(task===3)add('rates');
  if(task===4)add('strategy','unsafe_marker','rates');
@@ -130,7 +167,7 @@ function selectCharts(summary,selection){
   result[i]={...c,title};
  }
  const order=({1:['confusion','rates','label_specific','group'],2:['variants','rates','group'],3:['group','rates'],4:['strategy','strategy_group','unsafe_marker','rates','co_occurrence'],5:['variants','composition','framing_matrix','group','transition','rates']})[task];
- return result.sort((a,b)=>order.indexOf(a.family)-order.indexOf(b.family)).map(c=>({...c,title:c.title.replaceAll('event_on_valid','unsafe events / valid').replaceAll('missed_risk_on_valid_unsafe','missed risk / valid unsafe inputs').replaceAll('false_alarm_on_valid_safe','false alarms / valid safe inputs'),data:c.data.map(d=>({...d,label:d.label==='event_on_valid'&&task<3?(task===1?'Judgment errors / valid':'Answer errors / valid'):d.label==='observed_event_on_all'&&task<3?(task===1?'Observed judgment errors / all':'Observed answer errors / all'):d.label}))})).map(c=>enrichChart(c.kind==='rate_bars'&&c.family!=='rates'?fixedData(c):c,summary,selection));
+ return result.sort((a,b)=>order.indexOf(a.family)-order.indexOf(b.family)).map(c=>({...c,title:c.title.replaceAll('event_on_valid','unsafe events / valid').replaceAll('missed_risk_on_valid_unsafe','missed risk / valid unsafe inputs').replaceAll('false_alarm_on_valid_safe','false alarms / valid safe inputs'),data:c.data.map(d=>({...d,label:d.label==='event_on_valid'&&task<3?(task===1?'Judgment errors / valid':'Answer errors / valid'):d.label==='observed_event_on_all'&&task<3?(task===1?'Observed judgment errors / all':'Observed answer errors / all'):d.label}))})).map(c=>decorateChart(enrichChart(c.kind==='rate_bars'&&c.family!=='rates'?fixedData(c):c,summary,selection),summary,selection));
 }
 function observations(c,sort,query,selection){
  let data=[...c.data];const matrix=!['rate_bars','count_bars','stacked'].includes(c.kind);
@@ -141,11 +178,12 @@ function observations(c,sort,query,selection){
 }
 function describe(d,c){
  const rate=Object.hasOwn(d,'value'),support=d.support_count??d.sources,low=finite(support)&&support<20;
- return [d.seriesName?'Model: '+d.seriesName:'',datumLabel(d),rate?pct(d.value):'Count '+(d.count??'N/A'),
+ return [d.seriesName?'Model: '+d.seriesName:'',datumLabel(d),rate?(finite(d.value)?pct(d.value):'N/A · '+unavailableReason(d,c)):'Count '+(d.count??('N/A · '+unavailableReason(d,c))),
+  d.direction_label||directionLabel(d,c),
   (d.denominator_label||'Numerator / denominator')+': '+(d.numerator??d.count??'not released')+' / '+(d.denominator??d.classified??'not released'),
   (d.sources_label||'Unique sources (as reported)')+': '+(d.sources??'not released'),
   d.valid!=null&&d.expected!=null?'Valid / expected: '+d.valid+' / '+d.expected+' · coverage '+pct(d.coverage):d.coverage!=null?'Valid coverage: '+pct(d.coverage):'Coverage: see scope summary',
-  low?'Small group: fewer than 20 '+(d.support_count!=null?'row observations':'reported sources')+'; descriptive only.':'',
+  low&&finite(value(d))?'Small group: fewer than 20 '+(d.support_count!=null?'row observations':'reported sources')+'; descriptive only.':'',
   d.interval?.lower!=null?'Source bootstrap 95% interval: '+pct(d.interval.lower)+'–'+pct(d.interval.upper):'No interval supplied; none estimated in the browser.',
   c.family==='transition'?'Row denominator includes invalid choices. Classifier groups may contain different sources across models.':''].filter(Boolean).join('\n');
 }
@@ -155,9 +193,9 @@ function mount(holder,summaries,options={}){
  const text=(parent,label,x,y,attrs={})=>{const n=svg('text',{x,y,...attrs});n.textContent=String(label);parent.append(n);return n;};
  const button=(label,fn)=>{const b=el('button',label,'secondary');b.type='button';b.addEventListener('click',fn);return b;};
  const tasks=[...new Set(summaries.flatMap(s=>(s.analysis?.charts||[]).map(c=>String(c.task))))].sort();if(!tasks.length){holder.append(el('p','No chart observations are available for this publication.'));return;}
- const box=el('section',undefined,'detail-explorer'),tabs=el('div',undefined,'detail-tabs'),controls=el('div',undefined,'detail-controls'),help=el('p',undefined,'detail-help'),view=el('div'),selectionBox=el('aside',undefined,'detail-selection');
+ const box=el('section',undefined,'detail-explorer'),tabs=el('div',undefined,'detail-tabs'),controls=el('div',undefined,'detail-controls'),help=el('p',undefined,'detail-help'),interpretation=el('details',undefined,'detail-interpretation'),filterStatus=el('p',undefined,'detail-filter-status'),view=el('div'),selectionBox=el('aside',undefined,'detail-selection');
  const state={task:tasks.includes('3')?'3':tasks[0],scope:'',axis:'utterance_type',sort:'reported',query:'',group:'',cooccurrence:false,matrixMode:'row_percent'},memory={};let activeMark=null;
- selectionBox.hidden=true;selectionBox.setAttribute('role','region');selectionBox.setAttribute('aria-label','Selected observation');selectionBox.setAttribute('aria-live','polite');box.append(el('h2',summaries.length>1?'Compare task behavior':'Explore task behavior'),el('p','Hover or focus a mark for exact values. Select a bar or cell to pin its numerical evidence. Charts use measured denominators; no combined ethics score.'),tabs,controls,help,selectionBox,view);holder.append(box);
+ selectionBox.hidden=true;selectionBox.setAttribute('role','region');selectionBox.setAttribute('aria-label','Selected observation');selectionBox.setAttribute('aria-live','polite');box.append(el('h2',summaries.length>1?'Compare task behavior':'Explore task behavior'),el('p','Hover or focus a mark for exact values. Select a bar or cell to pin its numerical evidence. Charts use measured denominators; no combined ethics score.'),tabs,controls,filterStatus,selectionBox,view,interpretation);interpretation.append(el('summary','Interpretation and filter limits'),help);holder.append(box);
  const storageKey='koevd-chart-view:'+summaries.map(s=>(s.submission_id||s.name)+':'+(s.revision||'paper')).join('|');try{const saved=JSON.parse(sessionStorage.getItem(storageKey));if(saved&&tasks.includes(saved.task)){for(const k of ['task','scope','axis','sort','query','group','matrixMode'])if(typeof saved[k]==='string'&&saved[k].length<=200)state[k]=saved[k];state.cooccurrence=saved.cooccurrence===true;}}catch(_){/* Storage unavailable or invalid: use visible defaults. */}
  if(options.selection&&tasks.includes(String(options.selection.task))){for(const k of ['task','scope','axis','sort','query','group','matrixMode'])if(typeof options.selection[k]==='string'&&options.selection[k].length<=200)state[k]=options.selection[k];state.cooccurrence=options.selection.cooccurrence===true;}
  const tip=el('div',undefined,'detail-tooltip');tip.hidden=true;tip.setAttribute('role','tooltip');box.append(tip);
@@ -176,17 +214,17 @@ function mount(holder,summaries,options={}){
  }
  function bars(c,s){
   const grouped=c.kind==='grouped_bars',rate=grouped?c.original_kind==='rate_bars':c.kind==='rate_bars',labels=grouped?[...new Set(c.data.map(d=>d.label))]:c.data.map(d=>d.label),series=grouped?c.models.length:1;
-  const step=grouped?26+series*52:58,height=48+labels.length*step,drawing=svg('svg',{viewBox:'0 0 900 '+height,class:'detail-svg',role:'group','aria-label':c.title}),x=295,w=345,max=rate?1:Math.max(1,...c.data.map(d=>d.count||0));
-  for(const t of [0,.25,.5,.75,1]){drawing.append(svg('line',{x1:x+t*w,x2:x+t*w,y1:26,y2:height-8,stroke:'#dce5ef'}));text(drawing,rate?t*100+'%':Math.round(t*max),x+t*w,16,{'text-anchor':'middle',fill:'#52657a','font-size':12});}
+  const step=grouped?22+series*36:54,height=48+labels.length*step,drawing=svg('svg',{viewBox:'0 0 900 '+height,class:'detail-svg',role:'group','aria-label':c.title}),x=295,w=345,max=rate?1:Math.max(1,...c.data.map(d=>d.count||0));
+  for(const t of [0,.25,.5,.75,1]){drawing.append(svg('line',{x1:x+t*w,x2:x+t*w,y1:26,y2:height-8,stroke:'#dce5ef'}));text(drawing,rate?t*100+'%':Math.round(t*max),x+t*w,16,{'text-anchor':'middle',fill:'#52657a','font-size':12,class:rate?'detail-export-axis':''});}
   labels.forEach((label,i)=>{
    const base=35+i*step;
    if(grouped){drawing.append(svg('rect',{x:0,y:base-2,width:900,height:step-5,fill:i%2?'#f2f6fa':'#fff'}));text(drawing,pretty(label),5,base+16,{'font-size':14,fill:'#182e49'});}
    const entries=grouped?c.data.filter(d=>d.label===label):[c.data[i]];
-   entries.forEach((d,j)=>{const y=base+(grouped?26+j*52:0),g=svg('g'),v=value(d),color=grouped?['#2765a1','#bd7430','#7c5ba6'][d.seriesIndex%3]:c.task===4||c.task===2||/coverage|accuracy/i.test(d.label)?'#377fa4':'#b84942';
-    g.append(svg('rect',{x:0,y:y-3,width:900,height:51,fill:'transparent'}));text(g,grouped?'Model '+(d.seriesIndex+1):datumLabel(d).length>40?datumLabel(d).slice(0,37)+'…':datumLabel(d),5,y+16,{'font-size':13,fill:grouped?color:'#182e49'});
-    g.append(svg('rect',{x,y,width:w,height:22,rx:3,fill:'#edf2f7'}));if(finite(v))g.append(svg('rect',{x,y,width:Math.max(v===0?2:0,Math.min(1,v/max)*w),height:22,rx:3,fill:color,opacity:finite(d.sources)&&d.sources<20?.5:1}));
-    text(g,(rate?pct(v):v??'N/A')+(finite(d.sources)&&d.sources<20?' · small n':''),x+w+14,y+13,{'font-size':13,fill:'#182e49'});text(g,(d.numerator??d.count??'—')+' / '+(d.denominator??d.classified??'—'),x+w+14,y+28,{'font-size':12,fill:'#52657a'});
-    if(d.coverage!=null)text(g,'Valid '+(d.valid!=null&&d.expected!=null?d.valid+'/'+d.expected+' · ':'')+pct(d.coverage),x,y+41,{'font-size':11,fill:'#52657a'});
+   entries.forEach((d,j)=>{const y=base+(grouped?22+j*36:0),g=svg('g'),v=value(d),color=grouped?MODEL_COLORS[d.seriesIndex%3]:c.task===4||c.task===2||/coverage|accuracy/i.test(d.label)?'#377fa4':'#b84942';
+    g.append(svg('rect',{x:0,y:y-3,width:900,height:grouped?34:51,fill:'transparent'}));text(g,grouped?'Model '+(d.seriesIndex+1):datumLabel(d).length>40?datumLabel(d).slice(0,37)+'…':datumLabel(d),5,y+16,{'font-size':13,fill:grouped?color:'#182e49'});
+    g.append(svg('rect',{x,y,width:w,height:18,rx:3,fill:'#edf2f7'}));if(finite(v)&&v>0)g.append(svg('rect',{x,y,width:Math.min(1,v/max)*w,height:18,rx:3,fill:color,opacity:finite(d.sources)&&d.sources<20?.5:1}));if(v===0)g.append(svg('circle',{cx:x,cy:y+9,r:3,fill:'#fff',stroke:color,'stroke-width':1.5}));
+    text(g,(finite(v)?(rate?pct(v):v):'N/A')+(finite(v)&&finite(d.sources)&&d.sources<20?' · small n':''),x+w+14,y+12,{'font-size':13,fill:'#182e49'});text(g,finite(v)?(d.numerator??d.count??'—')+' / '+(d.denominator??d.classified??'—'):unavailableReason(d,c),x+w+14,y+27,{'font-size':12,fill:'#52657a'});
+    if(d.coverage!=null&&!grouped)text(g,'Valid '+(d.valid!=null&&d.expected!=null?d.valid+'/'+d.expected+' · ':'')+pct(d.coverage),x,y+41,{'font-size':11,fill:'#52657a'});
     if(rate&&d.interval?.lower!=null&&d.interval?.upper!=null)g.append(svg('line',{x1:x+d.interval.lower*w,x2:x+d.interval.upper*w,y1:y+11,y2:y+11,stroke:'#172c48','stroke-width':3}));
     mark(g,d,c,grouped?summaries[d.seriesIndex]:s);drawing.append(g);
    });
@@ -199,45 +237,54 @@ function mount(holder,summaries,options={}){
    const d=original.find(x=>x.label===left+'->'+right),total=original.filter(x=>x.label.startsWith(left+'->')).reduce((n,d)=>n+d.count,0),cell=d?{...d,left,right}:{left,right,label:left+'->'+right,count:0,denominator:original[0]?.denominator??null,sources:original[0]?.sources??null};
    return c.matrixMode==='row_percent'?{...cell,numerator:cell.count,denominator:total,value:total?cell.count/total:null,denominator_label:'All expected inputs in this gold-label row (including unparsed)',sources_label:'Unique sources in the full input set, not this row',support_count:total}:{...cell,denominator_label:'Cell count / all expected inputs',sources_label:'Unique sources in the full input set'};
   }));}
-  const domains=c.domains||matrixDomains([{...c,data}]),rows=domains.rows,cols=domains.cols,cell=90,left=235,top=135,height=top+rows.length*42+30,width=Math.max(620,left+cols.length*cell+30),rate=['rate_matrix','strategy_group_matrix'].includes(c.kind)||confusion&&c.matrixMode==='row_percent',max=c.countMax||Math.max(1,...data.map(d=>d.count||0)),drawing=svg('svg',{viewBox:'0 0 '+width+' '+height,class:'detail-svg detail-matrix',role:'group','aria-label':c.title});
-  drawing.style.minWidth=width+'px';text(drawing,rate?'Rate color scale: 0% → 100%; N/A = no denominator':'Count color maximum: '+max+(c.countMax?' (shared across models)':''),6,18,{'font-size':12,fill:'#52657a'});
+  const domains=c.domains||matrixDomains([{...c,data}]),rows=domains.rows,cols=domains.cols,cell=90,left=235,top=105,height=top+rows.length*42+30,width=Math.max(620,left+cols.length*cell+30),rate=['rate_matrix','strategy_group_matrix'].includes(c.kind)||confusion&&c.matrixMode==='row_percent',max=c.countMax||Math.max(1,...data.map(d=>d.count||0)),drawing=svg('svg',{viewBox:'0 0 '+width+' '+height,class:'detail-svg detail-matrix',role:'group','aria-label':c.title});
+  drawing.style.minWidth=width+'px';drawing.style.width=width+'px';text(drawing,rate?'Rate color scale: 0% → 100%; N/A = no denominator':'Count color maximum: '+max+(c.countMax?' (shared across models)':''),6,18,{'font-size':12,fill:'#52657a'});
   if(confusion){text(drawing,'Columns: model prediction',left,42,{'font-size':12,fill:'#182e49'});text(drawing,'Rows: gold label',6,top-15,{'font-size':12,fill:'#182e49'});}
   cols.forEach((col,i)=>text(drawing,pretty(col),left+i*cell+25,top-12,{'font-size':12,fill:'#182e49',transform:'rotate(-38 '+(left+i*cell+25)+' '+(top-12)+')'}));
   rows.forEach((row,j)=>{text(drawing,pretty(row).slice(0,32),left-10,top+j*42+24,{'text-anchor':'end','font-size':12,fill:'#182e49'});cols.forEach((col,i)=>{
-   const d=data.find(d=>(d.left??d.response_label)===row&&(d.right??d.tool_outcome)===col)||{left:row,right:col,value:null},v=rate?d.value:finite(d.count)?d.count/max:null,g=svg('g');g.append(svg('rect',{x:left+i*cell,y:top+j*42,width:cell-3,height:39,rx:3,fill:finite(v)?(c.task===4?'rgba(35,116,151,':'rgba(177,62,54,')+(.08+.7*v)+')':'#e4e9ef',stroke:finite(d.support_count??d.sources)&&(d.support_count??d.sources)<20?'#72859a':'none','stroke-dasharray':'3 2'}));text(g,rate?pct(d.value):d.count??'N/A',left+i*cell+(cell-3)/2,top+j*42+24,{'text-anchor':'middle','font-size':12,fill:'#12243b'});mark(g,d,c,s);drawing.append(g);
+   const d=data.find(d=>(d.left??d.response_label)===row&&(d.right??d.tool_outcome)===col)||{left:row,right:col,value:null},v=rate?d.value:finite(d.count)?d.count/max:null,g=svg('g');g.append(svg('rect',{x:left+i*cell,y:top+j*42,width:cell-3,height:39,rx:3,fill:finite(v)?(c.task===4||confusion&&row===col?'rgba(35,116,151,':'rgba(177,62,54,')+(.08+.7*v)+')':'#e4e9ef',stroke:finite(d.support_count??d.sources)&&(d.support_count??d.sources)<20?'#72859a':'none','stroke-dasharray':'3 2'}));text(g,rate?pct(d.value):d.count??'N/A',left+i*cell+(cell-3)/2,top+j*42+24,{'text-anchor':'middle','font-size':12,fill:'#12243b'});mark(g,d,c,s);drawing.append(g);
   });});return {drawing,data};
  }
  function stacked(c,s){
-  const rows=categoryOrder(c.data.map(d=>d.left),'framing'),drawing=svg('svg',{viewBox:'0 0 900 '+(70+rows.length*65),class:'detail-svg',role:'group','aria-label':c.title}),colors=['#b84942','#267d8b','#7b91ad','#9271b8','#c49c35','#58a1a4','#a6adb7'];
-  rows.forEach((row,i)=>{const y=30+i*65;let offset=0;text(drawing,pretty(row),0,y+17,{'font-size':13,fill:'#182e49'});for(const outcome of OUTCOMES){const d=c.data.find(d=>d.left===row&&d.right===outcome);if(!d)continue;const color=colors[OUTCOMES.indexOf(outcome)],w=(d.value||0)*630,g=svg('g');g.append(svg('rect',{x:220+offset,y,width:Math.max(0,w),height:30,fill:color}));if(w>52)text(g,pct(d.value),220+offset+w/2,y+20,{'text-anchor':'middle','font-size':12,fill:'#fff'});mark(g,d,c,s);drawing.append(g);offset+=w;}text(drawing,'100% of expected rows · includes invalid',220,y+47,{'font-size':11,fill:'#52657a'});});return drawing;
+  const rows=categoryOrder(c.data.map(d=>d.left),'framing'),drawing=svg('svg',{viewBox:'0 0 900 '+(70+rows.length*65),class:'detail-svg',role:'group','aria-label':c.title}),colors=OUTCOME_COLORS;
+  rows.forEach((row,i)=>{const y=30+i*65;let offset=0;text(drawing,pretty(row),0,y+17,{'font-size':13,fill:'#182e49'});for(const outcome of OUTCOMES){const d=c.data.find(d=>d.left===row&&d.right===outcome);if(!d)continue;const color=colors[OUTCOMES.indexOf(outcome)],w=(d.value||0)*630,g=svg('g');g.append(svg('rect',{x:220+offset,y,width:Math.max(0,w),height:30,fill:color}));if(w>52)text(g,pct(d.value),220+offset+w/2,y+20,{'text-anchor':'middle','font-size':12,fill:'#fff'});mark(g,d,c,s);drawing.append(g);offset+=w;}text(drawing,c.data.find(d=>d.left===row)?.denominator>0?'100% of expected rows · includes invalid':'N/A · No expected rows',220,y+47,{'font-size':11,fill:'#52657a'});});return drawing;
  }
  function chart(c,s){
   const panel=el('section',undefined,'detail-chart'),head=el('div',undefined,'detail-chart-head'),actions=el('div',undefined,'detail-chart-actions');head.append(el('h3',c.title),actions);panel.append(head);
   if(!c.data.length){panel.append(el('p','No observations in this view. Clear the group or label filter.'));return panel;}
-  if(c.models){const legend=el('div',undefined,'detail-model-legend');for(const [i,m]of c.models.entries()){const n=el('span','Model '+(i+1)+' · '+m.model);n.style.color=['#2765a1','#bd7430','#7c5ba6'][i%3];legend.append(n);}panel.append(legend,el('p','Same category rows and fixed rate scale. Values retain each model’s own valid denominator; this is a descriptive comparison, not a paired-effect estimate.','detail-caption'));}
+  const guide=el('div',undefined,'detail-chart-guide'),chips=el('div',undefined,'detail-chart-context');
+  for(const label of [c.scope_label,c.condition_label,c.denominator_note])if(label)chips.append(el('span',label));guide.append(chips);
+  const directions=[...new Set(c.data.map(d=>d.direction_label||directionLabel(d,c)))];guide.append(el('p',directions.length===1?directions[0]:'Mixed metrics · each row names its direction','detail-direction'));
+  if(c.models){const legend=el('div',undefined,'detail-model-legend');for(const [i,m]of c.models.entries()){const full='Model '+(i+1)+' · '+m.model,n=el('span',full.length>65?full.slice(0,62)+'…':full);n.title=full;n.style.color=MODEL_COLORS[i%3];legend.append(n);}guide.append(legend);}
+  if(c.kind==='stacked'){const legend=el('div',undefined,'detail-outcome-legend');OUTCOMES.forEach((key,i)=>{const item=el('span',pretty(key)),swatch=el('i');swatch.style.background=OUTCOME_COLORS[i];item.prepend(swatch);legend.append(item);});guide.append(legend);}
+  if(['rate_bars','grouped_bars'].includes(c.kind)){const scale=el('div',undefined,'detail-bar-axis');for(const label of ['0%','25%','50%','75%','100%'])scale.append(el('span',label));guide.append(scale);}
+  panel.append(guide);
   let drawing;if(c.kind==='stacked')drawing=stacked(c,s);else if(['rate_bars','count_bars','grouped_bars'].includes(c.kind))drawing=bars(c,s);else{const rendered=matrix(c,s);drawing=rendered.drawing;c={...c,data:rendered.data};}
-  const scroll=el('div',undefined,'detail-chart-scroll');scroll.append(drawing);panel.append(scroll);
-  if(c.kind==='stacked'){const legend=el('div',undefined,'detail-outcome-legend');OUTCOMES.forEach((key,i)=>{const item=el('span',pretty(key)),swatch=el('i');swatch.style.background=['#b84942','#267d8b','#7b91ad','#9271b8','#c49c35','#58a1a4','#a6adb7'][i];item.prepend(swatch);legend.append(item);});panel.append(legend);}
+  const scroll=el('div',undefined,'detail-chart-scroll');scroll.setAttribute('tabindex','0');scroll.setAttribute('role','region');scroll.setAttribute('aria-label',c.title+' · scroll plot');scroll.append(drawing);scroll.addEventListener('scroll',hideTip);panel.append(scroll);
+  if(!['rate_bars','count_bars','grouped_bars','stacked'].includes(c.kind))guide.append(el('p','Columns: '+matrixDomains([c]).cols.map(pretty).join(' · '),'detail-axis-key'));
   if(c.searchNote)panel.append(el('p',c.searchNote,'detail-caption'));
   const exported={...(c.models?{contexts:c.models}:{context:context(s)}),selection:{...state},chart:c,note:'Numerical aggregate only. Display selection never estimates missing intersections or historical counts.'};
   actions.append(button('SVG',()=>{const copy=drawing.cloneNode(true);copy.setAttribute('xmlns','http://www.w3.org/2000/svg');copy.prepend(svg('title'));copy.firstChild.textContent=JSON.stringify({contexts:c.models||[context(s)],selection:state,title:c.title});download('koevd-task'+state.task+'.svg',new XMLSerializer().serializeToString(copy),'image/svg+xml');}),button('Chart JSON',()=>download('koevd-task'+state.task+'-chart.json',JSON.stringify(exported,null,2),'application/json')));
-  const exact=el('details'),t=el('table'),tr=el('tr');for(const h of ['Model / group / outcome','Rate / count','Numerator','Denominator and scope','Source support and scope','Valid coverage'])tr.append(el('th',h));const thead=el('thead');thead.append(tr);t.append(thead);const tbody=el('tbody');for(const d of c.data){const row=el('tr');for(const v of [(d.seriesName?d.seriesName+' · ':'')+datumLabel(d),Object.hasOwn(d,'value')?pct(d.value):d.count??'N/A',d.numerator??d.count??'Not released',(d.denominator??d.classified??'Not released')+(d.denominator_label?' · '+d.denominator_label:''),(d.sources??'Not released')+(d.sources_label?' · '+d.sources_label:''),d.coverage!=null?pct(d.coverage)+(d.valid!=null&&d.expected!=null?' · '+d.valid+'/'+d.expected:''):'See scope summary'])row.append(el('td',v));tbody.append(row);}t.append(tbody);exact.append(el('summary','Exact numerical observations'),t);panel.append(exact,el('p',chartCaption(c),'detail-caption'));return panel;
+  const exact=el('details'),t=el('table'),tr=el('tr');for(const h of ['Model / group / outcome','Rate / count','Direction / availability','Numerator','Denominator and scope','Source support and scope','Valid coverage'])tr.append(el('th',h));const thead=el('thead');thead.append(tr);t.append(thead);const tbody=el('tbody');for(const d of c.data){const row=el('tr');for(const v of [(d.seriesName?d.seriesName+' · ':'')+datumLabel(d),Object.hasOwn(d,'value')?pct(d.value):d.count??'N/A',unavailableReason(d,c)||d.direction_label||directionLabel(d,c),d.numerator??d.count??'Not released',(d.denominator??d.classified??'Not released')+(d.denominator_label?' · '+d.denominator_label:''),(d.sources??'Not released')+(d.sources_label?' · '+d.sources_label:''),d.coverage!=null?pct(d.coverage)+(d.valid!=null&&d.expected!=null?' · '+d.valid+'/'+d.expected:''):'See scope summary'])row.append(el('td',v));tbody.append(row);}t.append(tbody);exact.append(el('summary','Exact numerical observations'),t);panel.append(exact,el('p',chartCaption(c),'detail-caption'));return panel;
  }
  function modelSummary(s){
-  const node=el('section',undefined,'detail-model-summary');node.append(el('h3',context(s).model),el('p',s.historical?'Historical paper aggregate · only released per-model observations are available.':'Public revision '+s.revision+' · '+(s.model?.dtype||'unknown precision')+' · numerical sharing scope '+s.scope));
+  const node=el('section',undefined,'detail-model-summary');node.append(el('h3',context(s).model),el('p',s.historical?'Historical paper aggregate · only released per-model observations are available.':'Revision '+s.revision+' · '+(s.model?.dtype||'unknown precision')));
    const p=selectedPart(s,state);if(p)node.append(el('p',(scopes(summaries,state.task).find(([key])=>key===state.scope)?.[1]||state.scope)+' · '+(state.group?pretty(state.group)+' · ':'')+p.valid+'/'+p.rows+' valid expected rows · '+p.unique_sources+' unique sources · coverage '+pct(p.coverage),'detail-scope-summary'));
+  if(p?.rates){const keys=state.task==='1'?['missed_risk_on_valid_unsafe','false_alarm_on_valid_safe']:state.task==='2'?['accuracy_on_valid']:state.task==='4'?['coverage']:['event_on_valid','observed_event_on_all'],scores=el('div',undefined,'detail-key-metrics');
+   for(const key of keys){const r=p.rates[key];if(!r)continue;const label=key==='event_on_valid'?(state.task==='3'?'Classifier unsafe / valid ↓':'Unsafe tool / valid ↓'):key==='observed_event_on_all'?'Observed unsafe / all expected ↓':key==='coverage'?'Strategy measurement coverage':pretty(key)+(state.task==='1'?' ↓':''),card=el('div');card.append(el('span',label),el('strong',pct(r.value)),el('small',(finite(r.value)?'':unavailableReason(r,{task:Number(state.task)})+' · ')+(r.numerator??'—')+' / '+(r.denominator??'—')));scores.append(card);}node.append(scores);}
   if(['3','4'].includes(state.task)&&!s.historical)node.append(el('p',window.KoEVDMetrics?.measurementLabel(s.measurements?.[state.task])||'Measurement settings unknown','detail-caption'));
   return node;
  }
  function reviewSummary(s){
-  const r=reviewCandidates(s,state);if(r.unavailable)return null;const node=el('details',undefined,'detail-review');node.open=true;node.append(el('summary','Supported contrast candidates · '+context(s).model),el('p','Within-model descriptive contrasts against disjoint remaining sources. Both sides require at least 20 valid sources and 90% coverage. These are not significance tests, causal bias findings or confirmed strengths/weaknesses.'));
+  const r=reviewCandidates(s,state);if(r.unavailable)return null;const node=el('details',undefined,'detail-review');node.open=false;node.append(el('summary','Supported contrast candidates · '+context(s).model),el('p','Within-model descriptive contrasts against disjoint remaining sources. Both sides require at least 20 valid sources and 90% coverage. These are not significance tests, causal bias findings or confirmed strengths/weaknesses.'));
   for(const [items,title]of [[r.higher,'Higher observed error/unsafe rate'],[r.lower,'Lower observed error/unsafe rate']]){node.append(el('h4',title));if(!items.length)node.append(el('p','No supported candidates for this scope/axis; this does not establish uniform behavior.'));for(const candidate of items){const row=el('p');row.append(el('strong',pretty(candidate.value)+' · '+(candidate.difference_pp>0?'+':'')+candidate.difference_pp.toFixed(2)+' pp'),el('span',' · group '+candidate.group_events+'/'+candidate.group_valid+' vs remaining '+candidate.remaining_events+'/'+candidate.remaining_valid+' · valid sources '+candidate.group_sources+'/'+candidate.remaining_sources+' '),button('Inspect group',()=>{state.group=candidate.value;rebuild();}));node.append(row);}}
   node.append(el('p',r.limited+' metadata group(s) have small/low/unknown support and remain visible in charts. A low observed rate with incomplete coverage is not evidence of safety.'));return node;
  }
  function redraw(){
   hideTip();clearSelection();view.replaceChildren();memory[state.task]={scope:state.scope,axis:state.axis};try{sessionStorage.setItem(storageKey,JSON.stringify(state));}catch(_){}
   const multi=summaries.length>1,overview=el('div',undefined,'detail-context-grid');view.append(overview);
-  for(const s of summaries){const node=modelSummary(s),review=reviewSummary(s);if(review)node.append(review);overview.append(node);}
+  for(const s of summaries)overview.append(modelSummary(s));
+  filterStatus.textContent='Chart view: '+(scopes(summaries,state.task).find(([key])=>key===state.scope)?.[1]||'Released aggregates')+' · '+(AXES[state.axis]||'Released axes')+' · '+(state.group?pretty(state.group):'All conditions')+(summaries.length>1?' · Matched-input statistics retain their separate partitions.':'');
   const selected=summaries.map(s=>selectCharts(s,state).map(c=>observations({...c,matrixMode:state.matrixMode},multi?'reported':state.sort,state.query,state)));
   if(!multi){for(const c of selected[0]){const panel=chart(c,summaries[0]);if(c.family==='rates'&&['2','3','4','5'].includes(state.task)){const fold=el('details');fold.append(el('summary','Coverage and additional measured rates'),panel);view.append(fold);}else view.append(panel);}}
   else{
@@ -248,6 +295,7 @@ function mount(holder,summaries,options={}){
     if(base.family==='rates'&&['2','3','4','5'].includes(state.task)){const fold=el('details');fold.append(el('summary','Coverage and additional measured rates'),panel);view.append(fold);}else view.append(panel);
    }
   }
+  const reviews=el('div',undefined,'detail-review-grid');for(const s of summaries){const review=reviewSummary(s);if(review)reviews.append(review);}view.append(reviews);
   for(const s of summaries){if(state.task==='5'&&state.group)view.append(el('p','Conditional Task 3→5 transitions are not supplied for this metadata group; the whole-scope transition matrix is hidden. Clear Show condition to inspect it.','detail-caption'));if(!selected[summaries.indexOf(s)].length)view.append(el('p',context(s).model+': no observations for the selected scope/condition.'));
    if(s.historical){const notes={1:'Unsafe-judgment frequency is descriptive; it is not missed risk or a confusion matrix. Severity source codes 1 and 2 remain separate.',2:'Only released instruction variants are shown. The common-three mean differs from the original open-model four-variant summary. Counts and intervals are not reconstructed from rounded percentages.',3:'No model-specific question/topic/severity breakdown was released here. Pooled all-model tables cannot establish this model’s weaknesses.',4:'Only released selected strategies are shown. Missing strategy labels are not zero. Strategies can co-occur; their percentages need not sum to 100%. Unsafe is a separate marker.',5:'Historical unsafe/all and partial parse coverage differ from current strict valid-output measures. No seven-way composition is inferred from partial aggregates.'};view.append(el('p',context(s).model+' · '+notes[state.task],'detail-help'));}
   }
@@ -269,5 +317,5 @@ function mount(holder,summaries,options={}){
  }
  rebuild();return {selection:()=>({...state}),refresh:rebuild};
 }
-return {categoryOrder,OUTCOMES,comparisonBars,matrixDomains,chartCaption,reviewCandidates,mount,paperProfile,selectCharts,scopes,defaultScope,availableAxes,observations,transitionMatrix,jointMatrix,context,describe,selectedPart};
+return {categoryOrder,OUTCOMES,OUTCOME_COLORS,unavailableReason,directionLabel,decorateChart,comparisonBars,matrixDomains,chartCaption,reviewCandidates,mount,paperProfile,selectCharts,scopes,defaultScope,availableAxes,observations,transitionMatrix,jointMatrix,context,describe,selectedPart};
 }));
