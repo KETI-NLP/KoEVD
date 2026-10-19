@@ -1,8 +1,9 @@
-# Public numerical profiles (development candidate)
+# Public numerical profiles
 
-This API is implemented in the registration candidate. It is not yet enabled in
-the public production launcher. A successful local fixture request does not prove
-hosted registration, HF identity or durable preservation.
+The public platform exposes numerical profiles for currently shared registrations.
+Authentication, saving a private registration, numerical sharing and response
+publication are separate actions. A local fixture is not proof of hosted identity
+or durable preservation.
 
 ## Read a published profile
 
@@ -26,6 +27,54 @@ The existing public summary endpoint also carries the numerical `analysis`
 object. Existing metric and denominator fields retain their meanings. A
 generation declaration or an uploaded measured label is not independent
 generation verification or a classifier accuracy certificate.
+
+## Interactive model details (v0.3.0-rc.10)
+
+Open a model from the leaderboard, then choose a Task in **Explore task behavior**.
+These are live SVG charts, not screenshots. Hover or keyboard-focus a mark for
+its exact values; click or press Enter/Space to pin its evidence. The numerical
+table remains available beneath every chart. **SVG** exports the current graphic;
+**Chart JSON** exports its observations, selected controls, model/public revision,
+protocol, artifact and recorded generation/classifier conditions. These exports
+are analysis snapshots, not portable result files for registration.
+
+| Task | Default graphics and interpretation |
+| --- | --- |
+| 1 | Gold-to-prediction confusion matrix, including unparsed outputs; missed-risk and false-alarm rates with separate gold-label denominators. |
+| 2 | Per-instruction accuracy bars and selected-variant coverage. Different variants repeat sources. |
+| 3 | Core-source safety/coverage and question-type bars. Change the input scope and metadata axis to locate descriptive weaknesses; severity × explicitness is an exact joint heatmap. Core and tool-linked sets overlap. |
+| 4 | All released strategy inclusion bars, a strategy × condition heatmap, optional co-occurrence matrix and a separate unsafe marker. Multi-label frequencies need not sum to 100%; none is a quality ranking. |
+| 5 | Unsafe/valid rates by framing, seven-way strict outcome composition over all expected rows, condition × framing heatmap and response-label-to-tool-outcome transitions. Transition cells are row-normalized including invalid choices; original counts remain in the numerical table. |
+
+**Input scope / framing** and **Analyze by** choose existing exact aggregate
+partitions and groups. **Show condition** selects an exact group and updates its
+summary, rates and strategy/outcome counts. Framing comparisons use that same
+group in each variant where supplied; missing model/group combinations remain
+unavailable. Conditional Task 3→5 transitions are not supplied, so that matrix is
+hidden while a condition is selected. **Find chart
+labels** hides marks without changing any denominator. Other arbitrary metadata
+intersections are not offered: marginal percentages cannot establish them.
+Small groups remain visible, with a warning when fewer than 20 valid sources are
+reported. N/A is not zero. No confidence interval is estimated in the browser.
+Task 3/4 include the recorded classifier settings beside the chart summary.
+
+Public comparison uses one set of Task/scope/axis controls for both models and
+fixed 0–100% rate scales. Each chart retains its own valid denominator; differences
+between these marginal charts are not matched-case effects. Use the separately
+reported matched-input comparison and its compatibility warnings for that purpose.
+
+The historical twelve-model collection uses **only released per-model aggregates**.
+Its Task 1 measures unsafe judgment frequency, Task 3 lacks per-model question
+breakdowns, Task 4 includes selected strategy labels and Task 5 uses historical
+all-row metrics/partial parsing. Unreleased labels are not filled with zeros;
+pooled all-model breakdowns are not attributed to an individual model. Per-variant
+counts and intervals are not reconstructed from rounded percentages.
+
+Numerical chart selection never reveals prompts, responses or private history.
+Response-case access remains a separate permission-aware workflow. Anonymous chart
+interaction makes no registration/publication/server-state writes. Chart
+controls are remembered in browser session storage for each public model/revision
+or comparison; **Reset view** restores the task defaults.
 
 ## Interpretation
 
