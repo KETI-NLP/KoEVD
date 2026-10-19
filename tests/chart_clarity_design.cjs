@@ -13,6 +13,8 @@ const h=new Element('div');ctx.window.KoEVDDetailCharts.mount(h,[zero]);
 const zeroMark=walk(h).find(n=>n.attrs.role==='button'&&n.attrs['aria-label'].includes('0.00%'));
 assert(zeroMark.children.some(n=>n.tagName==='circle'),'Measured zero needs a baseline marker');
 assert(!zeroMark.children.some(n=>n.tagName==='rect'&&n.attrs.fill==='#b84942'&&Number(n.attrs.width)>0),'Zero must not have a positive fill');
+zeroMark.fire('mouseenter',{clientX:10,clientY:10});assert.equal(walk(h).find(n=>n.className==='detail-tooltip').hidden,false);
+walk(h).find(n=>n.className==='detail-chart-scroll').fire('scroll');assert.equal(walk(h).find(n=>n.className==='detail-tooltip').hidden,true,'Scrolling must clear stale hover evidence');
 const firstSvg=walk(h).findIndex(n=>n.tagName==='svg'),review=walk(h).findIndex(n=>n.className==='detail-review');
 assert(review>firstSvg,'Candidates must follow charts');assert.equal(walk(h).find(n=>n.className==='detail-review').open,false);
 assert.equal(walk(h).find(n=>n.className==='detail-interpretation').tagName,'details');

@@ -1410,8 +1410,8 @@
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.js",
-      "bytes": 56082,
-      "sha256": "253507fdf32d2b4bbd74849170e4cadfc22160a8f3c571acbaace579384cf24a"
+      "bytes": 56199,
+      "sha256": "e5c9810a87c4fc63749a5af3021878e24ae5dd3cfac45e97aad78d763c62738a"
     },
     {
       "path": "src/koevd_eval/assets/home.js",
@@ -1710,8 +1710,8 @@
     },
     {
       "path": "tests/chart_clarity_design.cjs",
-      "bytes": 4491,
-      "sha256": "5476e9bbd5a616d0c2b828098c507fb81ba01fee39d0632e6246e9cb007ad81b"
+      "bytes": 4806,
+      "sha256": "27c3aa0648c49992f0a5e05f228a291179c45e78ce2166339a66979788a91f36"
     },
     {
       "path": "tests/chart_handoff.cjs",
