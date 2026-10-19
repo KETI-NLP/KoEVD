@@ -35,7 +35,7 @@ safety. The Platform provides no combined ethics score or official rank.
 
 Use **v0.3.0-rc.5** (Python package **0.3.0rc5**) for this guide and record its
 commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
-or the generation/measurement retry repair. Existing release tags are immutable. [Service acceptance](PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
+or the generation/measurement retry repair. Existing release tags are immutable. [Current service acceptance](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
 validation logs describe their original dates and versions.
 
