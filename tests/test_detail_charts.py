@@ -6,6 +6,18 @@ import unittest
 
 
 class InteractiveDetailChartsTests(unittest.TestCase):
+    def test_legend_order_shared_rows_and_denominator_regressions(self):
+        self.run_journey('chart_usability.cjs')
+
+    def test_detail_to_compare_condition_handoff(self):
+        self.run_journey('chart_handoff.cjs')
+
+    def run_journey(self, script):
+        node = os.environ.get('KOEVD_TEST_NODE') or shutil.which('node')
+        if not node:
+            self.skipTest('Node.js unavailable')
+        subprocess.run([node, 'tests/' + script], cwd=Path(__file__).resolve().parents[1], check=True, timeout=30)
+
     def test_shipped_renderer_and_exact_adapters(self):
         node = os.environ.get('KOEVD_TEST_NODE') or shutil.which('node')
         if not node:

@@ -28,7 +28,7 @@ object. Existing metric and denominator fields retain their meanings. A
 generation declaration or an uploaded measured label is not independent
 generation verification or a classifier accuracy certificate.
 
-## Interactive model details (v0.3.0-rc.10)
+## Interactive model details (v0.3.0-rc.11)
 
 Open a model from the leaderboard, then choose a Task in **Explore task behavior**.
 These are live SVG charts, not screenshots. Hover or keyboard-focus a mark for
@@ -58,10 +58,51 @@ Small groups remain visible, with a warning when fewer than 20 valid sources are
 reported. N/A is not zero. No confidence interval is estimated in the browser.
 Task 3/4 include the recorded classifier settings beside the chart summary.
 
-Public comparison uses one set of Task/scope/axis controls for both models and
-fixed 0–100% rate scales. Each chart retains its own valid denominator; differences
-between these marginal charts are not matched-case effects. Use the separately
-reported matched-input comparison and its compatibility warnings for that purpose.
+Public comparison carries the selected Task, scope, axis, condition and display
+settings from model details, including historical model details. Explicitly
+carried settings take precedence over an older saved comparison view. Rebuilding
+a pair after changing a model retains the current chart selection. Unsupported
+model/condition combinations remain unavailable rather than falling back to a
+whole-scope score.
+
+Comparison bars place both models on the **same category rows** in one full-width
+chart. Fixed order uses semantic domains; value order uses a shared maximum across
+models, never independent per-model sorting. Severity follows Benign → Low →
+Moderate → High → Extreme, with borderline/missing groups separate. Strategy rows
+keep their canonical order when a condition changes. Matrices are paired by chart;
+count matrices share their color maximum across models. On narrow screens, wide
+matrices can scroll; exact data tables remain available.
+
+Each model retains its own valid denominator. These marginal chart differences
+are not matched-case effects. Metadata controls affect the charts only; the
+separately reported matched-input tables retain their own named partitions and
+are **not recomputed for a selected metadata condition**. Inspect their compatibility
+warnings before drawing a paired comparison conclusion.
+
+Task 1 offers counts or percentages within each gold-label row (including unparsed
+predictions). Axis labels identify gold versus predicted labels; tooltip/table
+denominators name their scope. Task 5 transition rates use the response-label row
+total, while full-framing source support is explicitly separate. Variant bars
+show valid/expected coverage beside the measured rate. Task 4 co-occurrence is a
+count, not correlation or quality, and has a count-specific scale explanation.
+
+Task 5 composition segments and the legend share one fixed outcome order. Label
+search retains **all seven components**, including invalid outputs, without
+renormalizing the composition. On matrices, search highlights matching cells and
+retains the grid; on bars, it filters labels without changing their denominators.
+
+Selected marks are highlighted and open a fixed, scrollable evidence panel with
+a visible Clear selection control. Escape also closes the selection. JSON exports
+of combined bars include both models' declarations and the shared view settings.
+
+For current numerical profiles, supported contrast candidates summarize higher
+and lower observed error/unsafe rates against **disjoint remaining sources within
+the same model**. The existing analysis engine requires at least 20 valid sources
+and 90% coverage on both sides. Small/low-support groups stay in the charts but
+are not promoted as supported candidates. These are descriptive review candidates,
+not significance tests, confirmed weaknesses, causal bias or cross-model effects.
+Task 4 has no quality direction and historical aggregates do not gain invented
+conditional candidates.
 
 The historical twelve-model collection uses **only released per-model aggregates**.
 Its Task 1 measures unsafe judgment frequency, Task 3 lacks per-model question
