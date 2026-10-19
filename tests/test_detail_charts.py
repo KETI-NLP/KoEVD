@@ -6,6 +6,9 @@ import unittest
 
 
 class InteractiveDetailChartsTests(unittest.TestCase):
+    def test_first_user_chart_clarity_and_design(self):
+        self.run_journey('chart_clarity_design.cjs')
+
     def test_legend_order_shared_rows_and_denominator_regressions(self):
         self.run_journey('chart_usability.cjs')
 
