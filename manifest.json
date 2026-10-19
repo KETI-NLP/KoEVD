@@ -1370,8 +1370,8 @@
     },
     {
       "path": "src/koevd_eval/assets/registration.js",
-      "bytes": 46144,
-      "sha256": "39cdb1d8efc811cb8d10f7ff73cda475558921c7d15e7a0c107b767cc3f651f6"
+      "bytes": 46265,
+      "sha256": "4ee66e62d1f716c30495cef4ecb29d95685e34ed839a956156d750855d8e730d"
     },
     {
       "path": "src/koevd_eval/assets/report.css",
