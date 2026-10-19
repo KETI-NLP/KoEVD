@@ -24,7 +24,7 @@ class RegisteredGuideLinkTests(unittest.TestCase):
             (output / 'apps/spaces').mkdir(parents=True)
             (output / 'operator-data').mkdir()
 
-        for version, tag in [('0.3.0rc7', 'v0.3.0-rc.7'), ('0.4.0rc12', 'v0.4.0-rc.12')]:
+        for version, tag in [('0.3.0rc8', 'v0.3.0-rc.8'), ('0.4.0rc12', 'v0.4.0-rc.12')]:
             with self.subTest(version=version), tempfile.TemporaryDirectory() as temp:
                 output = Path(temp) / 'out'
                 with patch.object(module, 'public_context', prepare_stub), patch.object(module, '__version__', version):

@@ -33,7 +33,7 @@ Task 5 uses simulated tools. Read valid/expected coverage separately from each
 event ratio. A low all-row rate with many invalid outputs does not establish
 safety. The Platform provides no combined ethics score or official rank.
 
-Use **v0.3.0-rc.7** (Python package **0.3.0rc7**) for this guide and record its
+Use **v0.3.0-rc.8** (Python package **0.3.0rc8**) for this guide and record its
 commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
 or the generation/measurement retry repair. Existing release tags are immutable. [Current service acceptance](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
@@ -42,7 +42,7 @@ validation logs describe their original dates and versions.
 ## 1. Install the evaluation client
 
 ```bash
-git clone --branch v0.3.0-rc.7 --single-branch https://github.com/KETI-NLP/KoEVD.git
+git clone --branch v0.3.0-rc.8 --single-branch https://github.com/KETI-NLP/KoEVD.git
 cd KoEVD
 git rev-parse HEAD
 python3.11 -m venv .venv-eval
@@ -378,7 +378,12 @@ opening a different tab still creates a different temporary page session.
 2. Before the upload section, choose **Sign in to save results**, complete native
    HF sign-in, return to the workspace and **Check account sign-in**.
 3. Choose `runs/my-model-core/results.json`, then **Validate and add results**.
-   Upload validation does not publish or permanently register anything.
+   Upload validation does not publish or permanently register anything. If selecting
+   several files, inspect each file outcome: successes stay listed when another fails.
+   Local filenames distinguish uploads of the same model in the registration selector.
+   An explicit retry skips acknowledged unchanged files; after fixing a file on disk,
+   select the corrected file again. There is no automatic POST retry. A reported
+   exact duplicate is checked against the current session and does not stop later files.
 4. Follow **Continue to registration**. The validated result appears automatically
    in **Choose whether to register a result**. Select it and review/confirm its original
    model, revision, generation and measurement declaration.
@@ -444,6 +449,24 @@ entering a fresh reason, permission statement and consent. For an older
 registration you withdrew yourself, choose **Restore private draft** first; restoration never
 publishes anything by itself. Administrator withdrawals cannot be bypassed through owner restoration. Neither action can recall downloaded copies. See [data handling and limits](PLATFORM_USER_GUIDE.md#data-handling-and-limits).
 
+## Update a saved result without confusing its public revision
+
+Keep the same registration when correcting its measurements or saving another run
+of the same target model. Upload the new `results.json`, confirm its declaration,
+select the existing registration and enter a revision reason. Choose
+**Remeasure the same generation** only when every original response and generation
+declaration is unchanged; otherwise choose **New generation run**. Then select
+**Save new private revision**. A different target model needs its own registration.
+
+For example, saving private revision 2 leaves public revision 1 unchanged.
+The page identifies both versions. **Analyze saved result** and the private
+original download use the latest saved revision; public profile, leaderboard and
+comparison buttons name the current public revision. A successful private save
+does not update that public score. Review the saved revision, then enter a fresh
+reason, permission statement and consent and **Publish numerical summary** to
+replace the public revision explicitly. Keep the revision history; prior downloads
+cannot be recalled. When no revision is shared, publication is a separate first step.
+
 ## Decide whether each stage is complete
 
 Read these signals separately; no single success message certifies model safety.
@@ -492,6 +515,20 @@ Do not upload that file as the latest recovered run. Repeat step 7 after recover
 `check-run` exits 0 for current exports (including warnings), and 2 for stale or
 failed checks. Run the step-7 commands one at a time and stop on an error; pasting
 multiple shell lines does not itself stop later commands after a failure.
+
+Use this recovery decision table before selecting a command:
+
+| Observation | Next action | What is retained |
+|---|---|---|
+| Request failed or was interrupted; status shows failed/pending rows | Resume the identical generate command after repairing connectivity/authentication. | Successful responses are reused; transport attempts remain logged. |
+| API accepted a response, but the task parser rejects it | Inspect the response, prompt/template and diagnostic parse coverage. The same generate command will reuse it, not repair it. | Invalid answers remain in expected coverage; do not regenerate selected bad answers to improve a score. |
+| Empty final content or `finish_reason: length` | Inspect thinking/output/context settings. If the evaluation configuration needs correction, use a new run directory with the corrected declared settings. | The old run and truncation evidence remain intact. |
+| Classification failed or ran out of memory | Resume classify; use the task-specific smaller-batch retry when appropriate. | Completed validated tasks and attempt traces are retained. |
+| Responses/measurements changed after export | Export, validate and check-run again with the original trusted index. | The old JSON is historical, not the latest recovered export. |
+
+API-success counts and parser-valid counts answer different questions. Do not
+edit response text, labels or checksums to convert a failed parse into a valid one.
+See [runner reuse semantics](RUNNER_GUIDE.md).
 
 The same private registration can later be re-opened with **Analyze saved result**.
 Sharing only numerical metrics adds a public profile; it does not expose responses.
@@ -544,7 +581,7 @@ Task 5 uses unsafe simulated tool selections. Task 4 frequencies describe behavi
 N/A is not zero, and overlapping subsets must not be summed. There is no combined
 ethics score. See steps 6–9 and the completion/troubleshooting tables for recovery.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.7)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.8)
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
 all 12 models in the paper experiment. Choose Task tabs or All tasks. Display
