@@ -1,76 +1,88 @@
 # Public registration service acceptance
 
-Updated 2026-10-19. **Release v0.3.0-rc.5 is deployed** in the
+Updated 2026-10-19. **Release v0.3.0-rc.6 is deployed** in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
-Use the [pinned first-user guide](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.5/docs/GETTING_STARTED.md).
+Use the [pinned first-user guide](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.6/docs/GETTING_STARTED.md).
+Both its deployment-evidence link and the Space's **Deployment and version** link
+point to this living record; immutable release tags retain their original evidence.
 
-- Application source: `d7a4cb45a5dc8918006526d852ab8e96f4a79164`,
-  [PR #16](https://github.com/KETI-NLP/KoEVD/pull/16), merged as
-  `8a2f59ac37c9bf2e5098ed330c28a4f338c9ff99`.
-  The immutable [v0.3.0-rc.5 tag](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.5)
-  fixes that merge; package and module versions are `0.3.0rc5`.
-- Actual running Space revision: `8821bc5cecdc94b2c023284abe5a51906feb7576`.
-  Nine changed files (104,080 bytes) match their remote bytes;
-  all 77 materialized source files match the application commit. CPU Basic,
-  single replica, provider LFS, operator inputs, State and Secret configuration
-  are preserved. One automatic start; no rollback.
-- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39200857351) and
-  [merge CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39201010193) passed
-  **510 tests each on Python 3.10 and 3.12**. Local full CPU validation passed
-  510 tests; the final public tag passed 14 focused tests in a fresh clone and
-  isolated installation with the hub extra, dependency/CLI checks and all
-  **388 manifest entries** verified against Git blobs. No source PYTHONPATH
-  override was used for that installation.
+- Source `ab8fc860a36970f521ba4ef071028f46ac7b6741`, [PR #18](https://github.com/KETI-NLP/KoEVD/pull/18),
+  merged as `f0ed34905e03002c8039020fa93af3147ff98993`. The immutable
+  [rc.6 tag](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.6) fixes that
+  merge; package/module versions are `0.3.0rc6`.
+- Actual running Space revision: `45e91bad9be833e9499fb0030e72c08cbde7fc9d`.
+  Fourteen changed files (167,874 bytes) match remote bytes;
+  all 78 materialized source files match the application commit. CPU Basic,
+  one replica, provider LFS, operator inputs and State/Secret configuration are
+  preserved. One automatic start; no rollback or new paid resource.
+- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39203180115) and
+  [merge CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39203442606) passed
+  **516 tests each on Python 3.10 and 3.12**. Local full CPU validation passed
+  516 tests. A fresh public-tag clone and isolated hub-extra installation passed
+  dependency/version/CLI checks, 20 focused tests and all 392 manifest entries
+  against exact Git blobs, without a source PYTHONPATH override.
 
-## Newcomer flow and comparison correctness
+## Discovery, condition tables and duplicate originals
 
-The first screen shows all 12 historical paper models with Task-specific scores.
-Registered results remain in separate recorded evaluation groups. The table's
-definitions panel and the guide explain the different primary metrics and
-denominators before users run inference. Task 1/4 tabs start in name order;
-their paper frequencies are descriptive, not quality ranks. Missing historical
-judgment counts are explained as N/A, distinct from zero events.
+The home still starts with all 12 historical paper models. **Search all models**
+finds paper results and every public registered condition group, including aliases,
+display names, revisions and submission IDs. **Show on leaderboard**, the advanced
+finder and owner actions share the same condition-selection, navigation and
+highlight path. An owner's focus URL restores the correct registered row after
+reload. Scores from different groups are not mixed into one order.
 
-Model details contain a **Compare this model** action. The global Compare link
-also retains the selected model and its paper/registered collection, including
-when the registered profile is still loading. Changing either comparison model
-removes the old result and downloads. Late responses after selection, collection
-or view changes are discarded. Unavailable publication links show recovery
-guidance. Task 4 comparison shows actual strategy labels and distinguishes the
-same versus different most frequent strategies without a quality delta.
+Multiple registrations of the same exact original occupy one labeled result row;
+their aliases remain discoverable and private originals/history remain separate.
+All automatic comparison entry points choose a different original, and alias-to-
+alias comparison is explained rather than sent to the server. The actual two
+production reference originals remain distinct. Model-name order supports both
+directions. Historical detail percentages use readable precision and explicit
+units; severity codes are decoded using the verified historical plotting mapping.
+The source rows, corrected metadata view and current canonical labels remain distinct.
 
-The guide covers evaluate → export/validate → sign in → upload → confirm settings
-→ save privately → explicitly share numerical metrics → find the registered group
-→ compare. Save/share confirmations name the next actions. A model-specific chat
-template can create a separate group even with the canonical input set; this is
-not an upload error. Cross-group matched-input analysis is exploratory and retains
-compatibility warnings. Eligibility and cohort policy were not relaxed.
+## Latest-export and recovery checks
 
-The localhost browser journey used only fictional 12-record data and a synthetic
-account. It passed initial connection failure/retry, login/account check, validated
-upload, declaration confirmation, private save, numerical consent/publication,
-Show my model, profile-to-comparison context, comparison invalidation, reload,
-saved-original reimport and a completed CPU report with five output formats.
-The shipped-JavaScript integration separately tests a selection change while a
-comparison response is pending and navigation before that response arrives.
+`koevd-results check-run` compares the exported responses, measurements, model and
+settings with the retained pipeline, including stable run identity when available.
+It is read-only and checks contents rather than modification dates. `stale_export`
+and invalid/pending-recovery cases exit 2; current exports can retain explicit
+failed-generation and unmeasured-response warnings. Legacy runs without stable IDs
+compare contents/settings and disclose that limit. Ordering records or updating
+export code metadata alone does not create a false stale result.
 
-## Actual production checks and limits
+The actual CLI was exercised against a tiny synthetic registered protocol: current
+export → changed prediction detected → re-export → current again. It retained the
+failed request and correctly reported registered input scope. Unit tests also cover
+measurement completion, invalid JSON, identity/settings changes, concurrent source
+changes, read-only behavior and exit codes. This is not a model authenticity,
+parsing-accuracy, classifier-quality or GPU-performance attestation.
 
-Anonymous production GETs passed health/readiness, current configuration, catalog,
-both registered profiles, full paired comparison, shipped assets and all four
-page paths. **All 94 registered metric rows and the complete paired response
-exactly match the pre-deployment projections.** Paper tables/source numbers are
-unchanged. Actual browser checks cover the 12-model home, definitions, descriptive
-ordering, paper strategy wording, selector invalidation, registered model detail
-and comparison context, and the pinned guide link.
+The localhost browser used fictional 12-record outputs and synthetic OAuth. It
+passed initial session failure/retry, cross-group model search, advanced-finder
+navigation, private save, explicit summary sharing, duplicate alias discovery,
+single-row display, owner comparison to a different original, reload/reimport,
+completed CPU report outputs, stop-sharing removal, fresh-consent reshare and
+focus-link reload. Shipped-JavaScript tests separately retain the pending-response
+and navigation guards introduced in rc.5.
 
-No real original was uploaded, no production owner registration/publication was
-mutated, and no GPU inference was repeated in this release. The owner flow was
-validated locally; earlier real HF sign-in/storage/restart evidence remains in
-the prior acceptance record. This is not a new accuracy or held-out-F1 reproduction.
-Task 3 remains classifier-limited, Task 4 descriptive and Task 5 simulated.
-Official ranks, original response publication and recurring backup remain off.
+## Actual production verification and limits
 
-Machine-readable [current receipt](validation/public-registration-rc5-20261019.json).
-The [previous rc.4 acceptance](validation/public-registration-rc4-20261019.md)
-preserves historical evidence and its dates; its deployed revision is superseded.
+Anonymous production health/readiness, configuration, catalog, both profiles,
+full paired comparison, shipped assets and all four page paths passed.
+**All 94 metric rows and the complete paired response exactly match the
+pre-deployment projections.** The paper source CSVs and numerical bundle are unchanged.
+Actual browser checks cover the default 12-model home, global Qwen lookup, correct
+condition table/highlight, advanced-finder navigation, name descending order,
+decoded percentages/severity, registered model comparison and guide/version links.
+
+No real original upload or production owner mutation was repeated. Owner/recovery
+and duplicate scenarios used localhost synthetic data; production checks were
+anonymous reads. Existing stored originals and history were restored by the normal
+service launch. Earlier real HF sign-in/storage/restart evidence remains in the
+prior acceptance. No new GPU inference or held-out-F1 reproduction was performed.
+Official ranks and original-response publication remain off; Task 3 is classifier-
+limited, Task 4 descriptive and Task 5 simulated. Recurring backup remains off.
+
+Machine-readable [current receipt](validation/public-registration-rc6-20261019.json).
+The [rc.5 acceptance](PUBLIC_SERVICE_ACCEPTANCE_RC5_20261019.md) preserves prior
+evidence with its dates and scope; its runtime revision is superseded.
