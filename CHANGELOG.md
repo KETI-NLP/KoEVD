@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.0rc6
+
+- Search all public model collections and registration aliases from the home;
+  use one navigation/focus path from search, details and the owner's registration.
+- Show one row per exact original, retain alias discovery, and compare different
+  originals consistently from every entry point.
+- Correct model-name descending order and explain historical severity codes and
+  percentage units without changing source measurements.
+- Add read-only `koevd-results check-run` to detect stale exports after recovery
+  or remeasurement while preserving failed/unmeasured observations.
+- Pin the guide to this release and link deployment evidence to its living record.
+
 ## 0.3.0rc5
 
 - Clear comparison results and downloads after selection changes; discard late network responses.

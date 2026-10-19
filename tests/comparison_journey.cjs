@@ -1,7 +1,8 @@
 /* Execute the shipped UI against asynchronous synthetic public APIs. */
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const allElements=[];
 class Element {
- constructor(tag='div'){this.tagName=tag;this.children=[];this.dataset={};this.hidden=false;this.events={};this._text='';this._value='';this.classList={toggle(){},add(){},remove(){}};}
+ constructor(tag='div'){allElements.push(this);this.tagName=tag;this.children=[];this.dataset={};this.hidden=false;this.events={};this._text='';this._value='';this.classList={toggle(){},add(){},remove(){}};}
  set textContent(v){this._text=String(v);this.children=[];}get textContent(){return this._text+this.children.map(c=>c.textContent||'').join(' ');}
  get value(){return this._value||((this.tagName==='select'&&this.children[0])?this.children[0].value:'');}set value(v){this._value=String(v);}
  append(...nodes){this.children.push(...nodes);}replaceChildren(...nodes){this.children=nodes;this._text='';if(this.tagName==='select')this._value='';}
@@ -10,13 +11,14 @@ class Element {
  setAttribute(k,v){this[k]=v;}removeAttribute(k){delete this[k];}focus(){}scrollIntoView(){}before(){}after(){}
  querySelector(){return new Element();}querySelectorAll(){return this.children;}
 }
-const nodes=new Map(),node=id=>{if(!nodes.has(id)){const n=new Element(id.includes('pair-')&&!id.includes('results')&&!id.includes('build')&&!id.includes('status')||['comparison-collection','result-collection','home-sort','home-direction','leaderboard-metric','submission-upload'].includes(id)?'select':'div');nodes.set(id,n);}return nodes.get(id);};
+const nodes=new Map(),node=id=>{if(!nodes.has(id)){const dynamic=allElements.find(n=>n.id===id);if(dynamic){nodes.set(id,dynamic);return dynamic;}const n=new Element(id.includes('pair-')&&!id.includes('results')&&!id.includes('build')&&!id.includes('status')||['comparison-collection','result-collection','home-sort','home-direction','leaderboard-metric','submission-upload'].includes(id)?'select':'div');nodes.set(id,n);}return nodes.get(id);};
 function options(id,values){for(const v of values){const n=new Element('option');n.value=v;n.textContent=v;node(id).append(n);}}
 options('comparison-collection',['paper','registered']);options('result-collection',['paper']);options('home-sort',['t3','t2','t5','name']);options('home-direction',['ascending','descending']);
 const links=['models','compare','submit'].map(view=>{const a=new Element('a');a.dataset.view=view;return a;});
 const events={},location={hash:'',pathname:'/',origin:'http://localhost'},history={pushState(_a,_b,h){location.hash=h;},replaceState(_a,_b,h){location.hash=h;}};
 const publication=id=>({submission_id:id,artifact_sha256:id,model:{id:'SYNTHETIC-'+id,dtype:'float32'},display:{},revision:1,verification:{}});
-const pubs=['a','b','c'].map(publication),board={publications:pubs,boards:[],excluded:[],publication_count:3};
+const pubs=['a','b','c'].map(publication);pubs.push({...publication('b-alias'),artifact_sha256:'b',duplicate_of:'b',display:{display_name:'SYNTHETIC alias B'}});
+const board={publications:pubs,boards:[],excluded:pubs.filter(p=>!p.duplicate_of).map(p=>({entry_id:p.submission_id,model:p.model,metric_id:'task2/variant/choose_best/accuracy_on_valid',metric:{cohort_sha256:p.submission_id==='c'?'other':'shared',direction:'higher',rate:{value:.8,numerator:4,denominator:5,sources:5},coverage:{numerator:5,denominator:5},reasons:[]}})),publication_count:4,distinct_artifact_count:3};
 let pending=[],createdHome;
 const workspace={uploads:()=>[],ready:()=>false,api:async path=>{
  if(path==='/api/registration')return {json:async()=>({enabled:true})};
@@ -36,6 +38,21 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
 function resolvePair(request){const p=new URLSearchParams(request.path.split('?')[1]);request.resolve({left:pubs.find(x=>x.submission_id===p.get('left')),right:pubs.find(x=>x.submission_id===p.get('right')),comparison:{note:'SYNTHETIC pair',tasks:[]}});}
 (async()=>{
  await tick();await tick();
+ // Discover a registered model from the default historical table without mixing scores.
+ node('home-search').value='SYNTHETIC-c';node('home-search').fire('input');
+ assert.match(node('model-search-results').textContent,/SYNTHETIC-c/);
+ const walk=n=>[n,...n.children.flatMap(walk)];
+ walk(node('model-search-results')).find(n=>n.tagName==='button'&&n.textContent==='Show on leaderboard').fire('click');
+ assert.equal(node('result-collection').value,'registered:other');assert.equal(window.KoEVDNavigation.current(),'models');
+ node('home-search').value='SYNTHETIC alias B';node('home-search').fire('input');assert.match(node('model-search-results').textContent,/2 registrations of the same original/);
+ walk(node('model-search-results')).find(n=>n.tagName==='button'&&n.textContent==='Show on leaderboard').fire('click');
+ assert.equal(node('result-collection').value,'registered:shared');assert.match(node('home-status').textContent,/2\/2 distinct result files/);
+ assert(!node('public-pair-left').options.some(o=>o.value==='b-alias'));
+ node('published-model-choice').value='c';allElements.find(n=>n.tagName==='button'&&n.textContent==='Show model on leaderboard').fire('click');await tick();await tick();
+ assert.equal(node('result-collection').value,'registered:other');assert.equal(window.KoEVDNavigation.current(),'models');assert.match(location.hash,/focus=c/);
+ assert.equal(window.KoEVDMetrics.canonicalId(pubs,'b-alias'),'b');assert.equal(window.KoEVDMetrics.differentPublication(pubs,'b-alias').submission_id,'a');
+ const names=[{name:'A',values:{}},{name:'Z',values:{}}];assert.equal(window.KoEVDHome.sortedRows(names,'name','descending')[0].name,'Z');
+ await createdHome.paperDetail('Apertus 8B');assert.match(node('paper-model-detail').textContent,/50\.37%/);assert.match(node('paper-model-detail').textContent,/Low \(source code 1\)/);assert.doesNotMatch(node('paper-model-detail').textContent,/50\.368949/);
  await createdHome.paperCompare('Claude Haiku 4.5','Apertus 8B');
  assert.match(node('paper-pair-results').textContent,/Same most frequent strategy/);
  assert.doesNotMatch(node('paper-pair-results').textContent,/Strategy labels differ/);
@@ -58,6 +75,7 @@ function resolvePair(request){const p=new URLSearchParams(request.path.split('?'
  assert.equal(node('public-pair-results').textContent,'');assert.equal(window.KoEVDNavigation.current(),'models');
  // Paper detail also retains its model rather than the previous registered pair.
  await createdHome.paperDetail('GPT-5.4');links[1].fire('click');await tick();await tick();assert.equal(node('comparison-collection').value,'paper');assert.equal(node('paper-pair-left').value,'GPT-5.4');
+ location.hash='#left=b&right=b-alias';window.dispatchEvent({type:'hashchange'});await tick();await tick();assert.match(node('public-pair-status').textContent,/same original/);assert.equal(pending.length,0);
  location.hash='#left=missing&right=a';window.dispatchEvent({type:'hashchange'});await tick();await tick();assert.match(node('public-pair-status').textContent,/currently published/);assert.equal(pending.length,0);
  console.log('Shipped UI: selection invalidation, late-response/navigation guard, detail context, strategy labels and descriptive order passed');
 })().catch(e=>{console.error(e);process.exitCode=1});
