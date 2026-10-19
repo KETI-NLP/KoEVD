@@ -37,6 +37,10 @@ vm.runInNewContext(fs.readFileSync('src/koevd_eval/assets/registration.js','utf8
 const tick=()=>new Promise(resolve=>setImmediate(resolve));
 function resolvePair(request){const p=new URLSearchParams(request.path.split('?')[1]);request.resolve({left:pubs.find(x=>x.submission_id===p.get('left')),right:pubs.find(x=>x.submission_id===p.get('right')),comparison:{note:'SYNTHETIC pair',tasks:[]}});}
 (async()=>{
+ // A loading catalog must not be reported as a completed zero-match search.
+ node('home-search').value='SYNTHETIC-c';node('home-search').fire('input');
+ assert.match(node('model-search-results').textContent,/Search in progress/);
+ assert.doesNotMatch(node('model-search-results').textContent,/0 matching|could not be checked/);
  await tick();await tick();
  // Discover a registered model from the default historical table without mixing scores.
  node('home-search').value='SYNTHETIC-c';node('home-search').fire('input');
@@ -50,6 +54,19 @@ function resolvePair(request){const p=new URLSearchParams(request.path.split('?'
  assert(!node('public-pair-left').options.some(o=>o.value==='b-alias'));
  node('published-model-choice').value='c';allElements.find(n=>n.tagName==='button'&&n.textContent==='Show model on leaderboard').fire('click');await tick();await tick();
  assert.equal(node('result-collection').value,'registered:other');assert.equal(window.KoEVDNavigation.current(),'models');assert.match(location.hash,/focus=c/);
+ // Clear the model focus when conditions change; refresh and URL restoration retain the new collection.
+ node('result-collection').value='paper';node('result-collection').fire('change');
+ assert.equal(location.hash,'#models?collection=paper');createdHome.render(board);
+ assert.equal(node('result-collection').value,'paper');assert.match(node('home-status').textContent,/12\/12 models/);
+ node('result-collection').value='registered:other';node('result-collection').fire('change');
+ createdHome.render(board);assert.equal(node('result-collection').value,'registered:other');
+ const collectionURL=location.hash;node('result-collection').value='paper';createdHome.render(board);
+ assert.equal(location.hash,collectionURL);assert.equal(node('result-collection').value,'registered:other');
+ assert.match(node('score-definitions').textContent,/2,000 \+ 784 - 125 = 2,659/);
+ assert.match(node('score-definitions').textContent,/Core only/);assert.match(node('score-definitions').textContent,/Both sets/);
+ createdHome.clear('SYNTHETIC catalog failure');node('home-search').value='SYNTHETIC-c';node('home-search').fire('input');
+ assert.match(node('model-search-results').textContent,/could not be checked: SYNTHETIC catalog failure/);
+ createdHome.render(board);node('home-search').value='';node('home-search').fire('input');
  assert.equal(window.KoEVDMetrics.canonicalId(pubs,'b-alias'),'b');assert.equal(window.KoEVDMetrics.differentPublication(pubs,'b-alias').submission_id,'a');
  const names=[{name:'A',values:{}},{name:'Z',values:{}}];assert.equal(window.KoEVDHome.sortedRows(names,'name','descending')[0].name,'Z');
  await createdHome.paperDetail('Apertus 8B');assert.match(node('paper-model-detail').textContent,/50\.37%/);assert.match(node('paper-model-detail').textContent,/Low \(source code 1\)/);assert.doesNotMatch(node('paper-model-detail').textContent,/50\.368949/);
@@ -66,8 +83,10 @@ function resolvePair(request){const p=new URLSearchParams(request.path.split('?'
  assert.match(node('public-metrics').textContent,/SYNTHETIC-b/);links[1].fire('click');await tick();
  assert.equal(node('comparison-collection').value,'registered');assert.equal(node('public-pair-left').value,'b');assert.equal(pending.length,1);
  // Change the selection before the old network request completes.
- node('public-pair-right').value='c';node('public-pair-right').fire('change');resolvePair(pending.shift());await tick();await tick();
- assert.equal(node('public-pair-results').textContent,'');assert.match(node('public-pair-status').textContent,/Selection changed/);
+ node('public-pair-right').value='c';node('public-pair-right').fire('change');
+ assert.equal(node('public-pair-build').disabled,true);assert.match(node('public-pair-status').textContent,/previous comparison request is finishing/);
+ resolvePair(pending.shift());await tick();await tick();
+ assert.equal(node('public-pair-results').textContent,'');assert.match(node('public-pair-status').textContent,/Selection changed. Select Compare/);assert.equal(node('public-pair-build').disabled,false);
  node('public-pair-build').fire('click');await tick();resolvePair(pending.shift());await tick();await tick();
  assert.match(node('public-pair-results').textContent,/SYNTHETIC-b versus SYNTHETIC-c/);assert.match(node('public-pair-results').textContent,/Download public numerical report/);
  node('public-pair-right').value='a';node('public-pair-right').fire('change');assert.equal(node('public-pair-results').textContent,'');

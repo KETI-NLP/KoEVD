@@ -20,5 +20,14 @@ function uniquePublications(items){
 }
 function canonicalId(items,id){return uniquePublications(items).find(g=>g.aliases.some(p=>p.submission_id===id))?.publication.submission_id||id;}
 function differentPublication(items,id){const groups=uniquePublications(items),current=groups.find(g=>g.aliases.some(p=>p.submission_id===id));return groups.find(g=>g!==current)?.publication||null;}
-const api={name,rate,direction,focusKey,matching,uniquePublications,canonicalId,differentPublication};if(typeof module==='object'&&module.exports)module.exports=api;else root.KoEVDMetrics=api;
+function subsetGuide(holder,doc){
+  const el=(tag,text)=>{const n=doc.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
+  const box=el('details');box.className='subset-guide';box.append(el('summary','Task 3/4 input sets: why the subset counts do not add up'));
+  box.append(el('p','Canonical full protocol: core 2,000 + Task-5-linked 784 - shared 125 = union 2,659. Task 4 measures the same generated responses. Custom subsets can have different counts.'));
+  const diagram=el('div');diagram.className='subset-diagram';diagram.setAttribute('role','group');diagram.setAttribute('aria-label','Overlapping source sets: core only 1,875; shared 125; Task-5-linked only 659');
+  for(const [label,count] of [['Core only','1,875'],['Both sets','125'],['Task-5-linked only','659']]){const cell=el('div');cell.append(el('strong',count),el('span',label));diagram.append(cell);}box.append(diagram);
+  box.append(el('p','Core = 1,875 + 125 = 2,000. Task-5-linked = 125 + 659 = 784. These subset rates are overlapping views; do not add their counts or percentages as disjoint groups. Missing/invalid measurements can reduce their valid denominators.'));
+  holder.append(box);
+}
+const api={name,rate,direction,focusKey,matching,uniquePublications,canonicalId,differentPublication,subsetGuide};if(typeof module==='object'&&module.exports)module.exports=api;else root.KoEVDMetrics=api;
 }(typeof window==='object'?window:globalThis));
