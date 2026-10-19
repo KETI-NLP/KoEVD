@@ -335,4 +335,28 @@ print(state['id'])
             self.assertEqual(error.exception.code,2)
 
 
+
+    def test_private_correction_requires_fresh_summary_publication_and_updates_warm_comparison(self):
+        self.service.allow_self_reported_summaries=True
+        def share(state,accepted=True):
+            return self.service.publish_summary(self.author,state['id'],
+                consent={'scope':'summary','accepted':accepted,'rights_statement':'SYNTHETIC fresh permission'},
+                reason='SYNTHETIC explicit share',expected_version=state['version'],key=self.key())
+        original=share(self.create())
+        other=deepcopy(self.document);other['run']['model']['id']='SYNTHETIC-reference'
+        reference=share(self.service.create(self.author,reseal(other),'fixture',key=self.key()))
+        self.assertEqual(self.service.public_comparison(original['id'],reference['id'])['left']['revision'],1)
+        draft=self.service.revise(self.author,original['id'],self.revised(),expected_version=original['version'],
+            kind='measurement_recheck',reason='SYNTHETIC correction',key=self.key())
+        self.assertEqual(draft['head_revision'],2)
+        self.assertEqual(self.service.public_profile(draft['id'])['revision'],1)
+        self.assertEqual(self.service.public_comparison(draft['id'],reference['id'])['left']['revision'],1)
+        self.assert_code('summary_consent_required',lambda:share(draft,False))
+        shared=share(draft)
+        self.assertEqual(shared['publication']['revision'],2)
+        self.assertEqual(self.service.public_profile(shared['id'])['revision'],2)
+        self.assertEqual(self.service.public_comparison(shared['id'],reference['id'])['left']['revision'],2)
+        self.assertEqual(self.service.result(self.author,shared['id'],revision=1),self.document)
+
+
 if __name__=='__main__':unittest.main()

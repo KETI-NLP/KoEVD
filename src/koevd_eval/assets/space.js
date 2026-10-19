@@ -24,7 +24,7 @@ function clearPreparedDownload(){state.downloadRequest++;if(state.downloadURL)UR
 function clearReport(){clearPreparedDownload();node('report-section').hidden=true;node('report-preview').removeAttribute('src');if(state.preview)URL.revokeObjectURL(state.preview);state.preview=null;state.job=null;}
 function scopeName(scope){return ({synthetic_demo:'Synthetic demo',operator_custom:'Operator-configured custom inputs',standard:'Registered input protocol'})[scope]||scope;}
 function renderUploads(){const holder=node('uploads');holder.replaceChildren();if(!state.uploads.length)holder.append(el('p','No results uploaded yet.','empty'));
-  for(const run of state.uploads){const row=el('div',undefined,'run-row'),check=document.createElement('input');check.type='checkbox';check.checked=true;check.id='upload-'+run.id;check.dataset.uploadId=run.id;const detail=el('div',undefined,'run-detail'),name=el('label',run.model);name.htmlFor=check.id;detail.append(name,el('p',run.run_id+' · '+run.records+' records · '+scopeName(run.scope)),el('span','Private session','tag'),el('span','Structurally validated · identity user-reported','tag'));
+  for(const run of state.uploads){const row=el('div',undefined,'run-row'),check=document.createElement('input');check.type='checkbox';check.checked=true;check.id='upload-'+run.id;check.dataset.uploadId=run.id;const detail=el('div',undefined,'run-detail'),name=el('label',run.model+(run.file_name?' · '+run.file_name:''));name.htmlFor=check.id;detail.append(name,el('p',run.run_id+' · '+run.records+' records · '+scopeName(run.scope)),el('span','Private session','tag'),el('span','Structurally validated · identity user-reported','tag'));
     const remove=el('button','Remove','secondary');remove.type='button';remove.addEventListener('click',async()=>{try{await api('/api/uploads/'+encodeURIComponent(run.id),{method:'DELETE'});state.uploads=state.uploads.filter(x=>x.id!==run.id);clearReport();renderUploads();status('Result removed from this session.');}catch(e){status(e.message,true);}});row.append(check,detail,remove);holder.append(row);}
   updateButtons();}
 function renderCatalog(){const c=state.catalog;node('demo-note').hidden=!c.synthetic_demo_enabled;node('retention').textContent='Maximum '+Math.round(c.limits.upload_bytes/1024/1024)+' MiB per file · '+c.limits.max_uploads+' uploaded results · session expires after '+Math.round(c.limits.ttl_seconds/60)+' minutes. '+(c.reference_disclosure?'Your session outputs retain raw text. Configured reference text is withheld; measured labels and metrics remain available.':'Downloads retain raw text.');
@@ -35,7 +35,48 @@ let starting=null;
 async function ensureReady(){if(state.token)return true;if(starting)return starting;starting=start();try{return await starting;}finally{starting=null;}}
 async function start(){try{state.catalog=await (await api('/api/catalog',{authenticated:false})).json();renderCatalog();const info=await (await api('/api/session',{method:'POST',authenticated:false})).json();state.token=info.session_token;state.csrf=info.csrf_token;status('Private session ready. Choose your result JSON to begin.');updateButtons();return true;}catch(e){status('Analysis connection unavailable. Use Retry analysis connection. '+e.message,true);updateButtons();return false;}}
 node('result-files').addEventListener('change',updateButtons);
-node('upload').addEventListener('click',async()=>{state.busy=true;updateButtons();try{const files=[...node('result-files').files];if(state.uploads.length+files.length>state.catalog.limits.max_uploads)throw new Error('Too many files for this session. Remove a result first.');for(const file of files){if(file.size>state.catalog.limits.upload_bytes)throw new Error('File exceeds the upload limit: '+file.name);let body=file,contentEncoding=file.name.toLowerCase().endsWith('.json.gz')?'gzip':null;if(!contentEncoding&&file.size>=1024*1024&&typeof CompressionStream==='function'){status('Compressing '+file.name+' for transfer; the original JSON stays unchanged…');const compressed=await new Response(file.stream().pipeThrough(new CompressionStream('gzip'))).blob();if(compressed.size<file.size){body=compressed;contentEncoding='gzip';}}status('Validating '+file.name+' against server-selected trusted inputs'+(contentEncoding?' (compressed transfer)':'')+'…');const run=await (await api('/api/uploads',{method:'POST',body,contentEncoding})).json();state.uploads.push(run);clearReport();renderUploads();}node('result-files').value='';status('Results validated. Select the runs and references to analyze.');}catch(e){status(e.message,true);}finally{state.busy=false;updateButtons();}});
+// A File is immutable. Only skip an unchanged object after its acknowledged run
+// is still present in this session; removing a result makes it uploadable again.
+const validatedFiles=new WeakMap();
+node('upload').addEventListener('click',async()=>{
+  state.busy=true;updateButtons();const outcomes=node('upload-outcomes');outcomes.replaceChildren();
+  let added=0,reused=0,failed=0;
+  const outcome=(file,text)=>outcomes.append(el('li',file.name+' — '+text));
+  try{
+    const files=[...node('result-files').files];
+    if(files.length>state.catalog.limits.max_uploads)throw new Error('Select at most '+state.catalog.limits.max_uploads+' files per attempt. Existing validated results stay available.');
+    for(const file of files){
+      const prior=validatedFiles.get(file);
+      if(prior&&state.uploads.some(r=>r.id===prior)){reused++;outcome(file,'Already validated; retained without uploading again.');continue;}
+      try{
+        if(state.uploads.length>=state.catalog.limits.max_uploads)throw new Error('Session result limit reached. Remove a result or use the validated results already listed.');
+        if(file.size>state.catalog.limits.upload_bytes)throw new Error('File exceeds the upload limit.');
+        let body=file,contentEncoding=file.name.toLowerCase().endsWith('.json.gz')?'gzip':null;
+        if(!contentEncoding&&file.size>=1024*1024&&typeof CompressionStream==='function'){
+          status('Compressing '+file.name+' for transfer; the original JSON stays unchanged…');
+          const compressed=await new Response(file.stream().pipeThrough(new CompressionStream('gzip'))).blob();
+          if(compressed.size<file.size){body=compressed;contentEncoding='gzip';}
+        }
+        status('Validating '+file.name+' against server-selected trusted inputs'+(contentEncoding?' (compressed transfer)':'')+'…');
+        const run=await (await api('/api/uploads',{method:'POST',body,contentEncoding})).json();
+        run.file_name=file.name;state.uploads.push(run);validatedFiles.set(file,run.id);added++;clearReport();renderUploads();outcome(file,'Validated and available for analysis or registration.');
+      }catch(e){
+        if(e.code==='duplicate_artifact'){
+          try{
+            // This is a read, not a replay of a write. It also recovers an
+            // acknowledged server upload whose response did not reach the page.
+            const current=await (await api('/api/session')).json();
+            if(!Array.isArray(current.uploads)||!current.uploads.length)throw new Error('The duplicate could not be confirmed in this session.');
+            const names=new Map(state.uploads.map(r=>[r.id,r.file_name]));state.uploads=current.uploads.map(r=>({...r,file_name:names.get(r.id)}));clearReport();renderUploads();reused++;outcome(file,'This exact original is already in the session; current uploads checked.');continue;
+          }catch(check){e=new Error('Could not check the reported duplicate: '+check.message);}
+        }
+        failed++;outcome(file,'Not added/confirmed: '+e.message);
+      }
+    }
+    if(!failed)node('result-files').value='';
+    status(added+' newly validated · '+reused+' already available · '+failed+' failed/unconfirmed. '+(failed?'Successful results stay listed. Retry unchanged selected files explicitly to skip acknowledged successes; after correcting a file on disk, select that corrected file again.':'Continue with the validated results below.'),failed>0);
+  }catch(e){status(e.message,true);}finally{state.busy=false;updateButtons();}
+});
 async function download(kind){
   // A visible Save link keeps the final download inside the user's click.
   // Do not silently auto-click after an asynchronous authenticated request.

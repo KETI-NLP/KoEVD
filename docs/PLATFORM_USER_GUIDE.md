@@ -192,7 +192,7 @@ For a saved private result, sign in, select the registration and choose
 analysis. Your original and history stay unchanged. Public numerical downloads
 are reports, not upload artifacts.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.7)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.8)
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
 all 12 models in the paper experiment. Choose Task tabs or All tasks. Display
@@ -327,3 +327,22 @@ Before selecting a JSON, use the [stage completion examples](GETTING_STARTED.md#
 `current_with_warnings` means consistency with local records, not all-success,
 parse accuracy or safety. Private save and public numerical sharing have separate
 completion signals; neither account login nor a display name verifies model weights.
+
+
+## Partial uploads and public revision scope
+
+Multiple selected files receive individual outcomes. A successful file remains
+available if another fails, and unchanged acknowledged files are skipped on an
+explicit retry. Editing a file on disk requires selecting the corrected file again.
+An exact duplicate response is reconciled through a read of current session uploads
+before processing later files. Uploads are never automatically retried. The four
+result/session and expanded 128 MiB/file limits are unchanged; remove a result when
+the session is full. A removed result can be uploaded again.
+
+The latest saved revision and current public revision can differ. Saving revision 2
+privately leaves published revision 1 visible until explicit replacement or stopping
+sharing. Owner buttons name the public revision they open/compare; private analysis
+and original downloads use the latest saved revision. Confirm the new declaration,
+select the correct revision kind, save privately, then provide fresh permission and
+consent to publish its numerical summary. See the [revision walkthrough](GETTING_STARTED.md#update-a-saved-result-without-confusing-its-public-revision)
+and [recovery decision table](GETTING_STARTED.md#decide-whether-each-stage-is-complete).

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0rc8
+
+- Preserve successful files through partial batch upload failures, display file
+  outcomes and skip acknowledged unchanged files on explicit retry. Reconcile
+  exact duplicates through the current session without blocking later files.
+- Distinguish latest private and current public revisions in owner guidance,
+  profile/comparison buttons and numerical comparison headers. Publication still
+  requires fresh explicit consent and never follows a private save automatically.
+- Document revision replacement and separate transport/parse/truncation,
+  measurement and stale-export recovery decisions. Metric calculations are unchanged.
+
 ## 0.3.0rc7
 
 - Preserve an explicitly selected leaderboard collection across catalog refresh
