@@ -1,0 +1,13 @@
+﻿Cohort,Model,Effective source judgments,Coverage (%)
+open,Apertus 8B,13552,100.0
+open,Gemma 4 E4B,13552,100.0
+commercial,GPT-5.4,13552,100.0
+open,Ministral 3 8B,13552,100.0
+open,Qwen3.5 9B,13552,100.0
+open,Qwen3.6 27B,13552,100.0
+commercial,Claude 4.6 Sonnet,13551,99.99
+open,OLMo 3 7B,13550,99.99
+commercial,Claude Haiku 4.5,13549,99.98
+commercial,Gemini 3.1 Flash-Lite,13548,99.97
+commercial,GPT-5.4 Nano,13529,99.83
+commercial,Gemini 3.1 Pro,7662,56.54

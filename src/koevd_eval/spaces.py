@@ -101,6 +101,8 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
 
     @app.get('/')
     @app.get('/submit')
+    @app.get('/models')
+    @app.get('/compare')
     async def landing():
         content=files('koevd_eval').joinpath('assets','space.html').read_text(encoding='utf-8')
         if deployment_notice:
@@ -109,7 +111,7 @@ def create_app(service, *, origins, frame_ancestors=("'self'",), registration=No
 
     @app.get('/assets/{name}')
     async def assets(name:str):
-        if name not in ('space.js','space.css','registration.js','public_reads.js','navigation.js','metric_labels.js','home.js','paper_results.json'):raise ServiceError('not_found','Asset not found.',404)
+        if name not in ('space.js','space.css','registration.js','public_reads.js','navigation.js','metric_labels.js','home.js','leaderboard.js','paper_models.json','paper_results.json'):raise ServiceError('not_found','Asset not found.',404)
         return Response(files('koevd_eval').joinpath('assets',name).read_text(encoding='utf-8'),media_type='text/javascript' if name.endswith('.js') else 'application/json' if name.endswith('.json') else 'text/css')
 
     @app.get('/healthz')

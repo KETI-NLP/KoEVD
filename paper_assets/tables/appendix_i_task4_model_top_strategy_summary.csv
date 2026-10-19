@@ -1,0 +1,13 @@
+Cohort,Model,Avg included strategies,Top primary strategy,Top primary rate (%),Top included strategy,Top included rate (%),Unsafe strategy label rate (%)
+Open-weight models,Apertus 8B,2.47,Evaluation,18.29,Info Providing,68.17,5.19
+Commercial,Claude 4.6 Sonnet,2.69,Boundary Setting,24.77,Info Providing,87.68,0.74
+Commercial,Claude Haiku 4.5,2.83,Info Providing,28.05,Info Providing,95.43,0.15
+Commercial,GPT-5.4,2.94,Boundary Setting,23.68,Info Providing,84.6,7.26
+Commercial,GPT-5.4 Nano,2.99,Boundary Setting,26.96,Redirecting,89.45,2.17
+Commercial,Gemini 3.1 Flash-Lite,3.24,Agreeing Speech,21.21,Info Providing,86.58,2.8
+Commercial,Gemini 3.1 Pro,2.73,Agreeing Speech,27.21,Info Providing,75.77,4.61
+Open-weight models,Gemma 4 E4B,2.6,Boundary Setting,35.1,Info Providing,68.1,0.13
+Open-weight models,Ministral 3 8B,2.0,Info Providing,25.52,Info Providing,76.96,10.57
+Open-weight models,OLMo 3 7B,2.51,Info Providing,30.93,Info Providing,87.48,6.57
+Open-weight models,Qwen3.5 9B,2.6,Counter Speech,27.37,Info Providing,87.57,1.21
+Open-weight models,Qwen3.6 27B,2.62,Counter Speech,25.72,Info Providing,89.02,0.86

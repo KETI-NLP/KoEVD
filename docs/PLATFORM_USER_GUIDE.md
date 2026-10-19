@@ -183,22 +183,47 @@ For a saved private result, sign in, select the registration and choose
 analysis. Your original and history stay unchanged. Public numerical downloads
 are reports, not upload artifacts.
 
-## Start with models and task results (v0.3.0-rc.3)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.4)
 
-The default **Current protocol** view shows every currently shared model with
-representative Task 1–5 measurements before advanced controls. **Overview** uses
-Task 1 missed risk/false alarms, Task 2 Choose Best accuracy, Task 3 core unsafe
-classifier rate, the most frequent Task 4 strategy, and Task 5's three framings.
-Task 4 is behavior frequency, not quality. Open Task tabs for separate variants,
-counts, coverage and evaluation-group IDs. Different conditions are not pooled
-into an official rank. The **Profile** and **Compare** buttons open deeper views.
+The landing page is a searchable, sortable **model leaderboard**, defaulting to
+all 12 models in the paper experiment. Choose Task tabs or All tasks. Display
+positions follow the selected metric and order; they are descriptive, not an
+official overall ethics rank. Task 1 judgments and Task 4 strategies do not have
+a quality direction and are not offered as quality-ranking metrics.
 
-**Paper results** is a separate historical aggregate collection. Task 3/4 show
-12 paper models; Task 1/2 and Task 5 show their published pooled tables rather
-than invented per-model scores. Source CSV links and historical denominators are
-retained. These are not new protocol registrations, raw cases or paired-input
-comparison results. Current Task 3 has 2,659 union sources, whereas the paper
-summary lists 13,552 prompts per model. Do not merge their scores into one rank.
+Use **Evaluation conditions** to switch to registered results. Each recorded
+input/configuration group has its own table; paper results and current-protocol
+submissions never share a sorted order. The two existing Qwen3-8B/4B references
+remain in the registered group. After publishing your summary, **Show my model
+on leaderboard** selects your group and clears the search filter.
+
+Paper Task 1 shows unsafe judgment rates for 11 high-coverage models and coverage
+for all 12. Gemini 3.1 Pro has no released per-model judgment counts in that
+source, so its judgment rate is N/A, with its 56.54% coverage retained. This is
+not a judgment error rate. Paper Task 2 uses the unweighted mean of Choose Best,
+Choose Unsafe and Relative Harmfulness. Open-model original summaries used four
+variants and commercial summaries used three; details preserve those original
+summaries separately. Counts cannot be recovered from rounded percentages.
+Paper Task 3 uses unsafe/classified responses, with classified/expected counts.
+Paper Task 4 shows descriptive strategies and measurement coverage. Paper Task 5
+uses unsafe calls/all expected rows, pooled over three simulated framings; its
+separate framing rates and parse coverage are available in details. These
+populations differ from the current registered metrics shown in the other group.
+
+**Details** opens a separate model screen with Task 1–5 measurements and source
+CSV links. **Compare models** opens a separate comparison screen: paper models
+use aggregate comparisons with coverage, without matched-case statistics;
+registered results use the existing checked, matched-input comparison. Different
+collections cannot be selected together. No new paired statistics are inferred
+from paper aggregate tables. Back/forward navigation and model links retain the
+selected screen.
+
+**Submit results** opens its own screen. Sign in before selecting your file if
+you want to preserve it, validate the exported results.json, confirm its model
+settings, save privately, then optionally share numerical metrics. Saving is
+separate from publication. Saved private results can be reopened with **Analyze
+saved result** without manually downloading and reuploading. Existing retry,
+consent, withdrawal and run-status instructions below still apply.
 
 Public model results load independently of account checks and private analysis.
 If account lookup fails, use **Check account sign-in**; the model list remains
