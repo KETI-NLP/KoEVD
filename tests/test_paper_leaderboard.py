@@ -57,3 +57,8 @@ class PaperLeaderboardTests(unittest.TestCase):
         node=os.environ.get('KOEVD_TEST_NODE') or shutil.which('node')
         if not node:self.skipTest('Node unavailable')
         subprocess.run([node,'tests/leaderboard_navigation.cjs'],cwd=ROOT,check=True,timeout=15)
+
+    def test_comparison_journey_discards_stale_results_and_retains_model(self):
+        node=os.environ.get('KOEVD_TEST_NODE') or shutil.which('node')
+        if not node:self.skipTest('Node unavailable')
+        subprocess.run([node,'tests/comparison_journey.cjs'],cwd=ROOT,check=True,timeout=15)

@@ -7,14 +7,23 @@ deployed release; a candidate branch alone does not activate the service.
 
 ## Explore without a file or account
 
-1. The home opens **Model leaderboard**. Select a model name to see its declared model,
-   revision, generation settings, measured scores and metadata charts.
-2. Use the metric table to select a metric/evaluation group and search or
-   sort observed values. Official rank eligibility and exclusion reasons remain
-   separate. There is no combined ethics score.
-3. In **Compare models**, choose two runs and build the paired comparison.
-   Compare the same inputs and jointly valid outputs; inspect coverage and
-   differing evaluation conditions before interpreting a difference.
+1. **Model leaderboard** initially shows **Paper experiment · 12 models**.
+   These are historical aggregates. Open **Score definitions, denominators and
+   evaluation conditions** before interpreting scores. Select **Evaluation
+   conditions → Registered results** for current protocol submissions and the
+   two Qwen references; these collections do not form one ranking.
+2. Select a model name to open **Model details**. Paper details contain source
+   tables; registered details contain declared settings, measured ratios,
+   valid/expected coverage and metadata charts. Task 3 is classifier-labeled;
+   Task 4 is descriptive and Task 5 tools are simulated.
+3. Choose **Compare this model**. The correct collection and left model follow
+   you into the comparison screen. The global **Compare models** navigation link
+   does the same when used from model details.
+4. Choose the right model and press the relevant **Compare** button. Changing a
+   selector invalidates the previous result and its downloads, including a
+   response still in flight. Press Compare again to calculate the new pair.
+   Paper comparisons are aggregate only; registered comparisons use identical
+   inputs and jointly valid outputs, with explicit compatibility warnings.
 
 The Qwen3-8B/4B references each contain 17,670 previously measured records.
 They are operator references, not independent generation verification. Their
@@ -183,7 +192,7 @@ For a saved private result, sign in, select the registration and choose
 analysis. Your original and history stay unchanged. Public numerical downloads
 are reports, not upload artifacts.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.4)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.5)
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
 all 12 models in the paper experiment. Choose Task tabs or All tasks. Display
@@ -247,3 +256,27 @@ changes, rebuild the report, reexport and validate against the same trusted inde
 A status recommendation never authorizes editing hashes or discarding failures.
 
 If a command stops before printing its status summary, run `koevd-pipeline --stage status --output-dir <the-same-run-directory>` to inspect retained progress and the next recovery step.
+
+## Find your result after submission
+
+**Save private submission** preserves your original and history; it does not add
+a public leaderboard entry. Provide a reason, a permission statement and fresh
+numerical-summary consent, then **Publish numerical summary**. The confirmation
+explains the next actions: **Show my model on leaderboard** selects your group,
+**View my public profile** gives a linkable profile, and **Compare this result**
+opens a registered comparison. Your run does not enter the historical paper table.
+
+Registered groups require identical recorded protocol, trusted input index,
+generation settings, chat template, dtype, quantization and thinking settings.
+The model ID/revision itself is excluded from the group key. Different native
+templates can therefore separate otherwise standard runs. Inspect the readable
+settings in the table's definitions panel and profile; group IDs are identifiers,
+not scores. Cross-group matched-input comparisons remain available as exploratory
+analyses with compatibility warnings. Unknown conditions remain unknown.
+
+For the exact primary values used in the two collections, see the Task mapping
+at the start of [GETTING_STARTED.md](GETTING_STARTED.md). Coverage is valid /
+expected, whereas the displayed score uses its own event denominator. N/A can
+mean unavailable historical counts, an unmeasured metric or no eligible outputs;
+it never means measured zero. Task 1/4 tabs start in alphabetical order because
+their paper values describe behavior rather than a quality ranking.

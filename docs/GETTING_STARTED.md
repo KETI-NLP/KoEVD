@@ -7,11 +7,33 @@ The Platform analyzes uploaded results on CPU; it does not host or evaluate your
 model. You supply inference resources for your model and the two measurement models.
 
 To explore first, open the [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
-No account, GPU or upload is required to inspect the two full Qwen3 references,
-their metric tables, metadata trends and paired comparisons. If you already have
-a completed standard run and its trusted index, start at step 7.
+No account, GPU or upload is required. The initial **Paper experiment** table
+contains **12 historical models**, with Task-specific scores and source CSVs.
+Switch **Evaluation conditions** to **Registered results** to explore the two
+full Qwen3 references and newly shared runs, their metadata trends and matched-input
+comparisons. If you already have a completed standard run and its trusted index,
+start at step 7.
 
-Use **v0.3.0-rc.4** (Python package **0.3.0rc4**) for this guide and record its
+**Before running inference:** this guide evaluates the current **core protocol**,
+not a reproduction of every historical paper experiment. It generates 15,011
+requests and exports 17,670 Task records (Task 4 reuses Task 3 responses). Your
+shared run appears in **Registered results**, not the fixed 12-model paper table.
+Do not compare scores across those collections as a common ranking:
+
+| Task | Paper table primary value | Registered table primary value |
+| --- | --- | --- |
+| 1 | Unsafe judgments / valid judgments (descriptive) | Missed risk / valid unsafe inputs (lower is better) |
+| 2 | Mean accuracy of three common variants | Choose Best accuracy only (higher is better) |
+| 3 | Unsafe / classified, historical 13,552 prompts/model | Unsafe / classified core responses, 2,000 core sources (lower is better) |
+| 4 | Top included strategy and frequency (descriptive) | Top included strategy and frequency (descriptive) |
+| 5 | Unsafe / all expected rows, pooled three framings | Unsafe / valid Tool-Forced outputs (lower is better) |
+
+Task 3 safety is classifier-labeled, not independently verified human judgment;
+Task 5 uses simulated tools. Read valid/expected coverage separately from each
+event ratio. A low all-row rate with many invalid outputs does not establish
+safety. The Platform provides no combined ethics score or official rank.
+
+Use **v0.3.0-rc.5** (Python package **0.3.0rc5**) for this guide and record its
 commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
 or the generation/measurement retry repair. Existing release tags are immutable. [Service acceptance](PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
@@ -20,7 +42,7 @@ validation logs describe their original dates and versions.
 ## 1. Install the evaluation client
 
 ```bash
-git clone --branch v0.3.0-rc.4 --single-branch https://github.com/KETI-NLP/KoEVD.git
+git clone --branch v0.3.0-rc.5 --single-branch https://github.com/KETI-NLP/KoEVD.git
 cd KoEVD
 git rev-parse HEAD
 python3.11 -m venv .venv-eval
@@ -270,8 +292,9 @@ limit. Do not upload ZIP files or rename a profile JSON to `results.json`.
 ## 8. Sign in, upload and save a private registration
 
 The home view starts with the public leaderboard. **Submit results** opens the
-upload/registration view; **Model leaderboard** returns to comparisons. Switching
-between these two views preserves this page's temporary uploads. Reloading or
+upload/registration view; **Model leaderboard** returns to the table. **Model
+details** and **Compare models** are separate views. Switching between these
+four views preserves this page's temporary uploads. Reloading or
 opening a different tab still creates a different temporary page session.
 
 1. On the leaderboard home, choose **Submit results**, then open the [submission workspace in its own tab](https://keti-nlp-koevd-platform.hf.space/submit)
@@ -309,12 +332,28 @@ disabled, **Request publication review** is hidden and the server rejects new
 requests; numerical sharing remains available. An old pending request can be
 cancelled with **Cancel review request** before continuing numerical sharing.
 
-Your published summary can now appear on the **Model leaderboard** home, its metric table
-and the two selectors in **Compare models**. Choose your run and a Qwen reference,
-then **Compare selected runs**. You can also choose **Compare this result** on your registration to open a comparison with another published run. Inspect input overlap, jointly valid coverage,
-evaluation groups and settings before interpreting a delta. Numerical comparison
-works without publishing response text. For private case analysis, use your
-temporary uploaded run and the permitted configured reference instead.
+After sharing, choose **Show my model on leaderboard** on your registration.
+This selects the correct **Registered results** evaluation group and clears the
+model filter. **View my public profile** opens a linkable profile with recorded
+conditions. Keep that profile URL and submission ID.
+
+For the shortest path, choose **Compare this result** on your registration or
+**Compare this model** in model details. The comparison screen opens with your
+run on the left and a different published original on the right. From the
+comparison screen directly, first select **Registered results · matched-input
+comparison** in **Evaluation collection**, then choose your run and a reference
+and **Compare selected runs**. Changing either selector clears the old result and
+downloads; press Compare again. The main **Compare models** link also retains
+the model when entered from its details.
+
+Evaluation groups match protocol, trusted inputs, generation parameters, native
+chat template, precision, quantization and thinking settings. A new model's
+different chat template can create its own group even with this standard guide.
+That is not a failed registration. Use the profile comparison route across
+groups and inspect input overlap, jointly valid coverage and compatibility
+warnings; these differences are exploratory, not an official common ranking.
+Original response text is not needed for numerical comparison. For private case
+analysis, use your temporary upload and a permitted configured reference.
 
 There is no aggregate ethics score. Official ranks are disabled; sorting observed
 values changes display order only. Task 4 distributions are descriptive. Task 3/4
@@ -394,7 +433,7 @@ For a saved private result, sign in, select the registration and choose
 analysis. Your original and history stay unchanged. Public numerical downloads
 are reports, not upload artifacts.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.4)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.5)
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
 all 12 models in the paper experiment. Choose Task tabs or All tasks. Display

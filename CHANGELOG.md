@@ -1,4 +1,13 @@
-# 0.3.0rc3 model-first overview and paper results
+# Changelog
+
+## 0.3.0rc5
+
+- Clear comparison results and downloads after selection changes; discard late network responses.
+- Keep the model and paper/registered collection from details through comparison.
+- Correct descriptive strategy labels and Task 1/4 alphabetical display order.
+- Explain score denominators, coverage and evaluation groups next to the table.
+- Align the beginner guide and private-save/public-sharing handoff with all four views.
+- Preserve evaluation numbers, admission policy and original results.
 
 ## 0.3.0rc4
 
