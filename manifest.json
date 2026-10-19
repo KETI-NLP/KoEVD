@@ -1400,8 +1400,8 @@
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.js",
-      "bytes": 47859,
-      "sha256": "09427ad47ad640cba185c1285026dad4ad7614dede85497609a8881eeba0dd4d"
+      "bytes": 49459,
+      "sha256": "a6732c649961bcb76ae8668371bd0cdb4cdea5da4b6a6e1f0a4e356825fc7830"
     },
     {
       "path": "src/koevd_eval/assets/home.js",
@@ -1705,8 +1705,8 @@
     },
     {
       "path": "tests/chart_usability.cjs",
-      "bytes": 4985,
-      "sha256": "9e9e2665c1900bdd1ef0baffde9f978b884e52bec1dafafcd41be05d94c2740b"
+      "bytes": 6702,
+      "sha256": "000eb50299261bd6f228d3f3577743bb675ac0a01e41cf30d8940ca78fe74904"
     },
     {
       "path": "tests/comparison_journey.cjs",
