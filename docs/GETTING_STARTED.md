@@ -33,7 +33,7 @@ Task 5 uses simulated tools. Read valid/expected coverage separately from each
 event ratio. A low all-row rate with many invalid outputs does not establish
 safety. The Platform provides no combined ethics score or official rank.
 
-Use **v0.3.0-rc.9** (Python package **0.3.0rc9**) for this guide and record its
+Use **v0.3.0-rc.10** (Python package **0.3.0rc10**) for this guide and record its
 commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
 or the generation/measurement retry repair. Existing release tags are immutable. [Current service acceptance](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
@@ -42,7 +42,7 @@ validation logs describe their original dates and versions.
 ## 1. Install the evaluation client
 
 ```bash
-git clone --branch v0.3.0-rc.9 --single-branch https://github.com/KETI-NLP/KoEVD.git
+git clone --branch v0.3.0-rc.10 --single-branch https://github.com/KETI-NLP/KoEVD.git
 cd KoEVD
 git rev-parse HEAD
 python3.11 -m venv .venv-eval
@@ -604,7 +604,22 @@ Task 5 uses unsafe simulated tool selections. Task 4 frequencies describe behavi
 N/A is not zero, and overlapping subsets must not be summed. There is no combined
 ethics score. See steps 6–9 and the completion/troubleshooting tables for recovery.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.9)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.10)
+
+Model **Details** now opens interactive Task charts. Start with Task 3 question
+types to inspect weaknesses, Task 4 strategy bars/heatmaps to inspect response
+patterns, and Task 5 framing and outcome charts to inspect simulated tool choices.
+Task 1 has a confusion matrix and Task 2 has per-instruction accuracy bars.
+Choose an input scope, metadata axis and optional condition; hover/focus or select
+a mark to inspect its exact numerator, denominator, coverage and source support.
+The comparison page synchronizes chart controls across both selected models.
+Export the current graphic as **SVG** or its values/settings as **Chart JSON**.
+These are analysis exports, not result files to submit again.
+
+Paper-model details expose only released per-model aggregates. They cannot show
+unreleased question-type or multi-axis breakdowns. Registered numerical profiles
+also do not expose response text. See the [chart and denominator guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc10)
+for filter limits, historical metric differences and the meaning of N/A.
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
 all 12 models in the paper experiment. Choose Task tabs or All tasks. Display
