@@ -365,7 +365,7 @@ Generation groups do not include every classifier measurement condition. Task
 3/4 cells show declared batch/precision and expandable settings; choose that
 Task to filter matching declarations. Unknown settings remain unknown. Filters
 do not change Task 1/2/5 groups or create rank eligibility. Public profiles and
-numerical exports retain the added settings declaration. That declaration omits
+numerical JSON exports retain the added settings declaration. That declaration omits
 trace identities, raw responses, device names and response-dependent measurement counts. Comparison
 warnings show both sides' declared values. Matching declarations do not certify
 generation authenticity, classifier accuracy or universal model safety.
