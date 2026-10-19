@@ -10,6 +10,22 @@ PACKAGES = ('torch', 'transformers', 'peft', 'accelerate')
 REQUESTS = ('requested_dtype', 'input_order', 'inference_mode', 'requested_max_new_tokens')
 
 
+def public_declaration(evidence):
+    """Settings only: no traces, response-dependent counts, paths or devices.
+
+    A shared null remains unknown. The digest labels identical declarations,
+    never verified measurement compatibility or an official ranking cohort.
+    """
+    if evidence is None:
+        return {'status':'unknown','conditions':None,'conditions_sha256':None}
+    from .results import canonical_hash
+    conditions={k:deepcopy(evidence.get(k)) for k in
+                ('batch_size','adapter','base','revision','precision','input_truncation')}
+    conditions.update(comparison_fields(evidence))
+    return {'status':'user_reported','conditions':conditions,
+            'conditions_sha256':canonical_hash(conditions)}
+
+
 def _keys(value, fields, name):
     if not isinstance(value, dict) or set(value) != set(fields):
         raise ValueError('Invalid ' + name + ' fields')

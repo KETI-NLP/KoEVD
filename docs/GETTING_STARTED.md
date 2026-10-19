@@ -33,7 +33,7 @@ Task 5 uses simulated tools. Read valid/expected coverage separately from each
 event ratio. A low all-row rate with many invalid outputs does not establish
 safety. The Platform provides no combined ethics score or official rank.
 
-Use **v0.3.0-rc.8** (Python package **0.3.0rc8**) for this guide and record its
+Use **v0.3.0-rc.9** (Python package **0.3.0rc9**) for this guide and record its
 commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
 or the generation/measurement retry repair. Existing release tags are immutable. [Current service acceptance](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
@@ -42,7 +42,7 @@ validation logs describe their original dates and versions.
 ## 1. Install the evaluation client
 
 ```bash
-git clone --branch v0.3.0-rc.8 --single-branch https://github.com/KETI-NLP/KoEVD.git
+git clone --branch v0.3.0-rc.9 --single-branch https://github.com/KETI-NLP/KoEVD.git
 cd KoEVD
 git rev-parse HEAD
 python3.11 -m venv .venv-eval
@@ -258,6 +258,17 @@ rows remain failures until retried successfully. Changed inputs, model, endpoint
 decoding or provenance require a new run directory. Inspect finish reasons,
 truncation and coverage rather than treating API success as task success.
 
+After interruption, `koevd-pipeline --stage status --output-dir runs/my-model-core`
+reads validated durable progress as well as final prediction files. `api_ok`
+counts checkpointed successful responses; `failed` counts known errors;
+`interrupted_unknown` means an attempt started but no response was durably
+confirmed; `pending` means no retained result. The server may have processed an
+interrupted request. Repeating the identical generation command reuses confirmed
+successes and logs retried attempts. The status command itself makes no model
+calls or file changes. `generation_checkpoint_pending` means generation must
+finish journal compaction before report/export, even if all responses are saved.
+
+
 ## 6. Measure responses and build the local report
 
 If sharing a GPU, stop your own target-model server before measurement. In the
@@ -432,6 +443,16 @@ different chat template can create its own group even with this standard guide.
 That is not a failed registration. Use the profile comparison route across
 groups and inspect input overlap, jointly valid coverage and compatibility
 warnings; these differences are exploratory, not an official common ranking.
+
+Generation groups do not guarantee identical classifier measurement conditions.
+Registered Task 3/4 cells show batch, requested and observed precision, plus
+expandable measurement settings. Select **Task 3** or **Task 4**, then use
+**Measurement settings** to filter identical recorded declarations within the
+generation group. Task 1/2/5 tables are unaffected. Unknown fields remain unknown;
+a matching declaration digest does not verify inference or classifier accuracy.
+Profile settings and public numerical downloads retain these declarations.
+Comparison warnings show the actual left/right values for differing conditions.
+
 Original response text is not needed for numerical comparison. For private case
 analysis, use your temporary upload and a permitted configured reference.
 
@@ -549,6 +570,8 @@ Sharing only numerical metrics adds a public profile; it does not expose respons
 | Home or sign-in configuration could not load | Use **Retry service connection**. Navigation and retries preserve current-page uploads. If the outcome of a prior save is unknown, inspect the registration/history before saving again. |
 | Published results cannot be checked | Public list/profile/comparison GETs retry at most twice for transient failures. Wait, then use the relevant Refresh button; this is not a file rejection. No old public data is used after a failed current-state check. |
 | Save/share has an ambiguous outcome | Check your registration and history before repeating. The UI does not automatically replay write requests. |
+| Temporary session expired or disappeared after a server restart | Use **Retry analysis connection**. It checks a retained session and creates a new one only after confirmed expiry/missing-session. Then reselect local files or use **Analyze saved result**. Expired temporary files are unavailable; saved registrations stay separate. No upload is replayed automatically. |
+| Registration changed in another tab (`stale_version`) | Use **Reload selected registration** or **Refresh submissions**, without reloading the page. The selected state is updated; typed name, description and reason are retained, while sharing consent and its permission statement are cleared. Review the latest state, then retry the intended action explicitly. Temporary uploads remain accessible. |
 | Export passed earlier but I retried generation or measurement | Repeat export, validate and `check-run`; do not select an old export based on its filename alone. |
 | Model search shows no rows in the selected table | Use the cross-collection matches above and **Show on leaderboard** to select the right evaluation conditions. |
 | My shared result has the same original as another registration | One distinct result row is shown with its registration count. Your private original/history and public profile stay separate; comparing aliases is not an independent comparison. |
@@ -581,7 +604,7 @@ Task 5 uses unsafe simulated tool selections. Task 4 frequencies describe behavi
 N/A is not zero, and overlapping subsets must not be summed. There is no combined
 ethics score. See steps 6–9 and the completion/troubleshooting tables for recovery.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.8)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.9)
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
 all 12 models in the paper experiment. Choose Task tabs or All tasks. Display

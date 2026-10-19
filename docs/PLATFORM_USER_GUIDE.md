@@ -192,7 +192,7 @@ For a saved private result, sign in, select the registration and choose
 analysis. Your original and history stay unchanged. Public numerical downloads
 are reports, not upload artifacts.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.8)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.9)
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
 all 12 models in the paper experiment. Choose Task tabs or All tasks. Display
@@ -346,3 +346,26 @@ and original downloads use the latest saved revision. Confirm the new declaratio
 select the correct revision kind, save privately, then provide fresh permission and
 consent to publish its numerical summary. See the [revision walkthrough](GETTING_STARTED.md#update-a-saved-result-without-confusing-its-public-revision)
 and [recovery decision table](GETTING_STARTED.md#decide-whether-each-stage-is-complete).
+
+
+## Expired sessions, owner conflicts and measurement conditions
+
+**Retry analysis connection** checks the current temporary session. A transient
+connection failure preserves its token and validated uploads. Confirmed expiry
+or a missing server session invalidates only temporary uploads/reports; explicit
+reconnection creates a new session. Reselect local files or use **Analyze saved
+result** to import a preserved registration. No upload/save/share is replayed.
+
+For a registration version conflict, use **Reload selected registration** or
+**Refresh submissions**. This reads the selected latest state without a page
+reload, preserves unsaved name/description/reason, and clears sharing consent and
+its permission statement. Review the new state before explicitly retrying.
+
+Generation groups do not include every classifier measurement condition. Task
+3/4 cells show declared batch/precision and expandable settings; choose that
+Task to filter matching declarations. Unknown settings remain unknown. Filters
+do not change Task 1/2/5 groups or create rank eligibility. Public profiles and
+numerical exports retain the added settings declaration. That declaration omits
+trace identities, raw responses, device names and response-dependent measurement counts. Comparison
+warnings show both sides' declared values. Matching declarations do not certify
+generation authenticity, classifier accuracy or universal model safety.

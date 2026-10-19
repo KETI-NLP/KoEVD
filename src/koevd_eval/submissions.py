@@ -14,6 +14,7 @@ from .diagnostics import VERSION as ANALYSIS_VERSION, analyze, compare
 from .profile_cache import NumericalProfileCache, numerical_profile, numerical_comparison
 from .eligibility import VERSION as ADMISSION_VERSION, RankPolicy, evaluate_admission, _boards_from_admissions
 from .generation_receipts import active_evidence, validate_receipt
+from .measurement_conditions import public_declaration
 from .results import canonical_hash, validate_index, validate_results
 from .storage import LocalSubmissionStore, StorageError, encode, token
 
@@ -431,6 +432,7 @@ class SubmissionService:
                 'protocol_sha256':canonical_hash(profile['protocol']),
                 'tasks':profile['tasks'],'task3_task5':profile['task3_task5'],'statistics':profile['statistics'],
                 'analysis':profile,'generation':deepcopy(document['run']['generation']),
+                'measurements':{t:public_declaration(document['run']['measurements'][t]) for t in ('3','4')},
                 'verification':verification,'official_rank_eligible':bool(admission['eligible_metric_ids']),
                 'rank_policy_status':admission['policy']['status'],'rank_admission':admission,
                 'publication_environment':self.publication_environment}
@@ -490,6 +492,7 @@ class SubmissionService:
                 'artifact_sha256':report['artifact_sha256'],'scope':summary['scope'],
                 'model':summary['model'],'display':summary['display'],'verification':summary['verification'],
                 'origin':summary['origin'],
+                'measurements':deepcopy(summary['measurements']),
                 'strategy_inclusion':deepcopy(next((p['strategy_inclusion'] for p in summary['tasks']['4']['partitions'] if p['kind']=='all' and p['name']=='all'),{})),
                 'duplicate_of':duplicate_of})
         # No all-original memory pool or repeated admission computation on hits.
