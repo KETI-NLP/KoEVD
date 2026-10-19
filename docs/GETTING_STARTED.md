@@ -450,7 +450,7 @@ expandable measurement settings. Select **Task 3** or **Task 4**, then use
 **Measurement settings** to filter identical recorded declarations within the
 generation group. Task 1/2/5 tables are unaffected. Unknown fields remain unknown;
 a matching declaration digest does not verify inference or classifier accuracy.
-Profile settings and public numerical downloads retain these declarations.
+Profile settings and public numerical JSON downloads retain these declarations.
 Comparison warnings show the actual left/right values for differing conditions.
 
 Original response text is not needed for numerical comparison. For private case

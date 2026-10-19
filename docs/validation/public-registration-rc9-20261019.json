@@ -1,0 +1,324 @@
+{
+  "release": "v0.3.0-rc.9",
+  "package_version": "0.3.0rc9",
+  "source": "185d107674a22ef038d5620d48d95318e03a1e10",
+  "merge": "76eb8f38061dab6190b09e10f66d3383d32e883a",
+  "pr": 24,
+  "space_revision": "17313aad0c939812ac7fcca52f970253899d025e",
+  "changed_files": 14,
+  "changed_bytes": 214445,
+  "git_matched_files": 78,
+  "automatic_starts_used": 1,
+  "local_cpu_tests": 528,
+  "fresh_focused_tests": 30,
+  "ci": [
+    {
+      "run": 39215486376,
+      "url": "https://github.com/KETI-NLP/KoEVD/actions/runs/39215486376",
+      "jobs": [
+        {
+          "name": "test (3.12)",
+          "conclusion": "success"
+        },
+        {
+          "name": "test (3.10)",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "run": 39215513366,
+      "url": "https://github.com/KETI-NLP/KoEVD/actions/runs/39215513366",
+      "jobs": [
+        {
+          "name": "test (3.10)",
+          "conclusion": "success"
+        },
+        {
+          "name": "test (3.12)",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "run": 39215805700,
+      "url": "https://github.com/KETI-NLP/KoEVD/actions/runs/39215805700",
+      "jobs": [
+        {
+          "name": "test (3.12)",
+          "conclusion": "success"
+        },
+        {
+          "name": "test (3.10)",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "fresh_public_tag": {
+    "passed": true,
+    "tag": "v0.3.0-rc.9",
+    "module_version": "0.3.0rc9",
+    "metadata_version": "0.3.0rc9",
+    "manifest_exact_git_files": 406,
+    "hub_extra": true,
+    "pip_check": true,
+    "status_cli": true,
+    "scope": "fresh public clone and isolated CPU environment; no PYTHONPATH source override"
+  },
+  "local_browser": {
+    "passed": true,
+    "scope": "Actual shipped localhost UI/API, fictional 12-record results and synthetic OAuth; no HF owner write or GPU",
+    "checks": [
+      "A success/B failure and explicit B-only retry, observed A,B,B",
+      "Stale owner metadata write rejected; Reload selected registration preserved local name/description/reason, then explicit save succeeded",
+      "Explicit connection check after session expiry created a new session, cleared unavailable temporary files and retained saved public revision 1",
+      "Analyze saved result imported the preserved original into the new session",
+      "Measurement recheck saved private revision 2 while public revision 1 remained",
+      "Fresh explicit publication consent published revision 2",
+      "Reload restored current shared model and saved account registration",
+      "Task 4 displayed batch 2 and batch 4 declarations; filter selected 1/2 models and survived Refresh registered results",
+      "Task 2 remained 2/2, unaffected by Task 4 measurement filtering",
+      "Current public comparison completed with left revision 2/right revision 1 and displayed measurement.batch_size: different, left 4/right 2"
+    ]
+  },
+  "production_browser": {
+    "passed": true,
+    "scope": "Anonymous production browsing, no file upload, sign-in or owner mutation",
+    "checks": [
+      "Initial paper leaderboard shows 12/12 models and pins the rc.9 guide",
+      "Cross-collection search reports loading before registered data arrives, then finds Qwen3-8B and switches to its generation group",
+      "Registered Task 4 cells show requested bfloat16, observed torch.bfloat16/torch.float32, batch 2 and expandable settings",
+      "Task 4 declaration filter remains selected after Refresh registered results completes",
+      "Task 2 still shows both registered models, unaffected by Task 4 filtering",
+      "Public Qwen3-8B profile shows Task 3/4 measurement declarations and published revision 1",
+      "Real Qwen3-8B versus Qwen3-4B comparison completes with public revisions left 1/right 1"
+    ]
+  },
+  "anonymous_production": {
+    "passed": true,
+    "at": "2026-10-19T07:31:05.785997+00:00",
+    "scope": "anonymous GET only; no upload/sign-in/write",
+    "revision": "17313aad0c939812ac7fcca52f970253899d025e",
+    "source": "185d107674a22ef038d5620d48d95318e03a1e10",
+    "public_references": [
+      "6204d78594f64db6ab6b74233058107f",
+      "6a9efc32e21a40c19aeeff935cc03b23"
+    ],
+    "registration_enabled": true,
+    "official_ranking_enabled": false,
+    "observations": [
+      {
+        "path": "/healthz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.641
+      },
+      {
+        "path": "/readyz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.516
+      },
+      {
+        "path": "/api/registration",
+        "status": 200,
+        "bytes": 163,
+        "seconds": 0.218
+      },
+      {
+        "path": "/api/public/submissions",
+        "status": 200,
+        "bytes": 972,
+        "seconds": 0.485
+      },
+      {
+        "path": "/api/public/leaderboard",
+        "status": 200,
+        "bytes": 145768,
+        "seconds": 4.328
+      },
+      {
+        "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f/profile",
+        "status": 200,
+        "bytes": 9393910,
+        "seconds": 4.172
+      },
+      {
+        "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23/profile",
+        "status": 200,
+        "bytes": 9383635,
+        "seconds": 2.891
+      },
+      {
+        "path": "/api/public/compare?left=6204d78594f64db6ab6b74233058107f&right=6a9efc32e21a40c19aeeff935cc03b23",
+        "status": 200,
+        "bytes": 18931554,
+        "seconds": 19.828
+      },
+      {
+        "path": "/assets/navigation.js",
+        "status": 200,
+        "bytes": 2176,
+        "seconds": 0.687
+      },
+      {
+        "path": "/assets/registration.js",
+        "status": 200,
+        "bytes": 50450,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/space.js",
+        "status": 200,
+        "bytes": 17261,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/metric_labels.js",
+        "status": 200,
+        "bytes": 5414,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/space.css",
+        "status": 200,
+        "bytes": 10010,
+        "seconds": 0.781
+      },
+      {
+        "path": "/assets/home.js",
+        "status": 200,
+        "bytes": 10574,
+        "seconds": 0.25
+      },
+      {
+        "path": "/assets/paper_results.json",
+        "status": 200,
+        "bytes": 17866,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/leaderboard.js",
+        "status": 200,
+        "bytes": 26340,
+        "seconds": 0.344
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.218
+      },
+      {
+        "path": "/",
+        "status": 200,
+        "bytes": 18472,
+        "seconds": 0.219
+      },
+      {
+        "path": "/submit",
+        "status": 200,
+        "bytes": 18472,
+        "seconds": 0.25
+      },
+      {
+        "path": "/compare",
+        "status": 200,
+        "bytes": 18472,
+        "seconds": 0.219
+      },
+      {
+        "path": "/models",
+        "status": 200,
+        "bytes": 18472,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.219
+      }
+    ]
+  },
+  "remote_code": {
+    "passed": true,
+    "revision": "17313aad0c939812ac7fcca52f970253899d025e",
+    "files": [
+      {
+        "path": "CITATION.cff",
+        "bytes": 463,
+        "sha256": "d1fbec3665e393272aa74fcfe9995ef1562369e8511a73b49cf1f718273070ec"
+      },
+      {
+        "path": "README.md",
+        "bytes": 2786,
+        "sha256": "419897bca54046f7c83022596a5b82c1206668c00b5a304e85584ec845f60404"
+      },
+      {
+        "path": "deployment-manifest.json",
+        "bytes": 14447,
+        "sha256": "81b0348bb0e16d7541b024f8a7f30285f177c611376468bd4e5ab97084d74bfc"
+      },
+      {
+        "path": "pyproject.toml",
+        "bytes": 1793,
+        "sha256": "fc8704250910f09e0b2bcded6d104eea29cb6db46f23f42168ec454af5e0e37e"
+      },
+      {
+        "path": "src/koevd_eval/__init__.py",
+        "bytes": 87,
+        "sha256": "c0ef68411318ecc5ae6e5498e9835b9c00ffa100a99a582d9b9e6790d4ebc6e1"
+      },
+      {
+        "path": "src/koevd_eval/assets/leaderboard.js",
+        "bytes": 26448,
+        "sha256": "d6db63cfd228a21eeaa1cb27fbd809a7d40d4da50469a4bf3ddfd493d2a3b54a"
+      },
+      {
+        "path": "src/koevd_eval/assets/metric_labels.js",
+        "bytes": 5449,
+        "sha256": "53ada8605ed3f93d1ad13843d34e118870d4ac75594b898e5e91d7362d547080"
+      },
+      {
+        "path": "src/koevd_eval/assets/registration.js",
+        "bytes": 50661,
+        "sha256": "5e6a5529812976460518b189f7c5fa1d03dea4cb399b1ba28fb0489ec39bcbdd"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.html",
+        "bytes": 18054,
+        "sha256": "7d54874b126b8583fc34b8d68844e4741896b6134f390da20101bb99db49bd45"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.js",
+        "bytes": 17261,
+        "sha256": "11cc8910dc1c0dafa8e1e5c0114c9913e241580893fb16283db1a5e15aee9737"
+      },
+      {
+        "path": "src/koevd_eval/measurement_conditions.py",
+        "bytes": 10177,
+        "sha256": "4fd40f294fb89a8fb24927380659a2311ca527a4aa25c33eb7bc953da53f00f2"
+      },
+      {
+        "path": "src/koevd_eval/public_exports.py",
+        "bytes": 10847,
+        "sha256": "f943b73941f41b114919578ff560777c515bd156a795d0008d3360f85014ac2b"
+      },
+      {
+        "path": "src/koevd_eval/run_status.py",
+        "bytes": 5963,
+        "sha256": "01fa331ba6754a54da6f39324b5a8c00c02dd754b61050292357938b1cfa0aa7"
+      },
+      {
+        "path": "src/koevd_eval/submissions.py",
+        "bytes": 50009,
+        "sha256": "206b6990da0ee8c87e8ed133d85b45f4adab6e0fdd3947ed565ece399c8d0070"
+      }
+    ]
+  },
+  "unchanged_public_metric_rows": 94,
+  "full_pair_equal_after_omitting_added_measurements": true,
+  "no_new_gpu_or_real_owner_mutation": true
+}
