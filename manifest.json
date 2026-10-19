@@ -345,8 +345,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 30244,
-      "sha256": "48225a66e05d33867d831d7de4a971c5b4a9ab765b86537261e4d7283d4d5609"
+      "bytes": 34929,
+      "sha256": "0c733272005010a3f87074ee108f5674fd8aacebb5e24c786e0d2be4c5d7c116"
     },
     {
       "path": "docs/PUBLIC_SERVICE_EXECUTION_PLAN.md",
@@ -457,6 +457,11 @@
       "path": "docs/validation/platform_first_user_workflow_20261016.json",
       "bytes": 2381,
       "sha256": "f9f8824f26ab672d7072c480f665a064999c74c07a63c1f45741a1baa85b945d"
+    },
+    {
+      "path": "docs/validation/platform_full_leaderboard_hosted_20261019.json",
+      "bytes": 9169,
+      "sha256": "54055f85663e14e0b826782e2568416fe85f7c66512d79829ec754769099c1a1"
     },
     {
       "path": "docs/validation/platform_m1_20261008.json",

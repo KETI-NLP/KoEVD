@@ -1,5 +1,70 @@
 # Public registration service acceptance
 
+Updated 2026-10-19. **Release v0.3.0-rc.4 is deployed** in the
+[public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+Follow the [pinned first-user guide](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.4/docs/GETTING_STARTED.md).
+
+- Application source: `6f786d2ea9a4a2c1992e50c20e3e007c6e72ad90`,
+  [PR #14](https://github.com/KETI-NLP/KoEVD/pull/14), merged as
+  `3d974840998963562615dccf3d5aae05ccbf8999`.
+  [Release v0.3.0-rc.4](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.4)
+  fixes that merge; package and module versions are `0.3.0rc4`.
+- Actual running Space revision: `edb541e7ecb6f255b5cf298ab86c1dbe07420ce1`.
+  Twelve changed files (395,692 bytes) match their remote bytes; all 77
+  materialized source files match the application commit. CPU Basic, single
+  replica, provider LFS, operator data, State and Secret configuration are
+  preserved. One automatic start; no rollback.
+- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39188824731) and
+  [merged CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39188982094) passed
+  **509 tests each on Python 3.10 and 3.12**. Local full CPU validation passed
+  509 tests; the final calculation checks passed five focused tests. Initial
+  Python 3.10 checks found a last-digit floating-sum difference; source-decimal
+  calculation now agrees with independent exact-rational tests across versions.
+  A fresh public tag clone installed the hub extra in an isolated environment,
+  passed dependency checks and 13 focused tests, and verified all 386 manifest
+  entries against exact Git blobs. No PYTHONPATH source override was used.
+- The default home is a searchable, sortable leaderboard of **all 12 paper
+  models**, rather than a two-reference diagnostic overview. Every Task tab has
+  12 rows. The 1,165-pixel table fits its 1,165-pixel desktop container. Model
+  details, comparison and submission occupy separate screens, with direct
+  links and back/forward navigation. No upload or comparison form appears on
+  the default leaderboard. Display positions reflect the chosen metric and
+  direction; they are not an official overall ethics rank.
+- Twelve exact, checked-in aggregate CSV sources reproduce the model data.
+  Task 1 retains all 12 models' coverage and 11 high-coverage models' judgment
+  counts. Gemini 3.1 Pro's unavailable individual judgment counts stay N/A,
+  with its 56.54% coverage retained. Judgments are not ethical-quality scores.
+  Task 2 uses the same three common variants across open and commercial models;
+  original four/three-variant means remain visible separately in details.
+  Task 3 retains unsafe/classified rates and classified/expected counts.
+  Task 4 is descriptive strategy inclusion, with selected heatmap columns
+  explicitly distinguished from a complete strategy distribution. Task 5 uses
+  the paper's unsafe calls/all expected rows, with three framing rows/model
+  and parse coverage. Rounded percentages never imply invented counts.
+- The two current Qwen3-8B/4B references remain in a separate registered
+  input/configuration group. Their **94 metric rows, complete public board and
+  entire public paired comparison response are exactly unchanged**. Paper
+  comparisons are aggregate-only; registered comparisons still use checked
+  matched inputs. Different collections cannot be selected together. No paper
+  matched-case statistics, confidence intervals or significance are invented.
+- The localhost browser verified config/session/public failure, independent
+  paper discovery, retry without reload, synthetic sign-in/upload/private save,
+  reload and saved-result reanalysis, explicit numerical consent/publication,
+  own-group discovery and separate-screen comparison. Actual hosted browser
+  checks passed the 12-model landing page, Task tabs, missing-value details,
+  paper comparison, registered group and comparison, and submission isolation.
+- This update performs **no actual hosted owner upload/write/sign-in retest or
+  new GPU/accuracy experiment**. Earlier hosted persistence acceptance remains
+  the evidence for native HF sign-in, durable owner writes and restart recovery.
+  The local-only loader used the normal upload API; native file selection and
+  mobile execution were not retested. Official ranks and raw reference-response
+  publication remain disabled. Existing consent and private history are preserved.
+
+[Full-leaderboard hosted receipt](validation/platform_full_leaderboard_hosted_20261019.json)
+records exact revisions, remote hashes, numerical regression and test scope.
+
+## Earlier Task overview release (2026-10-17; superseded)
+
 Updated 2026-10-17. **Release v0.3.0-rc.3 is deployed** in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
 Start with the [pinned first-user guide](https://github.com/KETI-NLP/KoEVD/blob/v0.3.0-rc.3/docs/GETTING_STARTED.md).
