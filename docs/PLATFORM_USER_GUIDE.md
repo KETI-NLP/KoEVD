@@ -32,9 +32,13 @@ uses multi-label bars and heatmaps; Task 5 includes framing, outcome composition
 and response-to-tool transitions. Comparison controls synchronize both models.
 Export with **SVG** / **Chart JSON**. These are analysis snapshots, not files to
 submit as results. Historical data supports only its released aggregates; see the
-[chart interpretation guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc10).
+[chart interpretation guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc12).
 
-Chart usability is updated in **v0.3.0-rc.11**. Severity and outcome orders are
+Chart clarity and layout are updated in **v0.3.0-rc.12**. Each plot repeats
+its scope, condition, denominator and metric direction. Key rates precede plots;
+long plots scroll without dropping observations. Candidate/interpretation details
+follow plots and start collapsed. Zero uses a baseline marker; N/A states its
+known reason. Paired statistics remain separate from metadata chart filters. Severity and outcome orders are
 stable, and details-to-comparison retains your Task/scope/condition. Read grouped
 model bars on common category rows; select a mark for its fixed evidence panel
 and press Escape or Clear selection to close it. For Task 3/5, use **Inspect

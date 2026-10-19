@@ -1,0 +1,282 @@
+{
+  "space": "KETI-NLP/KoEVD-Platform",
+  "source": "95cf6c734a6ee54494991cae493470892fabe76b",
+  "deployed_revision": "8ea27130097c546288de2c7a7e3a4d44e1c05300",
+  "changed_paths": [
+    "CITATION.cff",
+    "README.md",
+    "deployment-manifest.json",
+    "pyproject.toml",
+    "src/koevd_eval/__init__.py",
+    "src/koevd_eval/assets/detail_charts.css",
+    "src/koevd_eval/assets/detail_charts.js",
+    "src/koevd_eval/assets/registration.js",
+    "src/koevd_eval/assets/space.css",
+    "src/koevd_eval/assets/space.html"
+  ],
+  "changed_bytes": 163045,
+  "unchanged_operator_data": true,
+  "unchanged_provider_lfs": true,
+  "raw_result_uploads": 0,
+  "secret_changes": false,
+  "state_or_protocol_configuration_changes": false,
+  "new_paid_resources": false,
+  "automatic_starts_used": 1,
+  "release": "v0.3.0-rc.12",
+  "merge": "4361afa4e576a5c43133202b49b2893bac746b9f",
+  "full_cpu_tests": 533,
+  "fresh_release": {
+    "passed": true,
+    "tag": "v0.3.0-rc.12",
+    "module_version": "0.3.0rc12",
+    "metadata_version": "0.3.0rc12",
+    "manifest_exact_git_files": 419,
+    "hub_extra": true,
+    "pip_check": true,
+    "status_cli": true,
+    "scope": "fresh public clone and isolated CPU environment; no PYTHONPATH source override"
+  },
+  "chart_parity": {
+    "models": 2,
+    "selections": 1768,
+    "cells": 168899,
+    "passed": true,
+    "scope": "Existing public numerical aggregates only; no inference or original upload."
+  },
+  "hosted": {
+    "passed": true,
+    "at": "2026-10-19T14:03:05.562597+00:00",
+    "scope": "anonymous GET only; no upload/sign-in/write",
+    "revision": "8ea27130097c546288de2c7a7e3a4d44e1c05300",
+    "source": "95cf6c734a6ee54494991cae493470892fabe76b",
+    "public_references": [
+      "6204d78594f64db6ab6b74233058107f",
+      "6a9efc32e21a40c19aeeff935cc03b23"
+    ],
+    "registration_enabled": true,
+    "official_ranking_enabled": false,
+    "observations": [
+      {
+        "path": "/healthz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.625
+      },
+      {
+        "path": "/readyz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.469
+      },
+      {
+        "path": "/api/registration",
+        "status": 200,
+        "bytes": 163,
+        "seconds": 0.203
+      },
+      {
+        "path": "/api/public/submissions",
+        "status": 200,
+        "bytes": 972,
+        "seconds": 0.453
+      },
+      {
+        "path": "/api/public/leaderboard",
+        "status": 200,
+        "bytes": 145768,
+        "seconds": 3.703
+      },
+      {
+        "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f/profile",
+        "status": 200,
+        "bytes": 9393910,
+        "seconds": 4.047
+      },
+      {
+        "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23/profile",
+        "status": 200,
+        "bytes": 9383635,
+        "seconds": 3.0
+      },
+      {
+        "path": "/api/public/compare?left=6204d78594f64db6ab6b74233058107f&right=6a9efc32e21a40c19aeeff935cc03b23",
+        "status": 200,
+        "bytes": 18931554,
+        "seconds": 19.484
+      },
+      {
+        "path": "/assets/detail_charts.js",
+        "status": 200,
+        "bytes": 55878,
+        "seconds": 0.718
+      },
+      {
+        "path": "/assets/detail_charts.css",
+        "status": 200,
+        "bytes": 9686,
+        "seconds": 0.187
+      },
+      {
+        "path": "/assets/navigation.js",
+        "status": 200,
+        "bytes": 2176,
+        "seconds": 0.204
+      },
+      {
+        "path": "/assets/registration.js",
+        "status": 200,
+        "bytes": 48063,
+        "seconds": 0.906
+      },
+      {
+        "path": "/assets/space.js",
+        "status": 200,
+        "bytes": 17261,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/metric_labels.js",
+        "status": 200,
+        "bytes": 5414,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/space.css",
+        "status": 200,
+        "bytes": 10771,
+        "seconds": 0.234
+      },
+      {
+        "path": "/assets/home.js",
+        "status": 200,
+        "bytes": 10574,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/paper_results.json",
+        "status": 200,
+        "bytes": 17866,
+        "seconds": 0.188
+      },
+      {
+        "path": "/assets/leaderboard.js",
+        "status": 200,
+        "bytes": 27116,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 1.25
+      },
+      {
+        "path": "/",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.203
+      },
+      {
+        "path": "/submit",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 1.391
+      },
+      {
+        "path": "/compare",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.203
+      },
+      {
+        "path": "/models",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.187
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.203
+      }
+    ]
+  },
+  "browser": {
+    "passed": true,
+    "scope": "Actual public HF iframe, anonymous numerical reads and chart controls; no upload, identity or state writes",
+    "checks": [
+      "paper 12-model leaderboard and separate registered collection available",
+      "Task 1 question-type view hides fixed severity-only breakdowns; input severity enables them",
+      "Task 1 Benign key rates show N/A and No eligible denominator 0/0, false alarms 21/158",
+      "Task 2 instruction overview Accuracy up and conditional Answer error down, with mixed-denominator rows labeled",
+      "Task 3 Biased Qs zero has unfilled baseline circle and no positive-length colored rectangle",
+      "collapsed Task 3 candidate section Inspect group selects Copyright",
+      "Task 4 detail High condition retained into comparison, both 426/426",
+      "matched-input statistics visibly separated from chart filters",
+      "Task 4 keyboard End reaches plot scrollTop 1277 of scrollHeight1797/clientHeight520; conditions/model legend/rate scale retained",
+      "Task 5 actual 140/783=17.88% valid and 140/784=17.86% all-expected retain distinct basis labels",
+      "Task 5 Cyber/Illegal Harm condition and seven-outcome legend precede composition plot"
+    ],
+    "screenshots": [
+      "generated/chart-clarity-design-20261019/hosted-task4-comparison.png",
+      "generated/chart-clarity-design-20261019/hosted-task5-composition.png"
+    ]
+  },
+  "remote_code": {
+    "passed": true,
+    "revision": "8ea27130097c546288de2c7a7e3a4d44e1c05300",
+    "files": [
+      {
+        "path": "CITATION.cff",
+        "bytes": 464,
+        "sha256": "45575d15c54a48a069fab17457e91c64192f538685d88c1f535da35d1192a37d"
+      },
+      {
+        "path": "README.md",
+        "bytes": 2789,
+        "sha256": "0455013d2cbf137669e4dfdbe4ced4ac29bfe8137203d91436349bbb01b4606e"
+      },
+      {
+        "path": "deployment-manifest.json",
+        "bytes": 14776,
+        "sha256": "b8ab704c218768dd373d539629d5fd0c620f55d0f7de3596dd6ace552c14e02a"
+      },
+      {
+        "path": "pyproject.toml",
+        "bytes": 1794,
+        "sha256": "815765cc4c54a130367304eef4cc58748e19d924c16f1fc96c5487d3b1c1d412"
+      },
+      {
+        "path": "src/koevd_eval/__init__.py",
+        "bytes": 88,
+        "sha256": "75eb3dbe56262a1e8e9dcd4f1a1ccb4a7c06b4f5677eccaa7cf27f51fbfb9303"
+      },
+      {
+        "path": "src/koevd_eval/assets/detail_charts.css",
+        "bytes": 9704,
+        "sha256": "c2e0ee4d41c4809c3f95af2e1e6ab1530f05ab8d46f56aaea1bc45064f954776"
+      },
+      {
+        "path": "src/koevd_eval/assets/detail_charts.js",
+        "bytes": 56199,
+        "sha256": "e5c9810a87c4fc63749a5af3021878e24ae5dd3cfac45e97aad78d763c62738a"
+      },
+      {
+        "path": "src/koevd_eval/assets/registration.js",
+        "bytes": 48263,
+        "sha256": "28d99495adfb7573fa45332fa83118e7a6fdce609dc66f86feea3cd852b0451b"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.css",
+        "bytes": 10801,
+        "sha256": "f7f24fcfd9a87c37a7d2526723ea606ff0f8d8d99bb54f5712d1d62231e40cb1"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.html",
+        "bytes": 18167,
+        "sha256": "98f965e2040b0431c0e901031f3efbe1c0ed2509bf273320b8f2b7e0bb808f47"
+      }
+    ]
+  }
+}
