@@ -86,6 +86,6 @@ reproduction was performed. Official ranks, response publication and recurring
 backup remain off. Paper conditions remain separate; Task 3/4 measurements are
 classifier-limited, Task 4 is descriptive and Task 5 tools are simulated.
 
-Machine-readable [current receipt](validation/public-registration-rc9-20261019.json).
-The [rc.8 acceptance](PUBLIC_SERVICE_ACCEPTANCE_RC8_20261019.md) preserves its
+Machine-readable [current receipt](../validation/public-registration-rc9-20261019.json).
+The [rc.8 acceptance](../PUBLIC_SERVICE_ACCEPTANCE_RC8_20261019.md) preserves its
 original dates and scope; its runtime revision is superseded.

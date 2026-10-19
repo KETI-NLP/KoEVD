@@ -455,8 +455,8 @@
     },
     {
       "path": "docs/audit/public_service_acceptance_rc9_20261019.md",
-      "bytes": 5938,
-      "sha256": "d36dcb169a9944deff10fc04221b195b66b518c822138aba8d1d06edf83df81f"
+      "bytes": 5944,
+      "sha256": "788c2d16a30165f1b1ba9a7e82904aadf979ded2d26a68841965b98b36634074"
     },
     {
       "path": "docs/strategy_label_map.json",
