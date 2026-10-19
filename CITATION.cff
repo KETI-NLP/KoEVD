@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "Please cite the KoEVD manuscript when using this software."
 title: "KoEVD: A Korean Benchmark for Metadata-Conditioned Multi-Stage LLM Safety Evaluation"
 type: software
-version: 0.3.0rc4
+version: 0.3.0rc5
 repository-code: "https://github.com/KETI-NLP/KoEVD"
 authors:
   - family-names: Kim
