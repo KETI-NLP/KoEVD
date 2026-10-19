@@ -12,5 +12,13 @@ function focusKey(board,id,current=''){
   return keys.find(k=>k.split('|')[0]===current.split('|')[0])||keys.find(k=>k.startsWith('task2/variant/choose_best/accuracy_on_valid|'))||keys[0]||null;
 }
 function matching(board,query){query=query.trim().toLocaleLowerCase();return board.publications.filter(p=>[p.submission_id,p.display?.display_name,p.model?.id,p.model?.revision].filter(Boolean).join(' ').toLocaleLowerCase().includes(query));}
-const api={name,rate,direction,focusKey,matching};if(typeof module==='object'&&module.exports)module.exports=api;else root.KoEVDMetrics=api;
+// Aliases remain discoverable, while an original result occupies one table row.
+function uniquePublications(items){
+ const byId=new Map(items.map(p=>[p.submission_id,p])),groups=new Map();
+ for(const p of items){const original=byId.get(p.duplicate_of)||p,key=original.artifact_sha256||p.artifact_sha256||original.submission_id;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(p);}
+ return [...groups.entries()].map(([key,aliases])=>({key,aliases,publication:aliases.find(p=>!p.duplicate_of)||aliases[0]}));
+}
+function canonicalId(items,id){return uniquePublications(items).find(g=>g.aliases.some(p=>p.submission_id===id))?.publication.submission_id||id;}
+function differentPublication(items,id){const groups=uniquePublications(items),current=groups.find(g=>g.aliases.some(p=>p.submission_id===id));return groups.find(g=>g!==current)?.publication||null;}
+const api={name,rate,direction,focusKey,matching,uniquePublications,canonicalId,differentPublication};if(typeof module==='object'&&module.exports)module.exports=api;else root.KoEVDMetrics=api;
 }(typeof window==='object'?window:globalThis));

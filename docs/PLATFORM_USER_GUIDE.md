@@ -192,7 +192,7 @@ For a saved private result, sign in, select the registration and choose
 analysis. Your original and history stay unchanged. Public numerical downloads
 are reports, not upload artifacts.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.5)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.6)
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
 all 12 models in the paper experiment. Choose Task tabs or All tasks. Display
@@ -280,3 +280,29 @@ expected, whereas the displayed score uses its own event denominator. N/A can
 mean unavailable historical counts, an unmeasured metric or no eligible outputs;
 it never means measured zero. Task 1/4 tabs start in alphabetical order because
 their paper values describe behavior rather than a quality ranking.
+
+## Search, duplicate registrations and submission readiness
+
+Use **Search all models** on the home to find paper results and registered runs
+across condition groups. Matching names/aliases are listed with their collection;
+**Show on leaderboard** opens that table and highlights the result. The advanced
+**Find any published model** control leads to the same home. Scores remain in
+their original condition groups. Model-name ordering supports A–Z and Z–A.
+
+Multiple registrations of the same exact original occupy one distinct result row
+with a registration count. Their names and submission IDs remain searchable, and
+each owner's private history and public profile remain separate. The automatic
+comparison action selects a different original. Two aliases of the same file
+cannot provide an independent model comparison.
+
+Before upload, run `koevd-results check-run` with `--run-dir`, `--input` and the
+original `--trusted-index`, adding the registered protocol arguments from step 7
+of GETTING_STARTED. It compares content and settings with the retained pipeline;
+`stale_export` requires re-export, and `check_failed` requires investigation or
+completion of pending recovery. `current_with_warnings` preserves failed requests
+and missing measurements. It does not verify model identity, classifier accuracy
+or universal safety; the Space cannot inspect your local files.
+
+The **Deployment and version** link always opens the current service acceptance
+record. Evaluation commands remain pinned to an immutable release tag. Historical
+validation documents describe their own dates and releases, not today's runtime.

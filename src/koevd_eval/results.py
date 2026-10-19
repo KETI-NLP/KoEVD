@@ -587,6 +587,11 @@ def main():
     export_parser.add_argument('--trusted-index', required=True)
     export_parser.add_argument('--output', required=True)
     export_parser.add_argument('--code-revision')
+    check_parser = commands.add_parser('check-run', help='Read-only comparison of exported JSON with the latest retained pipeline')
+    for option in ('run-dir', 'input', 'trusted-index'):
+        check_parser.add_argument('--'+option, required=True)
+    check_parser.add_argument('--registry')
+    check_parser.add_argument('--protocol-id')
     migrate_parser = commands.add_parser('migrate', help='Import original prepared-row JSONL')
     for task in TASKS:
         migrate_parser.add_argument('--task'+str(task), required=task != 4)
@@ -614,6 +619,12 @@ def main():
     if args.command == 'schema':
         from importlib.resources import files
         print(files('koevd_eval').joinpath('schemas', args.kind+'-v1.schema.json').read_text(encoding='utf-8'))
+    elif args.command == 'check-run':
+        from .submission_readiness import check_file
+        checked = check_file(args.run_dir, args.input, args.trusted_index, registry=args.registry, protocol_id=args.protocol_id)
+        print(json.dumps(checked, ensure_ascii=False))
+        if not checked['current']:
+            raise SystemExit(2)
     elif args.command == 'protocol-index':
         from .protocols import ProtocolRegistry
         index = ProtocolRegistry(args.registry).prepare_index(args.protocol_id, args.dataset_dir, args.run_dir)

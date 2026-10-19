@@ -33,7 +33,7 @@ Task 5 uses simulated tools. Read valid/expected coverage separately from each
 event ratio. A low all-row rate with many invalid outputs does not establish
 safety. The Platform provides no combined ethics score or official rank.
 
-Use **v0.3.0-rc.5** (Python package **0.3.0rc5**) for this guide and record its
+Use **v0.3.0-rc.6** (Python package **0.3.0rc6**) for this guide and record its
 commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
 or the generation/measurement retry repair. Existing release tags are immutable. [Current service acceptance](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
@@ -42,7 +42,7 @@ validation logs describe their original dates and versions.
 ## 1. Install the evaluation client
 
 ```bash
-git clone --branch v0.3.0-rc.5 --single-branch https://github.com/KETI-NLP/KoEVD.git
+git clone --branch v0.3.0-rc.6 --single-branch https://github.com/KETI-NLP/KoEVD.git
 cd KoEVD
 git rev-parse HEAD
 python3.11 -m venv .venv-eval
@@ -266,6 +266,10 @@ koevd-results export --run-dir runs/my-model-core \
 koevd-results validate --input runs/my-model-core/results.json \
   --trusted-index runs/my-model-core/trusted_input_index.json \
   --registry configs/protocols --protocol-id koevd-core-canonical-v1
+koevd-results check-run --run-dir runs/my-model-core \
+  --input runs/my-model-core/results.json \
+  --trusted-index runs/my-model-core/trusted_input_index.json \
+  --registry configs/protocols --protocol-id koevd-core-canonical-v1
 koevd-diagnose --input runs/my-model-core/results.json \
   --trusted-index runs/my-model-core/trusted_input_index.json \
   --output-dir runs/my-model-core/diagnostics
@@ -275,6 +279,25 @@ Export requires all expected generation rows, including explicit failed requests
 Absent classifier output is represented as unmeasured, not safe. Existing stale
 measurement output causes an error rather than being silently omitted.
 Open `diagnostics/report-v2.html` to inspect charts, groups and response cases.
+
+`check-run` compares the JSON's responses, measurements, model/settings and stable
+run identity with the current retained pipeline. It reads files without changing
+them or contacting your model. It does not rely on modification dates.
+
+- `current` / `current_with_warnings` (exit 0): the export matches the retained run.
+  Review the reported failed requests, unmeasured responses and diagnostic coverage;
+  matching files do not establish parsing success, model authenticity or safety.
+- `stale_export` (exit 2): generation, measurement or other run content has changed.
+  Repeat export, validate and check-run before selecting the file for upload.
+- `check_failed` (exit 2): inspect the reported input/index/integrity issue or finish
+  pending recovery. Do not edit hashes to bypass it.
+
+Keep the run directory and check again after any retry or remeasurement. Legacy
+pipelines without stable run IDs compare contents/settings and report that limit.
+The Space can validate uploaded content against its index, but cannot check the
+latest files remaining on your computer. An older valid result can still be a
+legitimate historical run; this command checks whether it matches **this** run.
+
 
 | File | Purpose | Upload to Platform? |
 |---|---|---|
@@ -385,6 +408,9 @@ publishes anything by itself. Administrator withdrawals cannot be bypassed throu
 | Home or sign-in configuration could not load | Use **Retry service connection**. Navigation and retries preserve current-page uploads. If the outcome of a prior save is unknown, inspect the registration/history before saving again. |
 | Published results cannot be checked | Public list/profile/comparison GETs retry at most twice for transient failures. Wait, then use the relevant Refresh button; this is not a file rejection. No old public data is used after a failed current-state check. |
 | Save/share has an ambiguous outcome | Check your registration and history before repeating. The UI does not automatically replay write requests. |
+| Export passed earlier but I retried generation or measurement | Repeat export, validate and `check-run`; do not select an old export based on its filename alone. |
+| Model search shows no rows in the selected table | Use the cross-collection matches above and **Show on leaderboard** to select the right evaluation conditions. |
+| My shared result has the same original as another registration | One distinct result row is shown with its registration count. Your private original/history and public profile stay separate; comparing aliases is not an independent comparison. |
 | My saved model is absent from public comparison | Private save and summary publication are separate; confirm sharing completed and was not withdrawn. |
 | New session cannot access earlier temporary files | Reupload your retained original; permanent registrations are available after sign-in. |
 
@@ -412,10 +438,15 @@ adds a public profile that can be compared with compatible published runs.
 - After saving privately, numerical sharing still requires fresh permission and
   consent. After sharing, use **Show my model on leaderboard**, **View my public
   profile** or **Compare this result**. Private registrations are not public rows.
-- **Find any published model** searches names, model IDs, revisions and submission
-  IDs across every evaluation group. **Show model on leaderboard** switches to
-  that run's group. The separate row filter searches only the current group.
-  Different groups reflect different conditions; they are not one ranking.
+- **Search all models** on the home searches paper names and every public registered
+  group, including display names, model revisions, submission IDs and duplicate
+  registration aliases. Choose **Show on leaderboard** in a match to open the
+  correct condition table and highlight its row. The table itself remains scoped
+  to the selected group; scores from different groups are never pooled.
+- **Find any published model** in advanced details uses the same home navigation
+  and highlighting. Multiple registrations of one exact original share a single
+  result row with a registration count; aliases remain searchable. Comparisons
+  require different originals, not merely different submission IDs.
 - Task 2 leaderboard values are **accuracy (higher is better)**. Paired Task 2
   comparisons display **answer error rate (lower is better)**: within the same
   partition and valid outputs, accuracy = 100% minus error. Thus 81.55% accuracy
@@ -433,7 +464,7 @@ For a saved private result, sign in, select the registration and choose
 analysis. Your original and history stay unchanged. Public numerical downloads
 are reports, not upload artifacts.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.5)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.6)
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
 all 12 models in the paper experiment. Choose Task tabs or All tasks. Display
@@ -490,8 +521,8 @@ koevd-pipeline --stage status --output-dir runs/my-model-core
 
 This read-only check shows expected/generated/failed/pending rows for each task,
 measurement readiness or integrity problems, and the next stage to run. It
-requires no model endpoint, adapter or GPU. It does not verify model accuracy or
-the freshness of an older exported JSON. Repeat your original generation command
+requires no model endpoint, adapter or GPU. It does not verify model accuracy. Use `koevd-results check-run` from step 7
+to check whether an exported JSON matches the retained run. Repeat your original generation command
 when failures remain, preserving every model/decoding/provenance setting. After
 changes, rebuild the report, reexport and validate against the same trusted index.
 A status recommendation never authorizes editing hashes or discarding failures.

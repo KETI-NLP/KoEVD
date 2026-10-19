@@ -55,4 +55,4 @@ def status_run(output):
         'failed_generation_rows':failures,'pending_generation_rows':missing,
         'generation_retry_pending':generation_pending,'measurement_promotion_pending':measurement_pending,
         'all_generation_requests_succeeded':not (failures or missing or generation_pending),
-        'next_action':next_action,'interpretation':'Readiness only; API success is not parsing success or model accuracy. Validation is structural. Exported-file freshness is not checked. Failed rows stay in denominators.'}
+        'next_action':next_action,'interpretation':'Readiness only; API success is not parsing success or model accuracy. Validation is structural. Use koevd-results check-run to compare the exported JSON with the retained run. Failed rows stay in denominators.'}

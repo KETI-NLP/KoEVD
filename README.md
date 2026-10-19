@@ -1,10 +1,12 @@
 # KoEVD evaluation and analysis
 
-**Evaluation client: v0.3.0-rc.5 (package 0.3.0rc5).** Evaluate your own model, export
+**Evaluation client: v0.3.0-rc.6 (package 0.3.0rc6).** Evaluate your own model, export
 portable JSON, build offline reports, and register results in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
-Anonymous visitors can explore the two full Qwen3 references, model profiles,
-metadata trends and paired comparisons without uploading a file. Current source
+Anonymous visitors start with the 12-model historical paper leaderboard. Search
+across paper and registered collections, or switch conditions for the two full
+Qwen3 references, model profiles, metadata trends and paired comparisons without
+uploading a file. Current source
 opens with a task-specific **Model leaderboard** and a separate **Submit results**
 view. Use the [runtime acceptance record](docs/PUBLIC_SERVICE_ACCEPTANCE.md) to
 check whether a source correction has reached the hosted app.
@@ -24,7 +26,7 @@ Start with the **[complete first-user guide](docs/GETTING_STARTED.md)**: pinned
 inputs → model generation → measurement → `results.json` → sign-in → private
 registration → optional shared numerical comparison. The guide includes failed
 generation/measurement retries, service reconnection, cross-group model discovery,
-metric interpretation, local prompt-budget checks, review-request cancellation and
+metric interpretation, latest-export checks, local prompt-budget checks, review-request cancellation and
 reversible summary sharing. Use
 [Platform controls and data handling](docs/PLATFORM_USER_GUIDE.md) as a reference.
 See [current acceptance and source/runtime versions](docs/PUBLIC_SERVICE_ACCEPTANCE.md),

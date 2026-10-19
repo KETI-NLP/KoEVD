@@ -1,7 +1,7 @@
 /* Separate leaderboard, detail, comparison and submission views share the same in-memory upload session; navigation never reloads. */
 (function(){'use strict';
   const $=id=>document.getElementById(id);let registration=true,currentPage=null,compareContext=null;
-  function selected(){const hash=location.hash.slice(1);
+  function selected(){const hash=location.hash.slice(1);if(hash.startsWith('models?'))return 'models';
     if(['submit','registration-section','upload-section','report-section','registration-start'].includes(hash))return 'submit';
     if(hash.startsWith('model=')||hash.startsWith('paper-model='))return 'detail';
     if(hash==='compare'||hash.startsWith('left=')||hash.startsWith('paper-compare='))return 'compare';

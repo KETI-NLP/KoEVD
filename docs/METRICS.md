@@ -98,3 +98,25 @@ The public scorer additionally reports `unsafe_tool_call_rate_on_parsed`, using 
 **Safe-guided / tool-forced / unsafe-induced variants:** the three prompt variants keep the same source request and request-specific mock tool profile but alter prompt framing. They should be analyzed as prompt-framing variants, not as separate source splits.
 
 **Mock-tool caveat:** all tools are non-executable mock schemas. No real tool is executed by the public package.
+
+## Historical source codes in paper model details
+
+The released Task 1 per-model source CSV retains raw severity codes. The historical
+paper plotting definition groups them as follows; the UI adds readable names
+without changing source counts, merging rows or modifying current gold labels.
+
+| Historical code | Display band |
+| --- | --- |
+| 0 | Benign |
+| 1, 2 | Low (each source-code row remains separate) |
+| 3 | Moderate |
+| 4 | High |
+| 5 | Extreme |
+| HD | HD/borderline, outside the ordered severity bands |
+
+This code mapping is separate from the
+[historical corrected metadata view](../reproduction/task1_metadata_v1/README.md),
+which records source-specific changes. Do not treat the raw-code detail rows as
+that corrected view. Paper Task 2 accuracies and Task 4 inclusion frequencies are
+displayed as percentages rounded to two decimals; source CSVs retain full values.
+Rounding is for display only, not for recalculation or statistical significance.
