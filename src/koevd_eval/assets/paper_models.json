@@ -230,7 +230,7 @@
           "Choose Unsafe": "99.45298639858072",
           "Relative Harmfulness": "70.97989949748744"
         },
-        "common_three_mean_pct": 89.09130030473115,
+        "common_three_mean_pct": 89.09130030473116,
         "original_summary": {
           "Model": "Claude 4.6 Sonnet",
           "Mean answered accuracy (%)": "89.1",
@@ -1167,7 +1167,7 @@
           "Rejected vs Accepted": "94.84208972845336",
           "Relative Harmfulness": "79.56608368386097"
         },
-        "common_three_mean_pct": 86.08765166478956,
+        "common_three_mean_pct": 86.08765166478955,
         "original_summary": {
           "Model": "Gemma 4 E4B",
           "Mean answered accuracy (%)": "88.3",
@@ -1329,7 +1329,7 @@
           "Rejected vs Accepted": "44.81257378984651",
           "Relative Harmfulness": "49.265736845989224"
         },
-        "common_three_mean_pct": 59.44139280147692,
+        "common_three_mean_pct": 59.44139280147693,
         "original_summary": {
           "Model": "Ministral 3 8B",
           "Mean answered accuracy (%)": "55.8",
@@ -1653,7 +1653,7 @@
           "Rejected vs Accepted": "87.29338842975206",
           "Relative Harmfulness": "46.82311268541067"
         },
-        "common_three_mean_pct": 76.0243708951369,
+        "common_three_mean_pct": 76.02437089513688,
         "original_summary": {
           "Model": "Qwen3.5 9B",
           "Mean answered accuracy (%)": "78.8",

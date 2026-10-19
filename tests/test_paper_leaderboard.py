@@ -1,4 +1,5 @@
 import hashlib
+from fractions import Fraction
 import importlib.util
 import json
 import os
@@ -27,7 +28,7 @@ class PaperLeaderboardTests(unittest.TestCase):
     def test_common_variants_are_not_native_four_variant_means(self):
         for model in self.data['models']:
             v=model['task2']['variants']
-            expected=sum(float(v[k]) for k in ('Choose Best','Choose Unsafe','Relative Harmfulness'))/3
+            expected=float(sum(Fraction(v[k]) for k in ('Choose Best','Choose Unsafe','Relative Harmfulness'))/3)
             self.assertEqual(model['task2']['common_three_mean_pct'],expected)
         q=next(m for m in self.data['models'] if m['name']=='Qwen3.6 27B')
         self.assertNotAlmostEqual(q['task2']['common_three_mean_pct'],float(q['task2']['original_summary']['Mean answered accuracy (%)']),places=1)

@@ -1,5 +1,6 @@
 """Build numerical paper references from checked-in, aggregate-only source CSVs."""
 import csv
+from decimal import Decimal
 import hashlib
 import json
 from pathlib import Path
@@ -53,7 +54,7 @@ def build(root):
         models.append({'name':name,'cohort':cov['Cohort'],
             'task1':{'coverage':cov,'judgments':n if rows else None,'unsafe':unsafe if rows else None,
                      'unsafe_rate':unsafe/n if n else None,'by_severity':bands},
-            'task2':{'variants':variants[name],'common_three_mean_pct':sum(float(variants[name][v]) for v in common)/3,
+            'task2':{'variants':variants[name],'common_three_mean_pct':float(sum(Decimal(variants[name][v]) for v in common)/Decimal(3)),
                      'original_summary':native_means[name]},
             'task3':safety[name], 'task4':strategy[name], 'task4_measurements':strategy_counts[name],
             'task4_rates':strategy_rates[name], 'task5':tools[name],

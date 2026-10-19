@@ -1065,8 +1065,8 @@
     },
     {
       "path": "scripts/build_paper_leaderboard.py",
-      "bytes": 5337,
-      "sha256": "3bcec9d6b0f3d0a3c1915550fc72a40c6fac220830e0d75412fdc3a5e99d1b54"
+      "bytes": 5384,
+      "sha256": "c16de825a82b9520541166b83bf1575512d468e7f7b64668c219240b66462455"
     },
     {
       "path": "scripts/build_release_manifest.py",
@@ -1350,8 +1350,8 @@
     },
     {
       "path": "src/koevd_eval/assets/paper_models.json",
-      "bytes": 271460,
-      "sha256": "64d246d91685aac1cffacd88e5dd181d40cb6b832abc2ce4f0010248b570570d"
+      "bytes": 271461,
+      "sha256": "c6a8b4f33fc35caa17d6a899184f55f928a5ac4afacc2629fbe762cb353ede40"
     },
     {
       "path": "src/koevd_eval/assets/paper_results.json",
@@ -1765,8 +1765,8 @@
     },
     {
       "path": "tests/test_paper_leaderboard.py",
-      "bytes": 2943,
-      "sha256": "f6057b9cc7ed1fb4d51ca0ae1e36770426adb7f70909107f82aad146f4916158"
+      "bytes": 3043,
+      "sha256": "90802dca4f2bd0f31f63aea4b8209029421af0791ce41baf7cb0a19c2ad75c14"
     },
     {
       "path": "tests/test_policy_decisions.py",
