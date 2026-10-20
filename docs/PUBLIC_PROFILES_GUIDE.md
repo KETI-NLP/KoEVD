@@ -28,7 +28,7 @@ object. Existing metric and denominator fields retain their meanings. A
 generation declaration or an uploaded measured label is not independent
 generation verification or a classifier accuracy certificate.
 
-## Interactive model details (v0.3.0-rc.14)
+## Interactive model details (v0.3.0-rc.15)
 
 Open a model from the leaderboard, then choose a Task in **Explore task behavior**.
 These are live SVG charts, not screenshots. Hover or keyboard-focus a mark for
@@ -158,7 +158,9 @@ not a fixed list or a taxonomy of the generated answer's harm.
   Topic, Input severity or Explicitness to inspect an **exact type × metadata**
   breakdown computed from validated rows. Topics and multi-valued types can overlap;
   their totals need not add to the overall sample size. No other metadata
-  intersection is inferred from marginal tables.
+  intersection is inferred from marginal tables. Topic breakdowns use the chosen
+  value/name ordering; severity and explicitness retain fixed semantic order in
+  both single-model and comparison views.
 - These dedicated controls use the current **input scope**. General Analyze by,
   Show condition, Bar order and Find chart labels apply to the basic/additional
   metadata charts separately. The additional metadata chart is collapsed below
