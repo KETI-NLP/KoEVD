@@ -1,0 +1,333 @@
+{
+  "space": "KETI-NLP/KoEVD-Platform",
+  "source": "aa229622bd767c47fe2dbc62f6475a1c71602ff5",
+  "deployed_revision": "96af2c11dad4ddb86fe5e704c06819aea9d9bc3e",
+  "changed_paths": [
+    "CITATION.cff",
+    "README.md",
+    "deployment-manifest.json",
+    "pyproject.toml",
+    "src/koevd_eval/__init__.py",
+    "src/koevd_eval/assets/detail_charts.js",
+    "src/koevd_eval/assets/space.html"
+  ],
+  "changed_bytes": 119457,
+  "unchanged_operator_data": true,
+  "unchanged_provider_lfs": true,
+  "raw_result_uploads": 0,
+  "secret_changes": false,
+  "state_or_protocol_configuration_changes": false,
+  "new_paid_resources": false,
+  "automatic_starts_used": 1,
+  "release": "v0.3.0-rc.15",
+  "github": {
+    "merge": "a6e2f7831a1aada8dda565a56f585b96bc32b667",
+    "source_ci": 39358717896,
+    "pr_ci": 39358723745,
+    "merge_ci": 39358906516,
+    "tag_ci": 39358915557,
+    "feature_pr": 34,
+    "final_axis_order_pr": 35
+  },
+  "full_cpu_tests": 540,
+  "initial_rc14_deployment": {
+    "source": "8430765a7fd1f949d8ef281da8df4e33dc548372",
+    "hf_revision": "b4c37b727810cb1c92f382d70208f42403d9c7cc",
+    "replaced_to_preserve_semantic_axes": true
+  },
+  "first_full_run": {
+    "status": "one_failure",
+    "test": "test_lost_response_reconciles_same_checkpoint_without_duplicate",
+    "observed_sequence": 1,
+    "expected_sequence": 2,
+    "isolated_rerun": "passed",
+    "full_final_rerun": "540 passed",
+    "storage_code_changed": false
+  },
+  "fresh_release": {
+    "passed": true,
+    "tag": "v0.3.0-rc.15",
+    "module_version": "0.3.0rc15",
+    "metadata_version": "0.3.0rc15",
+    "manifest_exact_git_files": 427,
+    "hub_extra": true,
+    "pip_check": true,
+    "status_cli": true,
+    "scope": "fresh public clone and isolated CPU environment; no PYTHONPATH source override"
+  },
+  "type_aggregation": {
+    "passed": true,
+    "scope": "Local existing pinned result originals; no inference or upload",
+    "models": [
+      {
+        "model": "Qwen3-8B",
+        "records": 17670,
+        "type_slices": 33,
+        "exact_conditional_cells": 389,
+        "existing_numerical_projection_unchanged": true
+      },
+      {
+        "model": "Qwen3-4B",
+        "records": 17670,
+        "type_slices": 33,
+        "exact_conditional_cells": 389,
+        "existing_numerical_projection_unchanged": true
+      }
+    ]
+  },
+  "type_chart_parity": {
+    "passed": true,
+    "models": 2,
+    "selections": 408,
+    "observations": 1688,
+    "scope": "Exact type overview and conditional rates/counts mapped without changing denominators"
+  },
+  "existing_chart_parity": {
+    "models": 2,
+    "selections": 1768,
+    "cells": 168899,
+    "passed": true,
+    "scope": "Existing public numerical aggregates only; no inference or original upload."
+  },
+  "exports": {
+    "passed": true,
+    "type_rows": 22,
+    "selected_type": "Copyright",
+    "axis": "severity_band",
+    "counts": [
+      5,
+      4
+    ],
+    "valid_denominators": [
+      118,
+      118
+    ],
+    "contexts": 2,
+    "scope": "Shipped renderer export generation; browser filesystem save completion not claimed"
+  },
+  "hosted": {
+    "passed": true,
+    "at": "2026-10-20T02:29:25.078230+00:00",
+    "scope": "anonymous GET only; no upload/sign-in/write",
+    "revision": "96af2c11dad4ddb86fe5e704c06819aea9d9bc3e",
+    "source": "aa229622bd767c47fe2dbc62f6475a1c71602ff5",
+    "public_references": [
+      "6204d78594f64db6ab6b74233058107f",
+      "6a9efc32e21a40c19aeeff935cc03b23"
+    ],
+    "registration_enabled": true,
+    "official_ranking_enabled": false,
+    "observations": [
+      {
+        "path": "/healthz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.657
+      },
+      {
+        "path": "/readyz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.5
+      },
+      {
+        "path": "/api/registration",
+        "status": 200,
+        "bytes": 163,
+        "seconds": 0.218
+      },
+      {
+        "path": "/api/public/submissions",
+        "status": 200,
+        "bytes": 972,
+        "seconds": 0.422
+      },
+      {
+        "path": "/api/public/leaderboard",
+        "status": 200,
+        "bytes": 145768,
+        "seconds": 4.094
+      },
+      {
+        "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f/profile",
+        "status": 200,
+        "bytes": 9508864,
+        "seconds": 3.828
+      },
+      {
+        "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23/profile",
+        "status": 200,
+        "bytes": 9499771,
+        "seconds": 3.187
+      },
+      {
+        "path": "/api/public/compare?left=6204d78594f64db6ab6b74233058107f&right=6a9efc32e21a40c19aeeff935cc03b23",
+        "status": 200,
+        "bytes": 19162644,
+        "seconds": 19.14
+      },
+      {
+        "path": "/assets/detail_charts.js",
+        "status": 200,
+        "bytes": 80889,
+        "seconds": 1.032
+      },
+      {
+        "path": "/assets/detail_charts.css",
+        "status": 200,
+        "bytes": 13943,
+        "seconds": 0.218
+      },
+      {
+        "path": "/assets/navigation.js",
+        "status": 200,
+        "bytes": 2176,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/registration.js",
+        "status": 200,
+        "bytes": 48128,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/space.js",
+        "status": 200,
+        "bytes": 17261,
+        "seconds": 1.172
+      },
+      {
+        "path": "/assets/metric_labels.js",
+        "status": 200,
+        "bytes": 5414,
+        "seconds": 0.234
+      },
+      {
+        "path": "/assets/space.css",
+        "status": 200,
+        "bytes": 10771,
+        "seconds": 0.234
+      },
+      {
+        "path": "/assets/home.js",
+        "status": 200,
+        "bytes": 10574,
+        "seconds": 0.266
+      },
+      {
+        "path": "/assets/paper_results.json",
+        "status": 200,
+        "bytes": 17866,
+        "seconds": 0.218
+      },
+      {
+        "path": "/assets/leaderboard.js",
+        "status": 200,
+        "bytes": 27116,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.422
+      },
+      {
+        "path": "/",
+        "status": 200,
+        "bytes": 18660,
+        "seconds": 0.218
+      },
+      {
+        "path": "/submit",
+        "status": 200,
+        "bytes": 18660,
+        "seconds": 0.219
+      },
+      {
+        "path": "/compare",
+        "status": 200,
+        "bytes": 18660,
+        "seconds": 0.203
+      },
+      {
+        "path": "/models",
+        "status": 200,
+        "bytes": 18660,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.234
+      }
+    ]
+  },
+  "browser": {
+    "passed": true,
+    "revision": "96af2c11dad4ddb86fe5e704c06819aea9d9bc3e",
+    "scope": "Actual public HF iframe; read-only model details and comparison; no upload or identity/State writes",
+    "checks": [
+      "Basic unsafe-rate chart precedes type analysis",
+      "All 11 supplied Core types visible; Proverb/Term Meaning 1/9 explicitly small n",
+      "Count switch shows Expressing Opinion 12/816 and Exploring Opinions 5/335 for 8B",
+      "Continuous Opinion typing retains focus and all characters",
+      "Selected Expressing Opinion exact topic/severity/explicitness breakdowns are supplied",
+      "Single-model topic rows sorted by displayed value; severity Benign Low Moderate High Extreme and explicitness Neutral Implicit Explicit Not Applicable keep semantic order",
+      "Compare selected type with another model carries type, count/rate, search and breakdown axis",
+      "Comparison shows 12/816 versus 17/816, both completion 816/816; observed difference -0.61 pp",
+      "Comparison severity rows preserve the same semantic order",
+      "Task 4 switch and Task 3 return retain selected type",
+      "Existing summary-only publications expose no original response cases"
+    ],
+    "screenshots": [
+      "hosted-type-comparison.png",
+      "hosted-type-drilldown.png"
+    ],
+    "historical_limits": "covered by shipped-renderer regression tests; no per-model distributions reconstructed",
+    "exports": "generation harness verified; browser filesystem save completion not claimed",
+    "writes": 0
+  },
+  "remote_code": {
+    "passed": true,
+    "revision": "96af2c11dad4ddb86fe5e704c06819aea9d9bc3e",
+    "files": [
+      {
+        "path": "CITATION.cff",
+        "bytes": 464,
+        "sha256": "34203a343bd3113918657b983e692aab7f737a75b6382445b02dfc12959e8a7e"
+      },
+      {
+        "path": "README.md",
+        "bytes": 2789,
+        "sha256": "bffda5283b723a7ac6458d1dc80c09cb086f70548d337b703b64f793056ed051"
+      },
+      {
+        "path": "deployment-manifest.json",
+        "bytes": 14777,
+        "sha256": "f57e6db402325a97513ea612cce73f2bf33f4bb2b3a77a292bee64ebffd880fc"
+      },
+      {
+        "path": "pyproject.toml",
+        "bytes": 1794,
+        "sha256": "5d0356bf5e8659b68317981e1dc686637b43f3a5ee787697070533912b469c35"
+      },
+      {
+        "path": "src/koevd_eval/__init__.py",
+        "bytes": 88,
+        "sha256": "a802b128689f12d9f3c06ad1dce51294b3349f543ad101b311d9cddf83d9674f"
+      },
+      {
+        "path": "src/koevd_eval/assets/detail_charts.js",
+        "bytes": 81303,
+        "sha256": "7b646e718457b2d47a66a6b09b456be77b17097758c42b22c2264b89d9e497f2"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.html",
+        "bytes": 18242,
+        "sha256": "dd7cb72c86d64cc059977eb4d7788fe1b5b6b9116b4aa5f5d3fc4c753e4ad316"
+      }
+    ]
+  }
+}

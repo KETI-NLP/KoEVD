@@ -32,9 +32,9 @@ uses multi-label bars and heatmaps; Task 5 includes framing, outcome composition
 and response-to-tool transitions. Comparison controls synchronize both models.
 Export with **SVG** / **Chart JSON**. These are analysis snapshots, not files to
 submit as results. Historical data supports only its released aggregates; see the
-[chart interpretation guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc13).
+[chart interpretation guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc14).
 
-Task context and model-difference analysis are updated in **v0.3.0-rc.13**. Each plot repeats
+Task context and model-difference analysis are updated in **v0.3.0-rc.15**. Each plot repeats
 its scope, condition, denominator and metric direction. Key rates precede plots;
 long plots scroll without dropping observations. Candidate/interpretation details
 follow plots and start collapsed. Zero uses a baseline marker; N/A states its
@@ -54,6 +54,12 @@ Task 4 separates completion from performance and supplies strategy definitions w
 new illustrative examples. Between-model observed pp summaries show both models’
 numerators/denominators; they are separate from within-model group contrasts and
 matched-input effects. They do not establish significance or causal bias.
+
+Task 3 now adds a dedicated question-type explorer below its basic unsafe-rate
+chart. Switch rates/counts, check each denominator and completion, select a type
+for exact topic/severity/explicitness slices, and choose Compare selected type
+with another model. Type controls retain the input scope and are separate from
+general metadata filters. See the [type-analysis guide](PUBLIC_PROFILES_GUIDE.md#task-3-type-analysis).
 
 The Qwen3-8B/4B references each contain 17,670 previously measured records.
 They are operator references, not independent generation verification. Their
