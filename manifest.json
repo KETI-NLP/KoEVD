@@ -355,8 +355,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 5869,
-      "sha256": "e874ff87280bdd7246c3808dca09ee2f6422a82d457b51c6f3bd6c0379269abe"
+      "bytes": 6210,
+      "sha256": "e70f085f6984a0fd38312680e06dee9c5302eead95e881a304e4e6111ce22766"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC5_20261019.md",
@@ -504,9 +504,19 @@
       "sha256": "d780ae19e7aa9c1e9f37efa31e208b55904e0766951bfaefccae6af016a2fcb9"
     },
     {
+      "path": "docs/audit/public_service_acceptance_rc18_20261020.md",
+      "bytes": 5869,
+      "sha256": "e874ff87280bdd7246c3808dca09ee2f6422a82d457b51c6f3bd6c0379269abe"
+    },
+    {
       "path": "docs/audit/public_service_acceptance_rc9_20261019.md",
       "bytes": 5944,
       "sha256": "788c2d16a30165f1b1ba9a7e82904aadf979ded2d26a68841965b98b36634074"
+    },
+    {
+      "path": "docs/audit/task3_facets_rc19_receipt_20261020.json",
+      "bytes": 1956,
+      "sha256": "5c0a262b149256182912d114a5bcac9e42c5e749ab04c60df2f487a2da1a03b1"
     },
     {
       "path": "docs/audit/task3_types_rc15_receipt_20261020.json",

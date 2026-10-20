@@ -1,0 +1,70 @@
+{
+  "release": "v0.3.0-rc.19",
+  "application_source": "3901ab27a61026cd7447c36dd5a7980b7de10e29",
+  "space_revision": "1ca009ff7402f9a8bfef856f4579e30bb840a370",
+  "paper_models": 12,
+  "original_paper_records": 162624,
+  "independently_checked_joint_buckets": 10896,
+  "renderer_marginal_and_cross_cells": 9636,
+  "registered_reference_groups_checked": 246,
+  "prior_scores_and_paired_statistics_unchanged": true,
+  "local_cpu_tests": 550,
+  "targeted_layout_tests": 14,
+  "isolated_install_tests": 40,
+  "source_ci": [
+    "https://github.com/KETI-NLP/KoEVD/actions/runs/39381484519",
+    "https://github.com/KETI-NLP/KoEVD/actions/runs/39381490876"
+  ],
+  "browser": {
+    "passed": true,
+    "scope": "Actual public IAB UI; no sign-in, upload or server-state mutation",
+    "source": "3901ab27a61026cd7447c36dd5a7980b7de10e29",
+    "space_revision": "1ca009ff7402f9a8bfef856f4579e30bb840a370",
+    "journey": [
+      "initial 12-model paper leaderboard",
+      "GPT-5.4 details",
+      "direct topic analysis",
+      "Gender topic filter",
+      "severity by explicitness heatmap",
+      "keyboard High x Implicit selection",
+      "Apply stays on detail",
+      "explicit Compare retains conditions",
+      "rate/count and both/unsafe modes"
+    ],
+    "compared_models": [
+      "GPT-5.4",
+      "Apertus 8B"
+    ],
+    "filters": {
+      "topic": "Gender",
+      "severity_band": "High",
+      "explicitness": "Implicit"
+    },
+    "unsafe_counts": [
+      6,
+      7
+    ],
+    "valid": [
+      69,
+      98
+    ],
+    "expected": [
+      98,
+      98
+    ],
+    "exact_integer_count_ticks": [
+      0,
+      2,
+      4,
+      6,
+      8
+    ],
+    "visual": "public-condition-comparison.svg: actual rendered DOM SVG; no reconstructed chart"
+  },
+  "hosted_get_checks": 16,
+  "raw_uploads": 0,
+  "new_inference": false,
+  "raw_text_publication": false,
+  "state_secret_resource_configuration_changes": false,
+  "official_ranking_enabled": false
+}
