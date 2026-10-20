@@ -220,8 +220,8 @@
     },
     {
       "path": "docs/GETTING_STARTED.md",
-      "bytes": 46067,
-      "sha256": "1b2240d512cb0b6dec48478658e1d5c0a4208776054d270c8552ada383b40eab"
+      "bytes": 45355,
+      "sha256": "d43ba7831da877b482570faa189bec9f7a41a4ba52b75eddd7850e37f54d9423"
     },
     {
       "path": "docs/GPU_MEASUREMENT_MATRIX_RESULTS.md",
@@ -340,8 +340,8 @@
     },
     {
       "path": "docs/PUBLIC_PROFILES_GUIDE.md",
-      "bytes": 19635,
-      "sha256": "d3bb9e20698effe1e7a460a1cccb99025859c8673ad15519df933a2763cd9c34"
+      "bytes": 19336,
+      "sha256": "2e5212190a3e2ffb599592fb38dd778100c334af87f6f2235ba4612edc0c8db6"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
@@ -1735,8 +1735,8 @@
     },
     {
       "path": "tests/chart_handoff.cjs",
-      "bytes": 1931,
-      "sha256": "7e507ba5316b67f381bbd05a1187e00fe26dfdccea2314edd4a930b8847a1157"
+      "bytes": 1914,
+      "sha256": "9d082df95bfcdc0daa485e44e157b976891d53462595da35d4374707e7c0ccb8"
     },
     {
       "path": "tests/chart_usability.cjs",
