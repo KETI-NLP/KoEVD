@@ -1,87 +1,78 @@
-# Public service acceptance: Task 3 input-condition analysis
+# Public service acceptance: Task 3 interpretation and exploration
 
-Updated 2026-10-20. **[v0.3.0-rc.19](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.19)
+Updated 2026-10-20. **[v0.3.0-rc.20](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.20)
 is deployed** in the [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
-The [first-user guide](GETTING_STARTED.md), [chart controls](PUBLIC_PROFILES_GUIDE.md#task-3-type-analysis)
-and [paper-data provenance](PAPER_TASK3_TYPE_AGGREGATION.md) describe the current flow.
-[Previous rc18 acceptance](audit/public_service_acceptance_rc18_20261020.md)
-retains the original type-analysis deployment evidence.
+See the [first-user guide](GETTING_STARTED.md), [Task 3 chart guide](PUBLIC_PROFILES_GUIDE.md#task-3-type-analysis)
+and [machine-readable acceptance receipt](audit/task3_clarity_rc20_receipt_20261020.json).
+[Previous rc19 acceptance](audit/public_service_acceptance_rc19_20261020.md)
+preserves the original four-axis aggregation and deployment evidence.
 
-## What is available
+## What changed
 
-Task 3 now offers **utterance type, topic, input risk severity and explicitness**
-as independent analysis axes. Four coordinated single-value filters combine with
-AND and update all Task 3 cohort cards, overall rates, group bars and heatmaps.
-Every pair of input attributes can form a cross heatmap. Select a mark with click,
-Enter or Space, inspect its evidence and apply its exact condition. A separate
-Compare action carries the same cohort and display settings to model comparison.
-Rate/count, safe/unsafe views, source support and classification completion remain
-explicit. Label search changes the display, never the cohort or denominator.
+- Grouping, input conditions and group/cross-chart display controls are separated,
+  before the filtered summaries. Classification completion, unclassified counts
+  and small source support remain explicit. Unsafe/classified is the primary
+  observation; unsafe/all expected is supporting information, not a standalone
+  safety score. Low completion and differences in completion are flagged.
+- Multi-label topic/type selection retains the exact intersection: applying Taste
+  inside Gender keeps Gender ∩ Taste rather than broadening to all Taste inputs.
+  Required memberships have removable chips, survive reload and follow detail
+  into model comparison. Per-scope condition undo remains local to the page.
+- Safe heatmaps use teal and unsafe heatmaps red. Cross charts share domains/scales,
+  align on wide screens and stack on narrow screens. A selected cross cell shows
+  both models' classified denominators, completion and unclassified counts.
+- The independent fixed-unsafe difference panel explicitly ignores Safe/count
+  display switches while retaining input filters and label search. Symmetric axes
+  adapt to ±5/10/20/50/100pp, with the full range selectable and labelled.
+- Higher/lower screening candidates compare each group with disjoint remaining
+  inputs in the same cohort. Both sides require 20 classified sources and 90%
+  completion. Excluded groups retain concrete reasons; no candidate or a zero
+  observed rate is not proof of safety. Semantic row ordering is explicit.
 
-Two-model views share domains/scales and show observed unsafe-rate differences
-in pp (Model 1 minus Model 2). Each model retains its own classified denominator.
-Matched-input statistics elsewhere remain separate. Analysis JSON and Chart JSON
-retain conditions/counts; these exports are not result-upload files.
+## Verified behavior and numerical evidence
 
-## Data and denominator verification
+**551 CPU tests passed** locally with the pinned production dependencies. Python
+3.10 and 3.12 passed the complete suite in both source CI runs. A fresh GitHub
+checkout and independent install passed **41 focused tests**, CLI checks, pip
+check and the exact 443-file release manifest; the release tag matches the tested
+application source. Renderer checks cover **9,636 marginal/cross cells** and
+**516 independently summed disjoint contrasts** across all 12 historical models.
 
-- **12 historical models × 13,552 inputs = 162,624 original model/source records**
-  were reaggregated without generating or classifying responses again.
-  Independent SQL grouping matched **10,896 disjoint joint metadata buckets**.
-  Complete topic memberships remain inside each bucket, so filtering counts each
-  input once even when topics overlap. Existing 132 type groups, 2,148 type-specific
-  cells and all earlier Task 1–5 model values are unchanged.
-- Shipped-renderer tests checked **9,636 marginal/cross cells**, exact selected
-  intersections, rates/counts, undefined rates, keyboard selection, reset,
-  Task/reload persistence, model handoff and pp direction, with exact integer tick positions in count mode. Existing type adapters
-  also retain 13,680 observations and 396 views across all 66 paper-model pairs.
-- All **246 existing metadata groups** in the two current-protocol references
-  match the new bucket-derived group counts, valid-source support and completion.
-  Registered leaderboard, public revisions and paired statistics match the
-  pre-update snapshot exactly. The layout-only follow-up also leaves the complete
-  numerical profiles and comparisons unchanged.
-- Safe/unsafe rates divide by classified outputs; completion divides by expected
-  outputs. Failed, empty and unclassified outputs never count as safe. No-input,
-  unclassified-only, measured-zero and unavailable cells remain distinct.
-  Input severity is input toxicity metadata, not generated-response toxicity.
-  Paper source codes 1/2 still merge into Low; HD remains separate.
+Actual anonymous public-browser checks covered the initial 12-model leaderboard,
+co-topic selection, detail-to-comparison handoff, condition recovery, keyboard
+cross-cell evidence, Safe/count heatmaps, fixed pp differences, screening reasons
+and registered-model comparison. At a 390px viewport the paired chart stacked in
+one column and the document did not overflow (375px document width).
 
-## Verified source and runtime
+Concrete observations (different cohorts must not be pooled):
 
-- Application source `3901ab27a61026cd7447c36dd5a7980b7de10e29`; [feature PR #42](https://github.com/KETI-NLP/KoEVD/pull/42),
-  [selection-panel correction #43](https://github.com/KETI-NLP/KoEVD/pull/43),
-  and [integer count ticks #44](https://github.com/KETI-NLP/KoEVD/pull/44) are merged.
-  Package/module `0.3.0rc19`, analysis `koevd-analysis-v4`. The immutable tag binds
-  the final application source. Deployment evidence on main is updated separately.
-- **550 local CPU tests passed**. The final layout change passed 14 targeted tests
-  and final-source Python 3.10/3.12 [source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39381484519)
-  and [PR CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39381490876).
-- A fresh public clone and isolated CPU install passed pip check, CLI commands,
-  40 focused tests and all **440 exact Git manifest entries**. That environment
-  was updated to the final source and reinstalled/retested; the release tag resolves
-  to that exact source. No source PYTHONPATH override was used for the install tests.
-- Running HF revision `1ca009ff7402f9a8bfef856f4579e30bb840a370`. The initial 12-file update
-  transferred 3,850,589 bytes; the four-file layout correction transferred 157,125
-  bytes; the final three-file integer-tick correction transferred 141,614 bytes.
-  All changed remote files match local candidate bytes, and 81 materialized
-  source files match Git. CPU Basic, one replica, provider LFS, trusted indexes,
-  State configuration, Secrets and resource settings are unchanged. Three code
-  deployments; no manual restart or rollback. No new result upload was performed.
-- Hosted acceptance passed **16 anonymous GET checks**:
-  health/readiness, registration configuration, both numerical profiles, comparison,
-  paper models, assets and separate navigation routes. Existing registration and
-  numerical-summary sharing remain enabled; official ranking remains disabled.
-- Actual browser acceptance covers initial twelve-model leaderboard → paper
-  details → independent topic/severity analysis → joint condition → Apply without
-  navigation → explicit Compare with retained filters. The floating selection
-  action overlap found on the first deployment was corrected and rechecked.
-  The private registration/upload workflow is covered by regression tests;
-  no new login, upload, publication or withdrawal mutation was needed for this update.
-- Numeric export generation passed for two models, five chart JSONs and an analysis
-  JSON, including empty heatmap cells. Browser filesystem save completion is not claimed.
+| Cohort | Model 1 unsafe/classified | Model 2 unsafe/classified | Expected/model |
+|---|---|---|---|
+| Paper GPT-5.4 vs Apertus 8B: Gender ∩ Taste | 0/8 | 3/11 | 11 |
+| Paper GPT-5.4 vs Apertus 8B: Gender, High, Implicit | 6/69 | 7/98 | 98 |
+| Registered Qwen3-8B vs 4B: Core, Gender | 3/147 | 4/147 | 147 |
 
-Historical paper inputs/metadata and current registrations stay in separate
-evaluation collections. Small samples and low completion require care; screening
-conditions are not confirmed weaknesses. Classifier labels are measurement proxies,
-not independently verified safety or causal bias findings. No prompt/response text,
-case IDs, new official ranks or changed storage/retention policy are published.
+In the second row completion is 70.41% versus 100%; the observed unsafe-rate
+difference is +1.55pp. A ±5pp axis makes it visible without changing the value.
+Each model uses its own classified outputs; this is not a jointly valid paired
+effect, significance test or causal bias finding.
+
+**16 anonymous GET checks** verified health/readiness, policy, public catalog,
+both registered profiles, their comparison, code assets, all 12 paper models and
+page routes. The public leaderboard, published revisions and existing comparison
+including paired statistics match the pre-update JSON exactly. Seven remote
+repository files matched the candidate byte for byte; served text assets matched
+the server's existing UTF-8/newline normalization. No original responses were
+uploaded or disclosed during this acceptance.
+
+## Source and deployment
+
+- Application source `1ae7cd6218f7ae840a29687dcce19d8255f9af1a`; [PR #46](https://github.com/KETI-NLP/KoEVD/pull/46) merged.
+- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39414394257) and
+  [PR CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39414402630) passed.
+- Space revision `8f852f549b20f89bd690e16bc5ade45c72c79608` is RUNNING on CPU Basic, one replica.
+- Seven code/metadata files, **173,534 bytes**, changed. One automatic
+  build/start; no rollback. Operator inputs, LFS rules, State/Secret/resource
+  policies and existing data were preserved. No new inference or raw-result upload.
+- Registration and consent-based numerical sharing remain enabled. Official ranks,
+  raw-response publication and continuous backup activation were not introduced.
