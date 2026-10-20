@@ -97,7 +97,7 @@ function metrics(summary){const holder=$('public-metrics');holder.replaceChildre
 
 function pairOptions(items){items=labels.uniquePublications(items).map(g=>g.publication);for(const [side,offset] of [['left',0],['right',1]]){const select=$('public-pair-'+side),previous=select.value;select.replaceChildren();const empty=el('option','Select a published run');empty.value='';select.append(empty);
   for(const item of items){const option=el('option',(item.display?.display_name||item.submission_id.slice(0,8))+' · revision '+item.revision);option.value=item.submission_id;select.append(option);}select.value=items.some(x=>x.submission_id===previous)?previous:(items[offset]?.submission_id||'');}controls();}
-function publicCharts(holder,summary){if(summary.analysis?.charts?.length){labels.subsetGuide(holder,document);return window.KoEVDDetailCharts.mount(holder,[summary]);}}
+function publicCharts(holder,summary){if(summary.analysis?.charts?.length){labels.subsetGuide(holder,document);return window.KoEVDDetailCharts.mount(holder,[summary],{onCompare:()=>perform(()=>compareModel(summary.submission_id))});}}
 
 function observed(rate){return rate?.value===null||rate?.value===undefined?'N/A':(100*rate.value).toFixed(2)+'% ('+rate.numerator+'/'+rate.denominator+')';}
 const pairSelectionMessage='Selection changed. Select Compare selected runs to calculate a new comparison.';

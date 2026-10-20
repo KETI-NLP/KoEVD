@@ -10,7 +10,7 @@ assert.equal(charts.unavailableReason({value:null}),'Measurement not supplied');
 assert.equal(charts.unavailableReason({value:0,denominator:10}),'');
 const zero=JSON.parse(JSON.stringify(summary));zero.analysis.charts[0].data[0].value=0;
 const h=new Element('div');ctx.window.KoEVDDetailCharts.mount(h,[zero]);
-const zeroMark=walk(h).find(n=>n.attrs.role==='button'&&n.attrs['aria-label'].includes('0.00%'));
+const zeroPlot=walk(h).find(n=>n.tagName==='svg'&&n.attrs['aria-label']==='Unsafe / valid by Question / utterance type · Core');const zeroMark=walk(zeroPlot).find(n=>n.attrs.role==='button'&&/; 0\.00%;/.test(n.attrs['aria-label']));
 assert(zeroMark.children.some(n=>n.tagName==='circle'),'Measured zero needs a baseline marker');
 assert(!zeroMark.children.some(n=>n.tagName==='rect'&&n.attrs.fill==='#b84942'&&Number(n.attrs.width)>0),'Zero must not have a positive fill');
 zeroMark.fire('mouseenter',{clientX:10,clientY:10});assert.equal(walk(h).find(n=>n.className==='detail-tooltip').hidden,false);

@@ -28,7 +28,7 @@ object. Existing metric and denominator fields retain their meanings. A
 generation declaration or an uploaded measured label is not independent
 generation verification or a classifier accuracy certificate.
 
-## Interactive model details (v0.3.0-rc.13)
+## Interactive model details (v0.3.0-rc.14)
 
 Open a model from the leaderboard, then choose a Task in **Explore task behavior**.
 These are live SVG charts, not screenshots. Hover or keyboard-focus a mark for
@@ -135,6 +135,47 @@ Task 4 includes short definitions and newly authored illustrative examples,
 explicitly distinguished from benchmark text and gold annotations. Strategy
 measurement completeness is a supporting badge, not a large performance score.
 Per-model valid/expected counts remain beside comparison bars where supplied.
+
+## Task 3: type analysis
+
+Below the basic unsafe-rate chart, **Where does the model generate unsafe responses?**
+shows every supplied question / utterance type in the selected input scope. Types
+come from trusted input metadata, including new or missing categories; they are
+not a fixed list or a taxonomy of the generated answer's harm.
+
+- **Type chart measure** switches between unsafe / valid measurements and observed
+  unsafe counts. A count is not a rate: common types can contribute more failures
+  while having a lower failure rate. Count comparisons use a shared count scale;
+  rate comparisons retain the fixed 0–100% scale.
+- **Type row order** sorts by the highest displayed model value or by type name.
+  Search question types filters labels only; it never changes denominators.
+  All types remain available in Inspect question type, even when search hides a bar.
+- Bars, evidence and the exact table report unsafe / valid, valid / expected,
+  completion and source support. Fewer than 20 valid sources is flagged, not hidden.
+  No valid measurements gives an undefined rate; observed count zero does not
+  establish safety. Missing model/type data is not a measured zero.
+- Select a bar (click, Enter or Space) or use **Inspect question type**. Choose
+  Topic, Input severity or Explicitness to inspect an **exact type × metadata**
+  breakdown computed from validated rows. Topics and multi-valued types can overlap;
+  their totals need not add to the overall sample size. No other metadata
+  intersection is inferred from marginal tables.
+- These dedicated controls use the current **input scope**. General Analyze by,
+  Show condition, Bar order and Find chart labels apply to the basic/additional
+  metadata charts separately. The additional metadata chart is collapsed below
+  type analysis. Changing scope refreshes type support.
+- **Compare selected type with another model** carries the type, metric, search,
+  order and breakdown axis to synchronized model comparison. Each model keeps its
+  own numerator/denominator. The selected-type pp difference is descriptive,
+  not a jointly valid paired effect or significance test. Missing conditional
+  data is explicitly unavailable; model declarations still require inspection.
+
+Only numerical aggregates are exposed. These charts do not publish prompts or
+responses. Paper experiments have no released per-model type breakdown here;
+use registered results. Older profiles without exact type slices can show the
+known type overview, but cannot invent a selected-type breakdown. Analysis format
+`koevd-analysis-v3` adds numeric `tasks["3"].type_details`; existing scores,
+partitions, groups, signals, charts and paired statistics retain their definitions.
+Client Chart JSON exports preserve the current type view and model contexts.
 
 ## Between-model observed differences versus within-model contrasts
 

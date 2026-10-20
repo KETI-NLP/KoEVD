@@ -1,0 +1,30 @@
+/* First-user type-analysis journeys against the shipped renderer. */
+const fs=require('node:fs');
+let script=fs.readFileSync('tests/detail_charts.cjs','utf8').split('const before=JSON.stringify(summary)')[0];
+script+=String.raw`
+const fixture=JSON.parse(JSON.stringify(summary)),task=fixture.analysis.tasks['3'];
+const mk=(label,n,v,e)=>({partition_kind:'subset',partition_name:'core',axis:'utterance_type',value:label,events:n,valid:v,rows:e,valid_sources:v,unique_sources:e,coverage:e?v/e:null,rates:{event_on_valid:r(n,v)}});
+task.groups=[mk('HIQ',2,4,5),mk('Copyright',1,25,25),mk('Zero type',0,10,10),mk('No valid outputs',0,0,3),mk('New robot type',1,1,1)];
+task.type_details=[{partition_kind:'subset',partition_name:'core',type_value:'HIQ',axes:{topic:[{value:'privacy',events:1,valid:2,rows:3,coverage:2/3,valid_sources:2,unique_sources:3,rate:.5}],severity_band:[{value:'Benign',events:2,valid:4,rows:5,coverage:.8,valid_sources:4,unique_sources:5,rate:.5}],explicitness:[{value:'Implicit',events:2,valid:4,rows:5,coverage:.8,valid_sources:4,unique_sources:5,rate:.5}]}}];
+const beforeFixture=JSON.stringify(fixture),data=charts.task3TypeData(fixture,'subset:core');assert.equal(data.find(d=>d.label==='HIQ').unsafe_rate,.5);assert.equal(data.find(d=>d.label==='No valid outputs').unsafe_rate,null);assert.equal(data.find(d=>d.label==='Zero type').unsafe_rate,0);assert(data.some(d=>d.label==='New robot type'));
+const stored=new Map();ctx.sessionStorage={getItem:k=>stored.get(k)||null,setItem:(k,v)=>stored.set(k,v)};
+const holder3=new Element('div');let compareRequested=0;const ui3=ctx.window.KoEVDDetailCharts.mount(holder3,[fixture],{onCompare:()=>compareRequested++});
+const basic=walk(holder3).findIndex(n=>n.tagName==='h3'&&n.textContent==='Unsafe response rates · current condition'),types=walk(holder3).findIndex(n=>n.className==='detail-type-analysis');assert(basic>=0&&types>basic,'Type explorer must follow the simple unsafe-rate chart');
+const typeSection=()=>walk(holder3).find(n=>n.className==='detail-type-analysis');assert.match(typeSection().textContent,/HIQ/);assert.match(typeSection().textContent,/2 \/ 4/);assert.match(typeSection().textContent,/4 \/ 5.*80.00%/);assert.match(typeSection().textContent,/small n/);
+const measure=find(holder3,'Type chart measure');measure.value='count';measure.fire('change');assert.equal(ui3.selection().task3Metric,'count');
+const spec=charts.task3TypeChart(fixture,ui3.selection());assert.equal(spec.kind,'count_bars');assert.equal(spec.data.find(d=>d.label==='HIQ').count,2);assert(!Object.hasOwn(spec.data[0],'value'));
+const plot=walk(typeSection()).find(n=>n.tagName==='svg'),bar=walk(plot).find(n=>n.attrs.role==='button'&&n.attrs['aria-label'].startsWith('HIQ;'));bar.fire('keydown',{key:'Enter'});assert.equal(ui3.selection().task3Type,'HIQ');assert.match(typeSection().textContent,/privacy/);assert.match(typeSection().textContent,/1 \/ 2/);assert.match(typeSection().textContent,/2\/3/);
+const axis3=find(holder3,'Within selected type: break down by');axis3.value='severity_band';axis3.fire('change');assert.equal(ui3.selection().task3Axis,'severity_band');assert.match(typeSection().textContent,/Benign/);
+button(holder3,'Compare selected type with another model').fire('click');assert.equal(compareRequested,1);
+button(holder3,'Task 4 · Response strategies').fire('click');button(holder3,'Task 3 · Generated response safety').fire('click');assert.equal(ui3.selection().task3Type,'HIQ');assert.equal(ui3.selection().task3Metric,'count');
+const reloaded3=new Element('div'),reloadUi=ctx.window.KoEVDDetailCharts.mount(reloaded3,[fixture]);assert.equal(reloadUi.selection().task3Type,'HIQ');
+const right=JSON.parse(JSON.stringify(fixture));right.submission_id='second';right.model.id='SECOND';right.analysis.tasks['3'].groups=right.analysis.tasks['3'].groups.filter(g=>g.value!=='HIQ');right.analysis.tasks['3'].type_details=[];
+const paired=new Element('div'),pairUi3=ctx.window.KoEVDDetailCharts.mount(paired,[fixture,right],{selection:ui3.selection()});assert.equal(pairUi3.selection().task3Type,'HIQ');assert.match(paired.textContent,/Type not supplied; not a measured zero/);const countPanel=walk(paired).find(n=>n.className==='detail-type-analysis');assert(!walk(countPanel).some(n=>n.className==='detail-bar-axis'),'Count charts must not have percent axes');assert.match(paired.textContent,/no missing rate is inferred/);
+assert.match(paired.textContent,/exact type × metadata breakdown is not supplied/);
+const same=new Element('div');ctx.window.KoEVDDetailCharts.mount(same,[fixture,{...fixture,submission_id:'second'}],{selection:{...ui3.selection(),task3Metric:'rate'}});assert.match(same.textContent,/Model 1 − Model 2\): 0.00 pp/);
+const search3=find(holder3,'Search question types');search3.value='not a type';search3.fire('input');assert.match(typeSection().textContent,/Clear type search/);assert.equal(ui3.selection().task3Type,'HIQ');button(holder3,'Clear type search').fire('click');assert.equal(ui3.selection().task3Query,'');
+button(holder3,'Clear inspected type').fire('click');assert.equal(ui3.selection().task3Type,'');assert.equal(JSON.stringify(fixture),beforeFixture);
+const hist=new Element('div');ctx.window.KoEVDDetailCharts.mount(hist,[charts.paperProfile(paper.models[0])]);assert.match(hist.textContent,/Per-model type breakdowns were not released/);
+console.log('Task 3 type analysis passed: rate/count, exact denominators/completion, arbitrary/zero/missing types, keyboard drilldown, cross-axis data, reload/handoff and model comparison');
+`;
+eval(script);
