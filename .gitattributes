@@ -1,0 +1,2 @@
+# Aggregate provenance hashes bind exact bytes across all checkout platforms.
+paper_assets/data/*.json -text
