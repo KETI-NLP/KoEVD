@@ -35,6 +35,13 @@ def build(root):
     tools = indexed('appendix_j_task5_model_summary')
     tool_variants = read('appendix_j_task5_model_variant_summary')
     judgments = read('task1_full_high_coverage_model_rates')
+    type_path = 'paper_assets/data/task3_type_aggregates.json'
+    type_raw = (root / type_path).read_bytes()
+    task3_types = json.loads(type_raw)
+    assert task3_types['format'] == 'koevd-paper-task3-types-v1'
+    assert set(task3_types['models']) == set(coverage)
+    sources.append({'path':type_path,'sha256':hashlib.sha256(type_raw).hexdigest(),
+                    'format':task3_types['format'],'provenance':task3_types['sources']})
     assert len(coverage) == 12
     assert all(set(x) == set(coverage) for x in (variants,native_means,safety,strategy,strategy_counts,strategy_rates,tools))
     assert set(r['model'] for r in judgments) == set(ALIASES)
@@ -56,14 +63,15 @@ def build(root):
                      'unsafe_rate':unsafe/n if n else None,'by_severity':bands},
             'task2':{'variants':variants[name],'common_three_mean_pct':float(sum(Decimal(variants[name][v]) for v in common)/Decimal(3)),
                      'original_summary':native_means[name]},
-            'task3':safety[name], 'task4':strategy[name], 'task4_measurements':strategy_counts[name],
+            'task3':safety[name], 'task3_types':task3_types['models'][name],
+            'task4':strategy[name], 'task4_measurements':strategy_counts[name],
             'task4_rates':strategy_rates[name], 'task5':tools[name],
             'task5_variants':[r for r in tool_variants if r['Model']==name]})
         assert len(models[-1]['task5_variants']) == 3
-    return {'format':'koevd-paper-leaderboard-v1','scope':'historical_aggregate_only',
+    return {'format':'koevd-paper-leaderboard-v2','scope':'historical_aggregate_only',
         'notes':{'task1':'Full-source unsafe judgments describe model judgments, not error or ethical quality. Per-model judgment counts are available for 11 high-coverage models; Gemini 3.1 Pro has coverage only.',
                  'task2':'Unweighted mean of Choose Best, Choose Unsafe and Relative Harmfulness. Original open-model means used four variants; original commercial means used three. No answer counts are inferred from rounded percentages.',
-                 'task3':'Original 13,552 prompts/model; inspect classified/all rates and generation skips. Classifier proxy, not independent safety ground truth.',
+                 'task3':'Original 13,552 prompts/model. Type and exact conditional breakdowns reaggregated from archived predictions and input metadata; original counts reconcile with the paper. Inspect classified/all rates and generation skips. Classifier proxy, not independent safety ground truth; no new inference or paired significance claim.',
                  'task4':'Descriptive strategy inclusion; no quality direction. Released heatmap contains selected strategies, not all 15 labels.',
                  'task5':'Unsafe calls / all expected rows, pooled across three simulated tool-choice framings, with separate framing rows. No real tools executed.',
                  'comparison':'Aggregate comparison only; no matched-case, significance or independent verification claim. Do not pool with current protocol registrations.'},

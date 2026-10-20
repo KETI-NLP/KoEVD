@@ -21,7 +21,7 @@ class PaperLeaderboardTests(unittest.TestCase):
     def test_reproducible_twelve_models_and_exact_sources(self):
         self.assertEqual(builder.build(ROOT),self.data)
         self.assertEqual(len(self.data['models']),12)
-        self.assertEqual(len(self.data['sources']),12)
+        self.assertEqual(len(self.data['sources']),13)
         for source in self.data['sources']:
             self.assertEqual(hashlib.sha256((ROOT/source['path']).read_bytes()).hexdigest(),source['sha256'])
 

@@ -1,9 +1,12 @@
 # KoEVD evaluation and analysis
 
-**Evaluation client: v0.3.0-rc.16 (package 0.3.0rc16).** Evaluate your own model, export
+**Evaluation client: v0.3.0-rc.17 (package 0.3.0rc17).** Evaluate your own model, export
 portable JSON, build offline reports, and register results in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
-Anonymous visitors start with the 12-model historical paper leaderboard. Search
+Anonymous visitors start with the 12-model historical paper leaderboard. Each
+paper model now has Task 3 safe/unsafe type charts, exact conditional breakdowns
+and model comparison from its original predictions; see the
+[archived-data guide](docs/PAPER_TASK3_TYPE_AGGREGATION.md). Search
 across paper and registered collections, or switch conditions for the two full
 Qwen3 references, model profiles, metadata trends and paired comparisons without
 uploading a file. Current source

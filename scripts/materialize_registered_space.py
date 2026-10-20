@@ -80,7 +80,10 @@ short_description: Register model results, explore scores and compare behavior
 
 Start with the 12-model historical paper leaderboard, then switch Evaluation
 conditions to Registered results for current protocol submissions and the two
-Qwen references. Score definitions and denominators differ between collections;
+Qwen references. Each paper model also supports Task 3 safe/unsafe type charts
+and exact topic/severity/explicitness breakdowns from its archived predictions
+(13,552 original prompts/model). No new inference was run.
+Score definitions and denominators differ between collections;
 they do not form one common ranking. Open a model profile and Compare this model
 to retain its collection and identity. Explore without a file or sign-in.
 Evaluate your own vLLM-compatible model with the GitHub code, export its full

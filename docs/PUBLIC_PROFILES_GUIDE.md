@@ -28,7 +28,7 @@ object. Existing metric and denominator fields retain their meanings. A
 generation declaration or an uploaded measured label is not independent
 generation verification or a classifier accuracy certificate.
 
-## Interactive model details (v0.3.0-rc.16)
+## Interactive model details (v0.3.0-rc.17)
 
 Open a model from the leaderboard, then choose a Task in **Explore task behavior**.
 These are live SVG charts, not screenshots. Hover or keyboard-focus a mark for
@@ -105,8 +105,9 @@ Task 4 has no quality direction and historical aggregates do not gain invented
 conditional candidates.
 
 The historical twelve-model collection uses **only released per-model aggregates**.
-Its Task 1 measures unsafe judgment frequency, Task 3 lacks per-model question
-breakdowns, Task 4 includes selected strategy labels and Task 5 uses historical
+Its Task 1 measures unsafe judgment frequency, Task 3 includes per-model type
+and exact conditional breakdowns reaggregated from original predictions,
+Task 4 includes selected strategy labels and Task 5 uses historical
 all-row metrics/partial parsing. Unreleased labels are not filled with zeros;
 pooled all-model breakdowns are not attributed to an individual model. Per-variant
 counts and intervals are not reconstructed from rounded percentages.
@@ -178,8 +179,11 @@ not a fixed list or a taxonomy of the generated answer's harm.
   data is explicitly unavailable; model declarations still require inspection.
 
 Only numerical aggregates are exposed. These charts do not publish prompts or
-responses. Paper experiments have no released per-model type breakdown here;
-use registered results. Older profiles without exact type slices can show the
+responses. All 12 paper models now have per-model type and exact conditional
+aggregates computed from archived predictions and their original input metadata
+(13,552 sources/model), with model totals reconciled against the paper. This is
+a numerical reaggregation, not a new model/classifier run. General metadata
+controls and current-protocol partitions remain separate. Older profiles without exact type slices can show the
 known type overview, but cannot invent a selected-type breakdown. Analysis format
 `koevd-analysis-v3` adds numeric `tasks["3"].type_details`; existing scores,
 partitions, groups, signals, charts and paired statistics retain their definitions.
