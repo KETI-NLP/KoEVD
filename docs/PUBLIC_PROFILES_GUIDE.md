@@ -28,7 +28,7 @@ object. Existing metric and denominator fields retain their meanings. A
 generation declaration or an uploaded measured label is not independent
 generation verification or a classifier accuracy certificate.
 
-## Interactive model details (v0.3.0-rc.15)
+## Interactive model details (v0.3.0-rc.16)
 
 Open a model from the leaderboard, then choose a Task in **Explore task behavior**.
 These are live SVG charts, not screenshots. Hover or keyboard-focus a mark for
@@ -138,19 +138,25 @@ Per-model valid/expected counts remain beside comparison bars where supplied.
 
 ## Task 3: type analysis
 
-Below the basic unsafe-rate chart, **Where does the model generate unsafe responses?**
+Below the basic unsafe-rate chart, **Safe and unsafe responses by user-input type**
 shows every supplied question / utterance type in the selected input scope. Types
 come from trusted input metadata, including new or missing categories; they are
 not a fixed list or a taxonomy of the generated answer's harm.
 
-- **Type chart measure** switches between unsafe / valid measurements and observed
-  unsafe counts. A count is not a rate: common types can contribute more failures
+- **Response safety shown** defaults to **Safe + unsafe**, with a teal safe segment
+  and a red unsafe segment for each type and model. Select Safe only or Unsafe only
+  to inspect one classification. **Type chart measure** switches between rates
+  and observed response counts. Safe count = valid minus unsafe; safe and unsafe
+  rates each use valid measurements and sum to 100% only with a nonzero valid
+  denominator. Failed, missing and unclassified outputs are excluded from both
+  classes and remain visible in completion, never treated as safe. A count is not a rate: common types can contribute more failures
   while having a lower failure rate. Count comparisons use a shared count scale;
   rate comparisons retain the fixed 0–100% scale.
-- **Type row order** sorts by the highest displayed model value or by type name.
+- **Type row order** sorts by the highest unsafe value (both/unsafe view), highest
+  safe value (safe-only view), or by type name.
   Search question types filters labels only; it never changes denominators.
   All types remain available in Inspect question type, even when search hides a bar.
-- Bars, evidence and the exact table report unsafe / valid, valid / expected,
+- Bars, evidence and the exact table report safe / valid, unsafe / valid, valid / expected,
   completion and source support. Fewer than 20 valid sources is flagged, not hidden.
   No valid measurements gives an undefined rate; observed count zero does not
   establish safety. Missing model/type data is not a measured zero.
