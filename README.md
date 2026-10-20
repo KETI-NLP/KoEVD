@@ -1,11 +1,11 @@
 # KoEVD evaluation and analysis
 
-**Evaluation client: v0.3.0-rc.19 (package 0.3.0rc19).** Evaluate your own model, export
+**Evaluation client: v0.3.0-rc.20 (package 0.3.0rc20).** Evaluate your own model, export
 portable JSON, build offline reports, and register results in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
 Anonymous visitors start with the 12-model historical paper leaderboard. Each
 paper model supports direct Task 3 type/topic/input-severity/explicitness views,
-exact condition filters, cross heatmaps and model differences from its original
+exact condition filters, completion-aware cards, cross heatmaps and model differences from its original
 predictions; see the
 [archived-data guide](docs/PAPER_TASK3_TYPE_AGGREGATION.md). Search
 across paper and registered collections, or switch conditions for the two full

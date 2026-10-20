@@ -141,43 +141,57 @@ Per-model valid/expected counts remain beside comparison bars where supplied.
 <a id="task-3-type-analysis"></a>
 ## Task 3: input conditions, filters and cross analysis
 
-Below the simple unsafe-rate chart, **Explore input conditions and response safety**
-provides four peer axes in **Analyze input by**: Question / utterance type,
-Topic, Input severity and Explicitness. No utterance-type selection is required
-before analyzing another axis. The four **Filter …** controls narrow the cohort;
-all Task 3 completion cards, overall rates, bars, heatmaps and pp differences
-follow the same filters. There is no second, independent Task 3 control set.
+**Explore input conditions and response safety** begins with three control groups:
+**Group rows** chooses what each row means, **Input conditions** chooses which
+records are included, and **Group and cross-chart display** chooses Safe/Unsafe,
+rate/count and label search. The four peer grouping axes are Question / utterance
+type, Topic, Input severity and Explicitness. No type selection is required first.
 
-1. Choose Topic to inspect unsafe responses by subject. Choose a topic filter
-   such as Gender, then group by Input severity or Question / utterance type.
-2. Filters combine with AND and select one value per attribute. Multi-valued
-   topic/type metadata has overlapping membership, but each matching input bucket
-   is counted once in the filtered total. Never sum topic bars into an overall
-   denominator. **Clear condition filters** keeps the display choices;
-   **Reset Task 3 view** also restores the display defaults.
-3. **Response safety shown** supports Safe + unsafe, Unsafe only and Safe only;
-   **Chart measure** switches rates/counts. Safe = valid − unsafe. Both rates
-   divide by classified outputs; completion = classified / expected. Failed,
-   empty and unclassified outputs never become safe. Counts depend on group size.
-4. **Find group labels** hides bars and highlights heatmap cells only. It does
-   not filter inputs or change any denominator. Clear group label search to
-   recover hidden bars. Severity/explicitness retain semantic order even when
-   value sorting is chosen; borderline/HD is separate, not above Extreme.
-5. **Cross with** chooses a second axis. Heatmaps support every pair of the four
-   attributes and all four condition filters. Both models use identical row/column
-   domains, 0–100% rate colors or a shared count maximum. In Safe + unsafe mode,
-   heatmaps explicitly show unsafe; Safe only switches them to safe.
-6. Hover/focus a mark for counts or select it with click/Enter/Space. The evidence
-   panel reports safe/valid, unsafe/valid and classified/expected completion.
-   **Apply this input condition** applies that bar/cell's exact input attributes.
-   **Compare this input condition** or **Compare this cohort with another model**
-   carries the filters, axes, rate/count, safety view, search and ordering.
-7. The diverging chart shows **Model 1 − Model 2 unsafe rate (pp)** regardless of
-   the safe/count display mode. Each model retains its own valid denominator.
-   Negative means Model 1 has lower observed unsafe; positive means Model 2 does.
-   These are marginal observed differences, not jointly valid paired effects,
-   confidence intervals or significance tests. Matched-input statistics elsewhere
-   keep their own partitions and are not recalculated by these filters.
+1. Start with the whole input scope. Group by Topic, choose a topic filter such
+   as Gender, then group by Input severity or Question / utterance type.
+   Filters combine with AND and select one value per attribute.
+2. Topics/types can have multiple memberships. If Topic is both the grouping axis
+   and filtered to Gender, other rows describe **co-occurring topics inside
+   Gender-containing inputs**, such as Gender ∩ Taste. They are not unfiltered
+   inputs. The same rule applies to cross-chart domains. Each matching input is
+   counted once in a selected intersection; never add topic totals. Applying a
+   co-occurring row/cell retains both memberships with AND, such as Gender ∩ Taste.
+   Each required membership has its own removable chip. Choosing a new value in
+   that attribute's filter replaces that attribute's membership constraints.
+3. Active filter chips can be removed individually. **Back one condition** restores
+   the previous filter set within the current page and input scope (up to 20 steps;
+   this undo history is not retained after reload). **Clear condition filters**
+   keeps display choices. **Reset Task 3 view** also resets display/range defaults.
+4. Cards show input-scope expected count → filtered expected count → classified
+   count. The primary safety observation is **Unsafe / classified**. Safe is
+   classified − unsafe. **Classification completion = classified / expected**;
+   unclassified outputs are unknown, never safe. Completion below 90% is flagged;
+   a between-model completion difference of at least 5pp receives a comparison
+   warning. These are interpretation alerts, not statistical thresholds.
+   The supporting **observed unsafe / all expected** observation is collapsed:
+   missing classifications can reduce it, so it is not a standalone safety score.
+5. Safe + unsafe, Unsafe only and Safe only apply to the group bars and heatmaps.
+   Rate mode divides by classified outputs; counts depend on group size. Safe
+   heatmaps use teal and unsafe heatmaps red. Safe + unsafe bars show both;
+   their heatmap shows unsafe explicitly. Both models share domains and rate/count
+   color scales. Severity/explicitness use fixed semantic order with value sorting
+   disabled; HD/borderline is separate, not above Extreme.
+6. **Find group labels** hides bars and highlights heatmap cells only, without
+   changing cohorts/denominators. **Cross with** chooses a second input attribute.
+   Hover/focus for evidence or select a mark by click/Enter/Space. In comparison,
+   selecting a cell shows both models' unsafe/classified counts, completion and
+   unclassified counts for the same selected input condition. **Apply this input
+   condition** narrows the cohort; use Back one condition to restore the landscape.
+   **Compare this input condition** / **Compare this cohort with another model**
+   carries the condition and display settings into comparison.
+7. The independent **Fixed comparison · Unsafe / classified (%)** always shows
+   Model 1 − Model 2 unsafe rate in pp. It follows input filters and label search,
+   but not Safe/count display controls. The symmetric axis adapts to the displayed
+   differences (±5/10/20/50/100pp); the full ±100pp range remains selectable. The
+   exact range is shown. Each model retains its own classified denominator.
+   Negative means Model 1 has a lower observed unsafe rate; positive means Model 2
+   does. This is not a jointly valid paired effect, interval or significance test.
+   Matched-input statistics elsewhere retain their separate partitions.
 
 Input severity is input toxicity metadata, not toxicity of the model's generated
 answer. In the archived paper mapping, source codes 1/2 merge into Low; other
@@ -186,10 +200,17 @@ not by themselves measure causal discrimination or demographic bias.
 
 **No inputs**, **Unclassified** (inputs but no valid classifications), measured
 zero unsafe and **not supplied** are distinct. Dashed borders/labels flag fewer
-than 20 valid sources; completion remains visible. **Conditions to inspect**
-screens up to three groups/model with at least 20 valid sources and 90% completion,
-ordered by unsafe rate. These are descriptive review candidates, not confirmed
-weaknesses. Empty and low-coverage groups remain available in charts.
+than 20 classified sources; completion remains visible. **Conditions to inspect**
+compares each group against its **disjoint remaining inputs inside the same
+filtered cohort**, using exact buckets even for overlapping topics. Both sides
+require at least 20 classified sources and 90% completion. It shows up to three
+positive and three negative unsafe-rate contrasts, with each side's unsafe counts,
+classified/expected counts, completion and classified-source support. Excluded
+groups list their concrete support/completion reasons. No supported candidate
+does not mean no vulnerability; a lower or zero rate does not establish safety.
+These fixed-unsafe screening summaries ignore Safe/count display choices and label
+search (the input filters still apply). They are descriptive, not significance,
+causal bias or confirmed strength/weakness findings. All groups remain in charts.
 
 **SVG**, **Chart JSON** and **Analysis JSON** retain numeric evidence and view
 settings. Analysis JSON includes the full, unhidden group data and selected

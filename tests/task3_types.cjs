@@ -37,7 +37,7 @@ assert.match(both.textContent,/Classifier safe/);assert.match(both.textContent,/
 const bothCount=find(both,'Type chart measure');bothCount.value='count';bothCount.fire('change');assert.match(both.textContent,/Safe 2 · Unsafe 2/);assert.equal(charts.task3TypeChart(fixture,bothUi.selection(),'HIQ').data[0].safe_count,1);assert(!walk(both).filter(n=>n.className==='detail-type-analysis').flatMap(walk).some(n=>n.className==='detail-bar-axis'));
 button(both,'Task 4 · Response strategies').fire('click');button(both,'Task 3 · Generated response safety').fire('click');assert.equal(bothUi.selection().task3Outcome,'both');assert.equal(bothUi.selection().task3Metric,'count');
 const corrupt=JSON.parse(JSON.stringify(fixture));corrupt.analysis.tasks['3'].groups[0].rates.event_on_valid.numerator=6;assert.equal(charts.task3TypeData(corrupt,'subset:core')[0].safe_rate,null,'Invalid counts must not create negative safe rates');
-const hist=new Element('div');ctx.window.KoEVDDetailCharts.mount(hist,[charts.paperProfile(paper.models[0])]);assert.match(hist.textContent,/Historical paper experiment: 13,552/);assert.match(hist.textContent,/Safe \/ valid/);
+const hist=new Element('div');ctx.window.KoEVDDetailCharts.mount(hist,[charts.paperProfile(paper.models[0])]);assert.match(hist.textContent,/Historical paper experiment: 13,552/);assert.match(hist.textContent,/Safe \/ classified/);
 console.log('Task 3 type analysis passed: rate/count, exact denominators/completion, arbitrary/zero/missing types, keyboard drilldown, cross-axis data, reload/handoff and model comparison');
 `;
 eval(script);

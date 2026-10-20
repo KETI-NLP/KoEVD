@@ -1,6 +1,6 @@
 {
   "format": "sha256-file-manifest-v1",
-  "release_version": "0.3.0rc19",
+  "release_version": "0.3.0rc20",
   "basis": "exact staged Git blobs, excluding the manifest itself",
   "excludes": [
     "manifest.json",
@@ -50,8 +50,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 16165,
-      "sha256": "7649afad6866d5363f56f89d262a54dc6fdd56d72fe86126627c4a53ae334c72"
+      "bytes": 16189,
+      "sha256": "99cf701f35b1f4c210914b4f228b8029580f52666b06cc2eac577b1dae0a34ea"
     },
     {
       "path": "analysis/plot_paper_tables.py",
@@ -226,7 +226,7 @@
     {
       "path": "docs/GETTING_STARTED.md",
       "bytes": 46019,
-      "sha256": "437e4ff18770a14aab57c7f4ac6bbdf707db0c7af663be71c7beace0accd219d"
+      "sha256": "99d7a0fc098079593229201d052fcec9cf120556581b7736de00fae39c8f512c"
     },
     {
       "path": "docs/GPU_MEASUREMENT_MATRIX_RESULTS.md",
@@ -350,8 +350,8 @@
     },
     {
       "path": "docs/PUBLIC_PROFILES_GUIDE.md",
-      "bytes": 21216,
-      "sha256": "35ada0d9be92624797270bf21fb289c4264636c2948fd3dc7d5f9e18f823da2f"
+      "bytes": 22939,
+      "sha256": "8bf7f8168744825aa5159f9cdc4897cfcaf78fa6e0fc59da5df8a61c8a46d894"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
@@ -1141,7 +1141,7 @@
     {
       "path": "pyproject.toml",
       "bytes": 1794,
-      "sha256": "3a3973d8d849a0a8e5b606b2e014f25cea83bcf80c75dea8e373b822ac3003a7"
+      "sha256": "772348a67e1f132ce70502b31dfc7a2e339611b5da19f4859bcac02c09d3f645"
     },
     {
       "path": "reproduction/task1_metadata_v1/README.md",
@@ -1466,7 +1466,7 @@
     {
       "path": "src/koevd_eval/__init__.py",
       "bytes": 88,
-      "sha256": "075f7d007aafb93f51fc055e2ab74bf469755f54115923cc2b7ba0d8ce8871f6"
+      "sha256": "15417e2e6211934fa18b358bd25f4976ca618bd2c075fc5471a6ff244b4de91b"
     },
     {
       "path": "src/koevd_eval/analysis.py",
@@ -1475,13 +1475,13 @@
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.css",
-      "bytes": 15551,
-      "sha256": "0d363f97ec45e45480ead2b5cd9d7864c1a2da27ccc4ceeea1673bce10dcc53f"
+      "bytes": 17374,
+      "sha256": "0d6989436d18d3c3f22977f77832ec6fdf75daf2f3ceb2a450625120fab5e080"
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.js",
-      "bytes": 108413,
-      "sha256": "05cbf4ef11a60bbc60f7066856e05de40f4c38b75388349255adb1f92209e228"
+      "bytes": 118019,
+      "sha256": "d80fe4f4241b93847a3a16e97464271dfcfe60e124065bda6202e1d48bd952e0"
     },
     {
       "path": "src/koevd_eval/assets/home.js",
@@ -1541,7 +1541,7 @@
     {
       "path": "src/koevd_eval/assets/space.html",
       "bytes": 18267,
-      "sha256": "b09dfff03cc33a3752c0435fe59cd3c1838f1c1e6fa34ee41bed52776c39b543"
+      "sha256": "cecf936e33777efed4980b901d32228080d9aac72729556abfccf16fa21b7df2"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1854,14 +1854,19 @@
       "sha256": "2ab76b30aaed5aad9e4a69b5185c7dd178115d3816b7e4f5edd0fa6d6b974e21"
     },
     {
+      "path": "tests/task3_clarity.cjs",
+      "bytes": 8368,
+      "sha256": "e3d550effd6a2bd5852140d5d95d1681f2d067631b64321030d61b279de6e7c9"
+    },
+    {
       "path": "tests/task3_facets.cjs",
-      "bytes": 7516,
-      "sha256": "1c99d172b609f2b1005c7c50b1386075c3a8d8df7fc899869db1a8dffa919e19"
+      "bytes": 7519,
+      "sha256": "d5d65399d42017b264fd031d47277d465b5b2e65c8bec69258f54765d8071e59"
     },
     {
       "path": "tests/task3_types.cjs",
-      "bytes": 8789,
-      "sha256": "36b3bac6336aa63399899bc6a885b0229ca7d402475d142e8c69c2a381a0b018"
+      "bytes": 8794,
+      "sha256": "b1594be784ec1a365ccac714ef743465386edd69317f2e7b8d4f04e4d6837787"
     },
     {
       "path": "tests/task_context.cjs",
@@ -1890,8 +1895,8 @@
     },
     {
       "path": "tests/test_detail_charts.py",
-      "bytes": 2367,
-      "sha256": "2785cbeb2bbdc6dec336d91421d737f6d623f9dafbe40c13c757405de8fd07c4"
+      "bytes": 2485,
+      "sha256": "7a5dec88539f67cfa0635874ffd52dbcf7e3bf40cbcf7a784c5dc7d3572696f4"
     },
     {
       "path": "tests/test_diagnostics.py",
