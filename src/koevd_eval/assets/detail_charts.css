@@ -36,3 +36,5 @@
 .detail-facet-analysis select:focus-visible,.detail-facet-analysis input:focus-visible{outline:2px solid #2765a1;outline-offset:2px}
 @media(max-width:760px){.detail-facet-analysis .detail-type-controls{grid-template-columns:1fr 1fr}.detail-facet-cross .detail-chart{padding:10px}}
 @media(max-width:460px){.detail-facet-analysis .detail-type-controls{grid-template-columns:1fr}}
+
+.detail-selection-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.detail-selection-actions button{position:static;margin:0;font-size:13px;padding:7px 10px}
