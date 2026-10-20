@@ -6,6 +6,9 @@ import unittest
 
 
 class InteractiveDetailChartsTests(unittest.TestCase):
+    def test_task3_metadata_filters_and_cross_analysis_journey(self):
+        self.run_journey('task3_facets.cjs')
+
     def test_paper_task3_type_analysis_journey(self):
         self.run_journey('paper_task3_types.cjs')
 

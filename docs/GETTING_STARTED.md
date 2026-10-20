@@ -33,7 +33,7 @@ Task 5 uses simulated tools. Read valid/expected coverage separately from each
 event ratio. A low all-row rate with many invalid outputs does not establish
 safety. The Platform provides no combined ethics score or official rank.
 
-Use **v0.3.0-rc.18** (Python package **0.3.0rc18**) for this guide and record its
+Use **v0.3.0-rc.19** (Python package **0.3.0rc19**) for this guide and record its
 commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
 or the generation/measurement retry repair. Existing release tags are immutable. [Current service acceptance](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
@@ -42,7 +42,7 @@ validation logs describe their original dates and versions.
 ## 1. Install the evaluation client
 
 ```bash
-git clone --branch v0.3.0-rc.18 --single-branch https://github.com/KETI-NLP/KoEVD.git
+git clone --branch v0.3.0-rc.19 --single-branch https://github.com/KETI-NLP/KoEVD.git
 cd KoEVD
 git rev-parse HEAD
 python3.11 -m venv .venv-eval
@@ -604,7 +604,7 @@ Task 5 uses unsafe simulated tool selections. Task 4 frequencies describe behavi
 N/A is not zero, and overlapping subsets must not be summed. There is no combined
 ethics score. See steps 6–9 and the completion/troubleshooting tables for recovery.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.18)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.19)
 
 Model **Details** now opens interactive Task charts. Start with Task 3 question
 types to inspect weaknesses, Task 4 strategy bars/heatmaps to inspect response
@@ -702,17 +702,21 @@ If a command stops before printing its status summary, run `koevd-pipeline --sta
 
 ### Inspect Task 3 failure types
 
-Open a paper-experiment or registered model → Task 3. Below the simple unsafe-rate chart, use
-**Response safety shown → Safe + unsafe** (the default) to see both classes
-for each user-utterance type. **Type chart measure** switches between rates and
-observed counts. Safe and unsafe rates use valid measurements only; unmeasured
-outputs are not safe. Check safe/valid, unsafe/valid, completion and small-source flags. Select a type to
-inspect its exact topic, input-severity or explicitness breakdown, then choose
-**Compare selected type with another model**. Type controls are separate from the
-general metadata chart controls; both retain the chosen input scope. The
-[chart guide](PUBLIC_PROFILES_GUIDE.md#task-3-type-analysis)
-explains denominators, overlapping groups and the archived paper experiment.
-The 12 paper models now support the same type charts and exact conditional
-breakdowns, reaggregated from their original 13,552 prompts/model. Keep the paper
-collection separate from current-protocol registered results; their inputs and
-conditions differ. This addition reruns no model or classifier.
+Open a paper-experiment or registered model → Task 3. **Analyze input by** selects
+utterance type, topic, input risk severity or explicitness directly. The four
+condition filters update all Task 3 cards/charts; **Find group labels** only
+searches displayed labels. For example: group by Topic → filter Gender → group
+by Input severity → Cross with Question / utterance type. Select a heatmap cell
+and **Apply this input condition**, then **Compare this cohort with another model**.
+Both models retain the same conditions with separate classified denominators.
+
+Switch Safe + unsafe / Unsafe only / Safe only and rate/count. Always inspect
+safe/valid, unsafe/valid and classified/expected completion. Missing measurements
+are not safe; no-input cells differ from unclassified-only cells and measured
+zero. Reset Task 3 view clears filters/display settings. Analysis JSON preserves
+the cohort, axes, exact counts and comparison; it is not a submission file.
+See the [chart guide](PUBLIC_PROFILES_GUIDE.md#task-3-type-analysis).
+
+All 12 paper models support these charts from their original 13,552 prompts/model.
+Keep historical and current-protocol collections separate. This feature reruns
+no model/classifier and does not establish causal bias or confirmed weaknesses.

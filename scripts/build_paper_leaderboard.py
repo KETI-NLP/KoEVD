@@ -1,4 +1,5 @@
 """Build numerical paper references from checked-in, aggregate-only source CSVs."""
+from koevd_eval.task3_facets import encode_aggregates
 import csv
 from decimal import Decimal
 import hashlib
@@ -81,5 +82,5 @@ def build(root):
 if __name__ == '__main__':
     root = Path(__file__).resolve().parents[1]
     data = build(root)
-    (root/'src/koevd_eval/assets/paper_models.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    (root/'src/koevd_eval/assets/paper_models.json').write_bytes(encode_aggregates(data))
     print(json.dumps({'models':len(data['models']),'sources':len(data['sources'])}))

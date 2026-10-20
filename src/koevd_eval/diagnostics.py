@@ -16,11 +16,12 @@ from pathlib import Path
 import random
 
 from .common import configure_cli_stdio, row_id, write_jsonl
+from .task3_facets import FacetAccumulator, AXES as FACET_AXES
 from .overlap import source_id
 from .profile import AXES, axis_values, diagnostic, summarize, variant
 from .results import canonical_hash, read_document, validate_results
 
-VERSION = 'koevd-analysis-v3'
+VERSION = 'koevd-analysis-v4'
 STATISTICS = 'source-cluster-percentile-v1'
 STRATEGIES = (
     'a_evaluation', 'a_boundary setting', 'a_providing definitions', 'a_detouring q',
@@ -320,6 +321,11 @@ def analyze(document, trusted_index, *, resamples=500, seed=1729):
                                 'interpretation':'Observed group versus disjoint remaining sources; screening, not significance.'})
             if task == 3:
                 task_report.setdefault('type_details', []).extend(task3_type_details(values, kind, name))
+                facets = FacetAccumulator()
+                for row in values:
+                    ok, event, _ = diagnostic(row, 3)
+                    facets.add({axis: axis_values(row, axis) for axis in FACET_AXES}, source_id(row), ok, ok and event is True)
+                task_report.setdefault('facets', []).append({'partition_kind': kind, 'partition_name': name, **facets.result()})
         output['tasks'][str(task)] = task_report
         counts = Counter()
         for row in sorted(rows, key=row_id):

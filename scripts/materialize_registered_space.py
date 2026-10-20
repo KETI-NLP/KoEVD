@@ -80,8 +80,9 @@ short_description: Register model results, explore scores and compare behavior
 
 Start with the 12-model historical paper leaderboard, then switch Evaluation
 conditions to Registered results for current protocol submissions and the two
-Qwen references. Each paper model also supports Task 3 safe/unsafe type charts
-and exact topic/severity/explicitness breakdowns from its archived predictions
+Qwen references. Task 3 supports direct type/topic/input-severity/explicitness
+analysis, exact condition filters, cross heatmaps and synchronized model comparison
+for all twelve paper models from their archived predictions
 (13,552 original prompts/model). No new inference was run.
 Score definitions and denominators differ between collections;
 they do not form one common ranking. Open a model profile and Compare this model
