@@ -355,8 +355,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 5040,
-      "sha256": "c7758976f210bb6489b51c5978249f64c4c53fb96edd472d8790ad985fc023ed"
+      "bytes": 5765,
+      "sha256": "743adf40a7027271a2fa38443b237d9f6fef1d720a846849c68e442283fff7b2"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC5_20261019.md",
@@ -514,6 +514,11 @@
       "sha256": "e70f085f6984a0fd38312680e06dee9c5302eead95e881a304e4e6111ce22766"
     },
     {
+      "path": "docs/audit/public_service_acceptance_rc20_20261020.md",
+      "bytes": 5040,
+      "sha256": "c7758976f210bb6489b51c5978249f64c4c53fb96edd472d8790ad985fc023ed"
+    },
+    {
       "path": "docs/audit/public_service_acceptance_rc9_20261019.md",
       "bytes": 5944,
       "sha256": "788c2d16a30165f1b1ba9a7e82904aadf979ded2d26a68841965b98b36634074"
@@ -522,6 +527,11 @@
       "path": "docs/audit/task3_clarity_rc20_receipt_20261020.json",
       "bytes": 2600,
       "sha256": "19a8ab2111e59acd1041ba29ad1eea9c872f5b4c08937fe84a1938c9f3b0ded1"
+    },
+    {
+      "path": "docs/audit/task3_clarity_rc21_receipt_20261020.json",
+      "bytes": 6547,
+      "sha256": "dff0bae82be9204505905013da2cfdeee5a46ace79ab11b20b0ae2eee065359c"
     },
     {
       "path": "docs/audit/task3_facets_rc19_receipt_20261020.json",

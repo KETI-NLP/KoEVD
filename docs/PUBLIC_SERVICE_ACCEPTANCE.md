@@ -1,13 +1,19 @@
 # Public service acceptance: Task 3 interpretation and exploration
 
-Updated 2026-10-20. **[v0.3.0-rc.20](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.20)
+Updated 2026-10-20. **[v0.3.0-rc.21](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.21)
 is deployed** in the [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
 See the [first-user guide](GETTING_STARTED.md), [Task 3 chart guide](PUBLIC_PROFILES_GUIDE.md#task-3-type-analysis)
-and [machine-readable acceptance receipt](audit/task3_clarity_rc20_receipt_20261020.json).
+and [machine-readable acceptance receipt](audit/task3_clarity_rc21_receipt_20261020.json).
 [Previous rc19 acceptance](audit/public_service_acceptance_rc19_20261020.md)
 preserves the original four-axis aggregation and deployment evidence.
+[rc20 acceptance](audit/public_service_acceptance_rc20_20261020.md) retains the
+five-part interpretation/exploration rollout and its actual browser evidence.
 
 ## What changed
+
+- Exact numerical tables now keep headings and values aligned: ordinary charts
+  have seven columns; rate-difference charts have eight, with a named comparison
+  evidence column for both models’ counts and completion. No measurements changed.
 
 - Grouping, input conditions and group/cross-chart display controls are separated,
   before the filtered summaries. Classification completion, unclassified counts
@@ -31,18 +37,21 @@ preserves the original four-axis aggregation and deployment evidence.
 
 ## Verified behavior and numerical evidence
 
-**551 CPU tests passed** locally with the pinned production dependencies. Python
-3.10 and 3.12 passed the complete suite in both source CI runs. A fresh GitHub
-checkout and independent install passed **41 focused tests**, CLI checks, pip
-check and the exact 443-file release manifest; the release tag matches the tested
-application source. Renderer checks cover **9,636 marginal/cross cells** and
-**516 independently summed disjoint contrasts** across all 12 historical models.
+**551 CPU tests passed in Python 3.10 and 3.12 CI** for the final source. The
+table follow-up passed **15 focused local tests**; the preceding rc20 feature
+source also passed all 551 tests locally with pinned production dependencies.
+A fresh GitHub checkout/install of rc21 passed **41 focused tests**, CLI checks,
+pip check and the exact **445-file release manifest**; the release tag matches
+the tested application source. Renderer checks cover **9,636 marginal/cross cells**
+and **516 independently summed disjoint contrasts** across all 12 historical models.
 
-Actual anonymous public-browser checks covered the initial 12-model leaderboard,
+The preceding rc20 actual anonymous public-browser checks covered the initial 12-model leaderboard,
 co-topic selection, detail-to-comparison handoff, condition recovery, keyboard
 cross-cell evidence, Safe/count heatmaps, fixed pp differences, screening reasons
 and registered-model comparison. At a 390px viewport the paired chart stacked in
 one column and the document did not overflow (375px document width).
+The final rc21 browser check reverified the selected paper cohort, paired cell
+evidence and every displayed numerical table’s header/value alignment.
 
 Concrete observations (different cohorts must not be pooled):
 
@@ -60,19 +69,19 @@ effect, significance test or causal bias finding.
 **16 anonymous GET checks** verified health/readiness, policy, public catalog,
 both registered profiles, their comparison, code assets, all 12 paper models and
 page routes. The public leaderboard, published revisions and existing comparison
-including paired statistics match the pre-update JSON exactly. Seven remote
+including paired statistics match the pre-update JSON exactly. Six remote
 repository files matched the candidate byte for byte; served text assets matched
 the server's existing UTF-8/newline normalization. No original responses were
 uploaded or disclosed during this acceptance.
 
 ## Source and deployment
 
-- Application source `1ae7cd6218f7ae840a29687dcce19d8255f9af1a`; [PR #46](https://github.com/KETI-NLP/KoEVD/pull/46) merged.
-- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39414394257) and
-  [PR CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39414402630) passed.
-- Space revision `8f852f549b20f89bd690e16bc5ade45c72c79608` is RUNNING on CPU Basic, one replica.
-- Seven code/metadata files, **173,534 bytes**, changed. One automatic
-  build/start; no rollback. Operator inputs, LFS rules, State/Secret/resource
+- Application source `8634c9b456abd0df215c5431e14eb55ac05c299b`; [PR #48](https://github.com/KETI-NLP/KoEVD/pull/48) merged.
+- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39416461223) and
+  [PR CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39416468154) passed.
+- Space revision `2c5ddd31195271980d078eeb9d8af0b2ab801fdd` is RUNNING on CPU Basic, one replica.
+- Six code/metadata files, **156,258 bytes**, changed in the table follow-up. One automatic
+  build/start in this follow-up (two total in this request); no rollback. Operator inputs, LFS rules, State/Secret/resource
   policies and existing data were preserved. No new inference or raw-result upload.
 - Registration and consent-based numerical sharing remain enabled. Official ranks,
   raw-response publication and continuous backup activation were not introduced.
