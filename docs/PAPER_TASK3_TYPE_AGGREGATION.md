@@ -75,3 +75,6 @@ disagreement with the paper's model totals. Independent SQL grouping of the
 original rows additionally checked all 132 type groups and 2,148 conditional
 cells. The renderer tests exercise all 12 models, all 66 model pairs, zero and
 missing support, rates/counts and type-to-comparison navigation.
+
+The numeric source uses byte-preserving Git attributes, so Windows newline
+conversion does not change its recorded hash in a fresh checkout.
