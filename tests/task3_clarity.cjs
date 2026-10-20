@@ -1,0 +1,43 @@
+/* Interpretability regressions: missing classifications, overlapping labels and matched conditions. */
+const fs=require('node:fs');
+let code=fs.readFileSync('tests/detail_charts.cjs','utf8').split('const before=JSON.stringify(summary)')[0];
+code+=String.raw`
+const fixture=JSON.parse(JSON.stringify(summary));
+const bucket=(topics,severity,rows,valid,events)=>({labels:{utterance_type:['HIQ'],topic:topics,severity_band:[severity],explicitness:['Implicit']},rows,valid,events,unique_sources:rows,valid_sources:valid});
+fixture.analysis.tasks['3'].facets=[{partition_kind:'subset',partition_name:'core',format:'koevd-task3-facets-v1',buckets:[bucket(['Gender','Taste'],'High',98,69,6),bucket(['Gender'],'Low',100,100,20),bucket(['Other'],'Low',100,100,0)]}];
+const right=JSON.parse(JSON.stringify(fixture));right.model.id='SECOND';right.submission_id='second';Object.assign(right.analysis.tasks['3'].facets[0].buckets[0],{valid:98,events:7,valid_sources:98});
+const original=JSON.stringify([fixture,right]),h=new Element('div'),ui=ctx.window.KoEVDDetailCharts.mount(h,[fixture,right]);
+const set=(label,value)=>{const n=find(h,label);assert(n,label);n.value=value;n.fire('change');};
+set('Filter Topic','Gender');set('Filter Input severity','High');
+assert.match(h.textContent,/69 \/ 98/);assert.match(h.textContent,/6 \/ 69/);assert.match(h.textContent,/8.70%/);assert.match(h.textContent,/70.41%/);assert.match(h.textContent,/unclassified 29/);assert.match(h.textContent,/completion differs by 29.59 pp/);assert.match(h.textContent,/not a standalone safety score/);
+const overview=walk(h).filter(n=>n.tagName==='svg'&&n.attrs['aria-label']==='Unsafe / classified · current input condition');assert.equal(overview.length,1);assert(!overview[0].textContent.includes('Observed unsafe / all expected'));
+const nodes=walk(h),filterIndex=nodes.findIndex(n=>n.attrs['aria-label']==='Filter Topic'),summaryIndex=nodes.findIndex(n=>n.className==='detail-context-grid');assert(filterIndex<summaryIndex,'Cohort controls precede filtered summaries');
+set('Analyze input by','topic');set('Cross with','severity_band');assert.match(h.textContent,/co-occurring memberships/);
+const topicSpec=charts.facetChart(fixture,ui.selection());assert.deepEqual(topicSpec.data.map(d=>d.label).sort(),['Gender','Taste']);
+const crossSpec=charts.facetChart(fixture,ui.selection(),true),cross=walk(h).find(n=>n.tagName==='svg'&&n.attrs['aria-label']===crossSpec.title);assert(cross.textContent.includes('Taste'),'Cross domain must retain co-occurring topic rows');
+set('Chart measure','count');set('Response safety shown','safe');assert.match(h.textContent,/Fixed comparison · Unsafe \/ classified/);assert.match(h.textContent,/display controls above affect group bars and cross charts only/);
+const safeSpec=charts.facetChart(fixture,ui.selection(),true),safePlot=walk(h).find(n=>n.tagName==='svg'&&n.attrs['aria-label']===safeSpec.title);assert(walk(safePlot).some(n=>n.tagName==='rect'&&n.attrs.fill?.startsWith('rgba(23,100,116,')),'Safe heatmap uses teal, not risk red');
+const mark=walk(safePlot).find(n=>n.attrs.role==='button');mark.fire('click');assert.match(h.textContent,/Same selected input condition · both models/);assert.match(h.textContent,/Model 1: unsafe 6\/69/);assert.match(h.textContent,/Model 2: unsafe 7\/98/);
+const delta=walk(h).find(n=>n.tagName==='svg'&&n.attrs['aria-label'].startsWith('Unsafe rate difference'));assert(delta.textContent.includes('5 pp'));const bar=walk(delta).find(n=>n.tagName==='rect'&&n.attrs.fill==='#b84942');assert(Number(bar.attrs.width)>50,'A 1.55pp difference must be visible on the adaptive ±5pp scale');
+button(h,'Show full ±100 pp range').fire('click');assert.equal(ui.selection().facetDifferenceRange,'full');assert.match(h.textContent,/−100 to \+100 pp/);button(h,'Use adaptive symmetric pp range').fire('click');
+set('Analyze input by','severity_band');assert.equal(find(h,'Group row order').disabled,true);assert.equal(find(h,'Group row order').value,'fixed');set('Analyze input by','topic');assert.equal(find(h,'Group row order').disabled,false);
+button(h,'Remove Input severity: High').fire('click');assert.equal(ui.selection().filter_severity_band,'');button(h,'Back one condition').fire('click');assert.equal(ui.selection().filter_severity_band,'High');
+button(h,'Clear condition filters').fire('click');set('Analyze input by','severity_band');
+const rows=charts.facetContrasts(right,ui.selection()),high=rows.find(d=>d.label==='High');assert.equal(high.eligible,true);assert.equal(high.remaining.expected,200);assert.equal(high.remaining.unsafe_count,20);assert(Math.abs(high.difference_pp-(7/98-.1)*100)<1e-10);
+const low=rows.find(d=>d.label==='Low');assert(low.difference_pp>0);assert.match(h.textContent,/Lower observed unsafe than remaining inputs/);assert.match(h.textContent,/Higher observed unsafe than remaining inputs/);assert.match(h.textContent,/completion 69\/98/);
+set('Filter Input severity','High');const excluded=charts.facetContrasts(fixture,ui.selection())[0];assert.equal(excluded.eligible,false);assert(excluded.reasons.some(r=>r.includes('below 90%')));assert(excluded.reasons.includes('remaining inputs: no inputs'));
+assert.equal(charts.differenceLimit([{difference_pp:1.55}]),5);assert.equal(charts.differenceLimit([{difference_pp:-51}]),100);assert.equal(charts.differenceLimit([{difference_pp:1.55}],true),100);
+const overlap=JSON.parse(JSON.stringify(fixture));overlap.submission_id='overlap-only';overlap.analysis.tasks['3'].facets[0].buckets.push(bucket(['Taste'],'High',40,40,40));
+const stored=new Map();ctx.sessionStorage={getItem:k=>stored.get(k)||null,setItem:(k,v)=>stored.set(k,v)};
+const oh=new Element('div'),ou=ctx.window.KoEVDDetailCharts.mount(oh,[overlap]);
+for(const [label,value]of [['Filter Topic','Gender'],['Analyze input by','topic']]){const n=find(oh,label);n.value=value;n.fire('change');}
+const ospec=charts.facetChart(overlap,ou.selection()),oplot=walk(oh).find(n=>n.tagName==='svg'&&n.attrs['aria-label']===ospec.title),taste=walk(oplot).find(n=>n.attrs.role==='button'&&n.attrs['aria-label'].startsWith('Taste;'));taste.fire('click');button(oh,'Apply this input condition').fire('click');
+assert.match(oh.textContent,/Gender ∩ Taste/);assert.equal(charts.facetQuery(overlap,ou.selection().scope,charts.facetFilters(ou.selection())).total.expected,98,'Selecting a co-topic must retain Gender, not broaden to all Taste inputs');
+assert.deepEqual(Array.from(charts.facetFilters(ou.selection()).topic),['Gender','Taste']);assert(button(oh,'Remove Topic: Gender'));assert(button(oh,'Remove Topic: Taste'));
+const reload=new Element('div'),reloaded=ctx.window.KoEVDDetailCharts.mount(reload,[overlap]);assert.equal(charts.facetQuery(overlap,reloaded.selection().scope,charts.facetFilters(reloaded.selection())).total.expected,98,'Co-membership constraints survive reload and handoff state');
+button(oh,'Remove Topic: Gender').fire('click');assert.equal(charts.facetQuery(overlap,ou.selection().scope,charts.facetFilters(ou.selection())).total.expected,138);button(oh,'Back one condition').fire('click');assert.equal(charts.facetQuery(overlap,ou.selection().scope,charts.facetFilters(ou.selection())).total.expected,98);
+let contrasts=0;for(const model of paper.models){const profile=charts.paperProfile(model),buckets=model.task3_types.facets.buckets;for(const axis of ['utterance_type','topic','severity_band','explicitness'])for(const d of charts.facetContrasts(profile,{scope:'paper',facetAxis:axis})){const excluded=buckets.filter(b=>!b.labels[axis].includes(d.label));assert.equal(d.remaining.expected,excluded.reduce((n,b)=>n+b.rows,0));assert.equal(d.remaining.valid,excluded.reduce((n,b)=>n+b.valid,0));assert.equal(d.remaining.unsafe_count,excluded.reduce((n,b)=>n+b.events,0));assert.equal(d.expected+d.remaining.expected,13552);contrasts++;}}assert(contrasts>400);
+button(h,'Reset Task 3 view').fire('click');assert.equal(ui.selection().filter_topic,'');assert.equal(ui.selection().facetDifferenceRange,'auto');assert(!button(h,'Back one condition'));assert.equal(JSON.stringify([fixture,right]),original);
+console.log('Task 3 clarity passed: denominator reversal, low/different completion, co-topic apply/reload/undo, fixed difference scope, safe color, adaptive/full scale, matched-cell evidence and '+contrasts+' exact disjoint contrasts');
+`;
+eval(code);

@@ -1,3 +1,3 @@
 """Reference runners and scorers for the KoEVD benchmark."""
 
-__version__ = "0.3.0rc19"
+__version__ = "0.3.0rc20"

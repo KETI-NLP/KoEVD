@@ -6,6 +6,9 @@ import unittest
 
 
 class InteractiveDetailChartsTests(unittest.TestCase):
+    def test_task3_denominators_filters_colors_and_contrasts(self):
+        self.run_journey('task3_clarity.cjs')
+
     def test_task3_metadata_filters_and_cross_analysis_journey(self):
         self.run_journey('task3_facets.cjs')
 
