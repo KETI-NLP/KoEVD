@@ -24,7 +24,7 @@ const workspace={uploads:()=>[],ready:()=>false,api:async path=>{
  if(path==='/api/registration')return {json:async()=>({enabled:true})};
  if(path==='/api/identity')return {json:async()=>({signed_in:false})};
  if(path==='/api/public/leaderboard')return {json:async()=>board};
- if(path==='/assets/paper_models.json')return {json:async()=>JSON.parse(fs.readFileSync('src/koevd_eval/assets/paper_models.json','utf8'))};
+ if(path.split('?')[0]==='/assets/paper_models.json')return {json:async()=>JSON.parse(fs.readFileSync('src/koevd_eval/assets/paper_models.json','utf8'))};
  if(path.includes('/profile')){const id=path.split('/')[4];return {json:async()=>({...pubs.find(p=>p.submission_id===id),scope:'summary',rank_admission:{metrics:[]},generation:{},protocol_sha256:'SYNTHETIC-protocol'})};}
  if(path.startsWith('/api/public/compare?'))return {json:()=>new Promise(resolve=>pending.push({path,resolve}))};
  throw Error('Unexpected '+path);
