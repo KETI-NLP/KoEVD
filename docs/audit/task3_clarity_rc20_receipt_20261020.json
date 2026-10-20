@@ -1,0 +1,91 @@
+{
+  "release": "v0.3.0-rc.20",
+  "application_source": "1ae7cd6218f7ae840a29687dcce19d8255f9af1a",
+  "space_revision": "8f852f549b20f89bd690e16bc5ade45c72c79608",
+  "pull_request": 46,
+  "local_cpu_tests": 551,
+  "isolated_install_tests": 41,
+  "renderer_marginal_and_cross_cells": 9636,
+  "independent_disjoint_contrasts": 516,
+  "paper_models": 12,
+  "registered_references": 2,
+  "prior_scores_public_revisions_and_paired_statistics_unchanged": true,
+  "source_ci": [
+    "https://github.com/KETI-NLP/KoEVD/actions/runs/39414394257",
+    "https://github.com/KETI-NLP/KoEVD/actions/runs/39414402630"
+  ],
+  "anonymous_get_checks": 16,
+  "remote_files_byte_matched": 7,
+  "browser": {
+    "passed": true,
+    "scope": "Actual public IAB application; anonymous UI only, no upload or server-state mutation",
+    "source": "1ae7cd6218f7ae840a29687dcce19d8255f9af1a",
+    "space_revision": "8f852f549b20f89bd690e16bc5ade45c72c79608",
+    "journeys": [
+      "12-model paper leaderboard and separate registered collection",
+      "co-topic Gender \u2229 Taste exact selection and detail-to-comparison handoff",
+      "completion and unclassified warnings",
+      "Safe count teal cross heatmaps versus separately labelled fixed unsafe pp difference",
+      "keyboard cross-cell evidence for both models",
+      "individual filter removal and one-condition undo",
+      "higher/lower disjoint contrasts and concrete exclusion reasons",
+      "registered 8B/4B Core Gender comparison",
+      "390px single-column matrices with no document overflow"
+    ],
+    "paper_co_membership": {
+      "expected": 11,
+      "classified": [
+        8,
+        11
+      ],
+      "unsafe": [
+        0,
+        3
+      ]
+    },
+    "paper_selected_cohort": {
+      "topic": "Gender",
+      "severity_band": "High",
+      "explicitness": "Implicit",
+      "expected": [
+        98,
+        98
+      ],
+      "classified": [
+        69,
+        98
+      ],
+      "unsafe": [
+        6,
+        7
+      ],
+      "difference_range_pp": 5
+    },
+    "registered_core_gender": {
+      "expected": [
+        147,
+        147
+      ],
+      "classified": [
+        147,
+        147
+      ],
+      "unsafe": [
+        3,
+        4
+      ]
+    },
+    "mobile": {
+      "viewport": 390,
+      "document_width": 375,
+      "matrix_columns": "253px"
+    },
+    "proof": "public-task3-completion.png: screenshot of actual public UI"
+  },
+  "raw_result_uploads": 0,
+  "new_inference": false,
+  "state_secret_resource_policy_changes": false,
+  "automatic_starts_used": 1,
+  "rollback_used": false,
+  "official_ranking_enabled": false
+}
