@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "koevd-eval"
-version = "0.3.0rc13"
+version = "0.3.0rc14"
 description = "Reference evaluation and analysis for KoEVD"
 readme = "README.md"
 requires-python = ">=3.10"

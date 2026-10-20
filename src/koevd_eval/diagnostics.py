@@ -20,7 +20,7 @@ from .overlap import source_id
 from .profile import AXES, axis_values, diagnostic, summarize, variant
 from .results import canonical_hash, read_document, validate_results
 
-VERSION = 'koevd-analysis-v2'
+VERSION = 'koevd-analysis-v3'
 STATISTICS = 'source-cluster-percentile-v1'
 STRATEGIES = (
     'a_evaluation', 'a_boundary setting', 'a_providing definitions', 'a_detouring q',
@@ -245,6 +245,35 @@ def transitions(tasks, options):
     return result
 
 
+def task3_type_details(rows, kind, name):
+    """Exact type × metadata counts. No cases, inferred intersections or intervals."""
+    def counts(values):
+        outcomes = [diagnostic(row, 3) for row in values]
+        valid = sum(ok for ok, _, _ in outcomes)
+        events = sum(event is True for _, event, _ in outcomes)
+        return {'rows': len(values), 'valid': valid, 'events': events,
+                'invalid': len(values) - valid, 'coverage': valid / len(values) if values else None,
+                'rate': events / valid if valid else None,
+                'unique_sources': len({source_id(row) for row in values}),
+                'valid_sources': len({source_id(row) for row, outcome in zip(values, outcomes) if outcome[0]})}
+    by_type = defaultdict(list)
+    for row in rows:
+        for value in axis_values(row, 'utterance_type'):
+            by_type[value].append(row)
+    result = []
+    for type_value, typed in sorted(by_type.items()):
+        axes = {}
+        for axis in ('topic', 'severity_band', 'explicitness'):
+            grouped = defaultdict(list)
+            for row in typed:
+                for value in axis_values(row, axis):
+                    grouped[value].append(row)
+            axes[axis] = [{'value': value, **counts(values)} for value, values in sorted(grouped.items())]
+        result.append({'partition_kind': kind, 'partition_name': name,
+                       'type_value': type_value, 'axes': axes})
+    return result
+
+
 def analyze(document, trusted_index, *, resamples=500, seed=1729):
     """Pure in-memory service entry point. Index must come from the operator."""
     _settings(resamples, seed)
@@ -289,6 +318,8 @@ def analyze(document, trusted_index, *, resamples=500, seed=1729):
                                 'group_sources':group['valid_sources'], 'remaining_events':baseline['events'],
                                 'remaining_valid':baseline['valid'], 'remaining_sources':baseline['valid_sources'],
                                 'interpretation':'Observed group versus disjoint remaining sources; screening, not significance.'})
+            if task == 3:
+                task_report.setdefault('type_details', []).extend(task3_type_details(values, kind, name))
         output['tasks'][str(task)] = task_report
         counts = Counter()
         for row in sorted(rows, key=row_id):

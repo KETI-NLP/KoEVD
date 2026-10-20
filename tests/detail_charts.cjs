@@ -26,7 +26,7 @@ const filtered=charts.observations(joint,'reported','',{group:'High × Implicit'
 assert.equal(charts.selectedPart(summary,{...selection,group:'HIQ'}).rows,6);
 assert.equal(charts.selectCharts(summary,{...selection,group:'not in this model'}).length,0,'Missing conditions must not fall back to whole-scope values');
 const before=JSON.stringify(summary);const holder=new Element('div');const ui=ctx.window.KoEVDDetailCharts.mount(holder,[summary]);assert.equal(ui.selection().scope,'subset:core');assert.match(holder.textContent,/1 \/ 4/);assert.doesNotMatch(holder.textContent,/Wrong union/);
-const mark=walk(holder).find(n=>n.attrs.role==='button');mark.fire('click');assert.match(holder.textContent,/Matching group: 4\/6/);assert.match(holder.textContent,/fewer than 20/);
+const sourceChart=walk(holder).find(n=>n.tagName==='svg'&&n.attrs['aria-label']==='Unsafe / valid by Question / utterance type · Core');const mark=walk(sourceChart).find(n=>n.attrs.role==='button');mark.fire('click');assert.match(holder.textContent,/Matching group: 4\/6/);assert.match(holder.textContent,/fewer than 20/);
 const axis=find(holder,'Analyze by');axis.value='severity_band × explicitness';axis.fire('change');assert(walk(holder).some(n=>n.tagName==='svg'&&n.attrs['aria-label']?.includes('Severity \u00d7 explicitness')));
 const condition=find(holder,'Show condition');condition.value='High × Implicit';condition.fire('change');assert.match(holder.textContent,/High × Implicit · 4\/6 valid expected rows/);
 button(holder,'Task 5 · Simulated tool choices').fire('click');assert.equal(ui.selection().scope,'variant:tool_forced');assert.match(holder.textContent,/row-normalized/);assert.match(holder.textContent,/includes invalid/);
