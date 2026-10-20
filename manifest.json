@@ -1430,8 +1430,8 @@
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.js",
-      "bytes": 80877,
-      "sha256": "5db4c34b260187834db78fa3e0910f802ddefba0ea11175f3f4b90af21305f64"
+      "bytes": 80937,
+      "sha256": "52cd89d321556b905d86a6ffdff696f898cc172323558664a9860f56951d7beb"
     },
     {
       "path": "src/koevd_eval/assets/home.js",
@@ -1491,7 +1491,7 @@
     {
       "path": "src/koevd_eval/assets/space.html",
       "bytes": 18242,
-      "sha256": "5fe02e33f23688be5ca3112ef0267ad97912e1ea494549a25811e56169d6eb29"
+      "sha256": "8aff227f407d55c4dae94ac5112af0dbd79a964659ab63660681ba5684c0e222"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1795,8 +1795,8 @@
     },
     {
       "path": "tests/task3_types.cjs",
-      "bytes": 5680,
-      "sha256": "deda3b6fb396a18d4f2d0452bc11a7e35dcdc17054746f0673367603bca98751"
+      "bytes": 5878,
+      "sha256": "7e0ef356c9487d63d56bae24b05a116012cd309c17bd04ac0b8e26f9149ec94a"
     },
     {
       "path": "tests/task_context.cjs",

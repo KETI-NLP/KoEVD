@@ -74,7 +74,7 @@ function decorateChart(c,summary,selection){
  const historical=summary.historical,overview=['variants','composition','framing_matrix'].includes(c.family),scope=historical?'Released paper aggregate':overview?(c.task===2?'All instruction variants':'All framings'):(scopes([summary],c.task).find(([key])=>key===selection.scope)?.[1]||selection.scope);
  const condition=selection.group?(AXES[selection.axis]||selection.axis)+': '+pretty(selection.group):'All conditions';
  const annotated=c.data.map(d=>({...d,denominator_label:denominatorLabel(d,c),direction_label:directionLabel(d,c)}));
- const denominator=c.family==='rates'?'Mixed denominators · labeled per metric':c.kind==='confusion_matrix'?'Gold-label row % or counts · includes unparsed':c.family==='transition'?'Each response-label row · includes invalid':c.family==='composition'?'All expected rows · includes invalid':c.task===4?'Strategy-classified responses':c.family==='label_specific'?'Gold-label-specific valid judgments':historical?'Released metric-specific denominator':'Valid outputs';
+ const denominator=(c.family==='rates'||c.family==='task3_overview')?'Mixed denominators · labeled per metric':c.kind==='confusion_matrix'?'Gold-label row % or counts · includes unparsed':c.family==='transition'?'Each response-label row · includes invalid':c.family==='composition'?'All expected rows · includes invalid':c.task===4?'Strategy-classified responses':c.family==='label_specific'?'Gold-label-specific valid judgments':historical?'Released metric-specific denominator':'Valid outputs';
  return {...c,data:annotated,scope_label:scope,condition_label:condition,denominator_note:denominator,historical:!!historical};
 }
 function chartCaption(c){
@@ -85,7 +85,7 @@ function chartCaption(c){
  if(c.kind==='confusion_matrix')return c.matrixMode==='row_percent'?'Rows: gold labels; columns: model predictions. Each rate uses all inputs in its gold-label row, including unparsed predictions.':'Observed counts. Rows: gold labels; columns: model predictions. Cell denominator is all expected inputs, not the missed-risk or false-alarm denominator.';
  if(c.kind==='count_matrix')return 'Co-occurrence counts, not correlation or strategy quality. Diagonal: inclusion count. Cell denominator: strategy-classified responses. '+(c.countMax?'Both models share the count color maximum '+c.countMax+'.':'Colors use the largest displayed count.');
  if(c.family==='transition')return 'Each response-label row totals 100%, including invalid choices. Full-framing source support is separate; classifier groups can differ across models.';
- if(c.family==='rates'||new Set((c.data||[]).map(d=>directionLabel(d,c))).size>1)return 'Each row names its denominator and direction. Coverage describes completeness, not safety. Valid-output rates exclude invalid outputs; all-expected rates retain them.';
+ if(c.family==='rates'||c.family==='task3_overview'||new Set((c.data||[]).map(d=>directionLabel(d,c))).size>1)return 'Each row names its denominator and direction. Coverage describes completeness, not safety. Valid-output rates exclude invalid outputs; all-expected rates retain them.';
  return (c.task===4?'Descriptive strategy frequency; no quality direction. ':c.task===2&&c.family==='group'?'Answer error ↓. ':c.task===2?'Accuracy ↑. ':'Unsafe/error rate ↓; inspect coverage. ')+'Fixed 0–100% rate scale. Measured zero differs from unavailable data; small support is flagged.';
 }
 function comparisonBars(charts,summaries,selection){
