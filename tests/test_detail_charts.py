@@ -6,6 +6,12 @@ import unittest
 
 
 class InteractiveDetailChartsTests(unittest.TestCase):
+    def test_per_task_context_and_search_recovery(self):
+        self.run_journey('task_context.cjs')
+
+    def test_observed_difference_semantics(self):
+        self.run_journey('observed_differences.cjs')
+
     def test_first_user_chart_clarity_and_design(self):
         self.run_journey('chart_clarity_design.cjs')
 

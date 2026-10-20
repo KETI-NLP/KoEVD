@@ -28,7 +28,7 @@ object. Existing metric and denominator fields retain their meanings. A
 generation declaration or an uploaded measured label is not independent
 generation verification or a classifier accuracy certificate.
 
-## Interactive model details (v0.3.0-rc.12)
+## Interactive model details (v0.3.0-rc.13)
 
 Open a model from the leaderboard, then choose a Task in **Explore task behavior**.
 These are live SVG charts, not screenshots. Hover or keyboard-focus a mark for
@@ -95,7 +95,7 @@ Selected marks are highlighted and open a fixed, scrollable evidence panel with
 a visible Clear selection control. Escape also closes the selection. JSON exports
 of combined bars include both models' declarations and the shared view settings.
 
-For current numerical profiles, supported contrast candidates summarize higher
+For current numerical profiles, within-model supported contrast candidates summarize higher
 and lower observed error/unsafe rates against **disjoint remaining sources within
 the same model**. The existing analysis engine requires at least 20 valid sources
 and 90% coverage on both sides. Small/low-support groups stay in the charts but
@@ -116,6 +116,49 @@ Response-case access remains a separate permission-aware workflow. Anonymous cha
 interaction makes no registration/publication/server-state writes. Chart
 controls are remembered in browser session storage for each public model/revision
 or comparison; **Reset view** restores the task defaults.
+
+## Task views, search recovery and strategy meaning
+
+Each Task remembers its scope, axis, condition, label search, order, matrix mode
+and co-occurrence selection. Returning to a Task restores its own view; values
+are not blindly applied across different Tasks. Per-Task views survive session
+reloads and detail-to-comparison handoff. If neither selected model supplies a
+saved scope/axis/condition, the visible fallback is explained; a condition available
+on only one model remains selected and the other remains unavailable.
+
+**Inspect group** clears label search before applying its group. If a manually
+chosen condition conflicts with a remaining search, the empty chart explains that
+measured observations are hidden and offers **Clear label search**. Search does
+not change denominators. Current strategy names follow the canonical
+[released label crosswalk](STRATEGY_LABELS.md); earlier chart names remain searchable.
+Task 4 includes short definitions and newly authored illustrative examples,
+explicitly distinguished from benchmark text and gold annotations. Strategy
+measurement completeness is a supporting badge, not a large performance score.
+Per-model valid/expected counts remain beside comparison bars where supplied.
+
+## Between-model observed differences versus within-model contrasts
+
+The separate **Between-model observed rate differences** panel subtracts Model 2's
+observed rate from Model 1's rate, in percentage points, for the displayed chart
+and named condition. Each model retains its own numerator and denominator. These
+are marginal observed differences, not jointly valid paired effects, confidence
+intervals, significance tests or causal effects. Groups and valid outputs can
+differ. Check generation/measurement declarations and the separate matched-input
+statistics before making a paired inference.
+
+Rows with at least 20 reported sources per model precede small/unknown-support
+rows; within each set, the largest absolute differences appear first. The first
+eight are displayed and **Difference summary JSON** exports all rows, both model
+contexts and current controls. Missing rates stay unavailable, measured zero is
+retained, and no counts are reconstructed for historical percentages. Coverage
+rows are excluded from this error/behavior summary. Task 4 and historical Task 1
+judgment frequencies have no quality preference. Descriptive difference alone
+does not establish a model's strength or weakness.
+
+The **Within-model group contrasts** below the plots compare a group to disjoint
+remaining sources of the same model. They retain their existing source/coverage
+requirements. Neither panel replaces the unchanged paired comparison engine or
+introduces an overall ethics rank.
 
 ## Reading conditions, denominators and availability
 
