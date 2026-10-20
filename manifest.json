@@ -345,8 +345,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 6639,
-      "sha256": "27df9b55b93980d1dd9bc89841c52e3af3e586345fc4f62303bf1f4865c27454"
+      "bytes": 5234,
+      "sha256": "d780ae19e7aa9c1e9f37efa31e208b55904e0766951bfaefccae6af016a2fcb9"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC5_20261019.md",
@@ -482,6 +482,11 @@
       "path": "docs/audit/public_service_acceptance_rc13_20261020.md",
       "bytes": 7110,
       "sha256": "5e057b6f75efff9fcee3e810614e0ff8dc2b67259d011507473f1c7061b80fbf"
+    },
+    {
+      "path": "docs/audit/public_service_acceptance_rc15_20261020.md",
+      "bytes": 6639,
+      "sha256": "27df9b55b93980d1dd9bc89841c52e3af3e586345fc4f62303bf1f4865c27454"
     },
     {
       "path": "docs/audit/public_service_acceptance_rc9_20261019.md",
