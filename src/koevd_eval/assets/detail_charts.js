@@ -289,7 +289,7 @@ function mount(holder,summaries,options={}){
  }
  function bars(c,s){
   const grouped=c.kind==='grouped_bars',rate=grouped?c.original_kind==='rate_bars':c.kind==='rate_bars',labels=grouped?[...new Set(c.data.map(d=>d.label))]:c.data.map(d=>d.label),series=grouped?c.models.length:1;
-  const step=grouped?22+series*48:54,height=48+labels.length*step,drawing=svg('svg',{viewBox:'0 0 900 '+height,class:'detail-svg',role:'group','aria-label':c.title}),x=295,w=345,max=rate?1:c.family?.startsWith('task3_type')?Math.max(4,Math.ceil(Math.max(0,...c.data.map(d=>d.count||0))/4)*4):Math.max(1,...c.data.map(d=>d.count||0));
+  const step=grouped?22+series*48:54,height=48+labels.length*step,drawing=svg('svg',{viewBox:'0 0 900 '+height,class:'detail-svg',role:'group','aria-label':c.title}),x=295,w=345,max=rate?1:(c.family?.startsWith('task3_type')||c.family?.startsWith('task3_facets'))?Math.max(4,Math.ceil(Math.max(0,...c.data.map(d=>d.count||0))/4)*4):Math.max(1,...c.data.map(d=>d.count||0));
   for(const t of [0,.25,.5,.75,1]){drawing.append(svg('line',{x1:x+t*w,x2:x+t*w,y1:26,y2:height-8,stroke:'#dce5ef'}));text(drawing,rate?t*100+'%':Math.round(t*max),x+t*w,16,{'text-anchor':'middle',fill:'#52657a','font-size':12,class:rate?'detail-export-axis':''});}
   labels.forEach((label,i)=>{
    const base=35+i*step;
