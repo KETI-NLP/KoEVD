@@ -315,8 +315,8 @@
     },
     {
       "path": "docs/PLATFORM_USER_GUIDE.md",
-      "bytes": 25326,
-      "sha256": "851fb7b224fbf2514705cc42fc85dff8527affd35934b8835c4706258b1f6ede"
+      "bytes": 25672,
+      "sha256": "c265169eba856fe39e593d65cea5090ac62ebe0592b1843b9b6735b69ff54c6f"
     },
     {
       "path": "docs/PLATFORM_VALIDATION_LOG.md",
@@ -345,8 +345,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 5739,
-      "sha256": "7e9e2269b008751514604e9679aeeb114d316da885b8167d7de9dad3c51dbf82"
+      "bytes": 5798,
+      "sha256": "477c51f7299ee90c5f19e3f9e14f13520308f1001fd41b1e01b2e084e8e3608d"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC5_20261019.md",
@@ -454,6 +454,11 @@
       "sha256": "e55a2aedf89694483c87705d91bebc9363330e845cd8787f5fccfbb5b510a122"
     },
     {
+      "path": "docs/audit/chart_clarity_design_rc12_receipt_20261019.json",
+      "bytes": 8672,
+      "sha256": "0b8541d9c7b002efd6a57209f088c9dc2f79634f173cbd5f6b3061b66e2d79aa"
+    },
+    {
       "path": "docs/audit/interactive_charts_rc10_receipt_20261019.json",
       "bytes": 7445,
       "sha256": "fc0019f7859af93ac4f968deb949f3737bc160da6aa86375626c91aadd3b99c4"
@@ -462,6 +467,11 @@
       "path": "docs/audit/public_service_acceptance_rc10_20261019.md",
       "bytes": 4828,
       "sha256": "84b1b267dcd7648c3ff50529caf63031350c18a274d65cb7eea1e8e137f649e1"
+    },
+    {
+      "path": "docs/audit/public_service_acceptance_rc11_20261019.md",
+      "bytes": 5727,
+      "sha256": "a893991ae182dd739fdc7ccdad25e1a3de77e2fedda79ac962a4e7a611a74241"
     },
     {
       "path": "docs/audit/public_service_acceptance_rc9_20261019.md",
