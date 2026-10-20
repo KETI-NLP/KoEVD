@@ -32,9 +32,9 @@ uses multi-label bars and heatmaps; Task 5 includes framing, outcome composition
 and response-to-tool transitions. Comparison controls synchronize both models.
 Export with **SVG** / **Chart JSON**. These are analysis snapshots, not files to
 submit as results. Historical data supports only its released aggregates; see the
-[chart interpretation guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc12).
+[chart interpretation guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc13).
 
-Chart clarity and layout are updated in **v0.3.0-rc.12**. Each plot repeats
+Task context and model-difference analysis are updated in **v0.3.0-rc.13**. Each plot repeats
 its scope, condition, denominator and metric direction. Key rates precede plots;
 long plots scroll without dropping observations. Candidate/interpretation details
 follow plots and start collapsed. Zero uses a baseline marker; N/A states its
@@ -47,6 +47,13 @@ condition. Candidate contrasts require support and coverage; they are descriptiv
 screening aids, not confirmed strengths or causal bias findings. The
 [chart guide](PUBLIC_PROFILES_GUIDE.md) explains row denominators, missing values,
 multi-label strategy rates and historical limits.
+
+Each Task keeps its own filters through switching and reload. Inspect group clears
+conflicting label search; Clear label search recovers manually hidden observations.
+Task 4 separates completion from performance and supplies strategy definitions with
+new illustrative examples. Between-model observed pp summaries show both models’
+numerators/denominators; they are separate from within-model group contrasts and
+matched-input effects. They do not establish significance or causal bias.
 
 The Qwen3-8B/4B references each contain 17,670 previously measured records.
 They are operator references, not independent generation verification. Their

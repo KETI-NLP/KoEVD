@@ -1,0 +1,272 @@
+{
+  "space": "KETI-NLP/KoEVD-Platform",
+  "source": "a70cf6b82e7561c51b44ed0c32a0acc35af4ef11",
+  "deployed_revision": "ddd0998fdc049fde9d932242e68997027748a787",
+  "changed_paths": [
+    "CITATION.cff",
+    "README.md",
+    "deployment-manifest.json",
+    "pyproject.toml",
+    "src/koevd_eval/__init__.py",
+    "src/koevd_eval/assets/detail_charts.css",
+    "src/koevd_eval/assets/detail_charts.js",
+    "src/koevd_eval/assets/space.html"
+  ],
+  "changed_bytes": 118328,
+  "unchanged_operator_data": true,
+  "unchanged_provider_lfs": true,
+  "raw_result_uploads": 0,
+  "secret_changes": false,
+  "state_or_protocol_configuration_changes": false,
+  "new_paid_resources": false,
+  "automatic_starts_used": 1,
+  "release": "v0.3.0-rc.13",
+  "merge": "3d56910aa62368bcf62aaafa7e2ab00b845aa33d",
+  "full_cpu_tests": 535,
+  "fresh_release": {
+    "passed": true,
+    "tag": "v0.3.0-rc.13",
+    "module_version": "0.3.0rc13",
+    "metadata_version": "0.3.0rc13",
+    "manifest_exact_git_files": 423,
+    "hub_extra": true,
+    "pip_check": true,
+    "status_cli": true,
+    "scope": "fresh public clone and isolated CPU environment; no PYTHONPATH source override"
+  },
+  "chart_parity": {
+    "models": 2,
+    "selections": 1768,
+    "cells": 168899,
+    "passed": true,
+    "scope": "Existing public numerical aggregates only; no inference or original upload."
+  },
+  "hosted": {
+    "passed": true,
+    "at": "2026-10-20T01:51:45.318462+00:00",
+    "scope": "anonymous GET only; no upload/sign-in/write",
+    "revision": "ddd0998fdc049fde9d932242e68997027748a787",
+    "source": "a70cf6b82e7561c51b44ed0c32a0acc35af4ef11",
+    "public_references": [
+      "6204d78594f64db6ab6b74233058107f",
+      "6a9efc32e21a40c19aeeff935cc03b23"
+    ],
+    "registration_enabled": true,
+    "official_ranking_enabled": false,
+    "observations": [
+      {
+        "path": "/healthz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.625
+      },
+      {
+        "path": "/readyz",
+        "status": 200,
+        "bytes": 46,
+        "seconds": 0.453
+      },
+      {
+        "path": "/api/registration",
+        "status": 200,
+        "bytes": 163,
+        "seconds": 0.219
+      },
+      {
+        "path": "/api/public/submissions",
+        "status": 200,
+        "bytes": 972,
+        "seconds": 0.516
+      },
+      {
+        "path": "/api/public/leaderboard",
+        "status": 200,
+        "bytes": 145768,
+        "seconds": 4.031
+      },
+      {
+        "path": "/api/public/submissions/6204d78594f64db6ab6b74233058107f/profile",
+        "status": 200,
+        "bytes": 9393910,
+        "seconds": 3.687
+      },
+      {
+        "path": "/api/public/submissions/6a9efc32e21a40c19aeeff935cc03b23/profile",
+        "status": 200,
+        "bytes": 9383635,
+        "seconds": 3.234
+      },
+      {
+        "path": "/api/public/compare?left=6204d78594f64db6ab6b74233058107f&right=6a9efc32e21a40c19aeeff935cc03b23",
+        "status": 200,
+        "bytes": 18931554,
+        "seconds": 23.797
+      },
+      {
+        "path": "/assets/detail_charts.js",
+        "status": 200,
+        "bytes": 68160,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/detail_charts.css",
+        "status": 200,
+        "bytes": 11713,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/navigation.js",
+        "status": 200,
+        "bytes": 2176,
+        "seconds": 1.266
+      },
+      {
+        "path": "/assets/registration.js",
+        "status": 200,
+        "bytes": 48063,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/space.js",
+        "status": 200,
+        "bytes": 17261,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/metric_labels.js",
+        "status": 200,
+        "bytes": 5414,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/space.css",
+        "status": 200,
+        "bytes": 10771,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/home.js",
+        "status": 200,
+        "bytes": 10574,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/paper_results.json",
+        "status": 200,
+        "bytes": 17866,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/leaderboard.js",
+        "status": 200,
+        "bytes": 27116,
+        "seconds": 0.219
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.218
+      },
+      {
+        "path": "/",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.219
+      },
+      {
+        "path": "/submit",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.203
+      },
+      {
+        "path": "/compare",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.219
+      },
+      {
+        "path": "/models",
+        "status": 200,
+        "bytes": 18585,
+        "seconds": 0.203
+      },
+      {
+        "path": "/assets/paper_models.json",
+        "status": 200,
+        "bytes": 263084,
+        "seconds": 0.219
+      }
+    ]
+  },
+  "browser": {
+    "passed": true,
+    "scope": "Actual public HF iframe; read-only model discovery/details/comparison UI; no raw upload or account/state writes",
+    "revision": "ddd0998fdc049fde9d932242e68997027748a787",
+    "checks": [
+      "12-model paper leaderboard and separate 2-reference group",
+      "Copyright label search -> Inspect Personal Info clears search and shows 2/60",
+      "Manual hidden measurements explicitly differ from unmeasured; clear-search recovery",
+      "Task 3 Personal Info and Task 4 High retain separate settings across switching, re-entry after wrapper reload and comparison handoff",
+      "Task 4 completeness 426/426 is not a performance score",
+      "15 canonical strategy definitions and newly illustrative examples; aliases and separate unsafe marker",
+      "Between-model observed pp summary has both denominators; Redirecting 212/426 minus 144/426 = +15.96 pp; descriptive no quality preference",
+      "Task 1 missed-risk and false-alarm denominators; Task 2 accuracy vs coverage; Task 5 140/783 vs 140/784 and grouped valid/expected annotations",
+      "Historical parse coverage caption explicitly says completeness, not safety",
+      "Existing matched-input statistics remain separate from chart conditions"
+    ],
+    "screenshots": [
+      "hosted-strategy-definitions.png",
+      "hosted-model-differences.png"
+    ],
+    "export_scope": "Shipped-renderer JSON generation with actual public numerical inputs; browser filesystem save completion not claimed",
+    "writes": 0
+  },
+  "remote_code": {
+    "passed": true,
+    "revision": "ddd0998fdc049fde9d932242e68997027748a787",
+    "files": [
+      {
+        "path": "CITATION.cff",
+        "bytes": 464,
+        "sha256": "34b353c956249e817da3cde181e4fb56489d5e3332dff92d75822d478acdba0b"
+      },
+      {
+        "path": "README.md",
+        "bytes": 2786,
+        "sha256": "169c63932946a67980fc4a1717b7b3391d7eeea50d4442f154fccf5c5ff5910f"
+      },
+      {
+        "path": "deployment-manifest.json",
+        "bytes": 14776,
+        "sha256": "21c7b772e87e9188ffd9e9bebb0a4678825af1887822420950386ff740d92c4e"
+      },
+      {
+        "path": "pyproject.toml",
+        "bytes": 1794,
+        "sha256": "8c3a0e9667a054ac336b1063e6a4878cfc9f3d340975de34eb24b39c6f83fe8d"
+      },
+      {
+        "path": "src/koevd_eval/__init__.py",
+        "bytes": 88,
+        "sha256": "ebdf6f61246b572838e1ea885878bb32e7f1c54ec7fcc8beb0db8feb349fedf4"
+      },
+      {
+        "path": "src/koevd_eval/assets/detail_charts.css",
+        "bytes": 11734,
+        "sha256": "f3f07933f1e737c9135964e603a0c3efc3c4e4eb8a0a39e3b7fd9ffdd601c75c"
+      },
+      {
+        "path": "src/koevd_eval/assets/detail_charts.js",
+        "bytes": 68519,
+        "sha256": "a70b5141870df4b46cfdb9e3bf0bf74561970323d90d3f9ba8fab47468472f71"
+      },
+      {
+        "path": "src/koevd_eval/assets/space.html",
+        "bytes": 18167,
+        "sha256": "a3ce9f8bb72e7b7c33bd99cd908b10ff7b4234482d46460e67405af751d2a18e"
+      }
+    ]
+  }
+}

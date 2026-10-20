@@ -315,8 +315,8 @@
     },
     {
       "path": "docs/PLATFORM_USER_GUIDE.md",
-      "bytes": 25672,
-      "sha256": "c265169eba856fe39e593d65cea5090ac62ebe0592b1843b9b6735b69ff54c6f"
+      "bytes": 26180,
+      "sha256": "2fd6dba8d2c40c48ad749989b47a4344f9fd04d7879bf1621202095eb9ba5d39"
     },
     {
       "path": "docs/PLATFORM_VALIDATION_LOG.md",
@@ -345,8 +345,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 5798,
-      "sha256": "477c51f7299ee90c5f19e3f9e14f13520308f1001fd41b1e01b2e084e8e3608d"
+      "bytes": 7164,
+      "sha256": "13d6fa94589ca42c1a933962587653cef9fe1c93c4f3187bb6f92fc6f3860c3e"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC5_20261019.md",
@@ -474,9 +474,19 @@
       "sha256": "a893991ae182dd739fdc7ccdad25e1a3de77e2fedda79ac962a4e7a611a74241"
     },
     {
+      "path": "docs/audit/public_service_acceptance_rc12_20261020.md",
+      "bytes": 5789,
+      "sha256": "8244fe4a10d60454e8bca1362e511d214f65744969110fef1561818d1de6388b"
+    },
+    {
       "path": "docs/audit/public_service_acceptance_rc9_20261019.md",
       "bytes": 5944,
       "sha256": "788c2d16a30165f1b1ba9a7e82904aadf979ded2d26a68841965b98b36634074"
+    },
+    {
+      "path": "docs/audit/task_analysis_context_rc13_receipt_20261020.json",
+      "bytes": 8336,
+      "sha256": "ed96a2de7c385f4cf18b4d03b510beb6c7cb1b0b31ed5b0dd3134ca4e3db9bf3"
     },
     {
       "path": "docs/strategy_label_map.json",
