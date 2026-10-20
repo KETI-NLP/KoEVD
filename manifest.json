@@ -1,6 +1,6 @@
 {
   "format": "sha256-file-manifest-v1",
-  "release_version": "0.3.0rc15",
+  "release_version": "0.3.0rc16",
   "basis": "exact staged Git blobs, excluding the manifest itself",
   "excludes": [
     "manifest.json",
@@ -26,7 +26,7 @@
     {
       "path": "CITATION.cff",
       "bytes": 464,
-      "sha256": "34203a343bd3113918657b983e692aab7f737a75b6382445b02dfc12959e8a7e"
+      "sha256": "ad937c103a7982361bd126d5e18230be521be9d0568c55eef20694f03a45cc52"
     },
     {
       "path": "LICENSE",
@@ -46,7 +46,7 @@
     {
       "path": "README.md",
       "bytes": 15913,
-      "sha256": "253ac3d03a2f4b6f38ca42fdb5278632e43750b6ff1f26926fab609f4f574ff8"
+      "sha256": "23c18886b2dc8c3544c3b2088b3f5abb933b8985f01a95876fd1cfc1330af893"
     },
     {
       "path": "analysis/plot_paper_tables.py",
@@ -220,8 +220,8 @@
     },
     {
       "path": "docs/GETTING_STARTED.md",
-      "bytes": 45355,
-      "sha256": "a5a4255b3e0322b90f818d0baa2bf6d449fd812491694ddd41257ad2560194f5"
+      "bytes": 45537,
+      "sha256": "b2dab4edf6ec79f44e49809ef32d328146881a1fd252a88741ad276a32839981"
     },
     {
       "path": "docs/GPU_MEASUREMENT_MATRIX_RESULTS.md",
@@ -340,8 +340,8 @@
     },
     {
       "path": "docs/PUBLIC_PROFILES_GUIDE.md",
-      "bytes": 19490,
-      "sha256": "177817157f53b52ddc19dcce7619a07069673119338510b91a04d344e9d369f8"
+      "bytes": 20003,
+      "sha256": "cec2b90a9bc17480cfb26ee9d04b83f9a8527d6835b7513bfc75cdabbe3effff"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
@@ -1106,7 +1106,7 @@
     {
       "path": "pyproject.toml",
       "bytes": 1794,
-      "sha256": "5d0356bf5e8659b68317981e1dc686637b43f3a5ee787697070533912b469c35"
+      "sha256": "a81d24f1930e7863ed59d036d29b5691cee72870add8f2179af71dce7c1fdaaa"
     },
     {
       "path": "reproduction/task1_metadata_v1/README.md",
@@ -1426,7 +1426,7 @@
     {
       "path": "src/koevd_eval/__init__.py",
       "bytes": 88,
-      "sha256": "a802b128689f12d9f3c06ad1dce51294b3349f543ad101b311d9cddf83d9674f"
+      "sha256": "784458238a71bf79d34f09757fa484cc462ef124b12714e673e8d7d4281cfcee"
     },
     {
       "path": "src/koevd_eval/analysis.py",
@@ -1440,8 +1440,8 @@
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.js",
-      "bytes": 81303,
-      "sha256": "7b646e718457b2d47a66a6b09b456be77b17097758c42b22c2264b89d9e497f2"
+      "bytes": 85720,
+      "sha256": "59cd9fd6ee9405f1e793c12d3f8ba0d45bb8bc39177a766e0cbaa5a10f33b5f7"
     },
     {
       "path": "src/koevd_eval/assets/home.js",
@@ -1501,7 +1501,7 @@
     {
       "path": "src/koevd_eval/assets/space.html",
       "bytes": 18242,
-      "sha256": "dd7cb72c86d64cc059977eb4d7788fe1b5b6b9116b4aa5f5d3fc4c753e4ad316"
+      "sha256": "4ce65f459e8cffb08b7ce762adc38394553c7ca2375d9d98f8c8848123ebe207"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1805,8 +1805,8 @@
     },
     {
       "path": "tests/task3_types.cjs",
-      "bytes": 6331,
-      "sha256": "7464f46a77f9ef940f978188b169a8fc9791656f3c8a3c102f1a8a49e2a65683"
+      "bytes": 8750,
+      "sha256": "865d55b29bff787c037edf906f4f86baee288f375a4f8cfc9465ed99d99bd45e"
     },
     {
       "path": "tests/task_context.cjs",
