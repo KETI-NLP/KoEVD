@@ -33,7 +33,7 @@ Task 5 uses simulated tools. Read valid/expected coverage separately from each
 event ratio. A low all-row rate with many invalid outputs does not establish
 safety. The Platform provides no combined ethics score or official rank.
 
-Use **v0.3.0-rc.12** (Python package **0.3.0rc12**) for this guide and record its
+Use **v0.3.0-rc.13** (Python package **0.3.0rc13**) for this guide and record its
 commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
 or the generation/measurement retry repair. Existing release tags are immutable. [Current service acceptance](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
@@ -42,7 +42,7 @@ validation logs describe their original dates and versions.
 ## 1. Install the evaluation client
 
 ```bash
-git clone --branch v0.3.0-rc.12 --single-branch https://github.com/KETI-NLP/KoEVD.git
+git clone --branch v0.3.0-rc.13 --single-branch https://github.com/KETI-NLP/KoEVD.git
 cd KoEVD
 git rev-parse HEAD
 python3.11 -m venv .venv-eval
@@ -604,7 +604,7 @@ Task 5 uses unsafe simulated tool selections. Task 4 frequencies describe behavi
 N/A is not zero, and overlapping subsets must not be summed. There is no combined
 ethics score. See steps 6–9 and the completion/troubleshooting tables for recovery.
 
-## Leaderboard, model details, comparison and submission (v0.3.0-rc.12)
+## Leaderboard, model details, comparison and submission (v0.3.0-rc.13)
 
 Model **Details** now opens interactive Task charts. Start with Task 3 question
 types to inspect weaknesses, Task 4 strategy bars/heatmaps to inspect response
@@ -613,7 +613,10 @@ Task 1 has a confusion matrix and Task 2 has per-instruction accuracy bars.
 Choose an input scope, metadata axis and optional condition; hover/focus or select
 a mark to inspect its exact numerator, denominator, coverage and source support.
 The comparison page synchronizes chart controls across both selected models.
-Your selected Task, scope and condition follow **Compare this model**. Comparison
+Your selected Task, scope and condition follow **Compare this model**. Each Task
+remembers its own full view, including its condition, when you switch away and
+return. **Inspect group** clears a conflicting label search; manually hidden
+observations offer **Clear label search**. Comparison
 bars align both models on the same category rows. Count and row-percentage modes
 are available for Task 1; Task 5 composition always retains invalid outcomes.
 Select a mark for a fixed evidence panel; use Clear selection or Escape to close it.
@@ -631,7 +634,7 @@ These are analysis exports, not result files to submit again.
 
 Paper-model details expose only released per-model aggregates. They cannot show
 unreleased question-type or multi-axis breakdowns. Registered numerical profiles
-also do not expose response text. See the [chart and denominator guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc12)
+also do not expose response text. See the [chart and denominator guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc13)
 for filter limits, historical metric differences and the meaning of N/A.
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
