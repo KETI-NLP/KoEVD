@@ -52,8 +52,9 @@ summary, rates and strategy/outcome counts. Framing comparisons use that same
 group in each variant where supplied; missing model/group combinations remain
 unavailable. Conditional Task 3→5 transitions are not supplied, so that matrix is
 hidden while a condition is selected. **Find chart labels** filters bars, highlights matrix cells and retains all
-composition segments without changing any denominator. Other arbitrary metadata
-intersections are not offered: marginal percentages cannot establish them.
+composition segments without changing any denominator. For Tasks other than Task 3, arbitrary metadata intersections are not offered:
+marginal percentages cannot establish them. Task 3 uses the exact joint bucket
+controls described below.
 Small groups remain visible, with a warning when fewer than 20 valid sources are
 reported. N/A is not zero. No confidence interval is estimated in the browser.
 Task 3/4 include the recorded classifier settings beside the chart summary.
@@ -137,57 +138,71 @@ explicitly distinguished from benchmark text and gold annotations. Strategy
 measurement completeness is a supporting badge, not a large performance score.
 Per-model valid/expected counts remain beside comparison bars where supplied.
 
-## Task 3: type analysis
+<a id="task-3-type-analysis"></a>
+## Task 3: input conditions, filters and cross analysis
 
-Below the basic unsafe-rate chart, **Safe and unsafe responses by user-input type**
-shows every supplied question / utterance type in the selected input scope. Types
-come from trusted input metadata, including new or missing categories; they are
-not a fixed list or a taxonomy of the generated answer's harm.
+Below the simple unsafe-rate chart, **Explore input conditions and response safety**
+provides four peer axes in **Analyze input by**: Question / utterance type,
+Topic, Input severity and Explicitness. No utterance-type selection is required
+before analyzing another axis. The four **Filter …** controls narrow the cohort;
+all Task 3 completion cards, overall rates, bars, heatmaps and pp differences
+follow the same filters. There is no second, independent Task 3 control set.
 
-- **Response safety shown** defaults to **Safe + unsafe**, with a teal safe segment
-  and a red unsafe segment for each type and model. Select Safe only or Unsafe only
-  to inspect one classification. **Type chart measure** switches between rates
-  and observed response counts. Safe count = valid minus unsafe; safe and unsafe
-  rates each use valid measurements and sum to 100% only with a nonzero valid
-  denominator. Failed, missing and unclassified outputs are excluded from both
-  classes and remain visible in completion, never treated as safe. A count is not a rate: common types can contribute more failures
-  while having a lower failure rate. Count comparisons use a shared count scale;
-  rate comparisons retain the fixed 0–100% scale.
-- **Type row order** sorts by the highest unsafe value (both/unsafe view), highest
-  safe value (safe-only view), or by type name.
-  Search question types filters labels only; it never changes denominators.
-  All types remain available in Inspect question type, even when search hides a bar.
-- Bars, evidence and the exact table report safe / valid, unsafe / valid, valid / expected,
-  completion and source support. Fewer than 20 valid sources is flagged, not hidden.
-  No valid measurements gives an undefined rate; observed count zero does not
-  establish safety. Missing model/type data is not a measured zero.
-- Select a bar (click, Enter or Space) or use **Inspect question type**. Choose
-  Topic, Input severity or Explicitness to inspect an **exact type × metadata**
-  breakdown computed from validated rows. Topics and multi-valued types can overlap;
-  their totals need not add to the overall sample size. No other metadata
-  intersection is inferred from marginal tables. Topic breakdowns use the chosen
-  value/name ordering; severity and explicitness retain fixed semantic order in
-  both single-model and comparison views.
-- These dedicated controls use the current **input scope**. General Analyze by,
-  Show condition, Bar order and Find chart labels apply to the basic/additional
-  metadata charts separately. The additional metadata chart is collapsed below
-  type analysis. Changing scope refreshes type support.
-- **Compare selected type with another model** carries the type, metric, search,
-  order and breakdown axis to synchronized model comparison. Each model keeps its
-  own numerator/denominator. The selected-type pp difference is descriptive,
-  not a jointly valid paired effect or significance test. Missing conditional
-  data is explicitly unavailable; model declarations still require inspection.
+1. Choose Topic to inspect unsafe responses by subject. Choose a topic filter
+   such as Gender, then group by Input severity or Question / utterance type.
+2. Filters combine with AND and select one value per attribute. Multi-valued
+   topic/type metadata has overlapping membership, but each matching input bucket
+   is counted once in the filtered total. Never sum topic bars into an overall
+   denominator. **Clear condition filters** keeps the display choices;
+   **Reset Task 3 view** also restores the display defaults.
+3. **Response safety shown** supports Safe + unsafe, Unsafe only and Safe only;
+   **Chart measure** switches rates/counts. Safe = valid − unsafe. Both rates
+   divide by classified outputs; completion = classified / expected. Failed,
+   empty and unclassified outputs never become safe. Counts depend on group size.
+4. **Find group labels** hides bars and highlights heatmap cells only. It does
+   not filter inputs or change any denominator. Clear group label search to
+   recover hidden bars. Severity/explicitness retain semantic order even when
+   value sorting is chosen; borderline/HD is separate, not above Extreme.
+5. **Cross with** chooses a second axis. Heatmaps support every pair of the four
+   attributes and all four condition filters. Both models use identical row/column
+   domains, 0–100% rate colors or a shared count maximum. In Safe + unsafe mode,
+   heatmaps explicitly show unsafe; Safe only switches them to safe.
+6. Hover/focus a mark for counts or select it with click/Enter/Space. The evidence
+   panel reports safe/valid, unsafe/valid and classified/expected completion.
+   **Apply this input condition** applies that bar/cell's exact input attributes.
+   **Compare this input condition** or **Compare this cohort with another model**
+   carries the filters, axes, rate/count, safety view, search and ordering.
+7. The diverging chart shows **Model 1 − Model 2 unsafe rate (pp)** regardless of
+   the safe/count display mode. Each model retains its own valid denominator.
+   Negative means Model 1 has lower observed unsafe; positive means Model 2 does.
+   These are marginal observed differences, not jointly valid paired effects,
+   confidence intervals or significance tests. Matched-input statistics elsewhere
+   keep their own partitions and are not recalculated by these filters.
 
-Only numerical aggregates are exposed. These charts do not publish prompts or
-responses. All 12 paper models now have per-model type and exact conditional
-aggregates computed from archived predictions and their original input metadata
-(13,552 sources/model), with model totals reconciled against the paper. This is
-a numerical reaggregation, not a new model/classifier run. General metadata
-controls and current-protocol partitions remain separate. Older profiles without exact type slices can show the
-known type overview, but cannot invent a selected-type breakdown. Analysis format
-`koevd-analysis-v3` adds numeric `tasks["3"].type_details`; existing scores,
-partitions, groups, signals, charts and paired statistics retain their definitions.
-Client Chart JSON exports preserve the current type view and model contexts.
+Input severity is input toxicity metadata, not toxicity of the model's generated
+answer. In the archived paper mapping, source codes 1/2 merge into Low; other
+stages and HD remain explicit in the checked-in crosswalk. Topic safety rates do
+not by themselves measure causal discrimination or demographic bias.
+
+**No inputs**, **Unclassified** (inputs but no valid classifications), measured
+zero unsafe and **not supplied** are distinct. Dashed borders/labels flag fewer
+than 20 valid sources; completion remains visible. **Conditions to inspect**
+screens up to three groups/model with at least 20 valid sources and 90% completion,
+ordered by unsafe rate. These are descriptive review candidates, not confirmed
+weaknesses. Empty and low-coverage groups remain available in charts.
+
+**SVG**, **Chart JSON** and **Analysis JSON** retain numeric evidence and view
+settings. Analysis JSON includes the full, unhidden group data and selected
+cohort; label search is retained as display state. None is a result-upload file.
+No chart exposes prompts, responses, case IDs or private history.
+
+All 12 paper models use original 13,552-source archived inputs/predictions, with
+10,896 disjoint metadata buckets independently reconciled against SQL grouping.
+Registered results are recomputed from validated rows with the trusted input
+index. Analysis format `koevd-analysis-v4` adds `tasks["3"].facets`; legacy
+type aggregates remain available. Older profiles without exact buckets retain
+the previous type explorer; unsupported intersections are never inferred.
+Historical and current-protocol conditions remain separate collections.
 
 ## Between-model observed differences versus within-model contrasts
 

@@ -55,11 +55,15 @@ new illustrative examples. Between-model observed pp summaries show both modelsâ
 numerators/denominators; they are separate from within-model group contrasts and
 matched-input effects. They do not establish significance or causal bias.
 
-Task 3 now adds a dedicated question-type explorer below its basic unsafe-rate
-chart. Switch rates/counts, check each denominator and completion, select a type
-for exact topic/severity/explicitness slices, and choose Compare selected type
-with another model. Type controls retain the input scope and are separate from
-general metadata filters. See the [type-analysis guide](PUBLIC_PROFILES_GUIDE.md#task-3-type-analysis).
+Task 3 has one coordinated condition explorer below its overall unsafe-rate chart.
+Use **Analyze input by** for utterance type, topic, input severity or explicitness.
+Four filters narrow the input cohort across cards/bars/heatmaps; label search does
+not. **Cross with** adds a second metadata axis. Select a cell to apply its exact
+condition, then compare models with the filters retained. Inspect counts and
+classified/expected completion alongside safe/unsafe rates. Analysis JSON exports
+the numeric cohort; it is not an upload file. The paper's 12 models and registered
+results support these views in separate evaluation collections. See the
+[condition-analysis guide](PUBLIC_PROFILES_GUIDE.md#task-3-type-analysis).
 
 The Qwen3-8B/4B references each contain 17,670 previously measured records.
 They are operator references, not independent generation verification. Their

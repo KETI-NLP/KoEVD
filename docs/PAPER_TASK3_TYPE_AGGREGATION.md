@@ -1,11 +1,10 @@
-# Original paper models: Task 3 type analysis
+# Original paper models: Task 3 input-condition analysis
 
-The 12 paper models now support the same safe/unsafe type explorer as registered
-models. Open the initial **Paper experiment · 12 models** leaderboard → a model's
-**Details → Task 3**. Below the overall chart, use **Safe and unsafe responses by
-user-input type**. Select a type, inspect Topic/Input severity/Explicitness, or
-choose **Compare selected type with another model**. The comparison preserves
-the selected type, safety view, rate/count mode, search and breakdown axis.
+All twelve paper models support independent utterance-type, topic, input-severity
+and explicitness charts, AND filters and exact two-axis heatmaps. Open Details →
+Task 3 → **Analyze input by**. Select conditions and **Cross with**, then compare
+models while retaining the same cohort. See the
+[complete control guide](PUBLIC_PROFILES_GUIDE.md#task-3-type-analysis).
 
 This corrects the earlier statement that paper-model type analysis was
 unavailable: the initial public app contained summary tables only, but the
@@ -55,7 +54,9 @@ The original paper verification scripts identify these archived files:
 
 The public [numeric source](../paper_assets/data/task3_type_aggregates.json)
 records hashes and sizes of those inputs and contains 11 type groups per model
-plus 2,148 exact conditional cells. It contains no prompt/response text,
+plus 2,148 legacy exact conditional cells and 10,896 disjoint joint metadata
+buckets across the twelve models. Every bucket retains the complete topic label
+set; filtering does not sum overlapping topic membership counts. It contains no prompt/response text,
 rationales, sample IDs or per-case safety labels. Raw archives are not bundled
 with this code release or uploaded to the public Space.
 
@@ -73,7 +74,8 @@ The builder rejects duplicate or missing model/source records, unknown models,
 input/prediction metadata mismatches, contradictory safe/unsafe labels, and any
 disagreement with the paper's model totals. Independent SQL grouping of the
 original rows additionally checked all 132 type groups and 2,148 conditional
-cells. The renderer tests exercise all 12 models, all 66 model pairs, zero and
+cells; the extension independently checks all 10,896 full joint buckets against
+SQL grouping of all 162,624 original records. The renderer tests exercise all 12 models, all 66 model pairs, zero and
 missing support, rates/counts and type-to-comparison navigation.
 
 The numeric source uses byte-preserving Git attributes, so Windows newline

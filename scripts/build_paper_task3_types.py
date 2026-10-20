@@ -12,6 +12,7 @@ import csv
 import hashlib
 import json
 from pathlib import Path
+from koevd_eval.task3_facets import FacetAccumulator, encode_aggregates
 
 MODELS = dict(zip(
     ['apertus-8b-instruct-vllm','gemma-4-e4b-it-vllm','ministral-3-8b-reasoning-vllm',
@@ -92,6 +93,7 @@ def aggregate(inputs, predictions, expected):
     types = defaultdict(lambda: defaultdict(Counter))
     details = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: defaultdict(Counter))))
     statuses = defaultdict(Counter)
+    facets = defaultdict(FacetAccumulator)
     for path in predictions:
         for row in read_rows(path):
             model = row['source_model']
@@ -118,6 +120,7 @@ def aggregate(inputs, predictions, expected):
             elif label is not None or row.get('is_safe') is not None:
                 raise ValueError('Unclassified output has a safety label')
             observations = {'rows':1,'valid':int(valid),'unsafe':int(valid and label == 'unsafe')}
+            facets[model].add({'utterance_type': [type_name], **axes}, sid, valid, valid and label == 'unsafe')
             totals[model].update(observations)
             types[model][type_name].update(observations)
             for axis, values in axes.items():
@@ -134,7 +137,7 @@ def aggregate(inputs, predictions, expected):
         if (total['rows'],total['valid'],total['events']) != tuple(int(exp[k]) for k in
                 ('Total prompts','Classified responses','Unsafe responses')):
             raise ValueError('Original predictions disagree with published model counts')
-        models[MODELS[model]] = {**total,'source_model':model,'classification_status_counts':dict(sorted(statuses[model].items())),
+        models[MODELS[model]] = {**total,'facets':facets[model].result(),'source_model':model,'classification_status_counts':dict(sorted(statuses[model].items())),
             'groups':[packed(c,value) for value,c in sorted(types[model].items())],
             'type_details':[{'type_value':t,'axes':{axis:[packed(c,v) for v,c in sorted(cells.items())]
                                                  for axis,cells in sorted(axes.items())}}
@@ -170,7 +173,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     result = build(args.inputs,args.predictions,args.summary)
     path = Path(args.output);path.parent.mkdir(parents=True,exist_ok=True)
-    path.write_bytes((json.dumps(result,ensure_ascii=False,indent=2)+'\n').encode())
+    path.write_bytes(encode_aggregates(result))
     print(json.dumps({'models':len(result['models']),'rows':sum(m['rows'] for m in result['models'].values()),
                       'cells':sum(len(cells) for m in result['models'].values() for t in m['type_details'] for cells in t['axes'].values()),
                       'bytes':path.stat().st_size,'sha256':digest(path)}))
