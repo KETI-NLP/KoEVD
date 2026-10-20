@@ -1,6 +1,6 @@
 {
   "format": "sha256-file-manifest-v1",
-  "release_version": "0.3.0rc20",
+  "release_version": "0.3.0rc21",
   "basis": "exact staged Git blobs, excluding the manifest itself",
   "excludes": [
     "manifest.json",
@@ -51,7 +51,7 @@
     {
       "path": "README.md",
       "bytes": 16189,
-      "sha256": "99cf701f35b1f4c210914b4f228b8029580f52666b06cc2eac577b1dae0a34ea"
+      "sha256": "b83164ac244ec0decb44c431bd7a4b295088b7c0b0a793fe32c78fa4efbf5a3a"
     },
     {
       "path": "analysis/plot_paper_tables.py",
@@ -226,7 +226,7 @@
     {
       "path": "docs/GETTING_STARTED.md",
       "bytes": 46019,
-      "sha256": "99d7a0fc098079593229201d052fcec9cf120556581b7736de00fae39c8f512c"
+      "sha256": "315ed03a6247d537de28fb0da29870329ff6abbf7f70d952ae1484bf41a53be1"
     },
     {
       "path": "docs/GPU_MEASUREMENT_MATRIX_RESULTS.md",
@@ -1151,7 +1151,7 @@
     {
       "path": "pyproject.toml",
       "bytes": 1794,
-      "sha256": "772348a67e1f132ce70502b31dfc7a2e339611b5da19f4859bcac02c09d3f645"
+      "sha256": "088969f9cdaefc1642e5f4fd96addbd6da7373aacf4579ac5f684900ac8a2e27"
     },
     {
       "path": "reproduction/task1_metadata_v1/README.md",
@@ -1476,7 +1476,7 @@
     {
       "path": "src/koevd_eval/__init__.py",
       "bytes": 88,
-      "sha256": "15417e2e6211934fa18b358bd25f4976ca618bd2c075fc5471a6ff244b4de91b"
+      "sha256": "11c851ca51a38fc760ea73faa51c5a63a6139bb95a47d82631d39eea0f967a3a"
     },
     {
       "path": "src/koevd_eval/analysis.py",
@@ -1490,8 +1490,8 @@
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.js",
-      "bytes": 118019,
-      "sha256": "d80fe4f4241b93847a3a16e97464271dfcfe60e124065bda6202e1d48bd952e0"
+      "bytes": 118117,
+      "sha256": "aa19d744183d06b74830033b417d79fb02aa4e0f19288cbbcd93a94c37554008"
     },
     {
       "path": "src/koevd_eval/assets/home.js",
@@ -1551,7 +1551,7 @@
     {
       "path": "src/koevd_eval/assets/space.html",
       "bytes": 18267,
-      "sha256": "cecf936e33777efed4980b901d32228080d9aac72729556abfccf16fa21b7df2"
+      "sha256": "ac5fb1f09482276a519e46c5c49b72c572bcffdcaac661f4ce3347ebeb366cc1"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1865,8 +1865,8 @@
     },
     {
       "path": "tests/task3_clarity.cjs",
-      "bytes": 8368,
-      "sha256": "e3d550effd6a2bd5852140d5d95d1681f2d067631b64321030d61b279de6e7c9"
+      "bytes": 9083,
+      "sha256": "2a0cf2482e7f70e93d72c3db0e637c8871923e26a560d8192277fa1d9f0484fc"
     },
     {
       "path": "tests/task3_facets.cjs",
