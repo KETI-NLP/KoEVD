@@ -1,0 +1,194 @@
+{
+  "release": "v0.3.0-rc.21",
+  "application_source": "8634c9b456abd0df215c5431e14eb55ac05c299b",
+  "space_revision": "2c5ddd31195271980d078eeb9d8af0b2ab801fdd",
+  "pull_request": 48,
+  "inherited_feature_acceptance": "task3_clarity_rc20_receipt_20261020.json",
+  "ci_cpu_tests_per_python_version": 551,
+  "local_focused_tests": 15,
+  "isolated_install_tests": 41,
+  "renderer_marginal_and_cross_cells": 9636,
+  "independent_disjoint_contrasts": 516,
+  "paper_models": 12,
+  "registered_references": 2,
+  "prior_scores_public_revisions_and_paired_statistics_unchanged": true,
+  "source_ci": [
+    "https://github.com/KETI-NLP/KoEVD/actions/runs/39416461223",
+    "https://github.com/KETI-NLP/KoEVD/actions/runs/39416468154"
+  ],
+  "anonymous_get_checks": 16,
+  "remote_files_byte_matched": 6,
+  "browser": {
+    "passed": true,
+    "source": "8634c9b456abd0df215c5431e14eb55ac05c299b",
+    "space_revision": "2c5ddd31195271980d078eeb9d8af0b2ab801fdd",
+    "scope": "Actual anonymous public IAB UI, no upload or server-state mutation",
+    "inherited_feature_browser_receipt": "task3-clarity-20261020/browser-receipt.json",
+    "selected_cohort": {
+      "topic": "Gender",
+      "severity_band": "High",
+      "explicitness": "Implicit",
+      "unsafe": [
+        6,
+        7
+      ],
+      "classified": [
+        69,
+        98
+      ],
+      "expected": [
+        98,
+        98
+      ]
+    },
+    "table_header_counts": [
+      7,
+      7,
+      8,
+      7,
+      7
+    ],
+    "all_row_counts_match_headers": true,
+    "table_observations": [
+      {
+        "headers": [
+          "Model / group / outcome",
+          "Rate / count",
+          "Direction / availability",
+          "Numerator",
+          "Denominator and scope",
+          "Source support and scope",
+          "Classification completion"
+        ],
+        "rows": [
+          [
+            "GPT-5.4 \u00b7 Unsafe / classified",
+            "8.70%",
+            "Classifier unsafe / classified \u00b7 inspect completion before comparing",
+            "6",
+            "69 \u00b7 Classified responses in this cohort",
+            "69",
+            "70.41% \u00b7 69/98"
+          ],
+          [
+            "Apertus 8B \u00b7 Unsafe / classified",
+            "7.14%",
+            "Classifier unsafe / classified \u00b7 inspect completion before comparing",
+            "7",
+            "98 \u00b7 Classified responses in this cohort",
+            "98",
+            "100.00% \u00b7 98/98"
+          ]
+        ]
+      },
+      {
+        "headers": [
+          "Model / group / outcome",
+          "Rate / count",
+          "Direction / availability",
+          "Numerator",
+          "Denominator and scope",
+          "Source support and scope",
+          "Classification completion"
+        ],
+        "rows": [
+          [
+            "GPT-5.4 \u00b7 High",
+            "Safe 91.30% (63) \u00b7 Unsafe 8.70% (6)",
+            "Classifier safe / unsafe \u00b7 proxy measurements",
+            "6",
+            "69 \u00b7 Classified responses in this exact filtered group",
+            "69",
+            "70.41% \u00b7 69/98"
+          ],
+          [
+            "Apertus 8B \u00b7 High",
+            "Safe 92.86% (91) \u00b7 Unsafe 7.14% (7)",
+            "Classifier safe / unsafe \u00b7 proxy measurements",
+            "7",
+            "98 \u00b7 Classified responses in this exact filtered group",
+            "98",
+            "100.00% \u00b7 98/98"
+          ]
+        ]
+      },
+      {
+        "headers": [
+          "Model / group / outcome",
+          "Rate / count",
+          "Direction / availability",
+          "Compared models \u00b7 unsafe/classified and completion",
+          "Numerator",
+          "Denominator and scope",
+          "Source support and scope",
+          "Classification completion"
+        ],
+        "rows": [
+          [
+            "High",
+            "1.55 pp",
+            "Negative: Model 1 lower observed unsafe; positive: Model 2 lower observed unsafe",
+            "Model 1: unsafe 6/69; completion 69/98 (70.41%) | Model 2: unsafe 7/98; completion 98/98 (100.00%)",
+            "Not released",
+            "Not released",
+            "69",
+            "See scope summary"
+          ]
+        ]
+      },
+      {
+        "headers": [
+          "Model / group / outcome",
+          "Rate / count",
+          "Direction / availability",
+          "Numerator",
+          "Denominator and scope",
+          "Source support and scope",
+          "Classification completion"
+        ],
+        "rows": [
+          [
+            "High \u00d7 Implicit",
+            "8.70%",
+            "Classifier unsafe \u2193 \u00b7 proxy measurement",
+            "6",
+            "69 \u00b7 Classified responses in this exact filtered group",
+            "69",
+            "70.41% \u00b7 69/98"
+          ]
+        ]
+      },
+      {
+        "headers": [
+          "Model / group / outcome",
+          "Rate / count",
+          "Direction / availability",
+          "Numerator",
+          "Denominator and scope",
+          "Source support and scope",
+          "Classification completion"
+        ],
+        "rows": [
+          [
+            "High \u00d7 Implicit",
+            "7.14%",
+            "Classifier unsafe \u2193 \u00b7 proxy measurement",
+            "7",
+            "98 \u00b7 Classified responses in this exact filtered group",
+            "98",
+            "100.00% \u00b7 98/98"
+          ]
+        ]
+      }
+    ],
+    "selected_cell_evidence": "Selected observation \u00b7 GPT-5.4\nClear selection\nHigh \u00d7 Implicit\n8.70%\nClassifier unsafe \u2193 \u00b7 proxy measurement\nClassifier safe: 91.30% (63 / 69); unsafe: 8.70% (6 / 69)\nClassified responses in this exact filtered group: 6 / 69\nUnique sources (as reported): 69\nClassified / expected: 69 / 98 \u00b7 completion 70.41%\nNo interval supplied; none estimated in the browser.\n\nSelection describes this aggregate only. It does not apply an unsupported intersection or grant access to prompts or responses.\n\nApply this input condition\nSame selected input condition \u00b7 both models\n\nModel 1: unsafe 6/69 (8.70%) \u00b7 classified 69/98 (70.41%) \u00b7 unclassified 29\n\nModel 2: unsafe 7/98 (7.14%) \u00b7 classified 98/98 (100.00%) \u00b7 unclassified 0",
+    "proof": "public-task3-completion.png"
+  },
+  "raw_result_uploads": 0,
+  "new_inference": false,
+  "state_secret_resource_policy_changes": false,
+  "automatic_starts_this_followup": 1,
+  "automatic_starts_total_in_request": 2,
+  "rollback_used": false,
+  "official_ranking_enabled": false
+}
