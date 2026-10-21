@@ -1530,8 +1530,8 @@
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.js",
-      "bytes": 154528,
-      "sha256": "86174d9b4c9f6b0b080bef39c2afcf82e0e3da8560f906bc65630e3d397fa582"
+      "bytes": 154825,
+      "sha256": "6aa1196c4a3671f9bcd7fbf7a5244a3d09400a1a38fb4a9e4a4fc5ae61be847a"
     },
     {
       "path": "src/koevd_eval/assets/home.js",
@@ -1651,7 +1651,7 @@
     {
       "path": "src/koevd_eval/assets/space.html",
       "bytes": 18456,
-      "sha256": "3baf41dfd765ef27b4914b917b8d9046d5fc43ba30ec1c4ad4d932e4c0e60d2b"
+      "sha256": "30b28f029d4ff840a85cab8b592cb0ca293d45e5881c9c88a4c751ef12b8a58f"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1900,8 +1900,8 @@
     },
     {
       "path": "tests/analysis_clarity_rc23.cjs",
-      "bytes": 6560,
-      "sha256": "d821598aaf92ebc9e1200697ef8b757d487cdd404ac7eeb1d8b93275f2896fbd"
+      "bytes": 6890,
+      "sha256": "a8c10059f068cc232a7868154a9f6a0d7b62a5a40ac540060545bb94251dfb2c"
     },
     {
       "path": "tests/behavior_analysis.cjs",
