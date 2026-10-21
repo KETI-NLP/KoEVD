@@ -25,8 +25,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 10933,
-      "sha256": "dd2fcd4eb93e23e6334cd677eb443a607b9be44b59f0fde56493ad1e0dcdb69d"
+      "bytes": 11069,
+      "sha256": "0260748ac80f3ed4e0b3b9a6f3db1e803d5a1979f7614cdaef7a4231d820eb4d"
     },
     {
       "path": "CITATION.cff",
@@ -355,8 +355,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 5765,
-      "sha256": "743adf40a7027271a2fa38443b237d9f6fef1d720a846849c68e442283fff7b2"
+      "bytes": 5680,
+      "sha256": "236e07f201901ad01724eba580acd3f0a861d21ee422d223adbd7a7eb4d28038"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC5_20261019.md",
@@ -524,6 +524,11 @@
       "sha256": "c7758976f210bb6489b51c5978249f64c4c53fb96edd472d8790ad985fc023ed"
     },
     {
+      "path": "docs/audit/public_service_acceptance_rc21_20261020.md",
+      "bytes": 5765,
+      "sha256": "743adf40a7027271a2fa38443b237d9f6fef1d720a846849c68e442283fff7b2"
+    },
+    {
       "path": "docs/audit/public_service_acceptance_rc9_20261019.md",
       "bytes": 5944,
       "sha256": "788c2d16a30165f1b1ba9a7e82904aadf979ded2d26a68841965b98b36634074"
@@ -552,6 +557,11 @@
       "path": "docs/audit/task_analysis_context_rc13_receipt_20261020.json",
       "bytes": 8336,
       "sha256": "ed96a2de7c385f4cf18b4d03b510beb6c7cb1b0b31ed5b0dd3134ca4e3db9bf3"
+    },
+    {
+      "path": "docs/audit/task_behavior_initial_rc22_receipt_20261021.json",
+      "bytes": 950,
+      "sha256": "59ea958e0896b9c5cc2c834abcd2852cfcfc7e7c142461a5f0a62f090c978fb7"
     },
     {
       "path": "docs/strategy_label_map.json",
@@ -1525,8 +1535,8 @@
     },
     {
       "path": "src/koevd_eval/assets/leaderboard.js",
-      "bytes": 29367,
-      "sha256": "ab34e0d4c62cbbee43c7fac4e0f6d843dce33f7c8e3af93f99554f2703a8a371"
+      "bytes": 29520,
+      "sha256": "05389588c443902caa88af43e2968cf00d653171d730a180c47dd0773c643d13"
     },
     {
       "path": "src/koevd_eval/assets/metric_labels.js",
@@ -1636,7 +1646,7 @@
     {
       "path": "src/koevd_eval/assets/space.html",
       "bytes": 18267,
-      "sha256": "b15193bcf96112ac243597cadebbdb53c6e5ed868cc6c6baaff7a4b4fe83c0c9"
+      "sha256": "73ab24a905b64166a6f1bf15aa174473481738ca8d96af1f46c932bf16aedf9c"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1905,8 +1915,8 @@
     },
     {
       "path": "tests/comparison_journey.cjs",
-      "bytes": 12129,
-      "sha256": "21a9c59ecbf80811160f700627b126255d5cbb8dc0d26bd69a44368e61710e4f"
+      "bytes": 15052,
+      "sha256": "6568c00580509d11dd06d94c0e87daabb5b3c99755d52854eec7b0ba1c459d0a"
     },
     {
       "path": "tests/detail_charts.cjs",

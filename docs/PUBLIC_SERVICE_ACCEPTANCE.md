@@ -1,87 +1,86 @@
-# Public service acceptance: Task 3 interpretation and exploration
+# Public service acceptance: exact task-condition analysis
 
-Updated 2026-10-20. **[v0.3.0-rc.21](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.21)
-is deployed** in the [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
-See the [first-user guide](GETTING_STARTED.md), [Task 3 chart guide](PUBLIC_PROFILES_GUIDE.md#task-3-type-analysis)
-and [machine-readable acceptance receipt](audit/task3_clarity_rc21_receipt_20261020.json).
-[Previous rc19 acceptance](audit/public_service_acceptance_rc19_20261020.md)
-preserves the original four-axis aggregation and deployment evidence.
-[rc20 acceptance](audit/public_service_acceptance_rc20_20261020.md) retains the
-five-part interpretation/exploration rollout and its actual browser evidence.
+Updated 2026-10-21. **[v0.3.0-rc.22](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.22)**
+provides Task 3 interpretation fixes and Task 4/5 condition analysis in the
+[public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+Use the [first-user guide](GETTING_STARTED.md) and [task analysis guide](TASK_ANALYSIS_GUIDE.md).
+The release attachment [task_behavior_acceptance_20261021.json](https://github.com/KETI-NLP/KoEVD/releases/download/v0.3.0-rc.22/task_behavior_acceptance_20261021.json)
+records the final application source, active Space revision, CI and browser acceptance.
 
-## What changed
+## User-visible changes
 
-- Exact numerical tables now keep headings and values aligned: ordinary charts
-  have seven columns; rate-difference charts have eight, with a named comparison
-  evidence column for both models’ counts and completion. No measurements changed.
+- Task 3 individual and comparison severity rows use semantic order. Filtered
+  charts are separated from collapsed full-paper tables. Rate differences name
+  both models' denominators, not an unavailable single fraction. Exact cells show
+  counts and completion, and a supported-contrast preview provides an entry point.
+- Selected evidence follows its chart in normal flow rather than covering cells.
+  Comparison layouts stack on narrow screens. Missing, zero, small support and
+  low completion remain distinct.
+- Task 4 includes all 15 strategies, focused strategy-by-condition views, an
+  optional full matrix, response-label groups and count/directional co-inclusion.
+  Strategy eligibility and full-input completion are separate. The displayed
+  mean excludes the Unsafe marker; the original paper density remains unchanged.
+- Task 5 connects three instruction framings, seven exclusive outcomes, input
+  condition heatmaps and same-input Task 3 response-label/choice correspondence.
+  Valid-choice and all-matched denominators are selectable for the correspondence
+  bars. Outcomes include invalid and unclassified/missing response groups.
+- Four input attributes combine exactly with AND; Task 5 also supports tool-risk
+  category. Topic intersections retain required memberships. Detail-to-comparison
+  handoff keeps the task, condition, strategy or response-group denominator.
+  Conditions are task-specific; reset and condition undo are explicit.
+- Historical per-model detail assets load separately from the initial leaderboard.
+  Failed loads retain the original tables and offer retry. Late success or failure
+  cannot overwrite a changed model, model pair, invalid pair or evaluation collection.
 
-- Grouping, input conditions and group/cross-chart display controls are separated,
-  before the filtered summaries. Classification completion, unclassified counts
-  and small source support remain explicit. Unsafe/classified is the primary
-  observation; unsafe/all expected is supporting information, not a standalone
-  safety score. Low completion and differences in completion are flagged.
-- Multi-label topic/type selection retains the exact intersection: applying Taste
-  inside Gender keeps Gender ∩ Taste rather than broadening to all Taste inputs.
-  Required memberships have removable chips, survive reload and follow detail
-  into model comparison. Per-scope condition undo remains local to the page.
-- Safe heatmaps use teal and unsafe heatmaps red. Cross charts share domains/scales,
-  align on wide screens and stack on narrow screens. A selected cross cell shows
-  both models' classified denominators, completion and unclassified counts.
-- The independent fixed-unsafe difference panel explicitly ignores Safe/count
-  display switches while retaining input filters and label search. Symmetric axes
-  adapt to ±5/10/20/50/100pp, with the full range selectable and labelled.
-- Higher/lower screening candidates compare each group with disjoint remaining
-  inputs in the same cohort. Both sides require 20 classified sources and 90%
-  completion. Excluded groups retain concrete reasons; no candidate or a zero
-  observed rate is not proof of safety. Semantic row ordering is explicit.
+## Numerical integrity and interpretation
 
-## Verified behavior and numerical evidence
+All twelve historical models were reaggregated from canonical archived records,
+with 44 source-file/table hashes. Exact published Task 4 strategy counts and selected
+frequencies, Task 5 framing counts and original Task 3/5 correspondence reconcile.
+Metadata and source inventories are consistent across models/framings. No generation,
+classifier or parser inference was rerun; no prompts, responses or source IDs are
+included in the new public numerical assets.
 
-**551 CPU tests passed in Python 3.10 and 3.12 CI** for the final source. The
-table follow-up passed **15 focused local tests**; the preceding rc20 feature
-source also passed all 551 tests locally with pinned production dependencies.
-A fresh GitHub checkout/install of rc21 passed **41 focused tests**, CLI checks,
-pip check and the exact **445-file release manifest**; the release tag matches
-the tested application source. Renderer checks cover **9,636 marginal/cross cells**
-and **516 independently summed disjoint contrasts** across all 12 historical models.
+Historical Parsed rows include partial parsed objects without a decision. The
+new outcome view requires successful status, a recognized decision and an available
+tool for calls. Two archived call decisions without a tool are explicitly invalid
+in this view. Original unsafe/all scores, parse counts and correspondence are
+preserved and reconciled separately. Historical and registered definitions are
+not merged into one ranking.
 
-The preceding rc20 actual anonymous public-browser checks covered the initial 12-model leaderboard,
-co-topic selection, detail-to-comparison handoff, condition recovery, keyboard
-cross-cell evidence, Safe/count heatmaps, fixed pp differences, screening reasons
-and registered-model comparison. At a 390px viewport the paired chart stacked in
-one column and the document did not overflow (375px document width).
-The final rc21 browser check reverified the selected paper cohort, paired cell
-evidence and every displayed numerical table’s header/value alignment.
+Task 4 is descriptive. Task 3 safety labels and Task 5 choices are parallel
+measurements on matched inputs, not an executed tool sequence or a causal effect.
+Different models can have different valid denominators and response-label groups.
+No combined ethics score, significance claim or official ranking is introduced.
 
-Concrete observations (different cohorts must not be pooled):
+## Validation and operation
 
-| Cohort | Model 1 unsafe/classified | Model 2 unsafe/classified | Expected/model |
-|---|---|---|---|
-| Paper GPT-5.4 vs Apertus 8B: Gender ∩ Taste | 0/8 | 3/11 | 11 |
-| Paper GPT-5.4 vs Apertus 8B: Gender, High, Implicit | 6/69 | 7/98 | 98 |
-| Registered Qwen3-8B vs 4B: Core, Gender | 3/147 | 4/147 | 147 |
+The feature passed all 556 local CPU tests and Python 3.10/3.12 push/PR CI. A fresh
+GitHub checkout and isolated install passed focused tests, CLI checks, pip check
+and the exact release manifest. Renderer checks independently sum 1,992 historical
+metadata groups and test four-way intersections, co-inclusion denominators, outcome
+conservation, same-input correspondence and task-specific recovery. Existing Task 3
+checks cover 9,636 marginal/cross cells and 516 disjoint contrasts. Delayed success
+and error fixtures verify that changed selections cannot receive stale results.
 
-In the second row completion is 70.41% versus 100%; the observed unsafe-rate
-difference is +1.55pp. A ±5pp axis makes it visible without changing the value.
-Each model uses its own classified outputs; this is not a jointly valid paired
-effect, significance test or causal bias finding.
+Both complete Qwen references (17,670 records each) retain every previous diagnostic
+value after excluding additive condition buckets. Hosted numerical profiles match
+the offline engine exactly. The existing public leaderboard, publication revisions
+and paired statistics remain unchanged. Numerical assets for all twelve paper models
+and remote code hashes are checked separately from browser behavior.
 
-**16 anonymous GET checks** verified health/readiness, policy, public catalog,
-both registered profiles, their comparison, code assets, all 12 paper models and
-page routes. The public leaderboard, published revisions and existing comparison
-including paired statistics match the pre-update JSON exactly. Six remote
-repository files matched the candidate byte for byte; served text assets matched
-the server's existing UTF-8/newline normalization. No original responses were
-uploaded or disclosed during this acceptance.
+Actual browser acceptance covers historical and registered model detail/comparison,
+condition and strategy handoff, Task 4/5 condition isolation, reset/undo, explicit
+completion and separate full-paper summaries. A 390px viewport stacks comparison
+charts and retains a 375px document width without page overflow.
 
-## Source and deployment
+The service stays public on CPU Basic with one replica. Registration and explicit
+numerical sharing remain enabled; original responses stay private. Existing operator
+inputs, provider LFS rules, State/Secret settings and resource/backup policy are
+preserved. The update does not run GPU inference or upload raw result files.
 
-- Application source `8634c9b456abd0df215c5431e14eb55ac05c299b`; [PR #48](https://github.com/KETI-NLP/KoEVD/pull/48) merged.
-- [Source CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39416461223) and
-  [PR CI](https://github.com/KETI-NLP/KoEVD/actions/runs/39416468154) passed.
-- Space revision `2c5ddd31195271980d078eeb9d8af0b2ab801fdd` is RUNNING on CPU Basic, one replica.
-- Six code/metadata files, **156,258 bytes**, changed in the table follow-up. One automatic
-  build/start in this follow-up (two total in this request); no rollback. Operator inputs, LFS rules, State/Secret/resource
-  policies and existing data were preserved. No new inference or raw-result upload.
-- Registration and consent-based numerical sharing remain enabled. Official ranks,
-  raw-response publication and continuous backup activation were not introduced.
+The [initial deployment receipt](audit/task_behavior_initial_rc22_receipt_20261021.json)
+retains numerical acceptance before the small lazy-load selection follow-up. The
+release attachment linked above identifies the final deployed source and receipt.
+[Previous rc21 acceptance](audit/public_service_acceptance_rc21_20261020.md) preserves
+prior Task 3 evidence.

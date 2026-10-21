@@ -9,6 +9,7 @@ class Element {
  get options(){return this.children;}get selectedOptions(){return this.children.filter(c=>c.value===this.value);}get firstChild(){return this.children[0];}
  addEventListener(k,fn){(this.events[k]??=[]).push(fn);}fire(k){for(const fn of this.events[k]||[])fn({preventDefault(){}});}
  setAttribute(k,v){this[k]=v;}removeAttribute(k){delete this[k];}focus(){}scrollIntoView(){}before(){}after(){}
+ remove(){for(const n of allElements)n.children=n.children.filter(c=>c!==this);}
  querySelector(){return new Element();}querySelectorAll(){return this.children;}
 }
 const nodes=new Map(),node=id=>{if(!nodes.has(id)){const dynamic=allElements.find(n=>n.id===id);if(dynamic){nodes.set(id,dynamic);return dynamic;}const n=new Element(id.includes('pair-')&&!id.includes('results')&&!id.includes('build')&&!id.includes('status')||['comparison-collection','result-collection','home-sort','home-direction','leaderboard-metric','submission-upload'].includes(id)?'select':'div');nodes.set(id,n);}return nodes.get(id);};
@@ -19,12 +20,13 @@ const events={},location={hash:'',pathname:'/',origin:'http://localhost'},histor
 const publication=id=>({submission_id:id,artifact_sha256:id,model:{id:'SYNTHETIC-'+id,dtype:'float32'},display:{},revision:1,verification:{}});
 const pubs=['a','b','c'].map(publication);pubs.push({...publication('b-alias'),artifact_sha256:'b',duplicate_of:'b',display:{display_name:'SYNTHETIC alias B'}});
 const board={publications:pubs,boards:[],excluded:pubs.filter(p=>!p.duplicate_of).map(p=>({entry_id:p.submission_id,model:p.model,metric_id:'task2/variant/choose_best/accuracy_on_valid',metric:{cohort_sha256:p.submission_id==='c'?'other':'shared',direction:'higher',rate:{value:.8,numerator:4,denominator:5,sources:5},coverage:{numerator:5,denominator:5},reasons:[]}})),publication_count:4,distinct_artifact_count:3};
-let pending=[],createdHome;
+let pending=[],createdHome;let behaviorGate=false,behaviorPending=[];
 const workspace={uploads:()=>[],ready:()=>false,api:async path=>{
  if(path==='/api/registration')return {json:async()=>({enabled:true})};
  if(path==='/api/identity')return {json:async()=>({signed_in:false})};
  if(path==='/api/public/leaderboard')return {json:async()=>board};
  if(path.split('?')[0]==='/assets/paper_models.json')return {json:async()=>JSON.parse(fs.readFileSync('src/koevd_eval/assets/paper_models.json','utf8'))};
+ if(/^\/assets\/paper_behavior_/.test(path))return {json:()=>behaviorGate?new Promise((resolve,reject)=>behaviorPending.push({path,resolve,reject})):JSON.parse(fs.readFileSync('src/koevd_eval/assets/'+path.split('/').pop().split('?')[0],'utf8'))};
  if(path.includes('/profile')){const id=path.split('/')[4];return {json:async()=>({...pubs.find(p=>p.submission_id===id),scope:'summary',rank_admission:{metrics:[]},generation:{},protocol_sha256:'SYNTHETIC-protocol'})};}
  if(path.startsWith('/api/public/compare?'))return {json:()=>new Promise(resolve=>pending.push({path,resolve}))};
  throw Error('Unexpected '+path);
@@ -96,5 +98,17 @@ function resolvePair(request){const p=new URLSearchParams(request.path.split('?'
  await createdHome.paperDetail('GPT-5.4');links[1].fire('click');await tick();await tick();assert.equal(node('comparison-collection').value,'paper');assert.equal(node('paper-pair-left').value,'GPT-5.4');
  location.hash='#left=b&right=b-alias';window.dispatchEvent({type:'hashchange'});await tick();await tick();assert.match(node('public-pair-status').textContent,/same original/);assert.equal(pending.length,0);
  location.hash='#left=missing&right=a';window.dispatchEvent({type:'hashchange'});await tick();await tick();assert.match(node('public-pair-status').textContent,/currently published/);assert.equal(pending.length,0);
+ // Late lazy assets must not overwrite a changed model pair or evaluation collection.
+ behaviorGate=true;const lazy=createdHome.paperCompare('OLMo 3 7B','Gemma 4 E4B');await tick();assert.equal(behaviorPending.length,2);
+ node('paper-pair-right').value='GPT-5.4';node('paper-pair-right').fire('change');const retained=node('paper-pair-results').textContent;
+ for(const request of behaviorPending.splice(0))request.resolve(JSON.parse(fs.readFileSync('src/koevd_eval/assets/'+request.path.split('/').pop().split('?')[0],'utf8')));
+ await lazy;assert.equal(node('paper-pair-results').textContent,retained,'A completed old asset request must not restore stale comparison tables');
+ const failed=createdHome.paperCompare('Claude 4.6 Sonnet','GPT-5.4 Nano');await tick();assert.equal(behaviorPending.length,2);
+ node('comparison-collection').value='registered';node('comparison-collection').fire('change');const switched=node('paper-pair-results').textContent;
+ const delayed=behaviorPending.splice(0);delayed[1].resolve(JSON.parse(fs.readFileSync('src/koevd_eval/assets/'+delayed[1].path.split('/').pop().split('?')[0],'utf8')));delayed[0].reject(Error('SYNTHETIC delayed failure'));
+ await failed;assert.equal(node('paper-pair-results').textContent,switched,'A failed old asset request must not append a retry control to the new selection');
+ const oldDetail=createdHome.paperDetail('Ministral 3 8B');await tick();const newDetail=createdHome.paperDetail('Qwen3.5 9B');await tick();assert.equal(behaviorPending.length,2);const detailLoads=behaviorPending.splice(0);
+ detailLoads[1].resolve(JSON.parse(fs.readFileSync('src/koevd_eval/assets/'+detailLoads[1].path.split('/').pop().split('?')[0],'utf8')));await newDetail;const currentDetail=node('paper-model-detail').textContent;detailLoads[0].reject(Error('SYNTHETIC old detail failure'));await oldDetail;assert.equal(node('paper-model-detail').textContent,currentDetail,'A stale detail failure must not append old retry controls');
+ const oldValid=createdHome.paperCompare('Claude 4.6 Sonnet','Gemini 3.1 Pro');await tick();assert.equal(behaviorPending.length,2);await createdHome.paperCompare('Claude 4.6 Sonnet','Claude 4.6 Sonnet');const invalidMessage=node('paper-pair-results').textContent;for(const request of behaviorPending.splice(0))request.resolve(JSON.parse(fs.readFileSync('src/koevd_eval/assets/'+request.path.split('/').pop().split('?')[0],'utf8')));await oldValid;assert.equal(node('paper-pair-results').textContent,invalidMessage,'An invalid new pair must invalidate a pending old pair');
  console.log('Shipped UI: selection invalidation, late-response/navigation guard, detail context, strategy labels and descriptive order passed');
 })().catch(e=>{console.error(e);process.exitCode=1});

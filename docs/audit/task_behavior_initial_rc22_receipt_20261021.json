@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "source": "574f294cb41ea2c0e72058bdb57b5ce324753af8",
+  "space_revision": "18c0a201e4ef42035441e9870bf9c8ad3c7b47ba",
+  "publications": 2,
+  "historical_models": 12,
+  "offline_hosted_profiles_exact": 2,
+  "old_leaderboard_revisions_and_paired_statistics_exact": true,
+  "remote_changed_files_exact": 26,
+  "provider_lfs_exact": true,
+  "anonymous_get_checks": 21,
+  "cpu_basic_single_replica": true,
+  "new_inference": false,
+  "raw_result_uploads": 0,
+  "state_secret_resource_policy_changes": false,
+  "automatic_starts_used": 1,
+  "phase": "initial numerical deployment before lazy-load selection follow-up",
+  "release": "v0.3.0-rc.22",
+  "local_cpu_tests": 556,
+  "fresh_install_tests": 37,
+  "exact_historical_metadata_groups": 1992,
+  "historical_source_files": 44,
+  "source_ci": [
+    "https://github.com/KETI-NLP/KoEVD/actions/runs/39535816173",
+    "https://github.com/KETI-NLP/KoEVD/actions/runs/39535873101"
+  ]
+}
