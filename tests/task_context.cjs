@@ -8,6 +8,8 @@ fixture.analysis.tasks['3'].groups=['Copyright','Personal Info'].map((value,i)=>
 fixture.analysis.charts.find(c=>c.id==='core').data=fixture.analysis.tasks['3'].groups.map(g=>({label:g.value,...g.rates.event_on_valid,case_filter:{subset:'core',axis:'utterance_type',value:g.value}}));
 fixture.analysis.signals=[{task:3,partition_kind:'subset',partition_name:'core',axis:'utterance_type',value:'Personal Info',group_sources:60,remaining_sources:140,difference_pp:3.33,group_events:2,group_valid:60,remaining_events:0,remaining_valid:140}];
 const whole=fixture.analysis.tasks['4'].partitions[0];Object.assign(whole,{strategy_inclusion:{'a_evaluation':{count:8,classified:10,rate_on_classified:.8}},valid_sources:10});
+whole.co_occurrence=[{left:'a_evaluation',right:'a_evaluation',count:8,classified:10,sources:10}];
+fixture.analysis.charts.push({id:'co-occurrence',task:4,kind:'count_matrix',family:'co_occurrence',title:'Strategy co-occurrence',data:whole.co_occurrence.map(d=>({...d,case_filter:{task:4}}))});
 fixture.analysis.tasks['4'].groups=[{...whole,partition_kind:'all',partition_name:'all',axis:'severity_band',value:'High'}];
 const stored=new Map();ctx.sessionStorage={getItem:k=>stored.get(k)||null,setItem:(k,v)=>stored.set(k,v)};
 const h=new Element('div'),ui=ctx.window.KoEVDDetailCharts.mount(h,[fixture]);

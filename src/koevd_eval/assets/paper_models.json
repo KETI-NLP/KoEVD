@@ -5,8 +5,8 @@
     "task1": "Full-source unsafe judgments describe model judgments, not error or ethical quality. Per-model judgment counts are available for 11 high-coverage models; Gemini 3.1 Pro has coverage only.",
     "task2": "Unweighted mean of Choose Best, Choose Unsafe and Relative Harmfulness. Original open-model means used four variants; original commercial means used three. No answer counts are inferred from rounded percentages.",
     "task3": "Original 13,552 prompts/model. Type and exact conditional breakdowns reaggregated from archived predictions and input metadata; original counts reconcile with the paper. Inspect classified/all rates and generation skips. Classifier proxy, not independent safety ground truth; no new inference or paired significance claim.",
-    "task4": "Descriptive strategy inclusion; no quality direction. Released heatmap contains selected strategies, not all 15 labels.",
-    "task5": "Unsafe calls / all expected rows, pooled across three simulated tool-choice framings, with separate framing rows. No real tools executed.",
+    "task4": "Descriptive strategy inclusion; no quality direction. Original tables retain selected strategies. Lazy detail assets add all 15 labels, exact input filters, response-label groups and co-inclusion from reconciled archived records.",
+    "task5": "Original unsafe/all paper scores and parse counts remain unchanged. Lazy detail assets add seven normalized outcomes and exact input-condition/Task 3-label correspondence. Partial parsed objects and two decisions without a tool remain separate from valid choices. No real tools executed.",
     "comparison": "Aggregate comparison only; no matched-case, significance or independent verification claim. Do not pool with current protocol registrations."
   },
   "models": [
@@ -3427,6 +3427,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_00.json",
       "task4": {
         "Cohort": "Open-weight models",
         "Model": "Apertus 8B",
@@ -6930,6 +6931,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_01.json",
       "task4": {
         "Cohort": "Commercial",
         "Model": "Claude 4.6 Sonnet",
@@ -10432,6 +10434,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_02.json",
       "task4": {
         "Cohort": "Commercial",
         "Model": "Claude Haiku 4.5",
@@ -13935,6 +13938,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_03.json",
       "task4": {
         "Cohort": "Commercial",
         "Model": "GPT-5.4",
@@ -17438,6 +17442,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_04.json",
       "task4": {
         "Cohort": "Commercial",
         "Model": "GPT-5.4 Nano",
@@ -20941,6 +20946,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_05.json",
       "task4": {
         "Cohort": "Commercial",
         "Model": "Gemini 3.1 Flash-Lite",
@@ -24408,6 +24414,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_06.json",
       "task4": {
         "Cohort": "Commercial",
         "Model": "Gemini 3.1 Pro",
@@ -27910,6 +27917,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_07.json",
       "task4": {
         "Cohort": "Open-weight models",
         "Model": "Gemma 4 E4B",
@@ -31412,6 +31420,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_08.json",
       "task4": {
         "Cohort": "Open-weight models",
         "Model": "Ministral 3 8B",
@@ -34914,6 +34923,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_09.json",
       "task4": {
         "Cohort": "Open-weight models",
         "Model": "OLMo 3 7B",
@@ -38416,6 +38426,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_10.json",
       "task4": {
         "Cohort": "Open-weight models",
         "Model": "Qwen3.5 9B",
@@ -41918,6 +41929,7 @@
           }
         ]
       },
+      "behavior_asset": "paper_behavior_11.json",
       "task4": {
         "Cohort": "Open-weight models",
         "Model": "Qwen3.6 27B",
@@ -48455,6 +48467,277 @@
           "unsafe": "333",
           "unsafe_rate": "0.9940298507462687",
           "utter_type_label": "Providing Information"
+        }
+      ]
+    },
+    {
+      "path": "paper_assets/data/behavior_aggregates.json",
+      "sha256": "ec1131aa5b19a3da3d0d05c02712ae2febb8907939727b56b54fc509f11c1658",
+      "format": "koevd-paper-behavior-v1",
+      "provenance": [
+        {
+          "role": "task3_classification",
+          "path": "gather_llm_response/results/open_models_no_phi_task3_assistant_safety/predictions.jsonl",
+          "bytes": 257963374,
+          "sha256": "a24e0c1319e792ed0e93bb2ec1e50d6923d671690a65ed11db0d4938869eed54"
+        },
+        {
+          "role": "task3_classification",
+          "path": "gather_llm_response/results/task3_assistant_safety_gpu4567_b64/predictions.jsonl",
+          "bytes": 226448396,
+          "sha256": "1a840585dd740757fbf19ccc58be759a21a2d70763dbe64c32e13acfdfcd99e7"
+        },
+        {
+          "role": "task4_classification",
+          "path": "gather_llm_response/results/open_models_no_phi_task4_strategy_distribution/predictions.jsonl",
+          "bytes": 265253238,
+          "sha256": "12323addc7036bee6ac2648622ebe5c2028122a3457f40bb00267f1765b63444"
+        },
+        {
+          "role": "task4_classification",
+          "path": "gather_llm_response/results/task4_strategy_distribution_all_gpu4567_b4/predictions.jsonl",
+          "bytes": 226411766,
+          "sha256": "9b07ddaed9159b5f495c04398b1ca856283fd8f93a5a39ad208b89073b2177d0"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_apertus8b_instruct_vllm/apertus-8b-instruct-vllm.jsonl",
+          "bytes": 13995456,
+          "sha256": "259bcc15deb7e5c344b9e5132a7d1df7238282203c3dfc472fbb3725d0ed9105"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_commercial_full/claude-4.6-sonnet.jsonl",
+          "bytes": 14352907,
+          "sha256": "a8ca644f612774a9e74f8753a3cb94324d23cfc9965235590ebb107c408406e3"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_commercial_full/claude-haiku-4-5.jsonl",
+          "bytes": 14691314,
+          "sha256": "870317825a0a545d0ffbd9d4783ceeebb7fdaa94066278f3538d96e0ed902320"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_commercial_full/gemini-3.1-flash-lite-preview.jsonl",
+          "bytes": 14837727,
+          "sha256": "494317b81ca5d3ff69737e2f063edee77446671c7af4614598890b5047325ff7"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_commercial_full/gemini-3.1-pro-preview.jsonl",
+          "bytes": 14660597,
+          "sha256": "bca72f40d6ea06eff1099dbbcf4a6b173736f25b5d4c33e5453bd0cfe79d21a7"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_commercial_full/gpt-5.4-nano.jsonl",
+          "bytes": 15039349,
+          "sha256": "58aed52e946becef697f9925a4bfbcd41f3fca6de91b790c1413b625fc57327c"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_commercial_full/gpt-5.4.jsonl",
+          "bytes": 14844743,
+          "sha256": "b3b0abfd0ec87dabd1df54db2de8756c0710648cf00e06efb5c8951a9bc96e10"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_gemma4_e4b_it_vllm/gemma-4-e4b-it-vllm.jsonl",
+          "bytes": 14244916,
+          "sha256": "9430b66d09dfd51d5f52b46c12a06b7eda8f55c0dde61893f360170fa86ec655"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_ministral3_8b_reasoning_vllm/ministral-3-8b-reasoning-vllm.jsonl",
+          "bytes": 14256413,
+          "sha256": "6d20fce2929573207e1ccd7b405381c3043e4b327d91c810a179852b93a6698f"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_olmo3_7b_think_vllm/olmo-3-7b-think-vllm.jsonl",
+          "bytes": 16523619,
+          "sha256": "fd40c74d09b3c6b96ad9fc5002a95eca27dc619f8e3d8739c00dc764da703cf4"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_qwen35_9b_vllm/qwen3.5-9b-vllm.jsonl",
+          "bytes": 14595393,
+          "sha256": "4490cae945292730a7cef507f397b52aaaea69c0dabc3a159750c1b24d9f6a87"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_safe_guided_v5_qwen36_27b_fp8_vllm/qwen3.6-27b-fp8-vllm.jsonl",
+          "bytes": 14428346,
+          "sha256": "497c2d2f49b5c7371904b7d8abc22dc9783b8e68fdc1414d43010919dde2b941"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_apertus8b_instruct_vllm/apertus-8b-instruct-vllm.jsonl",
+          "bytes": 13375814,
+          "sha256": "05bcc5581a821a83dd9f55f70aa5d5c965afa3af88c826a053fb777731f1fd64"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_commercial_full/claude-4.6-sonnet.jsonl",
+          "bytes": 13509340,
+          "sha256": "2394fde8fb2d6d65e84030ae1d6bdce0a5d45430d99a04dcf6760c31006a7df1"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_commercial_full/claude-haiku-4-5.jsonl",
+          "bytes": 13781432,
+          "sha256": "07e315b9d5149fe794e68ca3acafecde4c5881503a7e50169cee54487f2c0922"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_commercial_full/gemini-3.1-flash-lite-preview.jsonl",
+          "bytes": 14170362,
+          "sha256": "7de8ea1129d63c61807c1f0d88887baccf2f06dd042dcaeb1f16cc914c302377"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_commercial_full/gemini-3.1-pro-preview.jsonl",
+          "bytes": 14153804,
+          "sha256": "7bf24286892acefeab6111f2097606f70d8d6a637fb1c3cfb2bb1057f4940898"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_commercial_full/gpt-5.4-nano.jsonl",
+          "bytes": 14359248,
+          "sha256": "8c00a56ae3c1fe1fca68a4cd2ea459f14074e8bc8f25021f919cb6229abe3666"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_commercial_full/gpt-5.4.jsonl",
+          "bytes": 14088933,
+          "sha256": "25b90dc1fcbc9e0c033f3307daf5cfbf7da234e36db0af50e75d6341f83b6b67"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_gemma4_e4b_it_vllm/gemma-4-e4b-it-vllm.jsonl",
+          "bytes": 13603193,
+          "sha256": "096777bc90815ef76e5b65846bbf12ac35354ecf456c4de4d695af4cc8a109aa"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_ministral3_8b_reasoning_vllm/ministral-3-8b-reasoning-vllm.jsonl",
+          "bytes": 13620426,
+          "sha256": "22f7f7d54bbe964e5fd4923232ecbdc9fbd767621c4409e86952df05f2953141"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_olmo3_7b_think_vllm/olmo-3-7b-think-vllm.jsonl",
+          "bytes": 17575797,
+          "sha256": "238d02337e8ccac3c1139b8b1ce0d7f790ff2e9e1bcac7dc2d96dfa08785ae3f"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_qwen35_9b_vllm/qwen3.5-9b-vllm.jsonl",
+          "bytes": 13743502,
+          "sha256": "e33d8ccf123fede17439250fc826134ad54f7e2b7fb40c3b11f6c036b9e4ae54"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_tool_forced_v5_qwen36_27b_fp8_vllm/qwen3.6-27b-fp8-vllm.jsonl",
+          "bytes": 13777290,
+          "sha256": "a46159cbd68ef29da1a34759c47b4b687204e9c12919be1be71ccf6047da4638"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_apertus8b_instruct_vllm/apertus-8b-instruct-vllm.jsonl",
+          "bytes": 13812339,
+          "sha256": "ed28f74c7025cb3770e5ec24e5a6111da0ae857109a12062927e29f59b178949"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_commercial_full/claude-4.6-sonnet.jsonl",
+          "bytes": 13941792,
+          "sha256": "b2563893ae6032b2d0ee2c0305fdfd91224309baa7a2c0fb8261e98243d3f4f5"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_commercial_full/claude-haiku-4-5.jsonl",
+          "bytes": 14384503,
+          "sha256": "b1e191884f4d0df66f364d4f91082b7ee9a484c7f2e1e6efb41b847f33420071"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_commercial_full/gemini-3.1-flash-lite-preview.jsonl",
+          "bytes": 14557760,
+          "sha256": "801f922c7d0e1c79ee47c588da7067d9ef970de191a84426a2f8f26db70774ae"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_commercial_full/gemini-3.1-pro-preview.jsonl",
+          "bytes": 14421497,
+          "sha256": "fe756fd3b9ad106a102b838cc6b1f5b51847675cf794054437f1f211e5f04696"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_commercial_full/gpt-5.4-nano.jsonl",
+          "bytes": 14549410,
+          "sha256": "6e3ef9d6514d7d7da04e39426561e25e4d6bc5778843f680143e55bf631fa668"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_commercial_full/gpt-5.4.jsonl",
+          "bytes": 14422534,
+          "sha256": "001ac0979c57aeb87c49c6a33e37ea44bfbab2d4c7bbc40bda91ad75442c3510"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_gemma4_e4b_it_vllm/gemma-4-e4b-it-vllm.jsonl",
+          "bytes": 13971634,
+          "sha256": "b23e8dde2be56e5f5c2b82c3bb1dc83339837b1e60d8855611d6ab1ddd4c5f3a"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_ministral3_8b_reasoning_vllm/ministral-3-8b-reasoning-vllm.jsonl",
+          "bytes": 13914404,
+          "sha256": "748a9e52dac8b1ebd4e2441ab9650c5450bc2a5b7333988dcd9e5c5eb000473d"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_olmo3_7b_think_vllm/olmo-3-7b-think-vllm.jsonl",
+          "bytes": 17611188,
+          "sha256": "c7a601c1525a39b2e8e583e170d651fdf80ee664192ebb543e3c0b935788e653"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_qwen35_9b_vllm/qwen3.5-9b-vllm.jsonl",
+          "bytes": 14111436,
+          "sha256": "4115224e7c02321fa2d79fcf8068c992d7a33dd15e2e824b9c7d2003294ff7ed"
+        },
+        {
+          "role": "task5_archived_choice",
+          "path": "gather_llm_response/task7_tool_safety/responses/main100_unsafe_induced_v5_qwen36_27b_fp8_vllm/qwen3.6-27b-fp8-vllm.jsonl",
+          "bytes": 14187049,
+          "sha256": "ba10f53d9ea174990029b12db73a6d1cf2a7e367e0fcef69f1945a3de2ade94a"
+        },
+        {
+          "role": "published_table",
+          "path": "paper_assets/tables/appendix_i_task4_model_summary.csv",
+          "bytes": 979,
+          "sha256": "b40f32250fdfe177968d3094360283801ea14605245823267159ae1fffe28356"
+        },
+        {
+          "role": "published_table",
+          "path": "paper_assets/tables/appendix_i_task4_model_included_strategy_heatmap_values.csv",
+          "bytes": 2670,
+          "sha256": "2fdad67fe56ad1fab80891547ad110872a12be9397969c1ea12d3d485b62123f"
+        },
+        {
+          "role": "published_table",
+          "path": "paper_assets/tables/appendix_j_task5_model_variant_summary.csv",
+          "bytes": 2303,
+          "sha256": "268b97adfc9292ddebbf4d0851de459a4b0a5fcb85b120f4fff19b3975c8d5fc"
+        },
+        {
+          "role": "published_overlap",
+          "path": "paper_assets/tables/task3_task5_overlap_verified.json",
+          "bytes": 4513,
+          "sha256": "2b7014427aff431072256343329ddfc1e0cf89c64061cbaca7598a02071e2304"
         }
       ]
     },
