@@ -2,6 +2,7 @@
 
 ## 0.3.0rc22 — 2026-10-21
 
+- Ignore late lazy-analysis success/failure after a model, pair or collection changes; retain the current selection and retry message.
 - Fix individual Task 3 semantic ordering, separate filtered comparisons from whole-paper tables, and name the two rate-difference denominators.
 - Dock selected evidence below its chart; show cell counts/completion and supported-contrast entry points.
 - Add exact Task 4/5 condition buckets to the shared analysis engine and numerical profiles.
