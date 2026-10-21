@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0rc24 — 2026-10-21
+
+- Keep concise chart tooltips within measured viewport bounds; reveal selected evidence with a return-to-mark action and both-model numerical support.
+- Include the Task 5 response-group denominator controller in section navigation.
+- Disclose Task 3 screening candidates hidden by display thresholds, with explicit keep/clear recovery choices.
+- Pair Task 5 outcome compositions by framing, retain all seven outcomes and exact per-model denominators, and offer chart-height expansion.
+- Add opt-in cross-task metadata transfer with target scope/count preview, unsupported-condition disclosure and independent normal task memory.
+- Preserve all twelve archived model assets, current numerical profiles and matched-input statistics.
+
 ## 0.3.0rc23 — 2026-10-21
 
 - Separate observed per-model rates from matched-input statistics in comparison guidance.

@@ -1,43 +1,34 @@
-# Public service acceptance: analysis clarity and display evidence
+# Public service acceptance: evidence and cross-task analysis flow
 
-Updated 2026-10-21. **[v0.3.0-rc.23](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.23)**
-clarifies per-model rates, source support and Task 3/4/5 exploration in the
-[public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+Updated 2026-10-21. **[v0.3.0-rc.24](https://github.com/KETI-NLP/KoEVD/releases/tag/v0.3.0-rc.24)**
+improves Task 3/4/5 evidence inspection, candidate recovery and explicit
+cross-task condition transfer in the [Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
 
-The release attachment [chart_clarity_acceptance_20261021.json](https://github.com/KETI-NLP/KoEVD/releases/download/v0.3.0-rc.23/chart_clarity_acceptance_20261021.json)
-records the exact application and Space revisions, final CI, installation and
-public-browser acceptance. See the [task analysis guide](TASK_ANALYSIS_GUIDE.md)
-and [first-user guide](GETTING_STARTED.md).
+The release attachment [analysis_flow_acceptance_20261021.json](https://github.com/KETI-NLP/KoEVD/releases/download/v0.3.0-rc.24/analysis_flow_acceptance_20261021.json)
+records exact source/Space revisions, CI, fresh installation and public-browser
+checks. See the [task analysis guide](TASK_ANALYSIS_GUIDE.md).
 
-## Interpretation and behavior
+- Tooltips use actual dimensions to stay within the viewport. Explicit selection
+  reveals full evidence and offers return to the selected mark. Task 4/5 comparison
+  evidence retains the corresponding observation for each model.
+- Task 5 response-label navigation includes its local denominator controller.
+  Outcome composition places model rows together under each framing; all seven
+  outcomes, invalid observations and expected-input denominators are preserved.
+- Task 3 candidates hidden by display thresholds have explicit keep/clear actions.
+  Their independent screening policy and all underlying cohort totals remain intact.
+- Opt-in task transfer previews source/target counts and input scope; unsupported
+  metadata are disclosed. Ordinary tabs retain independent task memory. Matching
+  metadata do not establish identical inputs, execution traces or causal effects.
+- Charts offer height expansion, and narrow matrix views reserve more data space.
 
-- Observed task charts use each model's own valid-output denominator; the separate
-  matched-input statistics use jointly valid measurements. They are named separately.
-- Unique input inventories, valid measurements and conditional row support have
-  explicit labels. Strategy co-inclusion includes full-input completion.
-- Task 3 support/completion thresholds filter display groups and mask cross cells;
-  cohort totals, mathematical denominators and contrast screening stay unchanged.
-  Every compared model must meet thresholds. Hidden counts and recovery are explicit.
-- Live numerical matrices retain both axes while scrolling, use clearer text, and
-  preserve keyboard selection, pinned evidence, numerical export and SVG export.
-  The fifteen-strategy comparison uses compact paired dots with both fractions.
-- Task 5's denominator switch is beside the affected response-group bars. The
-  seven-outcome and correspondence matrices always include invalid observations.
-  Framing marks offer explicit detail navigation and condition/framing undo.
-- Optional controls/context are collapsed initially; active input requirements
-  remain visible. Empty input conditions provide filter-removal/undo guidance.
+No inference is rerun. The twelve historical numerical assets, existing registered
+profiles, revisions, original scores and matched-input statistics remain unchanged.
+Historical and current-protocol collections stay separate; no combined ethics
+score or official rank is introduced.
 
-## Numerical and operational scope
+Public CPU Basic, one replica, operator inputs, LFS rules, state/secret settings
+and resource/backup policies are preserved. This is a code-only update with no
+raw-result uploads or new private-data transmissions.
 
-No classifier, generation or parsing inference is rerun. Original results, all
-twelve historical numerical assets, published revisions and matched statistics
-remain unchanged. Historical and current-protocol collections remain separate.
-No combined ethics score, official rank or causal/significance claim is introduced.
-
-The release receipt lists regression, fresh-install and actual browser checks.
-The service remains public CPU Basic with one replica. Existing operator inputs,
-LFS rules, state/secret settings and resource/backup policy are preserved. No
-raw-result uploads or new private transmissions are part of this update.
-
-[Previous rc22 acceptance](audit/public_service_acceptance_rc22_20261021.md)
-preserves the archived-source reconciliation and prior numerical evidence.
+[Previous rc23 acceptance](audit/public_service_acceptance_rc23_20261021.md)
+preserves the preceding denominator, evidence-filter and matrix checks.
