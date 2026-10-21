@@ -79,3 +79,6 @@
  .detail-bar-axis span:nth-child(1){left:32.7777778%}.detail-bar-axis span:nth-child(2){left:42.3611111%}.detail-bar-axis span:nth-child(3){left:51.9444444%}.detail-bar-axis span:nth-child(4){left:61.5277778%}.detail-bar-axis span:nth-child(5){left:71.1111111%}
  .detail-dot-axis span:nth-child(1){left:29.5%}.detail-dot-axis span:nth-child(2){left:38.125%}.detail-dot-axis span:nth-child(3){left:46.75%}.detail-dot-axis span:nth-child(4){left:55.375%}.detail-dot-axis span:nth-child(5){left:64%}
 }
+
+/* A viewport-sticky caption must not cover the nested sticky column headers. */
+.detail-chart:has(.detail-live-matrix)>.detail-chart-guide{position:static}

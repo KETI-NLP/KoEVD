@@ -1525,8 +1525,8 @@
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.css",
-      "bytes": 23534,
-      "sha256": "8b74b8856043fdb46965ea28698b9a12d66c6d94c531d992132db2274d3d3f41"
+      "bytes": 23695,
+      "sha256": "c660802bf547eb4a62f21d473aa3885359284cc1c9e6b51b91dd5916cfd38645"
     },
     {
       "path": "src/koevd_eval/assets/detail_charts.js",
@@ -1651,7 +1651,7 @@
     {
       "path": "src/koevd_eval/assets/space.html",
       "bytes": 18456,
-      "sha256": "30b28f029d4ff840a85cab8b592cb0ca293d45e5881c9c88a4c751ef12b8a58f"
+      "sha256": "a083b3e1a57253ba6d0bde27f481d642f0ee0840a9205f6bbfca8498b59f2b20"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
