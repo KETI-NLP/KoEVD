@@ -16,7 +16,7 @@
     window.dispatchEvent(new CustomEvent('koevd-view-change',{detail:page}));
     if(navigate)history.pushState(null,'','#'+page);
   }
-  window.KoEVDNavigation={show,current:()=>currentPage,setCompareContext(handler){compareContext=handler;},configure(enabled){registration=enabled;$('models-navigation').hidden=!enabled;show(selected());}};
+  window.KoEVDNavigation={show,current:()=>currentPage,setCompareContext(handler){compareContext=handler;},configure(enabled){const changed=registration!==enabled;registration=enabled;$('models-navigation').hidden=!enabled;if(changed||currentPage===null)show(selected());}};
   for(const a of document.querySelectorAll('#page-navigation a[data-view]'))a.addEventListener('click',e=>{
     e.preventDefault();if(a.dataset.view==='compare'&&currentPage==='detail'&&compareContext){compareContext();return;}show(a.dataset.view,{navigate:true});$('page-title').focus();});
   window.addEventListener('hashchange',()=>show(selected()));window.addEventListener('popstate',()=>show(selected()));show(selected());

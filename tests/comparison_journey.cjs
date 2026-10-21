@@ -20,14 +20,14 @@ const events={},location={hash:'',pathname:'/',origin:'http://localhost'},histor
 const publication=id=>({submission_id:id,artifact_sha256:id,model:{id:'SYNTHETIC-'+id,dtype:'float32'},display:{},revision:1,verification:{}});
 const pubs=['a','b','c'].map(publication);pubs.push({...publication('b-alias'),artifact_sha256:'b',duplicate_of:'b',display:{display_name:'SYNTHETIC alias B'}});
 const board={publications:pubs,boards:[],excluded:pubs.filter(p=>!p.duplicate_of).map(p=>({entry_id:p.submission_id,model:p.model,metric_id:'task2/variant/choose_best/accuracy_on_valid',metric:{cohort_sha256:p.submission_id==='c'?'other':'shared',direction:'higher',rate:{value:.8,numerator:4,denominator:5,sources:5},coverage:{numerator:5,denominator:5},reasons:[]}})),publication_count:4,distinct_artifact_count:3};
-let pending=[],createdHome;let behaviorGate=false,behaviorPending=[];
+let pending=[],createdHome;let behaviorGate=false,behaviorPending=[];let profileGate=false,profilePending=[];
 const workspace={uploads:()=>[],ready:()=>false,api:async path=>{
  if(path==='/api/registration')return {json:async()=>({enabled:true})};
  if(path==='/api/identity')return {json:async()=>({signed_in:false})};
  if(path==='/api/public/leaderboard')return {json:async()=>board};
  if(path.split('?')[0]==='/assets/paper_models.json')return {json:async()=>JSON.parse(fs.readFileSync('src/koevd_eval/assets/paper_models.json','utf8'))};
  if(/^\/assets\/paper_behavior_/.test(path))return {json:()=>behaviorGate?new Promise((resolve,reject)=>behaviorPending.push({path,resolve,reject})):JSON.parse(fs.readFileSync('src/koevd_eval/assets/'+path.split('/').pop().split('?')[0],'utf8'))};
- if(path.includes('/profile')){const id=path.split('/')[4];return {json:async()=>({...pubs.find(p=>p.submission_id===id),scope:'summary',rank_admission:{metrics:[]},generation:{},protocol_sha256:'SYNTHETIC-protocol'})};}
+ if(path.includes('/profile')){const id=path.split('/')[4],value={...pubs.find(p=>p.submission_id===id),scope:'summary',rank_admission:{metrics:[]},generation:{},protocol_sha256:'SYNTHETIC-protocol'};return {json:()=>profileGate?new Promise(resolve=>profilePending.push({resolve,value})):value};}
  if(path.startsWith('/api/public/compare?'))return {json:()=>new Promise(resolve=>pending.push({path,resolve}))};
  throw Error('Unexpected '+path);
 }};
@@ -110,5 +110,9 @@ function resolvePair(request){const p=new URLSearchParams(request.path.split('?'
  const oldDetail=createdHome.paperDetail('Ministral 3 8B');await tick();const newDetail=createdHome.paperDetail('Qwen3.5 9B');await tick();assert.equal(behaviorPending.length,2);const detailLoads=behaviorPending.splice(0);
  detailLoads[1].resolve(JSON.parse(fs.readFileSync('src/koevd_eval/assets/'+detailLoads[1].path.split('/').pop().split('?')[0],'utf8')));await newDetail;const currentDetail=node('paper-model-detail').textContent;detailLoads[0].reject(Error('SYNTHETIC old detail failure'));await oldDetail;assert.equal(node('paper-model-detail').textContent,currentDetail,'A stale detail failure must not append old retry controls');
  const oldValid=createdHome.paperCompare('Claude 4.6 Sonnet','Gemini 3.1 Pro');await tick();assert.equal(behaviorPending.length,2);await createdHome.paperCompare('Claude 4.6 Sonnet','Claude 4.6 Sonnet');const invalidMessage=node('paper-pair-results').textContent;for(const request of behaviorPending.splice(0))request.resolve(JSON.parse(fs.readFileSync('src/koevd_eval/assets/'+request.path.split('/').pop().split('?')[0],'utf8')));await oldValid;assert.equal(node('paper-pair-results').textContent,invalidMessage,'An invalid new pair must invalidate a pending old pair');
+ // An unchanged late registration configuration must not cancel a direct-link read.
+ profileGate=true;location.hash='#model=b';window.dispatchEvent({type:'hashchange'});await tick();assert.equal(profilePending.length,1);window.KoEVDNavigation.configure(true);const waiting=profilePending.shift();waiting.resolve(waiting.value);await tick();await tick();assert.match(node('public-metrics').textContent,/SYNTHETIC-b/);assert.doesNotMatch(node('public-metrics').textContent,/Loading model metrics/);
+ // A real change to another detail context must still invalidate the old profile.
+ location.hash='#model=c';window.dispatchEvent({type:'hashchange'});await tick();assert.equal(profilePending.length,1);await createdHome.paperDetail('GPT-5.4');const obsolete=profilePending.shift();obsolete.resolve(obsolete.value);await tick();await tick();assert.equal(node('public-metrics').hidden,true);assert.match(node('paper-model-detail').textContent,/GPT-5.4/);
  console.log('Shipped UI: selection invalidation, late-response/navigation guard, detail context, strategy labels and descriptive order passed');
 })().catch(e=>{console.error(e);process.exitCode=1});
