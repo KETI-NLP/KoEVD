@@ -20,7 +20,7 @@ const events={},location={hash:'',pathname:'/',origin:'http://localhost'},histor
 const publication=id=>({submission_id:id,artifact_sha256:id,model:{id:'SYNTHETIC-'+id,dtype:'float32'},display:{},revision:1,verification:{}});
 const pubs=['a','b','c'].map(publication);pubs.push({...publication('b-alias'),artifact_sha256:'b',duplicate_of:'b',display:{display_name:'SYNTHETIC alias B'}});
 const board={publications:pubs,boards:[],excluded:pubs.filter(p=>!p.duplicate_of).map(p=>({entry_id:p.submission_id,model:p.model,metric_id:'task2/variant/choose_best/accuracy_on_valid',metric:{cohort_sha256:p.submission_id==='c'?'other':'shared',direction:'higher',rate:{value:.8,numerator:4,denominator:5,sources:5},coverage:{numerator:5,denominator:5},reasons:[]}})),publication_count:4,distinct_artifact_count:3};
-let pending=[],createdHome,behaviorGate=false,behaviorPending=[];
+let pending=[],createdHome;let behaviorGate=false,behaviorPending=[];
 const workspace={uploads:()=>[],ready:()=>false,api:async path=>{
  if(path==='/api/registration')return {json:async()=>({enabled:true})};
  if(path==='/api/identity')return {json:async()=>({signed_in:false})};

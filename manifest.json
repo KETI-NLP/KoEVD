@@ -355,8 +355,8 @@
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE.md",
-      "bytes": 5683,
-      "sha256": "3020e67f3401be5833a871f5955157573bbb06832cbe031f24af09f750db747c"
+      "bytes": 5680,
+      "sha256": "236e07f201901ad01724eba580acd3f0a861d21ee422d223adbd7a7eb4d28038"
     },
     {
       "path": "docs/PUBLIC_SERVICE_ACCEPTANCE_RC5_20261019.md",
@@ -1915,8 +1915,8 @@
     },
     {
       "path": "tests/comparison_journey.cjs",
-      "bytes": 15048,
-      "sha256": "dde6c08382795f0cf361fbf9565a937017592d0e79986c21b24f7944161bfff0"
+      "bytes": 15052,
+      "sha256": "6568c00580509d11dd06d94c0e87daabb5b3c99755d52854eec7b0ba1c459d0a"
     },
     {
       "path": "tests/detail_charts.cjs",

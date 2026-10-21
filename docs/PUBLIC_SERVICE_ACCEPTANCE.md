@@ -56,7 +56,7 @@ No combined ethics score, significance claim or official ranking is introduced.
 ## Validation and operation
 
 The feature passed all 556 local CPU tests and Python 3.10/3.12 push/PR CI. A fresh
-GitHub checkout and isolated install passed 37 focused tests, CLI checks, pip check
+GitHub checkout and isolated install passed focused tests, CLI checks, pip check
 and the exact release manifest. Renderer checks independently sum 1,992 historical
 metadata groups and test four-way intersections, co-inclusion denominators, outcome
 conservation, same-input correspondence and task-specific recovery. Existing Task 3
