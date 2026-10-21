@@ -20,6 +20,28 @@ Chart conditions do not recompute the separate matched-input statistics.
 Evidence panels distinguish the unique input inventory, valid measurements, and
 the conditional row denominator. These numbers can legitimately differ.
 
+### Select evidence and continue an analysis
+
+Hover or keyboard-focus shows a concise tooltip positioned using its actual size.
+Click or press Enter on a mark to reveal the complete evidence panel; **Back to
+selected mark** returns to that chart position. Task 4/5 comparison evidence also
+shows the matching observation for both models, each with its own fraction and
+completion. **Expand chart height** removes that chart's internal vertical scroll;
+**Collapse chart height** restores the compact view. These controls do not change
+measurements or exports.
+
+Open **Analyze this input condition in another task** to preview the target input
+scope and expected source counts for each model. Select **Analyze this condition
+in Task 4/5/3** to copy metadata requirements explicitly. A compatible current
+scope is retained; otherwise the displayed target scope is used. Moving from
+Task 5 to Task 3/4 prefers the Task-5-linked scope when supplied. Tool risk category
+is omitted outside Task 5 with a visible notice. Conditions absent from the target
+metadata are explained and transfer is disabled; an empty intersection is warned
+before applying. Target Task 3 display evidence thresholds and label search reset
+to show all groups. Regular task tabs still restore each task independently.
+Equal metadata conditions do not establish identical input inventories, sequential
+tool execution or a causal comparison.
+
 ## Task 3: where are unsafe generated responses observed?
 
 Choose question/utterance type, topic, input severity or explicitness as the grouping
@@ -50,6 +72,12 @@ They do not establish statistical significance or confirmed strengths/weaknesses
 
 Chart JSON describes the displayed chart. Analysis JSON retains the complete
 condition aggregates and the selected display thresholds for reproducibility.
+
+Screening candidates use their own fixed support/completion policy. If a candidate
+is hidden by the current display thresholds, its card says so and offers separate
+actions to inspect it **and clear evidence filters**, or apply the condition **and
+keep evidence filters**. The latter can legitimately produce an empty display;
+clear evidence filters in the chart to recover without changing its cohort.
 
 The supported-contrast preview compares a group with disjoint remaining inputs
 inside the current cohort. Each side needs at least 20 classified sources and 90%
@@ -107,7 +135,9 @@ distinct from topic and severity and is not taken from a model's self-report.
 - **Unsafe/valid choices** excludes invalid choices. Inspect valid/expected
   completion beside every rate. Unsafe/all expected is supporting information;
   invalid outputs can lower it and are not safe.
-- **Seven outcomes** divides unsafe tool, allowed tool, other available tool,
+- **Seven outcomes** places the two models' stacked bars together under each
+  framing in comparison. The outcome colors are shared; model rows and exact
+  denominators remain distinct. **Seven outcomes** divides unsafe tool, allowed tool, other available tool,
   refusal, answer without tool, clarification and invalid by all expected inputs.
   These exclusive outcomes sum to 100% when the denominator exists. Allowed tool
   selection is not proof of correct or safe execution; no tool is actually executed.
@@ -116,7 +146,8 @@ distinct from topic and severity and is not taken from a model's self-report.
   that condition with another model. Clear filters or use Back one condition to
   recover. Task-specific conditions survive switching tasks and returning.
 - **Unsafe choice by Task 3 response label** directly compares classifier-safe
-  and classifier-unsafe groups for each framing. Use **Response-group denominator**, immediately above these bars, to switch
+  and classifier-unsafe groups for each framing. Use **Response-group denominator**, immediately above these bars (also included when using the Response safety
+  correspondence section shortcut), to switch
   between valid choices and all matched inputs. This switch affects only those
   bars: the seven-outcome composition and correspondence matrices always include
   invalid outputs in their expected-input/row denominators. The detailed correspondence matrix includes unclassified,

@@ -6,6 +6,9 @@ import unittest
 
 
 class InteractiveDetailChartsTests(unittest.TestCase):
+    def test_first_user_evidence_recovery_and_cross_task_flow(self):
+        self.run_journey('analysis_flow_rc24.cjs')
+
     def test_analysis_evidence_filters_and_live_matrix_clarity(self):
         self.run_journey('analysis_clarity_rc23.cjs')
 

@@ -82,3 +82,11 @@
 
 /* A viewport-sticky caption must not cover the nested sticky column headers. */
 .detail-chart:has(.detail-live-matrix)>.detail-chart-guide{position:static}
+
+/* Explicit selection reveals evidence; transient tips stay inside the viewport. */
+.detail-tooltip{box-sizing:border-box;max-width:min(320px,calc(100vw - 16px));max-height:calc(100vh - 16px);overflow:hidden;font-size:12px;line-height:1.5}
+.detail-selection:focus{outline:2px solid #8eafc9;outline-offset:3px}.detail-selection{scroll-margin-top:12px}
+.detail-selection>button:last-child{float:none;display:block;clear:both;margin:12px 0 0}.detail-selected-pair{border-top:1px solid #cedce8;margin-top:10px;padding-top:10px}
+.detail-task-connections{border:1px solid #cfdeea;border-radius:8px;background:#f5f9fc;margin:12px 0;padding:10px 12px;font-size:13px}.detail-task-connections>summary{font-weight:650;color:#244b6b;cursor:pointer}.detail-task-transfer{border-top:1px solid #d9e4ed;padding:12px 0 4px}.detail-task-transfer button{font-size:13px}
+.detail-candidate-hidden{font-size:13px;color:#805710;border-left:3px solid #b48639;padding:6px 10px;background:#fff8e9}.detail-local-control{scroll-margin-top:12px}
+@media(max-width:460px){.detail-type-analysis{padding:8px}.detail-chart{padding:8px}.detail-facet-matrices{gap:8px}.detail-task-connections{padding:9px}}
