@@ -25,8 +25,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 11069,
-      "sha256": "0260748ac80f3ed4e0b3b9a6f3db1e803d5a1979f7614cdaef7a4231d820eb4d"
+      "bytes": 11154,
+      "sha256": "4e09fe4ec108cd99251a7337118ba9a76b814145a4f3c655074753c3fb7d41b2"
     },
     {
       "path": "CITATION.cff",
@@ -1545,8 +1545,8 @@
     },
     {
       "path": "src/koevd_eval/assets/navigation.js",
-      "bytes": 2176,
-      "sha256": "6aa2528d267e24fb7e0dd28eb98d7af6c2b7877784faf80e669a509ff75c226b"
+      "bytes": 2244,
+      "sha256": "15e53b91a7a7ed4b85422781c5e20a65e2f9ff562edebbe9a55aa3a2427bb7ee"
     },
     {
       "path": "src/koevd_eval/assets/paper_behavior_00.json",
@@ -1645,8 +1645,8 @@
     },
     {
       "path": "src/koevd_eval/assets/space.html",
-      "bytes": 18267,
-      "sha256": "73ab24a905b64166a6f1bf15aa174473481738ca8d96af1f46c932bf16aedf9c"
+      "bytes": 18292,
+      "sha256": "76fb83d288cb5620b72780d99017fd7a86bd114f53d571c790acd433ae7f1815"
     },
     {
       "path": "src/koevd_eval/assets/space.js",
@@ -1915,8 +1915,8 @@
     },
     {
       "path": "tests/comparison_journey.cjs",
-      "bytes": 15052,
-      "sha256": "6568c00580509d11dd06d94c0e87daabb5b3c99755d52854eec7b0ba1c459d0a"
+      "bytes": 16119,
+      "sha256": "48787f0c3f4d385cd99e705c4c059351fb9768f677a8a3ec4dca79c6844ca0fa"
     },
     {
       "path": "tests/detail_charts.cjs",
