@@ -32,3 +32,12 @@ raw-result uploads or new private-data transmissions.
 
 [Previous rc23 acceptance](audit/public_service_acceptance_rc23_20261021.md)
 preserves the preceding denominator, evidence-filter and matrix checks.
+
+## Korean first-user guide
+
+The [Korean walkthrough](USER_GUIDE_KO.md) connects pinned evaluation commands,
+recovery, private registration and optional numerical sharing to real Qwen3-8B/4B
+Task 3–5 analysis examples. The GitHub README, Space header, standalone submission
+introduction and Space card link to it. This documentation/navigation update
+retains the rc24 evaluation client and its scoring definitions.
+No model results, state configuration, credentials or resource policies change.

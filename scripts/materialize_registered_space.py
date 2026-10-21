@@ -78,6 +78,9 @@ short_description: Register model results, explore scores and compare behavior
 
 # KoEVD Platform — registered research beta {__version__}
 
+**처음 사용하는 분:** [한국어 사용 가이드 · 평가 → 등록 → Task 3·4·5 분석](https://github.com/KETI-NLP/KoEVD/blob/main/docs/USER_GUIDE_KO.md)
+— 실제 Qwen 결과와 화면, 실행 명령, 실패 복구 및 점수·분모 해석을 함께 설명합니다.
+
 Start with the 12-model historical paper leaderboard, then switch Evaluation
 conditions to Registered results for current protocol submissions and the two
 Qwen references. Task 3 supports direct type/topic/input-severity/explicitness

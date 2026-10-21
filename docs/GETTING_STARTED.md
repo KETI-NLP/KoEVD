@@ -1,5 +1,7 @@
 # Evaluate your model, register its results and compare
 
+[한국어 사용 가이드: 실제 Qwen 예시로 평가·등록·Task 3–5 분석 따라 하기](USER_GUIDE_KO.md)
+
 This guide connects one complete run: **GitHub → your model endpoint → Task 1–5
 evaluation → `results.json` → private registration → optional public numerical
 comparison**. Commands use a Linux shell and run from the repository root.

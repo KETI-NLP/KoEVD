@@ -33,6 +33,8 @@ generation/measurement retries, service reconnection, cross-group model discover
 metric interpretation, latest-export checks, local prompt-budget checks, review-request cancellation and
 reversible summary sharing. Use
 [Platform controls and data handling](docs/PLATFORM_USER_GUIDE.md) as a reference.
+For a Korean walkthrough with real Qwen3-8B/4B numbers and Task 3–5 screenshots,
+see **[한국어 사용 가이드 · 내 모델 평가부터 등록·취약점 분석까지](docs/USER_GUIDE_KO.md)**.
 See [current acceptance and source/runtime versions](docs/PUBLIC_SERVICE_ACCEPTANCE.md),
 [deployment and recovery](docs/REGISTERED_SPACE_GUIDE.md),
 [public profile definitions](docs/PUBLIC_PROFILES_GUIDE.md), and
