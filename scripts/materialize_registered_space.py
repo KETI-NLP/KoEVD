@@ -84,6 +84,9 @@ Qwen references. Task 3 supports direct type/topic/input-severity/explicitness
 analysis, exact condition filters, cross heatmaps and synchronized model comparison
 for all twelve paper models from their archived predictions
 (13,552 original prompts/model). No new inference was run.
+Task 4/5 add exact condition filters, all 15 response strategies, directional
+co-inclusion, seven simulated outcomes and same-input response/choice correspondence.
+Historical details load per model; see docs/TASK_ANALYSIS_GUIDE.md in the source.
 Score definitions and denominators differ between collections;
 they do not form one common ranking. Open a model profile and Compare this model
 to retain its collection and identity. Explore without a file or sign-in.

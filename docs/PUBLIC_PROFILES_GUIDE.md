@@ -345,3 +345,10 @@ All public displays are checked snapshots, not a promise to retract files or
 snapshots that another user already downloaded. Use refresh or revisit to obtain
 current public state. These local implementations still require actual HF
 identity, remote durable preservation and hosted production acceptance.
+
+## Task 4/5 condition analysis
+
+See the [task analysis guide](TASK_ANALYSIS_GUIDE.md) for all 15 strategies,
+exact input filters, co-inclusion, seven tool-choice outcomes, framing comparisons
+and same-input Task 3/5 correspondence. Historical paper details load per model.
+Original paper scores and registered diagnostics retain their definitions.

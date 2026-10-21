@@ -17,6 +17,7 @@ import random
 
 from .common import configure_cli_stdio, row_id, write_jsonl
 from .task3_facets import FacetAccumulator, AXES as FACET_AXES
+from .behavior_facets import BehaviorAccumulator, AXES as BEHAVIOR_AXES
 from .overlap import source_id
 from .profile import AXES, axis_values, diagnostic, summarize, variant
 from .results import canonical_hash, read_document, validate_results
@@ -282,6 +283,8 @@ def analyze(document, trusted_index, *, resamples=500, seed=1729):
     records = {(r['task'], r['sample_id']): r for r in document['records']}
     options = {'resamples': resamples, 'seed': seed}
     primary = primary_split(trusted_index['protocol'])
+    response_labels = {source_id(r): (diagnostic(r, 3)[2] if diagnostic(r, 3)[0] else 'unclassified')
+                       for r in tasks[3]}
     output = {'format': VERSION, 'artifact_sha256': document['content_sha256'],
               'run': deepcopy(document['run']), 'protocol': deepcopy(trusted_index['protocol']),
               'scoring': {'historical': 'koevd-0.2.0', 'diagnostic': 'strict-profile-v1', 'analysis': VERSION},
@@ -326,6 +329,16 @@ def analyze(document, trusted_index, *, resamples=500, seed=1729):
                     ok, event, _ = diagnostic(row, 3)
                     facets.add({axis: axis_values(row, axis) for axis in FACET_AXES}, source_id(row), ok, ok and event is True)
                 task_report.setdefault('facets', []).append({'partition_kind': kind, 'partition_name': name, **facets.result()})
+            if task in (4, 5) and not (task == 5 and kind == 'all'):
+                behavior = BehaviorAccumulator(task)
+                for row in values:
+                    ok, _, parsed = diagnostic(row, task)
+                    behavior.add({axis: axis_values(row, axis) for axis in BEHAVIOR_AXES}, source_id(row), ok,
+                        strategies=parsed['strategies'] if task == 4 and ok else (),
+                        outcome=tool_outcome(row) if task == 5 else 'invalid',
+                        response_label=response_labels.get(source_id(row), 'missing'))
+                task_report.setdefault('behavior_facets', []).append(
+                    {'partition_kind': kind, 'partition_name': name, **behavior.result()})
         output['tasks'][str(task)] = task_report
         counts = Counter()
         for row in sorted(rows, key=row_id):

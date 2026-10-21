@@ -12,7 +12,7 @@ from .results import canonical_hash
 from .storage import encode
 
 
-VERSION = 'koevd-public-numerical-profile-v1'
+VERSION = 'koevd-public-numerical-profile-v2'
 FIELDS = ('format', 'artifact_sha256', 'protocol', 'scoring', 'statistics',
           'interpretation', 'tasks', 'task3_task5', 'quality', 'signal_thresholds',
           'signals', 'charts')

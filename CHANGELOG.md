@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0rc22 — 2026-10-21
+
+- Fix individual Task 3 semantic ordering, separate filtered comparisons from whole-paper tables, and name the two rate-difference denominators.
+- Dock selected evidence below its chart; show cell counts/completion and supported-contrast entry points.
+- Add exact Task 4/5 condition buckets to the shared analysis engine and numerical profiles.
+- Reconcile all twelve historical models with raw archives; release numerical-only per-model lazy assets, all 15 strategies, co-inclusion, seven outcomes and matched-input response/choice correspondence.
+- Keep original paper scores, current strict diagnostics and publication policy unchanged; distinguish historical partial parsing and two missing-tool decisions.
+
+
 ## 0.3.0rc9
 
 - Recover expired/missing temporary analysis sessions through an explicit

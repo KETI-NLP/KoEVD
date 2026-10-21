@@ -39,6 +39,13 @@ def build(root):
     type_path = 'paper_assets/data/task3_type_aggregates.json'
     type_raw = (root / type_path).read_bytes()
     task3_types = json.loads(type_raw)
+    behavior_path = 'paper_assets/data/behavior_aggregates.json'
+    behavior_raw = (root / behavior_path).read_bytes()
+    behavior = json.loads(behavior_raw)
+    assert behavior['format'] == 'koevd-paper-behavior-v1'
+    assert set(behavior['models']) == set(coverage)
+    sources.append({'path':behavior_path,'sha256':hashlib.sha256(behavior_raw).hexdigest(),
+                    'format':behavior['format'],'provenance':behavior['sources']})
     assert task3_types['format'] == 'koevd-paper-task3-types-v1'
     assert set(task3_types['models']) == set(coverage)
     sources.append({'path':type_path,'sha256':hashlib.sha256(type_raw).hexdigest(),
@@ -65,6 +72,7 @@ def build(root):
             'task2':{'variants':variants[name],'common_three_mean_pct':float(sum(Decimal(variants[name][v]) for v in common)/Decimal(3)),
                      'original_summary':native_means[name]},
             'task3':safety[name], 'task3_types':task3_types['models'][name],
+            'behavior_asset':'paper_behavior_'+str(sorted(coverage).index(name)).zfill(2)+'.json',
             'task4':strategy[name], 'task4_measurements':strategy_counts[name],
             'task4_rates':strategy_rates[name], 'task5':tools[name],
             'task5_variants':[r for r in tool_variants if r['Model']==name]})
@@ -73,8 +81,8 @@ def build(root):
         'notes':{'task1':'Full-source unsafe judgments describe model judgments, not error or ethical quality. Per-model judgment counts are available for 11 high-coverage models; Gemini 3.1 Pro has coverage only.',
                  'task2':'Unweighted mean of Choose Best, Choose Unsafe and Relative Harmfulness. Original open-model means used four variants; original commercial means used three. No answer counts are inferred from rounded percentages.',
                  'task3':'Original 13,552 prompts/model. Type and exact conditional breakdowns reaggregated from archived predictions and input metadata; original counts reconcile with the paper. Inspect classified/all rates and generation skips. Classifier proxy, not independent safety ground truth; no new inference or paired significance claim.',
-                 'task4':'Descriptive strategy inclusion; no quality direction. Released heatmap contains selected strategies, not all 15 labels.',
-                 'task5':'Unsafe calls / all expected rows, pooled across three simulated tool-choice framings, with separate framing rows. No real tools executed.',
+                 'task4':'Descriptive strategy inclusion; no quality direction. Original tables retain selected strategies. Lazy detail assets add all 15 labels, exact input filters, response-label groups and co-inclusion from reconciled archived records.',
+                 'task5':'Original unsafe/all paper scores and parse counts remain unchanged. Lazy detail assets add seven normalized outcomes and exact input-condition/Task 3-label correspondence. Partial parsed objects and two decisions without a tool remain separate from valid choices. No real tools executed.',
                  'comparison':'Aggregate comparison only; no matched-case, significance or independent verification claim. Do not pool with current protocol registrations.'},
         'models':sorted(models,key=lambda m:m['name']), 'sources':sources}
 
@@ -82,5 +90,12 @@ def build(root):
 if __name__ == '__main__':
     root = Path(__file__).resolve().parents[1]
     data = build(root)
-    (root/'src/koevd_eval/assets/paper_models.json').write_bytes(encode_aggregates(data))
+    (root/'src/koevd_eval/assets/paper_models.json').write_bytes(encode_aggregates(data).replace(b'\n', b'\r\n'))
+    raw = (root/'paper_assets/data/behavior_aggregates.json').read_bytes()
+    behavior = json.loads(raw)
+    for model in data['models']:
+        value = {'format':'koevd-paper-model-behavior-v1', 'model':model['name'],
+                 'source_sha256':hashlib.sha256(raw).hexdigest(),
+                 'notes':behavior['notes'], 'tasks':behavior['models'][model['name']]}
+        (root/'src/koevd_eval/assets'/model['behavior_asset']).write_bytes(encode_aggregates(value))
     print(json.dumps({'models':len(data['models']),'sources':len(data['sources'])}))

@@ -1,6 +1,6 @@
 # KoEVD evaluation and analysis
 
-**Evaluation client: v0.3.0-rc.21 (package 0.3.0rc21).** Evaluate your own model, export
+**Evaluation client: v0.3.0-rc.22 (package 0.3.0rc22).** Evaluate your own model, export
 portable JSON, build offline reports, and register results in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
 Anonymous visitors start with the 12-model historical paper leaderboard. Each
@@ -203,3 +203,12 @@ The reference evaluation software uses the existing Apache-2.0 license. Copied c
 See [the camera-ready reproduction notes](docs/REPRODUCIBILITY.md#camera-ready-reproducibility-clarification--2026-09-15) for the separate 532-input safety reproduction, unresolved new-response measurement limits, exact Task 2 contracts, and [historical Task 1 metadata overlay](reproduction/task1_metadata_v1/README.md). The overlay preserves canonical data and makes the paper-specific grouping explicit.
 
 See [the camera-ready supplement and pinned documentation revisions](docs/CAMERA_READY_RELEASE.md) for the historical Task 1 view and latest reproduction evidence.
+
+### Analyze strategies and simulated choices
+
+Task 4/5 now support exact input-condition filters and synchronized model comparison
+for the 12 archived paper models and current-protocol registrations. Focus a strategy,
+inspect directional co-inclusion, compare framing-specific outcome distributions,
+and relate Task 3 response labels to Task 5 simulated choices.
+Read the [task analysis guide](docs/TASK_ANALYSIS_GUIDE.md) for denominators,
+completion, historical parsing differences and interpretation limits.
