@@ -6,6 +6,9 @@ import unittest
 
 
 class InteractiveDetailChartsTests(unittest.TestCase):
+    def test_analysis_evidence_filters_and_live_matrix_clarity(self):
+        self.run_journey('analysis_clarity_rc23.cjs')
+
     def test_task3_denominators_filters_colors_and_contrasts(self):
         self.run_journey('task3_clarity.cjs')
 

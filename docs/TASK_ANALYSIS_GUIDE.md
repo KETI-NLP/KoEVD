@@ -5,6 +5,21 @@ Choose an evaluation collection, open a model, and select a task. Historical pap
 experiments and current-protocol registrations have different inputs and measurement
 definitions. They remain separate collections; there is no combined ethics score.
 
+## Read the analysis screen
+
+Choose a grouping attribute first. **Input condition filters** opens the four
+metadata filters (plus tool-risk category in Task 5); the summary shows the number
+of active requirements. Active conditions remain visible as removable chips.
+Optional display controls and framing explanations are collapsed initially.
+The original paper summary remains separate and does not follow chart filters.
+
+Registered comparison has two distinct outputs: task charts subtract/compare each
+model's observed rates using its own valid measurements, while the separate
+matched-input statistics use jointly valid observations on identical inputs.
+Chart conditions do not recompute the separate matched-input statistics.
+Evidence panels distinguish the unique input inventory, valid measurements, and
+the conditional row denominator. These numbers can legitimately differ.
+
 ## Task 3: where are unsafe generated responses observed?
 
 Choose question/utterance type, topic, input severity or explicitness as the grouping
@@ -20,6 +35,21 @@ Dashed borders flag fewer than 20 sources; amber borders flag completion below 9
 Zero events with a positive denominator differ from no inputs or no classifications.
 Severity and explicitness retain semantic order in both individual and comparison
 views. Label search does not change the input cohort.
+
+Open **Chart display and evidence filters** to set **Minimum classified sources**
+(all, 20, 50, 100) and **Minimum classification completion** (all, 90%, 95%, 100%).
+These are display thresholds, not record filters: all cohort totals, rates and
+denominators stay unchanged. Bars and difference rows omit groups below either
+threshold; cross cells retain their position and say **Filtered**, distinct from
+no inputs or unclassified outputs. The status states groups shown/hidden before
+label search. In comparison, every selected model must meet the thresholds.
+The overall unsafe card/overview and supported-contrast screening are unaffected.
+Clear evidence filters or reset the Task 3 view to show all groups again.
+Thresholds survive task switching, detail-to-comparison handoff and local reload.
+They do not establish statistical significance or confirmed strengths/weaknesses.
+
+Chart JSON describes the displayed chart. Analysis JSON retains the complete
+condition aggregates and the selected display thresholds for reproducibility.
 
 The supported-contrast preview compares a group with disjoint remaining inputs
 inside the current cohort. Each side needs at least 20 classified sources and 90%
@@ -46,7 +76,10 @@ registered matched-input statistics also retain their own partitions.
    contain different inputs across models; no causal benefit is established.
 4. Open co-occurrence as counts or `P(column strategy | row strategy)`. The latter
    divides the joint count by the row-strategy inclusion count. It is directional,
-   not correlation or quality. The diagonal is 100% only when that strategy occurs;
+   not correlation or quality. The live grid keeps row and column headings fixed during horizontal/vertical
+   scrolling. Cell evidence also shows full-input completion. The two-model
+   strategy overview uses compact paired dots with both exact fractions, preserving
+   all fifteen labels and the same 0–100% scale. The diagonal is 100% only when that strategy occurs;
    an absent row has no denominator. Count colors share a maximum in comparison.
 5. Use **Compare this cohort with another model** to retain conditions and strategy
    selection. Numerical chart and analysis JSON exports retain scope and denominators.
@@ -65,7 +98,9 @@ are preserved; the two density definitions must not be conflated.
 
 The overview compares Safety-guided, Tool-forced and Unsafe-induced instructions
 under the same input filters. Their summaries explain the instructions, not literal
-benchmark prompts. Other detail charts use the selected framing, labelled above
+benchmark prompts. Select a framing overview mark and **View this framing** to update detail
+charts; **Back one condition** restores the preceding framing and input conditions.
+Other detail charts use the selected framing, labelled above
 each chart. Filters additionally include the trusted tool-risk category; this is
 distinct from topic and severity and is not taken from a model's self-report.
 
@@ -81,8 +116,10 @@ distinct from topic and severity and is not taken from a model's self-report.
   that condition with another model. Clear filters or use Back one condition to
   recover. Task-specific conditions survive switching tasks and returning.
 - **Unsafe choice by Task 3 response label** directly compares classifier-safe
-  and classifier-unsafe groups for each framing. Switch between valid choices and
-  all matched inputs. The detailed correspondence matrix includes unclassified,
+  and classifier-unsafe groups for each framing. Use **Response-group denominator**, immediately above these bars, to switch
+  between valid choices and all matched inputs. This switch affects only those
+  bars: the seven-outcome composition and correspondence matrices always include
+  invalid outputs in their expected-input/row denominators. The detailed correspondence matrix includes unclassified,
   missing and invalid observations instead of silently discarding them.
 
 Task 3 responses and Task 5 choices are separate measurements matched by original

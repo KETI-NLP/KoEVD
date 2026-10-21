@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0rc23 — 2026-10-21
+
+- Separate observed per-model rates from matched-input statistics in comparison guidance.
+- Distinguish unique input inventories, valid measurements and row support in chart evidence.
+- Add Task 3 display-only minimum support/completion thresholds with explicit excluded counts, shared comparison rules and unchanged denominators.
+- Keep matrix axes visible while scrolling, improve cell text contrast, and compact two-model strategy charts without dropping labels.
+- Place Task 5 response-group denominator beside its affected bars and add explicit framing-detail navigation with undo.
+- Collapse optional controls and framing explanations; retain active conditions and empty-condition recovery.
+
 ## 0.3.0rc22 — 2026-10-21
 
 - Keep unchanged startup configuration from cancelling a pending model-profile read.
