@@ -15,10 +15,10 @@
 
 | 현재 상황 | 시작 지점 |
 |---|---|
-| GPU 없이 분석 기능부터 살펴보고 싶다 | 8절의 Qwen 비교 실습 |
-| 내 모델을 처음부터 평가하고 싶다 | 2절부터 순서대로 진행 |
-| 표준 프로토콜 실행 폴더와 입력 인덱스가 이미 있다 | 6절에서 최신 JSON 확인 |
-| 검증된 `results.json`이 이미 있다 | 7절에서 등록 |
+| GPU 없이 분석 기능부터 살펴보고 싶다 | [1.1절에서 Qwen 비교 시작](#try-example) → [8절 분석 실습](#analysis) |
+| 내 모델을 처음부터 평가하고 싶다 | [2절부터 순서대로 진행](#evaluation) |
+| 표준 프로토콜 실행 폴더와 입력 인덱스가 이미 있다 | [6절에서 최신 JSON 확인](#export) |
+| 검증된 `results.json`이 이미 있다 | 원격 노드에 있다면 [PC로 복사](#transfer) → [7절에서 등록](#registration) |
 
 전체 흐름은 다음과 같다. **Space는 결과를 분석하는 CPU 서비스**이며, 모델 추론을 대신 실행하지 않는다.
 
@@ -45,6 +45,21 @@ flowchart LR
 | 5 | 세 가지 지시 방식에서 모의 행동 선택 | 안전 지시·도구 사용 강제·위험 행동 유도에 따라 선택이 어떻게 달라지는지 |
 
 평가 대상인 **내 모델**과, 그 응답에 라벨을 붙이는 **KoEVD 측정 모델 두 개**를 구분한다. Task 3의 safe/unsafe와 Task 4의 전략은 자동 측정 결과이다. Task 5는 텍스트로 모의 선택을 하며 실제 도구나 로봇을 작동시키지 않는다. 어떤 Task도 모델의 윤리성을 하나의 확정적인 점수로 인증하지 않는다.
+
+<a id="try-example"></a>
+
+### 1.1 업로드 없이 Qwen 예시 비교부터 시작
+
+GPU·로그인·결과 파일 없이 공개된 두 모델을 바로 분석할 수 있다.
+
+1. [Space](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform)를 열고 상단 **Compare models**를 누른다.
+2. **Evaluation collection**에서 **Registered results · rates and matched-input statistics**를 선택한다. 처음 표시되는 논문 실험 비교와 구분한다.
+3. **Left run**에서 **Qwen3-8B; full measured research reference; text withheld · revision 1**을 선택한다.
+4. **Right run**에서 **Qwen3-4B; full measured research reference; text withheld · revision 1**을 선택한다.
+5. **Compare selected runs**를 누르고 `Comparison complete` 메시지를 기다린다. 연결 오류가 나오면 현재 선택을 확인하고 화면의 재시도 안내를 따른다.
+6. 아래 **Compare task behavior** 영역에서 **Task 3 · Generated response safety**를 선택하고, **Input scope / framing**을 **Core**로 맞춘다. 이제 [8절](#analysis)부터 따라간다.
+
+첫 리더보드의 짧은 **Task 3** 버튼은 표에 표시할 점수를 고르는 기능이다. 이 실습에서는 **비교 결과 안의 Task 분석 버튼**을 사용한다. 비교가 끝나기 전에는 해당 차트와 필터가 나타나지 않는다.
 
 <a id="evaluation"></a>
 
@@ -203,8 +218,10 @@ koevd-pipeline --stage status --output-dir runs/my-model-core
 | `failed` / `pending` | 알려진 실패 / 결과 미확보. 같은 생성 명령으로 복구 |
 | `interrupted_unknown` | 요청 시작 후 응답 저장 여부를 확정하지 못함. 재실행 시 서버가 이미 처리한 요청을 다시 보낼 수 있음 |
 | `generation_checkpoint_pending` | 진행 기록 정리가 남음. 동일 생성 명령을 마친 뒤 report/export 진행 |
+| `generation_retry_pending` | 생성 복구가 아직 진행 중. `next_action`에 따라 원래 생성 명령을 완료 |
+| `measurement_promotion_pending` | 검증된 측정 결과의 최종 파일 반영이 남음. `next_action`에 따라 원래 classify 명령으로 반영을 마친 뒤 생성 복구 진행 |
 
-연결 오류나 중단 후에는 **설정과 실행 폴더를 유지한 채 동일 생성 명령을 다시 실행**한다. 확인된 성공 응답은 재사용한다. `pipeline.json`, `*.progress.jsonl`, 시도 로그·예측 파일을 삭제하지 않는다.
+상태 JSON의 **`next_action`을 먼저 읽는다.** 측정 결과 반영이 pending인 경우를 제외한 생성 연결 오류·중단은 **설정과 실행 폴더를 유지한 채 동일 생성 명령을 다시 실행**하여 복구한다. 확인된 성공 응답은 재사용한다. `pipeline.json`, `*.progress.jsonl`, 시도 로그·예측 파일을 삭제하지 않는다.
 
 **파싱 실패는 구분한다.** 서버가 성공으로 반환했으나 요구 형식에 맞지 않는 응답은 같은 명령을 반복해도 성공 응답으로 재사용된다. template·출력 예산·thinking 문제인지, 모델의 형식 준수 실패인지 원문을 확인한다. 설정을 바꿔 평가하려면 **새 실행 폴더에서 별도 run**을 만든다. 결과를 좋게 만들기 위해 일부 응답만 골라 재생성하거나 라벨·해시를 수동 수정하지 않는다.
 
@@ -234,7 +251,20 @@ koevd-pipeline --stage classify --output-dir runs/my-model-core \
 
 배치·dtype 변경은 측정 조건의 차이로 남는다. 성공한 측정까지 의도적으로 교체하려면 `--remeasure`와 `--measurement-tasks`를 명시한다. 각 시도의 기록은 `measurement_attempts/`에 보존한다. 무결성 오류를 우회하려고 파일·해시를 고치지 않는다. 요청한 dtype과 실제 실행 관측값도 구분한다.
 
+**재시도 성공 후에는 여기로 돌아온다.** Task 4만 다시 실행한 경우에도 상태를 확인하고 report를 다시 만든다.
+
+```bash
+koevd-pipeline --stage status --output-dir runs/my-model-core
+koevd-pipeline --stage report --output-dir runs/my-model-core
+```
+
+중단 복구를 마친 상태에서는 `generation_checkpoint_pending`, `generation_retry_pending`, `measurement_promotion_pending`이 `false`인지 확인한다. 남아 있으면 `next_action`을 따른다. 측정 상태가 `invalid`라면 보존된 파일의 무결성 문제를 조사한다. `complete`여도 모든 응답이 측정되었다는 뜻은 아니므로 실패·미측정 수는 별도로 읽는다.
+
+복구 후의 전체 순서는 **status → report → [6절의 export → validate → check-run → diagnose](#export)**이다. 생성 응답을 복구했다면 그 응답에 대한 classify도 마친 뒤 이 순서로 진행한다. 이전 JSON이나 보고서가 자동으로 최신화된다고 가정하지 않는다.
+
 **완료 확인:** 실패·미측정 수와 측정 기록을 확인하고 `runs/my-model-core/report/report.html`을 연다. 다음 절에서는 최신 분석용 대화형 보고서도 생성한다. 실행 성공은 분류기 정확도나 기존 논문 F1 재현을 의미하지 않는다.
+
+<a id="export"></a>
 
 ## 6. Space 제출용 JSON 생성 및 최신 상태 검사
 
@@ -277,6 +307,25 @@ koevd-diagnose --input runs/my-model-core/results.json \
 
 `results.json` 또는 이를 무손실 압축한 `.json.gz`를 선택한다. ZIP은 지원하지 않는다. 브라우저가 지원하면 일반 JSON을 자동 압축 전송하지만, **압축 해제 후 128MiB 한도**는 동일하다. 원본에는 사용자 입력·모델 응답이 포함되므로 파일 내용을 확인한 뒤 업로드한다.
 
+<a id="transfer"></a>
+
+### 6.1 원격 GPU 노드의 결과를 사용자 PC로 가져오기
+
+평가와 웹 브라우저를 같은 PC에서 실행했다면 이 단계는 생략한다. 원격 GPU 노드에서 평가했다면 **Space의 파일 선택기는 사용자 PC에 있는 파일을 고르므로**, 검사한 JSON을 먼저 PC로 복사해야 한다.
+
+GPU 노드의 저장소 최상위 폴더에서 `pwd`로 절대 경로를 확인한다. 다음 명령은 **GPU 노드가 아닌 사용자 PC의 터미널**에서 실행한다. Linux·macOS 터미널 또는 OpenSSH `scp`가 설치된 Windows PowerShell에서 사용할 수 있다. `USER`, `GPU_NODE`, `/ABSOLUTE/PATH/KoEVD`를 실제 SSH 계정·접속 주소·경로로 바꾼다.
+
+```bash
+scp USER@GPU_NODE:/ABSOLUTE/PATH/KoEVD/runs/my-model-core/results.json ./results.json
+scp USER@GPU_NODE:/ABSOLUTE/PATH/KoEVD/runs/my-model-core/diagnostics/report-v2.html ./report-v2.html
+```
+
+파일은 사용자 PC 터미널의 현재 폴더에 저장된다. SSH 별칭을 쓰면 `GPU_NODE`에 그 별칭을 넣고, 별도 포트를 쓰면 `scp -P 실제포트`를 사용한다. `scp`를 사용할 수 없다면 원격 개발 도구의 파일 다운로드 기능으로 같은 파일을 가져온다.
+
+`report-v2.html`은 자체 포함형 보고서이므로 PC로 복사한 파일을 브라우저에서 열 수 있다. Space에는 **PC에 복사한 `results.json`**을 선택한다. 원격 노드의 원본 run 폴더와 입력 인덱스는 복구·재검사를 위해 보존한다. 이후 재시도·재측정을 했다면 6절의 export·검사를 다시 수행하고 새 JSON을 PC로 다시 복사한다.
+
+**완료 확인:** PC에 JSON이 있고 보고서가 열리며, 이번에 검사한 run에서 복사한 파일인지 확인한다. 같은 이름의 오래된 다운로드 사본과 혼동하지 않는다.
+
 <a id="registration"></a>
 
 ## 7. Space 비공개 등록 → 수치 공개 → 내 모델 찾기
@@ -285,7 +334,7 @@ koevd-diagnose --input runs/my-model-core/results.json \
 
 1. [Space](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform)의 **Submit results**를 누른다. 저장하려면 업로드 전에 [독립 제출 화면](https://keti-nlp-koevd-platform.hf.space/submit)을 연다.
 2. **Sign in to save results**로 Hugging Face에 로그인하고 **Check account sign-in**으로 확인한다. HF CLI 로그인만으로 이 단계가 완료되지는 않는다.
-3. **Choose your result JSON**에서 검사한 파일을 고른 뒤 **Validate and add results**를 누른다. 완료 메시지가 나올 때까지 기다린다.
+3. **Choose your result JSON** 영역의 **Evaluation result files** 파일 선택 컨트롤에서 검사한 JSON을 고른 뒤 **Validate and add results**를 누른다. `Choose your result JSON`은 영역 제목이며 파일 선택 버튼이 아니다. 완료 메시지가 나올 때까지 기다린다.
 4. **Continue to registration**으로 이동한다. **Choose whether to register a result** 아래의 **Private analysis result to preserve**에서 방금 검증한 결과를 확인한다.
 5. 원본 모델·revision·생성·측정 설정을 확인하고 확인란을 선택한다. **Result display name**에 `내 모델 v1 · 기본 설정`처럼 구별 가능한 이름을 넣고 **Save private submission**을 누른다.
 
@@ -307,7 +356,7 @@ koevd-diagnose --input runs/my-model-core/results.json \
 
 ### 7.3 왜 내 모델이 첫 화면의 12개 목록에 없는가?
 
-첫 화면의 **Paper experiment**는 고정된 논문 실험 12개 모델이다. 새 결과는 **Registered results**에 표시된다. 평가 조건 선택기를 바꾸거나 **Show my model on leaderboard**로 이동한다.
+첫 화면의 **Paper experiment**는 고정된 논문 실험 12개 모델이다. 새 결과는 등록 결과 그룹에 표시된다. 리더보드의 **Evaluation conditions**에는 `Registered · bfloat16 · group …`처럼 dtype과 그룹 식별자를 포함한 이름이 나타난다. `Registered results`라는 단일 고정 옵션을 찾기보다는 해당 그룹을 선택하거나 **Show my model on leaderboard**로 이동한다. 비교 화면의 **Evaluation collection**에서는 **Registered results · rates and matched-input statistics**를 선택한다.
 
 | 비교 항목 | 논문 실험 | 이 가이드의 표준 등록 결과 |
 |---|---|---|
@@ -321,7 +370,7 @@ koevd-diagnose --input runs/my-model-core/results.json \
 
 내 결과에서 **Compare this result**, 또는 상세 화면의 **Compare this model**을 선택한다. **Evaluation collection**이 **Registered results · rates and matched-input statistics**인지 확인하고, 다른 공개 결과를 고른 뒤 **Compare selected runs**를 누른다.
 
-이후의 분석 실습을 그대로 따라 하려면 왼쪽에 **Qwen3-8B; full measured research reference; text withheld**, 오른쪽에 **Qwen3-4B; full measured research reference; text withheld**를 선택한다. 내 모델을 분석할 때는 한쪽을 자신의 공개 결과로 바꾸고 호환성·측정 조건 안내부터 읽는다.
+이후의 분석 실습을 그대로 따라 하려면 [1.1절의 Qwen 비교 순서](#try-example)를 사용한다. 내 모델을 분석할 때는 한쪽을 자신의 공개 결과로 바꾸고 **Compare selected runs**를 눌러 새 비교를 완료한 뒤 호환성·측정 조건 안내부터 읽는다.
 
 <a id="analysis"></a>
 
@@ -329,7 +378,7 @@ koevd-diagnose --input runs/my-model-core/results.json \
 
 ### 8.1 전체 비율에서 시작
 
-**Task 3 · Generated response safety** → **Input scope / framing: Core** → **Reset Task 3 view**를 선택한다. 이 실습에서는 Core를 유지한 채 조건만 초기화한다.
+[1.1절](#try-example) 또는 7.4절에서 비교 완료를 확인한 뒤, **비교 결과 안의 Task 3 · Generated response safety** → **Input scope / framing: Core** → **Reset Task 3 view**를 선택한다. 이 실습에서는 Core를 유지한 채 조건만 초기화한다.
 
 | 실제 기준 결과 | Unsafe / classified | Safe / classified | 분류 완료율 |
 |---|---:|---:|---:|
@@ -365,9 +414,9 @@ koevd-diagnose --input runs/my-model-core/results.json \
 
 ### 8.3 교차 차트와 표본 수로 후보 좁히기
 
-발화 유형×주제 또는 심각도×명시성의 교차 차트에서 높은 셀을 찾고 선택 패널의 **분자·분모·완료율**을 읽는다. 현재 조건으로 좁히는 동작을 사용할 때는 변경된 조건 표시와 입력 수를 다시 확인한다. **Back one condition**, 개별 조건 제거, **Clear condition filters**로 돌아갈 수 있다.
+발화 유형×주제 또는 심각도×명시성의 교차 차트에서 높은 셀을 선택하고 선택 패널의 **분자·분모·완료율**을 읽는다. **셀 선택은 수치 근거를 고정하는 단계**이며, 실제 입력 집합을 좁히려면 선택 패널의 **Apply this input condition**을 누른다. 변경된 조건 표시와 입력 수를 다시 확인한다. **Back one condition**, 개별 조건 제거, **Clear condition filters**로 돌아갈 수 있다.
 
-예를 들어 조건을 지운 Core의 `Proverb/Term Meaning`에서 4B는 **4/9 = 44.44%**이다. 높아 보이지만 입력이 9개뿐이다. `Minimum classified sources: At least 20`, `Minimum completion: 90%`를 사용하면 이런 작은 집단을 표시에서 걸러낼 수 있다. 비교 시에는 두 모델 모두 기준을 충족해야 한다.
+예를 들어 조건을 지운 Core의 `Proverb/Term Meaning`에서 4B는 **4/9 = 44.44%**이다. 높아 보이지만 입력이 9개뿐이다. 접힌 **Chart display and evidence filters**를 열고 **Minimum classified sources: At least 20**, **Minimum classification completion: At least 90%**를 선택하면 작은 집단이나 완료율이 낮은 집단을 표시에서 걸러낼 수 있다. 비교 시에는 두 모델 모두 기준을 충족해야 한다.
 
 표본 수·완료율 기준은 **차트 표시 기준**이며 현재 입력 집합·전체 카드·분모·후보 검정 정책을 바꾸지 않는다. 라벨 검색도 행을 찾는 기능이며 입력 필터가 아니다. `0%`, 분모 없는 `N/A`, 표시 기준 미달 `Filtered`는 각각 다른 상태이다.
 
@@ -375,7 +424,7 @@ koevd-diagnose --input runs/my-model-core/results.json \
 
 ## 9. Task 4: 같은 조건에서 어떤 응답 전략을 사용하는가?
 
-Task 3에서 발견한 High·Implicit 조건을 유지한 채 전략을 보려면 **Analyze this input condition in another task → Analyze this condition in Task 4**를 선택한다. 이동 후 **Core · High · Implicit**, 입력 **193개**를 확인한다. 일반 Task 버튼 전환은 Task별 저장 조건을 불러오므로 조건이 자동 복사된다고 가정하지 않는다.
+Task 3에서 발견한 High·Implicit 조건의 전략을 보려면 먼저 현재 조건을 확인한다. 8.3절에서 조건을 바꾸거나 지웠다면 8.2절처럼 **Core · High · Implicit**을 다시 설정한다. 그 상태에서 **Analyze this input condition in another task → Analyze this condition in Task 4**를 선택한다. 이동 후 **Core · High · Implicit**, 입력 **193개**를 확인한다. 일반 Task 버튼 전환은 Task별 저장 조건을 불러오므로 조건이 자동 복사된다고 가정하지 않는다.
 
 ### 9.1 전체 전략 → 관심 전략 → 동시 사용 순서로 분석
 
@@ -409,9 +458,20 @@ Task 3에서 발견한 High·Implicit 조건을 유지한 채 전략을 보려�
 
 ### 10.1 먼저 입력 집합과 프레이밍 확인
 
-Task 간 조건 연결로 High·Implicit을 Task 5에 적용하면 이 기준 결과에서는 **193 → 26개 입력**으로 바뀐다. 같은 속성 조건을 적용해도 Task 3 Core와 Task 5의 입력 목록은 다르기 때문이다. 이동 확인문과 실제 입력 수를 읽는다.
+Task 4의 Core·High·Implicit 상태에서 **Analyze this input condition in another task**를 열고 Task 5의 대상 범위가 **Tool-forced**인지 확인한 뒤 **Analyze this condition in Task 5**를 선택한다. 대상 프레이밍이 다르면 이동 후 **Input scope / framing**을 **Tool-forced**로 맞춘다. 이 기준 결과의 Tool-forced에서는 **193 → 26개 입력**으로 바뀐다. 같은 속성 조건을 적용해도 Task 3 Core와 Task 5의 입력 목록은 다르기 때문이다. 이동 확인문과 실제 입력 수를 읽는다.
 
-아래 전체 프레이밍 예시를 따라 하려면 Task 5에서 **Reset Task 5 view**로 입력 조건을 초기화한다. 현재 선택된 프레이밍은 별도로 확인하여 **Tool-forced**로 선택한다. **Framing overview**는 같은 입력 조건에 대해 세 프레이밍을 모두 보여주며, 하위 세부 차트는 선택한 프레이밍을 따른다.
+아래 전체 프레이밍 예시를 따라 하려면 Task 5에서 **Reset Task 5 view**로 입력 조건을 초기화한다. **Input scope / framing**을 별도로 확인하여 **Tool-forced**로 선택한다. 프레이밍 선택은 모든 차트를 한 프레이밍으로 제한하는 전역 필터가 아니다.
+
+| 차트 제목 또는 역할 | 표시하는 프레이밍 |
+|---|---|
+| Unsafe tool selections / valid by framing | 세 프레이밍 모두 |
+| Seven outcomes · all expected inputs by framing | 세 프레이밍 모두 |
+| Unsafe / valid · 입력 기준 × framing | 세 프레이밍 모두 |
+| Unsafe / valid by 입력 기준 · selected framing | 선택한 프레이밍 |
+| Unsafe tool choice by Task 3 response label | 세 프레이밍 모두 |
+| Same-input correspondence · Task 3 label × Task 5 outcome | 선택한 프레이밍 |
+
+따라서 Tool-forced를 선택한 뒤에도 프레이밍 비교용 차트에는 세 조건이 계속 나타난다. 각 차트 상단의 **All framings · same input filters** 또는 **Tool-forced** 표시를 읽는다. 입력 메타데이터 필터는 이 프레이밍 표시 범위와 별도로 적용된다.
 
 | 프레이밍 | 지시의 차이 |
 |---|---|
@@ -441,7 +501,16 @@ Task 간 조건 연결로 High·Implicit을 Task 5에 적용하면 이 기준 �
 
 ### 10.3 safe 응답과 unsafe 도구 선택이 함께 나타나는가?
 
-Tool-forced를 선택하고 **Response safety correspondence**로 이동한다. 이 차트는 **동일한 입력 ID**의 Task 3 응답 라벨과 Task 5 모의 선택을 연결한다.
+Tool-forced를 선택하고 **Response safety correspondence**로 이동한다. 이 영역은 **동일한 입력 ID**의 Task 3 응답 라벨과 Task 5 모의 선택을 연결한다. 막대 차트에는 세 프레이밍이 함께 있으므로 그중 **Tool-forced · classifier-safe** 행을 읽는다. 아래 대응 행렬은 선택한 Tool-forced만 보여준다.
+
+**처음 진입하거나 Reset Task 5 view를 실행한 상태의 기본값은 Response-group denominator: Valid tool choices**이다. 기본 막대의 실제 수치는 다음과 같다.
+
+| Task 3 classifier-safe 그룹 | Unsafe 선택 / 해당 라벨의 유효 선택 | 선택 완료율 |
+|---|---:|---:|
+| Qwen3-8B | 137/765 = **17.91%** | 765/766 = 99.87% |
+| Qwen3-4B | 347/752 = **46.14%** | 752/753 = 99.87% |
+
+이제 **Response-group denominator**를 **All matched inputs · includes invalid**로 바꾼다. 같은 행의 분모에 invalid도 포함되어 다음과 같이 바뀐다.
 
 | Task 3 classifier-safe 그룹 | Unsafe 선택 / 해당 라벨의 전체 대응 입력 | 선택 완료율 |
 |---|---:|---:|
@@ -450,7 +519,7 @@ Tool-forced를 선택하고 **Response safety correspondence**로 이동한다. 
 
 즉, 이 결과에서는 분류기 기준 safe 응답이 나온 입력에서도 별도 모의 과업에서 unsafe 선택이 관찰되었다. Task 3 응답을 실행하여 실제 도구가 작동한 연쇄 로그를 의미하지 않는다.
 
-**Response-group denominator**를 유효 선택 기준으로 바꾸면 각각 **137/765 = 17.91%**, **347/752 = 46.14%**이다. 이 선택기는 해당 비율 막대에 적용된다. 대응 행렬은 invalid를 포함하는 **라벨별 전체 행 분모**를 유지하여 행의 합이 100%이다. 두 모델의 classifier-safe 그룹도 766개와 753개로 서로 다르므로 동일 구성의 대응표본 비교라고 부르지 않는다.
+분모 선택기는 바로 아래의 **응답 라벨별 비율 막대**에만 적용된다. 전체 프레이밍 unsafe 차트나 대응 행렬의 분모는 바꾸지 않는다. **Valid tool choices**로 되돌리면 기본 막대의 17.91%·46.14%로 돌아간다. 대응 행렬은 항상 invalid를 포함하는 **라벨별 전체 행 분모**를 유지하여 행의 합이 100%이다. 따라서 유효 선택 막대와 대응 행렬의 퍼센트가 약간 다른 것은 정상이다. 두 모델의 classifier-safe 그룹도 766개와 753개로 서로 다르므로 동일 구성의 대응표본 비교라고 부르지 않는다.
 
 **이 단계의 산출물:** `어떤 지시 방식·입력 조건에서 위험한 모의 선택이 늘어나는지`, 그리고 `응답 안전성 라벨만으로 포착되지 않는 행동 선택 차이가 있는지`에 대한 관측 요약.
 
@@ -476,9 +545,10 @@ Tool-forced를 선택하고 **Response safety correspondence**로 이동한다. 
 
 | 문제 | 우선 확인하고 할 일 |
 |---|---|
-| 모델 연결·생성이 중단됨 | status 확인 → 설정을 유지한 동일 generate 명령. 확인된 성공은 재사용 |
+| 모델 연결·생성이 중단됨 | status의 `next_action` 확인 → 설정을 유지한 동일 generate 명령. 측정 결과 반영이 pending이면 원래 classify로 먼저 완료 |
 | API는 성공했으나 파싱 실패 | 원문·template·thinking·길이 제한 확인. 설정 변경 평가라면 새 run. 단순 재실행으로 파싱 실패가 없어지지 않음 |
-| Task 4 메모리 부족 | Task 4만 작은 batch로 재시도. 조건 차이를 보존 |
+| Task 4 메모리 부족 | Task 4만 작은 batch로 재시도 → status·report → 6절의 export·검사·diagnose. 조건 차이를 보존 |
+| GPU 노드의 결과가 파일 선택기에 보이지 않음 | 6.1절처럼 사용자 PC로 최신 JSON을 복사한 뒤 선택 |
 | JSON이 예전 결과임 | `check-run` → export·validate·check-run 반복 |
 | 입력 인덱스·프로토콜 불일치 | `protocol-index`와 고정 다운로드 사용 여부 확인. 해시·입력 ID를 임의 수정하지 않음 |
 | 여러 파일 중 일부 업로드 실패 | 성공한 파일은 유지. 실패 파일만 복구. 수정한 파일은 다시 선택하여 전송 |
