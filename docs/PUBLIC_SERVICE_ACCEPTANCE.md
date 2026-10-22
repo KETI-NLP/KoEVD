@@ -41,3 +41,12 @@ Task 3–5 analysis examples. The GitHub README, Space header, standalone submis
 introduction and Space card link to it. This documentation/navigation update
 retains the rc24 evaluation client and its scoring definitions.
 No model results, state configuration, credentials or resource policies change.
+
+## English first-user walkthrough
+
+Updated 2026-10-22: the [English guide](GETTING_STARTED.md) includes the same
+remote-transfer, recovery and worked Qwen Task 3–5 analysis path as the
+[Korean guide](USER_GUIDE_KO.md). Both are linked from the repository and Space.
+Space English entry points use the current guide on main; the evaluation client
+and input/model revisions remain pinned to rc24. This documentation/navigation
+update preserves measured results, state settings and resource policies.
