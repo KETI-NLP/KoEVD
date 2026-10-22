@@ -78,6 +78,9 @@ short_description: Register model results, explore scores and compare behavior
 
 # KoEVD Platform — registered research beta {__version__}
 
+**New users:** [English user guide · evaluate, recover, register and analyze](https://github.com/KETI-NLP/KoEVD/blob/main/docs/GETTING_STARTED.md)
+— step-by-step commands, remote file transfer, recovery and worked Qwen Task 3–5 examples.
+
 **처음 사용하는 분:** [한국어 사용 가이드 · 평가 → 등록 → Task 3·4·5 분석](https://github.com/KETI-NLP/KoEVD/blob/main/docs/USER_GUIDE_KO.md)
 — 실제 Qwen 결과와 화면, 실행 명령, 실패 복구 및 점수·분모 해석을 함께 설명합니다.
 
@@ -118,9 +121,10 @@ No GPU inference runs in this Space.
 KoEVD contains harmful research examples. Preserve attribution and the separate
 DATA_LICENSE.md research-use terms; the code license is Apache-2.0.
 
+- [English first-user walkthrough](https://github.com/KETI-NLP/KoEVD/blob/main/docs/GETTING_STARTED.md)
 - [Current deployment and version](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PUBLIC_SERVICE_ACCEPTANCE.md)
 - [Platform user guide and data handling](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PLATFORM_USER_GUIDE.md)
-- [Evaluate, recover, register and compare (v{__version__.replace('rc', '-rc.')})](https://github.com/KETI-NLP/KoEVD/blob/v{__version__.replace('rc', '-rc.')}/docs/GETTING_STARTED.md)
+- [Release-time: Evaluate, recover, register and compare (v{__version__.replace('rc', '-rc.')})](https://github.com/KETI-NLP/KoEVD/blob/v{__version__.replace('rc', '-rc.')}/docs/GETTING_STARTED.md)
 - [Portable result JSON](https://github.com/KETI-NLP/KoEVD/blob/main/docs/RESULT_FORMAT.md)
 - [Source and current validation scope](https://github.com/KETI-NLP/KoEVD)
 '''

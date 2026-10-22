@@ -2,6 +2,8 @@
 
 **기준 버전: `v0.3.0-rc.24` · Python 패키지 `0.3.0rc24` · 화면 확인: 2026-10-21**
 
+[English user guide: evaluation, recovery, registration and Task 3–5 examples](GETTING_STARTED.md)
+
 이 가이드는 처음 사용하는 연구자가 **자신의 모델을 평가하고 → 결과를 Space에 등록하고 → Task 3·4·5로 강점과 취약 조건을 찾는 과정**을 설명한다. 실행 명령은 Linux Bash 기준이며, 저장소 최상위 폴더에서 한 단계씩 실행한다. 앞 명령이 실패하면 다음 단계로 넘어가지 않는다.
 
 - [GitHub 코드](https://github.com/KETI-NLP/KoEVD)

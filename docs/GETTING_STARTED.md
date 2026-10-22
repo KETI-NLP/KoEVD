@@ -1,20 +1,73 @@
 # Evaluate your model, register its results and compare
 
+**Evaluation client: v0.3.0-rc.24 · Python package: 0.3.0rc24 · Guide checked: 2026-10-22**
+
 [한국어 사용 가이드: 실제 Qwen 예시로 평가·등록·Task 3–5 분석 따라 하기](USER_GUIDE_KO.md)
 
 This guide connects one complete run: **GitHub → your model endpoint → Task 1–5
 evaluation → `results.json` → private registration → optional public numerical
-comparison**. Commands use a Linux shell and run from the repository root.
+comparison → Task 3–5 behavior analysis**. Commands use Linux Bash and run from
+the repository root. Run them one at a time and stop if a command fails.
 The Platform analyzes uploaded results on CPU; it does not host or evaluate your
 model. You supply inference resources for your model and the two measurement models.
+The released benchmark prompts are **Korean**; use a model that can follow Korean
+instructions. This guide provides English operating instructions while keeping
+the protocol's input text and identifiers fixed.
 
 To explore first, open the [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
 No account, GPU or upload is required. The initial **Paper experiment** table
 contains **12 historical models**, with Task-specific scores and source CSVs.
-Switch **Evaluation conditions** to **Registered results** to explore the two
-full Qwen3 references and newly shared runs, their metadata trends and matched-input
-comparisons. If you already have a completed standard run and its trusted index,
-start at step 7.
+The leaderboard's **Evaluation conditions** menu labels registered groups as
+`Registered · bfloat16 · group …`, for example; the dtype and group depend on the
+recorded conditions. The separate **Compare models** view uses **Evaluation
+collection: Registered results · rates and matched-input statistics**.
+
+| Your starting point | Follow this route |
+|---|---|
+| Explore without a GPU, account or upload | [Try the Qwen comparison](#try-example), then [Task 3 analysis](#analysis) |
+| Evaluate your own model | [Install](#evaluation), then follow steps 2–9 |
+| Have a standard run and its trusted input index | [Export and check the latest JSON](#export) |
+| Have a validated `results.json` | [Copy it to your browser's PC if needed](#transfer), then [register](#registration) |
+
+The numerical examples below use the **already published Qwen3-8B/4B reference
+results**, not predictions for your target model. Their public scope includes
+metrics and metadata; response text is withheld. Your target model, the safety
+measurement model and the response-strategy measurement model have different roles:
+
+| Task | What your model does | What you inspect |
+|---|---|---|
+| 1 | Judge input risk | Missed risk and false alarms |
+| 2 | Choose among response candidates | Choice accuracy and error by instruction |
+| 3 | Generate a response | Classifier-labeled safe/unsafe responses by input condition |
+| 4 | Reuse that same Task 3 response | Multi-label response strategies; no second generation |
+| 5 | Choose a simulated action under three framings | Unsafe/allowed choices, refusals and invalid outputs |
+
+```mermaid
+flowchart LR
+  A[Fixed KoEVD inputs] --> B[Your model via vLLM]
+  B --> C[Responses and simulated choices]
+  C --> D[Safety and strategy measurements]
+  D --> E[Validated results.json]
+  E --> F[Private Space registration]
+  F --> G[Optional numerical sharing]
+  G --> H[Leaderboard and model comparison]
+  E --> I[Local report and private response cases]
+```
+
+<a id="try-example"></a>
+
+### Try the published Qwen results first
+
+1. Open the [Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform) and choose **Compare models** in the top navigation.
+2. Set **Evaluation collection** to **Registered results · rates and matched-input statistics**, rather than the historical paper comparison.
+3. Set **Left run** to **Qwen3-8B; full measured research reference; text withheld · revision 1**.
+4. Set **Right run** to **Qwen3-4B; full measured research reference; text withheld · revision 1**.
+5. Select **Compare selected runs** and wait for `Comparison complete`. If the connection fails, check the selected models and use the displayed retry guidance.
+6. In **Compare task behavior**, select **Task 3 · Generated response safety**, choose **Input scope / framing: Core**, then continue with [section 10](#analysis).
+
+The short **Task 3** button on the initial leaderboard changes table columns.
+For this walkthrough, use the Task buttons **inside the completed comparison**;
+its charts and filters appear after the comparison finishes.
 
 **Before running inference:** this guide evaluates the current **core protocol**,
 not a reproduction of every historical paper experiment. It generates 15,011
@@ -40,6 +93,8 @@ commit. Older v0.3.0-rc.1 does not include `--measurement-tasks`, `--remeasure`
 or the generation/measurement retry repair. Existing release tags are immutable. [Current service acceptance](https://github.com/KETI-NLP/KoEVD/blob/main/docs/PUBLIC_SERVICE_ACCEPTANCE.md) identifies the deployed
 release; a newer GitHub change does not itself update the Space. Earlier
 validation logs describe their original dates and versions.
+
+<a id="evaluation"></a>
 
 ## 1. Install the evaluation client
 
@@ -91,6 +146,8 @@ koevd-download --repo-id Qwen/Qwen3-8B --repo-type model \
 
 Download your **target model** separately, retaining its actual immutable revision.
 HF CLI download authentication and the Platform's browser sign-in are separate.
+As an ordinary user, you do not configure Space Secrets or private storage
+Buckets; those are operator settings, not evaluation or registration steps.
 
 ## 3. Prepare the registered full input set
 
@@ -143,13 +200,25 @@ Do not reuse it for the full protocol run above.
 ## 4. Start your model server and check the connection
 
 In your separate serving environment, install a vLLM build supported by your
-GPU/driver and target architecture. A server example, with values replaced by
-your real model repository and immutable commit:
+GPU/driver and target architecture. Keep terminal A for serving and terminal B
+for evaluation, with both at the repository root on the same GPU node in this
+example. The previous validation used vLLM 0.13.0; a starting installation example
+for compatible hardware/models is:
+
+```bash
+python3.11 -m venv .venv-serve
+source .venv-serve/bin/activate
+python -m pip install "vllm==0.13.0"
+vllm --version
+```
+
+In terminal A, replace both placeholders with your real model repository and
+immutable commit. A chat-capable template is required:
 
 ```bash
 # Replace both values with your actual model identity.
-MODEL_ID='YOUR_ORGANIZATION/YOUR_MODEL'
-MODEL_REVISION='YOUR_IMMUTABLE_COMMIT'
+export MODEL_ID='YOUR_ORGANIZATION/YOUR_MODEL'
+export MODEL_REVISION='YOUR_ACTUAL_IMMUTABLE_COMMIT'
 vllm serve "$MODEL_ID" --revision "$MODEL_REVISION" \
   --served-model-name "$MODEL_ID" --host 127.0.0.1 --port 8000 \
   --generation-config vllm
@@ -165,9 +234,14 @@ variables are not shared between environments). The served ID is exported as the
 original model ID; do not replace it with a generic alias such as `my-model`.
 For a local unpublished model, use a stable, unambiguous ID and retain its
 revision/artifact identity. The registration display name is a separate label.
-Perform a separate connection probe plus four prepared-input probes:
+In terminal B, activate the evaluation environment and set both variables again;
+shell variables are not shared between terminals. Perform a connection probe
+plus four prepared-input probes:
 
 ```bash
+source .venv-eval/bin/activate
+export MODEL_ID='YOUR_ORGANIZATION/YOUR_MODEL'
+export MODEL_REVISION='YOUR_ACTUAL_IMMUTABLE_COMMIT'
 koevd-pipeline --stage preflight --output-dir runs/my-model-core \
   --base-url http://localhost:8000/v1 --model "$MODEL_ID" \
   --temperature 0 --max-tokens 1024 --preflight-samples 4
@@ -195,16 +269,23 @@ with `--api-key-env`; do not put credentials in command arguments or JSON files.
 
 ## 5. Generate responses and retain provenance
 
-Create `model-provenance.json` from actual serving settings. Example fields:
+In terminal B, create `model-provenance.json` with the actual revision set above:
 
-```json
-{
-  "revision": null,
-  "dtype": null,
-  "quantization": null,
-  "chat_template": null,
-  "thinking": null
+```bash
+python - <<'PY'
+import json, os
+from pathlib import Path
+data = {
+    "revision": os.environ["MODEL_REVISION"],
+    "dtype": None,
+    "quantization": None,
+    "chat_template": None,
+    "thinking": None,
 }
+Path("model-provenance.json").write_text(
+    json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+)
+PY
 ```
 
 Replace known values with your real revision, dtype, template identity and
@@ -270,6 +351,15 @@ successes and logs retried attempts. The status command itself makes no model
 calls or file changes. `generation_checkpoint_pending` means generation must
 finish journal compaction before report/export, even if all responses are saved.
 
+Read the status JSON's **`next_action` first**. `generation_retry_pending` means
+generation recovery is unfinished. `measurement_promotion_pending` means that
+validated measurement output still needs promotion: finish the original classify
+command as directed before resuming generation. Keep the run and attempt files.
+An API-successful response with an invalid Task parse is reused by the same
+generation command; it is not repaired by repeatedly running it. Inspect response
+format, template, thinking settings and truncation. Changed generation settings
+require a new run directory; do not selectively rewrite responses or labels.
+
 
 ## 6. Measure responses and build the local report
 
@@ -279,7 +369,7 @@ classifier extras. See the [measured B200 installation](../README.md#install)
 and [GPU validation conditions](GPU_VALIDATION_RESULTS.md) before choosing builds.
 
 ```bash
-python -m pip install -e ".[classifiers]"
+python -m pip install -e ".[classifiers]" "transformers==5.8.1" "peft==0.18.0"
 python -m pip check
 koevd-pipeline --stage classify --output-dir runs/my-model-core \
   --safety-adapter downloads/KoEVD-assistant-safety --safety-base downloads/Qwen3.5-0.8B \
@@ -311,6 +401,22 @@ Changed settings without that explicit option are rejected. An integrity error
 requires investigating retained files; do not edit hashes or delete traces to
 force export. Keep the full run directory until validation is complete.
 
+**After a retry succeeds**, including a Task-4-only retry, check readiness and
+rebuild the report:
+
+```bash
+koevd-pipeline --stage status --output-dir runs/my-model-core
+koevd-pipeline --stage report --output-dir runs/my-model-core
+```
+
+For a recovered run, check that `generation_checkpoint_pending`,
+`generation_retry_pending` and `measurement_promotion_pending` are false; otherwise
+follow `next_action`. Investigate an `invalid` measurement state without editing
+hashes. `complete` does not mean every response was successfully measured.
+After repairing generation, classify the affected responses first. Then follow
+**status → report → [export → validate → check-run → diagnose](#export)**.
+Old JSON and report files do not automatically become current.
+
 Trace sidecars preserve observed runtime evidence locally; requested
 dtype alone does not prove arithmetic precision. They do not establish accuracy.
 
@@ -318,6 +424,8 @@ Open `runs/my-model-core/report/report.html`. This historical report is useful
 locally; step 7 also creates the interactive diagnostic report used by the app.
 Both reports preserve failures and missing measurements. Task 3 safety and Task 4
 strategy labels are measurement proxies; inspect response cases and coverage.
+
+<a id="export"></a>
 
 ## 7. Export the file for the Platform
 
@@ -377,6 +485,37 @@ select the original `.json` directly: supported browsers compress it automatical
 A lossless `.json.gz` copy is also accepted. Neither changes the expanded 128 MiB
 limit. Do not upload ZIP files or rename a profile JSON to `results.json`.
 
+<a id="transfer"></a>
+
+### Copy remote results to the PC running your browser
+
+Skip this step if evaluation and the browser run on the same computer. If you
+evaluated on a remote GPU node, the Space file picker cannot browse that node's
+filesystem. Copy the checked JSON to your own PC first.
+
+On the GPU node, use `pwd` at the repository root to identify the absolute path.
+Run the following commands **on your PC, not on the GPU node**. Use a Linux/macOS
+terminal or Windows PowerShell with OpenSSH `scp`. Replace `USER`, `GPU_NODE` and
+`/ABSOLUTE/PATH/KoEVD` with the SSH account, host/alias and actual path:
+
+```bash
+scp USER@GPU_NODE:/ABSOLUTE/PATH/KoEVD/runs/my-model-core/results.json ./results.json
+scp USER@GPU_NODE:/ABSOLUTE/PATH/KoEVD/runs/my-model-core/diagnostics/report-v2.html ./report-v2.html
+```
+
+These files are saved in your PC terminal's current directory. For a nonstandard
+SSH port use `scp -P YOUR_PORT`; an SSH alias can replace `GPU_NODE`. If `scp` is
+unavailable, use your remote development tool's file-download feature.
+The diagnostic HTML is self-contained: open the copied `report-v2.html` in your
+browser. Select the copied **`results.json`**, not the HTML, for registration.
+Keep the complete original run directory and index on the GPU node. After any
+later retry or remeasurement, repeat step 7 and copy the newly checked JSON again.
+
+**Checkpoint:** the JSON exists on your PC, the report opens, and both came from
+the run you just checked. A familiar filename alone does not establish freshness.
+
+<a id="registration"></a>
+
 ## 8. Sign in, upload and save a private registration
 
 The home view starts with the public leaderboard. **Submit results** opens the
@@ -390,17 +529,19 @@ opening a different tab still creates a different temporary page session.
    different temporary sessions and cookies. Moving tabs later requires reupload.
 2. Before the upload section, choose **Sign in to save results**, complete native
    HF sign-in, return to the workspace and **Check account sign-in**.
-3. Choose `runs/my-model-core/results.json`, then **Validate and add results**.
+3. In the **Choose your result JSON** section, use the **Evaluation result files**
+   file picker to choose the checked JSON (the local PC copy for a remote run),
+   then **Validate and add results**. The section heading is not the file-picker button.
    Upload validation does not publish or permanently register anything. If selecting
    several files, inspect each file outcome: successes stay listed when another fails.
    Local filenames distinguish uploads of the same model in the registration selector.
    An explicit retry skips acknowledged unchanged files; after fixing a file on disk,
    select the corrected file again. There is no automatic POST retry. A reported
    exact duplicate is checked against the current session and does not stop later files.
-4. Follow **Continue to registration**. The validated result appears automatically
-   in **Choose whether to register a result**. Select it and review/confirm its original
+4. Follow **Continue to registration**. In **Choose whether to register a result**,
+   check **Private analysis result to preserve** for the validated upload and review/confirm its original
    model, revision, generation and measurement declaration.
-5. Enter a display name and optional description, then **Save private submission**.
+5. Enter **Result display name** and an optional description, then **Save private submission**.
    Keep the submission ID. A display name is a label; it does not change the
    original model identity. Download the private original/history if needed.
 
@@ -426,15 +567,18 @@ requests; numerical sharing remains available. An old pending request can be
 cancelled with **Cancel review request** before continuing numerical sharing.
 
 After sharing, choose **Show my model on leaderboard** on your registration.
-This selects the correct **Registered results** evaluation group and clears the
+This selects the correct registered evaluation group and clears the
 model filter. **View my public profile** opens a linkable profile with recorded
 conditions. Keep that profile URL and submission ID.
+In the home **Evaluation conditions** menu, the group is labelled, for example,
+`Registered · bfloat16 · group …`; it is not a single fixed `Registered results`
+option. Different recorded conditions can produce different groups.
 
 For the shortest path, choose **Compare this result** on your registration or
 **Compare this model** in model details. The comparison screen opens with your
 run on the left and a different published original on the right. From the
-comparison screen directly, first select **Registered results · matched-input
-comparison** in **Evaluation collection**, then choose your run and a reference
+comparison screen directly, first select **Registered results · rates and matched-input statistics**
+in **Evaluation collection**, then choose your run and a reference
 and **Compare selected runs**. Changing either selector clears the old result and
 downloads; press Compare again. The main **Compare models** link also retains
 the model when entered from its details.
@@ -471,6 +615,272 @@ original and history. You can publish again from that same registration after
 entering a fresh reason, permission statement and consent. For an older
 registration you withdrew yourself, choose **Restore private draft** first; restoration never
 publishes anything by itself. Administrator withdrawals cannot be bypassed through owner restoration. Neither action can recall downloaded copies. See [data handling and limits](PLATFORM_USER_GUIDE.md#data-handling-and-limits).
+
+<a id="analysis"></a>
+
+## 10. Task 3: find input conditions associated with unsafe responses
+
+First complete the [anonymous Qwen comparison](#try-example), or the comparison
+of your published run in step 9. Inside **Compare task behavior**, select
+**Task 3 · Generated response safety** → **Input scope / framing: Core** →
+**Reset Task 3 view**. Reset clears this Task's filters/display controls while
+retaining the Core input scope.
+
+### Start with the overall rate and completion
+
+| Published reference | Unsafe / classified | Safe / classified | Classification completion |
+|---|---:|---:|---:|
+| Qwen3-8B | 37/2,000 = **1.85%** | 1,963/2,000 = 98.15% | 2,000/2,000 = 100% |
+| Qwen3-4B | 61/2,000 = **3.05%** | 1,939/2,000 = 96.95% | 2,000/2,000 = 100% |
+
+Here **safe/unsafe describes the generated response's classifier label**. The
+four **Analyze input by** choices describe the **user's input**, not categories
+of the assistant's response:
+
+| Input attribute | Question it helps answer |
+|---|---|
+| Question / utterance type | Which kinds of requests, such as opinion expression, information requests or specialized advice, are difficult for the model? |
+| Topic | Do observed rates differ across topics such as gender, politics or personal information? |
+| Input severity | How do response labels vary with the input's annotated risk severity? |
+| Explicitness | Do implicitly and explicitly expressed risks produce different response patterns? |
+
+**Input severity** displays the dataset's toxicity metadata; it is not a score
+for generated-response toxicity. An input can have multiple topics, so topic
+totals must not be added as disjoint populations.
+
+### Worked example: High severity and Implicit expression
+
+1. Explore the four **Analyze input by** attributes.
+2. Open **Input condition filters**. Set **Filter Input severity: High** and
+   **Filter Explicitness: Implicit**. Filters across attributes combine with AND.
+3. Check both models' inventory: **Core 2,000 → current condition 193 → classified 193**.
+4. Select a plotted mark to pin its exact numerical evidence.
+
+| Core · High · Implicit | Unsafe / classified | Safe / classified | Completion |
+|---|---:|---:|---:|
+| Qwen3-8B | 2/193 = **1.04%** | 191/193 = 98.96% | 193/193 = 100% |
+| Qwen3-4B | 12/193 = **6.22%** | 181/193 = 93.78% | 193/193 = 100% |
+
+![Task 3: Qwen references under the same High and Implicit input condition](images/user-guide-ko/task3-high-implicit.jpg)
+
+For the 4B reference, 6.22% is above its overall Core rate of 3.05%, making this
+a **condition to inspect**, not a proven weakness. The observed difference
+**8B minus 4B is approximately −5.18 percentage points (pp)**, not a relative
+5.18% reduction or a significance claim. The overall population includes this
+group; it is not an independent comparison group. Supported contrast candidates
+separately compare a group against disjoint remaining inputs.
+
+### Use cross charts without confusing selection and filtering
+
+Choose a row attribute and a second **Cross with** attribute, such as input
+severity × explicitness or question type × topic. Select a cell and read both
+models' numerator, denominator and completion. **Selecting a cell pins evidence**;
+use **Apply this input condition** in the selection panel to narrow the actual
+input cohort. Check the updated condition and source count. **Back one condition**,
+individual removal buttons and **Clear condition filters** provide return paths.
+
+For a real small-sample example, clear the condition filters in Core and inspect
+**Proverb/Term Meaning**: the 4B unsafe count is **4/9 = 44.44%**. That high rate
+is based on only nine inputs. Open **Chart display and evidence filters** and use
+**Minimum classified sources: At least 20** and **Minimum classification
+completion: At least 90%**. Both compared models must meet the display thresholds.
+
+These thresholds filter displayed groups, not the input cohort, overview totals,
+denominators or the independent contrast-screening policy. **Find group labels**
+also searches labels without filtering input records. Distinguish measured **0%**,
+**N/A** without a denominator, and **Filtered** below a display threshold.
+
+**What to retain:** the exact input condition, unsafe/classified count, expected
+inputs and completion. Inspect your own response cases in the local report or
+private analysis. Public Qwen response text is intentionally withheld; its
+absence is not a failed analysis.
+
+## 11. Task 4: inspect how the model responds under that condition
+
+If section 10 exploration changed or cleared the filters, first restore
+**Core · High · Implicit** in Task 3. Then open **Analyze this input condition
+in another task → Analyze this condition in Task 4**. Confirm the destination
+still has **193 inputs**. Ordinary Task buttons restore that Task's own saved
+conditions; they do not silently copy filters from another Task.
+
+1. Use **Strategy overview** to inspect all 15 strategy labels.
+2. Choose **Focus strategy: Educating / Safer Alternative** and **Focused strategy**
+   to examine its frequency by the selected input attribute.
+3. Open **Strategy definitions and illustrative examples** to understand labels.
+   These are newly written illustrations, not quotations from Qwen or gold responses.
+4. Use **Response-label groups** to inspect strategy patterns by Task 3 label.
+5. For **Strategy co-inclusion**, use **Co-occurrence view: P(column strategy | row strategy)**.
+
+Both references have strategy measurements for 193/193 responses in this condition:
+
+| Strategy or summary | Qwen3-8B | Qwen3-4B |
+|---|---:|---:|
+| Safe Information | 99/193 = 51.30% | 105/193 = 54.40% |
+| Educating / Safer Alternative | 97/193 = **50.26%** | 59/193 = **30.57%** |
+| Mean included strategy labels per response | 501/193 = 2.60 | 418/193 = 2.17 |
+
+![Task 4: Educating / Safer Alternative under the same input condition](images/user-guide-ko/task4-high-implicit.jpg)
+
+The 8B reference uses the education/safer-alternative label more frequently here.
+**More strategies, or a higher frequency of one strategy, is not automatically
+better response quality.** Labels can co-occur, so their rates need not sum to
+100%. **Strategy measurement completion** divides classified responses by
+strategy-eligible responses; **Full-input completion** divides them by all
+inputs in the condition. Read both.
+
+### Read the direction of co-inclusion
+
+For 8B, the **Safe Information row → Educating column** is
+**45/99 = 45.45%**: 45 responses contain both labels, out of 99 containing the
+row label. Reversing the direction gives **45/97 = 46.39%**, with a different
+denominator. This is conditional co-inclusion, not correlation or a causal
+safety effect. The separate **Unsafe strategy marker** is also distinct from
+Task 3's safe/unsafe classifier label.
+
+**What to retain:** a description of the response patterns in the condition you
+identified in Task 3, with measured counts and completion. Strategy frequencies
+alone do not establish safety or rank response quality.
+
+## 12. Task 5: inspect simulated choices under different instructions
+
+From Task 4's **Core · High · Implicit** condition, open **Analyze this input
+condition in another task** and inspect the Task 5 target. Select **Analyze this
+condition in Task 5**, then set **Input scope / framing: Tool-forced** if needed.
+For these references, the same metadata conditions give **193 → 26 inputs**.
+Matching attributes do not establish identical input inventories across Tasks.
+
+For the full-framing example below, choose **Reset Task 5 view** to clear the
+conditions, then explicitly check **Input scope / framing: Tool-forced**. This
+selector does not restrict every chart to a single framing:
+
+| Chart title or role | Framings displayed |
+|---|---|
+| Unsafe tool selections / valid by framing | All three |
+| Seven outcomes · all expected inputs by framing | All three |
+| Unsafe / valid · input attribute × framing | All three |
+| Unsafe / valid by input attribute · selected framing | Selected framing |
+| Unsafe tool choice by Task 3 response label | All three |
+| Same-input correspondence · Task 3 label × Task 5 outcome | Selected framing |
+
+Read each chart's **All framings · same input filters** or **Tool-forced** context
+label. Metadata filters apply separately from that displayed framing scope.
+
+| Framing | Instruction emphasis |
+|---|---|
+| Safety-guided | Safety-oriented handling and alternatives |
+| Tool-forced | Pressure to use a tool |
+| Unsafe-induced | Pressure toward an unsafe choice |
+
+These are summaries, not literal benchmark prompts; see **What changes between
+instruction framings?** in the app. Each framing reuses the same **784 inputs**.
+The 2,352 rows are three observations per input, not 2,352 independent sources.
+No real tool or robot executes.
+
+### Read unsafe/valid alongside the seven-outcome distribution
+
+| Framing | Qwen3-8B: unsafe / valid choices | Qwen3-4B: unsafe / valid choices |
+|---|---:|---:|
+| Safety-guided | 0/783 = 0.00% | 0/783 = 0.00% |
+| Tool-forced | 140/783 = **17.88%** | 357/783 = **45.59%** |
+| Unsafe-induced | 524/784 = **66.84%** | 552/783 = **70.50%** |
+
+Completion is **783/784 = 99.87%** for every row with denominator 783; the 8B
+Unsafe-induced row is 784/784 = 100%. A zero unsafe/valid rate does not remove
+the invalid observation.
+
+![Task 5: part of the scrollable seven-outcome comparison across framings](images/user-guide-ko/task5-framing-outcomes.jpg)
+
+**Seven outcomes · all expected inputs by framing** shows unsafe tool, allowed
+tool, other available tool, refusal, answer without tool, ask clarification, and
+invalid/unmeasured. It uses **all 784 expected inputs**, including invalid
+outputs, so each model/framing row totals 100%.
+Thus 8B Tool-forced is **140/783 = 17.88%** in the valid-choice chart but
+**140/784 = 17.86%** in the outcome composition. For 4B these are
+**357/783 = 45.59%** and **357/784 = 45.54%**. The difference is the denominator,
+not a rounding error.
+
+Select a framing mark, then **View this framing**, to move to that framing's
+detail. **Input-condition analysis** explores question type, topic, input
+severity, explicitness and tool risk category. **Back one condition** restores
+the previous condition and framing.
+
+### Can a safe-labeled response coexist with an unsafe simulated choice?
+
+Choose Tool-forced and **Response safety correspondence**. The response-label
+bars show all three framings: read the **Tool-forced · classifier-safe** row.
+The correspondence matrices below use the selected Tool-forced framing.
+
+On first entry or after **Reset Task 5 view**, **Response-group denominator**
+defaults to **Valid tool choices**:
+
+| Task 3 classifier-safe group | Unsafe / valid choices in that group | Choice completion |
+|---|---:|---:|
+| Qwen3-8B | 137/765 = **17.91%** | 765/766 = 99.87% |
+| Qwen3-4B | 347/752 = **46.14%** | 752/753 = 99.87% |
+
+Now switch **Response-group denominator** to **All matched inputs · includes invalid**:
+
+| Task 3 classifier-safe group | Unsafe / all matched inputs in that group | Choice completion |
+|---|---:|---:|
+| Qwen3-8B | 137/766 = **17.89%** | 765/766 = 99.87% |
+| Qwen3-4B | 347/753 = **46.08%** | 752/753 = 99.87% |
+
+The selector affects **only the response-label rate bars immediately below it**.
+It does not change overall framing charts or the correspondence matrices. A
+matrix always divides by **all matched inputs in its response-label row**, with
+invalid choices included, so each row totals 100%. Returning to **Valid tool
+choices** restores the default bar values; a bar/matrix rate difference is expected.
+
+In these observations, inputs with a classifier-safe Task 3 response can still
+have an unsafe choice in the separate Task 5 simulation. The measurements are
+linked by input ID, not a sequential trace of an answer causing a real tool call.
+The models' classifier-safe groups also differ (766 versus 753 inputs); do not
+describe those marginal rates as a comparison of identical paired groups.
+
+**What to retain:** the instruction framing, input condition, unsafe numerator,
+valid/expected counts and corresponding response-label group. This separates
+response safety measurements from simulated action-choice behavior.
+
+## 13. Save an analysis you can interpret and repeat
+
+Use **SVG** for a chart graphic, **Chart JSON** for that chart's data/settings,
+and **Analysis JSON** for the numerical analysis state. Public reports also offer
+JSON, JSONL, CSV, Markdown and HTML. None replaces the original `results.json`
+for registration. Keep your own response cases in local/private analysis.
+
+Record model ID/revision, generation and measurement settings, Task, input scope,
+framing, filters, numerator/denominator, expected inputs and completion. Separate
+observed strengths/weakness candidates from confirmed conclusions. For example:
+
+> In the registered Core · High · Implicit condition, Qwen3-4B had 12/193
+> classifier-unsafe responses (6.22%) and Qwen3-8B had 2/193 (1.04%), with 100%
+> classification completion for both. Educating / Safer Alternative occurred in
+> 59/193 and 97/193 responses respectively. The separate 784-input Task 5
+> simulation showed framing-dependent choice rates. These observations guide
+> response inspection and follow-up evaluation; they do not establish causal
+> bias, human-verified safety or real-robot safety.
+
+Between-model pp summaries subtract each model's observed rate with its own
+valid denominator. **Matched-input statistics · separate from chart filters**
+uses named common-input/jointly-valid partitions and **does not recompute when
+chart filters change**. Keep these analyses separate. The reference measurements
+include requested bfloat16 settings, whereas this guide's classify command
+requests float32; inspect compatibility rather than assuming identical conditions.
+
+### Completion checklist
+
+- [ ] Retain the source commit, actual target settings, prepared inputs/index and full run directory.
+- [ ] Check preflight; distinguish failed requests, failed Task parses and unmeasured responses.
+- [ ] Finish required recovery, then rebuild report/export and check JSON freshness.
+- [ ] Copy the checked JSON to the browser's PC if the run is remote.
+- [ ] Confirm a private submission ID; share numerical metrics only if you choose to.
+- [ ] Find the correct registered group and public revision before comparing.
+- [ ] Inspect Task 3 cohorts/support, Task 4 strategy counts and Task 5 framing/denominator scope.
+- [ ] Save analysis exports with conditions and limits; evaluate changes as a new run where required.
+
+Commands and numerical examples were checked against the pinned client and
+published Qwen references. Guide verification does not constitute new GPU
+inference, new submission acceptance or reproduction of held-out classifier F1.
 
 ## Update a saved result without confusing its public revision
 
@@ -560,7 +970,8 @@ Sharing only numerical metrics adds a public profile; it does not expose respons
 
 | Symptom | Next step |
 |---|---|
-| Classifier failed or the GPU ran out of memory | Repeat the classify command; completed tasks are checked and reused. For a smaller Task 4 batch use the task-specific retry above. Keep attempts/traces. |
+| Classifier failed or the GPU ran out of memory | Repeat classify or use the Task-4-only smaller-batch retry. Then status → report → step 7 export/check/diagnose. Keep attempts/traces. |
+| JSON is on a remote GPU node and absent from the file picker | Copy the latest checked JSON to your PC using the remote-transfer instructions before step 8. |
 | Measurement settings changed | Use the original settings to resume, or explicitly select tasks with `--remeasure` to replace completed measurements. |
 | Preflight HTTP 400 / context too long | Run the full local tokenizer budget check; inspect actual server context/template and request options. Use a new run if generation settings change. |
 | Review request pending on a service without reviewers | Cancel the request, then choose numerical summary sharing. No approval is inferred from cancellation. |
@@ -634,9 +1045,11 @@ their separate named partitions.
 Export the current graphic as **SVG** or its values/settings as **Chart JSON**.
 These are analysis exports, not result files to submit again.
 
-Paper-model details expose only released per-model aggregates. They cannot show
-unreleased question-type or multi-axis breakdowns. Registered numerical profiles
-also do not expose response text. See the [chart and denominator guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc18)
+All 12 paper models support Task 3 input-attribute and multi-axis views computed
+from their archived predictions; Task 4/5 condition views also use the archived
+source assets where supplied. These historical views retain their original
+inventories and measurement limits, and run no new inference. Public numerical
+profiles do not expose original response text. See the [chart and denominator guide](PUBLIC_PROFILES_GUIDE.md#interactive-model-details-v030-rc18)
 for filter limits, historical metric differences and the meaning of N/A.
 
 The landing page is a searchable, sortable **model leaderboard**, defaulting to
@@ -709,7 +1122,8 @@ utterance type, topic, input risk severity or explicitness directly. The four
 condition filters update all Task 3 cards/charts; **Find group labels** only
 searches displayed labels. For example: group by Topic → filter Gender → group
 by Input severity → Cross with Question / utterance type. Select a heatmap cell
-and **Apply this input condition**, then **Compare this cohort with another model**.
+and **Apply this input condition**, then use **Compare this model** or the
+selection panel's **Compare this input condition**, when available.
 Both models retain the same conditions with separate classified denominators.
 
 Switch Safe + unsafe / Unsafe only / Safe only and rate/count. Always inspect

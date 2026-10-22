@@ -3,6 +3,9 @@
 **Evaluation client: v0.3.0-rc.24 (package 0.3.0rc24).** Evaluate your own model, export
 portable JSON, build offline reports, and register results in the
 [public Platform](https://huggingface.co/spaces/KETI-NLP/KoEVD-Platform).
+
+**User guides:** [English · evaluate, recover, register and analyze](docs/GETTING_STARTED.md) · [한국어 사용 가이드](docs/USER_GUIDE_KO.md).
+
 Anonymous visitors start with the 12-model historical paper leaderboard. Each
 paper model supports direct Task 3 type/topic/input-severity/explicitness views,
 exact condition filters, completion-aware cards, cross heatmaps and model differences from its original
@@ -26,12 +29,13 @@ downloads. The public app uses CPU Basic and one replica. This is research-servi
 acceptance, with no new inference or classifier-accuracy claim. Prior beta and
 failed activation evidence retain their dated scope.
 
-Start with the **[complete first-user guide](docs/GETTING_STARTED.md)**: pinned
+Start with the **[English first-user guide](docs/GETTING_STARTED.md)**: pinned
 inputs → model generation → measurement → `results.json` → sign-in → private
 registration → optional shared numerical comparison. The guide includes failed
 generation/measurement retries, service reconnection, cross-group model discovery,
 metric interpretation, latest-export checks, local prompt-budget checks, review-request cancellation and
-reversible summary sharing. Use
+reversible summary sharing. Worked Qwen3-8B/4B examples and screenshots walk through
+Task 3 input conditions, Task 4 strategies and Task 5 framing/denominator controls. Use
 [Platform controls and data handling](docs/PLATFORM_USER_GUIDE.md) as a reference.
 For a Korean walkthrough with real Qwen3-8B/4B numbers and Task 3–5 screenshots,
 see **[한국어 사용 가이드 · 내 모델 평가부터 등록·취약점 분석까지](docs/USER_GUIDE_KO.md)**.
